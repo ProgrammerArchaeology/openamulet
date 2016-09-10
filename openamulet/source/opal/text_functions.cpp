@@ -721,13 +721,13 @@ void Am_Insert_Cut_Buffer_At_Cursor (Am_Object text)
   if ((bool)text.Get(Am_PENDING_DELETE))  //delete all text first
     Am_Delete_Entire_String(text);
   Am_Object win;
-  if (win = text.Get(Am_WINDOW))
+  if ((win = text.Get(Am_WINDOW)))
     Am_Insert_String_At_Cursor (text, Am_Get_Cut_Buffer(win));
 }
 
 void Am_Set_Cut_Buffer_From_Text(Am_Object text) {
   Am_Object win;
-  if (win = text.Get(Am_WINDOW))
+  if ((win = text.Get(Am_WINDOW)))
     Am_Set_Cut_Buffer (win, Am_String (text.Get (Am_TEXT)));
 }
 
