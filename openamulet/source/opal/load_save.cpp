@@ -174,7 +174,7 @@ Am_Define_Method (Am_Load_Method, Am_Value, load_string,
   value[length] = '\0';
   is.get (ch); // skip eoln
   Am_String string (value);
-  delete value; // TODO: Should we have a delete[] here ? -- ortalo
+  delete[] value;
   return Am_Value (string);
 }
 

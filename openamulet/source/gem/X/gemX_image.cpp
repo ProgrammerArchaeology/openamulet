@@ -762,7 +762,7 @@ Pixmap Am_Image_Array_Data::Make_Mask_From_Generic_Image
 
   Pixmap retval = XCreateBitmapFromData (draw->screen->display,
 		 draw->xlib_drawable, (char*)data, width, height);
-  delete data;
+  delete[] data;
 
   return retval;
 }
