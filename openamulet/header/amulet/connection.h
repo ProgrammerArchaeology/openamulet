@@ -206,8 +206,8 @@ public:
 
   void Receive_Object(Am_Object &the_obj);
   void Receive_Object_Slots();
-  void Am_Connection::Add_To_Current_Object(Am_Value val);
-  void Am_Connection::Check_Object();
+  void Add_To_Current_Object(Am_Value val);
+  void Check_Object();
 
   // Input loop mehtods
 
