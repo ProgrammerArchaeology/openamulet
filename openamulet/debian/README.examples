@@ -1,0 +1,25 @@
+# Compile and run like this:
+
+g++ -o goodbye goodbye.cc -lamulet-develop
+
+goodbye
+
+# Since it is linked with the developmental library, you have access
+# to the inspector.  To try it out, put the cursor over the button and
+# press <F1>.  The button is an Am_Object.  The inspector displays all
+# its "slots".  Slots are like struct elements, except they can hold
+# things of any type, and can be dynamically added and destroyed.  A
+# visible object will have slots for its position (TOP, LEFT) and size
+# (WIDTH, HEIGHT).  You can edit the slot contents - for example,
+# changing the window size by increasing the WIDTH value.  The
+# inspector also displays all the "parts" of the object (similar to
+# "slots", except it can only hold another Am_Object, and need not
+# have a name).  Near the top, the inspector will tell you that the
+# button is part of another object.  You can right click on this
+# reference, and the inspector will switch to the window Am_Object.
+# You can also just move the cursor to somewhere in the window but
+# outside the button, and press <F1> again.  This opens a second
+# inspector window (which is placed on top of the first window).
+# There is a menu item to dismiss the inspector, with ^Q as the
+# accelerator key.
+

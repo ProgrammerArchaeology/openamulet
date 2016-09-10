@@ -1,0 +1,46 @@
+This package was debianized by James R. Van Zandt <jrv@vanzandt.mv.com> on
+Mon, 11 Oct 1999 20:14:23 -0400
+
+Upstream Author(s): 
+ Brad Myers <Brad_Myers@amulet1.amulet.cs.cmu.edu>
+ Dean Edmonds <deane@gooroos.com>
+ Michiel Ephraim <mje@casema.net>
+ Robert M. Muench <robert.m.muench@scrap.de>
+ Rodolphe Ortalo <ortalo@laas.fr>
+ Paul Sokolovsky <Paul.Sokolovsky@technologist.com>
+ 
+It was downloaded from http://www.openip.org/oa/oa_beta/
+
+Copyright:
+
+Amulet is available for free by anonymous FTP or  WWW. Amulet has been
+put into the public domain. This means that anyone  can use Amulet for
+whatever they  want. In particular, Amulet  can be used for commercial
+development without any license or   fees. The resulting binaries  and
+libraries can  also be  distributed  commercially or  for free without
+payments or licenses to Carnegie Mellon University (CMU). You can even
+include   portions of the Amulet   source  code  in  your projects  or
+products. The only restriction is that the documentation for Amulet is
+copyrighted, so   you cannot distribute the   Amulet manual  or papers
+without permission from CMU. In return,  CMU assumes no responsibility
+for how  well Amulet  works, and  will not  guarantee  to  provide any
+support.   If you need more  formal  legal language,  see Section 1.12
+below.  If you need this  formally signed, then replace your company's
+name for COMPANY and send it back to us.
+
+Of  course, the Amulet  research group would  appreciate any corporate
+grants or donations to support the further development and maintenance
+of Amulet. We would also be interested in discussing grants to support
+adding specific features to the system  that would make it more useful
+for your needs. Please contact Brad Myers at bam@cs.cmu.edu to discuss
+this.
+
+If you decide to use Amulet, we would like to  be able to mention this
+in our publicity and reports to our  sponsors. (We get recognition for
+having users, both commercial and research projects.) Please send mail
+to amulet@cs.cmu.edu with the name of your project or product. We also
+like to   receive screenshots. If you   write papers or advertisements
+about systems built with Amulet, we would appreciate if you included a
+mention that you used  Amulet, and a  reference to this manual, and we
+would like a copy of your paper for our files.
+

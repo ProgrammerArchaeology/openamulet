@@ -1,0 +1,13 @@
+set timeout 10
+
+set prg "./testcopy"
+
+#gem_start $prg
+
+spawn "$prg"
+
+match ".*RETURN.*point-list.*$" "t1"
+send "\n"
+match ".*RETURN to exit.*$" "t2"
+send "\n"
+match eof "$prg correct end"

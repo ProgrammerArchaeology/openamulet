@@ -1,0 +1,43 @@
+open-amulet for Debian
+----------------------
+
+The OpenAmulet Toolkit is a portable toolkit designed for the creation
+of 2D direct manipulation grapical user interfaces. It is written in
+C++ and can be used with Unix systems running the X Window System
+(Motif look), PC's running Microsoft Windows NT or `95 (native look),
+or Macintosh systems running MacOS (native look).
+
+The Amulet research project in the School of Computer Science at
+Carnegie Mellon University is creating a comprehensive set of tools
+which make it significantly easier to create graphical,
+highly-interactive user interfaces. The lower levels of Amulet are
+called the `Amulet Toolkit,' and these provide mechanisms that allow
+programmers to code user interfaces much more easily.  Support is
+provided for: object selection, save/load, undo, and constraints.
+
+As the group at Carnegie Mellon University is no longer funded for
+its work on Amulet, some Amulet users have founded the OpenAmulet
+project which has continued its development.
+
+There are five Debian packages for the OpenAmulet toolkit
+so far:
+
+     libamulet4			shared libraries
+     open-amulet-images		image files shared by Amulet apps
+     open-amulet-dev		header files and static libraries
+     open-amulet-doc		documentation files
+     gilt			GUI interface builder
+
+To run OpenAmulet applications, users need to install the first, and
+possibly the second.  To compile OpenAmulet applications, the third is
+needed.  Developers will probably want to install all of them.
+
+I have written man pages for a *few* of the functions.  You should
+rely primarily on the reference manual in open-amulet-doc for
+documentation.
+
+ For more information, see http://www.openip.org and 
+ http://www.cs.cmu.edu/~amulet/
+
+ -- James R. Van Zandt <jrv@vanzandt.mv.com>, Tue, 19 Oct 1999 11:46:22 -0400
+

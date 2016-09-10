@@ -1,0 +1,9 @@
+set timeout 10
+
+set prg "./testdpy"
+
+spawn "$prg"
+
+#match ".*RETURN.*$" "$prg waiting for a key"
+send "\n"
+match eof "$prg correct end"

@@ -1,0 +1,6 @@
+#define Am_EAGER_DEMON       0x0001
+#define Am_STATIONARY_REDRAW 0x0004
+#define Am_MOVING_REDRAW     0x0008
+#define Am_GROUP_RESIZE_PARTS 0x0010
+#define Am_COMMON_SLOT       0x0004
+#define Am_UNCOMMON_SLOT     0x0008

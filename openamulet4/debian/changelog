@@ -1,0 +1,99 @@
+open-amulet (4.3.1-7.1) unstable; urgency=low
+
+  * Non-Maintainer Upload
+  * Applied patch from Matthew Wilcox <willy@debian.org> in bug
+    report 133609 (Closes: #133609, #104664)
+  * Added Build-Dep for gcc-3.0 (Closes: #120457)
+  * Typo in entry for 4.3.1-4 didn't close bug (Closes: #84616)
+  * Updated Standards-Version
+
+ -- David Schleef <ds@schleef.org>  Sun, 17 Feb 2002 01:07:43 -0800
+
+open-amulet (4.3.1-7) unstable; urgency=low
+
+  * debian/control: spelling fix (Closes:Bug#124878,Bug#125205,Bug#125206)
+  * header/amulet/univ_map.h: Try another method of generating a hash with
+    MIPS (re: 84616)
+
+ -- James R. Van Zandt <jrv@debian.org>  Fri, 21 Dec 2001 20:06:38 -0500
+
+open-amulet (4.3.1-6) unstable; urgency=low
+
+  * debian/Am_From_Object.3 fix formatting so mandb is not confused about
+    first function name (Closes:bug#99562)
+
+ -- James R. Van Zandt <jrv@debian.org>  Mon, 19 Nov 2001 20:03:04 -0500
+
+open-amulet (4.3.1-5) unstable; urgency=low
+
+  * debian/README.Debian, debian/control: change nomenclature "X Windows"
+    -> "X Window System" (closes:Bug#119839) 
+  * debian/control: build-depend on xlibs-dev
+
+ -- James R. Van Zandt <jrv@vanzandt.mv.com>  Sun, 18 Nov 2001 17:37:17 -0500
+
+open-amulet (4.3.1-4) unstable; urgency=low
+
+  * header/amulet/univ_map.h: remove "static_cast" entirely on MIPS.
+    (close:bug#84616)
+  * source/net/connection.cc: avoid use of socklen_t on MIPS.
+  * debian/control: new maintainer email, move libamulet4 to section "libs"
+
+ -- James R. Van Zandt <jrv@debian.org>  Wed,  4 Jul 2001 17:36:36 -0400
+
+open-amulet (4.3.1-3) unstable; urgency=low
+
+  * header/amulet/univ_map.h: static_cast -> plain (int) cast to satisfy
+    gcc on MIPS (close:bug#84616)(thanks to Philip Martin
+    <pm@corris.dircon.co.uk>) 
+  * source/net/connection.cpp: unsigned int -> socklen_t to satisfy
+    gcc on MIPS
+
+ -- James R. Van Zandt <jrv@vanzandt.mv.com>  Thu,  5 Apr 2001 19:29:25 -0400
+
+open-amulet (4.3.1-2) unstable; urgency=low
+
+  * link against libc2.2.1
+
+ -- James R. Van Zandt <jrv@vanzandt.mv.com>  Sun, 18 Feb 2001 21:34:38 -0500
+
+open-amulet (4.3.1-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- James R. Van Zandt <jrv@vanzandt.mv.com>  Thu,  6 Jan 2000 20:19:02 -0500
+
+open-amulet (4.3-4) unstable; urgency=low
+
+  * Use symlinks for other functions documented on the same man page, not
+    copies of the file.
+  * Install manpages only in -dev package (Closes:bug#48887)
+
+ -- James R. Van Zandt <jrv@vanzandt.mv.com>  Tue,  2 Nov 1999 20:43:21 -0500
+
+open-amulet (4.3-3) unstable; urgency=low
+
+  * header/amulet/widgets.h: #include amulet/impl/widget_misc.h (per 24
+    Oct 99 email from Paul Sokolovsky <paul-ml@is.lg.ua>)
+  * Add two man pages.
+
+ -- James R. Van Zandt <jrv@vanzandt.mv.com>  Sun, 24 Oct 1999 11:31:20 -0400
+
+open-amulet (4.3-2) unstable; urgency=low
+
+  * Updated descriptions: Amulet -> OpenAmulet, web site is
+    www.openip.org.
+  * Add README.Debian
+  * Complying with version 3.0.0 of the policy.
+
+ -- James R. Van Zandt <jrv@vanzandt.mv.com>  Sun, 24 Oct 1999 11:31:06 -0400
+
+open-amulet (4.3-1) unstable; urgency=low
+
+  * Initial Release.
+  * source/utils/initializer.cpp: generate initialization trace messages
+    only if LEAK_TRACE is #defined.
+
+ -- James R. Van Zandt <jrv@vanzandt.mv.com>  Mon, 11 Oct 1999 20:11:55 -0400
+
+

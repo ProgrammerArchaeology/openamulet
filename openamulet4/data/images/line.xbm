@@ -1,0 +1,5 @@
+#define /usr0/af1x/work.inspect/amulet/lib/line.xbm_width 16
+#define /usr0/af1x/work.inspect/amulet/lib/line.xbm_height 8
+static unsigned char /usr0/af1x/work.inspect/amulet/lib/line.xbm_bits[] = {
+   0x03, 0x00, 0x0c, 0x00, 0x30, 0x00, 0xc0, 0x00, 0x00, 0x03, 0x00, 0x0c,
+   0x00, 0x30, 0x00, 0xc0};

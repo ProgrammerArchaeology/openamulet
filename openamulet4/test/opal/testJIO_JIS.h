@@ -1,0 +1,36 @@
+#define KANJI "漢字フォントテスト"
+#define TEST_STRING "これは漢字テキストの例です。"
+#define KANJI3 "漢字フォントサイズテスト"
+#define KANJI7 "漢字フォントファミリーテスト"
+#define KANJIE "漢字入力テスト"
+#define KTITLE "漢字コード表"
+#define KKTITLE "漢字コード表"
+#define KCTITLE "漢字コード表"
+#define JS_TEST_STRING "これは漢字テキストＳＭＡＬＬの例です。"
+#define JM_TEST_STRING "これは漢字テキストＭＥＤＩＵＭの例です。"
+#define JTS_TEST_STRING "これは漢字テキストＴＳＭＡＬＬの例です。"
+#define JTM_TEST_STRING "これは漢字テキストＴＭＥＤＩＵＭの例です。"
+#define JL_TEST_STRING "これは漢字テキストＬＡＲＧＥの例です。"
+#define JTL_TEST_STRING "これは漢字テキストＴＬＡＲＧＥの例です。"
+#define JVL_TEST_STRING "これは漢字テキストＶ＿ＬＡＲＧＥの例です。"
+#define JTVL_TEST_STRING "これは漢字テキストＴＶ＿ＬＡＲＧＥの例です。"
+#define J_TEST_STRING "これは漢字テキストＪの例です。"
+#define JP_TEST_STRING "これは漢字テキストＪＰの例です。"
+#define C_TEST_STRING "これは漢字テキストＣの例です。"
+#define K_TEST_STRING "これは漢字テキストＫの例です。"
+#define MSM_TEST_STRING "これは漢字テキストＭＳＭの例です。"
+#define MSG_TEST_STRING "これは漢字テキストＭＳＧの例です。"
+#define MSMP_TEST_STRING "これは漢字テキストＭＳＭＰの例です。"
+#define MSGP_TEST_STRING "これは漢字テキストＭＳＧＰの例です。"
+#define PTEXT_STRING "初期値"
+#define QBUTTON_STRING "終了"
+#define QBUTTON_FONT JTM_Font
+#define KLINE_FONT JTL_Font
+#define KKLINE_FONT KTL_Font
+#define KCLINE_FONT CTL_Font
+#define KLINE_LEFT 20
+
+#define MSM_FONT "ＭＳ 明朝"
+#define MSG_FONT "ＭＳ ゴシック"
+#define MSMP_FONT "ＭＳ Ｐ明朝"
+#define MSGP_FONT "ＭＳ Ｐゴシック"

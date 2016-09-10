@@ -1,0 +1,42 @@
+OpenAmulet uses the GNU configure and build system,
+based on autoconf, automake and libtool.
+See INSTALL for compiling instruction.
+
+This file details Unix-specific aspects of OpenAmulet.
+General details and details concerning MS-Windows can
+be found in readme.txt (and associated files).
+
+NEWS
+====
+
+ * v.4.3: This version includes a convenient file
+location class. See <amulet/filefind.h> for details
+on the Am_Filename and Am_Data_Locator new types.
+The library uses a Am_Default_Data_Locator object now.
+A convenient side effect of this is that you can do
+things like: 'export AMULET_DIR=../images:/home/me/here:.'
+to solve a possible runtime file-not-found problem.
+
+NOTES
+=====
+
+ * GENERAL NOTES:
+
+This library needs a compiler understanding namespaces and the STL.
+This distribution has been tested on Linux with egcs 1.1 and Solaris
+with the same compiler (ahem, not exactly the same of course... :-)
+It runs acceptably.
+
+ * Notes for Solaris:
+
+You will NEED to use gcc as a linker on this platform.
+So, before compiling, do an 'export LD=gcc' (or 'setenv LD gcc' if
+you use a csh-ism).
+
+
+Of course, I welcome any feedback or contribution, especially for
+other Unix platforms, and build attempts with other compilers.
+
+Thank you for your interest in OpenAmulet,
+
+Rodolphe Ortalo (ortalo@cert.fr)

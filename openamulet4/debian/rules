@@ -1,0 +1,172 @@
+#!/usr/bin/make -f
+#-*- makefile -*-
+# Made with the aid of dh_make, by Craig Small
+# Sample debian/rules that uses debhelper. GNU copyright 1997 by Joey Hess.
+# This version is for a hypothetical package that builds an
+# architecture-dependent package, as well as an architecture-independent
+# package.
+
+package=open-amulet
+
+#version=$(shell expr `pwd` : '.*-\([0-9.]*\)')
+#version_major=$(shell expr `pwd` : '.*-\([0-9]*\).[0-9.]*')
+major=4
+version=4.0.0
+
+# Uncomment this to turn on verbose mode. 
+#export DH_VERBOSE=1
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+
+	CC=gcc-3.0 ./configure --prefix=/usr --enable-static
+
+# Patch the generated libtool to avoid passing -rpath when linking,
+# and to explicitly link libraries against the libraries they
+# depend on.
+	 sed < libtool > libtool-2 \
+	 -e 's/^hardcode_libdir_flag_spec.*$$/hardcode_libdir_flag_spec=" -D__LIBTOOL_IS_A_FOOL__ "/' \
+	 -e '/^archive_cmds="/s/"$$/ \\$$deplibs"/'
+	 mv libtool-2 libtool
+	 chmod 755 libtool
+
+	# build both shared and static libraries
+	make CC=gcc-3.0
+#
+#	 #
+#	 # First build the shared library
+#
+##	 make clean
+##	 make
+##	 cp source/.libs/libamul*.so.0.0.* shared
+##
+##	 make clean
+##	 ar rs 	
+#	 cd shared ;							\
+#	 $(MAKE) -f ../Makefile VPATH=".." srcdir=".."			\
+#		 CFLAGS="-O2 -fPIC -pipe" ;				\
+#	 gcc -shared -Wl,-soname,$(package).so.$(version_major) 	\
+#		 -o $(package).so.$(version) `find . -name '*.o'`
+#	 #
+#	 # Build the static library (it does not need Position Independent
+#        # Code, which reserves one register; thus without -fPIC we get
+#        # more efficient code).
+#	 #
+#	 cd static ;							\
+#	 $(MAKE) -f ../Makefile VPATH=".." srcdir=".."			\
+#		 CFLAGS="-O2 -pipe" LDFLAGS="-s" `find . -name '*.o'`
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp install-stamp
+
+	# Add here commands to clean up after the build process.
+	-$(MAKE) distclean
+
+	dh_clean
+
+install: install-stamp
+install-stamp: build-stamp
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	# Add here commands to install the package into debian/tmp.
+	$(MAKE) install prefix=`pwd`/debian/tmp/usr
+
+	#
+	# build libamulet package
+	#
+	 install -d -o root -m 755 debian/libamulet$(major)
+	 for x in DEBIAN usr/lib usr/share/doc/libamulet$(major); do	 \
+		 install -d -o root -m 755 debian/libamulet$(major)/$$x; \
+	 done
+	 dh_movefiles -plibamulet$(major)		\
+		usr/lib/libamulet.so.$(major)		\
+		usr/lib/libamulet.so.$(version)		\
+		usr/lib/libamulet-develop.so.$(major)	\
+		usr/lib/libamulet-develop.so.$(version)
+#	 install -o root -m 644 -s source/.libs/libamulet.so.$(version) \
+#		 debian/libamulet$(major)/usr/lib/libamulet.so.$(version)
+
+	#
+	# build open-amulet-images package
+	#
+#	  install -d -o root -m 755 debian/open-amulet-images
+#	  for x in DEBIAN usr/lib usr/share/doc/open-amulet-images; do	 \
+#		  install -d -o root -m 755 debian/open-amulet-images/$$x; \
+#	  done
+	 dh_movefiles -popen-amulet-images			\
+		usr/share/open-amulet/images/*.gif		\
+		usr/share/open-amulet/images/*.xbm		\
+		usr/share/open-amulet/images/*.bmp		\
+		usr/share/open-amulet/images/scripting/*.gif	\
+		usr/share/open-amulet/images/scripting/*.xbm
+
+	touch install-stamp
+
+# Build architecture-independent files here.
+binary-indep: build install
+#	dh_testversion
+	 dh_testdir -i
+	 dh_testroot -i
+	 dh_installdocs -i
+	 dh_installexamples -i
+	 dh_installmenu -i
+#	dh_installemacsen -i
+#	dh_installinit -i
+	 dh_installcron -i
+#	dh_installmanpages -i
+#	dh_undocumented
+	 dh_installchangelogs -i changes.htm
+	 dh_link -i
+	 dh_compress -i
+	 dh_fixperms -i
+	 # You may want to make some executables suid here
+	 dh_suidregister -i
+	 dh_installdeb -i
+	 dh_gencontrol -i
+	 dh_md5sums -i
+	 dh_builddeb -i
+
+binary-arch: build install
+	rm -f debian/libamulet$(major)/DEBIAN/shlibs
+#	dh_testversion
+	dh_testdir -a
+	dh_testroot -a
+	dh_installdocs -a
+	dh_installexamples -a debian/README.examples debian/goodbye.cc
+	dh_installmenu -a
+#	dh_installemacsen -a
+#	dh_installinit -a
+	dh_installcron -a
+	cat debian/Am_From_Owner.3
+	dh_installmanpages -popen-amulet-dev -v
+	ls -l debian/tmp/usr/share/man/man3/*Owner*
+#	dh_undocumented
+	dh_installchangelogs -a changes.htm
+	dh_link -a
+	dh_strip -a
+	dh_compress -a
+	ls -l debian/tmp/usr/share/man/man3/*Owner*
+	dh_fixperms -a
+	# You may want to make some executables suid here
+	dh_suidregister -a
+	dh_makeshlibs -a
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+source diff:                                                                  
+	@echo >&2 'source and diff are obsolete - use dpkg-source -b'; false
+
+binary: binary-arch binary-indep
+
+.PHONY: build clean binary-indep binary-arch binary

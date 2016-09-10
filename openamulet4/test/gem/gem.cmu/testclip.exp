@@ -1,0 +1,77 @@
+set timeout 10
+
+set prg "./testclip"
+
+#gem_start "$prg"
+
+spawn "$prg"
+
+match ".*RETURN.*giant green.*area.*$" "t1"
+send "\n"
+match "Entering test_multi_clips:.*\n.*RETURN.*giant red.*blue.*rgns.*$" "t2"
+send "\n"
+match ".*RETURN.*clip regions.*windows.*$" "t3"
+send "\n"
+match "Testing Am_Region::Intersect_Region:.*\n.*RETURN.*giant rectangles.*regions of D2.*$" "t4"
+send "\n"
+match "Am_Region::In_Region tests all passed\..*\nTesting.*RETURN.*giant black rect.*Am_Region.*$" "t5"
+send "\n"
+match ".*RETURN 6 times.*nest.*Am_Region.*$" "t6"
+for {set i 1} {$i <= 6} {incr i} {
+    send "\n"
+    match " *$i" "t6-$i"
+}
+#send "\n"
+match ".*RETURN 6 times.*pop.*Am_Region.*$" "t7"
+for {set i 1} {$i <= 6} {incr i} {
+    send "\n"
+    match " *$i" "t8-$i"
+}
+#send "\n"
+match ".*RETURN 2 times.*push.*same Am_Region.*$" "t9"
+for {set i 1} {$i <= 2} {incr i} {
+    send "\n"
+    match " *$i" "t10-$i"
+}
+#send "\n"
+match "Testing higher-level Am_Drawonable.*\n.*RETURN.*clip black.*clip_region.*$" "t11"
+send "\n"
+match ".*RETURN 6 times.*nest.*Am_Drawonable clip.*$" "t12"
+for {set i 1} {$i <= 6} {incr i} {
+    send "\n"
+    match " *$i" "t13-$i"
+}
+#send "\n"
+match ".*RETURN 6 times.*pop.*Am_Drawonable clip.*$" "t14"
+for {set i 1} {$i <= 6} {incr i} {
+    send "\n"
+    match " *$i" "t15-$i"
+}
+#send "\n"
+match ".*RETURN 2 times.*push.*same Am_Drawonable.*$" "t16"
+for {set i 1} {$i <= 2} {incr i} {
+    send "\n"
+    match " *$i" "t17-$i"
+}
+#send "\n"
+match ".*Clear_Area.*\n.*RETURN.*black-out.*$" "t18"
+send "\n"
+match ".*RETURN 6 times.*nest.*clipping.*\n.*alternately.*$" "t19"
+for {set i 1} {$i <= 6} {incr i} {
+    send "\n"
+    match " *$i" "t20-$i"
+}
+#send "\n"
+match ".*do/don.*intersect Clear_Area.*\n.*RETURN to black.*$" "t21"
+send "\n"
+match ".*RETURN.*clip on left and clear.*w/o.*$" "t22"
+send "\n"
+match ".*RETURN.*clip on left and clear.*with.*$" "t23"
+send "\n"
+match ".*RETURN.*clear on left and clip.*with.*$" "t24"
+send "\n"
+match ".*RETURN.*clear on left and clip.*w/o.*$" "t25"
+send "\n"
+match ".*RETURN to exit.*$" "t26"
+send "\n"
+match eof "end of $prg"
