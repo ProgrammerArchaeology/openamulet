@@ -144,7 +144,6 @@ class Am_Demon_Set_Data {
   { ++ refs; }
   void Release ()
   {
-    if (!this) return;
     if (!--refs)
       delete this;
   }

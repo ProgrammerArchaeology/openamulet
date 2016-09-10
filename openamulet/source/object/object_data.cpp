@@ -1244,22 +1244,17 @@ void Am_Object_Data::enqueue_invalid(Am_Slot_Data* slot)
 
 void Am_Object_Data::Print(std::ostream& os) const
 {
-	os << "<";
-	if(this)
-	{
+  os << "<";
 #ifdef DEBUG
-		const char* name = Am_Get_Name_Of_Item(this);
-		if(!name || (name[0] == '\0'))
-		os <<std::hex << (long)this <<std::dec;
-		else
-			os << name;
+  const char* name = Am_Get_Name_Of_Item(this);
+  if(!name || (name[0] == '\0'))
+    os <<std::hex << (long)this <<std::dec;
+  else
+    os << name;
 #else
-	std::cout << "Am_Object:" <<std::hex << (long)this <<std::dec;
+  std::cout << "Am_Object:" <<std::hex << (long)this <<std::dec;
 #endif
-	}
-	else
-	os << "EMPTY OBJECT";
-	os << ">";
+  os << ">";
 }
 
 
