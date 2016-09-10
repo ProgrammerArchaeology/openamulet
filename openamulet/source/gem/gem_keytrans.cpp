@@ -696,7 +696,7 @@ void Am_Input_Event::Set (Am_Input_Char ic, int new_x, int new_y,
   y = new_y;
   input_char = ic;
   time_stamp = time;
-  draw = draw;
+  (void)draw;
 
   user_id = Am_User_Id.Get(Am_USER_ID);         // supports multiple users
   if (Am_Debug_Print_Input_Events) {

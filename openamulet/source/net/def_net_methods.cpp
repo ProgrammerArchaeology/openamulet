@@ -10,7 +10,7 @@
 //
 Am_Define_Method (Am_Marshall_Method, void, Marshall_char, (int the_socket, const Am_Value& in_value, Am_Connection *my_connection_ptr))
 {
-  my_connection_ptr=my_connection_ptr; //Get rid of warning, only used by Lists & Obj
+  (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   char in_char=(char)in_value;
   send(the_socket, &in_char,1,0);
 }
@@ -18,7 +18,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_char, (int the_socket, cons
 Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_char,
 		  (int the_socket,Am_Connection *my_connection_ptr))
 {
-  my_connection_ptr=my_connection_ptr; //avoid warning, used by Lists & Obj
+  (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   Am_Value out_value;
   char in_char;
   recv(the_socket, &in_char,1,0);
@@ -33,7 +33,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_bool,
 		  (int the_socket, const Am_Value& in_value,
 		   Am_Connection *my_connection_ptr))
 {
-  my_connection_ptr=my_connection_ptr; //avoid warning,  used by Lists & Obj
+  (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   char in_bool=(in_value?1:0);
   send(the_socket, &in_bool,1,0);
 }
@@ -41,7 +41,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_bool,
 Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_bool,
 		  (int the_socket,Am_Connection *my_connection_ptr))
 {
-  my_connection_ptr=my_connection_ptr; //avoid warning,  used by Lists & Obj
+  (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   Am_Value out_value;
   char in_bool;
   recv(the_socket, &in_bool,1,0);
@@ -56,7 +56,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_int16,
 		  (int the_socket, const Am_Value& in_value,
 		   Am_Connection *my_connection_ptr))
 {
-  my_connection_ptr=my_connection_ptr; //avoid warning,  used by Lists & Obj
+  (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   int in_int=(int)in_value;
   short in_int16=(short)in_int;
   short net_int16;
@@ -67,7 +67,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_int16,
 Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_int16,
 		  (int the_socket,Am_Connection *my_connection_ptr))
 {
-  my_connection_ptr=my_connection_ptr; //avoid warning,  used by Lists & Obj
+  (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   Am_Value out_value;
   short int out_int16, net_int16;
   recv(the_socket, SOCK_BUFFER_CAST &net_int16,sizeof(net_int16),0);
@@ -84,7 +84,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_int32,
 		  (int the_socket, const Am_Value& in_value,
 		   Am_Connection *my_connection_ptr))
 {
-  my_connection_ptr=my_connection_ptr; //avoid warning,  used by Lists & Obj
+  (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   long int in_int32=(long int)in_value;
   long int net_int32;
   net_int32=htonl(in_int32);
@@ -94,7 +94,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_int32,
 Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_int32,
 		  (int the_socket,Am_Connection *my_connection_ptr))
 {
-  my_connection_ptr=my_connection_ptr; //avoid warning,  used by Lists & Obj
+  (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   Am_Value out_value;
   long int out_int32, net_int32;
   recv(the_socket, SOCK_BUFFER_CAST &net_int32,sizeof(net_int32),0);
@@ -111,7 +111,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_float,
 		  (int the_socket, const Am_Value& in_value,
 		   Am_Connection *my_connection_ptr))
 {
-  my_connection_ptr=my_connection_ptr; //avoid warning,  used by Lists & Obj
+  (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   float in_float=(float)in_value;
   float net_float;
   net_float=htonf(in_float);
@@ -121,7 +121,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_float,
 Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_float,
 		  (int the_socket,Am_Connection *my_connection_ptr))
 {
-  my_connection_ptr=my_connection_ptr; //avoid warning,  used by Lists & Obj
+  (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   Am_Value out_value;
   float out_float, net_float;
   recv(the_socket, SOCK_BUFFER_CAST &net_float,sizeof(net_float),0);
@@ -137,7 +137,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_double,
 		  (int the_socket, const Am_Value& in_value,
 		   Am_Connection *my_connection_ptr))
 {
-  my_connection_ptr=my_connection_ptr; //avoid warning,  used by Lists & Obj
+  (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   double in_double=(double)in_value;
   double net_double;
   net_double=htond(in_double);
@@ -147,7 +147,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_double,
 Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_double,
 		  (int the_socket,Am_Connection *my_connection_ptr))
 {
-  my_connection_ptr=my_connection_ptr; //avoid warning,  used by Lists & Obj
+  (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   Am_Value out_value;
   double out_double, net_double;
   recv(the_socket, SOCK_BUFFER_CAST &net_double,sizeof(net_double),0);
@@ -163,7 +163,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_string,
 		  (int the_socket, const Am_Value& in_value,
 		   Am_Connection *my_connection_ptr))
 {
-  my_connection_ptr=my_connection_ptr; //avoid warning,  used by Lists & Obj
+  (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   Am_String in_am_str=in_value;
   char *in_str;
   long size=strlen((const char *)in_am_str)+1;
@@ -176,7 +176,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_string,
 Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_string,
 		  (int the_socket,Am_Connection *my_connection_ptr))
 {
-  my_connection_ptr=my_connection_ptr; //avoid warning, used by Lists & Obj
+  (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   Am_Value out_value;
   char *out_str;
   long net_size,size;
@@ -197,7 +197,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_list,
 		  (int the_socket, const Am_Value& in_value,
 		   Am_Connection *my_connection_ptr))
 {
-  the_socket=the_socket; // avoid warning
+  (void)the_socket; // avoid warning
   Am_Value_List in_list=in_value;
   my_connection_ptr->Send(in_list.Length());
   for (in_list.Start(); !in_list.Last(); in_list.Next())
@@ -208,7 +208,7 @@ Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_list,
 		  (int the_socket,Am_Connection *my_connection_ptr))
 {
   long net_type;
-  the_socket=the_socket;
+  (void)the_socket; // avoid warning
   my_connection_ptr->Read_Length_and_List(); // receiver="receive_list_length"
   recv(the_socket, SOCK_BUFFER_CAST &net_type,sizeof(net_type),0);
   Am_Value out_value=Unmarshall_int16.Call(the_socket,my_connection_ptr);
@@ -224,7 +224,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_object,
 		  (int the_socket, const Am_Value& in_value,
 		   Am_Connection *my_connection_ptr))
 {
-  the_socket=the_socket;
+  (void)the_socket; // avoid warning
   Am_Object in_obj=in_value;
   Am_String proto_name=Am_Connection::Get_Net_Proto_Name(in_obj);
   //
