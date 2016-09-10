@@ -47,11 +47,6 @@
 #		endif
 #	endif //OA_BUILD
 #else
-#	ifdef OA_BUILD
-#		pragma message("Non-DLL OA Library building mode!")
-#	else
-#		pragma message("Non DLL OA Library using mode!")
-#	endif
 #	define _OA_DL_IMPORT
 #	define _OA_DL_CLASSIMPORT
 #	define _OA_DL_MEMBERIMPORT
