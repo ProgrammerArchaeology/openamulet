@@ -36,6 +36,8 @@ extern "C" {
 
 #include <ostream>
 
+using namespace std;
+
 #ifdef AMULET2_INSTRUMENT
 #undef Set
 #undef Add

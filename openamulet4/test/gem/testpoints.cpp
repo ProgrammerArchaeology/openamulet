@@ -21,6 +21,8 @@
 
 #define THICKNESS 8
 
+using namespace std;
+
 Am_Style black (0.0, 0.0, 0.0, THICKNESS);
 Am_Style white (1.0, 1.0, 1.0, THICKNESS);
 //Am_Style red (1.0, 0.0, 0.0);

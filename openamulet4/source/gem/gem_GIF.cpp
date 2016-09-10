@@ -16,7 +16,7 @@
 
 // Load a GIF color map from a stream into an image.
 // Return 1/0 success value
-int Am_GIF_Image::load_gif_colormap(ifstream &ifs, int flags)
+int Am_GIF_Image::load_gif_colormap(std::ifstream &ifs, int flags)
 {
   //  iminfo.depth = CTSIZE(flags) + 1; set in caller
   //  iminfo.num_colors = 1 << iminfo.depth;
@@ -62,9 +62,9 @@ Am_Generic_Image *Am_GIF_Image::Create(const char* filename)
 
   // Open file for reading
   #if __MWERKS__
-  ifstream ifs(filename, std::ios::in | std::ios::binary);
+  std::ifstream ifs(filename, std::ios::in | std::ios::binary);
   #else
-  ifstream ifs(filename, std::ios::in);
+  std::ifstream ifs(filename, std::ios::in);
   #endif
 
   if(!ifs) {
@@ -186,7 +186,7 @@ Am_Generic_Image *Am_GIF_Image::Create(const char* filename)
 // placed in "image" array.
 // return 0 for failure, 1 for success.
 
-int Am_GIF_Image::process_gif(ifstream &ifs, GIF_Load_Info& gli)
+int Am_GIF_Image::process_gif(std::ifstream &ifs, GIF_Load_Info& gli)
 {
   // Buffer to hold a block of image data from the GIF file.
   unsigned char buf[256];

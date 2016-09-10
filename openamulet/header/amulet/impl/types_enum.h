@@ -123,7 +123,7 @@ _OA_DL_IMPORT std::ostream& operator<< (std::ostream& os, const Type_name& item)
     Am_Enum_Print_Helper(out, Type_name##_ID, (long)value);      \
   }                                                              \
   void Type_name::Println() const {					 \
-    Print(cout);std::cout <<std::endl <<std::flush;			         \
+    Print(std::cout);std::cout <<std::endl <<std::flush;			         \
   }                                                              \
   void Type_name::TypeError(const Am_Value& in_value) {  \
         DERR("** Tried to set a " #Type_name " enum with a non "     \

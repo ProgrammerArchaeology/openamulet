@@ -72,8 +72,8 @@ class Am_GIF_Image: public Am_Generic_Image
 public:
   static Am_Generic_Image* Create(const char* filename);
 protected:
-  int process_gif(ifstream &ifs, GIF_Load_Info& gli);
+  int process_gif(std::ifstream &ifs, GIF_Load_Info& gli);
   void add_to_image(GIF_Load_Info& gli, unsigned short pixval);
-  int load_gif_colormap(ifstream &ifs, int flags);
+  int load_gif_colormap(std::ifstream &ifs, int flags);
   void adjust_colormap();
 };
