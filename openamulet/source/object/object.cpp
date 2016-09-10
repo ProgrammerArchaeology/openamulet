@@ -2798,7 +2798,7 @@ public:
   const char * To_String(const Am_Value &value) const {
     return Am_Get_Slot_Name((Am_Slot_Key)value.value.long_value);
   }
-  Am_Value From_String (char* string) const {
+  Am_Value From_String (const char* string) const {
     Am_Slot_Key key = Am_From_Slot_Name (string);
     if (key) {
       Am_Value v(key, Am_SLOT_KEY_TYPE);
