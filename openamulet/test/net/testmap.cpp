@@ -31,7 +31,7 @@ void setstr(void)
   opc.SetAt(&test,bar);
 }
 
-main ()
+int main ()
 {
 
 
@@ -52,6 +52,7 @@ main ()
   cout << bout << endl;
   Am_Cleanup();
 
+  return 0;
 }
 
   

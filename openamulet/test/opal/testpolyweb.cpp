@@ -77,7 +77,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object self))
     print_help ();
 }
 
-main()
+int main()
 {
   Am_Initialize ();
 

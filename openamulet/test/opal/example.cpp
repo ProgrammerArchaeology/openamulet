@@ -80,7 +80,7 @@ void quit_function (Am_Object* inter)
   Am_Exit_Main_Event_Loop ();
 }
 
-main ()
+int main ()
 {
   Am_Object* toggle;
   
@@ -121,4 +121,6 @@ main ()
   
   Am_Main_Event_Loop ();
   Am_Cleanup ();
+
+  return 0;
 }

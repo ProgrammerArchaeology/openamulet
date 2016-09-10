@@ -60,7 +60,7 @@ public:
   }
 } My_Handlers;
 
-main (int argc, char** argv)
+int main (int argc, char** argv)
 {
   Am_Drawonable* root = Am_Drawonable::Get_Root_Drawonable();
   Am_Drawonable* drawon = root->Create (100, 100, 200, 200);
@@ -83,4 +83,6 @@ main (int argc, char** argv)
     getchar ();
   }
 #endif
+
+  return 0;
 }
