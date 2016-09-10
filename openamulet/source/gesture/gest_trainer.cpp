@@ -282,7 +282,7 @@ std::istream&  operator>> (std::istream& s, Am_Gesture_Trainer& tr)
   return s;
 
  LFail:
-  static char *bad_format = "unrecognized gesture classifier format";
+  static const char *bad_format = "unrecognized gesture classifier format";
  std::cerr << bad_format <<std::endl;
   s.clear(std::ios::badbit);
   return s;

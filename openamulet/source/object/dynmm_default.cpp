@@ -13,7 +13,7 @@
 #endif
 
 
-Dyn_Memory_Manager::Dyn_Memory_Manager(unsigned short size, char *aPoolName) :
+Dyn_Memory_Manager::Dyn_Memory_Manager(unsigned short size, const char *aPoolName) :
 				data_size(size),
 				free_list(static_cast<Dyn_Link*>(0)),
 #ifdef DEBUG

@@ -49,11 +49,11 @@ extern void Am_Init_Key_Map();
 
 // Function Prototypes
 char* alloc_string_for(char c);
-void set_key_map (int code, char *name);
+void set_key_map (int code, const char *name);
 int put_string(char *dest, const char *news, int where);
 void string_copy(char *copy_s, const char *s, int len);
 bool case_compare(char c1, char c2);
-bool find_str_and_remove(char *s, char *target);
+bool find_str_and_remove(char *s, const char *target);
 void upcase_str(char *str);
 int Find_Char(char *s, char target);
 bool find_prefix_and_remove (char *prefix, char *s, char target_char);
@@ -84,7 +84,7 @@ char* alloc_string_for(char c)
 // sets up the string->code and code->string mappings.
 // If multiple strings map to the same code, the LAST one registered
 // is used for the code->string mapping
-void set_key_map (int code, char *name) {
+void set_key_map (int code, const char *name) {
     char_map->Add_Item(code, name);
 }
 
@@ -360,7 +360,7 @@ bool case_compare(char c1, char c2) {
 
 // searches for target in s.  If found (case insensitive), returns true and
 // modifies s so it no longer contains target.  If not found, returns false
-bool find_str_and_remove(char *s, char *target) {
+bool find_str_and_remove(char *s, const char *target) {
     // uses a dumb algorithm
     int start, i, j;
     int len = strlen(target);

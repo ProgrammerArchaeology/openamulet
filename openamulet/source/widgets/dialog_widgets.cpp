@@ -478,7 +478,7 @@ Am_Value Am_Get_Input_From_Dialog (Am_Value_List prompt_texts,
 				   int y /* = Am_AT_CENTER_SCREEN */, 
 				   bool modal /*=false*/)
 {
-  char* initial_string; 
+  const char* initial_string;
   if (initial_value.Valid()) initial_string = initial_value;
   else initial_string = "";
   Am_Object the_dialog;
@@ -573,7 +573,7 @@ Am_String Am_Show_File_Dialog_For_Save(Am_String initial_value) {
 Am_Object Am_Get_About_Amulet_Window() {
   if (!am_about_amulet_window.Valid()) {
     Am_Font bigfont =Am_Font(Am_FONT_SERIF, true, false, false, Am_FONT_LARGE);
-    char* pathname = Am_Merge_Pathname(ABOUT_AMULET_GIF);
+    const char* pathname = Am_Merge_Pathname(ABOUT_AMULET_GIF);
     Am_Image_Array picture = Am_Image_Array(pathname);
     delete [] pathname;
     if (!picture.Valid()) {

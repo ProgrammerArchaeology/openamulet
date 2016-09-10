@@ -561,7 +561,7 @@ Am_Define_Method(Am_Object_Method, void, done_search,
   search_window.Set(Am_VISIBLE, false);
 }
 
-Am_Object generate_search_group(Am_Value_List &pos_slots, char * main_label,
+Am_Object generate_search_group(Am_Value_List &pos_slots, const char * main_label,
 				int & current_y, bool main_check_box,
 				Am_Value_List &slots_to_item,
 				Am_Value_List &slots_values) {

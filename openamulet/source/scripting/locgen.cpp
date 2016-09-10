@@ -44,8 +44,8 @@ Am_Object bottomin, bottomout, centerX, centerY, leftin, leftout,
   rightin, rightout, topin, topout, heightdiff, heightpercent,
   widthdiff, widthpercent;
 
-void load_loc_bitmap(Am_Object & obj, char* name) {
-  char* pathname = Am_Merge_Pathname(name);
+void load_loc_bitmap(Am_Object & obj, const char* name) {
+  const char* pathname = Am_Merge_Pathname(name);
   Am_Image_Array icon = Am_Image_Array(pathname);
   delete [] pathname;
   obj = Am_Bitmap.Create(name)

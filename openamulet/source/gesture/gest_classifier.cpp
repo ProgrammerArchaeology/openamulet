@@ -76,7 +76,7 @@ Am_String Am_Gesture_Classifier::Classify (Am_Feature_Vector fv, double *nap, do
 // I/O for Am_Gesture_Classifier and Am_Gesture_Trainer
 // // // // // // // // // // // // // // // // // // // //
 
-static char *version_messages[] = 
+static const char *version_messages[] =
 { 
 #define NO_DOT_VERSION    0
   "Amulet Gesture Classifier 1.0",

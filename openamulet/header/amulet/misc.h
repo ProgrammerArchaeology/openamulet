@@ -4,8 +4,8 @@
 _OA_DL_IMPORT void Am_Break_Into_Debugger ();
 _OA_DL_IMPORT void Am_Wait(int milliseconds);
 
-_OA_DL_IMPORT char *Am_Get_Amulet_Pathname ();
-_OA_DL_IMPORT char *Am_Merge_Pathname(char *name);
+_OA_DL_IMPORT const char *Am_Get_Amulet_Pathname ();
+_OA_DL_IMPORT const char *Am_Merge_Pathname(const char *name);
 
 #ifdef _MACINTOSH
 void Am_Init_Pathname();

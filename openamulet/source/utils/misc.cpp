@@ -66,14 +66,14 @@ void Am_Wait (int milliseconds)
 }
 #endif
 
-char* Am_Get_Amulet_Pathname () {
-  char* amulet_dir = getenv("AMULET_DIR");
+const char* Am_Get_Amulet_Pathname () {
+  const char* amulet_dir = getenv("AMULET_DIR");
   if (amulet_dir != 0)
     return amulet_dir;
   return DEFAULT_AMULET_DIR;
 }
 
-char *Am_Merge_Pathname(char *name)
+const char *Am_Merge_Pathname(const char *name)
 {
 #if 0
   char * am_dir = Am_Get_Amulet_Pathname();
@@ -114,10 +114,10 @@ void Am_Wait (int milliseconds)
   Sleep(milliseconds);
 }
 
-char* Am_Get_Amulet_Pathname()
+const char* Am_Get_Amulet_Pathname()
 {
 	// do we have an environment variable?
-	char* amulet_dir = getenv("AMULET_DIR");
+	const char* amulet_dir = getenv("AMULET_DIR");
 	if(amulet_dir != 0)
 	{
 		// yep, than return its value
@@ -128,7 +128,7 @@ char* Am_Get_Amulet_Pathname()
 	return(DEFAULT_AMULET_DIR);
 }
 
-char *Am_Merge_Pathname(char *name)
+const char *Am_Merge_Pathname(const char *name)
 {
 	// get the installation path
 	char * am_dir = Am_Get_Amulet_Pathname();

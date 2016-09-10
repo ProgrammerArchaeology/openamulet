@@ -160,8 +160,8 @@ void Am_Modify_Command_Label_Name(Am_Object cmd, Am_Slot_Key slot) {
   else v=cmd.Peek(Am_LABEL);
   if (v.type == Am_STRING) {
     str = v;
-    char* old_string = str;
-    char* prefix = 0;
+    const char* old_string = str;
+    const char* prefix = 0;
     switch (slot) {
     case Am_SELECTIVE_UNDO_METHOD: prefix = "Undo "; break;
     case Am_SELECTIVE_REPEAT_SAME_METHOD:

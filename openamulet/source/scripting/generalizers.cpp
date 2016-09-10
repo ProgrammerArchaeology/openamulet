@@ -646,7 +646,7 @@ bool pop_up_ask_location(Am_Object & sel_widget, bool growing,
   }
   Am_Object inter = ref_obj.Get(Am_LOCATION_PLACEHOLDER,
 				Am_RETURN_ZERO_ON_ERROR);
-  char * msg;
+  const char * msg;
   if (!inter.Valid()) {
     Am_Object feedback = sel_widget.Get_Object(Am_RECT_FEEDBACK_OBJECT).Copy();
     inter = Am_New_Points_Interactor.Create()

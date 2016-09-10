@@ -89,7 +89,7 @@ class DynArray
 	class Dyn_Memory_Manager
 	{
 		public:
-			Dyn_Memory_Manager (unsigned short size, char *aPoolName = "");
+			Dyn_Memory_Manager (unsigned short size, const char *aPoolName = "");
 			~Dyn_Memory_Manager ();
 
 			void* New();

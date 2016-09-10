@@ -96,7 +96,7 @@ char** make_font_name(Display *dpy,
 		     Am_Font_Size_Flag size)
 {
   char wild_font_name[50];  // Given hard-coded defaults, max length is 50
-  char *family_part = 0, *face_part = 0;
+  const char *family_part = 0, *face_part = 0;
   int size_part = 0;
 
   switch(family) {

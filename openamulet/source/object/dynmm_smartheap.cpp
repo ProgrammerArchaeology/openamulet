@@ -5,7 +5,7 @@
 	#include <heapagnt.h>
 #endif
 
-Dyn_Memory_Manager::Dyn_Memory_Manager(size_t aObjectSize, char *aPoolName)
+Dyn_Memory_Manager::Dyn_Memory_Manager(size_t aObjectSize, const char *aPoolName)
 			{
 				mMemoryPool = MemPoolInitFS(aObjectSize,10,MEM_POOL_DEFAULT);
 				dbgMemPoolSetName(mMemoryPool, aPoolName);

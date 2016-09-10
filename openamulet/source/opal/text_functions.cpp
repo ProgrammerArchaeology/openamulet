@@ -283,7 +283,7 @@ bool isJapanese(Am_Object text) {
 #define isboin(c)  ((c)=='a'||(c)=='e'||(c)=='i'||(c)=='o'||(c)=='u') 
 #define isshiin(c) ('b' <= (c) && (c) <= 'z' && !isboin(c))
 
-char *to_correct_code(char *p, bool eucf) {
+char *to_correct_code(const char *p, bool eucf) {
   static char buf[16]; // Probably at most 4 bytes are used. 
   char *q = buf;
 
@@ -295,11 +295,11 @@ char *to_correct_code(char *p, bool eucf) {
   return(buf);
 }
 
-int jcomp(char *p, char *q) {
+int jcomp(const char *p, const char *q) {
   return(((p[0] & 0x7F) << 8) + (p[1] & 0x7F) - ((q[0] & 0x7F) << 8) - (q[1] & 0x7F));
 }
 
-int isalpha_2(char *p) {
+int isalpha_2(const char *p) {
   int i = jcomp(p, onetotwo['a']);
   if(0 <= i && i <= 25) return(i);
   return(-1);

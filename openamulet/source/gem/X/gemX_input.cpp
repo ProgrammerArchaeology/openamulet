@@ -44,7 +44,7 @@ bool Am_Main_Loop_Go = true;
 // print the name of it's XEvent type.
 // Taken from Xlib Programming Manual Vol. One, p. 256-57
 //
-static char *event_names[] = {
+static const char *event_names[] = {
   "",
   "",
   "KeyPress",
