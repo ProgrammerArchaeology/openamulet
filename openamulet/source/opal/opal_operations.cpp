@@ -94,11 +94,13 @@ std::cerr << "** Am_Move_Object called with two windows"
       Am_Drawonable::Narrow (object.Get(Am_DRAWONABLE));
     Am_Drawonable* draw2 =
       Am_Drawonable::Narrow (ref_object.Get(Am_DRAWONABLE));
-    if (draw1 && draw2)
-      if (above)
+    if (draw1 && draw2) {
+      if (above) {
 	draw1->Raise_Window(draw2);
-      else
+      } else {
 	draw1->Lower_Window(draw2);
+      }
+    }
   }
   else {
    std::cerr << "** Am_Move_Object: Attempt to move " << object <<

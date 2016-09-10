@@ -121,14 +121,14 @@ void Am_Drawonable_Impl::adjust_gcvalues_color_drawfn (XGCValues& values,
     adjust_gcvalues_color (values, mask, fore_index);
     break;
   case Am_DRAW_OR:
-    if (screen->whitepixel)
+    if (screen->whitepixel) {
       // HP-type display, where white == 1
       if (values.function != GXand) {
 	mask |= GCFunction;
 	values.function = GXand;
       }
     // non-HP-type display, white == 0
-    else if (values.function != GXor) {
+    } else if (values.function != GXor) {
       mask |= GCFunction;
       values.function = GXor;
     }
