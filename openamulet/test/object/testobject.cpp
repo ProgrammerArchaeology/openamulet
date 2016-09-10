@@ -34,7 +34,7 @@ extern "C" {
 }
 #endif
 
-#include <ostream.h>
+#include <ostream>
 
 #ifdef AMULET2_INSTRUMENT
 #undef Set

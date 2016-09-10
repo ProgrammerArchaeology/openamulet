@@ -13,7 +13,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <istd::ostream.h>
+#include <iostream>
 
 #include <am_inc.h>
 

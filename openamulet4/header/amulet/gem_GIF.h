@@ -13,7 +13,7 @@
 
 #include  <am_inc.h>
 #include GEM_IMAGE__H
-#include <fstream.h>
+#include <fstream>
 
 // GIF format constants 
 #define HAS_CT      0x80 // has a colortable

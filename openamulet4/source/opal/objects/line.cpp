@@ -18,7 +18,7 @@
 #include <amulet/impl/method_point_in.h>
 #include WEB__H
 
-#include <iostream.h>
+#include <iostream>
 
 inline int imin(int i1, int i2) {if (i1<i2) return i1; else return i2;}
 inline int imax(int i1, int i2) {if (i1>i2) return i1; else return i2;}

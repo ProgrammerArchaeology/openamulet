@@ -1,7 +1,7 @@
 #include <amulet.h>
 #include <am_inc.h>
 #include OBJECT_ADVANCED__H
-#include <iostream.h>
+#include <iostream>
 
 
 

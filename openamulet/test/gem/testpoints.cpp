@@ -11,7 +11,7 @@
 
 #include GEM__H
 #include <stdlib.h>
-#include <iostream.h>
+#include <iostream>
 
 #if defined(__MWERKS__)
 #define TESTPOINTS_D_LEFT 350

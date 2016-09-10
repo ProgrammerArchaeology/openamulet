@@ -8,7 +8,7 @@
  * ************************************************************************/
 
 #include <stdio.h>
-#include <istd::ostream.h>
+#include <iostream>
 
 #include <am_inc.h>
 

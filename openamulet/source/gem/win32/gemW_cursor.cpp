@@ -1,6 +1,6 @@
 #include <windows.h>
 #include <windowsx.h>
-#include <fstream.h>
+#include <fstream>
 
 #include <am_inc.h>
 #include <amulet/impl/types_logging.h>

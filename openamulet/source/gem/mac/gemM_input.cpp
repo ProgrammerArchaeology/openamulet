@@ -13,7 +13,7 @@
    added support multiple users to mouse clicks inside the window --bdk
 */
 
-#include <istd::ostream.h>
+#include <iostream>
 #include <stdlib.h>
 
 #include <am_inc.h>

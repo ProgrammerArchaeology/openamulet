@@ -58,7 +58,7 @@
 # include <strstream>
 #else
 #  ifndef AM_USES_MSL
-#    include <strstream.h>
+#    include <strstream>
 #  else
 #    include <sstream>
 #    define AM_USES_TEMPLATIZED_STREAMS

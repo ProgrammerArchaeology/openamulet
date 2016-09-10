@@ -10,7 +10,7 @@
 /* This file contains low-level objects to support Mac cursors */
 
 #include <stdio.h>
-#include <istd::ostream.h>
+#include <iostream>
 
 #include <am_inc.h>
 

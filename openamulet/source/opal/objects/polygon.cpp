@@ -20,7 +20,7 @@
 #include <amulet/impl/method_point_in.h>
 #include WEB__H
 
-#include <iostream.h>
+#include <iostream>
 
 int get_line_thickness (Am_Object obj);
 

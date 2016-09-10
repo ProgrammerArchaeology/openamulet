@@ -19,7 +19,7 @@
 #include <amulet/impl/method_item.h>
 #include <amulet/impl/opal_constraints.h>
 
-#include <iostream.h>
+#include <iostream>
 
 extern Am_Object *Am_Map_ptr;
 

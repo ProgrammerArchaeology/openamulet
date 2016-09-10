@@ -11,7 +11,7 @@
 #include <windowsx.h>
 #include <mmsystem.h> // for multimedia timers
 #include <stdlib.h>   // abort
-#include <fstream.h>  // for images
+#include <fstream>    // for images
 #include <math.h>     // sin, cos
 #include <limits.h>   // INT_MAX
 #include <ctype.h>    // isupper, tolower

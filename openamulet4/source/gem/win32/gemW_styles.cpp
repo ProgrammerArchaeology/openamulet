@@ -12,7 +12,7 @@
 #include <cstdlib> //abs
 #include <windows.h>
 #include <windowsx.h>
-#include <fstream.h>
+#include <fstream>
 #include <math.h>
 
 #include <am_inc.h>

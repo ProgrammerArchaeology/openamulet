@@ -10,7 +10,7 @@
 		 
 
 #include <stdio.h>
-#include <iostream.h>
+#include <iostream>
 #include <math.h>
 
 #include <am_inc.h>

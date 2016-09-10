@@ -1064,7 +1064,7 @@ Am_Define_No_Self_Formula(bool, should_do_animation) {
   else return false;
 }
 
-#include <fstream.h>  //for load and save debug
+#include <fstream>  //for load and save debug
 int main (int argc, char *argv[])
 {
 

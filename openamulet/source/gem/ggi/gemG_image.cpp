@@ -18,7 +18,7 @@
 #else
 #include <stdio.h>
 #endif
-#include <iostream.h>
+#include <iostream>
 #include <am_inc.h>
 
 #include GDEFS__H

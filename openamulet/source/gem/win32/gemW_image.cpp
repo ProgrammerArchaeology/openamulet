@@ -1,10 +1,10 @@
 #include <windows.h>
 #include <windowsx.h>
-#include <fstream.h>
+#include <fstream>
 #ifndef GCC
 #include <strstrea.h>
 #else
-#include <strstream.h>
+#include <strstream>
 #endif
 #include <string.h>
 #include <limits.h>

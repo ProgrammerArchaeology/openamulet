@@ -1,5 +1,5 @@
 #include <amulet.h>
-#include <iostream.h>
+#include <iostream>
 
 
 Am_Define_Method (Am_Object_Method, void, meth, (Am_Object self))

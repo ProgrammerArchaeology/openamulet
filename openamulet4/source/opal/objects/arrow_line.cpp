@@ -17,7 +17,7 @@
 #include <amulet/impl/opal_impl.h>
 #include WEB__H
 
-#include <iostream.h>
+#include <iostream>
 
 void get_thickness_adjustments (const Am_Style& ls, int& lt_adjustment,
 				       int& rb_adjustment, int& wh_adjustment);
