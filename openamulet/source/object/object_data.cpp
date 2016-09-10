@@ -59,6 +59,7 @@ void store_number (char* dest, unsigned number)
   dest[i] = '_';
 }
 
+#ifdef DEBUG
 static char* append_number_to_name (const char* orig_name)
 {
   static unsigned Append_Number = 0;
@@ -68,6 +69,7 @@ static char* append_number_to_name (const char* orig_name)
   ++Append_Number;
   return name;
 }
+#endif
 
 Am_WRAPPER_DATA_IMPL_ID(Am_Object, (), Am_OBJECT)
 
