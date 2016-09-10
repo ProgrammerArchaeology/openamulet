@@ -80,6 +80,8 @@ template<class Key, class Item, class Compare = std::less<Key> > class Map
 					{
 						DERR("Attention! " << numberOfElementsDeleted << " elements deleted from map for one given key-value:" << aKey << std::endl);
 					}
+        #else
+          (void)numberOfElementsDeleted;
 				#endif
 				return;
 			}
