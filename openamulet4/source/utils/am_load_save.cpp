@@ -71,6 +71,7 @@ public:
 
 #ifdef OA_VERSION
 // we specialize the less function used by the map data-type
+template<>
 bool std::less<Wrapper_Holder>::operator()(const class Wrapper_Holder &a, const class Wrapper_Holder &b) const
 {
   return(a.data < b.data);
@@ -97,6 +98,7 @@ public:
 
 #ifdef OA_VERSION
 // we specialize the less function used by the map data-type
+template<>
 bool std::less<Name_Num>::operator()(const class Name_Num &a, const class Name_Num &b) const
 {
   return (std::lexicographical_compare(a.name, a.name+strlen(a.name),

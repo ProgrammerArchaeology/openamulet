@@ -429,6 +429,7 @@ template<class Key, class Item, class KeyCompare = std::less<Key>, class ItemCom
 
 // we specialize the less function for the Am_Value data-type
 #include <amulet/am_value.hpp>
+template<> inline
 bool std::less<Am_Value>::operator()(const class Am_Value &a, const class Am_Value &b) const
 {
 	return(static_cast<Am_Ptr>(a) < static_cast<Am_Ptr>(b));
