@@ -182,7 +182,7 @@ Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_string,
   long net_size,size;
   recv(the_socket, SOCK_BUFFER_CAST &net_size, sizeof(net_size),0);
   size=ntohl(net_size);
-  out_str=new(char[size]);
+  out_str=new char[size];
   recv(the_socket,out_str,size,0);
 
   Am_String out_am_str=out_str;
