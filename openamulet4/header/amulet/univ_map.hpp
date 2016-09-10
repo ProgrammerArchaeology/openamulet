@@ -52,8 +52,8 @@ class Am_Map_##Name {                                                \
 /**/                                                                 \
 class Am_MapIterator_##Name {                                        \
   public:                                                            \
-    Am_MapIterator_##Name (const Am_Map_##Name##* map = (0L))        \
-    	{ Init(map); };                                              \
+    Am_MapIterator_##Name (const Am_Map_##Name* map = (0L))          \
+      { Init(map); };                                                \
     ItemType operator () ();                                         \
     KeyType Key () const { return m_key; };                          \
     void Init (const Am_Map_##Name* map);                            \
