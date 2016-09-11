@@ -80,11 +80,7 @@ void DynArray::Insert(unsigned i, char *value)
 		}
 		else
 		{
-			#ifdef __SUNPRO_CC
-				memmove(static_cast<void*>(&data[(i+1)*elem_size]), static_cast<void*>(&data[i*elem_size]),(length-i)*elem_size);
-			#else
-				memmove(&data[(i+1)*elem_size], &data[i*elem_size],(length-i)*elem_size);
-			#endif
+			memmove(&data[(i+1)*elem_size], &data[i*elem_size],(length-i)*elem_size);
 		}
 
 		// copy the value to the array
@@ -114,11 +110,7 @@ void DynArray::Delete(unsigned i)
 		}
 		else
 		{
-			#ifdef __SUNPRO_CC
-				memmove(static_cast<void*>(&data[i*elem_size]), static_cast<void*>(&data[(i+1)*elem_size]),(length-i)*elem_size);
-			#else
-				memmove(&data[i*elem_size], &data[(i+1)*elem_size],(length-i)*elem_size);
-			#endif
+			memmove(&data[i*elem_size], &data[(i+1)*elem_size],(length-i)*elem_size);
 		}
 	}
 }

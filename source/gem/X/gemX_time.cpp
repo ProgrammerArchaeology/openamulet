@@ -14,12 +14,6 @@
 #include "amulet/gemX_time.h"
 #include <sys/time.h>
 
-#ifdef NEED_TIME
-#ifdef __SUNPRO_CC
-extern "C" int gettimeofday (timeval *);
-#endif
-#endif
-
 Am_WRAPPER_IMPL(Am_Time);
 
 Am_Time Am_No_Time;
@@ -39,13 +33,7 @@ Am_Time::Am_Time (unsigned long milliseconds)
 Am_Time Am_Time::Now()
 {
   Am_Time t;
-  // Sun C++ 4.1 gettimeofday takes one argument
-  // except on SunOS 5.5.1 where it takes two ...
-#if defined(__SUNPRO_CC) && !defined(__SunOS_5_5_1)
-  gettimeofday(&(t.data->time));
-#else
   gettimeofday(&(t.data->time), (0L));
-#endif
   return t;
 }
 
@@ -192,11 +180,7 @@ std::ostream& operator<< (std::ostream& os, const Am_Time& time) {
 
 Am_String Am_Get_Time_And_Date() {
   Am_String str;
-#ifdef __SUNPRO_CC
-  long time_ptr;
-#else
   time_t time_ptr;
-#endif
   time(&time_ptr);
   
   char *s = ctime(&time_ptr);
