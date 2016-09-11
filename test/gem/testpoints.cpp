@@ -13,11 +13,7 @@
 #include <stdlib.h>
 #include <iostream>
 
-#if defined(__MWERKS__)
-#define TESTPOINTS_D_LEFT 350
-#else
 #define TESTPOINTS_D_LEFT 800
-#endif
 
 #define THICKNESS 8
 

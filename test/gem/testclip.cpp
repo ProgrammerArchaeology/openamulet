@@ -12,7 +12,7 @@
 #include AM_IO__H
 #include GEM__H
 
-#if defined(__MWERKS__)	|| defined (_WINDOWS)
+#if defined (_WINDOWS)
 #define TESTCLIP_D1_LEFT 400
 #else
 #define TESTCLIP_D1_LEFT 800

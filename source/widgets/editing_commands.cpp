@@ -1863,11 +1863,7 @@ void Am_Standard_Open_From_Filename(Am_Object command_obj,
 				    Am_String filename) {
   filename = remove_extra_quotes(filename);
   set_default_filename(command_obj, filename);
-# if __MWERKS__
-  std::ifstream in_file ((const char*)filename, std::ios::in | std::ios::binary);
-# else
   std::ifstream in_file ((const char*)filename, std::ios::in);
-# endif
   if (!in_file) {
     Am_Show_Alert_Dialog (Am_Value_List ().Add("File could not be opened:")
 			  .Add(filename));

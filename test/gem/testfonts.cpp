@@ -21,11 +21,7 @@
 #include "test_utils.h"  // For wins class
 #endif
 
-#if defined (__MWERKS__)
-#define FONT_WIN_TOP 130
-#else
 #define FONT_WIN_TOP 50
-#endif
 
 // These global variables provide an interface between drawing strings
 // and calculating their dimensions.

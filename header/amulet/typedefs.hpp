@@ -24,7 +24,7 @@ class Am_Method_Wrapper;
 #endif
 
 // Am_Ptr, don't move to other place within this file!
-#if defined(_MSC_VER) || defined(__MWERKS__)
+#if defined(_MSC_VER)
 	typedef unsigned char	*Am_Ptr;
 #else
 	typedef void			*Am_Ptr;

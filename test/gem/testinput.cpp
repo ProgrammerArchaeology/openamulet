@@ -14,17 +14,10 @@
 #include AM_IO__H
 #include GEM__H
 
-#if defined(__MWERKS__)
-#define TESTINPUT_D_LEFT  500
-#define TESTINPUT_D_TOP    50
-#define TESTINPUT_D2_LEFT 500
-#define TESTINPUT_D2_TOP  180
-#else
 #define TESTINPUT_D_LEFT  800
 #define TESTINPUT_D_TOP     0
 #define TESTINPUT_D2_LEFT 800
 #define TESTINPUT_D2_TOP  300
-#endif
 
 using namespace std;
 Am_Input_Char test_ic;

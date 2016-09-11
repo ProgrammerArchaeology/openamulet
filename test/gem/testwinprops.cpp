@@ -7,7 +7,7 @@
  * please contact amulet@cs.cmu.edu to be put on the mailing list.        *
  * ************************************************************************/
 
-#if defined(GCC) || defined(_MSC_VER) || defined(__MWERKS__)
+#if defined(GCC) || defined(_MSC_VER)
 #include <string.h>
 #else
 extern "C" {
@@ -27,21 +27,12 @@ extern "C" {
 #include "test_utils.h"
 #endif
 
-#if defined (__MWERKS__)
-#define TESTWINPROPS_D1_LEFT 400
-#define TESTWINPROPS_D1_TOP  120
-#define TESTWINPROPS_D2_LEFT 470
-#define TESTWINPROPS_D2_TOP  200
-#define TESTWINPROPS_D4_LEFT 400
-#define TESTWINPROPS_D4_TOP  400
-#else
 #define TESTWINPROPS_D1_LEFT 800
 #define TESTWINPROPS_D1_TOP    0
 #define TESTWINPROPS_D2_LEFT 870
 #define TESTWINPROPS_D2_TOP   80
 #define TESTWINPROPS_D4_LEFT 900
 #define TESTWINPROPS_D4_TOP  160
-#endif
 
 // Function Prototypes
 void testwin1(wins *wins_ar, int ar_len);

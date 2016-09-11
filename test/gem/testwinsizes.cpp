@@ -14,13 +14,8 @@ extern "C" {
 
 #include GEM__H
 
-#if defined(__MWERKS__)
-#define TESTWINSIZES_D1_LEFT 500
-#define TESTWINSIZES_D4_LEFT 450
-#else
 #define TESTWINSIZES_D1_LEFT 850
 #define TESTWINSIZES_D4_LEFT 900
-#endif
 
 Am_Style red (1.0, 0.0, 0.0);
 Am_Style green (0.0, 1.0, 0.0);

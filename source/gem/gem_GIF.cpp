@@ -61,11 +61,7 @@ Am_Generic_Image *Am_GIF_Image::Create(const char* filename)
   unsigned char buf[256];
 
   // Open file for reading
-  #if __MWERKS__
-  std::ifstream ifs(filename, std::ios::in | std::ios::binary);
-  #else
   std::ifstream ifs(filename, std::ios::in);
-  #endif
 
   if(!ifs) {
     delete im;

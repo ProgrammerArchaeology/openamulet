@@ -16,7 +16,7 @@ class Am_String; 			//forward reference (see below)
 typedef Am_ID_Tag Am_Value_Type;
 
 // Am_Ptr
-#if defined(_MSC_VER) || __MWERKS__
+#if defined(_MSC_VER)
 	typedef unsigned char	*Am_Ptr;
 #else
 	typedef void			*Am_Ptr;

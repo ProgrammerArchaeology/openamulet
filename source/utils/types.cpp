@@ -258,15 +258,7 @@ Am_Value Am_Type_Support::From_String (const char*) const
 // Used to get around this current C++ madness
 void reset_ostrstream(OSTRSTREAM &oss)
 {
-#if __MWERKS__
-#  ifdef AM_USES_MSL
-   oss.seekp(0);
-#  else
-   oss.rdbuf()->pubseekoff(0, std::ios::beg);
-#  endif /* AM_USES_MSL */
-#else
-   oss.seekp(std::ios::beg);
-#endif /* __MWERKS__ */
+  oss.seekp(std::ios::beg);
 }
 
 // #endif // hide

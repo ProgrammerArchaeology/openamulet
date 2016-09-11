@@ -21,10 +21,6 @@
 #include GEM__H
 #include <gemM.h>
 
-#if __MWERKS__
-  #include <SIOUX.h>
-#endif
-
 /*******************************************************************************
  * Event Handling
  */
@@ -158,11 +154,6 @@ Handle_Event_Received(EventRecord& mac_event)
 
   Handle_Cursor(mac_event);
   
-#if __MWERKS__   /* First let console window have a chance at it */
-    if( SIOUXHandleOneEvent( &mac_event ) )
-      return;
-#endif
-
   Check_Mouse_Events(mac_event);
 
   switch(mac_event.what) {

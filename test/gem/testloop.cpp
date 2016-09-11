@@ -28,11 +28,7 @@ extern "C" {
 
 #include GEM__H
 
-#if defined(__MWERKS__)
-#define TESTLOOP_D1_LEFT 400
-#else
 #define TESTLOOP_D1_LEFT 850
-#endif
 
 Am_Drawonable *root, *d1, *d2, *d3;
 

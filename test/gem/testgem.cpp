@@ -26,15 +26,6 @@ Am_Drawonable *root, *d1, *d2, *d3, *d4, *d5, *d6;
 Am_Drawonable *db;
 //#endif
 
-#if defined (__MWERKS__)
-#define TESTGEM_D1_LEFT  10
-#define TESTGEM_D2_LEFT 300
-#define TESTGEM_D4_LEFT  10
-#define TESTGEM_D5_LEFT 300
-#define TESTGEM_D5_TOP   40
-#define TESTGEM_D6_LEFT  30	// guess
-#define TESTGEM_D6_TOP   30	// guess
-#else
 #define TESTGEM_D1_LEFT 800
 #define TESTGEM_D2_LEFT 480
 #define TESTGEM_D4_LEFT 330
@@ -42,7 +33,6 @@ Am_Drawonable *db;
 #define TESTGEM_D5_TOP  290
 #define TESTGEM_D6_LEFT 350
 #define TESTGEM_D6_TOP  400
-#endif
 
 // Function Prototypes
 void init_wins ();

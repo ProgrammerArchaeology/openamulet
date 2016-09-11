@@ -21,11 +21,6 @@
 #include GEM__H
 #include <gemM.h>
 
-// CWPro2 for SysBeep() bdk
-#if __MWERKS__ >= 0x2000
-#include <Sound.h> 
-#endif
-
 // Static variables
 GrafPtr         Am_Drawonable_Impl::util_port = (0L);
 Am_Drawonable*  current_focus = (0L);

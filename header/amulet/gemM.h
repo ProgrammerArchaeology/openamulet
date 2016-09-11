@@ -35,15 +35,9 @@
 #define Am_DEFAULT_FONT_NAME "*-*-fixed-medium-r-*--*-120-*-*-*-*-iso8859-1"
 
 // Font defaults for Mac
-#if __MWERKS__ >= 0x2000  /* CWPro2 font enums*/
-#define Am_FIXED_FONT_FAMILY  		 kFontIDMonaco
-#define Am_SERIF_FONT_FAMILY  		 kFontIDTimes
-#define Am_SANS_SERIF_FONT_FAMILY	 kFontIDHelvetica
-#else
 #define Am_FIXED_FONT_FAMILY  		 monaco
 #define Am_SERIF_FONT_FAMILY  		 times
 #define Am_SANS_SERIF_FONT_FAMILY	 helvetica
-#endif
 
 #define Am_SMALL_POINT_SIZE			 9
 #define Am_MEDIUM_POINT_SIZE		12
