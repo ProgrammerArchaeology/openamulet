@@ -34,20 +34,10 @@ struct Am_WinNotifyInfo
 		RECT m_rc;
 		bool m_b;	
 		Am_Input_Event* m_event;
-#ifndef GCC
-		struct
-		{
-			int m_left;
-			int m_top;
-			int m_width;
-			int m_height;
-		};						
-#else
 #define m_left m_rc.left
 #define m_top m_rc.top
 #define m_width m_rc.right
 #define m_height m_rc.bottom
-#endif
 	};
 
 	Am_WinNotifyInfo(Am_WinNotifyFunc func, Am_WinDrawonable* drw, const RECT& rc) :
@@ -61,13 +51,8 @@ struct Am_WinNotifyInfo
 	Am_WinNotifyInfo(Am_WinNotifyFunc func, Am_WinDrawonable* drw,
 		int left, int top, int width, int height) :
 	m_func(func), m_drw(drw)
-#ifndef GCC
-        , m_left(left), m_top(top), m_width(width), m_height(height)
-#endif
 	{ 
-#ifdef GCC
 	m_left=left; m_top=top; m_width=width; m_height=height;
-#endif
 	};
 	Am_WinNotifyFunc m_func;
 	Am_WinDrawonable* m_drw;

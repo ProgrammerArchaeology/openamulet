@@ -14,13 +14,6 @@
 
 #include <sys/time.h>
 #include <stdlib.h>
-#ifndef NEED_SELECT
-#ifdef GCC
-extern "C" {
-int select ();
-}
-#endif
-#endif
 #ifdef NEED_UNISTD
 #include <unistd.h>
 #endif

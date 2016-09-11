@@ -27,10 +27,7 @@
 	#include UNIV_MAP__H
 #endif
 
-#ifdef GCC
 #include SOCKET_STUBS__H
-#endif
-
 
 extern Am_Slot_Key Am_NET_BLESSING;
 

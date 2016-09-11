@@ -403,11 +403,7 @@ bool Am_Connection::Register_Type(Am_Value_Type type, const Am_Marshall_Method& 
 	else	// The user provided an ID
 	{
 		// The id provided is already registered!
-                #ifdef GCC
-		if(Net_IDs.GetAt(id) != Am_Value(0L))
-       		#else
 		if(Net_IDs.GetAt(id) != (0L))
-		#endif
 		{
 		std::cerr << "Declared duplicate type! Overwriting...";
 			was_empty=false;

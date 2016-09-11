@@ -307,7 +307,6 @@ class _OA_DL_CLASSIMPORT Am_Drawonable
 
 	virtual void Print(std::ostream& os) const = 0;
 
-	// GCC 2.95 recommends a virtual destructor
 	virtual ~Am_Drawonable() { };
 
 	protected:

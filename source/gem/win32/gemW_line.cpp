@@ -15,8 +15,6 @@ struct Am_WinDDAInfo {
 	~Am_WinDDAInfo ();
 };
 
-// For GCC we have separate assembly file
-
 extern "C"
 void CALLBACK LineDDAProc(int x, int y, LPARAM data);
 

@@ -247,13 +247,8 @@ class Am_Slot_Data : public Am_Value {
   unsigned short enabled_demons;
   unsigned short queued_demons;
   unsigned short type_check;
-#ifdef GCC
   unsigned short flags : 8;
   Am_Inherit_Rule rule : 2;
-#else
-  unsigned short flags;
-  Am_Inherit_Rule rule;
-#endif
 };
 
 #endif

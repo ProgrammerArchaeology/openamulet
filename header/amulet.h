@@ -17,13 +17,6 @@
 #include <am_inc.h>
 #endif
 
-// GCC give a warning for pragmas
-#ifndef GCC
-	#ifdef OA_VERSION
-		#pragma message("Using OpenAmulet version")
-	#endif
-#endif
-
 // include most of the stuff everyone will need
 #include TYPEDEFS__HPP
 #include AM_IO__H

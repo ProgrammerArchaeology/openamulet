@@ -39,34 +39,12 @@ Am_String::operator const char* () const
     return (0L);
 }
 
-// GCC 2.95 produces this kind of warning if this cast is not defined:
-// warning: choosing `Am_String::operator char *()' over `Am_String::operator const char *() const'
-// warning:   for conversion from `Am_String' to `const char *'
-// warning:   because conversion sequence for the argument is better
-Am_String::operator const char* ()
-{
-  if (data) {
-    data = (Am_String_Data*)data->Make_Unique ();
-    return *data;
-  }
-  else
-    return (0L);
-}
-
 Am_String::operator char* ()
 {
   if (data) {
     data = (Am_String_Data*)data->Make_Unique ();
     return *data;
   }
-  else
-    return (0L);
-}
-
-const char* Am_String::constant () const
-{
-  if (data)
-    return *data;
   else
     return (0L);
 }

@@ -15,8 +15,6 @@ class _OA_DL_CLASSIMPORT Am_String {
 
   operator const char* () const;
   operator char* ();
-  operator const char* (); // Added to satisfy GCC 2.95 (and remove a warning)
-  const char* constant () const; // use to get around Visual C++ compiler bug
 
   bool operator== (const Am_String& test_string) const;
   bool operator!= (const Am_String& test_string) const
