@@ -12,9 +12,7 @@
 // This file contains member function definitions for the Am_Drawonable_Impl
 // object primarily concerned with drawing objects in windows.
 
-extern "C" {
 #include <X11/Xlib.h>
-}
 
 #include <cstdio>
 #include <cstdlib>

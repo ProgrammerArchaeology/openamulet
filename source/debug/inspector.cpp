@@ -17,19 +17,8 @@
 //define this flag make the inspector use widgets
 #define INSPECTOR_USE_WIDGETS
 
-#ifndef GCC
-	extern "C" {
-#endif
-
 #include <stdlib.h>
-
-#ifndef GCC
-	}
-#endif
-
-#if defined(GCC) || defined(NEED_STRING) || defined(_MSC_VER)
-	#include <string.h>
-#endif
+#include <string.h>
 
 #include AM_IO__H
 #include STR_STREAM__H

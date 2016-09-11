@@ -217,23 +217,9 @@
 #ifndef UNIV_MAP_H
 #define UNIV_MAP_H
 
-#if defined(GCC) || defined(_MSC_VER)
-	#include <string.h>
-#else
-	extern "C"
-	{
-		#include <strings.h>
-	}
-#endif
+#include <string.h>
 
-extern "C"
-{
-	#include <stdlib.h>
-}
-
-// #ifndef NULL
-//	#define NULL 0
-// #endif
+#include <stdlib.h>
 
 #include UNIV_MAP__TPL
 

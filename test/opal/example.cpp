@@ -7,9 +7,7 @@
  * please contact amulet@cs.cmu.edu to be put on the mailing list.        *
  * ************************************************************************/
 
-extern "C" {
 #include <stdio.h>
-}
 #include <am_inc.h>
 
 #include FORMULA__H

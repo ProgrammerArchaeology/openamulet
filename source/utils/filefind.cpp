@@ -19,7 +19,6 @@
 #include <cstdlib>
 #include <cerrno>
 
-extern "C" {
 #include <sys/stat.h>
 #ifdef _WIN32
   // Windows-specific headers
@@ -27,7 +26,6 @@ extern "C" {
   // Unix-specific headers
 #include <unistd.h>
 #endif
-}
 
 //
 // Implementation of the Am_Filename holder class

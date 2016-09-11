@@ -16,15 +16,7 @@
 #include UNIV_MAP__H
 #endif
 
-#if defined(GCC)
-	#include <stdlib.h>
-#else
-	extern "C"
-	{
-		#include <stdlib.h>
-		#include <memory.h>
-	}
-#endif
+#include <stdlib.h>
 
 #ifndef OA_VERSION
 Am_IMPL_MAP(Int2Ptr, int	, 0		, void*	, (0L))

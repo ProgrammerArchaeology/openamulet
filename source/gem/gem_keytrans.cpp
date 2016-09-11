@@ -15,11 +15,6 @@
 */
 
 #include <cstdio>
-extern "C" {
-//#ifndef GCC
-//#include <strings.h>
-//#endif
-}
 
 #include<iostream>
 #include <am_inc.h>

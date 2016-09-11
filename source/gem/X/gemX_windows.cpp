@@ -12,7 +12,6 @@
 // This file contains Am_Drawonable_Impl member functions for
 // the X version of Gem
 
-extern "C" {
 #include <X11/X.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -23,7 +22,6 @@ extern "C" {
 #ifdef NEED_UNISTD
 #include <unistd.h>
 #endif
-}
 
 #include <iostream>
 

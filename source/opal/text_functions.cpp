@@ -8,17 +8,8 @@
  * please contact amulet@cs.cmu.edu to be put on the mailing list.        *
  * ************************************************************************/
 
-#ifdef GCC
 #include <string.h>
 #include <stdlib.h>
-#else
-extern "C" {
-#include <stdlib.h>
-#if defined(_MSC_VER) || defined(NEED_STRING)
-#include <string.h>
-#endif
-}
-#endif
 
 #include <am_inc.h>
 #include AM_IO__H

@@ -13,9 +13,7 @@
 #include DEBUGGER__H
 #include OPAL_ADVANCED__H
 
-#if defined(GCC) || defined(_MSC_VER)
 #include <string.h> //memcpy
-#endif
 
 Am_Object arc_window, font_window, roundtangle_window, bitmap_window,
           point_window;

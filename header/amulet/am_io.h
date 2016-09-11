@@ -3,9 +3,7 @@
 #define AM_IO_H
 
 
-extern "C" {
 #include <stdio.h>
-}
 
 #include <iostream>
 

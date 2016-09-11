@@ -9,23 +9,9 @@
 // http://www.openip.org
 //
 
-extern "C"
-{
-	#include <stdlib.h>  // For abort ()
-}
+#include <stdlib.h>  // For abort ()
 
-#ifdef GCC
-	#include <string.h>
-#else
-	extern "C"
-	{
-		#ifdef _MSC_VER
-			#include <string.h>
-		#else
-			#include <strings.h>
-		#endif
-	}
-#endif
+#include <string.h>
 
 #include <am_inc.h>
 #include AM_IO__H

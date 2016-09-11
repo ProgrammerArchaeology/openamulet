@@ -15,13 +15,7 @@
 // Designed and implemented by Brad Myers
 
 
-#ifdef GCC
 #include <string.h>
-#elif defined(_MSC_VER) || defined(NEED_STRING)
-extern "C" {
-#include <string.h>
-}
-#endif
 
 #include <am_inc.h>
 #include AM_IO__H

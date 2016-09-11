@@ -26,13 +26,7 @@
 
 #include REGISTRY__H
 
-#if defined(GCC) || defined(_MSC_VER)
 #include <string.h>
-#else
-extern "C" {
-#include <strings.h>
-}
-#endif
 
 #include <ostream>
 

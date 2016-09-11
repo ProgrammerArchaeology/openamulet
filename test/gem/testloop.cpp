@@ -19,10 +19,8 @@
 //  *   code found in testsubwins are both supported by Gem.
 //  *
 
-extern "C" {
-  // For exit()
-  #include <stdlib.h>
-}
+// For exit()
+#include <stdlib.h>
 
 #include <am_inc.h>
 

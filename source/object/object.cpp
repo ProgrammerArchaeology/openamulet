@@ -9,17 +9,7 @@
 // http://www.openip.org
 //
 
-#if defined(GCC)
 #include <string.h>
-#else
-extern "C" {
-#ifdef _MSC_VER
-#include <string.h>
-#else
-#include <strings.h>
-#endif
-}
-#endif
 
 #include <am_inc.h>
 
@@ -36,9 +26,7 @@ extern "C" {
 //only does something if debug is true
 #include REGISTRY__H
 
-extern "C" {
 #include <stdlib.h>  // For abort () for Am_Error
-}
 
 unsigned short Num_To_Bit [] = { 0x0001, 0x0002, 0x0004, 0x0008,
                                  0x0010, 0x0020, 0x0040, 0x0080,

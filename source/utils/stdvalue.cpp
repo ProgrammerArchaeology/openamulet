@@ -7,18 +7,7 @@
  * please contact amulet@cs.cmu.edu to be put on the mailing list.        *
  * ************************************************************************/
 
-// include string.h in gcc or windows.  extern C it everywhere except gcc.
-#if defined(GCC)
 #include <string.h>
-#else
-extern "C" {
-#ifdef _MSC_VER
-#include <string.h>
-#else
-#include <strings.h>
-#endif
-}
-#endif
 
 #include <am_inc.h>
 

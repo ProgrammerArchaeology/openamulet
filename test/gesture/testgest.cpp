@@ -9,10 +9,8 @@
 
 #include <am_inc.h>
 
-extern "C" {
-  // For exit()
-  #include <stdlib.h>
-}
+// For exit()
+#include <stdlib.h>
 
 #include AM_IO__H
 

@@ -11,9 +11,7 @@
 
 */
 
-extern "C" {
 #include <X11/Xlib.h>
-}
 
 #include <iostream>
 

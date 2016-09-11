@@ -7,11 +7,9 @@
  * please contact amulet@cs.cmu.edu to be put on the mailing list.        *
  * ************************************************************************/
 
-extern "C" {
 #include <X11/Xlib.h>
 #include <math.h>
 #include <ggi/gwt.h>
-}
 
 #include <cstdio>
 #include <iostream>

@@ -11,9 +11,7 @@
    object primarily concerned with drawing objects in windows.
 */
 
-extern "C" {
 #include <X11/Xlib.h>
-}
 
 #include <cstdio>
 #include <cstdlib>

@@ -12,18 +12,18 @@
 // This file contains Am_Drawonable_Impl member functions for
 // the X version of Gem
 
-extern "C" {
 #include <sys/time.h>
 #include <stdlib.h>
 #ifndef NEED_SELECT
 #ifdef GCC
+extern "C" {
 int select ();
+}
 #endif
 #endif
 #ifdef NEED_UNISTD
 #include <unistd.h>
 #endif
-}
 
 #include <iostream>
 

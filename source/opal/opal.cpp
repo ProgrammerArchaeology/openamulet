@@ -7,21 +7,9 @@
  * please contact amulet@cs.cmu.edu to be put on the mailing list.        *
  * ************************************************************************/
 
-#ifdef GCC
-	#include <stdlib.h>
-	#include <string.h>
-	#include <limits.h>
-#else
-	extern "C"
-	{
-		#include <stdlib.h>
-		#include <limits.h> //INT_MIN
-
-		#if defined(_MSC_VER) || defined(NEED_STRING)
-			#include <string.h>
-		#endif
-	}
-#endif
+#include <stdlib.h>
+#include <string.h>
+#include <limits.h>
 
 #include <am_inc.h>
 

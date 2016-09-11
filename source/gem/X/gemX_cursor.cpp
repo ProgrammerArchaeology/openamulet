@@ -9,9 +9,7 @@
 
 /* This file contains low-level objects to support cursors */
 
-extern "C" {
 #include <X11/Xlib.h>
-}
 
 #include <cstdio>
 #include <iostream>

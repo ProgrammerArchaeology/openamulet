@@ -7,10 +7,7 @@
  * please contact amulet@cs.cmu.edu to be put on the mailing list.        *
  * ************************************************************************/
 
-extern "C"
-{
-	#include <stdlib.h>
-}
+#include <stdlib.h>
 
 #include <am_inc.h>
 #include <amulet/symbol_table.h>

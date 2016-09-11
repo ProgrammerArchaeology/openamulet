@@ -7,13 +7,7 @@
  * please contact amulet@cs.cmu.edu to be put on the mailing list.        *
  * ************************************************************************/
 
-#if defined(GCC) || defined(_MSC_VER)
 #include <string.h>
-#else
-extern "C" {
-#include <strings.h>
-}
-#endif
 #include <stdio.h>
 
 #include <am_inc.h>

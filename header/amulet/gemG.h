@@ -24,18 +24,10 @@
 
 #include <ggi/gwt.h>
 
-extern "C" {
 #ifdef NEED_STDLIB
 #include <stdlib.h>
 #endif
-
-#ifdef GCC
-}
 #include <string.h>
-extern "C" {
-#else
-#include <strings.h>
-#endif
 
 #include <sys/types.h>
 #include <sys/time.h>
@@ -48,13 +40,12 @@ extern "C" {
 #include <sys/select.h>
 #endif
 
-  // OpenVMS, fd_set definition either comes from socket.h or time.h
-  // The use of fd_set below suggests that the former is intended,
-  // to go along with select()
+// OpenVMS, fd_set definition either comes from socket.h or time.h
+// The use of fd_set below suggests that the former is intended,
+// to go along with select()
 #ifdef NEED_SOCKET
 #include <socket.h>
 #endif
-} /* extern "C" */
 
 #include <am_inc.h>
 

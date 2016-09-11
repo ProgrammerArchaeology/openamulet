@@ -18,13 +18,7 @@
 #include "test_utils.h"
 #endif
 
-#if defined(GCC) || defined(_MSC_VER)
 #include <string.h>
-#else
-extern "C" {
-#include <strings.h>
-}
-#endif
 #include <stdlib.h>
 
 // image filenames

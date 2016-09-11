@@ -12,12 +12,7 @@
 // This file contains low-level objects to support bitmaps, pixmaps, and
 // stippled line and filling styles.
 
-extern "C" {
 #include <X11/Xlib.h>
-#if !defined(GCC) && !defined(__VMS)
-#include <malloc.h>
-#endif
-}
 
 #ifdef __VMS
 #include <cstdlib>

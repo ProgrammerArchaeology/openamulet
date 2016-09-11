@@ -1,13 +1,5 @@
-#ifdef GCC
-	#include <string.h>
-	#include <stdlib.h>
-#else
-	extern "C"
-	{
-		#include <string.h>
-		#include <stdlib.h>
-	}
-#endif
+#include <string.h>
+#include <stdlib.h>
 
 #define DYNARRAY__H <amulet/dynarray.h>
 #include DYNARRAY__H

@@ -9,9 +9,7 @@
 
 extern int always_propagate;
 
-extern "C" {
 #include <stdlib.h>
-}
 
 #include <am_inc.h>
 
