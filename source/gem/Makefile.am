@@ -1,4 +1,4 @@
-SUBDIRS = X ggi . mac win32
+SUBDIRS = X . mac win32
 
 # We define here the default location for OpenAmulet data
 # files (general images, default gestures classification, etc.)
@@ -18,16 +18,8 @@ endif
 
 noinst_LTLIBRARIES = $(RELEASE) $(DEVELOP)
 
-# Describes which sub-library to include in GEM
-## TODO: A 'case' would be better here probably...
-if USE_ggi
-GEM_SUBLIB = ggi/libggigem.la
-GEM_SUBLIB_DEV = ggi/libggigem-develop.la
-else
-# Default is X windows
 GEM_SUBLIB = X/libXgem.la
 GEM_SUBLIB_DEV = X/libXgem-develop.la
-endif
 
 libgem_la_SOURCES =		\
 	gem_keytrans.cpp	\

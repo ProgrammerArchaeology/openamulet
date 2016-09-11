@@ -69,6 +69,5 @@
 
 // Really Unix only
 #define GEMX__H 				<amulet/gemX.h>
-#define GEMG__H         <amulet/gemG.h>
 
 #endif // AM_INCLUDES_H

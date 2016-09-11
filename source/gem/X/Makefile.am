@@ -14,11 +14,7 @@ else
 DEVELOP =
 endif
 
-if USE_ggi
-GEMSUBLIBS = 
-else
 GEMSUBLIBS = $(RELEASE) $(DEVELOP)
-endif
 
 noinst_LTLIBRARIES = $(GEMSUBLIBS)
 

@@ -5,7 +5,7 @@ amuletincludedir = $(includedir)/amulet
 amuletinclude_HEADERS = am_io.h am_strstream.h am_value.hpp \
 am_wrapper.hpp anim.h b_order.h connection.h console.h debugger.h \
 directory.hpp dynarray.h fborder_Big.h fborder_Little.h formula.h \
-formula_advanced.h gdefs.h gem.h gemG.h gemG_time.h gemM.h gemW.h \
+formula_advanced.h gdefs.h gem.h gemM.h gemW.h \
 gemW_32.h gemW_bmpimage.h gemW_clean.h gemW_cursor.h gemW_draw.h \
 gemW_gifimage.h gemW_image.h gemW_input.h gemW_line.h \
 gemW_misc.h gemW_pattern.h gemW_points.h gemW_regions.h gemW_styles.h \
