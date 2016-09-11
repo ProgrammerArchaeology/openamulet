@@ -619,13 +619,8 @@ void Screen_Manager::Block (timeval *timeout)
 
     // Return from Networking Hooks
     //////////////////////////////////////////////////////////////
-#ifdef HP
-    status = select (new_nfds, (int*)&read_Fd_Select, (0L), NULL,
-           timeout);
-#else
     status = select (new_nfds, &read_Fd_Select, (0L), NULL,
            timeout);
-#endif
     if (status < 0) perror("Am_Error in Block");
 
     //////////////////////////////////////////////////////////////

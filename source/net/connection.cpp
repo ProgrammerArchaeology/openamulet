@@ -655,11 +655,7 @@ void Am_Connection::Wait_For_Connect(void)
 
   nfds=m_parent_socket+1;
 
-#ifdef HP
-  status = select (nfds, (int*)read_fd, (0L), NULL, &select_timeout);
-#else
   status = select (nfds, read_fd, (0L), NULL, &select_timeout);
-#endif
 
   if (FD_ISSET(m_parent_socket,read_fd))
     Am_Connection::Handle_Sockets(read_fd);

@@ -1011,12 +1011,6 @@ void Am_Drawonable::Process_Immediate_Event ()
 // described above.  It tries hard not to drop events on the floor, by only
 // exiting when it's done with event processing.
 
-#ifndef HP
-extern "C" {
-int select ();
-}
-#endif
-
 void Am_Drawonable::Process_Event (const Am_Time& deadline)
 {
   gii_event new_event;

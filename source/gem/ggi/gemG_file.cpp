@@ -13,10 +13,6 @@
 
 **********  NOT IMPLEMENTED YET.  HERE IS SOME OF ELLEN'S CODE
 
-#ifdef HP
-#define FIXED_ARRAYS
-#endif
-
 #include "sys/types.h"
 #include "sys/stat.h"
 #include "sys/dir.h"
