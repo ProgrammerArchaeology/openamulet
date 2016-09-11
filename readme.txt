@@ -59,23 +59,6 @@ results in a higher maintainance we think it's the best way to keep
 the platform feeling the user allready know.
 
 
-SmartHeap support:
-------------------
-As I'm using SmartHeap for my memory-management, I have added
-SmartHeap support to OpenAmulet. SmartHeap is a commercial
-memory-management tool. If you don't have it, you can't use the
-SmartHeap version of OpenAmulet. All SmartHeap version contain the
-strings 'HA' or 'SH' to indicate them.
-
-Please take care if you are using project makefile systems like the
-one for VC++, where you can select which version to build. Select the
-one not using SmartHeap.
-
-If you want to use SmartHeap, provide the USE_SMARTHEAP define on the
-command-line of your compiler. This define is although included into
-'amulet.h' but is commented by default.
-
-
 Compiler requirements:
 ----------------------
 If you want to use the OpenAmulet version (OA_VERSION is defined),

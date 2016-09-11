@@ -72,12 +72,6 @@
 // application include files
 //-------------------------------------------------------------
 
-#ifdef USE_SMARTHEAP
-	#ifndef _SMARTHEAP_HPP
-//		#include <smrtheap.hpp>
-	#endif
-#endif
-
 //-------------------------------------------------------------
 // Re-enables warnings
 //-------------------------------------------------------------

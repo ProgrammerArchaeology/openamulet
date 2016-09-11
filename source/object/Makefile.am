@@ -31,13 +31,6 @@ LINK=$(CXXLINK) # Needed to force linking with c++
 libore_develop_la_SOURCES = 
 libore_develop_la_LIBADD = $(patsubst %.cpp,%-develop.lo,$(filter %.cpp,$(libore_la_SOURCES)))
 
-## These are included conditionally
-EXTRA_libore_la_SOURCES =	\
-	dynarray_default.cpp	\
-	dynmm_default.cpp	\
-	dynarray_smartheap.cpp	\
-	dynmm_smartheap.cpp
-
 # Don't touch these...
 %-develop.lo: %.cpp
 	$(LTCXXCOMPILE) @AMULET_DEVELOP_FLAGS@ -c $< -o $@

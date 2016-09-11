@@ -25,10 +25,6 @@
 #include <am_inc.h>
 #include <amulet/am_value.hpp>
 
-#ifdef USE_SMARTHEAP
-	#include <smrtheap.hpp>
-#endif
-
 // if we use OpenAmulet, we use the much fast map implementation
 #ifdef OA_VERSION
 	#include <amulet/univ_map_oa.hpp>
@@ -40,39 +36,6 @@
 #endif
 {
 	public:
-		#if defined(MEMORY) && defined(USE_SMARTHEAP)
-			~Am_Symbol_Table()
-			{
-				// free the memory pool if it exists
-				if(memory != 0)
-				{
-					MemPoolFree(memory);
-				}
-			}
-
-			void* operator new(size_t aSize)
-			{
-				// does the pool exist?
-				if(memory == 0)
-				{
-					memory = MemPoolInitFS(aSize,10,MEM_POOL_DEFAULT);
-				}
-
-				return(MemAllocFS(memory));
-			}
-
-			void operator delete(void *ptr, size_t)
-			{
-				MemFreeFS(ptr);
-			}
-
-			void operator delete(void *ptr, size_t, size_t)
-			{
-				MemFreeFS(ptr);
-			}
-			static MEM_POOL memory;
-		#endif
-
 		// OpenAmulet doesn't use inheritance here
 		#ifdef OA_VERSION
 			Am_Symbol_Table(int initial_size = 89) : Am_MapIterator_CStr2Int(Am_Map_CStr2Int), Am_MapIterator_CInt2Str(Am_Map_CInt2Str)

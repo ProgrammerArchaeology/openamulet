@@ -21,18 +21,6 @@
 	#endif
 #endif
 
-// define this if you want to enable SmartHeap support. You must have
-// a version of SmartHeap installed on your system, otherwise the library
-// won't compile.
-//
-// The define is only listed here to see what's available, if you want to use
-// SmartHeap, it's better to provide the define as parameter to your compiler.
-//
-// As this is a non-standard feature, the define is commented
-
-// #define USE_SMARTHEAP
-
-
 // OpenAmulet support non-rectengular regions on X-Window systems. This
 // feature isn't smoothly integrated into the library, it's more a start
 // implementation for an upcoming extension. Therefore the feature is

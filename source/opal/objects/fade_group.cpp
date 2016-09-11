@@ -254,17 +254,8 @@ Am_Define_Formula (int, am_fade_depth)
     return 0;
 }
 
-#ifdef USE_SMARTHEAP
-	#include <smrtheap.hpp>
-#endif
-
 static void init()
 {
-
-	#ifdef USE_SMARTHEAP
-		unsigned oldCheckPoint = dbgMemSetCheckpoint(5);
-	#endif
-
   Am_Fade_Group = Am_Group.Create (DSTR("Am_Fade_Group"))
     .Add (Am_FADE_DEPTH, am_fade_depth)
     .Add (Am_VALUE, 100)
@@ -273,10 +264,6 @@ static void init()
   ;
   ((Am_Object_Advanced&)Am_Fade_Group).Get_Slot (Am_VALUE).
       Set_Demon_Bits (Am_STATIONARY_REDRAW | Am_EAGER_DEMON);
-
-	#ifdef USE_SMARTHEAP
-		dbgMemSetCheckpoint(oldCheckPoint);
-	#endif
 }
 
 

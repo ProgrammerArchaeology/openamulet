@@ -19,10 +19,6 @@
 // Reverting to old version. -- ortalo
 // Maybe an explicit template instanciation is necessary ?
 #ifdef OA_VERSION
-	#ifdef USE_SMARTHEAP
-		#include <smrtheap.hpp>
-	#endif
-
 	// to use OA map version, we just link the old map names to the
 	// new implementations
 	typedef OpenAmulet::Map_Int2Ptr Am_Map_Int2Ptr;
@@ -193,15 +189,6 @@ void Am_Cleanup_Registry()
 	#ifdef LEAK_TRACE
 		DERR("Deleting Name Registry: Size is " << Am_Name_Registry->Current_Size().first << "," <<  Am_Name_Registry->Current_Size().second << std::endl);
 	#endif
-
-	const Am_Registered_Type *obj;
-	for(Am_Name_Registry->Am_MapIterator_Key2Item.Reset(); obj = Am_Name_Registry->Am_MapIterator_Key2Item(); Am_Name_Registry->Am_MapIterator_Key2Item.Key() != Am_No_Registry_Key)
-	{
-		#ifdef USE_SMARTHEAP
-			DBGMEM_PTR_INFO info;
-			dbgMemPtrInfo((void*)(obj), &info);
-		#endif
-	}
 
 	delete(Am_Name_Registry);
 	Am_Name_Registry = (0L);

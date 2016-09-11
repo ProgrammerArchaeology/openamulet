@@ -39,14 +39,8 @@ class _OA_DL_CLASSIMPORT Am_Wrapper : public Am_Registered_Type
         // Indicates data is no longer being used.
 		void Release()
 		{
-			#if defined(DEBUG) && defined(USE_SMARTHEAP)
-				--refs;
-				if(refs == 0 || refs == 0xdddddddd)
-					delete(this);
-			#else
-				if(!--refs)
-					delete this;
-			#endif
+			if(!--refs)
+				delete this;
 		}
 
 		bool Is_Unique()

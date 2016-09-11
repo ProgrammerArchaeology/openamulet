@@ -39,12 +39,6 @@
 // application include files 
 //-------------------------------------------------------------
 
-#ifdef USE_SMARTHEAP
-	#ifndef _SMARTHEAP_HPP
-		#include <smrtheap.hpp>
-	#endif
-#endif
-
 //-------------------------------------------------------------
 // Re-enables warnings
 //-------------------------------------------------------------
@@ -87,11 +81,7 @@ Am_Initializer::Am_Initializer(char *this_name, Am_Initializer_Procedure *init_p
  	// if this list is empty, we jsut add the element           
  	if(am_initializer_list == static_cast<INITIALIZERLIST*>(0)) 
  	{
-		#ifdef USE_SMARTHEAP
-	 		am_initializer_list = new INITIALIZERLIST();
-		#else
-			am_initializer_list = new INITIALIZERLIST();
-		#endif
+		am_initializer_list = new INITIALIZERLIST();
  		am_initializer_list->push_front(this);                   
  	}                                                           
  	else                                                        
@@ -146,19 +136,11 @@ void Am_Initializer::Do_Initialize()
 		// check if we have a function to call
 		if((*it)->init != static_cast<Am_Initializer_Procedure*>(0))
 		{
-			#ifdef USE_SMARTHEAP
-				unsigned oldCheckPoint = dbgMemSetCheckpoint((*it)->mCheckPoint);
-			#endif
-
 			// call the init() function stored in the Am_Initializer object
 #ifdef LEAK_TRACE
 			DERR("Initializing: " << (*it)->name << "\t\tPriority: " << (*it)->priority << std::endl);
 #endif
 			(*it)->init();
-
-			#ifdef USE_SMARTHEAP
-				dbgMemSetCheckpoint(oldCheckPoint);
-			#endif
 		}
 	}
 }
@@ -188,11 +170,7 @@ void Am_Initializer::Do_Cleanup()
 	// iterate through the list if Am_Initializer objects and free them
 	for(INITIALIZERLIST::iterator it = am_initializer_list->begin(); it != am_initializer_list->end(); ++it)
 	{
-		#ifdef USE_SMARTHEAP
-			DEBUG_DELETE(*it);
-		#else
-			delete(*it);
-		#endif
+		delete(*it);
 	}
 }
 

@@ -166,16 +166,8 @@ Am_Define_Value_List_Formula (flip_book_parts)
   return component;
 }
 
-#ifdef USE_SMARTHEAP
-	#include <smrtheap.hpp>
-#endif
-
 static void init()
 {
-	#ifdef USE_SMARTHEAP
-		unsigned oldCheckPoint = dbgMemSetCheckpoint(12);
-	#endif
-
   Am_Flip_Book_Group = Am_Aggregate.Create (DSTR("Am_Flip_Book_Group"))
     .Set (Am_GRAPHICAL_PARTS, Am_No_Value_List)
     .Add (Am_FLIP_BOOK_PARTS, Am_No_Value_List)
@@ -192,10 +184,6 @@ static void init()
   temp.Get_Slot (Am_GRAPHICAL_PARTS).Set_Demon_Bits (Am_STATIONARY_REDRAW |
 						     Am_EAGER_DEMON);
   temp.Set_Demons (demons);
-
-  	#ifdef USE_SMARTHEAP
-		dbgMemSetCheckpoint(oldCheckPoint);
-	#endif
 }
 
 static Am_Initializer *initializer =

@@ -45,10 +45,6 @@
 
 #include <amulet/callback.hpp>
 
-#ifndef _SMARTHEAP_HPP
-	#include <smrtheap.hpp>
-#endif
-
 //-------------------------------------------------------------
 // Re-enables warnings
 //-------------------------------------------------------------

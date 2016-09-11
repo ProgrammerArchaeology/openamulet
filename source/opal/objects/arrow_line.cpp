@@ -280,16 +280,8 @@ Am_Define_Method (Am_Draw_Method, void, arrow_line_mask,
 }
 
 
-#ifdef USE_SMARTHEAP
-	#include <smrtheap.hpp>
-#endif
-
 static void init()
 {
-	#ifdef USE_SMARTHEAP
-  		unsigned oldCheckPoint = dbgMemSetCheckpoint(3);
-  	#endif
-
   Am_Arrow_Line = Am_Line.Create (DSTR("Am_Arrow_Line"))
     .Set (Am_DIRECTIONAL, true)
     .Add (Am_HEAD_LENGTH, 5)
@@ -327,11 +319,6 @@ static void init()
     .Set (Am_X1, arrow_xweb)
     .Set (Am_Y1, arrow_yweb)
   ;
-
-	#ifdef USE_SMARTHEAP
-		dbgMemSetCheckpoint(oldCheckPoint);
-	#endif
-
 }
 
 //

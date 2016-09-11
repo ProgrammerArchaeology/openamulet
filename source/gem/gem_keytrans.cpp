@@ -37,9 +37,6 @@
 extern void Am_Init_Key_Map();
 #endif
 
-// must be included as last include for proper SmartHeap support
-// if enabled. Don't move up or include any other standard includes
-// below this one. RMM
 #include SYMBOL_TABLE__H
 
 // Function Prototypes

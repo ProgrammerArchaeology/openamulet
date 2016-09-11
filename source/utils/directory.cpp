@@ -51,12 +51,7 @@ void Am_Directory::addEntry(WIN32_FIND_DATA *aEntryData, long aLevel)
 			}
 		}
 
-		// allocate a new mEntry object
-		#ifdef USE_SMARTHEAP
-			mEntry *newDirectoryEntry = new (mEntryPool) mEntry(aLevel);
-		#else
-			mEntry *newDirectoryEntry = new mEntry(aLevel);
-		#endif
+		mEntry *newDirectoryEntry = new mEntry(aLevel);
 
 		// insert the parent information into the new directory object
 		newDirectoryEntry->mOsParentDirEntry = mCurrentDirectoryEntry;
@@ -134,11 +129,7 @@ void Am_Directory::readEntries(long aLevel)
 	// ATTENTION: The OS specific data is not set correctly, this object
 	// is only a container to hold the files in the current directory
 	// it's therefore the anchor into the directory tree
-	#ifdef USE_SMARTHEAP
-		mCurrentDirectoryEntry = new(mEntryPool) mEntry;
-	#else
-		mCurrentDirectoryEntry = new mEntry;
-	#endif
+	mCurrentDirectoryEntry = new mEntry;
 
 	// and add this anchor to the map of directories; we use level -1
 	// for the anchor object
@@ -197,11 +188,7 @@ void Am_Directory::_readEntries(std::string aPattern, long aLevel)
 	}
 
 	// allocate a new WIN32_FIND_DATA object
-	#ifdef USE_SMARTHEAP
-		mEntryInformation = new (mWin32FindDataPool) WIN32_FIND_DATA;
-	#else
-		mEntryInformation = new WIN32_FIND_DATA;
-	#endif
+	mEntryInformation = new WIN32_FIND_DATA;
 
 	// we are interested in all entries
 	mDirectoryIterator = FindFirstFile(aPattern.c_str(), mEntryInformation);
@@ -214,11 +201,7 @@ void Am_Directory::_readEntries(std::string aPattern, long aLevel)
 	while(continueLoop == true)
 	{
 		// allocate a new WIN32_FIND_DATA object
-		#ifdef USE_SMARTHEAP
-			mEntryInformation = new (mWin32FindDataPool) WIN32_FIND_DATA;
-		#else
-			mEntryInformation = new WIN32_FIND_DATA;
-		#endif
+		mEntryInformation = new WIN32_FIND_DATA;
 
 		// get next entry and check if we had an error
 		if(FindNextFile(mDirectoryIterator, mEntryInformation) == false)

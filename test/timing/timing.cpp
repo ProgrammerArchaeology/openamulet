@@ -759,12 +759,6 @@ int main()
 		std::cout << "Debugging is OFF"	<< std::endl;
 	#endif
 
-	#ifdef USE_SMARTHEAP
-		std::cout << "SmartHeap is used"	<< std::endl;
-	#else
-		std::cout << "No SmartHeap support." << std::endl;
-	#endif
-
 	std::cout << "Test #, Message, Total Time in msec, # of objects, team per object, objects per second" << std::endl;
 
 	#ifdef _MACINTOSH

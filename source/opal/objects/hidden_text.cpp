@@ -66,16 +66,8 @@ Am_Define_Method (Am_Draw_Method, void, hidden_text_draw,
   Am_text_draw_internal(self, drawonable, x_offset, y_offset, new_str);
 }
 
-#ifdef USE_SMARTHEAP
-	#include <smrtheap.hpp>
-#endif
-
 static void	init()
 {
-	#ifdef USE_SMARTHEAP
-		unsigned oldCheckPoint = dbgMemSetCheckpoint(6);
-	#endif
-
   Am_Hidden_Text = Am_Text.Create(DSTR("Am_Hidden_Text"))
     .Add(Am_START_CHAR, '*')
     .Set(Am_CURSOR_OFFSET, compute_cursor_offset_for_hidden)
@@ -84,10 +76,6 @@ static void	init()
   Am_Object_Advanced temp = (Am_Object_Advanced&)Am_Hidden_Text;
   temp.Get_Slot (Am_START_CHAR)
     .Set_Demon_Bits (Am_MOVING_REDRAW | Am_EAGER_DEMON);
-
-	#ifdef USE_SMARTHEAP
-		dbgMemSetCheckpoint(oldCheckPoint);
-	#endif
 }
 
 

@@ -25,10 +25,6 @@
 #include <map>
 #include <iostream>
 
-#ifdef USE_SMARTHEAP
-	#include <smrtheap.hpp>
-#endif
-
 class Am_Directory
 {
 	public:
@@ -91,42 +87,25 @@ class Am_Directory
 		// CREATORS
 			Am_Directory() : mEntryInformation(0), mCurrentDirectoryEntry(0), mIncludeDotEntries(false)
 			{
-				#ifdef USE_SMARTHEAP
-					// initialize the memory pools
-					mEntryPool 			= MemPoolInitFS(sizeof(mEntry), 10, MEM_POOL_DEFAULT);
-					mWin32FindDataPool 	= MemPoolInitFS(sizeof(WIN32_FIND_DATA), 10, MEM_POOL_DEFAULT);
-
-					dbgMemPoolSetName(mEntryPool, "mEntryPool");
-					dbgMemPoolSetName(mWin32FindDataPool, "mWin32FindDataPool");
-				#endif
 			}
 			~Am_Directory()
 			{
-				// we first delete these pointers so that we won't
-				// free the pointer from the dtor once again when releasing
-				// the pools via SmartHeap.
 				delete(mCurrentDirectoryEntry);
 				delete(mEntryInformation);
 
-				#ifdef USE_SMARTHEAP
-					// just release the pools
-					MemPoolFree(mEntryPool);
-					MemPoolFree(mWin32FindDataPool);
-				#else
-					// free all mEntry objects of mLevel2Directories
-					LEVEL_ENTRIES::const_iterator itDirectories;
-					for(itDirectories=mLevel2Directories.begin(); itDirectories != mLevel2Directories.end(); ++itDirectories)
+				// free all mEntry objects of mLevel2Directories
+				LEVEL_ENTRIES::const_iterator itDirectories;
+				for(itDirectories=mLevel2Directories.begin(); itDirectories != mLevel2Directories.end(); ++itDirectories)
+				{
+					// delete all file entry objects
+					for(FILE_ENTRIES::const_iterator itFiles=(*itDirectories).second->mFiles.begin(); itFiles != (*itDirectories).second->mFiles.end() ; ++itFiles)
 					{
-						// delete all file entry objects
-						for(FILE_ENTRIES::const_iterator itFiles=(*itDirectories).second->mFiles.begin(); itFiles != (*itDirectories).second->mFiles.end() ; ++itFiles)
-						{
-							delete(*itFiles);
-						}
-
-						// delete the directory mEntry object
-						delete((*itDirectories).second);
+						delete(*itFiles);
 					}
-				#endif
+
+					// delete the directory mEntry object
+					delete((*itDirectories).second);
+				}
 			}
 
 		// MANIPULATORS
@@ -205,11 +184,6 @@ class Am_Directory
 
 			// handle to work with Win32 directory functions
 			HANDLE mDirectoryIterator;
-
-			#ifdef USE_SMARTHEAP
-				MEM_POOL mEntryPool;
-				MEM_POOL mWin32FindDataPool;
-			#endif
 };
 
 #endif

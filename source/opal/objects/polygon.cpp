@@ -558,16 +558,8 @@ Am_Define_Formula (int, compute_polygon_height)
 }
 #endif
 
-#ifdef USE_SMARTHEAP
-	#include <smrtheap.hpp>
-#endif
-
 static void init()
 {
-	#ifdef USE_SMARTHEAP
-		unsigned oldCheckPoint = dbgMemSetCheckpoint(9);
-	#endif
-
   Am_Web polyweb (polygon_web_create, polygon_web_init, polygon_web_validate);
 
   Am_Point_List empty_list;
@@ -596,10 +588,6 @@ static void init()
 						Am_EAGER_DEMON);
   temp.Get_Slot (Am_POINT_LIST).Set_Demon_Bits (Am_MOVING_REDRAW |
 						Am_EAGER_DEMON);
-
-	#ifdef USE_SMARTHEAP
-		dbgMemSetCheckpoint(oldCheckPoint);
-	#endif
 }
 
 static Am_Initializer* initializer = new Am_Initializer(DSTR("Am_Polygon"), init, 2.1f);
