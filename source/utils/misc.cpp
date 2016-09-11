@@ -40,19 +40,6 @@ void Am_Break_Into_Debugger ()
   kill(getpid(), SIGINT);
 }
 
-#ifdef __VMS
-extern "C" {
-int LIB$WAIT(float *time);
-}
-
-void Am_Wait (int milliseconds)
-{
-  float time_wait = milliseconds;
-  time_wait = milliseconds/1000.0;
-  (void) LIB$WAIT(& time_wait);
-}
-#else
-
 void Am_Wait (int milliseconds)
 {
   timeval tim;
@@ -64,7 +51,6 @@ void Am_Wait (int milliseconds)
   // tim tells it how long to do nothing.
   select (0, (0L), NULL, NULL, &tim);
 }
-#endif
 
 const char* Am_Get_Amulet_Pathname () {
   const char* amulet_dir = getenv("AMULET_DIR");

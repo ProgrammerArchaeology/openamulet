@@ -67,11 +67,8 @@ class Am_MapIterator_##Name {                                        \
     KeyType m_key;                                                   \
 };
 
-#ifdef __VMS
-#define Cast_Return_Type(x)		// VMS Won't accept a redundant cast
-#else
 #define Cast_Return_Type(x)	(x)	// GCC needs non-redundant cast
-#endif                                                                             
+
 #define Am_IMPL_MAP(Name, KeyType, NullKey, ItemType, NullItem)      \
 /**/                                                                 \
 Am_Map_##Name::Am_Map_##Name (int size) : m_count(0)                 \

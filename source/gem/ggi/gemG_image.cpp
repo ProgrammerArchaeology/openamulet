@@ -13,11 +13,7 @@
 // stippled line and filling styles.
 
 
-#ifdef __VMS
-#include <stdlib.h>
-#else
 #include <stdio.h>
-#endif
 #include <iostream>
 #include <am_inc.h>
 

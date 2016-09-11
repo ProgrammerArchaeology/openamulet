@@ -14,11 +14,7 @@
 
 #include <X11/Xlib.h>
 
-#ifdef __VMS
-#include <cstdlib>
-#else
 #include <cstdio>
-#endif
 #include <iostream>
 #include <am_inc.h>
 

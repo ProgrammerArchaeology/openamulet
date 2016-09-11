@@ -17,14 +17,6 @@
 #ifdef NEED_TIME
 #ifdef __SUNPRO_CC
 extern "C" int gettimeofday (timeval *);
-#else
-#ifdef __VMS
-#if __VMS_VER < 70000000
-extern "C" int gettimeofday (timeval*, void*); // not in VMS <7.0
-#endif // __VMS_VER
-#else  // __VMS
-extern "C" int gettimeofday (); // should be defined in time.h but often not
-#endif // __VMS
 #endif
 #endif
 
