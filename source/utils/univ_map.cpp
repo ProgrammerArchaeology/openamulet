@@ -33,11 +33,6 @@ Am_IMPL_MAP(Ptr2Int, void*	, (0L)	, int	, 0)
 Am_IMPL_MAP(Str2Int, char*	, (0L)	, int	, 0)
 #endif
 
-// Don't use namespaces
-#ifdef NO_NAMESPACES
-	#define OpenAmulet
-#endif
-
 #ifdef OA_VERSION
 	// declared in gem.h
 	OpenAmulet::Map_Int2Int	Am_Map_int2int;

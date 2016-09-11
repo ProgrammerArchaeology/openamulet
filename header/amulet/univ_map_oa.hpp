@@ -16,11 +16,6 @@
 #include <iostream>
 #include <amulet/impl/types_logging.h> // Debug logging functions
 
-// Don't use namespaces
-#ifdef NO_NAMESPACES
-	#define std
-#endif
-
 // we provide a less function which can be used by the Map_Str2Int (const char*) specialization,
 // so that keys are compared as strings and not as pointers
 template <class T> struct lex_less : public std::binary_function<T, T, bool>
@@ -33,10 +28,8 @@ template <class T> struct lex_less : public std::binary_function<T, T, bool>
 
 // To avoid nameclashes, we place all OpenAmulet related datastructures
 // within an own namespace
-#ifndef NO_NAMESPACES
 namespace OpenAmulet
 {
-#endif
 
 // This is mainly a wrapper class to std::map<...> which provides the
 // same interface as the 'old' Am_Map_##Name class. This class avoids that
@@ -425,9 +418,7 @@ template<class Key, class Item, class KeyCompare = std::less<Key>, class ItemCom
 
 };
 
-#ifndef NO_NAMESPACES
 } // namespace OpenAmulet
-#endif
 
 // we specialize the less function for the Am_Value data-type
 #include <amulet/am_value.hpp>

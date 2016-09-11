@@ -1,8 +1,3 @@
-// Don't use namespaces
-#ifdef NO_NAMESPACES
-	#define OpenAmulet
-#endif
-
 #ifndef OA_VERSION
 	#include UNIV_MAP__H
 #else

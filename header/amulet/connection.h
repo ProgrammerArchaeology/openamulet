@@ -50,11 +50,6 @@ extern Am_Unmarshall_Method Am_No_Unmarshall_Method;
 extern Am_Marshall_Method	Am_No_Marshall_Method;
 
 #ifdef OA_VERSION
-	// Don't use namespaces
-	#ifdef NO_NAMESPACES
-		#define OpenAmulet
-	#endif
-
 	typedef OpenAmulet::Map<Am_Value_Type,Am_Marshall_Method> 	Am_Map_Marshall_Methods;
 	typedef OpenAmulet::Map_Iterator<Am_Map_Marshall_Methods> 	Am_MapIterator_Marshall_Methods;
 

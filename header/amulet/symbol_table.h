@@ -29,11 +29,6 @@
 	#include <smrtheap.hpp>
 #endif
 
-// Don't use namespaces
-#ifdef NO_NAMESPACES
-	#define OpenAmulet
-#endif
-
 // if we use OpenAmulet, we use the much fast map implementation
 #ifdef OA_VERSION
 	#include <amulet/univ_map_oa.hpp>

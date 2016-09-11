@@ -44,12 +44,6 @@ extern "C"
 	#include UNIV_MAP__H
 #endif
 
-// Don't use namespaces
-#ifdef NO_NAMESPACES
-	#define std
-	#define OpenAmulet
-#endif
-
 //for printout of values as a string for Am_Get_Name(Am_Value v)
 #include STR_STREAM__H
 

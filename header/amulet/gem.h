@@ -54,11 +54,6 @@ class Am_Time;
 
 // For key map
 #ifdef OA_VERSION
-	// Don't use namespaces
-	#ifdef NO_NAMESPACES
-		#define OpenAmulet
-	#endif
-
 	// defined in univ_map.cpp
 	typedef	OpenAmulet::Map_Int2Int	Am_Map_int2int;
 #else

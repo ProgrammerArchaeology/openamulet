@@ -100,11 +100,6 @@
 // forward declarations / definitions
 //-------------------------------------------------------------
 
-// Don't use namespaces
-#ifdef NO_NAMESPACES
-	#define std
-#endif
-
 //-------------------------------------------------------------
 // class definition/implementation
 //-------------------------------------------------------------

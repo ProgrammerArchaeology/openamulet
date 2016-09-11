@@ -33,17 +33,6 @@
 // #define USE_SMARTHEAP
 
 
-
-// When OA_VERSION is defined, we make use of the STL which is normally
-// included into namespace std:: As not all compilers support namespaces
-// yet, you can disable the use of namespaces by uncommenting the following
-// define, by default we USE namespaces. Note: That most STL version let
-// you configure the use of namespaces too but we have to use our own macro
-// as not all STL implementations use the same macro name :-|.
-
-// #define NO_NAMESPACES
-
-
 // OpenAmulet support non-rectengular regions on X-Window systems. This
 // feature isn't smoothly integrated into the library, it's more a start
 // implementation for an upcoming extension. Therefore the feature is
