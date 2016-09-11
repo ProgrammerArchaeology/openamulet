@@ -1,9 +1,0 @@
-set prg "./testpixmap"
-
-#gem_start $prg
-
-spawn "$prg"
-expect { "" {} }
-
-match ".*to quit \r\n$" "$prg waits key"
-close

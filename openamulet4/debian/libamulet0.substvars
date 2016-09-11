@@ -1,1 +1,0 @@
-shlibs:Depends=libc6, libstdc++2.9, xlib6g (>= 3.3-5)
