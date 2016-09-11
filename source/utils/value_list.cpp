@@ -518,9 +518,7 @@ bool Am_Value_List::Member (Am_Wrapper* value)
 Make_Member (Am_Ptr)
 Make_Member (int)
 Make_Member (long)
-#ifndef NEED_BOOL
 Make_Member (bool)
-#endif
 Make_Member (float)
 Make_Member (double)
 Make_Member (char)
@@ -551,9 +549,7 @@ Make_Add (Am_Wrapper*)
 Make_Add (Am_Ptr)
 Make_Add (int)
 Make_Add (long)
-#ifndef NEED_BOOL
 Make_Add (bool)
-#endif
 Make_Add (float)
 Make_Add (double)
 Make_Add (char)
@@ -605,9 +601,7 @@ Make_Insert (Am_Wrapper*)
 Make_Insert (Am_Ptr)
 Make_Insert (int)
 Make_Insert (long)
-#ifndef NEED_BOOL
 Make_Insert (bool)
-#endif
 Make_Insert (float)
 Make_Insert (double)
 Make_Insert (char)
@@ -645,9 +639,7 @@ Make_Set (Am_Wrapper*)
 Make_Set (Am_Ptr)
 Make_Set (int)
 Make_Set (long)
-#ifndef NEED_BOOL
 Make_Set (bool)
-#endif
 Make_Set (float)
 Make_Set (double)
 Make_Set (char)

@@ -95,12 +95,6 @@ dnl Checks for header files.
 dnl ========================================================================
 dnl Checks for typedefs, structures, and compiler characteristics.
 
-AC_MSG_CHECKING([if c++ supports bool])
-AC_TRY_COMPILE([],[bool b = true; return false;],[my_res="yes"
-],[my_res="no"
-AC_DEFINE(NEED_BOOL)])
-AC_MSG_RESULT($my_res)
-
 dnl ========================================================================
 dnl Checks for library functions.
 

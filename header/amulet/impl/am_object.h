@@ -187,20 +187,14 @@ class _OA_DL_CLASSIMPORT Am_Object
 			Am_Object& Set(Am_Slot_Key key, Am_Method_Wrapper		*value		, Am_Slot_Flags flags=0);
 			Am_Object& Set(Am_Slot_Key key, const Am_Value& 		value		, Am_Slot_Flags flags=0);
 			Am_Object& Set(Am_Slot_Key key, Am_Constraint 			*constraint	, Am_Slot_Flags flags=0);
-
-			// include bool type if possible
-			#if !defined(NEED_BOOL)
-				Am_Object& Set(Am_Slot_Key key, bool value, Am_Slot_Flags flags = 0);
-			#endif
+			Am_Object& Set(Am_Slot_Key key, bool value, Am_Slot_Flags flags = 0);
 
   // Add a new slot.
   Am_Object& Add (Am_Slot_Key key, Am_Wrapper* value, Am_Slot_Flags flags = 0);
   Am_Object& Add (Am_Slot_Key key, Am_Ptr value, Am_Slot_Flags flags = 0);
   Am_Object& Add (Am_Slot_Key key, int value, Am_Slot_Flags flags = 0);
   Am_Object& Add (Am_Slot_Key key, long value, Am_Slot_Flags flags = 0);
-#if !defined(NEED_BOOL)
   Am_Object& Add (Am_Slot_Key key, bool value, Am_Slot_Flags flags = 0);
-#endif
   Am_Object& Add (Am_Slot_Key key, float value, Am_Slot_Flags flags = 0);
   Am_Object& Add (Am_Slot_Key key, double value, Am_Slot_Flags flags = 0);
   Am_Object& Add (Am_Slot_Key key, char value, Am_Slot_Flags flags = 0);

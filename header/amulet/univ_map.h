@@ -231,11 +231,6 @@ extern "C"
 	#include <stdlib.h>
 }
 
-#if defined(NEED_BOOL)
-	#include <am_inc.h>
-	#include TYPES__H //typedef bool
-#endif
-
 // #ifndef NULL
 //	#define NULL 0
 // #endif

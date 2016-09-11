@@ -125,9 +125,7 @@ class _OA_DL_CLASSIMPORT Am_Value_List {
   bool Member (Am_Ptr          value);
   bool Member (int             value);
   bool Member (long            value);
-#if !defined(NEED_BOOL)
   bool Member (bool            value);
-#endif
   bool Member (float           value);
   bool Member (double          value);
   bool Member (char            value);
@@ -173,10 +171,8 @@ class _OA_DL_CLASSIMPORT Am_Value_List {
                       bool unique = true);
   Am_Value_List& Add (long value, Am_Add_Position position = Am_TAIL,
                       bool unique = true);
-#if !defined(NEED_BOOL)
   Am_Value_List& Add (bool value, Am_Add_Position position = Am_TAIL,
                       bool unique = true);
-#endif
   Am_Value_List& Add (float value, Am_Add_Position position = Am_TAIL,
                       bool unique = true);
   Am_Value_List& Add (double value, Am_Add_Position position = Am_TAIL,
@@ -205,10 +201,8 @@ class _OA_DL_CLASSIMPORT Am_Value_List {
                bool unique = true);
   void Insert (long            value, Am_Insert_Position position,
                bool unique = true);
-#if !defined(NEED_BOOL)
   void Insert (bool            value, Am_Insert_Position position,
                bool unique = true);
-#endif
   void Insert (float           value, Am_Insert_Position position,
                bool unique = true);
   void Insert (double          value, Am_Insert_Position position,
@@ -231,9 +225,7 @@ class _OA_DL_CLASSIMPORT Am_Value_List {
   void Set (Am_Ptr          value, bool unique = true);
   void Set (int             value, bool unique = true);
   void Set (long            value, bool unique = true);
-#if !defined(NEED_BOOL)
   void Set (bool            value, bool unique = true);
-#endif
   void Set (float           value, bool unique = true);
   void Set (double          value, bool unique = true);
   void Set (char            value, bool unique = true);

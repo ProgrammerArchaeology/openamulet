@@ -1261,9 +1261,7 @@ Make_Set (Am_Wrapper*)
 Make_Set (Am_Ptr)
 Make_Set (int)
 Make_Set (long)
-#ifndef NEED_BOOL
 Make_Set (bool)
-#endif
 Make_Set (float)
 Make_Set (double)
 Make_Set (char)
@@ -1309,9 +1307,7 @@ Make_Add (Am_Wrapper*)
 Make_Add (Am_Ptr)
 Make_Add (int)
 Make_Add (long)
-#ifndef NEED_BOOL
 Make_Add (bool)
-#endif
 Make_Add (float)
 Make_Add (double)
 Make_Add (char)

@@ -26,18 +26,6 @@
 #ifndef GEM_IMAGE_H
 #define GEM_IMAGE_H
 
-// copied from types.h
-#ifdef NEED_BOOL
-
-#ifdef _WIN32
-#pragma warning( disable : 4237 )
-#endif
-
-#define true 1
-#define false 0
-typedef int bool;
-#endif
-
 class _OA_DL_CLASSIMPORT Am_RGB_Value
 {
 public:

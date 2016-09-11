@@ -9,20 +9,6 @@ class Am_Value;
 class Am_Wrapper;
 class Am_Method_Wrapper;
 
-// For compilers still not supporting the bool keyword
-#ifdef NEED_BOOL
-	// Define a Boolean type because some c++ do not support the bool type, yet.
-	// Hopefully, this will someday disappear.
-	#ifdef _WIN32
-		#pragma warning( disable : 4237 )
-	#endif
-
-	// dangerous as true is normaly defines as !=0 and not ==1
-	#define true  1
-	#define false 0
-	typedef int bool;
-#endif
-
 // Am_Ptr, don't move to other place within this file!
 #if defined(_MSC_VER)
 	typedef unsigned char	*Am_Ptr;

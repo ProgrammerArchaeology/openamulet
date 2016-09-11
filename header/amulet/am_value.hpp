@@ -92,17 +92,13 @@ class _OA_DL_CLASSIMPORT Am_Value
 	operator char() 					const;
 	operator Am_Generic_Procedure*() 	const;
 	operator Am_Method_Wrapper*() 		const;
-	#ifndef NEED_BOOL
-	  operator bool() 					const;
-	#endif
+  operator bool() 					const;
 
   bool operator== (Am_Wrapper* test_value) const;
   bool operator== (Am_Ptr test_value) const;
   bool operator== (int test_value) const;
   bool operator== (long test_value) const;
-#ifndef NEED_BOOL
   bool operator== (bool test_value) const;
-#endif
   bool operator== (float test_value) const;
   bool operator== (double test_value) const;
   bool operator== (char test_value) const;
@@ -116,9 +112,7 @@ class _OA_DL_CLASSIMPORT Am_Value
   bool operator!= (Am_Ptr test_value) const;
   bool operator!= (int test_value) const;
   bool operator!= (long test_value) const;
-#ifndef NEED_BOOL
   bool operator!= (bool test_value) const;
-#endif
   bool operator!= (float test_value) const;
   bool operator!= (double test_value) const;
   bool operator!= (char test_value) const;
@@ -163,13 +157,11 @@ class _OA_DL_CLASSIMPORT Am_Value
 		type 				= Am_LONG;
 		value.long_value 	= initial;
 	}
-	#if !defined(NEED_BOOL)
-		Am_Value(bool initial)
-		{
-			type 				= Am_BOOL;
-			value.bool_value 	= initial;
-		}
-	#endif
+	Am_Value(bool initial)
+	{
+		type 				= Am_BOOL;
+		value.bool_value 	= initial;
+	}
 	Am_Value(float initial)
 	{
 		type = Am_FLOAT;
@@ -204,9 +196,7 @@ class _OA_DL_CLASSIMPORT Am_Value
 	Am_Value& operator= (Am_Ptr in_value);
 	Am_Value& operator= (int in_value);
 	Am_Value& operator= (long in_value);
-#ifndef NEED_BOOL
 	Am_Value& operator= (bool in_value);
-#endif
 	Am_Value& operator= (float in_value);
 	Am_Value& operator= (double in_value);
 	Am_Value& operator= (char in_value);

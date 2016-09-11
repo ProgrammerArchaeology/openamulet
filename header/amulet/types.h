@@ -23,20 +23,6 @@
 	#include AM_VALUE__H
 #endif
 
-#ifdef NEED_BOOL
-	// Define a Boolean type because some c++ do not support the bool type, yet.
-	// Hopefully, this will someday disappear.
-	#ifdef _WIN32
-		#pragma warning( disable : 4237 )
-	#endif
-
-	// dangerous as true is normaly defines as !=0 and not 1
-	#define true  1
-	#define false 0
-	typedef int bool;
-#endif // NEED_BOOL
-
-
 #include "amulet/impl/types_basic.h"
 #include "amulet/impl/types_slot.h"
 

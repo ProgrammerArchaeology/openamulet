@@ -715,13 +715,11 @@ Am_Formula::Am_Formula (Am_FProc_Long* formula, const char* name)
   data->form_data.f_long = formula;
 }
 
-#if !defined(NEED_BOOL)
 Am_Formula::Am_Formula (Am_FProc_Bool* formula, const char* name)
 {
   data = new Am_Formula_Data (F_BOOL, name);
   data->form_data.f_bool = formula;
 }
-#endif
 
 Am_Formula::Am_Formula (Am_FProc_Float* formula, const char* name)
 {

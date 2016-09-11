@@ -36,9 +36,7 @@ class _OA_DL_CLASSIMPORT Am_Formula : public Am_Registered_Type {
   Am_Formula (Am_FProc_Method*  formula, const char* name = 0);
   Am_Formula (Am_FProc_Int*     formula, const char* name = 0);
   Am_Formula (Am_FProc_Long*    formula, const char* name = 0);
-#if !defined(NEED_BOOL)
   Am_Formula (Am_FProc_Bool*    formula, const char* name = 0);
-#endif
   Am_Formula (Am_FProc_Float*   formula, const char* name = 0);
   Am_Formula (Am_FProc_Double*  formula, const char* name = 0);
   Am_Formula (Am_FProc_Char*    formula, const char* name = 0);

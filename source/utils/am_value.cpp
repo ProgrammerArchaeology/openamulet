@@ -158,7 +158,6 @@ Am_Value::operator long () const
 	}
 }
 
-#ifndef NEED_BOOL
 Am_Value::operator bool() const
 {
 	if(Am_Type_Class(type) == Am_ERROR_VALUE_TYPE ||
@@ -191,7 +190,6 @@ Am_Value::operator bool() const
 		return !!value.voidptr_value;
 	}
 }
-#endif
 
 Am_Value::operator float () const
 {
@@ -355,7 +353,6 @@ bool Am_Value::operator== (long test_value) const
 		}
 }
 
-#ifndef NEED_BOOL
 bool Am_Value::operator== (bool test_value) const
 {
 	if(Am_Type_Class(type) != Am_NONE)
@@ -383,7 +380,6 @@ bool Am_Value::operator== (bool test_value) const
 		return false;
 	}
 }
-#endif
 
 bool Am_Value::operator== (float test_value) const
 {
@@ -593,7 +589,6 @@ bool Am_Value::operator!= (long test_value) const
 	}
 }
 
-#ifndef NEED_BOOL
 bool Am_Value::operator!= (bool test_value) const
 {
 	if(Am_Type_Class(type) != Am_NONE)
@@ -621,7 +616,6 @@ bool Am_Value::operator!= (bool test_value) const
 		return true;
 	}
 }
-#endif
 
 bool Am_Value::operator!= (float test_value) const
 {
@@ -860,7 +854,6 @@ Am_Value& Am_Value::operator= (long in_value)
 	return *this;
 }
 
-#ifndef NEED_BOOL
 Am_Value& Am_Value::operator= (bool in_value)
 {
 	if(Am_Type_Is_Ref_Counted(type) && value.wrapper_value)
@@ -869,7 +862,6 @@ Am_Value& Am_Value::operator= (bool in_value)
 	value.bool_value = in_value;
 	return *this;
 }
-#endif
 
 Am_Value& Am_Value::operator= (float in_value)
 {
