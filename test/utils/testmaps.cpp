@@ -15,6 +15,8 @@
 #include AM_IO__H
 #include UNIV_MAP__H
 
+using namespace std;
+
 void test_custom_maps ();
 void test_symbol_table ();
 

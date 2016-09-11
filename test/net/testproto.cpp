@@ -3,7 +3,7 @@
 #include OBJECT_ADVANCED__H
 #include <iostream>
 
-
+using namespace std;
 
 int main (void)
 {
@@ -18,7 +18,7 @@ Am_Object proto_rect=Am_Rectangle.Create("proto_rect")
 
 
 Am_Connection *mc=Am_Connection::Open();
-mc->Register_Prototype("rect",&proto_rect);
+mc->Register_Prototype("rect", proto_rect);
 cout << mc->Is_Registered_Prototype(&proto_rect) << endl;
 
 ////////////////////////

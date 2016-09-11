@@ -310,7 +310,7 @@ Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
   {
     static int new_object_cnt = 1;
     Am_Style color;
-    char* colorstr = 0;
+    const char* colorstr = 0;
     switch( new_object_cnt )
     {
       case 1: color = Am_Motif_Light_Orange; colorstr="Motif_Light_Orange";break;
@@ -1214,7 +1214,7 @@ Am_Define_Method( Am_Create_New_Object_Method, Am_Object, create_new_object,
 #endif
 
 void load_bitmap() {
-  char *filename = Am_Merge_Pathname( AMULET_BITMAP );
+  const char *filename = Am_Merge_Pathname( AMULET_BITMAP );
   Am_Image_Array amulet_icon_image( filename );
   delete [] filename;
   if( !amulet_icon_image.Valid() )

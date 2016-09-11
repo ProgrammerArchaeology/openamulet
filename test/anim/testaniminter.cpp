@@ -31,7 +31,7 @@ Am_Define_Method(Am_Object_Method, void, my_do, (Am_Object cmd)) {
 Am_Object window, rect1, rect2, rect3, rect4, anim1, anim2, anim3,
   anim4, anim5, anim6;
 
-char* pixmapfilename[] = {"lib/images/eye1.gif",
+const char* pixmapfilename[] = {"lib/images/eye1.gif",
 				  "lib/images/eye2.gif",
 				  "lib/images/eye3.gif",
 				  "lib/images/eye4.gif",
@@ -62,13 +62,11 @@ Am_Define_Formula(int, plus_or_minus) {
 }
 
 static void init_pixmaps () {
-  char* initialname;
-  char* pathname;
   Am_Image_Array icon;
   //  Am_Object window2;
   for (int i = 0; i < 12; i++) {
-    initialname = pixmapfilename[i];
-    pathname = Am_Merge_Pathname(initialname);
+    const char *initialname = pixmapfilename[i];
+    const char *pathname = Am_Merge_Pathname(initialname);
     std::cout << "Reading image " << pathname << std::endl << std::flush;
     icon = Am_Image_Array(pathname);
     pixmap_images.Add(icon);

@@ -209,7 +209,7 @@ Am_Define_Method(Am_Create_New_Object_Method, Am_Object, create_new_object,
   static int new_object_cnt = 1;
 
   Am_Style color;
-  char* colorstr = 0;
+  const char* colorstr = 0;
   switch (new_object_cnt) {
   case 1: color = Am_Black; colorstr = "Black"; break;
   case 2: color = Am_Green; colorstr = "Green";break;
@@ -763,6 +763,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting,
     break;
   }
   case 'k': {
+#ifdef DEBUG
     static bool newkeys = false;
     newkeys = !newkeys;
     if (newkeys) {
@@ -773,6 +774,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting,
       Am_Set_Inspector_Keys("F1", "F2", "F3");
       cout << "Set inspector keys to F1, F2, and F3\n" << flush;
     }
+#endif
     break;
   }
 

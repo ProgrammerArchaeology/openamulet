@@ -544,7 +544,7 @@ Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
   case 'c': {
     static int handles_color_cnt = 1;
     Am_Style color;
-    char* colorstr = 0;
+    const char* colorstr = 0;
     switch (handles_color_cnt) {
     case 1: color = Am_Red; colorstr = "Red"; break;
     case 2: color = Am_Green; colorstr = "Green";break;
@@ -709,7 +709,7 @@ Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
     if (vl.Empty()) std::cout << "List empty\n" << std::flush;
     else {
       Am_Slot_Key slot = 0;
-      char *name = 0;
+      const char *name = 0;
       vl.Start();
       Am_Object obj = vl.Get();
       Am_Value v;
@@ -909,7 +909,7 @@ Am_Define_Formula(int, scroll_width) {
 Am_Image_Array icon, arrow;
 
 void load_bitmaps() {
-  char* pathname = Am_Merge_Pathname(AMULET_BITMAP);
+  const char* pathname = Am_Merge_Pathname(AMULET_BITMAP);
   icon = Am_Image_Array(pathname);
   delete [] pathname;
   if (!icon.Valid()) Am_Error ("Amulet Icon bitmap image not found");
@@ -1441,7 +1441,7 @@ int main (int argc, char *argv[])
     .Add_Part(text_edit_inter);
 			
   //  char	pathname[] = "f:\\openamulet\\data\\select.cl";
-  char* pathname = Am_Merge_Pathname(CLASSIFIER_FILENAME); // This should be portable no ? -- ortalo
+  const char* pathname = Am_Merge_Pathname(CLASSIFIER_FILENAME); // This should be portable no ? -- ortalo
   // at least... try to do so...
   Am_Gesture_Classifier gc(pathname);
 //  delete [] pathname;

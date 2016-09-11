@@ -64,9 +64,9 @@
 
 void testfiles(wins *wins_ar, int ar_len )
 {
-  static char* filenames[5] = { IMFN_GREY, IMFN_HI, IMFN_SMILE,
+  static const char* filenames[5] = { IMFN_GREY, IMFN_HI, IMFN_SMILE,
 				IMFN_FUN, IMFN_DIAMOND };
-  static char* colornames[5] = { "purple", "green", "blue", "black", "red" };
+  static const char* colornames[5] = { "purple", "green", "blue", "black", "red" };
 
   for (int i=0; i<ar_len; i++) {
     Am_Drawonable *d = wins_ar[i].d1;

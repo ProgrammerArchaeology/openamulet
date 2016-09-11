@@ -1,6 +1,7 @@
 #include <amulet.h>
 #include <iostream>
 
+using namespace std;
 
 Am_Define_Method (Am_Object_Method, void, meth, (Am_Object self))
 {

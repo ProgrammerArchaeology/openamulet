@@ -50,7 +50,7 @@ char spiral [] = {0x78, 0x00, 0xc4, 0x01, 0x32, 0x06, 0x1a, 0x0c,
 // 0x53, 0x10, 0x52, 0x90, 0x50, 0x20, 0x59, 0x90,
 // 0x47, 0x10, 0x60, 0x60, 0x30, 0xc0
 
-void print_RGB_image(unsigned char * storage, char * name,
+void print_RGB_image(unsigned const char * storage, const char * name,
 		     int width, int height, bool top_first) {
   int row, col, index = 0;
   if (top_first) {
@@ -87,7 +87,7 @@ Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
 
   switch( c.As_Char() ) {
   case '1': {
-    char* pathname = Am_Merge_Pathname("lib/images/ent.xbm");
+    const char* pathname = Am_Merge_Pathname("lib/images/ent.xbm");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete [] pathname;
     bitmap.Set (Am_IMAGE, image);
@@ -95,7 +95,7 @@ Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
     break;
   }
   case '2': {
-    char* pathname = Am_Merge_Pathname("lib/images/ent.gif");
+    const char* pathname = Am_Merge_Pathname("lib/images/ent.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete [] pathname;
     bitmap.Set (Am_IMAGE, image);
@@ -103,7 +103,7 @@ Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
     break;
   }
   case '3': {
-    char* pathname = Am_Merge_Pathname("lib/images/opaque_ent.gif");
+    const char* pathname = Am_Merge_Pathname("lib/images/opaque_ent.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete [] pathname;
     bitmap.Set (Am_IMAGE, image);
@@ -111,7 +111,7 @@ Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
     break;
   }
   case '4': {
-    char* pathname = Am_Merge_Pathname("lib/images/eye10.gif");
+    const char* pathname = Am_Merge_Pathname("lib/images/eye10.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete [] pathname;
     bitmap.Set (Am_IMAGE, image);
@@ -119,7 +119,7 @@ Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
     break;
   }
   case '5': {
-    char* pathname = Am_Merge_Pathname("lib/images/opaque_eye10.gif");
+    const char* pathname = Am_Merge_Pathname("lib/images/opaque_eye10.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete [] pathname;
     bitmap.Set (Am_IMAGE, image);
@@ -127,7 +127,7 @@ Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
     break;
   }
   case '6': {
-    char* pathname = Am_Merge_Pathname("lib/images/spaceship.gif");
+    const char* pathname = Am_Merge_Pathname("lib/images/spaceship.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete [] pathname;
     bitmap.Set (Am_IMAGE, image);
@@ -135,7 +135,7 @@ Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
     break;
   }
   case '7': {
-    char* pathname = Am_Merge_Pathname("lib/images/opaque_spaceship.gif");
+    const char* pathname = Am_Merge_Pathname("lib/images/opaque_spaceship.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete [] pathname;
     bitmap.Set (Am_IMAGE, image);
@@ -203,7 +203,7 @@ Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
     break;
   }
   case 'f': {
-    char* pathname = Am_Merge_Pathname("lib/images/does_not_exist.gif");
+    const char* pathname = Am_Merge_Pathname("lib/images/does_not_exist.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete [] pathname;
     bitmap.Set (Am_IMAGE, image);
@@ -227,7 +227,7 @@ Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
     break;
   }
   case 'T': {
-    char * pathname = Am_Merge_Pathname("lib/images/bugsmall.gif");
+    const char * pathname = Am_Merge_Pathname("lib/images/bugsmall.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete [] pathname;
     int width, height;
@@ -293,7 +293,7 @@ int main(void)
     .Set( Am_FILL_STYLE, Am_Amulet_Purple ) // tests putting on top of color backgrounds
     ;
 
-  char * pathname = Am_Merge_Pathname("lib/images/bugsmall.gif");
+  const char * pathname = Am_Merge_Pathname("lib/images/bugsmall.gif");
   Am_Image_Array image = Am_Image_Array(pathname);
   delete [] pathname;
   bitmap = Am_Bitmap.Create("bitmap")

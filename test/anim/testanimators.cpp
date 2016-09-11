@@ -142,9 +142,8 @@ Am_Object dogvisibleanimation;
 Am_Object coloranimation;
 Am_Object optionvisibleanimation;
 
-static Am_Object get_icon(char* initial_name, char* obj_name) {
-  char* pathname;
-  pathname = Am_Merge_Pathname(initial_name);
+static Am_Object get_icon(const char* initial_name, const char* obj_name) {
+  const char* pathname = Am_Merge_Pathname(initial_name);
   Am_Image_Array icon;
   icon = Am_Image_Array(pathname);
   delete [] pathname;
@@ -586,7 +585,7 @@ void create_hacked_option_button() {
 			   .Set(Am_HEIGHT, 1)));
 }
 
-char* pixmapfilename[] = {"lib/images/eye1.gif",
+const char* pixmapfilename[] = {"lib/images/eye1.gif",
 				  "lib/images/eye2.gif",
 				  "lib/images/eye3.gif",
 				  "lib/images/eye4.gif",
@@ -623,11 +622,10 @@ Am_Define_Method(Am_Object_Method, void, my_do, (Am_Object cmd)) {
   std::cout << "\n+-+-+- Do method for Command " << cmd  << std::endl << std::flush;
 }
 
-Am_Image_Array read_pixmap (char* initialname) {
-  char* pathname;
+Am_Image_Array read_pixmap (const char* initialname) {
   Am_Image_Array icon;
 
-  pathname = Am_Merge_Pathname(initialname);
+  const char *pathname = Am_Merge_Pathname(initialname);
   std::cout << "Reading image " << pathname << std::endl << std::flush;
   icon = Am_Image_Array(pathname);
   delete [] pathname;

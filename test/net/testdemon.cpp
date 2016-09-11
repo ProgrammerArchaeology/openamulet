@@ -5,6 +5,8 @@
 
 #define MY_BIT 0x0040
 
+using namespace std;
+
 Am_Slot_Key MY_SLOT = Am_Register_Slot_Name ("My Slot");
 
 Am_Object Foo;
@@ -16,7 +18,7 @@ void my_create_demon (Am_Object self)
 if (proto_create != (0L))
     {
       char c;
-      cout << (int)proto_create << "Id the fn ptr\n" << flush;
+      cout << proto_create << "Id the fn ptr\n" << flush;
       cin >> c; 
       proto_create (self);  // Call prototype create demon.
     }

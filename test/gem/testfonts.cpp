@@ -21,7 +21,7 @@
 
 // These global variables provide an interface between drawing strings
 // and calculating their dimensions.
-char *test_string;
+const char *test_string;
 int test_str_len;
 int test_string_width, test_string_ascent, test_string_descent,
   test_string_left_bearing, test_string_right_bearing, test_string_height;
@@ -134,7 +134,7 @@ void test_char_dimensions(wins *wins_ar, int ar_len) {
 						 Am_FONT_VERY_LARGE };
   int n;
   int top = 0;
-  static char *char_list = "AbgXij8.-@`|";
+  static const char *char_list = "AbgXij8.-@`|";
   for(int ital=0;ital<2;ital++) {
     n = 0;
     for(int fam=0;fam<3;fam++) {

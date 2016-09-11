@@ -52,7 +52,7 @@ Am_Define_Method (Am_Object_Method, void, print_event_count,
 }  
 
 #if 0
-void main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   int n = argc > 1 ? atoi(argv[1]) : 1000;
   bool use_linear = (argc > 2);
@@ -82,6 +82,8 @@ void main (int argc, char *argv[])
 
   std::cout << "Done." << std::endl << std::flush;
   Am_Cleanup ();
+
+  return 0;
 }
 #endif
 
@@ -89,7 +91,7 @@ int count = 0;
 
 Am_Object goober;   
 
-void main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
 	std::cout << "Test" << std::endl;
 
@@ -139,4 +141,6 @@ void main (int argc, char *argv[])
 
   std::cout << "Done." << std::endl << std::flush;
   Am_Cleanup ();
+
+  return 0;
 }

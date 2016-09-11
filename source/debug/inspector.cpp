@@ -2256,7 +2256,7 @@ Am_Object Am_Inspector_Menu_Bar;
 Am_Object Am_Amulet_Icon;
 
 static void load_amulet_bitmap() {
-  char *filename = Am_Merge_Pathname(AMULET_BITMAP);
+  const char *filename = Am_Merge_Pathname(AMULET_BITMAP);
   Am_Image_Array amulet_icon_image (filename);
   delete [] filename;
   if (!amulet_icon_image.Valid())

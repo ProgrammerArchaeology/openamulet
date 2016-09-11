@@ -24,13 +24,13 @@ Am_Style black (0.0, 0.0, 0.0);
 Am_Drawonable *root, *d1, *d2, *d3, *d4;
 
 // Function Prototypes
-void print_win_info(Am_Drawonable *d, char *d_string);
+void print_win_info(Am_Drawonable *d, const char *d_string);
 void testwin1 ();
 void change_min_max(Am_Drawonable *d);
 void change_pos_dim(Am_Drawonable *d);
 void testwin4 ();
 
-void print_win_info(Am_Drawonable * /*d*/, char * /*d_string*/) {
+void print_win_info(Am_Drawonable * /*d*/, const char * /*d_string*/) {
   /*
   int the_left, the_top, the_width, the_height;
   const char *the_title, *the_icon_title;

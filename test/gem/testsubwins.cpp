@@ -31,11 +31,11 @@ void init_windows() {
 
 void draw_strings() {
   
-  static char *string1 = "Top-level window";
+  static const char *string1 = "Top-level window";
   static int string1_len = 16;
-  static char *string2 = "Child of top-level";
+  static const char *string2 = "Child of top-level";
   static int string2_len = 18;
-  static char *string3 = "Child of child window";
+  static const char *string3 = "Child of child window";
   static int string3_len = 21;
 
   d1->Draw_Text(black, string1, string1_len, font1, 5, 7);
