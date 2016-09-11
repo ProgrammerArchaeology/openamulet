@@ -43,9 +43,6 @@
    -----------------------------------------------------------------------
    
    TO SUPPORT WITH A NEW COMPILER:
-   Metrowerks MSL supports templatized streams.  When other compilers do
-   just #define AM_USES_TEMPLATIZED_STREAMS
-   
    also when you change stuff below, be sure to change Am_POP_UP_ERROR_WINDOW
    in widgets.h too or it will not work
    
@@ -53,27 +50,11 @@
    rev 7/17/97
 */
 
-//lint -e750
-#if defined(SHORT_NAMES) || defined(_MSC_VER) || defined (__EMX__)
-# include <strstream>
-#else
-#  ifndef AM_USES_MSL
-#    include <strstream>
-#  else
-#    include <sstream>
-#    define AM_USES_TEMPLATIZED_STREAMS
-#  endif /* AM_USES_MSL */
-#endif /* SHORT_NAMES */
+#include <strstream>
 
-#ifdef AM_USES_TEMPLATIZED_STREAMS
-#  define OSTRSTREAM ostringstream
-#  define OSTRSTREAM_CONSTR(a,b,c,d) 	ostringstream a(d)
-#  define OSTRSTREAM_COPY(a,b,c)        strncpy(b, a.str().c_str(), c-1); b[a.str().size()]='\0'
-#else
-#  define OSTRSTREAM std::ostrstream 
-#  define OSTRSTREAM_CONSTR(a,b,c,d) 	std::ostrstream a(b,c,d)
-#  define OSTRSTREAM_COPY(a,b,c) 		/* do nothing here */
-#endif /* AM_USES_TEMPLATIZED_STREAMS */
+#define OSTRSTREAM std::ostrstream 
+#define OSTRSTREAM_CONSTR(a,b,c,d) 	std::ostrstream a(b,c,d)
+#define OSTRSTREAM_COPY(a,b,c) 		/* do nothing here */
 
 //lint --e(752) ok, isn't referenced here but included for convinience
 extern void reset_ostrstream(OSTRSTREAM &oss);  // implemented in types.cc

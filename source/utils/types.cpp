@@ -59,7 +59,7 @@ std::cerr << "** Amulet Error: " << error_string <<std::endl;
 
 std::cerr << "**  Program aborted." <<std::endl;
 
-	#if defined(_WIN32) || defined(_MACINTOSH)
+	#if defined(_WIN32)
 	std::cerr << "(press return to exit)" <<std::endl;
 		getchar();
 	#endif
@@ -75,7 +75,7 @@ void Am_Error ()
 #endif
 
  std::cerr << "**  Program aborted." <<std::endl;
-#if defined(_WIN32) || defined(_MACINTOSH)
+#if defined(_WIN32)
  std::cerr << "(press return to exit)" <<std::endl;
   getchar();
 #endif

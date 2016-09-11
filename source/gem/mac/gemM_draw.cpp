@@ -22,8 +22,6 @@
 #include MISC__H
 #include <gemM.h>
 
-#include <sioux.h>
-
 static Handle gReservedMemory = (0L);
 
 // Install default values in the Am_DASH_LIST variables (declared in gdefs.h)
@@ -640,12 +638,6 @@ mac_initialize()
   InsertMenu(file_menu, 0);
   DrawMenuBar();
 */
-  // Init SIOUX
-  SIOUXSettings.initializeTB = false;
-  SIOUXSettings.standalone = false;
-  SIOUXSettings.setupmenus = false;
-  SIOUXSettings.autocloseonquit = true;
-  SIOUXSettings.asktosaveonclose = false;
 
   // Initalize Amulet Pathname
   Am_Init_Pathname();

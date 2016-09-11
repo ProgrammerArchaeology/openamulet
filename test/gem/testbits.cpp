@@ -12,11 +12,7 @@
 #include GEM__H
 #include MISC__H
 
-#if defined(SHORT_NAMES)
-#include "testutil.h"
-#else
 #include "test_utils.h"
-#endif
 
 #include <string.h>
 #include <stdlib.h>

@@ -15,11 +15,7 @@
 #endif
 //#include <amulet/univ_map.h>
 
-#if defined(SHORT_NAMES)
-#include <amulet/symb_tbl.h>
-#else
 #include <amulet/symbol_table.h>
-#endif
 
 #include "amulet/gemW_32.h"
 #include "amulet/gemW_input.h"

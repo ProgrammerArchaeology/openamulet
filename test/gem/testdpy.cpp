@@ -14,11 +14,7 @@
 #include AM_IO__H
 
 #include GEM__H
-#if defined(SHORT_NAMES)
-#include "testutil.h"
-#else
 #include "test_utils.h"
-#endif
 
 wins *wins_array;   // The wins class is defined in test_utils.h
 

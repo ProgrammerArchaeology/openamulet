@@ -25,9 +25,6 @@ typedef OpenAmulet::Map_Iterator_Int2Str Am_MapIterator_Int2Str;
 	Am_DECL_MAP(Int2Str, int, char*)
 	Am_IMPL_MAP(Int2Str, int	, 0		, char*	, (0L))
 #endif
-#ifdef _MACINTOSH
-	#include <SIOUX.h>
-#endif
 
 //  This file contains code to time various functions in Amulet. It is used to 
 //  measure improvements and to make sure new features don't make Amulet       
@@ -760,10 +757,6 @@ int main()
 	#endif
 
 	std::cout << "Test #, Message, Total Time in msec, # of objects, team per object, objects per second" << std::endl;
-
-	#ifdef _MACINTOSH
-		SIOUXSettings.asktosaveonclose = true;
-	#endif
 
 	start_timing();
 	Am_Initialize();

@@ -13,11 +13,7 @@
 
 #include AM_IO__H
 #include GEM__H
-#if defined(SHORT_NAMES)
-#include "testutil.h"
-#else
 #include "test_utils.h"
-#endif
 
 Am_Drawonable *root, *d1, *d2, *d3, *d4, *d5, *d6;
 //#if defined(_WINDOWS)

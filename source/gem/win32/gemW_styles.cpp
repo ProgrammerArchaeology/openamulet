@@ -23,11 +23,7 @@
 #include REGISTRY__H
 
 
-#if defined(SHORT_NAMES)
-#include <amulet/symb_tbl.h>
-#else
 #include <amulet/symbol_table.h>
-#endif
 
 #include "amulet/gemW.h"
 #include "amulet/gemW_misc.h" //strnew, strdel

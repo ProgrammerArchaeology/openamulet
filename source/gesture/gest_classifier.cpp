@@ -22,11 +22,7 @@
 #include <fstream>
 #include <math.h>
 
-#ifdef SHORT_NAMES
-#include "amulet/gest_imp.h"
-#else
 #include "amulet/gest_impl.h"
-#endif
 
 static double
 MahalanobisDistance(register Vector v, register Vector u, register Matrix sigma);

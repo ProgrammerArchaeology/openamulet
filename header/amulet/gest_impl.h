@@ -21,11 +21,7 @@
 #include "amulet/impl/types_string.h" // for Am_String
 #include GESTURE__H
 
-#ifdef SHORT_NAMES
-#include "gest_mat.h"
-#else
 #include "gest_matrix.h"
-#endif
 
 /* ---------- compile time settable parameters ----------  */
 /* some of these can also be set at runtime, see fv.c */

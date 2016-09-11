@@ -10,11 +10,7 @@
 #include <am_inc.h>
 
 #include GEM__H
-#if defined(SHORT_NAMES)
-#include "testutil.h"  // For wins class
-#else
 #include "test_utils.h"  // For wins class
-#endif
 
 // Draw three rectangles in all different join-styles
 //

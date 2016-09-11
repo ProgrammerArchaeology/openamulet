@@ -15,11 +15,7 @@
 #include AM_IO__H
 #include GEM__H
 
-#if defined(SHORT_NAMES)
-#include "testutil.h"
-#else
 #include "test_utils.h"
-#endif
 
 #define TESTWINPROPS_D1_LEFT 800
 #define TESTWINPROPS_D1_TOP    0

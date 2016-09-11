@@ -11,11 +11,7 @@
    programs, such as testcolor and testwinprops.
 */
 
-#if defined(SHORT_NAMES)
-#include "testutil.h"
-#else
 #include "test_utils.h"
-#endif
 
 Am_Style red    ("red");
 Am_Style green  ("green");

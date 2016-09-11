@@ -19,11 +19,7 @@
 #include GESTURE__H
 
 #include <math.h>
-#ifdef SHORT_NAMES
-#include "amulet/gest_imp.h"
-#else
 #include "amulet/gest_impl.h"
-#endif
 
 /* runtime settable parameters */
 double dist_sq_threshold = DIST_SQ_THRESHOLD;

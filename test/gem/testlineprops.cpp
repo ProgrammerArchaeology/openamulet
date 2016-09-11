@@ -10,11 +10,7 @@
 #include <am_inc.h>
 
 #include GEM__H
-#if defined(SHORT_NAMES)
-#include "testutil.h"
-#else
 #include "test_utils.h"
-#endif
 
 Am_Style style_array[4];
 

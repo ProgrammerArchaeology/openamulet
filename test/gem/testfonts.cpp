@@ -15,11 +15,7 @@
 
 #include GEM__H
 
-#if defined(SHORT_NAMES)
-#include "testutil.h"
-#else
 #include "test_utils.h"  // For wins class
-#endif
 
 #define FONT_WIN_TOP 50
 

@@ -21,11 +21,7 @@
 
 #include <math.h>
 
-#ifdef SHORT_NAMES
-#include "amulet/gest_mat.h"
-#else
 #include "amulet/gest_matrix.h"
-#endif
 
 typedef	union array_header *Array;
 

@@ -32,11 +32,7 @@
 
 #include <fstream>  //for load and save
 
-#ifndef _MACINTOSH
 #define IOS_FLAGS std::ios::out
-#else
-#define IOS_FLAGS std::ios::out | std::ios::trunc
-#endif
 
 //////////////////////////////////////////////////////////////////////////
 // Global Variables
