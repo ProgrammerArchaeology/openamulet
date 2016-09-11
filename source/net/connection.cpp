@@ -357,7 +357,7 @@ Am_Connection *Am_Connection::Open(void)
 	  max_socket=m_parent_socket;
 	  int flag=1;
 	  if (setsockopt(m_parent_socket, SOL_SOCKET,
-			 SO_REUSEADDR, SOCK_BUFFER_CAST &flag, sizeof(int)))
+			 SO_REUSEADDR, &flag, sizeof(int)))
 	    {
 	      perror("setsockopt (SO_REUSE_ADDR)");
 	      p_connection->Set_Valid_Flag(false);
@@ -580,7 +580,7 @@ void Am_Connection::Handle_Input(void)
   else
     {
       Am_Value in_value;
-      i=recv(data->m_socket,SOCK_BUFFER_CAST &net_type,sizeof(net_type),0);
+      i=recv(data->m_socket, &net_type,sizeof(net_type),0);
       type=ntohl(net_type);
       Am_Unmarshall_Method handler=Am_Connection::Unmarshall_Methods.GetAt(type);
       if (handler == (0L))
@@ -632,7 +632,7 @@ void Am_Connection::Send(Am_Value value)
   else
     {
       net_type=htonl(type);
-      send(data->m_socket,SOCK_BUFFER_CAST &net_type,sizeof(net_type),0);
+      send(data->m_socket, &net_type,sizeof(net_type),0);
       Marshaller=(Am_Connection::Marshall_Methods.GetAt(type));
       Marshaller.Call(data->m_socket, value, this);
     }

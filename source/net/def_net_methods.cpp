@@ -61,7 +61,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_int16,
   short in_int16=(short)in_int;
   short net_int16;
   net_int16=htons(in_int16);
-  send(the_socket, SOCK_BUFFER_CAST &net_int16,sizeof(net_int16),0);
+  send(the_socket, &net_int16,sizeof(net_int16),0);
 }
 
 Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_int16,
@@ -70,7 +70,7 @@ Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_int16,
   (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   Am_Value out_value;
   short int out_int16, net_int16;
-  recv(the_socket, SOCK_BUFFER_CAST &net_int16,sizeof(net_int16),0);
+  recv(the_socket, &net_int16,sizeof(net_int16),0);
   out_int16=ntohs(net_int16);
   out_value=out_int16;
   return out_value;
@@ -88,7 +88,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_int32,
   long int in_int32=(long int)in_value;
   long int net_int32;
   net_int32=htonl(in_int32);
-  send(the_socket, SOCK_BUFFER_CAST &net_int32,sizeof(net_int32),0);
+  send(the_socket, &net_int32,sizeof(net_int32),0);
 }
 
 Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_int32,
@@ -97,7 +97,7 @@ Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_int32,
   (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   Am_Value out_value;
   long int out_int32, net_int32;
-  recv(the_socket, SOCK_BUFFER_CAST &net_int32,sizeof(net_int32),0);
+  recv(the_socket, &net_int32,sizeof(net_int32),0);
   out_int32=ntohl(net_int32);
   out_value=out_int32;
   return out_value;
@@ -115,7 +115,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_float,
   float in_float=(float)in_value;
   float net_float;
   net_float=htonf(in_float);
-  send(the_socket, SOCK_BUFFER_CAST &net_float,sizeof(net_float),0);
+  send(the_socket, &net_float,sizeof(net_float),0);
 }
 
 Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_float,
@@ -124,7 +124,7 @@ Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_float,
   (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   Am_Value out_value;
   float out_float, net_float;
-  recv(the_socket, SOCK_BUFFER_CAST &net_float,sizeof(net_float),0);
+  recv(the_socket, &net_float,sizeof(net_float),0);
   out_float=ntohf(net_float);
   out_value=out_float;
   return out_value;
@@ -141,7 +141,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_double,
   double in_double=(double)in_value;
   double net_double;
   net_double=htond(in_double);
-  send(the_socket, SOCK_BUFFER_CAST &net_double,sizeof(net_double),0);
+  send(the_socket, &net_double,sizeof(net_double),0);
 }
 
 Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_double,
@@ -150,7 +150,7 @@ Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_double,
   (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   Am_Value out_value;
   double out_double, net_double;
-  recv(the_socket, SOCK_BUFFER_CAST &net_double,sizeof(net_double),0);
+  recv(the_socket, &net_double,sizeof(net_double),0);
   out_double=ntohd(net_double);
   out_value=out_double;
   return out_value;
@@ -169,7 +169,7 @@ Am_Define_Method (Am_Marshall_Method, void, Marshall_string,
   long size=strlen((const char *)in_am_str)+1;
   long net_size=htonl(size);
   in_str=in_am_str;
-  send(the_socket, SOCK_BUFFER_CAST &net_size,sizeof(net_size),0);
+  send(the_socket, &net_size,sizeof(net_size),0);
   send(the_socket,in_str,size,0);
 }
 
@@ -180,7 +180,7 @@ Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_string,
   Am_Value out_value;
   char *out_str;
   long net_size,size;
-  recv(the_socket, SOCK_BUFFER_CAST &net_size, sizeof(net_size),0);
+  recv(the_socket, &net_size, sizeof(net_size),0);
   size=ntohl(net_size);
   out_str=new char[size];
   recv(the_socket,out_str,size,0);
@@ -210,7 +210,7 @@ Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_list,
   long net_type;
   (void)the_socket; // avoid warning
   my_connection_ptr->Read_Length_and_List(); // receiver="receive_list_length"
-  recv(the_socket, SOCK_BUFFER_CAST &net_type,sizeof(net_type),0);
+  recv(the_socket, &net_type,sizeof(net_type),0);
   Am_Value out_value=Unmarshall_int16.Call(the_socket,my_connection_ptr);
   return out_value;
 }
@@ -266,7 +266,7 @@ Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_object,
 		  (int the_socket,Am_Connection *my_connection_ptr))
 {
   long int net_type;
-  recv(the_socket, SOCK_BUFFER_CAST &net_type,sizeof(net_type),0);
+  recv(the_socket, &net_type,sizeof(net_type),0);
   Am_String proto_name=Unmarshall_string.Call(the_socket,my_connection_ptr);
   Am_Object proto_obj=Am_Connection::Get_Net_Prototype(proto_name);
   if (proto_obj==Am_No_Object)
@@ -276,7 +276,7 @@ Am_Define_Method (Am_Unmarshall_Method, Am_Value, Unmarshall_object,
     }
   else //A prototype exists
     {
-      recv(the_socket, SOCK_BUFFER_CAST &net_type,sizeof(net_type),0);
+      recv(the_socket, &net_type,sizeof(net_type),0);
       long inst_num=Unmarshall_int32.Call(the_socket,my_connection_ptr);
       Am_Object instance_obj = 
 	my_connection_ptr->Get_Net_Instance(proto_name, inst_num);

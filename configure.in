@@ -100,18 +100,6 @@ dnl Checks for library functions.
 
 dnl TODO: See if there are some portability problems in amulet...
 
-dnl Checks if we need a cast for socket functions (Solaris <= 2.5)
-
-AC_MSG_CHECKING([if cast needed for sockets])
-AC_TRY_COMPILE([#include <sys/types.h>
-#include <sys/socket.h>],[short i; send(1, &i, 2, 0);],[my_res="none"
-AC_DEFINE(SOCK_BUFFER_CAST,[])
-],[AC_TRY_COMPILE([#include <sys/types.h>
-#include <sys/socket.h>],[short i; send(1, (char*)&i, 2, 0);],[my_res="to char*"
-AC_DEFINE(SOCK_BUFFER_CAST,[(char*)])
-],AC_MSG_ERROR([Unable to provide suitable net files!]))])
-AC_MSG_RESULT($my_res)
-
 dnl ========================================================================
 dnl Finally add some flags
 
