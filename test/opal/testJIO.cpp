@@ -177,7 +177,7 @@ Am_Define_Method(Am_Object_Method, void, qmethod, (Am_Object /*cmd */)) {
   Am_Exit_Main_Event_Loop();
 }
 
-Am_Object Ktable_Init (Am_Font kline_font, char * ktitle, char * etitle, char * table_name)
+Am_Object Ktable_Init (Am_Font kline_font, const char * ktitle, const char * etitle, const char * table_name)
 {
   Am_Object Ktable_Group = Test_Group.Create (table_name);
 
@@ -266,7 +266,7 @@ Am_Define_Method(Am_Object_Method, void, mymethod, (Am_Object cmd)) {
   ptext.Set(Am_TEXT, cmd.Get(Am_VALUE));
 }
 
-Am_Object Edit_Init(char *title, char *ptext_string)
+Am_Object Edit_Init(const char *title, const char *ptext_string)
 {
   Edit_Group = Test_Group.Create ("Edit Group");
 
@@ -448,7 +448,7 @@ void More_Sizes_Init()
   More_Sizes_Group.Add_Part(JTVLtext);
 }
 
-Am_Object Size_Face_Init(char * kanji_text, char * test_string, char * group_name)
+Am_Object Size_Face_Init(const char * kanji_text, const char * test_string, const char * group_name)
 {
   Size_Face_Group = Test_Group.Create (group_name);
 

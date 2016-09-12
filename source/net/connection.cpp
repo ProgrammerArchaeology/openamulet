@@ -936,7 +936,7 @@ bool Am_Connection::Register_Prototype (Am_String name, Am_Object & obj)
 }
 
 
-char * Am_Connection::Get_Net_Proto_Name(Am_Object &the_obj)
+const char * Am_Connection::Get_Net_Proto_Name(Am_Object &the_obj)
 {
   Am_String name;
   Am_Object proto_obj=the_obj.Get_Prototype();
@@ -945,19 +945,19 @@ char * Am_Connection::Get_Net_Proto_Name(Am_Object &the_obj)
 }
 
 
-Am_Object Am_Connection::Get_Net_Prototype(char * proto_name)
+Am_Object Am_Connection::Get_Net_Prototype(const char * proto_name)
 {
   Am_Object obj;
   obj=Net_Prototypes.Assoc_2(proto_name);
   return obj;
 }
 
-char * Am_Connection::Get_Net_Object_ID(Am_Object &the_obj)
+const char * Am_Connection::Get_Net_Object_ID(Am_Object &the_obj)
 {
   return (Am_String)Net_Instances.Assoc_1(the_obj);
 }
 
-Am_Object  Am_Connection::Get_Net_Instance(char *proto_name,
+Am_Object  Am_Connection::Get_Net_Instance(const char *proto_name,
 					   int instance_num)
 {
   Am_Object obj;
@@ -966,7 +966,7 @@ Am_Object  Am_Connection::Get_Net_Instance(char *proto_name,
 }
 
 void Am_Connection::Set_Net_Instance(Am_Object &the_obj,
-				       char * proto_name, int instance_num)
+				       const char * proto_name, int instance_num)
 {
   Am_Assoc instance_reg(Net_ID_Str(proto_name, instance_num),the_obj);
   Net_Instances.Add(instance_reg);

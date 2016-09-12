@@ -160,15 +160,15 @@ public:
   //
   //Object Marshalling Methods
   //
-  static  char * Get_Net_Proto_Name(Am_Object &the_obj);
-  static Am_Object  Get_Net_Prototype(char * proto_name);
-  static char * Get_Net_Object_ID(Am_Object &the_obj);
-  static Am_Object  Get_Net_Instance(char *proto_name,
+  static const char * Get_Net_Proto_Name(Am_Object &the_obj);
+  static Am_Object  Get_Net_Prototype(const char * proto_name);
+  static const char * Get_Net_Object_ID(Am_Object &the_obj);
+  static Am_Object  Get_Net_Instance(const char *proto_name,
 				     int instance_num);
 
   static bool Register_Prototype (Am_String name, Am_Object & obj);
   static void Set_Net_Instance(Am_Object &the_obj_ptr,
-			        char * proto_name,
+			        const char * proto_name,
 			       int instance_num);
   static int Num_Instances(void);
 
