@@ -86,11 +86,11 @@ class Am_Text_Navigate {
   }
 };
 
-Am_Define_Method_Type (Am_Inplace_Info_Method, Am_Text_Info*,
+AM_DEFINE_METHOD_TYPE (Am_Inplace_Info_Method, Am_Text_Info*,
 		       (const Am_Object& self, const Am_Object& ref_object,
 			int x, int y))
 
-Am_Define_Method_Type_Impl (Am_Inplace_Info_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Inplace_Info_Method);
 
 Am_Object Am_Inplace_Text_Edit_Interactor;
 Am_Object Am_Inplace_Text_Feedback;

@@ -3,8 +3,8 @@
 /////////////////////////////////////////////////////////////////////////
 //Method maps for Am_Network.
 
-Am_Define_Method_Type_Impl (Am_Unmarshall_Method);
-Am_Define_Method_Type_Impl (Am_Marshall_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Unmarshall_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Marshall_Method);
 
 Am_Unmarshall_Method Am_No_Unmarshall_Method;
 Am_Marshall_Method Am_No_Marshall_Method;

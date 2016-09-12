@@ -9,7 +9,7 @@
 //  - For almost all objects, it is x+obj.Get(Am_LEFT), y+obj.Get(Am_TOP)
 //  - For scrolling groups, it is more complicated.  For windows,
 //    uses the gem function.
-Am_Define_Method_Type(Am_Translate_Coordinates_Method, void,
+AM_DEFINE_METHOD_TYPE(Am_Translate_Coordinates_Method, void,
 		      (const Am_Object& obj, const Am_Object& for_part,
 		       int in_x, int in_y, int& out_x, int& out_y))
 #endif // METHOD_TRANS_COORD_H

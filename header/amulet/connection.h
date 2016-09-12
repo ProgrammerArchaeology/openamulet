@@ -37,11 +37,11 @@ class Am_Connection;
 
 // Method used to Unmarshall a value from a socket.  Use the Am_Connection
 // parameter to Unmarshall nested items from the same socket.
-Am_Define_Method_Type (Am_Unmarshall_Method, Am_Value, (int the_socket, Am_Connection *my_connection))
+AM_DEFINE_METHOD_TYPE (Am_Unmarshall_Method, Am_Value, (int the_socket, Am_Connection *my_connection))
 
 // Method used to Marshall a value into a socket.  Use the Am_Connection
 // parameter to Marshall nested items to the same socket.
-Am_Define_Method_Type(Am_Marshall_Method, void,(int the_socket, const Am_Value& value, Am_Connection *my_connection))
+AM_DEFINE_METHOD_TYPE(Am_Marshall_Method, void,(int the_socket, const Am_Value& value, Am_Connection *my_connection))
 
 extern Am_Unmarshall_Method Am_No_Unmarshall_Method;
 extern Am_Marshall_Method	Am_No_Marshall_Method;
@@ -75,7 +75,7 @@ extern Am_Marshall_Method	Am_No_Marshall_Method;
 // the Value Queue and act upon them. It will be cxalled immediately after the
 // Unmarshall methods are done.
 
-Am_Define_Method_Type (Am_Receive_Method, void,
+AM_DEFINE_METHOD_TYPE (Am_Receive_Method, void,
                        (Am_Connection *my_connection))
 
 

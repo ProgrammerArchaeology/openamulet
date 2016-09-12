@@ -142,13 +142,13 @@ _OA_SCRIPT_DL_IMPORT extern void am_check_start_obj_parameters(Am_Object &in_cmd
 _OA_SCRIPT_DL_IMPORT extern void am_set_commands_into_script_window(Am_Object &script_window,
 					       Am_Object & execute_command);
 
-Am_Define_Method_Type(Am_Placeholder_Replace_Method, bool,
+AM_DEFINE_METHOD_TYPE(Am_Placeholder_Replace_Method, bool,
 		      (Am_Object &ph, Am_Value &new_value,
 		       Am_Object & sel_widget);
-Am_Define_Method_Type(Am_Placeholder_Set_Value_Method, bool,
+AM_DEFINE_METHOD_TYPE(Am_Placeholder_Set_Value_Method, bool,
 		      (Am_Object &ph, Am_Object & new_cmd,
 		       Am_Object & sel_widget)));
-Am_Define_Method_Type(Am_Placeholder_Create_Method, Am_Object,
+AM_DEFINE_METHOD_TYPE(Am_Placeholder_Create_Method, Am_Object,
 		      (Am_Object &create_cmd, Am_Value for_value,
 		       Am_Value_List& part_chain, int &cnt,
 		       Am_Slot_Key slot));

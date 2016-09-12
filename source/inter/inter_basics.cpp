@@ -49,18 +49,18 @@ int Am_Minimum_Move_For_Drag = 3;
 ////////////////////////////////////////////////////////////
 
 //in inter.h
-Am_Define_Method_Type_Impl(Am_Where_Method)
-Am_Define_Method_Type_Impl(Am_Event_Method)
-Am_Define_Method_Type_Impl(Am_Custom_Gridding_Method)
-Am_Define_Method_Type_Impl(Am_Create_New_Object_Method)
-Am_Define_Method_Type_Impl(Am_Text_Edit_Method)
-Am_Define_Method_Type_Impl(Am_Register_Command_Method)
-Am_Define_Method_Type_Impl(Am_Mouse_Event_Method)
-Am_Define_Method_Type_Impl(Am_Current_Location_Method)
-Am_Define_Method_Type_Impl(Am_Text_Check_Legal_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Where_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Event_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Custom_Gridding_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Create_New_Object_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Text_Edit_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Register_Command_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Mouse_Event_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Current_Location_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Text_Check_Legal_Method)
 
 //in inter_advanced.h
-Am_Define_Method_Type_Impl(Am_Inter_Internal_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Inter_Internal_Method)
 
 /////////////////////////////////////////////////////////////
 // Enum types

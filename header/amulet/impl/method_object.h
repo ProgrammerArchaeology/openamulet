@@ -2,6 +2,6 @@
 #define OBJECT_METHOD_H
 
 // Popular method type:
-Am_Define_Method_Type (Am_Object_Method, void, (Am_Object))
+AM_DEFINE_METHOD_TYPE (Am_Object_Method, void, (Am_Object))
 
 #endif // OBJECT_METHOD_H

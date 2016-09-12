@@ -19,10 +19,10 @@ void destroy_command_tree(Am_Object command_obj);
 
 Am_Object Am_Multiple_Undo_Object;  // can undo all top-level commands
 
-Am_Define_Method_Type_Impl(Am_Selective_New_Allowed_Method);
-Am_Define_Method_Type_Impl(Am_Selective_Repeat_New_Method);
-Am_Define_Method_Type_Impl(Am_Handler_Selective_Undo_Method);
-Am_Define_Method_Type_Impl(Am_Handler_Selective_Repeat_New_Method);
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Selective_New_Allowed_Method);
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Selective_Repeat_New_Method);
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Handler_Selective_Undo_Method);
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Handler_Selective_Repeat_New_Method);
 
 ////////////////////////////////////////////////////////////
 // Multiple Undo

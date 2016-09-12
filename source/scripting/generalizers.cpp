@@ -25,9 +25,9 @@
 
 #include <amulet/impl/widget_misc.h>
 
-Am_Define_Method_Type_Impl(Am_Placeholder_Replace_Method)
-Am_Define_Method_Type_Impl(Am_Placeholder_Set_Value_Method)
-Am_Define_Method_Type_Impl(Am_Placeholder_Create_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Placeholder_Replace_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Placeholder_Set_Value_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Placeholder_Create_Method)
 
 
 //put into script when real object is the result of a previous create command

@@ -551,7 +551,7 @@ void Am_Share_Accelerators(Am_Object &source_window, Am_Object &new_window) {
 //  Starting, Stopping and Aborting Widgets
 ////////////////////////////////////////////////////////////////////////
 
-Am_Define_Method_Type_Impl(Am_Explicit_Widget_Run_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Explicit_Widget_Run_Method)
 
 void Am_Start_Widget(Am_Object widget, Am_Value initial_value) {
   Am_Value v;

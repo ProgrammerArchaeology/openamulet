@@ -13,7 +13,7 @@
 //        group (if x,y is not over a "primitive" object, returns Am_No_Object)
 //  - Returns the object if the point lies inside the object, false otherwise.
 //  - Do not call Set or any other demon invoking operation in the method.
-Am_Define_Method_Type(Am_Point_In_Or_Self_Method, Am_Object,
+AM_DEFINE_METHOD_TYPE(Am_Point_In_Or_Self_Method, Am_Object,
 		      (const Am_Object& in_obj, int x, int y,
 		       const Am_Object& ref_obj,
 		       bool want_self, bool want_groups))

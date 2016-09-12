@@ -33,7 +33,7 @@ unsigned short Num_To_Bit [] = { 0x0001, 0x0002, 0x0004, 0x0008,
                                  0x0100, 0x0200, 0x0400, 0x0800,
                                  0x1000, 0x2000, 0x4000, 0x8000 };
 
-Am_Define_Method_Type_Impl(Am_Object_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Object_Method)
 
 static Am_Value_Type useless= Am_Set_ID_Class(DSTR("constraint"), 0x3000);
 

@@ -112,8 +112,8 @@ void Am_Stop_Animator(Am_Object interp)
 // The standard interpolator
 ////////////////////////////////////////////////////////////
 
-Am_Define_Method_Type_Impl(Am_Timing_Function);
-Am_Define_Method_Type_Impl(Am_Path_Function);
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Timing_Function);
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Path_Function);
 
 //
 // The standard command methods START_DO, ANIMATION, ABORT_DO, and DO

@@ -99,8 +99,8 @@ fd_set *Am_Connection::socket_flags;
 /////////////////////////
 //Marshalling
 
-Am_Define_Method_Type_Impl (Am_Unmarshall_Method);
-Am_Define_Method_Type_Impl (Am_Marshall_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Unmarshall_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Marshall_Method);
 
 Am_Unmarshall_Method Am_No_Unmarshall_Method;
 Am_Marshall_Method Am_No_Marshall_Method;
@@ -220,7 +220,7 @@ static Am_Initializer* initializer =
 	new Am_Initializer(DSTR("Connection"), init , 3.0, 1, cleanup);
 
 
-Am_Define_Method_Type_Impl(Am_Receive_Method);
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Receive_Method);
 
 void Am_Connection::Reset(void)
 {

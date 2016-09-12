@@ -68,13 +68,13 @@
 Am_Object *Am_Map_ptr = 0;
 
 // exported types
-Am_Define_Method_Type_Impl (Am_Draw_Method);
-Am_Define_Method_Type_Impl (Am_Invalid_Method);
-Am_Define_Method_Type_Impl (Am_Point_In_Method);
-Am_Define_Method_Type_Impl (Am_Point_In_Or_Self_Method);
-Am_Define_Method_Type_Impl (Am_Translate_Coordinates_Method);
-Am_Define_Method_Type_Impl (Am_Item_Method);
-Am_Define_Method_Type_Impl (Am_Save_Object_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Draw_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Invalid_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Point_In_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Point_In_Or_Self_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Translate_Coordinates_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Item_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Save_Object_Method);
 
 AM_DEFINE_ENUM_SUPPORT (Am_Alignment, "Am_CENTER_ALIGN Am_TOP_ALIGN "
 			"Am_BOTTOM_ALIGN Am_LEFT_ALIGN Am_RIGHT_ALIGN");

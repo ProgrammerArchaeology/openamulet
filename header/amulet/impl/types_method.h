@@ -24,7 +24,7 @@ protected:
 /////////  TOP LEVEL MACRO FOR DEFINING NEW TYPES OF METHODS
 /// args must be a parenthesized list of the parameter names and types.
 
-#define Am_Define_Method_Type_Impl(Type_name)                \
+#define AM_DEFINE_METHOD_TYPE_IMPL(Type_name)                \
   Am_ID_Tag Type_name::Type_name##_ID =                      \
       Am_Get_Unique_ID_Tag (#Type_name, Am_METHOD_TYPE);     \
 _OA_DL_IMPORT std::ostream& operator<< (std::ostream& os, const Type_name& method) { \
@@ -48,7 +48,7 @@ extern Am_Any_Procedure* Am_Null_Method_Error_Function;
 #define Am_Null_Method_Error_Function 0
 #endif
 
-#define Am_Define_Method_Type(Type_name, Return_type, Args)                  \
+#define AM_DEFINE_METHOD_TYPE(Type_name, Return_type, Args)                  \
 /* now, a typedef for the procedure type */                                  \
 typedef Return_type Type_name##_Type Args;                                   \
 class _OA_DL_CLASSIMPORT Type_name {                                                            \

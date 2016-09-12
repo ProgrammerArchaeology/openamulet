@@ -3,7 +3,7 @@
 // Used in Am_Map.  When a component is created, the map calls this method
 // to allow instance specific to be performed on the item.
 // Stored in slot Am_ITEM_METHOD.
-Am_Define_Method_Type(Am_Item_Method, Am_Object,
+AM_DEFINE_METHOD_TYPE(Am_Item_Method, Am_Object,
 		      (int rank, Am_Value& value, Am_Object item_instance))
 
 // These are the standard prototype function for setting up each individual

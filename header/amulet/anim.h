@@ -83,7 +83,7 @@ _OA_DL_IMPORT extern Am_Object Am_Animation_Blink_Command;
 //
 
 // Update method
-Am_Define_Method_Type(Am_Anim_Update_Method, void, (Am_Object interpolator, const Am_Value& value))
+AM_DEFINE_METHOD_TYPE(Am_Anim_Update_Method, void, (Am_Object interpolator, const Am_Value& value))
 
 #include "amulet/impl/anim_misc.h"
 
@@ -116,7 +116,7 @@ _OA_DL_IMPORT extern Am_Object Am_Point_List_Animator;
 _OA_DL_IMPORT extern Am_Object Am_Fly_Apart_Animator;
 
 // timing functions
-Am_Define_Method_Type (Am_Timing_Function, float, (Am_Object command_obj,
+AM_DEFINE_METHOD_TYPE (Am_Timing_Function, float, (Am_Object command_obj,
 						   Am_Time t))
 
 _OA_DL_IMPORT extern Am_Timing_Function Am_Linear_Timing;
@@ -124,7 +124,7 @@ _OA_DL_IMPORT extern Am_Timing_Function Am_Delayed_Timing;
 _OA_DL_IMPORT extern Am_Timing_Function Am_Slow_In_Slow_Out;
 
 // path functions
-Am_Define_Method_Type (Am_Path_Function, Am_Value, (Am_Object command_obj,
+AM_DEFINE_METHOD_TYPE (Am_Path_Function, Am_Value, (Am_Object command_obj,
 						    Am_Value value1,
 						    Am_Value value2,
 						    float tau))

@@ -1243,11 +1243,11 @@ Am_Define_Method(Am_Current_Location_Method, void, sel_move_start_do,
   }
 }
 
-Am_Define_Method_Type_Impl (Am_In_Region_Method);
-Am_Define_Method_Type_Impl (Am_Drop_Target_Interim_Do_Method);
-Am_Define_Method_Type_Impl (Am_Drop_Target_Background_Interim_Do_Method);
-Am_Define_Method_Type_Impl (Am_Drop_Target_Do_Method);
-Am_Define_Method_Type_Impl (Am_Drop_Target_Background_Do_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_In_Region_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Drop_Target_Interim_Do_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Drop_Target_Background_Interim_Do_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Drop_Target_Do_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Drop_Target_Background_Do_Method);
 
 Am_Define_Method(Am_Current_Location_Method, void, sel_move_inter_interim_do,
 		 (Am_Object inter, Am_Object object_modified,

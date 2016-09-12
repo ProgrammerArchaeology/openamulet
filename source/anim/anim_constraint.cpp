@@ -17,7 +17,7 @@
 #include OBJECT_ADVANCED__H
 #include ANIM__H
 
-Am_Define_Method_Type_Impl (Am_Anim_Update_Method);
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Anim_Update_Method);
 
 // forward declaration
 class Animation_Constraint;

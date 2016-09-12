@@ -13,7 +13,7 @@
 
 Am_Object Am_Command;  // base of the command hierarchy
 
-Am_Define_Method_Type_Impl(Am_Selective_Allowed_Method);
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Selective_Allowed_Method);
 
 
 ////////////////////////////////////////////////////////////

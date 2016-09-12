@@ -11,7 +11,7 @@
 //  - The invalid region is converted to the coordinates of the object's owner
 //    and passed to the owner of the next object.
 //  - Do not call Set or any other demon invoking operation in the method.
-Am_Define_Method_Type(Am_Invalid_Method, void,
+AM_DEFINE_METHOD_TYPE(Am_Invalid_Method, void,
 		      (Am_Object self, Am_Object which_part, int left,
 		       int top, int width, int height))
 

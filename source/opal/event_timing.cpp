@@ -30,7 +30,7 @@
 // Timing stuff
 //
 
-Am_Define_Method_Type_Impl(Am_Timer_Method);
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Timer_Method);
 
 Am_Timer_State Am_Global_Timer_State = Am_TIMERS_RUNNING;
 

@@ -255,12 +255,12 @@ Am_Object Am_Find_Part_Place(Am_Object obj, Am_Object group) {
    Am_SELECTION_WIDGET slot.
 */
 
-Am_Define_Method_Type_Impl(Am_Get_Widget_Property_Value_Method);
-Am_Define_Method_Type_Impl(Am_Get_Object_Property_Value_Method);
-Am_Define_Method_Type_Impl(Am_Set_Object_Property_Value_Method);
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Get_Widget_Property_Value_Method);
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Get_Object_Property_Value_Method);
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Set_Object_Property_Value_Method);
 
-Am_Define_Method_Type_Impl(Am_Handle_Loaded_Items_Method);
-Am_Define_Method_Type_Impl(Am_Items_To_Save_Method);
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Handle_Loaded_Items_Method);
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Items_To_Save_Method);
 
 //if any objs in list are Am_CREATED_GROUP, then replaces them with
 //the graphical parts (recursively)

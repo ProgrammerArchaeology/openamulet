@@ -14,11 +14,11 @@ class Am_Load_Save_Context;
 
 // Method used to load a value from a stream.
 // Use the context parameter to load nested items from the same stream.
-Am_Define_Method_Type(Am_Load_Method, Am_Value, (std::istream& is, Am_Load_Save_Context& context))
+AM_DEFINE_METHOD_TYPE(Am_Load_Method, Am_Value, (std::istream& is, Am_Load_Save_Context& context))
 
 // Method used to save a value into a stream.
 // Use the context parameter to save nested items from the same stream.
-Am_Define_Method_Type(Am_Save_Method, void, (std::ostream& os, Am_Load_Save_Context& context, const Am_Value& value))
+AM_DEFINE_METHOD_TYPE(Am_Save_Method, void, (std::ostream& os, Am_Load_Save_Context& context, const Am_Value& value))
 
 _OA_DL_IMPORT extern Am_Load_Method Am_No_Load_Method;
 _OA_DL_IMPORT extern Am_Save_Method Am_No_Save_Method;

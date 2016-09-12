@@ -17,7 +17,7 @@ class Am_Drawonable;
 //    x and y offsets are for converting the object's position to window
 //    coordinates.
 //  - Do not call Set or any other demon invoking operation in the method.
-Am_Define_Method_Type(Am_Draw_Method, void,
+AM_DEFINE_METHOD_TYPE(Am_Draw_Method, void,
 		      (Am_Object self, Am_Drawonable* drawonable,
 		       int x_offset, int y_offset))
 

@@ -1,7 +1,7 @@
 #include "types_load_save.h"
 #include "types_method.h"
 
-Am_Define_Method_Type (Am_Save_Object_Method, void,
+AM_DEFINE_METHOD_TYPE (Am_Save_Object_Method, void,
 		       (std::ostream& os, Am_Load_Save_Context& context,
 			const Am_Object& object))
 

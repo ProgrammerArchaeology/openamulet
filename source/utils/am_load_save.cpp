@@ -15,8 +15,8 @@
 // Implementation of Load/Save context //
 /////////////////////////////////////////
 
-Am_Define_Method_Type_Impl (Am_Load_Method)
-Am_Define_Method_Type_Impl (Am_Save_Method)
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Load_Method)
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Save_Method)
 
 Am_Load_Save_Context Am_No_Load_Save_Context;
 Am_Load_Method Am_No_Load_Method;
@@ -561,8 +561,8 @@ void Am_Load_Save_Context::Save_Type_Name(std::ostream& os, const char* type_nam
 //////////////////////////////////////
 // Implementation of Load/Save context
 
-Am_Define_Method_Type_Impl (Am_Load_Method)
-Am_Define_Method_Type_Impl (Am_Save_Method)
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Load_Method)
+AM_DEFINE_METHOD_TYPE_IMPL (Am_Save_Method)
 
 Am_Load_Save_Context Am_No_Load_Save_Context;
 Am_Load_Method Am_No_Load_Method;
