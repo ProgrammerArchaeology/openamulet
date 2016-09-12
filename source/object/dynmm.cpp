@@ -115,14 +115,9 @@ Dyn_Memory_Manager::New()
     }
 
 // x86 alloc
-#if (!defined(__alpha) && !defined(_MIPS_SIM_ABI64))
     // get the next free block and return it
     new_ptr = reinterpret_cast<void *>(
-        ((unsigned)block) + block_position * data_size + sizeof(Dyn_Link));
-#else
-    new_ptr = reinterpret_cast<void *>(
-        ((unsigned long)block) + block_position * data_size + sizeof(Dyn_Link));
-#endif
+        ((uintptr_t)block) + block_position * data_size + sizeof(Dyn_Link));
 
     // update our counter
     block_position++;

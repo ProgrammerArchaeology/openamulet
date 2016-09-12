@@ -113,7 +113,7 @@ Am_Network_Group::Broadcast(Am_Object obj)
 {
   Am_Ptr mistyped_ptr;
   Am_Connection *conn_ptr;
-  int conn_id, bless_id;
+  uintptr_t conn_id, bless_id;
   for (Member_Connections.Start(); !(Member_Connections.Last());
        Member_Connections.Next()) {
     mistyped_ptr = Member_Connections.Get();
@@ -122,8 +122,8 @@ Am_Network_Group::Broadcast(Am_Object obj)
     if (b_val != Am_No_Value) {
       Am_Assoc b_assoc = b_val;
       Am_Ptr b_ptr = b_assoc.Value_1();
-      bless_id = (int)b_ptr;
-      conn_id = (int)conn_ptr;
+      bless_id = (uintptr_t)b_ptr;
+      conn_id = (uintptr_t)conn_ptr;
       if (bless_id != conn_id) {
         conn_ptr->Send((Am_Value)obj);
       } else {
