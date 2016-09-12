@@ -232,12 +232,7 @@ HashValue(int key, int size)
 inline int
 HashValue(const void *key, int size)
 {
-#ifdef _MIPS_SIM_ABI64
-  return (abs(static_cast<int>(reinterpret_cast<long>(key) % size)));
-#else
-  return (abs((sizeof(key) > sizeof(int)) ? (int)((long)key % size)
-                                          : (int)key % size));
-#endif
+  return (abs(static_cast<int>(reinterpret_cast<uintptr_t>(key) % size)));
 }
 
 int HashValue(const char *key, int size);
@@ -258,12 +253,7 @@ lsign(long l)
 inline int
 KeyComp(const void *key1, const void *key2)
 {
-#ifdef _MIPS_SIM_ABI64
-  return (lsign((long)key1 - (long)key2));
-#else
-  return (sizeof(key1) > sizeof(int)) ? lsign((long)key1 - (long)key2)
-                                      : (int)key1 - (int)key2;
-#endif
+  return (lsign((uintptr_t)key1 - (uintptr_t)key2));
 }
 
 inline int
