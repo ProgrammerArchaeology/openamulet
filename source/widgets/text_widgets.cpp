@@ -20,11 +20,11 @@
 #include <amulet/impl/inter_undo.h>
 #include <amulet/impl/opal_constraints.h>
 
-#include TEXT_FNS__H // for Am_Set_Pending_Delete
-#include INITIALIZER__H
+#include <amulet/text_fns.h> // for Am_Set_Pending_Delete
+#include <amulet/initializer.h>
 
 //generate a string from the value for the field if not a string
-#include STR_STREAM__H
+#include <amulet/am_strstream.h>
 /******************************************************************************
  * Text Input Box
  *   Uses the label of the command as the label of the box, the value of

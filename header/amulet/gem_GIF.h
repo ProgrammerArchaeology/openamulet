@@ -12,7 +12,7 @@
 // GIF machine independent image format class.
 
 #include <am_inc.h>
-#include GEM_IMAGE__H
+#include <amulet/gem_image.h>
 #include <fstream>
 
 // GIF format constants

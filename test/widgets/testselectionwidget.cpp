@@ -9,17 +9,17 @@
 
 #include <amulet.h>
 
-#include STANDARD_SLOTS__H
-#include VALUE_LIST__H
-#include INTER_ADVANCED__H // for Am_Selective_New_Allowed_Return_False
+#include <amulet/standard_slots.h>
+#include <amulet/value_list.h>
+#include <amulet/inter_advanced.h> // for Am_Selective_New_Allowed_Return_False
 
-#include WIDGETS__H
-#include DEBUGGER__H
-#include MISC__H
-#include REGISTRY__H
-#include GESTURE__H
-#include SCRIPTING__H
-#include ANIM__H
+#include <amulet/widgets.h>
+#include <amulet/debugger.h>
+#include <amulet/misc.h>
+#include <amulet/registry.h>
+#include <amulet/gesture.h>
+#include <amulet/scripting.h>
+#include <amulet/anim.h>
 
 #define CLASSIFIER_FILENAME "select.cl"
 

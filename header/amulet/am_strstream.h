@@ -13,7 +13,7 @@
    -----------------------------------------------------------------------
    TO USE:
    
-      #include STR_STREAM__H
+      #include <amulet/am_strstream.h>
       
    when you want to pass an ostrstream as a parameter,
 

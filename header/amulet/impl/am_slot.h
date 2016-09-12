@@ -2,7 +2,7 @@
 #define AM_SLOT_H
 
 #include "types_slot.h"
-#include AM_VALUE__H
+#include <amulet/am_value.hpp>
 
 typedef void *Am_Constraint_Tag;
 class Am_Slot_Data;

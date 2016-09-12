@@ -9,8 +9,8 @@
 
 #include <am_inc.h>
 
-#include GEM__H
-#include MISC__H
+#include <amulet/gem.h>
+#include <amulet/misc.h>
 
 #include "test_utils.h"
 

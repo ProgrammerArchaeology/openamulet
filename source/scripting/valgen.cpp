@@ -10,13 +10,13 @@
 //
 
 #include <amulet.h>
-#include SCRIPTING_ADVANCED__H
+#include <amulet/scripting_advanced.h>
 
 #ifdef DEBUG
-#include DEBUGGER__H //for Am_Parse_Input_As_Type
+#include <amulet/debugger.h> //for Am_Parse_Input_As_Type
 #endif
 
-#include REGISTRY__H //for Am_Get_Type_Name
+#include <amulet/registry.h> //for Am_Get_Type_Name
 
 #include <amulet/impl/widget_misc.h>
 

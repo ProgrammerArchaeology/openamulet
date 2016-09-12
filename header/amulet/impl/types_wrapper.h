@@ -2,7 +2,7 @@
 #define TYPES_WRAPPER_TYPES_H
 
 #include <am_inc.h>
-#include AM_VALUE__H
+#include <amulet/am_value.hpp>
 #include "types_registered.h"
 
 // The Am_Wrapper type.  Classes derived from this type can be stored in an

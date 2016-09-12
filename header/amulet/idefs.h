@@ -18,8 +18,8 @@
 
 #include <am_inc.h>
 
-//#include AM_IO__H
-//#include TYPES__H  //for bool
+//#include <amulet/am_io.h>
+//#include <amulet/types.h>  //for bool
 #include "amulet/impl/types_logging.h"
 
 #define Am_MAX_CLICKS 5

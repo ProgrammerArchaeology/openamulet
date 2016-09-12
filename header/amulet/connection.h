@@ -16,18 +16,18 @@
 
 #include <sys/types.h>
 #include <am_inc.h>
-#include TYPES__H
-#include VALUE_LIST__H
-#include OBJECT__H
-#include STANDARD_SLOTS__H
+#include <amulet/types.h>
+#include <amulet/value_list.h>
+#include <amulet/object.h>
+#include <amulet/standard_slots.h>
 
 #ifdef OA_VERSION
 #include <amulet/univ_map_oa.hpp>
 #else
-#include UNIV_MAP__H
+#include <amulet/univ_map.h>
 #endif
 
-#include SOCKET_STUBS__H
+#include <amulet/socket_stubs.h>
 
 extern Am_Slot_Key Am_NET_BLESSING;
 
@@ -253,4 +253,4 @@ public:
 };
 
 #endif // _WIN32
-#endif // CONNECTION__H
+#endif // CONNECTION_H

@@ -14,15 +14,15 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
-#include STANDARD_SLOTS__H
-#include VALUE_LIST__H
-#include INTER__H
-#include OPAL__H
-#include OPAL_ADVANCED__H
-#include FORMULA__H
-#include MISC__H
-#include ANIM__H
+#include <amulet/am_io.h>
+#include <amulet/standard_slots.h>
+#include <amulet/value_list.h>
+#include <amulet/inter.h>
+#include <amulet/opal.h>
+#include <amulet/opal_advanced.h>
+#include <amulet/formula.h>
+#include <amulet/misc.h>
+#include <amulet/anim.h>
 
 Am_Define_Method(Am_Object_Method, void, my_do, (Am_Object cmd))
 {

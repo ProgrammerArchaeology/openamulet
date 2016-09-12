@@ -11,11 +11,11 @@
  * ************************************************************* */
 
 #include <amulet.h>
-// #include SCRIPTING__H
-#include SCRIPTING_ADVANCED__H
+// #include <amulet/scripting.h>
+#include <amulet/scripting_advanced.h>
 
-#include WIDGETS_ADVANCED__H //for Am_Check_Accelerator_Char_For_Window
-#include INTER_ADVANCED__H   //for Am_Execute_Command
+#include <amulet/widgets_advanced.h> //for Am_Check_Accelerator_Char_For_Window
+#include <amulet/inter_advanced.h>   //for Am_Execute_Command
 
 Am_Object am_invoke_window;
 

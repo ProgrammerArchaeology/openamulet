@@ -16,8 +16,8 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
-#include TYPES__H // for Am_Wrapper, Am_Error
+#include <amulet/am_io.h>
+#include <amulet/types.h> // for am_wrapper, am_error
 
 #include <math.h>
 

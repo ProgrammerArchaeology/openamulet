@@ -16,12 +16,12 @@
 
 #include <am_inc.h>
 
-#include OBJECT__H
-#include IDEFS__H
-#include TYPES__H
+#include <amulet/object.h>
+#include <amulet/idefs.h>
+#include <amulet/types.h>
 
-#include VALUE_LIST__H
-#include OBJECT_ADVANCED__H // for Am_Slot
+#include <amulet/value_list.h>
+#include <amulet/object_advanced.h> // for Am_Slot
 
 const float Am_INSPECTOR_INTER_PRIORITY = 300.0;
 #define Am_INTERNAL_SLOT_PREFIX '~'

@@ -10,7 +10,7 @@
 //
 
 #include <amulet.h>
-#include SCRIPTING_ADVANCED__H
+#include <amulet/scripting_advanced.h>
 
 Am_Object am_valinvokegen;
 Am_Object am_commandinvokegen;

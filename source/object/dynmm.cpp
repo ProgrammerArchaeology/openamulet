@@ -11,7 +11,7 @@
 #include <stdlib.h>
 
 #include <am_inc.h>
-#include DYNARRAY__H
+#include <amulet/dynarray.h>
 
 #ifdef DEBUG
 #include <iostream>

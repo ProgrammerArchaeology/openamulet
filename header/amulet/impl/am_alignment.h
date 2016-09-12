@@ -1,6 +1,6 @@
 #include <am_inc.h>
 #include "types_enum.h"
-//#include AM_IO__H
+//#include <amulet/am_io.h>
 
 //This enum is used internally; users should use the Am_Alignment
 // values instead.

@@ -1,5 +1,5 @@
-#include INITIALIZER__H
-#include AM_IO__H
+#include <amulet/initializer.h>
+#include <amulet/am_io.h>
 #include "amulet/impl/types_logging.h"
 #include "amulet/impl/types_string.h"
 #include "amulet/impl/types_method.h"
@@ -18,5 +18,5 @@
 #include "amulet/impl/widget_draw.h"
 #include "amulet/impl/widget_objects.h"
 #include "amulet/impl/am_demon_set.h"
-#include FORMULA__H
+#include <amulet/formula.h>
 #include "amulet/widgets_intnl.h"

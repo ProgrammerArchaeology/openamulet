@@ -7,10 +7,10 @@
 #include <sys/types.h>
 #include <sys/time.h>
 #include <am_inc.h>
-#include NETWORK__H
-#include CONNECTION__H
-#include OBJECT_ADVANCED__H
-#include TYPES__H
+#include <amulet/network.h>
+#include <amulet/connection.h>
+#include <amulet/object_advanced.h>
+#include <amulet/types.h>
 
 //
 // Global function prototypes

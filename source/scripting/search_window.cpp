@@ -14,15 +14,15 @@
 // Designed and implemented by Brad Myers
 
 #include <am_inc.h>
-#include AM_IO__H
+#include <amulet/am_io.h>
 
-#include STANDARD_SLOTS__H
-#include VALUE_LIST__H
-#include WIDGETS__H
-#include SCRIPTING_ADVANCED__H
-#include SCRIPTING__H
-#include INITIALIZER__H
-#include INTER_ADVANCED__H //for Am_Inter_Find_Undo_Handler
+#include <amulet/standard_slots.h>
+#include <amulet/value_list.h>
+#include <amulet/widgets.h>
+#include <amulet/scripting_advanced.h>
+#include <amulet/scripting.h>
+#include <amulet/initializer.h>
+#include <amulet/inter_advanced.h> //for Am_Inter_Find_Undo_Handler
 
 Am_Slot_Key Am_SEARCH_DIALOG = Am_Register_Slot_Name("~Am_SEARCH_DIALOG~");
 Am_Slot_Key Am_MAIN_BUTTON = Am_Register_Slot_Name("~Am_MAIN_BUTTON~");

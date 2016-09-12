@@ -10,9 +10,9 @@
 #include <stdio.h>
 #include <am_inc.h>
 
-#include FORMULA__H
-#include OPAL__H
-#include STANDARD_SLOTS__H
+#include <amulet/formula.h>
+#include <amulet/opal.h>
+#include <amulet/standard_slots.h>
 
 extern Am_Object *Am_Text_Button;
 #define Am_GRAY_WIDTH 1000

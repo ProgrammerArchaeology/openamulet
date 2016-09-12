@@ -12,10 +12,10 @@
 #include <am_inc.h>
 #include <math.h>
 
-#include INITIALIZER__H
+#include <amulet/initializer.h>
 #include <amulet/impl/slots_registry.h>
 #include <amulet/impl/opal_impl.h>
-#include WEB__H
+#include <amulet/web.h>
 
 #include <iostream>
 

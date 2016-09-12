@@ -1,8 +1,8 @@
 #include <am_inc.h>
 #include <amulet/am_strstream.h>
-#include AM_VALUE__H
-#include STDVALUE__H // Am_Double_Data, ...
-#include REGISTRY__H // Am_Get_Named_Item
+#include <amulet/am_value.hpp>
+#include <amulet/stdvalue.h> // Am_Double_Data, ...
+#include <amulet/registry.h> // Am_Get_Named_Item
 #include <amulet/impl/types_logging.h>
 #include <amulet/impl/types_type_support.h>
 #include <amulet/impl/types_method.h>

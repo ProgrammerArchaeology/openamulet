@@ -13,7 +13,7 @@
 #ifdef OA_VERSION
 #include <amulet/univ_map_oa.hpp>
 #else
-#include UNIV_MAP__H
+#include <amulet/univ_map.h>
 #endif
 
 #include <stdlib.h>

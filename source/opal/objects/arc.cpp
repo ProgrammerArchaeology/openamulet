@@ -11,7 +11,7 @@
 
 #include <am_inc.h>
 
-#include INITIALIZER__H
+#include <amulet/initializer.h>
 #include <amulet/impl/opal_impl.h>
 
 Am_Object Am_Arc;

@@ -12,15 +12,15 @@
 #include <am_inc.h>
 #include <stdlib.h> // for strtol()
 
-#include STANDARD_SLOTS__H
-#include VALUE_LIST__H
+#include <amulet/standard_slots.h>
+#include <amulet/value_list.h>
 
-#include WIDGETS__H
-#include DEBUGGER__H
-#include REGISTRY__H
-#include MISC__H
-#include WIDGETS_ADVANCED__H //**TEMP for accelerator_inter
-#include STR_STREAM__H // strstream is needed for AM_POP_UP_ERROR_WINDOW which is tested below
+#include <amulet/widgets.h>
+#include <amulet/debugger.h>
+#include <amulet/registry.h>
+#include <amulet/misc.h>
+#include <amulet/widgets_advanced.h> //**TEMP for accelerator_inter
+#include <amulet/am_strstream.h> // strstream is needed for AM_POP_UP_ERROR_WINDOW which is tested below
 
 Am_Slot_Key R0 = Am_Register_Slot_Name("R0");
 Am_Slot_Key R1 = Am_Register_Slot_Name("R1");

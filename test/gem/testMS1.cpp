@@ -1,6 +1,6 @@
 #include <am_inc.h>
 
-#include GEM__H
+#include <amulet/gem.h>
 #define OPTION1 1
 bool selected = false;
 bool done = false;

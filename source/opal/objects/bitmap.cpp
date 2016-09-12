@@ -11,8 +11,8 @@
 
 #include <am_inc.h>
 
-#include INITIALIZER__H
-#include FORMULA__H
+#include <amulet/initializer.h>
+#include <amulet/formula.h>
 #include <amulet/impl/opal_impl.h>
 #include <amulet/impl/opal_op.h>
 

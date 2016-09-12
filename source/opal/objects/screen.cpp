@@ -11,7 +11,7 @@
 
 #include <am_inc.h>
 
-#include VALUE_LIST__H
+#include <amulet/value_list.h>
 #include <amulet/impl/am_am_drawonable.h>
 #include <amulet/impl/am_demon_set.h>
 #include <amulet/impl/object_misc.h>

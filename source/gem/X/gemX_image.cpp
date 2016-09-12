@@ -18,9 +18,9 @@
 #include <iostream>
 #include <am_inc.h>
 
-#include GDEFS__H
-#include GEM__H
-#include GEMX__H
+#include <amulet/gdefs.h>
+#include <amulet/gem.h>
+#include <amulet/gemX.h>
 #include "amulet/gem_GIF.h"
 
 // // // // // // // // // // // // // // // // // // // // // // // // // //

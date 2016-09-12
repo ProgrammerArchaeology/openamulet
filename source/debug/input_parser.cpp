@@ -15,8 +15,8 @@
 
 #include <am_inc.h>
 
-#include WIDGETS_ADVANCED__H
-#include REGISTRY__H
+#include <amulet/widgets_advanced.h>
+#include <amulet/registry.h>
 
 //returns true if input can be parsed as a wanted_type.
 //If returns true, then output_value is set with the actual value.

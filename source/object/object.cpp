@@ -13,18 +13,18 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 
-#include STANDARD_SLOTS__H
-#include INITIALIZER__H
-#include OBJECT__H
-#include OBJECT_ADVANCED__H
+#include <amulet/standard_slots.h>
+#include <amulet/initializer.h>
+#include <amulet/object.h>
+#include <amulet/object_advanced.h>
 #include <amulet/impl/opal_objects.h>
 
 #include <amulet/object_data.hpp>
 
 //only does something if debug is true
-#include REGISTRY__H
+#include <amulet/registry.h>
 
 #include <stdlib.h> // For abort () for Am_Error
 

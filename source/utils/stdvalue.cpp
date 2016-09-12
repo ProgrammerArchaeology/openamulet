@@ -11,8 +11,8 @@
 
 #include <am_inc.h>
 
-#include STDVALUE__H
-#include TYPES__H
+#include <amulet/stdvalue.h>
+#include <amulet/types.h>
 
 AM_WRAPPER_DATA_IMPL_ID(Am_Double, (value), Am_DOUBLE)
 

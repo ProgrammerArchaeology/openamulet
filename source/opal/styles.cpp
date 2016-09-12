@@ -1,5 +1,5 @@
 #include <am_inc.h>
-#include REGISTRY__H
+#include <amulet/registry.h>
 #include <amulet/impl/am_style.h>
 #include <amulet/impl/am_font.h>
 #include <amulet/impl/opal_objects.h>

@@ -1,6 +1,6 @@
 #include <am_inc.h>
-#include INITIALIZER__H
-#include VALUE_LIST__H
+#include <amulet/initializer.h>
+#include <amulet/value_list.h>
 #include <amulet/impl/slots.h>
 #include <amulet/impl/am_object.h>
 #include <amulet/impl/types_method.h>
@@ -9,7 +9,7 @@
 #include <amulet/impl/inter_commands.h>
 #include <amulet/impl/opal_objects.h>
 #include <amulet/impl/method_object.h>
-#include FORMULA__H
+#include <amulet/formula.h>
 
 #include <iostream>
 

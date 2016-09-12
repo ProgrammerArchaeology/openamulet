@@ -9,22 +9,22 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 
 // This is needed to initialize
 // However, this test should not need it! --ortalo
-#include OPAL__H
+#include <amulet/opal.h>
 
-#include FORMULA_ADVANCED__H
-#include STANDARD_SLOTS__H
-#include VALUE_LIST__H
+#include <amulet/formula_advanced.h>
+#include <amulet/standard_slots.h>
+#include <amulet/value_list.h>
 
-#include TYPES__H
+#include <amulet/types.h>
 
-#include FORMULA__H
-#include WEB__H
+#include <amulet/formula.h>
+#include <amulet/web.h>
 
-#include REGISTRY__H
+#include <amulet/registry.h>
 
 #include <string.h>
 

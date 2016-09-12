@@ -11,14 +11,14 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include <amulet/impl/types_logging.h>
 #include <amulet/impl/am_object.h>
 #include <amulet/impl/opal_misc.h>
 #include <amulet/impl/opal_constraints.h>
 #include <amulet/impl/slots.h>
-#include VALUE_LIST__H
-#include FORMULA__H
+#include <amulet/value_list.h>
+#include <amulet/formula.h>
 #include <amulet/impl/am_alignment.h>
 
 void

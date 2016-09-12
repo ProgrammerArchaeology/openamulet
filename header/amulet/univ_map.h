@@ -220,7 +220,7 @@
 
 #include <stdlib.h>
 
-#include UNIV_MAP__TPL
+#include <amulet/univ_map.hpp>
 
 // Hash value fuctions
 inline int

@@ -9,11 +9,11 @@
 
 #include <am_inc.h>
 
-#include WEB__H
-#include STANDARD_SLOTS__H
+#include <amulet/web.h>
+#include <amulet/standard_slots.h>
 
 #ifdef MEMORY
-#include DYNARRAY__H
+#include <amulet/dynarray.h>
 #include <stddef.h>
 #endif
 

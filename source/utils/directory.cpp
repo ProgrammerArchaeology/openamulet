@@ -21,9 +21,7 @@
 #include <cassert>
 #include <list>
 
-#ifndef DIRECTORY_HPP
 #include "amulet/directory.hpp"
-#endif
 
 void
 Am_Directory::addEntry(WIN32_FIND_DATA *aEntryData, long aLevel)

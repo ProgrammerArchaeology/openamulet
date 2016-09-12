@@ -16,8 +16,8 @@
 #include "amulet/impl/types_enum.h"
 #include "amulet/impl/types_load_save.h"
 
-#include GDEFS__H
-#include FORMULA__H
+#include <amulet/gdefs.h>
+#include <amulet/formula.h>
 
 #include "amulet/impl/opal_objects.h"
 

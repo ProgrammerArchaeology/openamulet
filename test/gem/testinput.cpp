@@ -11,8 +11,8 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
-#include GEM__H
+#include <amulet/am_io.h>
+#include <amulet/gem.h>
 
 #define TESTINPUT_D_LEFT 800
 #define TESTINPUT_D_TOP 0

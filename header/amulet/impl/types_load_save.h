@@ -1,7 +1,7 @@
 #ifndef TYPES_LOAD_SAVE_H
 #define TYPES_LOAD_SAVE_H
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include "types_wrapper.h"
 #include "types_method.h"
 

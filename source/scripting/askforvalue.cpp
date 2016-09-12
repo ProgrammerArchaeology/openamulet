@@ -12,8 +12,8 @@
 
 #include <amulet.h>
 
-#include SCRIPTING_ADVANCED__H
-#include REGISTRY__H // for Am_Get_Type_Name
+#include <amulet/scripting_advanced.h>
+#include <amulet/registry.h> // for Am_Get_Type_Name
 
 Am_Object am_askforvalue;
 

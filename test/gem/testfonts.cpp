@@ -11,9 +11,9 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 
-#include GEM__H
+#include <amulet/gem.h>
 
 #include "test_utils.h" // For wins class
 

@@ -9,7 +9,7 @@
 
 #include <am_inc.h>
 
-#include GEM__H
+#include <amulet/gem.h>
 #include "test_utils.h"
 
 Am_Style style_array[4];

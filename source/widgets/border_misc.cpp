@@ -10,7 +10,7 @@
 //
 #include <am_inc.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include <amulet/impl/types_logging.h>
 #include <amulet/impl/am_style.h>
 #include <amulet/impl/am_drawonable.h>

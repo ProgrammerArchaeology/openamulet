@@ -14,7 +14,7 @@
 */
 
 #include <am_inc.h>
-#include ANIM__H // for Am_NO_ANIMATION
+#include <amulet/anim.h> // for Am_NO_ANIMATION
 
 #include <amulet/impl/opal_obj2.h>
 #include <amulet/impl/am_inter_location.h>
@@ -24,7 +24,7 @@
 #include <amulet/impl/wigdet_ed_op.h>
 #include <amulet/impl/opal_load_save.h>
 
-#include VALUE_LIST__H
+#include <amulet/value_list.h>
 #ifdef DEBUG
 #include <amulet/impl/slots_registry.h>
 #endif

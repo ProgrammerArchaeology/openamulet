@@ -16,10 +16,10 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
-#include GDEFS__H      // to get Am_Point_List
-#include VALUE_LIST__H // to get Am_Value_List
-#include OBJECT__H     // to get Am_Object
+#include <amulet/am_io.h>
+#include <amulet/gdefs.h>      // to get Am_Point_List
+#include <amulet/value_list.h> // to get Am_Value_List
+#include <amulet/object.h>     // to get Am_Object
 
 ///////////////////////////////////////////////////////
 /// Am_Feature_Vector: represents a gesture example

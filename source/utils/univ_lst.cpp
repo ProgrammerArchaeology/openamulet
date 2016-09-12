@@ -1,5 +1,5 @@
 #include <am_inc.h>
 
-#include UNIV_LST__H
+#include <amulet/univ_lst.h>
 
 AM_IMPL_LIST(Ptr, void *, (0L))

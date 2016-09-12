@@ -11,9 +11,9 @@
 
 #include <am_inc.h>
 
-#include INITIALIZER__H
+#include <amulet/initializer.h>
 #include <amulet/impl/opal_impl.h>
-#include FORMULA__H
+#include <amulet/formula.h>
 
 inline int
 imin(int i1, int i2)

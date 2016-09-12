@@ -1,6 +1,6 @@
 #include <am_inc.h>
 
-#include INITIALIZER__H
+#include <amulet/initializer.h>
 #include <amulet/impl/gem_flags.h>
 #include <amulet/impl/am_object.h>
 #include <amulet/impl/object_misc.h>

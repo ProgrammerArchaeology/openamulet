@@ -8,7 +8,7 @@
 #include "amulet/gemW.h"
 #include "amulet/gemW_clean.h"
 #include "amulet/gemW_text.h"
-#include REGISTRY__H
+#include <amulet/registry.h>
 
 int
 WinPtSize(Am_Font_Size_Flag amsf)

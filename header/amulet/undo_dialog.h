@@ -16,7 +16,7 @@
 
 #include <am_inc.h>
 
-#include OBJECT__H
+#include <amulet/object.h>
 
 _OA_DL_IMPORT extern Am_Object Am_Undo_Dialog_Box;
 

@@ -11,12 +11,12 @@
 
 #include <am_inc.h>
 
-#include INITIALIZER__H
+#include <amulet/initializer.h>
 #include <amulet/impl/types_string.h>
 #include <amulet/impl/am_font.h>
 #include <amulet/impl/opal_impl.h>
 #include <amulet/impl/opal_op.h>
-#include FORMULA__H
+#include <amulet/formula.h>
 
 void Am_text_draw_internal(Am_Object self, Am_Drawonable *drawonable,
                            int x_offset, int y_offset, const char *str,

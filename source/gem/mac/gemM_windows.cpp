@@ -17,8 +17,8 @@
 #include <am_inc.h>
 #include <assert.h>
 
-#include IDEFS__H // For Am_Main_Loop_Go
-#include GEM__H
+#include <amulet/idefs.h> // For Am_Main_Loop_Go
+#include <amulet/gem.h>
 #include <gemM.h>
 
 // Static variables

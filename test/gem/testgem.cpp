@@ -11,8 +11,8 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
-#include GEM__H
+#include <amulet/am_io.h>
+#include <amulet/gem.h>
 #include "test_utils.h"
 
 Am_Drawonable *root, *d1, *d2, *d3, *d4, *d5, *d6;

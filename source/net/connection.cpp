@@ -17,12 +17,12 @@
 // Includes
 
 #include <amulet.h>
-#include CONNECTION__H
-#include INITIALIZER__H
-#include OBJECT_ADVANCED__H
-#include TYPES__H
-#include STANDARD_SLOTS__H
-#include VALUE_LIST__H
+#include <amulet/connection.h>
+#include <amulet/initializer.h>
+#include <amulet/object_advanced.h>
+#include <amulet/types.h>
+#include <amulet/standard_slots.h>
+#include <amulet/value_list.h>
 
 //New slot key for object identification
 Am_Slot_Key Am_NET_BLESSING = Am_Register_Slot_Name("BLESSING");

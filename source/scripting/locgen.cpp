@@ -10,7 +10,7 @@
 //
 
 #include <amulet.h>
-#include SCRIPTING_ADVANCED__H
+#include <amulet/scripting_advanced.h>
 
 Am_Slot_Key Am_CHANGE_LEFT = Am_Register_Slot_Name("Am_CHANGE_LEFT");
 Am_Slot_Key Am_LEFT_HOW = Am_Register_Slot_Name("Am_LEFT_HOW");

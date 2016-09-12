@@ -17,13 +17,13 @@
 
 #include <am_inc.h>
 
-#include OBJECT__H //basic object definitions
-#include OPAL__H
-#include INTER__H // command objects, etc.
-#include VALUE_LIST__H
-#include RICH_TEXT__H
-#include UNDO_DIALOG__H
-#include STR_STREAM__H
+#include <amulet/object.h> //basic object definitions
+#include <amulet/opal.h>
+#include <amulet/inter.h> // command objects, etc.
+#include <amulet/value_list.h>
+#include <amulet/rich_text.h>
+#include <amulet/undo_dialog.h>
+#include <amulet/am_strstream.h>
 
 #include "amulet/impl/widget_look.h"
 

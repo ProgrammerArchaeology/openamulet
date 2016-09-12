@@ -11,14 +11,14 @@
 
 #include <am_inc.h>
 
-#include INITIALIZER__H
-#include VALUE_LIST__H
+#include <amulet/initializer.h>
+#include <amulet/value_list.h>
 #include <amulet/impl/am_demon_set.h>
 #include <amulet/impl/opal_impl.h>
 #include <amulet/impl/gem_misc.h>
 #include <amulet/impl/am_state_store.h>
 #include <amulet/impl/opal_load_save.h>
-#include FORMULA__H
+#include <amulet/formula.h>
 
 Am_Object Am_Resize_Parts_Group;
 

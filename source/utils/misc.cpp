@@ -16,8 +16,8 @@
 
 #include <am_inc.h>
 
-#include MISC__H
-#include AM_IO__H
+#include <amulet/misc.h>
+#include <amulet/am_io.h>
 #include <string.h>
 #include <amulet/filefind.h>
 
@@ -26,9 +26,7 @@
 
 #include <signal.h>
 #include <stdlib.h>
-//#ifdef NEED_UNISTD
 #include <unistd.h>
-//#endif
 #include <sys/time.h>
 
 #include <sys/select.h>
@@ -146,7 +144,7 @@ Am_Merge_Pathname(const char *name)
 #pragma mark <=== Unsupported Platform Code ===>
 // Unsupported platform
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 void
 Am_Break_Into_Debugger()
 {

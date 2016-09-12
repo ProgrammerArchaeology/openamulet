@@ -15,16 +15,16 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 
-//#include INTER_ADVANCED__H
+//#include <amulet/inter_advanced.h>
 #include <amulet/impl/inter_all.h>
 #include <amulet/impl/am_inter_location.h>
-#include FORMULA__H
-#include IDEFS__H
-#include VALUE_LIST__H
-#include REGISTRY__H
-#include INITIALIZER__H
+#include <amulet/formula.h>
+#include <amulet/idefs.h>
+#include <amulet/value_list.h>
+#include <amulet/registry.h>
+#include <amulet/initializer.h>
 
 //////////////////////////////////////////////////////////////////
 /// Utilities

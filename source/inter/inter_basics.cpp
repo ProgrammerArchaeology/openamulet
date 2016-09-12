@@ -17,19 +17,19 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 
 #include <amulet/impl/inter_all.h>
 #include <amulet/impl/am_inter_location.h>
-#include PRIORITY_LIST__H
+#include <amulet/priority_list.h>
 #include <amulet/impl/types_string.h>
 #include <amulet/impl/opal_objects.h>
 #include <amulet/impl/opal_default_demon.h>
 #include <amulet/impl/opal_op.h>
-#include FORMULA__H    // for creating formula constraints
-#include VALUE_LIST__H // for Am_Value_List type
-#include TEXT_FNS__H   // for Am_Edit_Translation_Table, etc.
-#include INITIALIZER__H
+#include <amulet/formula.h>    // for creating formula constraints
+#include <amulet/value_list.h> // for Am_Value_List type
+#include <amulet/text_fns.h>   // for Am_Edit_Translation_Table, etc.
+#include <amulet/initializer.h>
 #ifdef DEBUG
 #include <amulet/impl/slots_registry.h>
 #endif

@@ -9,7 +9,7 @@
 
 #include <am_inc.h>
 
-#include GEM__H
+#include <amulet/gem.h>
 #include "test_utils.h" // For wins class
 
 // Draw three rectangles in all different join-styles

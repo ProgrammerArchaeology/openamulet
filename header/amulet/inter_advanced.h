@@ -20,11 +20,11 @@
 
 #include <am_inc.h>
 
-//#include GEM__H
+//#include <amulet/gem.h>
 #include "amulet/impl/gem_event_handlers.h"
-#include INTER__H
-#include FORMULA__H
-#include VALUE_LIST__H // for Am_Value_List type
+#include <amulet/inter.h>
+#include <amulet/formula.h>
+#include <amulet/value_list.h> // for Am_Value_List type
 
 // call this before doing any interactor stuff.  This should be
 // called automatically from Am_Initialize();

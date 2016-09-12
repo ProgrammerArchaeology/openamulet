@@ -14,7 +14,7 @@
 //		    Am_Translate_Coordinates, Am_Invalidate
 
 #include <am_inc.h>
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include <amulet/impl/types_logging.h>
 #include <amulet/impl/slots.h>
 #include <amulet/impl/types_method.h>
@@ -28,7 +28,7 @@
 #include <amulet/impl/opal_objects.h>
 #include <amulet/impl/am_window_todo.h>
 #include "amulet/opal_intnl.h"
-#include VALUE_LIST__H
+#include <amulet/value_list.h>
 
 void
 Am_Move_Object(Am_Object object, Am_Object ref_object, bool above)

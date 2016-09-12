@@ -30,7 +30,7 @@
 #include <amulet/univ_map_oa.hpp>
 class Am_Symbol_Table
 #else
-#include UNIV_MAP__H
+#include <amulet/univ_map.h>
 AM_DECL_MAP(CStr2Int, const char *, int)
 class Am_Symbol_Table : public Am_Map_CStr2Int
 #endif

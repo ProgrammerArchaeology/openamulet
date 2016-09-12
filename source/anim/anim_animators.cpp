@@ -10,10 +10,10 @@
 //
 
 #include <amulet.h>
-#include OPAL_ADVANCED__H
-#include INTER_ADVANCED__H //for Am_INTER_TRACE_PRINT
-#include WEB__H
-#include INITIALIZER__H
+#include <amulet/opal_advanced.h>
+#include <amulet/inter_advanced.h> //for am_inter_trace_print
+#include <amulet/web.h>
+#include <amulet/initializer.h>
 
 #include <math.h>
 

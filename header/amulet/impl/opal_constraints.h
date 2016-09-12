@@ -1,5 +1,5 @@
 #include <am_inc.h>
-#include FORMULA__H
+#include <amulet/formula.h>
 
 // Store in Group or Map's Am_LAYOUT slot for automatic layout.
 _OA_DL_IMPORT extern Am_Formula Am_Horizontal_Layout;

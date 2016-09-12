@@ -20,7 +20,7 @@
 #include <amulet/impl/types_wrapper.h>
 #include <amulet/impl/gem_flags.h>
 #include <amulet/impl/am_style.h>
-#include REGISTRY__H
+#include <amulet/registry.h>
 
 #include <amulet/symbol_table.h>
 

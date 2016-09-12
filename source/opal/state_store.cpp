@@ -12,7 +12,7 @@
 // Am_State_Store class implementation, used by Am_Window
 
 #include <am_inc.h>
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include <amulet/impl/types_logging.h>
 #include <amulet/impl/slots_opal.h>
 #include <amulet/impl/am_drawonable.h>

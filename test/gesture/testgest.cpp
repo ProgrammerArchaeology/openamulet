@@ -12,19 +12,19 @@
 // For exit()
 #include <stdlib.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 
-#include STANDARD_SLOTS__H
-#include INTER_ADVANCED__H
-#include VALUE_LIST__H
-#include INTER__H
-#include OPAL__H
-#include FORMULA__H
-#include TEXT_FNS__H
-#include DEBUGGER__H
-#include REGISTRY__H
+#include <amulet/standard_slots.h>
+#include <amulet/inter_advanced.h>
+#include <amulet/value_list.h>
+#include <amulet/inter.h>
+#include <amulet/opal.h>
+#include <amulet/formula.h>
+#include <amulet/text_fns.h>
+#include <amulet/debugger.h>
+#include <amulet/registry.h>
 
-#include GESTURE__H
+#include <amulet/gesture.h>
 
 using namespace std;
 

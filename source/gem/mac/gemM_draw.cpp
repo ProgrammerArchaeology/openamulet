@@ -17,9 +17,9 @@
 
 #include <am_inc.h>
 
-#include GDEFS__H
-#include GEM__H
-#include MISC__H
+#include <amulet/gdefs.h>
+#include <amulet/gem.h>
+#include <amulet/misc.h>
 #include <gemM.h>
 
 static Handle gReservedMemory = (0L);

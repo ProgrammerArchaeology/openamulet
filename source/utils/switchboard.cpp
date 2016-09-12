@@ -38,9 +38,7 @@
 //-------------------------------------------------------------
 // application include files
 //-------------------------------------------------------------
-#ifndef SWTICHBOARD_HPP
 #include <amulet/switchboard.hpp>
-#endif
 
 #include <amulet/callback.hpp>
 

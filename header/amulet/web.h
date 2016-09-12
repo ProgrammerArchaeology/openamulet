@@ -13,7 +13,7 @@
 
 #include <am_inc.h>
 
-#include OBJECT_ADVANCED__H
+#include <amulet/object_advanced.h>
 /*
 #include "amulet/impl/object_advanced_pure.h"
 #include "amulet/impl/object_constr.h"

@@ -1,8 +1,8 @@
 #include <am_inc.h>
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include <amulet/impl/types_logging.h>
 #include <amulet/impl/types_string.h>
-#include STDVALUE__H
+#include <amulet/stdvalue.h>
 
 #include <string.h>
 

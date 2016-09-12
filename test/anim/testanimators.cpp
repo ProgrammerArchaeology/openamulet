@@ -9,8 +9,8 @@
 
 // for Am_INTER_PRIORITY_DIFF
 #include <am_inc.h>
-#include INTER_ADVANCED__H
-#include OPAL_ADVANCED__H
+#include <amulet/inter_advanced.h>
+#include <amulet/opal_advanced.h>
 
 #include <amulet.h>
 

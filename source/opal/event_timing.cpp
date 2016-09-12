@@ -14,7 +14,7 @@
 //		   Am_Wait_For_Event
 
 #include <am_inc.h>
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include <amulet/impl/types_logging.h>
 
 #include <amulet/impl/am_object.h>
@@ -24,7 +24,7 @@
 #include <amulet/impl/opal_op.h>
 #include <amulet/impl/am_time.h>
 #include <amulet/impl/timers.h>
-#include VALUE_LIST__H
+#include <amulet/value_list.h>
 
 //
 // Timing stuff

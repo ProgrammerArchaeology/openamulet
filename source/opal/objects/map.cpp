@@ -11,9 +11,9 @@
 
 #include <am_inc.h>
 
-#include INITIALIZER__H
-#include VALUE_LIST__H
-#include FORMULA__H
+#include <amulet/initializer.h>
+#include <amulet/value_list.h>
+#include <amulet/formula.h>
 #include <amulet/impl/opal_impl.h>
 #include <amulet/impl/opal_misc.h>
 #include <amulet/impl/method_item.h>

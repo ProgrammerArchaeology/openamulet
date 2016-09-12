@@ -1,13 +1,13 @@
 #include <string.h>
 
 #include <am_inc.h>
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include <amulet/impl/types_logging.h>
 #include <amulet/object_data.hpp>
 #include <amulet/impl/am_constraint.h>
 #include <amulet/impl/am_constraint_iterator.h>
 #include <amulet/impl/object_debug.h>
-#include REGISTRY__H // only does something if debug is true
+#include <amulet/registry.h> // only does something if debug is true
 #include <amulet/impl/slots_registry.h>
 
 /*****************************************************************************

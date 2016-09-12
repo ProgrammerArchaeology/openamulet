@@ -10,10 +10,10 @@
 //
 
 #include <amulet.h>
-#include OBJECT__H         // am_object
-#include OPAL__H           // am_window
-#include STANDARD_SLOTS__H // am_destroy_window_method
-#include WIDGETS__H        // am_default_pop_up_window_destroy_method
+#include <amulet/object.h>         // am_object
+#include <amulet/opal.h>           // am_window
+#include <amulet/standard_slots.h> // am_destroy_window_method
+#include <amulet/widgets.h>        // am_default_pop_up_window_destroy_method
 
 Am_Object am_askselectobj;
 

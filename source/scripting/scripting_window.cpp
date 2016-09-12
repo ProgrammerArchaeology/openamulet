@@ -11,8 +11,8 @@
  * ************************************************************* */
 
 #include <amulet.h>
-// #include SCRIPTING__H
-#include SCRIPTING_ADVANCED__H
+// #include <amulet/scripting.h>
+#include <amulet/scripting_advanced.h>
 
 Am_Object Am_Script_Window;
 

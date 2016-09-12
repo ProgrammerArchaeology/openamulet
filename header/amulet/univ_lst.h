@@ -19,8 +19,8 @@
 //#include <assert.h> //assert
 
 #include <am_inc.h>
-#include TYPEDEFS__HPP
-#include TYPES__H //for type 'bool'
+#include <amulet/typedefs.hpp>
+#include <amulet/types.h> //for type 'bool'
 
 #include "univ_lst.hpp" //templates
 

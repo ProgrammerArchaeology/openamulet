@@ -2,7 +2,7 @@
 #define TYPES_TYPE_SUPPORT_H
 
 #include <am_inc.h>
-#include AM_VALUE__H
+#include <amulet/am_value.hpp>
 
 // class std::ostream;
 

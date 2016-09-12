@@ -15,8 +15,8 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
-#include GESTURE__H
+#include <amulet/am_io.h>
+#include <amulet/gesture.h>
 
 #include <math.h>
 #include "amulet/gest_impl.h"

@@ -1,4 +1,4 @@
-#include IDEFS__H
+#include <amulet/idefs.h>
 #include "inter_misc.h"
 #include "inter_input.h"
 

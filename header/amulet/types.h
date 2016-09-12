@@ -14,13 +14,13 @@
 
 // include the include-file defines
 #include <am_inc.h>
-//#include AM_IO__H
+//#include <amulet/am_io.h>
 // class std::ostream;
 
 // am_value.hpp defines some constants, therefore we must guard
 // against double definitions
 #ifndef AM_VALUE_HPP
-#include AM_VALUE__H
+#include <amulet/am_value.hpp>
 #endif
 
 #include "amulet/impl/types_basic.h"

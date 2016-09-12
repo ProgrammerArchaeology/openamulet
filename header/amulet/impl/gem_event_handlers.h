@@ -2,7 +2,7 @@
 #define GEM_EVENT_HANDLERS_H
 
 #include "am_drawonable.h"
-#include IDEFS__H
+#include <amulet/idefs.h>
 
 class _OA_DL_CLASSIMPORT Am_Input_Event
 {

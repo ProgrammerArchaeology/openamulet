@@ -11,7 +11,7 @@
 #include <amulet/univ_map_oa.hpp>
 typedef OpenAmulet::Map_Int2Int Am_Map_Int2Int;
 #else
-#include UNIV_MAP__H
+#include <amulet/univ_map.h>
 #endif
 //#include <amulet/univ_map.h>
 

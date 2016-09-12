@@ -14,20 +14,20 @@
 
 #include <am_inc.h>
 
-#include UNIV_MAP__H
-#include AM_IO__H
+#include <amulet/univ_map.h>
+#include <amulet/am_io.h>
 #include <amulet/impl/types_string.h>
-#include INTER_ADVANCED__H
-#include STANDARD_SLOTS__H
-#include VALUE_LIST__H
-#include INITIALIZER__H
+#include <amulet/inter_advanced.h>
+#include <amulet/standard_slots.h>
+#include <amulet/value_list.h>
+#include <amulet/initializer.h>
 
 #include <amulet/impl/opal_op.h>
 #include <amulet/impl/opal_misc.h>
 
-#include REGISTRY__H
+#include <amulet/registry.h>
 
-#include GESTURE__H
+#include <amulet/gesture.h>
 
 static void
 gesture_start(Am_Object inter)

@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <am_inc.h>
 
-#include GEM__H
+#include <amulet/gem.h>
 
 #define TESTWINSIZES_D1_LEFT 850
 #define TESTWINSIZES_D4_LEFT 900

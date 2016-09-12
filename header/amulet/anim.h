@@ -21,8 +21,8 @@
 #include "amulet/impl/types_method.h"
 
 #include "amulet/impl/am_object.h" // basic object definitions
-#include IDEFS__H                  // Am_Input_Char
-#include FORMULA__H
+#include <amulet/idefs.h>          // Am_Input_Char
+#include <amulet/formula.h>
 
 //lint -e752 ok that local declarators are not referenced
 
@@ -78,7 +78,7 @@ _OA_DL_IMPORT extern Am_Object Am_Animation_Blink_Command;
 // Animated constraints
 ////////////////////////////////////////////////////////////////////////
 
-#include GDEFS__H
+#include <amulet/gdefs.h>
 
 //
 // from anim.cc

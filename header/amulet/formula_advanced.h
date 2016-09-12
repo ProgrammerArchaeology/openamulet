@@ -12,8 +12,8 @@
 
 #include <am_inc.h>
 
-#include FORMULA__H
-#include OBJECT_ADVANCED__H
+#include <amulet/formula.h>
+#include <amulet/object_advanced.h>
 
 typedef unsigned short Am_Formula_Mode;
 

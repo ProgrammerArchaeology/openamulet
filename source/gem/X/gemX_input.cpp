@@ -27,10 +27,10 @@
 
 #include <am_inc.h>
 
-#include GEM__H
+#include <amulet/gem.h>
 
 #include "amulet/gemX_time.h"
-#include GEMX__H
+#include <amulet/gemX.h>
 
 extern Screen_Manager Scrn_Mgr;
 

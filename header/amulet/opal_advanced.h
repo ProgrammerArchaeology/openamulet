@@ -13,11 +13,11 @@
 
 #include <am_inc.h>
 
-#include OBJECT_ADVANCED__H // for Am_Demon_Queue
-//#include OBJECT__H
+#include <amulet/object_advanced.h> // for Am_Demon_Queue
+//#include <amulet/object.h>
 #include "amulet/impl/am_object.h"
-#include GEM__H
-#include STANDARD_SLOTS__H
+#include <amulet/gem.h>
+#include <amulet/standard_slots.h>
 
 #include "amulet/impl/opal_methods.h"
 

@@ -25,11 +25,11 @@
 
 #include <am_inc.h>
 
-#include TYPEDEFS__HPP
-#include OBJECT__H
-#include GDEFS__H // for Am_Style
-#include GEM__H
-#include OPAL__H // for Am_Line_2
+#include <amulet/typedefs.hpp>
+#include <amulet/object.h>
+#include <amulet/gdefs.h> // for Am_Style
+#include <amulet/gem.h>
+#include <amulet/opal.h> // for Am_Line_2
 
 /******************************************************************************
  *  Am_Property_Change_Control

@@ -1,6 +1,6 @@
 #include <amulet.h>
 #include <am_inc.h>
-#include OBJECT_ADVANCED__H
+#include <amulet/object_advanced.h>
 #include <iostream>
 
 using namespace std;

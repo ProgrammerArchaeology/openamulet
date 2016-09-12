@@ -11,13 +11,13 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 
 #include <amulet/impl/slots_registry.h>
-#include STANDARD_SLOTS__H
-#include SYMBOL_TABLE__H
+#include <amulet/standard_slots.h>
+#include <amulet/symbol_table.h>
 
-//#include TYPES__H
+//#include <amulet/types.h>
 
 #define SLOT_NAME_START Am_MAXIMUM_USER_SLOT_KEY + 1
 // == 30000.

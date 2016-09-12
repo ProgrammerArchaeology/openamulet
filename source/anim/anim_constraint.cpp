@@ -11,11 +11,11 @@
 
 #include <am_inc.h>
 
-#include STANDARD_SLOTS__H
-#include VALUE_LIST__H
-#include FORMULA__H
-#include OBJECT_ADVANCED__H
-#include ANIM__H
+#include <amulet/standard_slots.h>
+#include <amulet/value_list.h>
+#include <amulet/formula.h>
+#include <amulet/object_advanced.h>
+#include <amulet/anim.h>
 
 AM_DEFINE_METHOD_TYPE_IMPL(Am_Anim_Update_Method);
 

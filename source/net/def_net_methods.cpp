@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <am_inc.h>
-#include CONNECTION__H
 #include <amulet/connection.h>
 //
 // char

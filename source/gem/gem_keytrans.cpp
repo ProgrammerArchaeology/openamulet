@@ -18,8 +18,8 @@
 
 #include <iostream>
 #include <am_inc.h>
-#include AM_VALUE__H
-#include IDEFS__H
+#include <amulet/am_value.hpp>
+#include <amulet/idefs.h>
 #include <amulet/impl/types_type_support.h>
 #include <amulet/impl/gem_event_handlers.h>
 #include <amulet/impl/am_am_drawonable.h>
@@ -37,7 +37,7 @@
 extern void Am_Init_Key_Map();
 #endif
 
-#include SYMBOL_TABLE__H
+#include <amulet/symbol_table.h>
 
 // Function Prototypes
 char *alloc_string_for(char c);

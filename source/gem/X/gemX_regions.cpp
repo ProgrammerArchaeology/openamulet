@@ -16,8 +16,8 @@
 
 #include <am_inc.h>
 
-#include GEM__H
-#include GEMX__H
+#include <amulet/gem.h>
+#include <amulet/gemX.h>
 
 // // // // // // // // // // // // // // // // // // // // // // // // // //
 //

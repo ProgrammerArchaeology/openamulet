@@ -13,7 +13,7 @@
 
 #include <am_inc.h>
 
-#include OBJECT__H
+#include <amulet/object.h>
 #include "amulet/impl/types_logging.h"
 #include "amulet/impl/types_enum.h"
 

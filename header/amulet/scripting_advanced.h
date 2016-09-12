@@ -16,9 +16,9 @@
 #define SCRIPTING_ADVANCED_H
 
 #include <am_inc.h>
-#include TYPES__H
-#include WIDGETS__H
-#include VALUE_LIST__H
+#include <amulet/types.h>
+#include <amulet/widgets.h>
+#include <amulet/value_list.h>
 
 _OA_SCRIPT_DL_IMPORT extern bool am_sdebug;
 

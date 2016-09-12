@@ -9,9 +9,9 @@
 
 #include <iostream>
 #include <amulet.h>
-#include ANIM__H
-#include OPAL_ADVANCED__H
-#include OPAL__H
+#include <amulet/anim.h>
+#include <amulet/opal_advanced.h>
+#include <amulet/opal.h>
 
 Am_Time start;
 

@@ -1,5 +1,5 @@
-//#include AM_VALUE__H
-//#include AM_IO__H
+//#include <amulet/am_value.hpp>
+//#include <amulet/am_io.h>
 #include "am_drawonable.h"
 #include "types_pointer.h"
 

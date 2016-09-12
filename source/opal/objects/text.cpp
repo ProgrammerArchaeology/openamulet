@@ -11,13 +11,13 @@
 
 #include <am_inc.h>
 
-#include INITIALIZER__H
+#include <amulet/initializer.h>
 #include <amulet/impl/types_string.h>
 #include <amulet/impl/am_font.h>
 #include <amulet/impl/opal_impl.h>
 #include <amulet/impl/opal_misc.h>
 #include <amulet/impl/opal_op.h>
-#include FORMULA__H
+#include <amulet/formula.h>
 
 inline int
 imin(int i1, int i2)

@@ -11,7 +11,7 @@
 // Alan Ferrency 12-13-95
 
 #include <am_inc.h>
-#include WIDGETS_ADVANCED__H
+#include <amulet/widgets_advanced.h>
 
 #include <amulet.h>
 

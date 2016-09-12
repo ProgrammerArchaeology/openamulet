@@ -12,7 +12,7 @@
 #include <stdlib.h>
 
 #include <am_inc.h>
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include <amulet/impl/types_logging.h>
 
 #include <amulet/impl/types_string.h>
@@ -21,9 +21,9 @@
 
 #include <amulet/impl/am_object.h>
 #include <amulet/impl/opal_op.h>
-#include TEXT_FNS__H
+#include <amulet/text_fns.h>
 #include <amulet/impl/inter_text.h>
-#include GDEFS__H
+#include <amulet/gdefs.h>
 
 //  Code recognizing routines
 enum Am_Code_Flag
@@ -846,7 +846,7 @@ Am_Set_Cut_Buffer_From_Text(Am_Object text)
 // Class Am_Edit_Translation_Table
 ////////////////////
 
-#include UNIV_MAP__H
+#include <amulet/univ_map.h>
 
 // custom hash table functions
 

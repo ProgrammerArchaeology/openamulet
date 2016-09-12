@@ -18,19 +18,19 @@
 #include <am_inc.h>
 #include <math.h> // for copysign() in constant_velocity_do
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 
-#include INTER_ADVANCED__H
-#include STANDARD_SLOTS__H
-#include VALUE_LIST__H
-#include OPAL_ADVANCED__H
+#include <amulet/inter_advanced.h>
+#include <amulet/standard_slots.h>
+#include <amulet/value_list.h>
+#include <amulet/opal_advanced.h>
 
-#include TYPES__H
-#include OPAL__H
-#include TEXT_FNS__H
-#include REGISTRY__H
-#include ANIM__H
-#include INITIALIZER__H
+#include <amulet/types.h>
+#include <amulet/opal.h>
+#include <amulet/text_fns.h>
+#include <amulet/registry.h>
+#include <amulet/anim.h>
+#include <amulet/initializer.h>
 
 AM_DEFINE_ENUM_SUPPORT(
     Am_Animation_End_Action,

@@ -22,7 +22,7 @@
 #include <amulet/impl/opal_constraints.h>
 #include <amulet/impl/inter_undo.h>
 #include <amulet/impl/am_inter_location.h>
-#include ANIM__H // for scrollbar animation
+#include <amulet/anim.h> // for scrollbar animation
 
 // we need this image array to draw the background pattern of mac scroll bars
 

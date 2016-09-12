@@ -1,5 +1,5 @@
 #include <am_inc.h>
-#include INITIALIZER__H
+#include <amulet/initializer.h>
 #include <amulet/impl/types_logging.h>
 #include <amulet/impl/am_object.h>
 #include <amulet/impl/inter_commands.h>

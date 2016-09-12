@@ -14,7 +14,7 @@
 #include <am_inc.h>
 
 #ifdef DEBUG
-#include DEBUGGER__H
+#include <amulet/debugger.h>
 #endif
 
 // only include the initializer call to inspector if we use a debug-version of OA
@@ -23,7 +23,7 @@
 // move this code to an other place!! If so the inspector code won't be
 // linked in
 #ifdef INCLUDE_INSPECTOR
-#include INITIALIZER__H
+#include <amulet/initializer.h>
 #ifdef _MSC_VER
 #pragma message("Adding Inspector Code")
 #endif
@@ -31,8 +31,8 @@ static Am_Initializer *inspector_init = new Am_Initializer(
     "Inspector", Am_Initialize_Inspector, 8.0f, 116, Am_Cleanup_Inspector);
 #endif
 
-#include AM_IO__H
-#include MISC__H // Am_Get_Amulet_Pathname
+#include <amulet/am_io.h>
+#include <amulet/misc.h> // Am_Get_Amulet_Pathname
 
 #include <amulet/impl/types_logging.h>
 #include <amulet/impl/types_method.h>
@@ -48,12 +48,12 @@ static Am_Initializer *inspector_init = new Am_Initializer(
 #include <amulet/impl/opal_misc.h>
 #include <amulet/impl/opal_methods.h>
 #include <amulet/impl/method_item.h>
-#include VALUE_LIST__H
+#include <amulet/value_list.h>
 
-#include FORMULA__H
-//#include OPAL__H
-#include REGISTRY__H
-#include INITIALIZER__H
+#include <amulet/formula.h>
+//#include <amulet/opal.h>
+#include <amulet/registry.h>
+#include <amulet/initializer.h>
 #include "amulet/opal_inlines.h"
 
 //

@@ -1,9 +1,9 @@
 #include <am_inc.h>
 
-#include STANDARD_SLOTS__H
+#include <amulet/standard_slots.h>
 
-#include OPAL__H
-#include INTER__H
+#include <amulet/opal.h>
+#include <amulet/inter.h>
 
 using namespace std;
 

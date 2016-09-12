@@ -20,12 +20,12 @@
 class Am_Input_Event;
 
 #ifdef DEBUG
-#include REGISTRY__H //used for Am_Get_Type_Name to print a warning
+#include <amulet/registry.h> //used for Am_Get_Type_Name to print a warning
 #endif
 
 //generate a string from the label if the command if not a string
 //or object
-#include STR_STREAM__H
+#include <amulet/am_strstream.h>
 
 Am_Object Am_Menu_In_Scrolling_Menu;
 

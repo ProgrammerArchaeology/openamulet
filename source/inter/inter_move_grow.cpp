@@ -15,16 +15,16 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include <amulet/impl/inter_all.h>
 #include <amulet/impl/am_inter_location.h>
 #include <amulet/impl/opal_op.h>
 #include <amulet/impl/opal_objects.h>
 
-#include VALUE_LIST__H
-#include FORMULA__H
+#include <amulet/value_list.h>
+#include <amulet/formula.h>
 
-#include INITIALIZER__H
+#include <amulet/initializer.h>
 
 #include <math.h> // needed for sqrt for min-length of lines
 //math.h is in /usr/local/lib/gcc-lib/hppa1.1-hp-hpux/2.6.0/include/

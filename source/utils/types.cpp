@@ -14,24 +14,24 @@
 #include <string.h>
 
 #include <am_inc.h>
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include <amulet/impl/types_logging.h>
 #include <amulet/impl/types_basic.h>
 #include <amulet/impl/types_type_support.h>
-#include AM_VALUE__H
-#include MISC__H
+#include <amulet/am_value.hpp>
+#include <amulet/misc.h>
 #ifdef DEBUG
-#include REGISTRY__H
+#include <amulet/registry.h>
 #endif
 
 #ifdef OA_VERSION
 #include <amulet/univ_map_oa.hpp>
 #else
-#include UNIV_MAP__H
+#include <amulet/univ_map.h>
 #endif
 
 //for printout of values as a string for Am_Get_Name(Am_Value v)
-#include STR_STREAM__H
+#include <amulet/am_strstream.h>
 
 void
 Am_Null_Method_Error_Proc(...)

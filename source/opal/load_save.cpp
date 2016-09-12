@@ -21,8 +21,8 @@
 #include <amulet/impl/opal_load_save.h>
 #include <amulet/impl/slots.h>
 #include <amulet/impl/object_misc.h>
-#include VALUE_LIST__H
-#include INITIALIZER__H
+#include <amulet/value_list.h>
+#include <amulet/initializer.h>
 
 #if 1
 ///////////////////////////////////

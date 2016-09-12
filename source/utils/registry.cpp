@@ -5,9 +5,9 @@
 
 #include <am_inc.h>
 
-#include REGISTRY__H // for registry stuff.
-#include TYPES__H    // for wrappers
-#include INITIALIZER__H
+#include <amulet/registry.h> // for registry stuff.
+#include <amulet/types.h>    // for wrappers
+#include <amulet/initializer.h>
 
 #include <amulet/univ_map_oa.hpp>
 
@@ -25,7 +25,7 @@ typedef OpenAmulet::Map_Int2Str Am_Map_Int2Str;
 typedef OpenAmulet::Map_Ptr2Int Am_Map_Ptr2Int;
 typedef OpenAmulet::Map_Str2Int Am_Map_Str2Int;
 #else
-#include UNIV_MAP__H
+#include <amulet/univ_map.h>
 
 // Map (hash table) int -> void*
 AM_DECL_MAP(Int2Ptr, int, void *)
@@ -323,8 +323,8 @@ Am_Get_Type_Name(Am_ID_Tag id)
 // Provide stubs for the above
 
 #include <am_inc.h>
-#include REGISTRY__H // for registry stuff.
-#include TYPES__H    // for wrappers
+#include <amulet/registry.h> // for registry stuff.
+#include <amulet/types.h>    // for wrappers
 
 #undef Am_Get_Name_Of_Item
 

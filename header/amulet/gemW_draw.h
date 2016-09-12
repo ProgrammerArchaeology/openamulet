@@ -3,7 +3,7 @@
 
 #include <am_inc.h>
 
-//#include GEM__H
+//#include <amulet/gem.h>
 #include "amulet/impl/gem_event_handlers.h"
 #include "amulet/impl/am_time.h"
 #include "amulet/impl/am_font.h"
@@ -17,7 +17,7 @@ typedef OpenAmulet::Map<HWND, void *> Am_Map_HModule2Ptr;
 typedef OpenAmulet::Map_Iterator<Am_Map_HModule2Ptr>
     Am_Map_HModule2Ptr_Iterator;
 #else
-#include UNIV_MAP__H
+#include <amulet/univ_map.h>
 #endif
 
 //#pragma pack()

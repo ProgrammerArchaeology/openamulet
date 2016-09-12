@@ -18,31 +18,29 @@
 #endif
 
 // include most of the stuff everyone will need
-#include TYPEDEFS__HPP
-#include AM_IO__H
-#include AM_VALUE__H
-#include TYPES__H
+#include <amulet/typedefs.hpp>
+#include <amulet/am_io.h>
+#include <amulet/am_value.hpp>
+#include <amulet/types.h>
 
-#include VALUE_LIST__H
-#include STANDARD_SLOTS__H
+#include <amulet/value_list.h>
+#include <amulet/standard_slots.h>
 
-#include GDEFS__H
-#include IDEFS__H
-#include OPAL__H
-#include INTER__H
-#include WIDGETS__H
-#include GESTURE__H
-#include ANIM__H
-#include MISC__H
-#include INITIALIZER__H
+#include <amulet/gdefs.h>
+#include <amulet/idefs.h>
+#include <amulet/opal.h>
+#include <amulet/inter.h>
+#include <amulet/widgets.h>
+#include <amulet/gesture.h>
+#include <amulet/anim.h>
+#include <amulet/misc.h>
+#include <amulet/initializer.h>
 
-#ifdef AMULET_NETWORKS
-#include NETWORK__H
-#endif
+#include <amulet/network.h>
 
 // in debug mode we want to use the inspector
 #ifdef DEBUG
-#include DEBUGGER__H
+#include <amulet/debugger.h>
 #endif
 
 #endif // AMULET_H

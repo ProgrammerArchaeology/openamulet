@@ -13,9 +13,7 @@
 #ifndef AM_WRAPPER_HPP
 #define AM_WRAPPER_HPP
 
-#ifndef REGISTERED_TYPE_HPP
-#include REGISTERED_TYPE__HPP
-#endif
+#include <amulet/registered_type.hpp>
 
 // The Am_Wrapper class. Objects of this type can be directly stored in an
 // OpenAmulet object slot.	The class implements the reference-counting feature

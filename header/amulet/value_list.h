@@ -12,7 +12,7 @@
 #define VALUE_LIST_H
 
 #include <am_inc.h>
-#include AM_VALUE__H
+#include <amulet/am_value.hpp>
 #include "amulet/impl/types_logging.h"
 #include "amulet/impl/types_wrapper.h"
 #include "amulet/impl/types_misc.h"

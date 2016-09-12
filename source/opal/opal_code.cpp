@@ -12,7 +12,7 @@
 // Some common Opal functions, methods, constraints
 
 #include <am_inc.h>
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include <amulet/impl/types_logging.h>
 
 #include <amulet/impl/types_method.h>
@@ -26,10 +26,10 @@
 #include <amulet/impl/opal_op.h>
 #include <amulet/impl/opal_misc.h>
 #include <amulet/opal_intnl.h>
-#include FORMULA__H
+#include <amulet/formula.h>
 
-//#include OPAL__H
-//#include OPAL_ADVANCED__H
+//#include <amulet/opal.h>
+//#include <amulet/opal_advanced.h>
 
 const char *
 Am_Check_Int_Type(const Am_Value &value)

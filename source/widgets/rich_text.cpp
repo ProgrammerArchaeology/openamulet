@@ -22,10 +22,10 @@
 #include <am_inc.h>
 #include <ctype.h>
 
-#include RICH_TEXT__H
-#include OPAL_ADVANCED__H
-#include STANDARD_SLOTS__H
-#include INITIALIZER__H
+#include <amulet/rich_text.h>
+#include <amulet/opal_advanced.h>
+#include <amulet/standard_slots.h>
+#include <amulet/initializer.h>
 
 // ???? why is something like this not defined already ????
 #define max(x, y) ((x) > (y) ? (x) : (y))

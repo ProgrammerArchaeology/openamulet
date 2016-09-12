@@ -20,16 +20,16 @@
 
 #include <am_inc.h>
 
-#include TYPES__H          // to get the Value object
-#include GDEFS__H          // constants and definitions for graphics
-#include IDEFS__H          // constants and definitions for input
-#include INTER__H          // supports multiple users
-#include STANDARD_SLOTS__H // supports multiple users
+#include <amulet/types.h>          // to get the Value object
+#include <amulet/gdefs.h>          // constants and definitions for graphics
+#include <amulet/idefs.h>  // constants and definitions for input
+#include <amulet/inter.h>          // supports multiple users
+#include <amulet/standard_slots.h> // supports multiple users
 
 #ifdef OA_VERSION
 #include <amulet/univ_map_oa.hpp>
 #else
-#include UNIV_MAP__H // for decl_map int2int
+#include <amulet/univ_map.h> // for decl_map int2int
 #endif
 
 class Am_Drawonable;

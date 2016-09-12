@@ -9,7 +9,7 @@
 
 #include <amulet.h>
 
-#include OPAL_ADVANCED__H
+#include <amulet/opal_advanced.h>
 
 Am_Define_Method(Am_Where_Method, Am_Object, Rect_In_Part,
                  (Am_Object inter, Am_Object /* object */,

@@ -13,9 +13,9 @@
 
 #include <am_inc.h>
 
-#include VALUE_LIST__H
-#include PRIORITY_LIST__H // to get Am_Priority_List type
-#include FORMULA__H
+#include <amulet/value_list.h>
+#include <amulet/priority_list.h> // to get Am_Priority_List type
+#include <amulet/formula.h>
 #include <amulet/impl/types_string.h>
 #include <amulet/impl/types_method.h>
 #include <amulet/impl/gem_event_handlers.h>

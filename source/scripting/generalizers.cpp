@@ -13,15 +13,15 @@
 */
 
 #include <am_inc.h>
-#include AM_IO__H
+#include <amulet/am_io.h>
 
-#include STANDARD_SLOTS__H
-#include VALUE_LIST__H
-#include SCRIPTING_ADVANCED__H
-#include STR_STREAM__H
-#include SCRIPTING__H
+#include <amulet/standard_slots.h>
+#include <amulet/value_list.h>
+#include <amulet/scripting_advanced.h>
+#include <amulet/am_strstream.h>
+#include <amulet/scripting.h>
 
-#include OPAL_ADVANCED__H //for Am_Beep_Happened
+#include <amulet/opal_advanced.h> //for Am_Beep_Happened
 
 #include <amulet/impl/widget_misc.h>
 

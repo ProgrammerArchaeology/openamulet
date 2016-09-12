@@ -16,7 +16,7 @@
 #define SCRIPTING_H
 
 #include <am_inc.h>
-#include TYPES__H
+#include <amulet/types.h>
 
 //lets scripting know about a palette.  If the slot_or_type is a type,
 //then the palette is used for all values of that type.  For example,

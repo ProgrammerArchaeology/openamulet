@@ -12,8 +12,8 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
-#include UNIV_MAP__H
+#include <amulet/am_io.h>
+#include <amulet/univ_map.h>
 
 using namespace std;
 
@@ -77,7 +77,7 @@ main()
   return 0;
 }
 
-#include SYMBOL_TABLE__H
+#include <amulet/symbol_table.h>
 void
 test_symbol_table()
 {

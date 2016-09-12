@@ -15,26 +15,26 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 
-#include STANDARD_SLOTS__H
-#include VALUE_LIST__H
-#include UNDO_DIALOG__H
-#include WIDGETS_ADVANCED__H //for accelerator registering
-#include INTER_ADVANCED__H   //for Am_Modify_Command_Label_Name
+#include <amulet/standard_slots.h>
+#include <amulet/value_list.h>
+#include <amulet/undo_dialog.h>
+#include <amulet/widgets_advanced.h> //for accelerator registering
+#include <amulet/inter_advanced.h>   //for Am_Modify_Command_Label_Name
 
-#include STR_STREAM__H
+#include <amulet/am_strstream.h>
 
-#include WIDGETS__H
-#include INTER__H
-#include OPAL__H
-#include DEBUGGER__H
-#include INITIALIZER__H
+#include <amulet/widgets.h>
+#include <amulet/inter.h>
+#include <amulet/opal.h>
+#include <amulet/debugger.h>
+#include <amulet/initializer.h>
 
-#include OPAL_ADVANCED__H //for Am_Update_All during scripts
+#include <amulet/opal_advanced.h> //for Am_Update_All during scripts
 
-#include SCRIPTING_ADVANCED__H
-#include SCRIPTING__H
+#include <amulet/scripting_advanced.h>
+#include <amulet/scripting.h>
 
 Am_Object Am_Undo_Dialog_Box;
 Am_Object Am_Execute_Script_Command;

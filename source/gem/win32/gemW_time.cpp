@@ -13,7 +13,7 @@
 #include <mmsystem.h>
 #include <am_inc.h>
 #include <time.h>
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include <amulet/impl/types_logging.h>
 #include <amulet/impl/types_string.h>
 #include <amulet/impl/types_wrapper.h>

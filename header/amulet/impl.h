@@ -12,7 +12,7 @@
 #define IMPL_H
 
 #include <am_inc.h>
-//#include OBJECT_ADVANCED__H
+//#include <amulet/object_advanced.h>
 
 #include "amulet/impl/am_object_advanced.h"
 #include "amulet/impl/am_demon_queue.h"
@@ -20,7 +20,7 @@
 //#include "amulet/impl/object_constr.h"
 #include "amulet/impl/am_constraint_context.h"
 
-#include DYNARRAY__H
+#include <amulet/dynarray.h>
 
 // disable a VC++ 6 warning about operator new/delete for QItem
 #pragma warning(disable : 4291)

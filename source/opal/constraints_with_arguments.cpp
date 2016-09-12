@@ -15,7 +15,7 @@
 #include <amulet/impl/am_object_advanced.h>
 #include <amulet/impl/am_constraint_context.h>
 #include <amulet/impl/slots.h>
-#include FORMULA__H
+#include <amulet/formula.h>
 #include <amulet/impl/opal_constraints.h>
 
 #if 1

@@ -16,7 +16,7 @@
 #include <am_inc.h>
 
 #include "amulet/impl/types_pointer.h"
-#include OBJECT__H
+#include <amulet/object.h>
 
 class Am_Priority_List_Item
 {

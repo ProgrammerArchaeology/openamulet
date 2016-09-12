@@ -22,13 +22,13 @@
 
 #include <am_inc.h>
 
-#include WIDGETS__H
-//#include GEM__H
-//#include TYPES__H
+#include <amulet/widgets.h>
+//#include <amulet/gem.h>
+//#include <amulet/types.h>
 
-#include WEB__H
+#include <amulet/web.h>
 
-#include VALUE_LIST__H
+#include <amulet/value_list.h>
 
 extern void Am_Widgets_Initialize();
 

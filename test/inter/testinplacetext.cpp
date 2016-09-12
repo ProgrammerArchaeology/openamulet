@@ -8,12 +8,12 @@
  * ************************************************************************/
 
 #include <am_inc.h>
-#include INTER_ADVANCED__H
-#include TEXT_FNS__H
+#include <amulet/inter_advanced.h>
+#include <amulet/text_fns.h>
 
-#include WIDGETS_ADVANCED__H
-#include OPAL_ADVANCED__H
-#include GEM__H
+#include <amulet/widgets_advanced.h>
+#include <amulet/opal_advanced.h>
+#include <amulet/gem.h>
 
 #include <amulet.h>
 

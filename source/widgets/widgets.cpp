@@ -14,7 +14,7 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include <amulet/impl/opal_obj2.h>
 #include <amulet/impl/style2motif.h>
 #include <amulet/impl/widget_op.h>

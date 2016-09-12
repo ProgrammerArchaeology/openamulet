@@ -13,15 +13,15 @@ extern int always_propagate;
 
 #include <am_inc.h>
 
-#include FORMULA_ADVANCED__H
-#include STANDARD_SLOTS__H
+#include <amulet/formula_advanced.h>
+#include <amulet/standard_slots.h>
 
-#include FORMULA__H
-#include STDVALUE__H
-#include REGISTRY__H
+#include <amulet/formula.h>
+#include <amulet/stdvalue.h>
+#include <amulet/registry.h>
 
 #ifdef MEMORY
-#include DYNARRAY__H
+#include <amulet/dynarray.h>
 #endif
 
 typedef union

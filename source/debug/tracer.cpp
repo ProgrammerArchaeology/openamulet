@@ -18,13 +18,13 @@
 
 #include <am_inc.h>
 
-#include OBJECT__H
-#include DEBUGGER__H
-#include VALUE_LIST__H
-#include OBJECT_ADVANCED__H
-#include STANDARD_SLOTS__H
-#include STR_STREAM__H
-#include MISC__H
+#include <amulet/object.h>
+#include <amulet/debugger.h>
+#include <amulet/value_list.h>
+#include <amulet/object_advanced.h>
+#include <amulet/standard_slots.h>
+#include <amulet/am_strstream.h>
+#include <amulet/misc.h>
 
 class Am_Slot_Tracer
 {

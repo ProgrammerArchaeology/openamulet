@@ -15,17 +15,17 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 
-#include INTER_ADVANCED__H
-#include STANDARD_SLOTS__H
-#include OBJECT_ADVANCED__H // for Am_Slot_Advanced for demons
+#include <amulet/inter_advanced.h>
+#include <amulet/standard_slots.h>
+#include <amulet/object_advanced.h> // for Am_Slot_Advanced for demons
 #include <math.h>           // needed for sqrt for min-length of lines
 //math.h is in /usr/local/lib/gcc-lib/hppa1.1-hp-hpux/2.6.0/include/
 
-#include OPAL__H // needed for translate_coordinates
-#include REGISTRY__H
-#include INITIALIZER__H
+#include <amulet/opal.h> // needed for translate_coordinates
+#include <amulet/registry.h>
+#include <amulet/initializer.h>
 
 //////////////////////////////////////////////////////////////////
 /// Helper functions

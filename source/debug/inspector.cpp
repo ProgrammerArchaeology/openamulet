@@ -20,32 +20,32 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include AM_IO__H
-#include STR_STREAM__H
+#include <amulet/am_io.h>
+#include <amulet/am_strstream.h>
 
-#include OPAL__H
-#include INTER__H
-#include TYPES__H
-#include DEBUGGER__H
-#include MISC__H
-#include REGISTRY__H
+#include <amulet/opal.h>>
+#include <amulet/inter.h>
+#include <amulet/types.h>
+#include <amulet/debugger.h>
+#include <amulet/misc.h>
+#include <amulet/registry.h>
 
 #ifdef INSPECTOR_USE_WIDGETS
-#include WIDGETS__H
+#include <amulet/widgets.h>
 #endif
 
-#include STANDARD_SLOTS__H
-#include OBJECT_ADVANCED__H // for Am_Constraint_Iterator, Am_Set_Reason
-#include VALUE_LIST__H      // for Am_Value_List type
-#include FORMULA_ADVANCED__H
-#include OPAL_ADVANCED__H  // for Am_DRAWONABLE
-#include INTER_ADVANCED__H // for Am_Modal_Windows
+#include <amulet/standard_slots.h>
+#include <amulet/object_advanced.h> // for Am_Constraint_Iterator, Am_Set_Reason
+#include <amulet/value_list.h>     // for Am_Value_List type
+#include <amulet/formula_advanced.h>
+#include <amulet/opal_advanced.h>  // for Am_DRAWONABLE
+#include <amulet/inter_advanced.h> // for Am_Modal_Windows
 
-#include TEXT_FNS__H // for Am_Set_Cut_Buffer
-#include GEM__H      // for gem level drawing, drawonables.
+#include <amulet/text_fns.h> // for Am_Set_Cut_Buffer
+#include <amulet/gem.h>      // for gem level drawing, drawonables.
 
-#include ANIM__H // for animators
-#include INITIALIZER__H
+#include <amulet/anim.h> // for animators
+#include <amulet/initializer._h>
 
 #define MAX_WIDTH_WINDOW 500
 #define MAX_WIDTH_LIST 350 // max width of a list before new-line

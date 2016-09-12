@@ -4,7 +4,7 @@
 #define NET_BIT 0x0040
 
 #include <am_inc.h>
-#include CONNECTION__H
+#include <amulet/connection.h>
 
 class Am_Network_Group
 {

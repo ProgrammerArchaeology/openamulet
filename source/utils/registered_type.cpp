@@ -17,10 +17,10 @@
 
 // only in debug mode we need the registry features
 #ifdef DEBUG
-#include REGISTRY__H
+#include <amulet/registry.h>
 #else
 //	#ifndef REGISTERED_TYPE_HPP
-//		#include REGISTERED_TYPE__HPP
+//		#include <amulet/registered_type.hpp>
 //	#endif
 #endif
 

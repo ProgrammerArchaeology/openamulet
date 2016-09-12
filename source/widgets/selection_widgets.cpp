@@ -14,8 +14,8 @@
 
 #include <am_inc.h>
 
-#include ANIM__H // for Am_NO_ANIMATION
-#include INITIALIZER__H
+#include <amulet/anim.h> // for Am_NO_ANIMATION
+#include <amulet/initializer.h>
 #include <amulet/impl/opal_obj2.h>
 #include <amulet/impl/widget_scroll.h>
 #include <amulet/impl/method_timer.h>

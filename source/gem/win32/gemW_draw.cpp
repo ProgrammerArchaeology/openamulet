@@ -18,8 +18,8 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
-//#include GEM__H
+#include <amulet/am_io.h>
+//#include <amulet/gem.h>
 #include <amulet/impl/am_drawonable.h>
 #include <amulet/impl/am_region.h>
 #include <amulet/impl/am_point_list.h>
@@ -47,7 +47,7 @@
 #ifdef OA_VERSION
 #include <amulet/univ_map_oa.hpp>
 #else
-#include UNIV_MAP__H
+#include <amulet/univ_map.h>
 #endif
 
 // Main loop procedure.  Handles all input.  Call this after set

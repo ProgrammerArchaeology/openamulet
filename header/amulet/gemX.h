@@ -49,11 +49,11 @@
 
 #include <am_inc.h>
 
-#include TYPES__H // to get the Value object
-#include GDEFS__H // constants and definitions for graphics
-#include IDEFS__H // constants and definitions for input
-#include GEM__H
-#include GEM_IMAGE__H
+#include <amulet/types.h> // to get the Value object
+#include <amulet/gdefs.h> // constants and definitions for graphics
+#include <amulet/idefs.h> // constants and definitions for input
+#include <amulet/gem.h>
+#include <amulet/gem_image.h>
 
 // // // // // // // // // // // // // // // // // // // // // // // // // //
 // Utility functions and definitions

@@ -21,8 +21,8 @@
 #include "amulet/impl/types_method.h" // basic object definitions
 #include "amulet/impl/types_enum.h"   // basic object definitions
 #include "amulet/impl/am_object.h"    // basic object definitions
-#include IDEFS__H                     // Am_Input_Char
-#include FORMULA__H
+#include <amulet/idefs.h>             // Am_Input_Char
+#include <amulet/formula.h>
 
 //Global variable controlling the number of pixels that the mouse has
 //to move before it is considered a DRAG event (like "LEFT_DRAG").

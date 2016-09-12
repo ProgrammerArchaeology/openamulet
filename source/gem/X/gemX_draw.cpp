@@ -21,9 +21,9 @@
 #include <string.h> // TODO: Check this header name
 #include <am_inc.h>
 
-#include GDEFS__H
-#include GEM__H
-#include GEMX__H
+#include <amulet/gdefs.h>
+#include <amulet/gem.h>
+#include <amulet/gemX.h>
 
 // Install default values in the Am_DASH_LIST variables (declared in gdefs.h)
 //

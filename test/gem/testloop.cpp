@@ -24,7 +24,7 @@
 
 #include <am_inc.h>
 
-#include GEM__H
+#include <amulet/gem.h>
 
 #define TESTLOOP_D1_LEFT 850
 

@@ -13,8 +13,8 @@
 
 #include <am_inc.h>
 
-#include GEM__H
-#include UNIV_MAP__H
+#include <amulet/gem.h>
+#include <amulet/univ_map.h>
 #include <gemM.h>
 
 // // // // // // // // // // // // // // // // // // // // // // // // // //

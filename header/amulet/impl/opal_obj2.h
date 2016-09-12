@@ -16,6 +16,6 @@
 #include "amulet/impl/inter_methods.h"
 #include "amulet/impl/inter_debug.h"
 #include "amulet/impl/inter_op.h"
-#include IDEFS__H
+#include <amulet/idefs.h>
 
-#include VALUE_LIST__H
+#include <amulet/value_list.h>

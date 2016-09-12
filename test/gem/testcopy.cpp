@@ -9,7 +9,7 @@
 
 #include <am_inc.h>
 
-#include GEM__H
+#include <amulet/gem.h>
 #include <stdlib.h>
 
 Am_Drawonable *root, *d1, *d2, *d3, *d4;

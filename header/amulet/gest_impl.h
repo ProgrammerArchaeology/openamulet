@@ -17,9 +17,9 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include "amulet/impl/types_string.h" // for Am_String
-#include GESTURE__H
+#include <amulet/gesture.h>
 
 #include "gest_matrix.h"
 

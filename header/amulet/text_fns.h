@@ -13,11 +13,11 @@
 
 #include <am_inc.h>
 
-#include GDEFS__H
+#include <amulet/gdefs.h>
 #include "amulet/impl/am_object.h"
-#include IDEFS__H
+#include <amulet/idefs.h>
 #include "amulet/impl/inter_text.h"
-#include TYPEDEFS__HPP
+#include <amulet/typedefs.hpp>
 
 // *************************************************
 // Functions for editing text and moving the cursor

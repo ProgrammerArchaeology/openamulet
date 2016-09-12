@@ -14,7 +14,7 @@
 
 #include <am_inc.h>
 
-#include GEM__H
+#include <amulet/gem.h>
 
 extern Am_Style Am_Red, Am_Green, Am_Blue, Am_White, Am_Orange, Am_Orchid,
     Am_Purple, Am_Grey, Am_Plum, Am_Yellow;

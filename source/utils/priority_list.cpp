@@ -13,8 +13,7 @@
 
 #include <am_inc.h>
 
-#include PRIORITY_LIST__H
-#include PRIORITY_LIST__H
+#include <amulet/priority_list.h>
 
 void
 Am_Priority_List::insert_item_at_right_place(Am_Priority_List_Item *item)

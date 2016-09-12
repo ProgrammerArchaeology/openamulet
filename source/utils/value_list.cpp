@@ -11,11 +11,11 @@
 
 #include <am_inc.h>
 
-#include AM_IO__H
+#include <amulet/am_io.h>
 
-#include VALUE_LIST__H
+#include <amulet/value_list.h>
 
-#include STDVALUE__H
+#include <amulet/stdvalue.h>
 
 class Am_List_Item : public Am_Value
 {

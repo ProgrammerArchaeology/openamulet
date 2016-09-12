@@ -2,7 +2,7 @@
 #define TYPES_REGISTERED_H
 
 #include <am_inc.h>
-#include AM_VALUE__H
+#include <amulet/am_value.hpp>
 
 // The Am_Registered_Type class.  Classes derived from this type have runtime
 // type ID's, and pointers to them can be registered in the name registry.

@@ -1,7 +1,7 @@
 /***************************************************************/
 #include <amulet.h>
 #include <am_inc.h>
-#include TYPES__H
+#include <amulet/types.h>
 
 AM_DECL_MAP(objstr, Am_Object, Am_String);
 AM_DECL_MAP(objpstr, Am_Object *, Am_String);

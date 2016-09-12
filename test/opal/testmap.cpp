@@ -1,11 +1,11 @@
 #include <am_inc.h>
 
-#include OPAL__H
-#include OPAL_ADVANCED__H
+#include <amulet/opal.h>
+#include <amulet/opal_advanced.h>
 
-#include STANDARD_SLOTS__H
-#include INTER__H
-#include VALUE_LIST__H
+#include <amulet/standard_slots.h>
+#include <amulet/inter.h>
+#include <amulet/value_list.h>
 
 using namespace std;
 

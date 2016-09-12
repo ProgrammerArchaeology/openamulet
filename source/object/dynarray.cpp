@@ -10,8 +10,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define DYNARRAY__H <amulet/dynarray.h>
-#include DYNARRAY__H
+#include <amulet/dynarray.h>
 
 DynArray::DynArray(unsigned in_elem_size)
     : elem_size(in_elem_size), data_size(1), length(0)

@@ -1,5 +1,5 @@
 #ifndef OA_VERSION
-#include UNIV_MAP__H
+#include <amulet/univ_map.h>
 #else
 #include <amulet/univ_map_oa.hpp>
 #endif

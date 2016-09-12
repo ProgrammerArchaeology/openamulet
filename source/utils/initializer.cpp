@@ -32,7 +32,7 @@
 // system include files
 //-------------------------------------------------------------
 #include <am_inc.h>
-#include INITIALIZER__H
+#include <amulet/initializer.h>
 #include <amulet/impl/types_logging.h> // for DERR
 
 //-------------------------------------------------------------

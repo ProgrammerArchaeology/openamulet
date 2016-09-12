@@ -17,18 +17,18 @@
 #include <string.h>
 
 #include <am_inc.h>
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include <amulet/impl/types_logging.h>
 #include <amulet/impl/types_string.h>
 #include <amulet/impl/types_method.h>
 
-#include INTER_ADVANCED__H
+#include <amulet/inter_advanced.h>
 #include <amulet/impl/am_object.h>
 #include <amulet/impl/inter_commands.h>
 //#include <amulet/impl/inter_undo.h>
 #include <amulet/impl/slots.h>
-#include VALUE_LIST__H
-//#include FORMULA__H
+#include <amulet/value_list.h>
+//#include <amulet/formula.h>
 #include <amulet/impl/opal_misc.h>
 #include <amulet/impl/opal_op.h>
 //#include <amulet/impl/opal_objects.h>

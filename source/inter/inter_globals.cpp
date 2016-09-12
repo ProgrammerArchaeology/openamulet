@@ -1,6 +1,6 @@
 #include <am_inc.h>
 
-#include OBJECT__H
+#include <amulet/object.h>
 
 class Am_Input_Event;
 

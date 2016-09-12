@@ -2,10 +2,10 @@
 #define OBJECT_MISC_H
 
 #include <am_inc.h>
-#include AM_IO__H
+#include <amulet/am_io.h>
 #include "types_method.h"
 #include "types_logging.h"
-#include AM_VALUE__H
+#include <amulet/am_value.hpp>
 
 #include "method_object.h"
 

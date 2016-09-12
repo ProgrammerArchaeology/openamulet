@@ -10,8 +10,8 @@
 #include <am_inc.h>
 
 #include <amulet.h>
-#include DEBUGGER__H
-#include OPAL_ADVANCED__H
+#include <amulet/debugger.h>
+#include <amulet/opal_advanced.h>
 
 #include <string.h> //memcpy
 

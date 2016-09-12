@@ -12,8 +12,8 @@
 
 #include <am_inc.h>
 
-#include GDEFS__H
-#include GEM__H
+#include <amulet/gdefs.h>
+#include <amulet/gem.h>
 #include <gemM.h>
 
 // // // // // // // // // // // // // // // // // // // //

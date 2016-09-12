@@ -8,8 +8,8 @@
  * ************************************************************************/
 
 #include <am_inc.h>
-#include TYPES__H
-#include GEM__H
+#include <amulet/types.h>
+#include <amulet/gem.h>
 
 #include "amulet/gemX_time.h"
 #include <sys/time.h>

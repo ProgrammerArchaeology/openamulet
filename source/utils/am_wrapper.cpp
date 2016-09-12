@@ -14,7 +14,7 @@
 
 // only in debug mode we need the registry features
 #ifdef DEBUG
-#include REGISTRY__H
+#include <amulet/registry.h>
 #endif
 
 //the default looks up the name, and if found, returns it.  Otherwise,

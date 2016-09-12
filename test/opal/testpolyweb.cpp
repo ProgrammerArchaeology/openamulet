@@ -9,12 +9,12 @@
 
 #include <am_inc.h>
 
-#include STANDARD_SLOTS__H
+#include <amulet/standard_slots.h>
 
-#include OPAL__H
-#include OPAL_ADVANCED__H
-#include INTER__H
-#include DEBUGGER__H
+#include <amulet/opal.h>
+#include <amulet/opal_advanced.h>
+#include <amulet/inter.h>
+#include <amulet/debugger.h>
 
 #include <math.h>
 #include <stdlib.h>
