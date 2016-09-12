@@ -1,0 +1,180 @@
+PROJECT(openamulet CXX)
+
+ADD_DEFINITIONS(-DOA_BUILD)
+
+SET(openamulet_SOURCES
+    anim/anim_animators.cpp
+    anim/anim_constraint.cpp
+    anim/anim_interactor.cpp
+    gem/gem_GIF.cpp
+    gem/gem_keytrans.cpp
+    gem/gem_points.cpp
+    gesture/gest_classifier.cpp
+    gesture/gest_features.cpp
+    gesture/gest_matrix.cpp
+    gesture/gest_trainer.cpp
+    gesture/inter_gesture.cpp
+    inter/command.cpp
+    inter/command_basics.cpp
+    inter/commands_other.cpp
+    inter/inter_basics.cpp
+    inter/inter_choice.cpp
+    inter/inter_globals.cpp
+    inter/inter_location.cpp
+    inter/inter_move_grow.cpp
+    inter/inter_new_points.cpp
+    inter/inter_text.cpp
+    inter/multiple_undo.cpp
+    inter/single_undo.cpp
+    inter/undo_handler.cpp
+    inter/user_id.cpp
+    net/connection.cpp
+    net/network.cpp
+    object/dynarray.cpp
+    object/dynmm.cpp
+    object/formula.cpp
+    object/object.cpp
+    object/object_data.cpp
+    object/web.cpp
+    opal/color_conversion.cpp
+    opal/constraints.cpp
+    opal/constraints_alignment.cpp
+    opal/constraints_with_arguments.cpp
+    opal/event_timing.cpp
+    opal/load_save.cpp
+    opal/opal.cpp
+    opal/opal_code.cpp
+    opal/opal_operations.cpp
+    opal/slot_names.cpp
+    opal/state_store.cpp
+    opal/styles.cpp
+    opal/text_functions.cpp
+    opal/window_todo.cpp
+    opal/objects/aggregates.cpp
+    opal/objects/arc.cpp
+    opal/objects/arrow_line.cpp
+    opal/objects/bitmap.cpp
+    opal/objects/fade_group.cpp
+    opal/objects/flip_book_group.cpp
+    opal/objects/graphical_object.cpp
+    opal/objects/hidden_text.cpp
+    opal/objects/line.cpp
+    opal/objects/map.cpp
+    opal/objects/polygon.cpp
+    opal/objects/rectangle.cpp
+    opal/objects/resize_group.cpp
+    opal/objects/roundtangle.cpp
+    opal/objects/screen.cpp
+    opal/objects/text.cpp
+    opal/objects/window.cpp
+    scripting/askclickpos.cpp
+    scripting/askforvalue.cpp
+    scripting/askpositionandsize.cpp
+    scripting/askpositionorsize.cpp
+    scripting/askselectobj.cpp
+    scripting/generalizers.cpp
+    scripting/genval.cpp
+    scripting/invoke.cpp
+    scripting/locgen.cpp
+    scripting/objgen.cpp
+    scripting/scripting_window.cpp
+    scripting/search_window.cpp
+    scripting/undo_dialog_box.cpp
+    scripting/valgen.cpp
+    scripting/valinvokegen.cpp
+    utils/am_enum_support.cpp
+    utils/am_load_save.cpp
+    utils/am_method_wrapper.cpp
+    utils/am_string.cpp
+    utils/am_value.cpp
+    utils/am_wrapper.cpp
+    utils/filefind.cpp
+    utils/initializer.cpp
+    utils/misc.cpp
+    utils/priority_list.cpp
+    utils/registered_type.cpp
+    utils/registry.cpp
+    utils/standard_slots.cpp
+    utils/stdvalue.cpp
+    utils/symbol_table.cpp
+    utils/types.cpp
+    utils/univ_lst.cpp
+    utils/univ_map.cpp
+    utils/value_list.cpp
+    widgets/border_misc.cpp
+    widgets/button_commands.cpp
+    widgets/button_draw.cpp
+    widgets/button_widgets.cpp
+    widgets/dialog_widgets.cpp
+    widgets/editing_commands.cpp
+    widgets/listbox_widget.cpp
+    widgets/panel_code.cpp
+    widgets/rich_text.cpp
+    widgets/scroll_widgets.cpp
+    widgets/selection_widgets.cpp
+    widgets/text_widgets.cpp
+    widgets/widget_globals.cpp
+    widgets/widgets.cpp
+    widgets/widgets_code.cpp
+    widgets/objects/border_rect.cpp
+    widgets/objects/button.cpp
+    widgets/objects/button_panel.cpp
+    widgets/objects/checkbox.cpp
+    widgets/objects/checkbox_panel.cpp
+    widgets/objects/menu.cpp
+    widgets/objects/menu_bar.cpp
+    widgets/objects/menu_item.cpp
+    widgets/objects/option_button.cpp
+    widgets/objects/popup_inter.cpp
+    widgets/objects/radiobutton.cpp
+    widgets/objects/radiobutton_panel.cpp
+    widgets/objects/scrolling_group.cpp
+)
+
+IF(CMAKE_BUILD_TYPE EQUAL "Debug")
+    LIST(APPEND openamulet_SOURCES
+        debug/input_parser.cpp
+        debug/inspector.cpp
+        debug/tracer.cpp)
+ENDIF()
+
+IF (UNIX)
+    LIST(APPEND openamulet_SOURCES
+        gem/X/gemX_cursor.cpp
+        gem/X/gemX_draw.cpp
+        gem/X/gemX_image.cpp
+        gem/X/gemX_input.cpp
+        gem/X/gemX_points.cpp
+        gem/X/gemX_regions.cpp
+        gem/X/gemX_styles.cpp
+        gem/X/gemX_text.cpp
+        gem/X/gemX_time.cpp
+        gem/X/gemX_windows.cpp)
+ENDIF()
+
+IF (WIN32)
+    LIST(APPEND openamulet_SOURCES
+        gem/win32/gemW_bmpimage.cpp
+        gem/win32/gemW_clean.cpp
+        gem/win32/gemW_cursor.cpp
+        gem/win32/gemW_draw.cpp
+        gem/win32/gemW_gifimage.cpp
+        gem/win32/gemW_image.cpp
+        gem/win32/gemW_input.cpp
+        gem/win32/gemW_line.cpp
+        gem/win32/gemW_misc.cpp
+        gem/win32/gemW_points.cpp
+        gem/win32/gemW_regions.cpp
+        gem/win32/gemW_styles.cpp
+        gem/win32/gemW_text.cpp
+        gem/win32/gemW_time.cpp
+        gem/win32/gemW_winimage.cpp)
+ENDIF()
+
+ADD_LIBRARY(openamulet SHARED ${openamulet_SOURCES})
+
+IF(UNIX)
+    LINK_DIRECTORIES(${X11_LIBRARIES})
+    TARGET_LINK_LIBRARIES(openamulet ${X11_LIBRARIES})
+ENDIF()
+

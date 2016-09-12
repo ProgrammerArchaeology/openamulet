@@ -1,0 +1,11 @@
+ADD_EXECUTABLE(testdragdrop testdragdrop.cpp)
+TARGET_LINK_LIBRARIES(testdragdrop openamulet)
+
+ADD_EXECUTABLE(testrichtext testrichtext.cpp)
+TARGET_LINK_LIBRARIES(testrichtext openamulet)
+
+ADD_EXECUTABLE(testselectionwidget testselectionwidget.cpp)
+TARGET_LINK_LIBRARIES(testselectionwidget openamulet)
+
+ADD_EXECUTABLE(testwidgets testwidgets.cpp)
+TARGET_LINK_LIBRARIES(testwidgets openamulet)
