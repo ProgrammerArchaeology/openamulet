@@ -29,57 +29,57 @@ class Am_Web_Event;
 
 // The Web Events class is used to examine which slots have been
 // changed that have invalidated the web.
-class _OA_DL_CLASSIMPORT Am_Web_Events {
- public:
-  unsigned short Length ();  // Number of items in the list
-  void Start ();             // Set the list to the beginning.
-  void End ();
-  void Next ();
-  void Prev ();
-  bool Last ();
-  bool First ();
-  Am_Value& Get_Prev_Value ();
-  Am_Slot Get ();
-  bool Find_Next (Am_Slot_Key key);
-  bool Find_Prev (Am_Slot_Key key);
+class _OA_DL_CLASSIMPORT Am_Web_Events
+{
+public:
+  unsigned short Length(); // Number of items in the list
+  void Start();            // Set the list to the beginning.
+  void End();
+  void Next();
+  void Prev();
+  bool Last();
+  bool First();
+  Am_Value &Get_Prev_Value();
+  Am_Slot Get();
+  bool Find_Next(Am_Slot_Key key);
+  bool Find_Prev(Am_Slot_Key key);
 
-  Am_Web_Events (Am_Web_Data* in_data);
+  Am_Web_Events(Am_Web_Data *in_data);
 
- private:
-  Am_Web_Data* data;
-  Am_Web_Event* current;
+private:
+  Am_Web_Data *data;
+  Am_Web_Event *current;
 };
 
-class _OA_DL_CLASSIMPORT Am_Web_Init {
- public:
-  void Note_Input (Am_Object_Advanced object, Am_Slot_Key key);
-  void Note_Output (Am_Object_Advanced object, Am_Slot_Key key);
+class _OA_DL_CLASSIMPORT Am_Web_Init
+{
+public:
+  void Note_Input(Am_Object_Advanced object, Am_Slot_Key key);
+  void Note_Output(Am_Object_Advanced object, Am_Slot_Key key);
 
-  Am_Web_Init (Am_Web_Data* in_data)
-  { data = in_data; }
+  Am_Web_Init(Am_Web_Data *in_data) { data = in_data; }
 
- private:
-  Am_Web_Data* data;
+private:
+  Am_Web_Data *data;
 };
 
-typedef bool Am_Web_Create_Proc (const Am_Slot& slot);
-typedef void Am_Web_Initialize_Proc (const Am_Slot& slot,
-				     Am_Web_Init& init);
-typedef void Am_Web_Validate_Proc (Am_Web_Events& events);
+typedef bool Am_Web_Create_Proc(const Am_Slot &slot);
+typedef void Am_Web_Initialize_Proc(const Am_Slot &slot, Am_Web_Init &init);
+typedef void Am_Web_Validate_Proc(Am_Web_Events &events);
 
-class _OA_DL_CLASSIMPORT Am_Web {
- public:
-  Am_Web (Am_Web_Create_Proc* create,
-	  Am_Web_Initialize_Proc* initialize,
-	  Am_Web_Validate_Proc* validate);
-  operator Am_Constraint* ();
+class _OA_DL_CLASSIMPORT Am_Web
+{
+public:
+  Am_Web(Am_Web_Create_Proc *create, Am_Web_Initialize_Proc *initialize,
+         Am_Web_Validate_Proc *validate);
+  operator Am_Constraint *();
 
-  static Am_ID_Tag Web_ID ();
+  static Am_ID_Tag Web_ID();
 
- private:
-  Am_Web_Create_Proc* create;
-  Am_Web_Initialize_Proc* initialize;
-  Am_Web_Validate_Proc* validate;
+private:
+  Am_Web_Create_Proc *create;
+  Am_Web_Initialize_Proc *initialize;
+  Am_Web_Validate_Proc *validate;
 };
 
 #endif

@@ -21,44 +21,47 @@
 // Color name ---> RGBColor mapping
 // // // // // // // // // // // // // // // // // // // // // // // // // //
 
-static RGBColor rgb_NullValue     = { 0, 0, 0 };
+static RGBColor rgb_NullValue = {0, 0, 0};
 
-AM_DECL_MAP(Str2RGB, const char*, RGBColor)
-AM_IMPL_MAP(Str2RGB, const char*, (0L), RGBColor, rgb_NullValue);
+AM_DECL_MAP(Str2RGB, const char *, RGBColor)
+AM_IMPL_MAP(Str2RGB, const char *, (0L), RGBColor, rgb_NullValue);
 
-static Am_Map_Str2RGB*    color_map;
+static Am_Map_Str2RGB *color_map;
 
-inline RGBColor    RGB(int r, int g, int b) {
-    RGBColor    color = { ((long)r << 8) + r, ((long)g << 8) + g, ((long)b << 8) + b };
-    return color;
+inline RGBColor
+RGB(int r, int g, int b)
+{
+  RGBColor color = {((long)r << 8) + r, ((long)g << 8) + g, ((long)b << 8) + b};
+  return color;
 };
 
-void    Am_Initialize_Color_Map()
+void
+Am_Initialize_Color_Map()
 {
   static bool initialized = false;
 
   if (!initialized) {
     color_map = new Am_Map_Str2RGB;
 
-    Am_Map_Str2RGB&    map = *color_map;
+    Am_Map_Str2RGB &map = *color_map;
 
     // adapted from /usr/lib/X11/rgb.txt
-    map["white"]   = RGB( 255, 255, 255 );
-    map["black"]   = RGB(   0,   0,   0 );
-    map["red"]     = RGB( 246,  34,  23 );
-    map["green"]   = RGB(  95, 251,  23 );
-    map["blue"]    = RGB(  21,  53, 255 );
-    map["yellow"]  = RGB( 255, 252,  23 );
-    map["magenta"] = RGB( 244,  62, 255 );
-    map["cyan"]    = RGB(  87, 254, 255 );
-    map["orange"]  = RGB( 248, 122,  23 );
-    map["orchid"]  = RGB( 229, 125, 237 );
-    map["plum"]    = RGB( 185,  59, 143 );
-    map["grey"]    = RGB( 115, 110, 111 );
-    map["purple"]  = RGB( 142,  53, 239 );
-    map["beige"]   = RGB( 245, 243, 215 );
-    map["ltgray"]  = RGB( 160, 159, 157 );
-    map["dkgray"]  = RGB(  80, 80,   80 );
+    map["white"] = RGB(255, 255, 255);
+    map["black"] = RGB(0, 0, 0);
+    map["red"] = RGB(246, 34, 23);
+    map["green"] = RGB(95, 251, 23);
+    map["blue"] = RGB(21, 53, 255);
+    map["yellow"] = RGB(255, 252, 23);
+    map["magenta"] = RGB(244, 62, 255);
+    map["cyan"] = RGB(87, 254, 255);
+    map["orange"] = RGB(248, 122, 23);
+    map["orchid"] = RGB(229, 125, 237);
+    map["plum"] = RGB(185, 59, 143);
+    map["grey"] = RGB(115, 110, 111);
+    map["purple"] = RGB(142, 53, 239);
+    map["beige"] = RGB(245, 243, 215);
+    map["ltgray"] = RGB(160, 159, 157);
+    map["dkgray"] = RGB(80, 80, 80);
 
     initialized = true;
   }
@@ -68,9 +71,10 @@ void    Am_Initialize_Color_Map()
 // Styles
 // // // // // // // // // // // // // // // // // // // // // // // // // //
 
-AM_WRAPPER_IMPL (Am_Style);
+AM_WRAPPER_IMPL(Am_Style);
 
-const char* Am_Style::Get_Color_Name () const
+const char *
+Am_Style::Get_Color_Name() const
 {
   if (data)
     return data->color_name;
@@ -78,7 +82,8 @@ const char* Am_Style::Get_Color_Name () const
     return (0L);
 }
 
-void Am_Style::Get_Values (float& r, float& g, float& b) const
+void
+Am_Style::Get_Values(float &r, float &g, float &b) const
 {
   if (data) {
     r = data->red;
@@ -87,14 +92,12 @@ void Am_Style::Get_Values (float& r, float& g, float& b) const
   }
 }
 
-void Am_Style::Get_Values (short& thickness,
-               Am_Line_Cap_Style_Flag& cap,
-               Am_Join_Style_Flag& join,
-               Am_Line_Solid_Flag& line_flag,
-               const char*& dash_l, int& dash_l_length,
-               Am_Fill_Solid_Flag& fill_flag,
-               Am_Fill_Poly_Flag& poly,
-               Am_Image_Array& stipple) const
+void
+Am_Style::Get_Values(short &thickness, Am_Line_Cap_Style_Flag &cap,
+                     Am_Join_Style_Flag &join, Am_Line_Solid_Flag &line_flag,
+                     const char *&dash_l, int &dash_l_length,
+                     Am_Fill_Solid_Flag &fill_flag, Am_Fill_Poly_Flag &poly,
+                     Am_Image_Array &stipple) const
 {
   if (data) {
     thickness = data->line_thickness;
@@ -109,26 +112,24 @@ void Am_Style::Get_Values (short& thickness,
   }
 }
 
-void Am_Style::Get_Values (float& r, float& g, float& b,
-               short& thickness,
-               Am_Line_Cap_Style_Flag& cap,
-               Am_Join_Style_Flag& join,
-               Am_Line_Solid_Flag& line_flag,
-               const char*& dash_l, int& dash_l_length,
-               Am_Fill_Solid_Flag& fill_flag,
-               Am_Fill_Poly_Flag& poly,
-               Am_Image_Array& stipple) const
+void
+Am_Style::Get_Values(float &r, float &g, float &b, short &thickness,
+                     Am_Line_Cap_Style_Flag &cap, Am_Join_Style_Flag &join,
+                     Am_Line_Solid_Flag &line_flag, const char *&dash_l,
+                     int &dash_l_length, Am_Fill_Solid_Flag &fill_flag,
+                     Am_Fill_Poly_Flag &poly, Am_Image_Array &stipple) const
 {
   if (data) {
     r = data->red;
     g = data->green;
     b = data->blue;
-    Get_Values (thickness, cap, join, line_flag, dash_l, dash_l_length,
-                fill_flag, poly, stipple);
+    Get_Values(thickness, cap, join, line_flag, dash_l, dash_l_length,
+               fill_flag, poly, stipple);
   }
 }
 
-Am_Fill_Solid_Flag Am_Style::Get_Fill_Flag () const
+Am_Fill_Solid_Flag
+Am_Style::Get_Fill_Flag() const
 {
   if (data)
     return data->fill_solid;
@@ -136,7 +137,8 @@ Am_Fill_Solid_Flag Am_Style::Get_Fill_Flag () const
     return Am_FILL_SOLID;
 }
 
-Am_Line_Solid_Flag Am_Style::Get_Line_Flag () const
+Am_Line_Solid_Flag
+Am_Style::Get_Line_Flag() const
 {
   if (data)
     return data->line_solid;
@@ -144,7 +146,8 @@ Am_Line_Solid_Flag Am_Style::Get_Line_Flag () const
     return Am_LINE_SOLID;
 }
 
-Am_Fill_Poly_Flag Am_Style::Get_Fill_Poly_Flag () const
+Am_Fill_Poly_Flag
+Am_Style::Get_Fill_Poly_Flag() const
 {
   if (data)
     return data->fill_poly;
@@ -152,7 +155,8 @@ Am_Fill_Poly_Flag Am_Style::Get_Fill_Poly_Flag () const
     return Am_FILL_POLY_EVEN_ODD;
 }
 
-Am_Image_Array Am_Style::Get_Stipple () const
+Am_Image_Array
+Am_Style::Get_Stipple() const
 {
   if (data)
     return data->stipple_bitmap;
@@ -160,8 +164,9 @@ Am_Image_Array Am_Style::Get_Stipple () const
     return Am_No_Image;
 }
 
-void Am_Style::Get_Line_Thickness_Values (short& thickness,
-                     Am_Line_Cap_Style_Flag& cap) const
+void
+Am_Style::Get_Line_Thickness_Values(short &thickness,
+                                    Am_Line_Cap_Style_Flag &cap) const
 {
   if (data) {
     thickness = data->line_thickness;
@@ -169,80 +174,74 @@ void Am_Style::Get_Line_Thickness_Values (short& thickness,
   }
 }
 
-Am_Style::Am_Style (float r, float g, float b,  //color part
-            short thickness,
-            Am_Line_Cap_Style_Flag cap,
-            Am_Join_Style_Flag join,
-            Am_Line_Solid_Flag line_flag,
-            const char *dash_l, int dash_l_length,
-            Am_Fill_Solid_Flag fill_flag,
-            Am_Fill_Poly_Flag poly,
-            // stipple must be an opal bitmap object
-            Am_Image_Array stipple)
+Am_Style::Am_Style(float r, float g, float b, //color part
+                   short thickness, Am_Line_Cap_Style_Flag cap,
+                   Am_Join_Style_Flag join, Am_Line_Solid_Flag line_flag,
+                   const char *dash_l, int dash_l_length,
+                   Am_Fill_Solid_Flag fill_flag, Am_Fill_Poly_Flag poly,
+                   // stipple must be an opal bitmap object
+                   Am_Image_Array stipple)
 {
-    data = new Am_Style_Data (r, g, b, thickness, cap, join,
-                              line_flag, dash_l, dash_l_length,
-                              fill_flag, poly, stipple);
+  data = new Am_Style_Data(r, g, b, thickness, cap, join, line_flag, dash_l,
+                           dash_l_length, fill_flag, poly, stipple);
 }
 
-Am_Style::Am_Style (const char* color_name,
-            short thickness,
-            Am_Line_Cap_Style_Flag cap,
-            Am_Join_Style_Flag join,
-            Am_Line_Solid_Flag line_flag,
-            const char* dash_l, int dash_l_length,
-            Am_Fill_Solid_Flag fill_flag,
-            Am_Fill_Poly_Flag poly,
-            // stipple must be an opal bitmap object
-            Am_Image_Array stipple)
+Am_Style::Am_Style(const char *color_name, short thickness,
+                   Am_Line_Cap_Style_Flag cap, Am_Join_Style_Flag join,
+                   Am_Line_Solid_Flag line_flag, const char *dash_l,
+                   int dash_l_length, Am_Fill_Solid_Flag fill_flag,
+                   Am_Fill_Poly_Flag poly,
+                   // stipple must be an opal bitmap object
+                   Am_Image_Array stipple)
 {
-  data = new Am_Style_Data (color_name, thickness, cap, join,
-                line_flag, dash_l, dash_l_length,
-                fill_flag, poly, stipple);
+  data = new Am_Style_Data(color_name, thickness, cap, join, line_flag, dash_l,
+                           dash_l_length, fill_flag, poly, stipple);
 }
 
-Am_Style::Am_Style ()
-{
-  data = (0L);
-}
+Am_Style::Am_Style() { data = (0L); }
 
-Am_Style Am_Style::Halftone_Stipple (int percent,
-                     Am_Fill_Solid_Flag fill_flag)
+Am_Style
+Am_Style::Halftone_Stipple(int percent, Am_Fill_Solid_Flag fill_flag)
 {
-  Am_Style sty (new Am_Style_Data(percent, fill_flag));
+  Am_Style sty(new Am_Style_Data(percent, fill_flag));
   return sty;
 }
 
-Am_Style Am_Style::Thick_Line (unsigned short thickness)
+Am_Style
+Am_Style::Thick_Line(unsigned short thickness)
 {
-  Am_Style style (0, 0, 0, thickness);
+  Am_Style style(0, 0, 0, thickness);
   return style;
 }
 
-Am_Style Am_Style::Clone_With_New_Color (Am_Style& foreground) const
+Am_Style
+Am_Style::Clone_With_New_Color(Am_Style &foreground) const
 {
-  return new Am_Style_Data (data, foreground.data);
+  return new Am_Style_Data(data, foreground.data);
 }
 
-bool Am_Style::operator== (const Am_Style& style) const
+bool
+Am_Style::operator==(const Am_Style &style) const
 {
   return data == style.data;
 }
 
-bool Am_Style::operator!= (const Am_Style& style) const
+bool
+Am_Style::operator!=(const Am_Style &style) const
 {
   return data != style.data;
 }
 
-void Am_Style::Add_Image(Am_Image_Array image)
+void
+Am_Style::Add_Image(Am_Image_Array image)
 {
   if (data)
     data = (Am_Style_Data *)data->Make_Unique();
   else
-    data = new Am_Style_Data (0.0, 0.0, 0.0, 0, Am_CAP_BUTT, Am_JOIN_MITER,
-                  Am_LINE_SOLID, Am_DEFAULT_DASH_LIST,
-                  Am_DEFAULT_DASH_LIST_LENGTH, Am_FILL_SOLID,
-                  Am_FILL_POLY_EVEN_ODD, 0);
+    data = new Am_Style_Data(0.0, 0.0, 0.0, 0, Am_CAP_BUTT, Am_JOIN_MITER,
+                             Am_LINE_SOLID, Am_DEFAULT_DASH_LIST,
+                             Am_DEFAULT_DASH_LIST_LENGTH, Am_FILL_SOLID,
+                             Am_FILL_POLY_EVEN_ODD, 0);
   data->stipple_bitmap = image;
   data->fill_solid = Am_FILL_STIPPLED;
 }
@@ -251,15 +250,15 @@ Am_Style Am_No_Style;
 
 /* NYI see rich for this, the constructor does not exist (discussed with Alan on 23 May 96) */
 /* more info below around line 400 - faulring@cs*/
-static Am_Style_Data * on_bits = new Am_Style_Data ("Am_On_Bits", true);
-Am_Style Am_On_Bits (on_bits);
+static Am_Style_Data *on_bits = new Am_Style_Data("Am_On_Bits", true);
+Am_Style Am_On_Bits(on_bits);
 
-static Am_Style_Data * off_bits = new Am_Style_Data ("Am_Off_Bits", false);
-Am_Style Am_Off_Bits (off_bits);
+static Am_Style_Data *off_bits = new Am_Style_Data("Am_Off_Bits", false);
+Am_Style Am_Off_Bits(off_bits);
 
-AM_WRAPPER_DATA_IMPL (Am_Style, (this))
+AM_WRAPPER_DATA_IMPL(Am_Style, (this))
 
-Am_Style_Data::Am_Style_Data (Am_Style_Data* proto)
+Am_Style_Data::Am_Style_Data(Am_Style_Data *proto)
 {
   red = proto->red;
   green = proto->green;
@@ -269,98 +268,99 @@ Am_Style_Data::Am_Style_Data (Am_Style_Data* proto)
   join_style = proto->join_style;
   line_solid = proto->line_solid;
   dash_list_length = proto->dash_list_length;
-  dash_list = new char [dash_list_length];
-  memcpy (dash_list, proto->dash_list, dash_list_length * sizeof(char));
+  dash_list = new char[dash_list_length];
+  memcpy(dash_list, proto->dash_list, dash_list_length * sizeof(char));
   fill_solid = proto->fill_solid;
   fill_poly = proto->fill_poly;
   stipple_bitmap = proto->stipple_bitmap;
   if (proto->color_name) {
-    color_name = new char [strlen (proto->color_name) + 1];
-    strcpy (color_name, proto->color_name);
-  }
-  else
+    color_name = new char[strlen(proto->color_name) + 1];
+    strcpy(color_name, proto->color_name);
+  } else
     color_name = (0L);
 
   mac_color = proto->mac_color;
 }
 
-Am_Style_Data::Am_Style_Data (float r, float g, float b,
-               short thickness,  Am_Line_Cap_Style_Flag cap,
-               Am_Join_Style_Flag join,  Am_Line_Solid_Flag line_flag,
-               const char* dash_l, int dash_l_length,
-               Am_Fill_Solid_Flag fill_flag,
-               Am_Fill_Poly_Flag poly,  Am_Image_Array stipple)
+Am_Style_Data::Am_Style_Data(float r, float g, float b, short thickness,
+                             Am_Line_Cap_Style_Flag cap,
+                             Am_Join_Style_Flag join,
+                             Am_Line_Solid_Flag line_flag, const char *dash_l,
+                             int dash_l_length, Am_Fill_Solid_Flag fill_flag,
+                             Am_Fill_Poly_Flag poly, Am_Image_Array stipple)
 {
-  red = r;  green = g;  blue = b;
+  red = r;
+  green = g;
+  blue = b;
   line_thickness = thickness;
   cap_style = cap;
   join_style = join;
   line_solid = line_flag;
   dash_list_length = dash_l_length;
-  dash_list = new char [dash_list_length];
-  memcpy (dash_list, dash_l, dash_list_length);
+  dash_list = new char[dash_list_length];
+  memcpy(dash_list, dash_l, dash_list_length);
   fill_solid = fill_flag;
   fill_poly = poly;
-  if( line_flag == Am_LINE_ON_OFF_DASH ) {
-    if( dash_l_length > 0 )
+  if (line_flag == Am_LINE_ON_OFF_DASH) {
+    if (dash_l_length > 0)
       stipple_bitmap = Am_Image_Array(75);
     else
       stipple_bitmap = Am_Image_Array(50);
-  }
-  else
+  } else
     stipple_bitmap = stipple;
   color_name = 0;
 
-  mac_color.red   = 65535.0 * r;
+  mac_color.red = 65535.0 * r;
   mac_color.green = 65535.0 * g;
-  mac_color.blue  = 65535.0 * b;
+  mac_color.blue = 65535.0 * b;
 }
 
-Am_Style_Data::Am_Style_Data (const char * cname,
-          short thickness,  Am_Line_Cap_Style_Flag cap,
-          Am_Join_Style_Flag join,  Am_Line_Solid_Flag line_flag,
-          const char* dash_l, int dash_l_length,
-          Am_Fill_Solid_Flag fill_flag,
-              Am_Fill_Poly_Flag poly,  Am_Image_Array stipple)
+Am_Style_Data::Am_Style_Data(const char *cname, short thickness,
+                             Am_Line_Cap_Style_Flag cap,
+                             Am_Join_Style_Flag join,
+                             Am_Line_Solid_Flag line_flag, const char *dash_l,
+                             int dash_l_length, Am_Fill_Solid_Flag fill_flag,
+                             Am_Fill_Poly_Flag poly, Am_Image_Array stipple)
 {
   Am_Initialize_Color_Map();
 
-  color_name = new char [strlen (cname) + 1];
-  strcpy (color_name, cname);
+  color_name = new char[strlen(cname) + 1];
+  strcpy(color_name, cname);
   line_thickness = thickness;
   cap_style = cap;
   join_style = join;
   line_solid = line_flag;
   dash_list_length = dash_l_length;
-  dash_list = new char [dash_list_length];
-  memcpy (dash_list, dash_l, dash_list_length);
+  dash_list = new char[dash_list_length];
+  memcpy(dash_list, dash_l, dash_list_length);
   fill_solid = fill_flag;
   fill_poly = poly;
-  if( line_flag == Am_LINE_ON_OFF_DASH ) {
-    if( dash_l_length > 0 )
+  if (line_flag == Am_LINE_ON_OFF_DASH) {
+    if (dash_l_length > 0)
       stipple_bitmap = Am_Image_Array(75);
     else
       stipple_bitmap = Am_Image_Array(50);
-  }
-  else
+  } else
     stipple_bitmap = stipple;
 
   mac_color = color_map->GetAt(cname);
 
-//    mac_color = name_to_mac_color (cname);
+  //    mac_color = name_to_mac_color (cname);
 }
 
-Am_Style_Data::Am_Style_Data (int percent, Am_Fill_Solid_Flag fill_flag)
+Am_Style_Data::Am_Style_Data(int percent, Am_Fill_Solid_Flag fill_flag)
 {
-  red = 0.0;  green = 0.0;  blue = 0.0;
+  red = 0.0;
+  green = 0.0;
+  blue = 0.0;
   line_thickness = 0;
   cap_style = Am_CAP_BUTT;
   join_style = Am_JOIN_MITER;
   line_solid = Am_LINE_SOLID;
-  const char* dash_l = Am_DEFAULT_DASH_LIST;
+  const char *dash_l = Am_DEFAULT_DASH_LIST;
   dash_list_length = Am_DEFAULT_DASH_LIST_LENGTH;
-  dash_list = new char [dash_list_length];
-  memcpy (dash_list, dash_l, dash_list_length);
+  dash_list = new char[dash_list_length];
+  memcpy(dash_list, dash_l, dash_list_length);
   fill_solid = fill_flag;
   fill_poly = Am_FILL_POLY_EVEN_ODD;
   stipple_bitmap = Am_Image_Array(percent);
@@ -381,33 +381,30 @@ Am_Style_Data::Am_Style_Data (int percent, Am_Fill_Solid_Flag fill_flag)
  * 31 May 96 - implemented but not tested - faulring@cs
  * 27 Jul 96 - tested, appears to work, though nothing was transparent
  */
-Am_Style_Data::Am_Style_Data (const char* name, bool bit_is_on)
+Am_Style_Data::Am_Style_Data(const char *name, bool bit_is_on)
 {
   Am_Initialize_Color_Map();
 
-  color_name = new char [strlen (name) + 1];
-  strcpy (color_name, name);
+  color_name = new char[strlen(name) + 1];
+  strcpy(color_name, name);
   line_thickness = 0;
   cap_style = Am_CAP_BUTT;
   join_style = Am_JOIN_MITER;
   line_solid = Am_LINE_SOLID;
-  const char* dash_l = Am_DEFAULT_DASH_LIST;
+  const char *dash_l = Am_DEFAULT_DASH_LIST;
   dash_list_length = Am_DEFAULT_DASH_LIST_LENGTH;
-  dash_list = new char [dash_list_length];
-  memcpy (dash_list, dash_l, dash_list_length);
+  dash_list = new char[dash_list_length];
+  memcpy(dash_list, dash_l, dash_list_length);
   fill_solid = Am_FILL_SOLID;
   fill_poly = Am_FILL_POLY_EVEN_ODD;
   stipple_bitmap = Am_No_Image;
 
-  if( bit_is_on )
-  {
+  if (bit_is_on) {
     red = green = blue = 0.0f;
     mac_color.red = 0x0000;
     mac_color.green = 0x0000;
     mac_color.blue = 0x0000;
-  }
-  else
-  {
+  } else {
     red = green = blue = 1.0f;
     mac_color.red = 0xFFFF;
     mac_color.green = 0xFFFF;
@@ -415,7 +412,7 @@ Am_Style_Data::Am_Style_Data (const char* name, bool bit_is_on)
   }
 }
 
-Am_Style_Data::Am_Style_Data (Am_Style_Data* proto, Am_Style_Data* new_color)
+Am_Style_Data::Am_Style_Data(Am_Style_Data *proto, Am_Style_Data *new_color)
 {
   // get non-color related info from proto
   line_thickness = proto->line_thickness;
@@ -423,8 +420,8 @@ Am_Style_Data::Am_Style_Data (Am_Style_Data* proto, Am_Style_Data* new_color)
   join_style = proto->join_style;
   line_solid = proto->line_solid;
   dash_list_length = proto->dash_list_length;
-  dash_list = new char [dash_list_length];
-  memcpy (dash_list, proto->dash_list, dash_list_length * sizeof(char));
+  dash_list = new char[dash_list_length];
+  memcpy(dash_list, proto->dash_list, dash_list_length * sizeof(char));
   fill_solid = proto->fill_solid;
   fill_poly = proto->fill_poly;
   stipple_bitmap = proto->stipple_bitmap;
@@ -434,19 +431,16 @@ Am_Style_Data::Am_Style_Data (Am_Style_Data* proto, Am_Style_Data* new_color)
   green = new_color->green;
   blue = new_color->blue;
   if (new_color->color_name) {
-    color_name = new char [strlen (new_color->color_name) + 1];
-    strcpy (color_name, new_color->color_name);
-  }
-  else
+    color_name = new char[strlen(new_color->color_name) + 1];
+    strcpy(color_name, new_color->color_name);
+  } else
     color_name = (0L);
 
   mac_color = new_color->mac_color;
 }
 
 // ???? why are we not deallocating the memory allocated for color_name ?????
-Am_Style_Data::~Am_Style_Data ()
-{
-}
+Am_Style_Data::~Am_Style_Data() {}
 
 /*
 //gets the index to use on display
@@ -454,6 +448,8 @@ unsigned long Am_Style_Data::Get_Mac_Pixel(Am_Drawonable_Impl* d) {
 }
 */
 
-const RGBColor* Am_Style_Data::Get_Mac_Color(Am_Drawonable_Impl* /* d */) {
-    return &mac_color;
+const RGBColor *
+Am_Style_Data::Get_Mac_Color(Am_Drawonable_Impl * /* d */)
+{
+  return &mac_color;
 }

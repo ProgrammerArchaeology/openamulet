@@ -15,40 +15,39 @@
  * Currently, MSVC and GCC are supported.
  */
 
-
 #if defined(DLL)
-#	ifdef OA_SCRIPT_BUILD
-#		define _OA_SCRIPT_DL_IMPORT __declspec(dllexport)
-#	else
-#		define _OA_SCRIPT_DL_IMPORT __declspec(dllimport)
-#	endif //OA_SCRIPT_BUILD
-
-#	ifdef OA_BUILD
-#		ifdef _MSC_VER
-#			pragma message("OA DLL Library building mode!")
-#			define _OA_DL_IMPORT __declspec(dllexport)
-#			define _OA_DL_CLASSIMPORT __declspec(dllexport)
-#			define _OA_DL_MEMBERIMPORT
-#		else
-#			define _OA_DL_IMPORT __declspec(dllexport)
-#			define _OA_DL_CLASSIMPORT __declspec(dllexport)
-#			define _OA_DL_MEMBERIMPORT __declspec(dllexport)
-#		endif
-#	else
-#		ifdef _MSC_VER
-#			pragma message("Using OA DLL Library!")
-#			define _OA_DL_IMPORT __declspec(dllimport)
-#			define _OA_DL_CLASSIMPORT  __declspec(dllimport)
-#			define _OA_DL_MEMBERIMPORT
-#		else
-#			define _OA_DL_IMPORT __declspec(dllimport)
-#			define _OA_DL_CLASSIMPORT  __declspec(dllimport)
-#			define _OA_DL_MEMBERIMPORT
-#		endif
-#	endif //OA_BUILD
+#ifdef OA_SCRIPT_BUILD
+#define _OA_SCRIPT_DL_IMPORT __declspec(dllexport)
 #else
-#	define _OA_DL_IMPORT
-#	define _OA_DL_CLASSIMPORT
-#	define _OA_DL_MEMBERIMPORT
-#	define _OA_SCRIPT_DL_IMPORT
+#define _OA_SCRIPT_DL_IMPORT __declspec(dllimport)
+#endif //OA_SCRIPT_BUILD
+
+#ifdef OA_BUILD
+#ifdef _MSC_VER
+#pragma message("OA DLL Library building mode!")
+#define _OA_DL_IMPORT __declspec(dllexport)
+#define _OA_DL_CLASSIMPORT __declspec(dllexport)
+#define _OA_DL_MEMBERIMPORT
+#else
+#define _OA_DL_IMPORT __declspec(dllexport)
+#define _OA_DL_CLASSIMPORT __declspec(dllexport)
+#define _OA_DL_MEMBERIMPORT __declspec(dllexport)
+#endif
+#else
+#ifdef _MSC_VER
+#pragma message("Using OA DLL Library!")
+#define _OA_DL_IMPORT __declspec(dllimport)
+#define _OA_DL_CLASSIMPORT __declspec(dllimport)
+#define _OA_DL_MEMBERIMPORT
+#else
+#define _OA_DL_IMPORT __declspec(dllimport)
+#define _OA_DL_CLASSIMPORT __declspec(dllimport)
+#define _OA_DL_MEMBERIMPORT
+#endif
+#endif //OA_BUILD
+#else
+#define _OA_DL_IMPORT
+#define _OA_DL_CLASSIMPORT
+#define _OA_DL_MEMBERIMPORT
+#define _OA_SCRIPT_DL_IMPORT
 #endif

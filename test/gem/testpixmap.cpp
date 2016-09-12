@@ -42,238 +42,240 @@
 
 using namespace std;
 Am_Object bitmap, fill_style, line_style, mode, image_name;
-char spiral [] = {0x78, 0x00, 0xc4, 0x01, 0x32, 0x06, 0x1a, 0x0c,
-		  0xca, 0x08, 0x4a, 0x09, 0x0a, 0x09, 0x9a, 0x09,
-		  0xe2, 0x08, 0x0e, 0x06, 0x0c, 0x03};
+char spiral[] = {0x78, 0x00, 0xc4, 0x01, 0x32, 0x06, 0x1a, 0x0c,
+                 0xca, 0x08, 0x4a, 0x09, 0x0a, 0x09, 0x9a, 0x09,
+                 0xe2, 0x08, 0x0e, 0x06, 0x0c, 0x03};
 
 // 0x1e, 0x00, 0x23, 0x80, 0x4c, 0x60, 0x58, 0x30,
 // 0x53, 0x10, 0x52, 0x90, 0x50, 0x20, 0x59, 0x90,
 // 0x47, 0x10, 0x60, 0x60, 0x30, 0xc0
 
-void print_RGB_image(unsigned const char * storage, const char * name,
-		     int width, int height, bool top_first) {
+void
+print_RGB_image(unsigned const char *storage, const char *name, int width,
+                int height, bool top_first)
+{
   int row, col, index = 0;
   if (top_first) {
     cout << "RGB for " << name << " first row first" << endl;
-    for (row = 0; row < height; row ++) {
+    for (row = 0; row < height; row++) {
       cout << "Row " << row << ":";
-      for (col = 0; col < width; col ++) {
-	if ((col/5) * 5 == col) cout << endl;
-	cout << " (" << (int) storage[index++]
-	     << "," << (int) storage[index++]
-	     << "," << (int) storage[index++] << ")";
+      for (col = 0; col < width; col++) {
+        if ((col / 5) * 5 == col)
+          cout << endl;
+        cout << " (" << (int)storage[index++] << "," << (int)storage[index++]
+             << "," << (int)storage[index++] << ")";
       }
       cout << endl;
     }
   } else {
     cout << "RGB for " << name << " last row first" << endl;
-    for (row = height - 1; row >= 0; row --) {
+    for (row = height - 1; row >= 0; row--) {
       cout << "Row " << row << ":";
-      for (col = 0; col < width; col ++) {
-	if ((col/5) * 5 == col) cout << endl;
-	cout << " (" << (int) storage[index++]
-	     << "," << (int) storage[index++]
-	     << "," << (int) storage[index++] << ")";
+      for (col = 0; col < width; col++) {
+        if ((col / 5) * 5 == col)
+          cout << endl;
+        cout << " (" << (int)storage[index++] << "," << (int)storage[index++]
+             << "," << (int)storage[index++] << ")";
       }
       cout << endl;
     }
   }
 }
 
-Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
+Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
 {
   Am_Object inter = cmd.Get_Owner();
-  Am_Input_Char c = inter.Get( Am_START_CHAR );
+  Am_Input_Char c = inter.Get(Am_START_CHAR);
 
-  switch( c.As_Char() ) {
+  switch (c.As_Char()) {
   case '1': {
-    const char* pathname = Am_Merge_Pathname("lib/images/ent.xbm");
+    const char *pathname = Am_Merge_Pathname("lib/images/ent.xbm");
     Am_Image_Array image = Am_Image_Array(pathname);
-    delete [] pathname;
-    bitmap.Set (Am_IMAGE, image);
-    image_name.Set (Am_TEXT, "ent.xbm");
+    delete[] pathname;
+    bitmap.Set(Am_IMAGE, image);
+    image_name.Set(Am_TEXT, "ent.xbm");
     break;
   }
   case '2': {
-    const char* pathname = Am_Merge_Pathname("lib/images/ent.gif");
+    const char *pathname = Am_Merge_Pathname("lib/images/ent.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
-    delete [] pathname;
-    bitmap.Set (Am_IMAGE, image);
-    image_name.Set (Am_TEXT, "ent.gif (transparent)");
+    delete[] pathname;
+    bitmap.Set(Am_IMAGE, image);
+    image_name.Set(Am_TEXT, "ent.gif (transparent)");
     break;
   }
   case '3': {
-    const char* pathname = Am_Merge_Pathname("lib/images/opaque_ent.gif");
+    const char *pathname = Am_Merge_Pathname("lib/images/opaque_ent.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
-    delete [] pathname;
-    bitmap.Set (Am_IMAGE, image);
-    image_name.Set (Am_TEXT, "opaque_ent.gif");
+    delete[] pathname;
+    bitmap.Set(Am_IMAGE, image);
+    image_name.Set(Am_TEXT, "opaque_ent.gif");
     break;
   }
   case '4': {
-    const char* pathname = Am_Merge_Pathname("lib/images/eye10.gif");
+    const char *pathname = Am_Merge_Pathname("lib/images/eye10.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
-    delete [] pathname;
-    bitmap.Set (Am_IMAGE, image);
-    image_name.Set (Am_TEXT, "eye10.gif (transparent)");
+    delete[] pathname;
+    bitmap.Set(Am_IMAGE, image);
+    image_name.Set(Am_TEXT, "eye10.gif (transparent)");
     break;
   }
   case '5': {
-    const char* pathname = Am_Merge_Pathname("lib/images/opaque_eye10.gif");
+    const char *pathname = Am_Merge_Pathname("lib/images/opaque_eye10.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
-    delete [] pathname;
-    bitmap.Set (Am_IMAGE, image);
-    image_name.Set (Am_TEXT, "opaque-eye10.gif");
+    delete[] pathname;
+    bitmap.Set(Am_IMAGE, image);
+    image_name.Set(Am_TEXT, "opaque-eye10.gif");
     break;
   }
   case '6': {
-    const char* pathname = Am_Merge_Pathname("lib/images/spaceship.gif");
+    const char *pathname = Am_Merge_Pathname("lib/images/spaceship.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
-    delete [] pathname;
-    bitmap.Set (Am_IMAGE, image);
-    image_name.Set (Am_TEXT, "spaceship.gif (transparent)");
+    delete[] pathname;
+    bitmap.Set(Am_IMAGE, image);
+    image_name.Set(Am_TEXT, "spaceship.gif (transparent)");
     break;
   }
   case '7': {
-    const char* pathname = Am_Merge_Pathname("lib/images/opaque_spaceship.gif");
+    const char *pathname = Am_Merge_Pathname("lib/images/opaque_spaceship.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
-    delete [] pathname;
-    bitmap.Set (Am_IMAGE, image);
-    image_name.Set (Am_TEXT, "opaque_spaceship.gif");
+    delete[] pathname;
+    bitmap.Set(Am_IMAGE, image);
+    image_name.Set(Am_TEXT, "opaque_spaceship.gif");
     break;
   }
   case 'm': {
-    bitmap.Set (Am_DRAW_MONOCHROME, true);
-    mode.Set (Am_TEXT, "monochrome");
+    bitmap.Set(Am_DRAW_MONOCHROME, true);
+    mode.Set(Am_TEXT, "monochrome");
     break;
   }
   case 'c': {
-    bitmap.Set (Am_DRAW_MONOCHROME, false);
-    mode.Set (Am_TEXT, "color");
+    bitmap.Set(Am_DRAW_MONOCHROME, false);
+    mode.Set(Am_TEXT, "color");
     break;
   }
   case 'b': {
-    bitmap.Set (Am_FILL_STYLE, Am_Black);
-    fill_style.Set (Am_TEXT, "Am_Black");
+    bitmap.Set(Am_FILL_STYLE, Am_Black);
+    fill_style.Set(Am_TEXT, "Am_Black");
     break;
   }
   case 'g': {
-    bitmap.Set (Am_FILL_STYLE, Am_Green);
-    fill_style.Set (Am_TEXT, "Am_Green");
+    bitmap.Set(Am_FILL_STYLE, Am_Green);
+    fill_style.Set(Am_TEXT, "Am_Green");
     break;
   }
   case 'n': {
-    bitmap.Set (Am_FILL_STYLE, Am_No_Style);
-    fill_style.Set (Am_TEXT, "Am_No_Style");
+    bitmap.Set(Am_FILL_STYLE, Am_No_Style);
+    fill_style.Set(Am_TEXT, "Am_No_Style");
     break;
   }
   case 'r': {
-    bitmap.Set (Am_FILL_STYLE, Am_Red);
-    fill_style.Set (Am_TEXT, "Am_Red");
+    bitmap.Set(Am_FILL_STYLE, Am_Red);
+    fill_style.Set(Am_TEXT, "Am_Red");
     break;
   }
   case 'w': {
-    bitmap.Set (Am_FILL_STYLE, Am_White);
-    fill_style.Set (Am_TEXT, "Am_White");
+    bitmap.Set(Am_FILL_STYLE, Am_White);
+    fill_style.Set(Am_TEXT, "Am_White");
     break;
   }
   case 'B': {
-    bitmap.Set (Am_LINE_STYLE, Am_Black);
-    line_style.Set (Am_TEXT, "Am_Black");
+    bitmap.Set(Am_LINE_STYLE, Am_Black);
+    line_style.Set(Am_TEXT, "Am_Black");
     break;
   }
   case 'G': {
-    bitmap.Set (Am_LINE_STYLE, Am_Green);
-    line_style.Set (Am_TEXT, "Am_Green");
+    bitmap.Set(Am_LINE_STYLE, Am_Green);
+    line_style.Set(Am_TEXT, "Am_Green");
     break;
   }
   case 'N': {
-    bitmap.Set (Am_LINE_STYLE, Am_No_Style);
-    line_style.Set (Am_TEXT, "Am_No_Style");
+    bitmap.Set(Am_LINE_STYLE, Am_No_Style);
+    line_style.Set(Am_TEXT, "Am_No_Style");
     break;
   }
   case 'R': {
-    bitmap.Set (Am_LINE_STYLE, Am_Red);
-    line_style.Set (Am_TEXT, "Am_Red");
+    bitmap.Set(Am_LINE_STYLE, Am_Red);
+    line_style.Set(Am_TEXT, "Am_Red");
     break;
   }
   case 'W': {
-    bitmap.Set (Am_LINE_STYLE, Am_White);
-    line_style.Set (Am_TEXT, "Am_White");
+    bitmap.Set(Am_LINE_STYLE, Am_White);
+    line_style.Set(Am_TEXT, "Am_White");
     break;
   }
   case 'f': {
-    const char* pathname = Am_Merge_Pathname("lib/images/does_not_exist.gif");
+    const char *pathname = Am_Merge_Pathname("lib/images/does_not_exist.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
-    delete [] pathname;
-    bitmap.Set (Am_IMAGE, image);
-    image_name.Set (Am_TEXT, "does_not_exist.gif");
+    delete[] pathname;
+    bitmap.Set(Am_IMAGE, image);
+    image_name.Set(Am_TEXT, "does_not_exist.gif");
     break;
   }
   case 't': {
-    Am_Image_Array image = bitmap.Get (Am_IMAGE);
+    Am_Image_Array image = bitmap.Get(Am_IMAGE);
     int width, height;
 
-    image.Get_Size (width, height);
-    Am_String name = image_name.Get (Am_TEXT);
+    image.Get_Size(width, height);
+    Am_String name = image_name.Get(Am_TEXT);
 
-    unsigned char * storage = new unsigned char[width * height * 3];
+    unsigned char *storage = new unsigned char[width * height * 3];
     if (image.Get_RGB_Image(storage)) {
       print_RGB_image(storage, name, width, height, true);
     } else {
       cout << "Get_RGB_Image not implemented on this platform." << endl;
     }
-    delete [] storage;
+    delete[] storage;
     break;
   }
   case 'T': {
-    const char * pathname = Am_Merge_Pathname("lib/images/bugsmall.gif");
+    const char *pathname = Am_Merge_Pathname("lib/images/bugsmall.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
-    delete [] pathname;
+    delete[] pathname;
     int width, height;
 
-    image.Get_Size (width, height);
+    image.Get_Size(width, height);
 
-    unsigned char * storage = new unsigned char[width * height * 3];
-    if (image.Get_RGB_Image(storage,false)) {
+    unsigned char *storage = new unsigned char[width * height * 3];
+    if (image.Get_RGB_Image(storage, false)) {
       print_RGB_image(storage, "bugsmall.gif", width, height, false);
     } else {
       cout << "Get_RGB_Image not implemented on this platform." << endl;
     }
-    delete [] storage;
+    delete[] storage;
     break;
   }
   case 'z': {
     Am_Image_Array image = Am_Image_Array(spiral, 11, 13);
-    bitmap.Set (Am_IMAGE, image);
-    image_name.Set (Am_TEXT, "spiral");
+    bitmap.Set(Am_IMAGE, image);
+    image_name.Set(Am_TEXT, "spiral");
 
     int width, height;
-    image.Get_Size (width, height);
-    Am_String name = image_name.Get (Am_TEXT);
+    image.Get_Size(width, height);
+    Am_String name = image_name.Get(Am_TEXT);
 
-    unsigned char * storage = new unsigned char[width * height * 3];
+    unsigned char *storage = new unsigned char[width * height * 3];
     if (image.Get_RGB_Image(storage)) {
       print_RGB_image(storage, "spiral", width, height, true);
     } else {
       cout << "Get_RGB_Image not implemented on this platform." << endl;
     }
-    delete [] storage;
+    delete[] storage;
     break;
   }
   case 'Z': {
     Am_Image_Array image = Am_Image_Array(spiral, 11, 13);
 
     int width, height;
-    image.Get_Size (width, height);
+    image.Get_Size(width, height);
 
-    unsigned char * storage = new unsigned char[width * height * 3];
-    if (image.Get_RGB_Image(storage,false)) {
+    unsigned char *storage = new unsigned char[width * height * 3];
+    if (image.Get_RGB_Image(storage, false)) {
       print_RGB_image(storage, "spiral", width, height, false);
     } else {
       cout << "Get_RGB_Image not implemented on this platform." << endl;
     }
-    delete [] storage;
+    delete[] storage;
     break;
   }
   case 'q': {
@@ -282,124 +284,118 @@ Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
   }
 }
 
-int main(void)
+int
+main(void)
 {
   Am_Initialize();
 
-  Am_Object window = Am_Window.Create()
-    .Set(Am_TITLE, "Amulet Pixmap Test")
-    .Set(Am_WIDTH, 600)
-    .Set(Am_HEIGHT, 300)
-    .Set( Am_FILL_STYLE, Am_Amulet_Purple ) // tests putting on top of color backgrounds
-    ;
+  Am_Object window =
+      Am_Window.Create()
+          .Set(Am_TITLE, "Amulet Pixmap Test")
+          .Set(Am_WIDTH, 600)
+          .Set(Am_HEIGHT, 300)
+          .Set(Am_FILL_STYLE,
+               Am_Amulet_Purple) // tests putting on top of color backgrounds
+      ;
 
-  const char * pathname = Am_Merge_Pathname("lib/images/bugsmall.gif");
+  const char *pathname = Am_Merge_Pathname("lib/images/bugsmall.gif");
   Am_Image_Array image = Am_Image_Array(pathname);
-  delete [] pathname;
+  delete[] pathname;
   bitmap = Am_Bitmap.Create("bitmap")
-    .Set (Am_LEFT, 10)
-    .Set (Am_TOP, 10)
-    .Set (Am_IMAGE, image);
+               .Set(Am_LEFT, 10)
+               .Set(Am_TOP, 10)
+               .Set(Am_IMAGE, image);
   window.Add_Part(bitmap);
 
   pathname = Am_Merge_Pathname("lib/images/eye10.gif");
   image = Am_Image_Array(pathname);
-  delete [] pathname;
-  Am_Object bitmap2 = Am_Bitmap.Create("bitmap2")
-    .Set (Am_IMAGE, image);
+  delete[] pathname;
+  Am_Object bitmap2 = Am_Bitmap.Create("bitmap2").Set(Am_IMAGE, image);
   window.Add_Part(bitmap2);
   Am_To_Bottom(bitmap2);
 
   Am_Object how_set_inter = Am_One_Shot_Interactor.Create("change_settings")
-    .Set(Am_START_WHEN, "ANY_KEYBOARD")
-    .Set (Am_START_WHERE_TEST, true)
-    ;
+                                .Set(Am_START_WHEN, "ANY_KEYBOARD")
+                                .Set(Am_START_WHERE_TEST, true);
   Am_Object cmd = how_set_inter.Get(Am_COMMAND);
   cmd.Set(Am_DO_METHOD, change_setting);
-  window.Add_Part (how_set_inter);
+  window.Add_Part(how_set_inter);
 
-  Am_Object settings_group = Am_Group.Create ("settings group")
-    .Set (Am_TOP, 100)
-    .Set (Am_LEFT, 10)
-    .Set (Am_WIDTH, Am_Width_Of_Parts)
-    .Set (Am_HEIGHT, Am_Height_Of_Parts);
+  Am_Object settings_group = Am_Group.Create("settings group")
+                                 .Set(Am_TOP, 100)
+                                 .Set(Am_LEFT, 10)
+                                 .Set(Am_WIDTH, Am_Width_Of_Parts)
+                                 .Set(Am_HEIGHT, Am_Height_Of_Parts);
 
-  Am_Object settings = Am_Text.Create("settings")
-    .Set (Am_TEXT, "Settings:");
+  Am_Object settings = Am_Text.Create("settings").Set(Am_TEXT, "Settings:");
   settings_group.Add_Part(settings);
 
-  int text_spacing = (int) settings.Get(Am_HEIGHT) + 2;
-  int line_position = text_spacing + (int) settings.Get(Am_HEIGHT);
+  int text_spacing = (int)settings.Get(Am_HEIGHT) + 2;
+  int line_position = text_spacing + (int)settings.Get(Am_HEIGHT);
 
   Am_Object fill_setting = Am_Text.Create("fill style setting")
-    .Set (Am_TOP, text_spacing)
-    .Set (Am_TEXT, "Fill Style");
+                               .Set(Am_TOP, text_spacing)
+                               .Set(Am_TEXT, "Fill Style");
   settings_group.Add_Part(fill_setting)
-    .Add_Part(Am_Line.Create()
-	      .Set (Am_TOP, line_position)
-	      .Set (Am_WIDTH, 135)
-	      );
+      .Add_Part(Am_Line.Create().Set(Am_TOP, line_position).Set(Am_WIDTH, 135));
 
   Am_Object line_setting = Am_Text.Create("line style setting")
-    .Set (Am_TOP, text_spacing)
-    .Set (Am_LEFT, 145)
-    .Set (Am_TEXT, "Line Style");
+                               .Set(Am_TOP, text_spacing)
+                               .Set(Am_LEFT, 145)
+                               .Set(Am_TEXT, "Line Style");
   settings_group.Add_Part(line_setting)
-    .Add_Part(Am_Line.Create()
-	      .Set (Am_TOP, line_position)
-	      .Set (Am_LEFT, 145)
-	      .Set (Am_WIDTH, 135)
-	      );
+      .Add_Part(Am_Line.Create()
+                    .Set(Am_TOP, line_position)
+                    .Set(Am_LEFT, 145)
+                    .Set(Am_WIDTH, 135));
 
   Am_Object mode_setting = Am_Text.Create("mode setting")
-    .Set (Am_TOP, text_spacing)
-    .Set (Am_LEFT, 290)
-    .Set (Am_TEXT, "Drawing Mode");
+                               .Set(Am_TOP, text_spacing)
+                               .Set(Am_LEFT, 290)
+                               .Set(Am_TEXT, "Drawing Mode");
   settings_group.Add_Part(mode_setting)
-    .Add_Part(Am_Line.Create()
-	      .Set (Am_TOP, line_position)
-	      .Set (Am_LEFT, 290)
-	      .Set (Am_WIDTH, 135)
-	      );
+      .Add_Part(Am_Line.Create()
+                    .Set(Am_TOP, line_position)
+                    .Set(Am_LEFT, 290)
+                    .Set(Am_WIDTH, 135));
 
   Am_Object image_setting = Am_Text.Create("image setting")
-    .Set (Am_TOP, text_spacing)
-    .Set (Am_LEFT, 435)
-    .Set (Am_TEXT, "Image Name");
+                                .Set(Am_TOP, text_spacing)
+                                .Set(Am_LEFT, 435)
+                                .Set(Am_TEXT, "Image Name");
   settings_group.Add_Part(image_setting)
-    .Add_Part(Am_Line.Create()
-	      .Set (Am_TOP, line_position)
-	      .Set (Am_LEFT, 435)
-	      .Set (Am_WIDTH, 135)
-	      );
+      .Add_Part(Am_Line.Create()
+                    .Set(Am_TOP, line_position)
+                    .Set(Am_LEFT, 435)
+                    .Set(Am_WIDTH, 135));
 
   text_spacing = (text_spacing * 2) + 3;
 
-  fill_style = Am_Text.Create( "fill style")
-    .Set (Am_TOP, text_spacing)
-    .Set (Am_TEXT, "Am_No_Style (default)");
+  fill_style = Am_Text.Create("fill style")
+                   .Set(Am_TOP, text_spacing)
+                   .Set(Am_TEXT, "Am_No_Style (default)");
   settings_group.Add_Part(fill_style);
 
-  line_style = Am_Text.Create( "line style")
-    .Set (Am_TOP, text_spacing)
-    .Set (Am_LEFT, 145)
-    .Set (Am_TEXT, "Am_Black (default)");
+  line_style = Am_Text.Create("line style")
+                   .Set(Am_TOP, text_spacing)
+                   .Set(Am_LEFT, 145)
+                   .Set(Am_TEXT, "Am_Black (default)");
   settings_group.Add_Part(line_style);
 
-  mode = Am_Text.Create( "mode")
-    .Set (Am_TOP, text_spacing)
-    .Set (Am_LEFT, 290)
-    .Set (Am_TEXT, "color");
+  mode = Am_Text.Create("mode")
+             .Set(Am_TOP, text_spacing)
+             .Set(Am_LEFT, 290)
+             .Set(Am_TEXT, "color");
   settings_group.Add_Part(mode);
 
-  image_name = Am_Text.Create( "image name")
-    .Set (Am_TOP, text_spacing)
-    .Set (Am_LEFT, 435)
-    .Set (Am_TEXT, "bugsmall.gif");
+  image_name = Am_Text.Create("image name")
+                   .Set(Am_TOP, text_spacing)
+                   .Set(Am_LEFT, 435)
+                   .Set(Am_TEXT, "bugsmall.gif");
   settings_group.Add_Part(image_name);
 
-  window.Add_Part (settings_group);
-  Am_Screen.Add_Part (window);
+  window.Add_Part(settings_group);
+  Am_Screen.Add_Part(window);
 
   cout << "Type '1' to display ent.xbm" << endl;
   cout << "Type '2' to display ent.gif (transparent)" << endl;
@@ -421,14 +417,17 @@ int main(void)
   cout << "Type 'm' to set draw monochrome to true" << endl;
   cout << "Type 'c' to set draw monochrome to false" << endl;
   cout << "Type 'f' to read a nonexistent file" << endl;
-  cout << "Type 't' to print the current image in RBG form first row first" << endl;
+  cout << "Type 't' to print the current image in RBG form first row first"
+       << endl;
   cout << "Type 'T' to print bugsmall.gif in RBG form first row last" << endl;
-  cout << "Type 'z' to print and display spiral bitmap in RBG form first row first" << endl;
+  cout << "Type 'z' to print and display spiral bitmap in RBG form first row "
+          "first"
+       << endl;
   cout << "Type 'Z' to print spiral bitmap in RBG form first row last" << endl;
   cout << "Type 'q' to quit " << endl << flush;
 
-  Am_Main_Event_Loop ();
-  Am_Cleanup ();
+  Am_Main_Event_Loop();
+  Am_Cleanup();
 
   return 0;
 } /* main */

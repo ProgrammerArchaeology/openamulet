@@ -1,8 +1,7 @@
 #ifndef _AM_NETWORK_H
 #define _AM_NETWORK_H
 
-#define NET_BIT 0x0040 
-
+#define NET_BIT 0x0040
 
 #include <am_inc.h>
 #include CONNECTION__H
@@ -12,10 +11,10 @@ class Am_Network_Group
 public:
   Am_Network_Group();
   ~Am_Network_Group();
-  void Add (Am_String machine_name);
-  void Link (Am_Object net_obj, Am_String name);
+  void Add(Am_String machine_name);
+  void Link(Am_Object net_obj, Am_String name);
 
-// obscure
+  // obscure
   void Broadcast(Am_Object obj);
   void Curse(Am_Object obj); // Set demons upon it
   //Current model doesn't allow the leader to quit. Would need to track
@@ -23,7 +22,7 @@ public:
   void Set_Lowest(long new_low);
   long Lowest(void);
   bool Am_Leader(void);
-//  Kick out (connection) // how is the broadcast list updated?    
+  //  Kick out (connection) // how is the broadcast list updated?
 
 private:
   //object association list for link

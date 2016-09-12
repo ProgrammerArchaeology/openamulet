@@ -27,9 +27,10 @@
 //
 // This calls the Am_Region_Impl constructor in fact
 //
-Am_Region* Am_Region::Create ()
+Am_Region *
+Am_Region::Create()
 {
-  return new Am_Region_Impl ();
+  return new Am_Region_Impl();
 }
 
 // // // // // // // // // // // // // // // // // // // // // // // // // //
@@ -40,7 +41,8 @@ Am_Region* Am_Region::Create ()
 //
 // This destructor is public
 //
-void Am_Region_Impl::Destroy ()
+void
+Am_Region_Impl::Destroy()
 {
   Clear();
   delete this;
@@ -56,26 +58,27 @@ void Am_Region_Impl::Destroy ()
 //
 // Public functions
 //
-void Am_Region_Impl::Clear ()
+void
+Am_Region_Impl::Clear()
 {
-  while (stack.empty() != true)
-    {
-      XDestroyRegion(stack.top());
-      stack.pop();
-    }
+  while (stack.empty() != true) {
+    XDestroyRegion(stack.top());
+    stack.pop();
+  }
 }
 
-void Am_Region_Impl::Set(int the_left, int the_top,
-			 unsigned int the_width, unsigned int the_height)
+void
+Am_Region_Impl::Set(int the_left, int the_top, unsigned int the_width,
+                    unsigned int the_height)
 {
   XRectangle x_rect; // was static... ???
-  x_rect.x 		= the_left;
-  x_rect.y 		= the_top;
-  x_rect.width 	= the_width;
-  x_rect.height 	= the_height;
+  x_rect.x = the_left;
+  x_rect.y = the_top;
+  x_rect.width = the_width;
+  x_rect.height = the_height;
 
   Clear();
-  stack.push(XCreateRegion());  
+  stack.push(XCreateRegion());
   XUnionRectWithRegion(&x_rect, stack.top(), stack.top());
 }
 
@@ -91,47 +94,43 @@ void Am_Region_Impl::Set(int the_left, int the_top,
 // created my own draw routine in the app.
 //
 // TODO: Check the update to STL stack container -- ortalo 990528
-void Am_Region_Impl::Set(Am_Point_List points)
+void
+Am_Region_Impl::Set(Am_Point_List points)
 {
   Clear();
   int numPoints = points.Length();
-  if(numPoints > 0)
-    {
-      int x, y;
-      XPoint *xpoints = new XPoint[numPoints];
-      points.Start();
-      for(int i = 0; i < numPoints; ++i)
-	{
-	  points.Get(x, y);
-	  xpoints[i].x = x;
-	  xpoints[i].y = y;
-	  points.Next();
-	}      
-      stack.push(XPolygonRegion(xpoints, numPoints, EvenOddRule));
+  if (numPoints > 0) {
+    int x, y;
+    XPoint *xpoints = new XPoint[numPoints];
+    points.Start();
+    for (int i = 0; i < numPoints; ++i) {
+      points.Get(x, y);
+      xpoints[i].x = x;
+      xpoints[i].y = y;
+      points.Next();
     }
-  else
-    {
-      stack.push(XCreateRegion());
-    }
+    stack.push(XPolygonRegion(xpoints, numPoints, EvenOddRule));
+  } else {
+    stack.push(XCreateRegion());
+  }
 }
 #endif // POLYGONAL_REGIONS
 
 // You can call this function with an uninitialized Am_Region (i.e., you
 // don't have to call Set_Region first.
-void Am_Region_Impl::Push(Am_Region *the_region)
+void
+Am_Region_Impl::Push(Am_Region *the_region)
 {
   // Safely copy the given region into a new one
   Region new_region = XCreateRegion();
-  Am_Region_Impl* the_region_impl = dynamic_cast<Am_Region_Impl*>(the_region);
-  if ((the_region_impl->stack).empty() != true)
-    {
-      XUnionRegion((the_region_impl->stack).top(), new_region, new_region);
-    }
+  Am_Region_Impl *the_region_impl = dynamic_cast<Am_Region_Impl *>(the_region);
+  if ((the_region_impl->stack).empty() != true) {
+    XUnionRegion((the_region_impl->stack).top(), new_region, new_region);
+  }
   // Intersect with previous if needed
-  if (stack.empty() != true)
-    {
-      XIntersectRegion(stack.top(), new_region, new_region);
-    }
+  if (stack.empty() != true) {
+    XIntersectRegion(stack.top(), new_region, new_region);
+  }
   // And push the new one
   stack.push(new_region);
 }
@@ -139,9 +138,9 @@ void Am_Region_Impl::Push(Am_Region *the_region)
 // You can call this function with an uninitialized Am_Region (i.e., you
 // don't have to call Set_Region first.
 //
-void Am_Region_Impl::Push (int the_left, int the_top,
-			   unsigned int the_width,
-			   unsigned int the_height)
+void
+Am_Region_Impl::Push(int the_left, int the_top, unsigned int the_width,
+                     unsigned int the_height)
 {
   // Sets a rectangle
   XRectangle x_rect; // was static ???
@@ -153,21 +152,20 @@ void Am_Region_Impl::Push (int the_left, int the_top,
   Region new_region = XCreateRegion();
   XUnionRectWithRegion(&x_rect, new_region, new_region);
   // Intersect with previous if needed
-  if (stack.empty() != true)
-    {
-      XIntersectRegion(stack.top(), new_region, new_region);
-    }
+  if (stack.empty() != true) {
+    XIntersectRegion(stack.top(), new_region, new_region);
+  }
   // And push the new one
   stack.push(new_region);
 }
 
-void Am_Region_Impl::Pop ()
+void
+Am_Region_Impl::Pop()
 {
-  if (stack.empty() != true)
-    {
-      XDestroyRegion(stack.top());
-      stack.pop();
-    }
+  if (stack.empty() != true) {
+    XDestroyRegion(stack.top());
+    stack.pop();
+  }
 }
 
 // Unions are performed on the most recently modified region.  That is, if
@@ -176,15 +174,14 @@ void Am_Region_Impl::Pop ()
 //
 // You can call this function with an uninitialized Am_Region (i.e., you
 // don't have to call Set_Region first.
-void Am_Region_Impl::Union (int the_left, int the_top,
-			    unsigned int the_width,
-			    unsigned int the_height)
+void
+Am_Region_Impl::Union(int the_left, int the_top, unsigned int the_width,
+                      unsigned int the_height)
 {
   // Create a new region for top if needed
-  if (stack.empty())
-    {
-      stack.push(XCreateRegion());
-    }
+  if (stack.empty()) {
+    stack.push(XCreateRegion());
+  }
   // Set up a rectangle
   XRectangle x_rect; // was static ???
   x_rect.x = the_left;
@@ -195,74 +192,68 @@ void Am_Region_Impl::Union (int the_left, int the_top,
   XUnionRectWithRegion(&x_rect, stack.top(), stack.top());
 }
 
-void Am_Region_Impl::Intersect (int the_left, int the_top,
-			        unsigned int the_width,
-			        unsigned int the_height)
+void
+Am_Region_Impl::Intersect(int the_left, int the_top, unsigned int the_width,
+                          unsigned int the_height)
 {
-  if (stack.empty())
-    {
-      // Create a new region for top if needed
-      stack.push(XCreateRegion());
-    }
-  else
-    {
-      // Set up a rectangle
-      XRectangle x_rect; // was static ???
-      x_rect.x = the_left;
-      x_rect.y = the_top;
-      x_rect.width = the_width;
-      x_rect.height = the_height;
-      Region rect_region = XCreateRegion();
-      XUnionRectWithRegion(&x_rect, rect_region, rect_region);
-      // Does the intersection
-      XIntersectRegion(rect_region, stack.top(), stack.top());
-      XDestroyRegion(rect_region);
-    }
+  if (stack.empty()) {
+    // Create a new region for top if needed
+    stack.push(XCreateRegion());
+  } else {
+    // Set up a rectangle
+    XRectangle x_rect; // was static ???
+    x_rect.x = the_left;
+    x_rect.y = the_top;
+    x_rect.width = the_width;
+    x_rect.height = the_height;
+    Region rect_region = XCreateRegion();
+    XUnionRectWithRegion(&x_rect, rect_region, rect_region);
+    // Does the intersection
+    XIntersectRegion(rect_region, stack.top(), stack.top());
+    XDestroyRegion(rect_region);
+  }
 }
 
 // Returns true if the point is inside the region.  A point exactly on the
 // boundary of the region is considered inside the region.
-bool Am_Region_Impl::In (int x, int y)
+bool
+Am_Region_Impl::In(int x, int y)
 {
-  return ( (stack.empty()) ? false
-	   : XPointInRegion(stack.top(), x, y));
+  return ((stack.empty()) ? false : XPointInRegion(stack.top(), x, y));
 }
 
 // Returns true if the rectangle is completely inside or intersects the region.
 // The total parameter is set to true if the rectangle is completely inside
 // the region.
-bool Am_Region_Impl::In (int x, int y, unsigned int width,
-		         unsigned int height, bool& total)
+bool
+Am_Region_Impl::In(int x, int y, unsigned int width, unsigned int height,
+                   bool &total)
 {
-  if (stack.empty())
-    {
-      total = false;
-      return false;
-    }
-  else
-    {
-      int x_result = XRectInRegion (stack.top(), x, y, width, height);
+  if (stack.empty()) {
+    total = false;
+    return false;
+  } else {
+    int x_result = XRectInRegion(stack.top(), x, y, width, height);
 
-      total = ((x_result == RectangleIn) ? true : false);
-      return ((x_result == RectangleOut) ? false : true);
-    }
+    total = ((x_result == RectangleIn) ? true : false);
+    return ((x_result == RectangleOut) ? false : true);
+  }
 }
 
 // Returns true if the rectangle is completely inside or intersects the region.
 // The total parameter is set to true if the rectangle is completely inside
 // the region.
-bool Am_Region_Impl::In (Am_Region *region, bool& total)
+bool
+Am_Region_Impl::In(Am_Region *region, bool &total)
 {
-  XRectangle x_rect; // Was static ???  
-  Am_Region_Impl* region_impl = dynamic_cast<Am_Region_Impl*>(region);
-  if ((region_impl->stack).empty())
-    { // The given region is empty... We return false, but well...
-      total = true;
-      return false;
-    }
-  else
-    {
-      XClipBox ((region_impl->stack).top(), &x_rect);
-      return In (x_rect.x, x_rect.y, x_rect.width, x_rect.height, total);
-    }
+  XRectangle x_rect; // Was static ???
+  Am_Region_Impl *region_impl = dynamic_cast<Am_Region_Impl *>(region);
+  if ((region_impl->stack)
+          .empty()) { // The given region is empty... We return false, but well...
+    total = true;
+    return false;
+  } else {
+    XClipBox((region_impl->stack).top(), &x_rect);
+    return In(x_rect.x, x_rect.y, x_rect.width, x_rect.height, total);
+  }
 }

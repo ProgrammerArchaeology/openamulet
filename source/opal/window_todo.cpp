@@ -14,27 +14,27 @@
 #include <am_inc.h>
 #include <amulet/impl/am_window_todo.h>
 
-Am_Window_ToDo* Window_ToDo_Head = (0L);
-Am_Window_ToDo* Window_ToDo_Tail = (0L);
+Am_Window_ToDo *Window_ToDo_Head = (0L);
+Am_Window_ToDo *Window_ToDo_Tail = (0L);
 
-void Am_Window_ToDo::Merge_Rectangle (int in_left, int in_top, int in_width,
-                      int in_height)
+void
+Am_Window_ToDo::Merge_Rectangle(int in_left, int in_top, int in_width,
+                                int in_height)
 {
   if (width && height) {
     int far_left = (in_left < left) ? in_left : left;
     int far_top = (in_top < top) ? in_top : top;
-    int far_width = ((in_left + in_width) > (left + width)) ?
-                    in_left + in_width - far_left :
-                    left + width - far_left;
-    int far_height = ((in_top + in_height) > (top + height)) ?
-                    in_top + in_height - far_top :
-                    top + height - far_top;
+    int far_width = ((in_left + in_width) > (left + width))
+                        ? in_left + in_width - far_left
+                        : left + width - far_left;
+    int far_height = ((in_top + in_height) > (top + height))
+                         ? in_top + in_height - far_top
+                         : top + height - far_top;
     left = far_left;
     top = far_top;
     width = far_width;
     height = far_height;
-  }
-  else {
+  } else {
     left = in_left;
     top = in_top;
     width = in_width;
@@ -42,7 +42,8 @@ void Am_Window_ToDo::Merge_Rectangle (int in_left, int in_top, int in_width,
   }
 }
 
-void Am_Window_ToDo::Add ()
+void
+Am_Window_ToDo::Add()
 {
   if (!prev && !next && (Window_ToDo_Head != this)) {
     prev = Window_ToDo_Tail;
@@ -54,7 +55,8 @@ void Am_Window_ToDo::Add ()
   }
 }
 
-void Am_Window_ToDo::Remove ()
+void
+Am_Window_ToDo::Remove()
 {
   if (prev || next || (Window_ToDo_Head == this)) {
     if (next)

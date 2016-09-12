@@ -14,20 +14,22 @@
 
 Am_Drawonable *root, *d1, *d2, *d3, *d4;
 
-Am_Style black (0.0, 0.0, 0.0);
-Am_Style green (0.0, 1.0, 0.0);
+Am_Style black(0.0, 0.0, 0.0);
+Am_Style green(0.0, 1.0, 0.0);
 
-class testtrans_handlers : public Am_Input_Event_Handlers {
- public:
-  void Iconify_Notify (Am_Drawonable*, bool) {}
-  void Frame_Resize_Notify (Am_Drawonable*, int, int, int, int) {}
-  void Destroy_Notify (Am_Drawonable*) {}
-  void Configure_Notify (Am_Drawonable*, int, int, int, int) {}
-  void Exposure_Notify (Am_Drawonable*, int, int, int, int) {}
-  void Input_Event_Notify (Am_Drawonable *d, Am_Input_Event *ev) {
+class testtrans_handlers : public Am_Input_Event_Handlers
+{
+public:
+  void Iconify_Notify(Am_Drawonable *, bool) {}
+  void Frame_Resize_Notify(Am_Drawonable *, int, int, int, int) {}
+  void Destroy_Notify(Am_Drawonable *) {}
+  void Configure_Notify(Am_Drawonable *, int, int, int, int) {}
+  void Exposure_Notify(Am_Drawonable *, int, int, int, int) {}
+  void Input_Event_Notify(Am_Drawonable *d, Am_Input_Event *ev)
+  {
 
-    std::cout << "My Input Event `" << ev->input_char <<
-      "' on " << d->Get_Title() << std::endl;
+    std::cout << "My Input Event `" << ev->input_char << "' on "
+              << d->Get_Title() << std::endl;
 
     int d1_x, d1_y, d2_x, d2_y, d3_x, d3_y, d4_x, d4_y, root_x, root_y;
     d1->Translate_Coordinates(ev->x, ev->y, d, d1_x, d1_y);
@@ -35,7 +37,7 @@ class testtrans_handlers : public Am_Input_Event_Handlers {
     d3->Translate_Coordinates(ev->x, ev->y, d, d3_x, d3_y);
     d4->Translate_Coordinates(ev->x, ev->y, d, d4_x, d4_y);
     root->Translate_Coordinates(ev->x, ev->y, d, root_x, root_y);
-    
+
     printf("  Which is at (%d, %d) w.r.t. D1\n", d1_x, d1_y);
     printf("          and (%d, %d) w.r.t. D2\n", d2_x, d2_y);
     printf("          and (%d, %d) w.r.t. D3\n", d3_x, d3_y);
@@ -47,7 +49,9 @@ class testtrans_handlers : public Am_Input_Event_Handlers {
   }
 } Global_Handlers;
 
-void init_windows() {
+void
+init_windows()
+{
   root = Am_Drawonable::Get_Root_Drawonable();
   d1 = root->Create(850, 180, 220, 100, "D1");
   d2 = d1->Create(-15, 22, 175, 100, "D2");
@@ -60,12 +64,13 @@ void init_windows() {
   d4->Set_Input_Dispatch_Functions(&Global_Handlers);
 }
 
-int main ()
+int
+main()
 {
   init_windows();
 
   printf("Send input events into the windows.  Send a 'q' to quit.\n");
-  
+
   Am_Drawonable::Main_Loop();
 
   return 0;

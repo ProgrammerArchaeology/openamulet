@@ -12,7 +12,7 @@
 #include AM_IO__H
 #include GEM__H
 
-#if defined (_WINDOWS)
+#if defined(_WINDOWS)
 #define TESTCLIP_D1_LEFT 400
 #else
 #define TESTCLIP_D1_LEFT 800
@@ -26,23 +26,24 @@ const float purple_blue = 0.8f;
 
 Am_Drawonable *d1, *d2;
 
-Am_Style red (1.0f, 0.0f, 0.0f);
-Am_Style green (0.0f, 1.0f, 0.0f);
-Am_Style blue (0.0f, 0.0f, 1.0f);
-Am_Style white (1.0f, 1.0f, 1.0f);
-Am_Style black (0.0f, 0.0f, 0.0f);
-Am_Style yellow (1.0f, 1.0f, 0.0f);
-Am_Style purple (purple_red, purple_green, purple_blue);
+Am_Style red(1.0f, 0.0f, 0.0f);
+Am_Style green(0.0f, 1.0f, 0.0f);
+Am_Style blue(0.0f, 0.0f, 1.0f);
+Am_Style white(1.0f, 1.0f, 1.0f);
+Am_Style black(0.0f, 0.0f, 0.0f);
+Am_Style yellow(1.0f, 1.0f, 0.0f);
+Am_Style purple(purple_red, purple_green, purple_blue);
 
 Am_Style style_array[8];
 
 // Utility function for reusing the style_array for iteration when
 // creating lines with different line styles
 //
-void set_style_array (Am_Style arg0 = Am_No_Style, Am_Style arg1 = Am_No_Style,
-		      Am_Style arg2 = Am_No_Style, Am_Style arg3 = Am_No_Style,
-		      Am_Style arg4 = Am_No_Style, Am_Style arg5 = Am_No_Style,
-		      Am_Style arg6 = Am_No_Style, Am_Style arg7 = Am_No_Style)
+void
+set_style_array(Am_Style arg0 = Am_No_Style, Am_Style arg1 = Am_No_Style,
+                Am_Style arg2 = Am_No_Style, Am_Style arg3 = Am_No_Style,
+                Am_Style arg4 = Am_No_Style, Am_Style arg5 = Am_No_Style,
+                Am_Style arg6 = Am_No_Style, Am_Style arg7 = Am_No_Style)
 {
   style_array[0] = arg0;
   style_array[1] = arg1;
@@ -54,22 +55,26 @@ void set_style_array (Am_Style arg0 = Am_No_Style, Am_Style arg1 = Am_No_Style,
   style_array[7] = arg7;
 }
 
-void clear_whole_window (Am_Drawonable *d) {
+void
+clear_whole_window(Am_Drawonable *d)
+{
   int w, h;
-  d->Get_Size (w, h);
-  d->Clear_Area (0, 0, w, h);
+  d->Get_Size(w, h);
+  d->Clear_Area(0, 0, w, h);
 }
 
-void draw_4_circles(Am_Drawonable *d) {
+void
+draw_4_circles(Am_Drawonable *d)
+{
   int x_counter, y_counter, x, y;
 
-  set_style_array (black, red, black);
-  for (x_counter=0; x_counter<=1; x_counter++) {
-    for (y_counter=0; y_counter<=1; y_counter++) {
-      x = 10+(75*x_counter);
-      y = 10+(75*y_counter);
-      d->Draw_Arc(Am_No_Style, style_array[x_counter + y_counter], x, y,
-		  50, 50);
+  set_style_array(black, red, black);
+  for (x_counter = 0; x_counter <= 1; x_counter++) {
+    for (y_counter = 0; y_counter <= 1; y_counter++) {
+      x = 10 + (75 * x_counter);
+      y = 10 + (75 * y_counter);
+      d->Draw_Arc(Am_No_Style, style_array[x_counter + y_counter], x, y, 50,
+                  50);
     }
   }
 }
@@ -82,9 +87,9 @@ void draw_4_circles(Am_Drawonable *d) {
 // guaranteed that we are not interrupting a sequence of expose events
 // from window1.  We can go ahead and install the clip mask whenever we see
 // a count of 0.
-void perceive_expose_event (Am_Drawonable *d, int count, int clip_left,
-			    int clip_top, unsigned short clip_width,
-			    unsigned short clip_height)
+void
+perceive_expose_event(Am_Drawonable *d, int count, int clip_left, int clip_top,
+                      unsigned short clip_width, unsigned short clip_height)
 {
   // Since the_region is static, it will not be automatically reinitialized
   // each time the function is invoked.  It is only cleared at the end of
@@ -104,7 +109,9 @@ void perceive_expose_event (Am_Drawonable *d, int count, int clip_left,
   }
 }
 
-void test_single_clips() {
+void
+test_single_clips()
+{
 
   ///
   ///  Draw into D1
@@ -133,13 +140,15 @@ void test_single_clips() {
 // This function tests the Union operation on Am_Regions, and simulates how
 // the Expose event-hander might be implemented in Opal, based on how
 // X Windows sends Exposure events.
-void test_multi_clips () {
+void
+test_multi_clips()
+{
   printf("Entering test_multi_clips:\n");
   printf("  Hit RETURN to clip giant red and blue rects to multi clip rgns: ");
   getchar();
 
   d1->Clear_Clip();
-  clear_whole_window (d1);
+  clear_whole_window(d1);
   perceive_expose_event(d1, 2, 20, 20, 40, 40);
   perceive_expose_event(d1, 1, 50, 50, 60, 40);
   perceive_expose_event(d1, 0, 120, 80, 40, 40);
@@ -159,9 +168,9 @@ void test_multi_clips () {
   printf("  Hit RETURN to set clip regions in multiple windows: ");
   getchar();
   d1->Clear_Clip();
-  clear_whole_window (d1);
+  clear_whole_window(d1);
   d2->Clear_Clip();
-  clear_whole_window (d2);
+  clear_whole_window(d2);
 
   perceive_expose_event(d1, 1, 30, 20, 60, 60);
   perceive_expose_event(d1, 0, 10, 100, 100, 50);
@@ -172,47 +181,52 @@ void test_multi_clips () {
 
   perceive_expose_event(d2, 1, 200, 20, 60, 60);
   perceive_expose_event(d2, 0, 180, 100, 100, 50);
-  d2->Draw_Rectangle(Am_No_Style, green,  0, 0, 300, 200);
+  d2->Draw_Rectangle(Am_No_Style, green, 0, 0, 300, 200);
   d1->Flush_Output();
   d2->Flush_Output();
 }
 
-void test_region_points (Am_Region *rgn, int x, int y, bool val) {
+void
+test_region_points(Am_Region *rgn, int x, int y, bool val)
+{
   if (!(rgn->In(x, y) == val)) {
     char error[200];
     sprintf(error, "** test_region_points failed with  x = %d,  y = %d, "
-	    " val = %d.\n", x, y, val);
-    Am_Error (error);
+                   " val = %d.\n",
+            x, y, val);
+    Am_Error(error);
   }
 }
 
-void test_region_rect (Am_Region *rgn, int x, int y,
-		       unsigned int width, unsigned int height,
-		       bool val1, bool val2) {
+void
+test_region_rect(Am_Region *rgn, int x, int y, unsigned int width,
+                 unsigned int height, bool val1, bool val2)
+{
   bool total;
-  if ( (!(rgn->In(x, y, width, height, total) == val1)) ||
-       (!(total == val2))) {
+  if ((!(rgn->In(x, y, width, height, total) == val1)) || (!(total == val2))) {
     char error[200];
     sprintf(error, "** test_region_rect failed with x = %d, y = %d, "
-	    "width = %d, height = %d\n  val1 = %d,  val2 = %d.\n", x, y,
-	    width, height, val1, val2);
-    Am_Error (error);
+                   "width = %d, height = %d\n  val1 = %d,  val2 = %d.\n",
+            x, y, width, height, val1, val2);
+    Am_Error(error);
   }
 }
 
-void test_region_rgn (Am_Region *rgn1, Am_Region *rgn2,
-		       bool val1, bool val2) {
+void
+test_region_rgn(Am_Region *rgn1, Am_Region *rgn2, bool val1, bool val2)
+{
   bool total;
-  if ( (!(rgn1->In(rgn2, total) == val1)) ||
-       (!(total == val2))) {
+  if ((!(rgn1->In(rgn2, total) == val1)) || (!(total == val2))) {
     char error[200];
     sprintf(error, "** test_region_rgn failed with rgn1 = %x, rgn2 = %x.\n",
-	    (unsigned long) rgn1, (unsigned long) rgn2);
-    Am_Error (error);
+            (unsigned long)rgn1, (unsigned long)rgn2);
+    Am_Error(error);
   }
 }
 
-void test_intersections () {
+void
+test_intersections()
+{
   printf("Testing Am_Region::Intersect_Region:\n");
 
   printf("  Hit RETURN to draw three giant rectangles in successively\n");
@@ -257,14 +271,17 @@ void test_intersections () {
   printf("Am_Region::In_Region tests all passed.\n");
 }
 
-void test_region_fns () {
+void
+test_region_fns()
+{
   printf("Testing low-level Am_Region member functions:\n");
 
   printf("  Hit RETURN to clip giant black rect to an Am_Region:");
   getchar();
 
   d1->Clear_Clip();
-  clear_whole_window (d1);;
+  clear_whole_window(d1);
+  ;
 
   Am_Region *rgn = Am_Region::Create();
   rgn->Set(150, 50, 80, 40);
@@ -276,13 +293,14 @@ void test_region_fns () {
   int counter;
   printf("  Hit RETURN 6 times to nest Am_Region clipping:  ");
   set_style_array(red, green, blue, white, black, yellow);
-  clear_whole_window (d1);;
+  clear_whole_window(d1);
+  ;
 
   rgn = Am_Region::Create();
-  for(counter=0; counter<=5; counter++) {
+  for (counter = 0; counter <= 5; counter++) {
     getchar();
     printf("%d  ", counter + 1);
-    rgn->Push(10+10*counter, 10+10*counter, 150, 150);
+    rgn->Push(10 + 10 * counter, 10 + 10 * counter, 150, 150);
     d1->Set_Clip(rgn);
     d1->Draw_Rectangle(Am_No_Style, style_array[counter], 0, 0, 300, 200);
     d1->Flush_Output();
@@ -290,7 +308,7 @@ void test_region_fns () {
   printf("\n");
 
   printf("  Hit RETURN 6 times to pop Am_Region clipping:  ");
-  for(counter=0; counter<=5; counter++) {
+  for (counter = 0; counter <= 5; counter++) {
     getchar();
     printf("%d  ", counter + 1);
     rgn->Pop();
@@ -301,10 +319,10 @@ void test_region_fns () {
   printf("\n");
 
   printf("  Hit RETURN 2 times to push again onto that same Am_Region:  ");
-  for(counter=0; counter<=1; counter++) {
+  for (counter = 0; counter <= 1; counter++) {
     getchar();
     printf("%d  ", counter + 1);
-    rgn->Push(50+10*counter, 50+10*counter, 200, 50);
+    rgn->Push(50 + 10 * counter, 50 + 10 * counter, 200, 50);
     d1->Set_Clip(rgn);
     d1->Draw_Rectangle(Am_No_Style, style_array[counter], 0, 0, 300, 200);
     d1->Flush_Output();
@@ -312,14 +330,17 @@ void test_region_fns () {
   printf("\n");
 }
 
-void test_drawonable_fns () {
+void
+test_drawonable_fns()
+{
   printf("Testing higher-level Am_Drawonable member functions:\n");
 
   printf("  Hit RETURN to clip black rect to drawonable's clip_region\n");
   getchar();
 
   d1->Clear_Clip();
-  clear_whole_window (d1);;
+  clear_whole_window(d1);
+  ;
   d1->Set_Clip(150, 50, 80, 40);
   d1->Draw_Rectangle(Am_No_Style, black, 0, 0, 300, 200);
   d1->Flush_Output();
@@ -328,19 +349,20 @@ void test_drawonable_fns () {
   printf("  Hit RETURN 6 times to nest Am_Drawonable clipping:  ");
   set_style_array(red, green, blue, white, black, yellow);
   d1->Clear_Clip();
-  clear_whole_window (d1);;
+  clear_whole_window(d1);
+  ;
 
-  for(counter=0; counter<=5; counter++) {
+  for (counter = 0; counter <= 5; counter++) {
     getchar();
     printf("%d  ", counter + 1);
-    d1->Push_Clip(10+10*counter, 10+10*counter, 150, 150);
+    d1->Push_Clip(10 + 10 * counter, 10 + 10 * counter, 150, 150);
     d1->Draw_Rectangle(Am_No_Style, style_array[counter], 0, 0, 300, 200);
     d1->Flush_Output();
   }
   printf("\n");
 
   printf("  Hit RETURN 6 times to pop Am_Drawonable clipping:  ");
-  for(counter=0; counter<=5; counter++) {
+  for (counter = 0; counter <= 5; counter++) {
     getchar();
     printf("%d  ", counter + 1);
     d1->Pop_Clip();
@@ -350,17 +372,19 @@ void test_drawonable_fns () {
   printf("\n");
 
   printf("  Hit RETURN 2 times to push again into that same Am_Drawonable:  ");
-  for(counter=0; counter<=1; counter++) {
+  for (counter = 0; counter <= 1; counter++) {
     getchar();
     printf("%d  ", counter + 1);
-    d1->Push_Clip(50+10*counter, 50+10*counter, 200, 50);
+    d1->Push_Clip(50 + 10 * counter, 50 + 10 * counter, 200, 50);
     d1->Draw_Rectangle(Am_No_Style, style_array[counter], 0, 0, 300, 200);
     d1->Flush_Output();
   }
   printf("\n");
 }
 
-void test_clear_clipping () {
+void
+test_clear_clipping()
+{
   printf("Testing clip-regions with Clear_Area():\n");
 
   printf("  Hit RETURN to black-out drawonable and clear an area:");
@@ -369,7 +393,8 @@ void test_clear_clipping () {
   d1->Clear_Clip();
   d1->Draw_Rectangle(Am_No_Style, black, 0, 0, 300, 200);
   d1->Set_Clip(10, 10, 280, 180);
-  clear_whole_window (d1);;
+  clear_whole_window(d1);
+  ;
   d1->Flush_Output();
 
   int counter;
@@ -377,12 +402,12 @@ void test_clear_clipping () {
   printf("      while alternately drawing big rectangles and clearing:  ");
   set_style_array(red, red, blue, blue, red, red);
 
-  for(counter=0; counter<=5; counter++) {
+  for (counter = 0; counter <= 5; counter++) {
     getchar();
     printf("%d  ", counter + 1);
-    d1->Push_Clip(0, 0, 290-20*counter, 190-20*counter);
-    if ( counter % 2 )
-      clear_whole_window (d1);
+    d1->Push_Clip(0, 0, 290 - 20 * counter, 190 - 20 * counter);
+    if (counter % 2)
+      clear_whole_window(d1);
     else
       d1->Draw_Rectangle(Am_No_Style, style_array[counter], 0, 0, 300, 200);
     d1->Flush_Output();
@@ -390,17 +415,17 @@ void test_clear_clipping () {
   printf("\n");
 }
 
-void test_more_clear_clipping () {
+void
+test_more_clear_clipping()
+{
   printf("Testing clip-regions that do/don't intersect Clear_Area():\n");
 
-  
   printf("  Hit RETURN to black-out window:");
   getchar();
   d1->Clear_Clip();
   d1->Draw_Rectangle(Am_No_Style, black, 0, 0, 300, 200);
   d1->Flush_Output();
 
-  
   printf("  Hit RETURN to clip on left and clear on right, w/o intersecting:");
   getchar();
   d1->Clear_Clip();
@@ -435,12 +460,13 @@ void test_more_clear_clipping () {
   d1->Flush_Output();
 }
 
-int main ()
-{ 
+int
+main()
+{
   Am_Drawonable *root = Am_Drawonable::Get_Root_Drawonable();
 
   d1 = root->Create(TESTCLIP_D1_LEFT, 10, 300, 200);
-  d1->Flush_Output ();
+  d1->Flush_Output();
 
   d2 = root->Create(TESTCLIP_D1_LEFT, 250, 300, 200);
   d2->Flush_Output();
@@ -452,7 +478,7 @@ int main ()
   test_drawonable_fns();
   test_clear_clipping();
   test_more_clear_clipping();
-  
+
   ///
   ///  Exit
   ///

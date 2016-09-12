@@ -5,4 +5,3 @@
 #define ntohf(f) (f)
 #define htond(d) (d)
 #define ntohd(d) (d)
-

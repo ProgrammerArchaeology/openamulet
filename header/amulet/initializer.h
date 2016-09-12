@@ -16,8 +16,8 @@
 #define INITIALIZER_H
 #endif
 
-#if _MSC_VER >=1000 // only for VC++ 5 or later
-	#pragma once	// include header only once
+#if _MSC_VER >= 1000 // only for VC++ 5 or later
+#pragma once         // include header only once
 #endif
 
 //-----------------------------------------------------------------------------------------
@@ -65,7 +65,7 @@
 // system include files
 //-------------------------------------------------------------
 #ifndef __SGI_STL_LIST_H
-	#include <list>
+#include <list>
 #endif
 
 //-------------------------------------------------------------
@@ -76,10 +76,10 @@
 // Re-enables warnings
 //-------------------------------------------------------------
 #ifdef _MSC_VER
-	#pragma warning(default: 4018) // < signed/unsigned
-	#pragma warning(default: 4201) // nameless union
-	#pragma warning(default: 4214) // non 'int' bitfields
-	#pragma warning(default: 4663) // c++ language change
+#pragma warning(default : 4018) // < signed/unsigned
+#pragma warning(default : 4201) // nameless union
+#pragma warning(default : 4214) // non 'int' bitfields
+#pragma warning(default : 4663) // c++ language change
 #endif
 
 //-------------------------------------------------------------
@@ -100,32 +100,34 @@
 
 class _OA_DL_CLASSIMPORT Am_Initializer
 {
-	public:
-		// CREATORS
-			typedef std::list<Am_Initializer*> INITIALIZERLIST;
-			typedef void Am_Initializer_Procedure();
-	    	Am_Initializer(char *this_name, Am_Initializer_Procedure *init_proc, float priority, unsigned aCheckPoint = 1, Am_Initializer_Procedure *cleanup_proc = 0);
-//			~Am_Initializer();
+public:
+  // CREATORS
+  typedef std::list<Am_Initializer *> INITIALIZERLIST;
+  typedef void Am_Initializer_Procedure();
+  Am_Initializer(char *this_name, Am_Initializer_Procedure *init_proc,
+                 float priority, unsigned aCheckPoint = 1,
+                 Am_Initializer_Procedure *cleanup_proc = 0);
+  //			~Am_Initializer();
 
-		// MANIPULATORS
-		// ACCESSORS
-			static void Do_Initialize();
-			static void Do_Cleanup();
-		// DATA MEMBERS
+  // MANIPULATORS
+  // ACCESSORS
+  static void Do_Initialize();
+  static void Do_Cleanup();
+  // DATA MEMBERS
 
-	protected:
-		// CREATORS
-		// MANIPULATORS
-		// ACCESSORS
-		// DATA MEMBERS
-			static INITIALIZERLIST		*am_initializer_list;
+protected:
+  // CREATORS
+  // MANIPULATORS
+  // ACCESSORS
+  // DATA MEMBERS
+  static INITIALIZERLIST *am_initializer_list;
 
-			char 						*name;
-			float 						priority;
-			unsigned					mCheckPoint;
+  char *name;
+  float priority;
+  unsigned mCheckPoint;
 
-			Am_Initializer_Procedure 	*init;
-			Am_Initializer_Procedure 	*cleanup;
+  Am_Initializer_Procedure *init;
+  Am_Initializer_Procedure *cleanup;
 };
 
 //-------------------------------------------------------------

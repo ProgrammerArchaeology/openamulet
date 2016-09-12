@@ -33,33 +33,38 @@
 
 #include <sys/select.h>
 
-void Am_Break_Into_Debugger ()
+void
+Am_Break_Into_Debugger()
 {
- std::cerr <<
-    "** Breaking into the debugger:  Expect a SIGINT interrupt signal.\n";
+  std::cerr
+      << "** Breaking into the debugger:  Expect a SIGINT interrupt signal.\n";
   kill(getpid(), SIGINT);
 }
 
-void Am_Wait (int milliseconds)
+void
+Am_Wait(int milliseconds)
 {
   timeval tim;
-  tim.tv_sec = milliseconds/1000;
+  tim.tv_sec = milliseconds / 1000;
   tim.tv_usec = (milliseconds % 1000) * 1000;
   // Use select to hack a subsecond pause on UNIX.
   // There's no machine independant way to pause for a fraction of a second.
   // select usually does something, but NULLs say, "do nothing."
   // tim tells it how long to do nothing.
-  select (0, (0L), NULL, NULL, &tim);
+  select(0, (0L), NULL, NULL, &tim);
 }
 
-const char* Am_Get_Amulet_Pathname () {
-  const char* amulet_dir = getenv("AMULET_DIR");
+const char *
+Am_Get_Amulet_Pathname()
+{
+  const char *amulet_dir = getenv("AMULET_DIR");
   if (amulet_dir != 0)
     return amulet_dir;
   return DEFAULT_AMULET_DIR;
 }
 
-const char *Am_Merge_Pathname(const char *name)
+const char *
+Am_Merge_Pathname(const char *name)
 {
 #if 0
   char * am_dir = Am_Get_Amulet_Pathname();
@@ -73,12 +78,11 @@ const char *Am_Merge_Pathname(const char *name)
 #else
   Am_Filename found;
   const bool ok = Am_Default_Data_Locator.Find_File(name, found);
-  if (!ok)
-    {
-     std::cout << "Unable to locate file '" << name << "'" <<std::endl;
-    }
-  char *ret_val = (char *) new char [found.name().length() + 1];
-  strcpy (ret_val, found.c_str());
+  if (!ok) {
+    std::cout << "Unable to locate file '" << name << "'" << std::endl;
+  }
+  char *ret_val = (char *)new char[found.name().length() + 1];
+  strcpy(ret_val, found.c_str());
   return ret_val;
 #endif
 }
@@ -89,51 +93,53 @@ const char *Am_Merge_Pathname(const char *name)
 #include <windows.h>
 #include <stdlib.h>
 
-void Am_Break_Into_Debugger ()
+void
+Am_Break_Into_Debugger()
 {
   DebugBreak();
 }
 
-void Am_Wait (int milliseconds)
+void
+Am_Wait(int milliseconds)
 {
   // this probably doesn't work.
   Sleep(milliseconds);
 }
 
-const char* Am_Get_Amulet_Pathname()
+const char *
+Am_Get_Amulet_Pathname()
 {
-	// do we have an environment variable?
-	const char* amulet_dir = getenv("AMULET_DIR");
-	if(amulet_dir != 0)
-	{
-		// yep, than return its value
-		return(amulet_dir);
-	}
+  // do we have an environment variable?
+  const char *amulet_dir = getenv("AMULET_DIR");
+  if (amulet_dir != 0) {
+    // yep, than return its value
+    return (amulet_dir);
+  }
 
-	// no, return the default value
-	return(DEFAULT_AMULET_DIR);
+  // no, return the default value
+  return (DEFAULT_AMULET_DIR);
 }
 
-const char *Am_Merge_Pathname(const char *name)
+const char *
+Am_Merge_Pathname(const char *name)
 {
-	// get the installation path
-	char * am_dir = Am_Get_Amulet_Pathname();
+  // get the installation path
+  char *am_dir = Am_Get_Amulet_Pathname();
 
-	// is it a valid path?
-	if(am_dir == 0)
-	{
-		// no, than use the parent directory
-		am_dir = "..";
-	}
+  // is it a valid path?
+  if (am_dir == 0) {
+    // no, than use the parent directory
+    am_dir = "..";
+  }
 
-	// and construct the path
-	char *ret_val = (char *) new char [(strlen(am_dir) + strlen(name) + 2)];
+  // and construct the path
+  char *ret_val = (char *)new char[(strlen(am_dir) + strlen(name) + 2)];
 
-	strcpy(ret_val, am_dir);
-	strcat(ret_val, "/");
-	strcat(ret_val, name);
+  strcpy(ret_val, am_dir);
+  strcat(ret_val, "/");
+  strcat(ret_val, name);
 
-	return(ret_val);
+  return (ret_val);
 }
 
 #else
@@ -141,8 +147,10 @@ const char *Am_Merge_Pathname(const char *name)
 // Unsupported platform
 
 #include AM_IO__H
-void Am_Break_Into_Debugger ()
+void
+Am_Break_Into_Debugger()
 {
- std::cerr << "Breaking into the debugger not implemented yet for this machine.\n";
+  std::cerr
+      << "Breaking into the debugger not implemented yet for this machine.\n";
 }
 #endif

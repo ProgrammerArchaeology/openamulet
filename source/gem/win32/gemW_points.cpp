@@ -7,8 +7,6 @@
  * please contact amulet@cs.cmu.edu to be put on the mailing list.        *
  * ************************************************************************/
 
-		 
-
 #include <stdio.h>
 #include <iostream>
 #include <math.h>
@@ -26,53 +24,56 @@
 // Am_Point_Array_Data  (defined in gemW_points.h)
 // // // // // // // // // // // // // // // // // // // //
 
-AM_WRAPPER_IMPL (Am_Point_Array)
+AM_WRAPPER_IMPL(Am_Point_Array)
 
-Am_Point_Array::Am_Point_Array (Am_Point_List pl)
+Am_Point_Array::Am_Point_Array(Am_Point_List pl)
 {
-  data = new Am_Point_Array_Data (pl, 0, 0);
-}
-  
-
-Am_Point_Array::Am_Point_Array (Am_Point_List pl, int offset_x, int offset_y)
-{
-  data = new Am_Point_Array_Data (pl, offset_x, offset_y);
+  data = new Am_Point_Array_Data(pl, 0, 0);
 }
 
-Am_Point_Array::Am_Point_Array (int *ar, int num_coords)
+Am_Point_Array::Am_Point_Array(Am_Point_List pl, int offset_x, int offset_y)
 {
-  data = new Am_Point_Array_Data (ar, num_coords);
+  data = new Am_Point_Array_Data(pl, offset_x, offset_y);
 }
 
-Am_Point_Array::Am_Point_Array (int num_points)
+Am_Point_Array::Am_Point_Array(int *ar, int num_coords)
 {
-  data = new Am_Point_Array_Data (num_points);
+  data = new Am_Point_Array_Data(ar, num_coords);
 }
 
-int Am_Point_Array::Length ()
+Am_Point_Array::Am_Point_Array(int num_points)
+{
+  data = new Am_Point_Array_Data(num_points);
+}
+
+int
+Am_Point_Array::Length()
 {
   return data->size;
 }
 
-void Am_Point_Array::Get (int index, int &x, int &y)
+void
+Am_Point_Array::Get(int index, int &x, int &y)
 {
   x = data->ar[index].x;
   y = data->ar[index].y;
 }
 
-void Am_Point_Array::Set (int index, int x, int y)
+void
+Am_Point_Array::Set(int index, int x, int y)
 {
   data->ar[index].x = x;
   data->ar[index].y = y;
 }
 
-void Am_Point_Array::Translate (int offset_x, int offset_y)
+void
+Am_Point_Array::Translate(int offset_x, int offset_y)
 {
   int i;
   int size = data->size;
   POINT *ar = data->ar;
 
-  for (i=0; i<size; ++i) {
+  for (i = 0; i < size; ++i) {
     ar[i].x += offset_x;
     ar[i].y += offset_y;
   }
@@ -82,54 +83,55 @@ void Am_Point_Array::Translate (int offset_x, int offset_y)
 // Am_Point_Array_Data constructors must set refs=1
 //////
 
-AM_WRAPPER_DATA_IMPL (Am_Point_Array, (this))
+AM_WRAPPER_DATA_IMPL(Am_Point_Array, (this))
 
-Am_Point_Array_Data::Am_Point_Array_Data (Am_Point_Array_Data *proto)
+Am_Point_Array_Data::Am_Point_Array_Data(Am_Point_Array_Data *proto)
 {
   size = proto->size;
   ar = new POINT[size];
-  memcpy(ar, proto->ar, sizeof(*ar)*size);
+  memcpy(ar, proto->ar, sizeof(*ar) * size);
 }
 
-Am_Point_Array_Data::Am_Point_Array_Data (int ar_size)
+Am_Point_Array_Data::Am_Point_Array_Data(int ar_size)
 {
   size = ar_size;
   ar = new POINT[size];
 }
 
-Am_Point_Array_Data::Am_Point_Array_Data (int *coords, int num_coords)
+Am_Point_Array_Data::Am_Point_Array_Data(int *coords, int num_coords)
 {
   size = num_coords / 2;
   ar = new POINT[size];
 
   int i;
-  for (i=0; i<size; ++i) {
-    ar[i].x = coords[2*i];
-    ar[i].y = coords[2*i + 1];
+  for (i = 0; i < size; ++i) {
+    ar[i].x = coords[2 * i];
+    ar[i].y = coords[2 * i + 1];
   }
 }
 
-Am_Point_Array_Data::Am_Point_Array_Data (Am_Point_List pl, int offset_x, int offset_y)
+Am_Point_Array_Data::Am_Point_Array_Data(Am_Point_List pl, int offset_x,
+                                         int offset_y)
 {
   size = pl.Length();
   ar = new POINT[size];
 
   int i, x, y;
 
-  for (i=0, pl.Start(); i < size; ++i, pl.Next()) {
-    pl.Get (x, y);
+  for (i = 0, pl.Start(); i < size; ++i, pl.Next()) {
+    pl.Get(x, y);
     ar[i].x = x + offset_x;
     ar[i].y = y + offset_y;
   }
 }
 
-Am_Point_Array_Data::~Am_Point_Array_Data ()
+Am_Point_Array_Data::~Am_Point_Array_Data()
 {
-  delete [] ar;
+  delete[] ar;
   ar = (0L);
 }
 
-  /*
+/*
 //////
 // Am_Drawonable_Impl functions
 //////
@@ -275,7 +277,7 @@ static void compute_mitered_join_extents
     // if angle between a and b is less than about 11 degrees, 
     // X Windows uses a beveled join instead of a miter.
     double costheta = fabs(ax*bx + ay*by);
-    if (costheta > 0.981627183 /*cos(11 degrees)*//*) {
+    if (costheta > 0.981627183 /*cos(11 degrees)*/ /*) {
       int th0 = thick / 2;
       int th1 = (thick+1) / 2;
       minx = x - th0;

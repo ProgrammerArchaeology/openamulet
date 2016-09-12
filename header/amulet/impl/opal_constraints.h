@@ -19,26 +19,32 @@ _OA_DL_IMPORT extern Am_Formula Am_Center_Y_Is_Center_Of_Owner;
 _OA_DL_IMPORT extern Am_Formula Am_Right_Is_Right_Of_Owner;
 _OA_DL_IMPORT extern Am_Formula Am_Bottom_Is_Bottom_Of_Owner;
 
-_OA_DL_IMPORT extern Am_Formula Am_Same_As (Am_Slot_Key key);
-_OA_DL_IMPORT extern Am_Formula Am_From_Owner (Am_Slot_Key key);
-_OA_DL_IMPORT extern Am_Formula Am_From_Part (Am_Slot_Key part, Am_Slot_Key key);
-_OA_DL_IMPORT extern Am_Formula Am_From_Sibling (Am_Slot_Key sibling, Am_Slot_Key key);
-_OA_DL_IMPORT extern Am_Formula Am_From_Object (Am_Object object, Am_Slot_Key key);
+_OA_DL_IMPORT extern Am_Formula Am_Same_As(Am_Slot_Key key);
+_OA_DL_IMPORT extern Am_Formula Am_From_Owner(Am_Slot_Key key);
+_OA_DL_IMPORT extern Am_Formula Am_From_Part(Am_Slot_Key part, Am_Slot_Key key);
+_OA_DL_IMPORT extern Am_Formula Am_From_Sibling(Am_Slot_Key sibling,
+                                                Am_Slot_Key key);
+_OA_DL_IMPORT extern Am_Formula Am_From_Object(Am_Object object,
+                                               Am_Slot_Key key);
 
-_OA_DL_IMPORT extern Am_Formula Am_Same_As (Am_Slot_Key key, int offset,
-			      float multiplier = 1.0);
-_OA_DL_IMPORT extern Am_Formula Am_From_Owner (Am_Slot_Key key, int offset,
-				 float multiplier = 1.0);
-_OA_DL_IMPORT extern Am_Formula Am_From_Part (Am_Slot_Key part, Am_Slot_Key key, int offset,
-				float multiplier = 1.0);
-_OA_DL_IMPORT extern Am_Formula Am_From_Sibling (Am_Slot_Key sibling, Am_Slot_Key key,
-				   int offset, float multiplier = 1.0);
-_OA_DL_IMPORT extern Am_Formula Am_From_Object (Am_Object object, Am_Slot_Key key,
-				  int offset, float multiplier = 1.0);
-_OA_DL_IMPORT extern Am_Formula Am_Bottom_Of_Sibling (Am_Slot_Key sibling,
-				int offset = 0, float multiplier = 1.0);
-_OA_DL_IMPORT extern Am_Formula Am_Right_Of_Sibling (Am_Slot_Key sibling,
-				int offset = 0, float multiplier = 1.0);
+_OA_DL_IMPORT extern Am_Formula Am_Same_As(Am_Slot_Key key, int offset,
+                                           float multiplier = 1.0);
+_OA_DL_IMPORT extern Am_Formula Am_From_Owner(Am_Slot_Key key, int offset,
+                                              float multiplier = 1.0);
+_OA_DL_IMPORT extern Am_Formula Am_From_Part(Am_Slot_Key part, Am_Slot_Key key,
+                                             int offset,
+                                             float multiplier = 1.0);
+_OA_DL_IMPORT extern Am_Formula Am_From_Sibling(Am_Slot_Key sibling,
+                                                Am_Slot_Key key, int offset,
+                                                float multiplier = 1.0);
+_OA_DL_IMPORT extern Am_Formula Am_From_Object(Am_Object object,
+                                               Am_Slot_Key key, int offset,
+                                               float multiplier = 1.0);
+_OA_DL_IMPORT extern Am_Formula Am_Bottom_Of_Sibling(Am_Slot_Key sibling,
+                                                     int offset = 0,
+                                                     float multiplier = 1.0);
+_OA_DL_IMPORT extern Am_Formula Am_Right_Of_Sibling(Am_Slot_Key sibling,
+                                                    int offset = 0,
+                                                    float multiplier = 1.0);
 _OA_DL_IMPORT extern Am_Formula Am_Rest_Of_Height_Above(Am_Slot_Key sibling,
-					  int offset = 0);
-
+                                                        int offset = 0);

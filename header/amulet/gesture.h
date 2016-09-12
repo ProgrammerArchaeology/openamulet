@@ -17,26 +17,28 @@
 #include <am_inc.h>
 
 #include AM_IO__H
-#include GDEFS__H  // to get Am_Point_List
-#include VALUE_LIST__H  // to get Am_Value_List
-#include OBJECT__H // to get Am_Object
+#include GDEFS__H      // to get Am_Point_List
+#include VALUE_LIST__H // to get Am_Value_List
+#include OBJECT__H     // to get Am_Object
 
 ///////////////////////////////////////////////////////
 /// Am_Feature_Vector: represents a gesture example
 ///
 
 class Am_Feature_Vector_Data;
-  
-class _OA_DL_CLASSIMPORT Am_Feature_Vector {
-  AM_WRAPPER_DECL (Am_Feature_Vector)
+
+class _OA_DL_CLASSIMPORT Am_Feature_Vector
+{
+  AM_WRAPPER_DECL(Am_Feature_Vector)
 public:
-  Am_Feature_Vector (); // no points
-  Am_Feature_Vector (Am_Point_List& pl);
+  Am_Feature_Vector(); // no points
+  Am_Feature_Vector(Am_Point_List &pl);
 
-  void Add_Point (int x, int y);
+  void Add_Point(int x, int y);
 
-  Am_Point_List Points ();
-  bool IsDot();  // only one unique point (in a radius of DIST_SQ_THRESHOLD pixels, typically 3)
+  Am_Point_List Points();
+  bool
+  IsDot(); // only one unique point (in a radius of DIST_SQ_THRESHOLD pixels, typically 3)
   double StartX();
   double StartY();
   double InitialSin();
@@ -54,7 +56,7 @@ public:
   double PathTh();
   double AbsTh();
   double Sharpness();
-  double *Vector();    /* returns feature vector for classifier (as array
+  double *Vector(); /* returns feature vector for classifier (as array
 			    of doubles) */
 };
 
@@ -63,57 +65,62 @@ public:
 ///
 
 class Am_Gesture_Classifier_Data;
-  
-class _OA_DL_CLASSIMPORT Am_Gesture_Classifier {
-friend std::ostream&  operator<< (std::ostream& s, Am_Gesture_Classifier& gc);
-friend std::istream&  operator>> (std::istream& s, Am_Gesture_Classifier& gc);
 
-  AM_WRAPPER_DECL (Am_Gesture_Classifier)
+class _OA_DL_CLASSIMPORT Am_Gesture_Classifier
+{
+  friend std::ostream &operator<<(std::ostream &s, Am_Gesture_Classifier &gc);
+  friend std::istream &operator>>(std::istream &s, Am_Gesture_Classifier &gc);
+
+  AM_WRAPPER_DECL(Am_Gesture_Classifier)
 public:
-  Am_Gesture_Classifier (); // empty classifier
-  Am_Gesture_Classifier (const char *filename); // read from file
+  Am_Gesture_Classifier();                     // empty classifier
+  Am_Gesture_Classifier(const char *filename); // read from file
 
-  bool Trained ();
-  Am_String Classify (Am_Feature_Vector fv, double *nap = 0, double *dist = 0);
+  bool Trained();
+  Am_String Classify(Am_Feature_Vector fv, double *nap = 0, double *dist = 0);
 };
 
-_OA_DL_MEMBERIMPORT std::ostream&  operator<< (std::ostream& s, Am_Gesture_Classifier& gc);
-_OA_DL_MEMBERIMPORT std::istream&  operator>> (std::istream& s, Am_Gesture_Classifier& gc);
+_OA_DL_MEMBERIMPORT std::ostream &operator<<(std::ostream &s,
+                                             Am_Gesture_Classifier &gc);
+_OA_DL_MEMBERIMPORT std::istream &operator>>(std::istream &s,
+                                             Am_Gesture_Classifier &gc);
 
 ////////////////////////////////////////////////////////////////////////
 /// Am_Gesture_Trainer:  generates a classifier from training examples
 ///
 
 class Am_Gesture_Trainer_Data;
-  
-class _OA_DL_CLASSIMPORT Am_Gesture_Trainer {
-friend std::ostream&  operator<< (std::ostream& s, Am_Gesture_Trainer& gc);
-friend std::istream&  operator>> (std::istream& s, Am_Gesture_Trainer& gc);
 
-  AM_WRAPPER_DECL (Am_Gesture_Trainer)
+class _OA_DL_CLASSIMPORT Am_Gesture_Trainer
+{
+  friend std::ostream &operator<<(std::ostream &s, Am_Gesture_Trainer &gc);
+  friend std::istream &operator>>(std::istream &s, Am_Gesture_Trainer &gc);
+
+  AM_WRAPPER_DECL(Am_Gesture_Trainer)
 public:
-  Am_Gesture_Trainer (); // empty Trainer
-  Am_Gesture_Trainer (const char *filename); // read from file
+  Am_Gesture_Trainer();                     // empty Trainer
+  Am_Gesture_Trainer(const char *filename); // read from file
 
-  bool Add_Class (Am_String classname, bool unique = true);
-  bool Delete_Class (Am_String classname, bool unique = true);
-  bool Rename_Class (Am_String old_name, Am_String new_name, bool unique = true);
-  Am_Value_List Get_Class_Names ();
+  bool Add_Class(Am_String classname, bool unique = true);
+  bool Delete_Class(Am_String classname, bool unique = true);
+  bool Rename_Class(Am_String old_name, Am_String new_name, bool unique = true);
+  Am_Value_List Get_Class_Names();
 
-  bool Add_Example (Am_String classname, Am_Feature_Vector fv, bool unique = true);
-  bool Delete_Example (Am_String classname, Am_Feature_Vector fv, bool unique = true);
-  Am_Value_List Get_Examples (Am_String classname);
+  bool Add_Example(Am_String classname, Am_Feature_Vector fv,
+                   bool unique = true);
+  bool Delete_Example(Am_String classname, Am_Feature_Vector fv,
+                      bool unique = true);
+  Am_Value_List Get_Examples(Am_String classname);
 
   Am_Gesture_Classifier Train();
-
 };
 
-std::ostream&  operator<< (std::ostream& s, Am_Gesture_Trainer& gc);
-std::istream&  operator>> (std::istream& s, Am_Gesture_Trainer& gc);
+std::ostream &operator<<(std::ostream &s, Am_Gesture_Trainer &gc);
+std::istream &operator>>(std::istream &s, Am_Gesture_Trainer &gc);
 
 /// Global initialization routine
 
-void Am_Gesture_Initialize (void);
+void Am_Gesture_Initialize(void);
 
 //The following are commands that might be put into the items slot of
 //a gesture interactor
@@ -141,4 +148,3 @@ _OA_DL_IMPORT extern Am_Object Am_Gesture_Create_Command;
 // should look for parts of from the selection widget
 _OA_DL_IMPORT extern Am_Object Am_Gesture_Select_And_Do_Command;
 #endif
-

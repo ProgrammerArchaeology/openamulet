@@ -18,7 +18,7 @@
 #include "amulet/impl/types_wrapper.h"
 #include "amulet/impl/am_object.h"
 
-_OA_DL_IMPORT extern void Am_Print_Key (std::ostream& os, Am_Slot_Key key);
+_OA_DL_IMPORT extern void Am_Print_Key(std::ostream &os, Am_Slot_Key key);
 
 #include "amulet/impl/am_instance_iterator.h"
 

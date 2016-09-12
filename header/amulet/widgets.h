@@ -17,9 +17,9 @@
 
 #include <am_inc.h>
 
-#include OBJECT__H  //basic object definitions
+#include OBJECT__H //basic object definitions
 #include OPAL__H
-#include INTER__H  // command objects, etc.
+#include INTER__H // command objects, etc.
 #include VALUE_LIST__H
 #include RICH_TEXT__H
 #include UNDO_DIALOG__H
@@ -31,7 +31,6 @@
 
 #include "amulet/impl/widget_misc.h"
 
-
 #include "amulet/impl/widget_op.h"
 
 #include "amulet/impl/widget_ed_methods.h"
@@ -40,7 +39,6 @@
 //Am_SELECTION_WIDGET slot holding the widget.  This is used by many
 //of the above editing commands.
 _OA_DL_IMPORT extern Am_Formula Am_Active_If_Selection;
-
 
 ////////////////////////////////////////////////////////////////////////
 /// Dialog box routines
@@ -57,8 +55,8 @@ _OA_DL_IMPORT extern Am_Object Am_Choice_Dialog;
 _OA_DL_IMPORT extern Am_Object Am_Alert_Dialog;
 
 _OA_DL_IMPORT extern Am_Object Am_OK_Button; //put this in a dialog box for OK
-_OA_DL_IMPORT extern Am_Object Am_OK_Cancel_Buttons;//put this in a dialog box for OK/Cancel
-
+_OA_DL_IMPORT extern Am_Object
+    Am_OK_Cancel_Buttons; //put this in a dialog box for OK/Cancel
 
 //  Given a user-made dialog box, this sets its stop method, brings it
 //  up, and returns its value using Am_Pop_Up_Window_And_Wait.
@@ -67,12 +65,9 @@ _OA_DL_IMPORT extern Am_Object Am_OK_Cancel_Buttons;//put this in a dialog box f
 //Returns the value of Any input widgets or true if hit OK, and
 //returns false if the user hits cancel
 
-_OA_DL_IMPORT extern Am_Value Am_Show_Dialog_And_Wait (Am_Object the_dialog,
-					 bool modal = true);
+_OA_DL_IMPORT extern Am_Value Am_Show_Dialog_And_Wait(Am_Object the_dialog,
+                                                      bool modal = true);
 
 _OA_DL_IMPORT extern Am_Object Am_File_Dialog;
-
-
-
 
 #endif

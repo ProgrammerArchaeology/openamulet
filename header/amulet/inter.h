@@ -18,10 +18,10 @@
 
 #include <am_inc.h>
 
-#include "amulet/impl/types_method.h"  // basic object definitions
-#include "amulet/impl/types_enum.h"  // basic object definitions
-#include "amulet/impl/am_object.h"  // basic object definitions
-#include IDEFS__H   // Am_Input_Char
+#include "amulet/impl/types_method.h" // basic object definitions
+#include "amulet/impl/types_enum.h"   // basic object definitions
+#include "amulet/impl/am_object.h"    // basic object definitions
+#include IDEFS__H                     // Am_Input_Char
 #include FORMULA__H
 
 //Global variable controlling the number of pixels that the mouse has
@@ -32,9 +32,7 @@
 //like "LEFT_CLICK".
 _OA_DL_IMPORT extern int Am_Minimum_Move_For_Drag;
 
-
 #include "amulet/impl/am_inter_location.h"
-
 
 #include "amulet/impl/inter_objects.h"
 
@@ -43,7 +41,6 @@ _OA_DL_IMPORT extern int Am_Minimum_Move_For_Drag;
 #include "amulet/impl/inter_debug.h"
 
 #include "amulet/impl/inter_text.h"
-
 
 #include "amulet/impl/inter_misc.h"
 
@@ -58,6 +55,5 @@ _OA_DL_IMPORT extern int Am_Minimum_Move_For_Drag;
 #include "amulet/impl/inter_popup.h"
 
 #include "amulet/impl/inter_user_id.h"
-
 
 #endif

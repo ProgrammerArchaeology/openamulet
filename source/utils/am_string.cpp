@@ -4,34 +4,37 @@
 #include <amulet/impl/types_string.h>
 #include STDVALUE__H
 
-#include<string.h>
+#include <string.h>
 
 /////////////////////////////////////////////////////////////////
 // The Am_String procedures
 /////////////////////////////////////////////////////////////////
 
-AM_WRAPPER_IMPL (Am_String)
+AM_WRAPPER_IMPL(Am_String)
 
 Am_String Am_No_String;
 
-Am_String::Am_String (const char* string, bool copy)
+Am_String::Am_String(const char *string, bool copy)
 {
   if (string)
-    data = new Am_String_Data (string, copy);
-  else data = (0L);
+    data = new Am_String_Data(string, copy);
+  else
+    data = (0L);
 }
 
-Am_String& Am_String::operator= (const char* string)
+Am_String &
+Am_String::operator=(const char *string)
 {
   if (data)
-    data->Release ();
+    data->Release();
   if (string)
-    data = new Am_String_Data (string);
-  else data = (0L);
+    data = new Am_String_Data(string);
+  else
+    data = (0L);
   return *this;
 }
 
-Am_String::operator const char* () const
+Am_String::operator const char *() const
 {
   if (data)
     return *data;
@@ -39,45 +42,43 @@ Am_String::operator const char* () const
     return (0L);
 }
 
-Am_String::operator char* ()
+Am_String::operator char *()
 {
   if (data) {
-    data = (Am_String_Data*)data->Make_Unique ();
+    data = (Am_String_Data *)data->Make_Unique();
     return *data;
-  }
-  else
+  } else
     return (0L);
 }
 
-bool Am_String::operator== (const Am_String& test_string) const
+bool
+Am_String::operator==(const Am_String &test_string) const
 {
   if (data && test_string.data) {
-    const char* string = *data;
-    return (string == (const char*)test_string) ||
-           !strcmp (string, (const char*)test_string);
-  }
-  else
+    const char *string = *data;
+    return (string == (const char *)test_string) ||
+           !strcmp(string, (const char *)test_string);
+  } else
     return data == test_string.data;
 }
 
-bool Am_String::operator== (const char* test_string) const
+bool
+Am_String::operator==(const char *test_string) const
 {
   if (test_string) {
     if (data) {
-      const char* string = *data;
-      return (string == test_string) ||
-        !strcmp (string, test_string);
-    }
-    else
+      const char *string = *data;
+      return (string == test_string) || !strcmp(string, test_string);
+    } else
       return test_string == (0L);
   } else
-      return data == (0L);
+    return data == (0L);
 }
 
-std::ostream& operator<< (std::ostream& os, const Am_String& string)
+std::ostream &
+operator<<(std::ostream &os, const Am_String &string)
 {
-  if (string.Valid ())
-    os << (const char*) string;
+  if (string.Valid())
+    os << (const char *)string;
   return os;
 }
-

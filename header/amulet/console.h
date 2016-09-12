@@ -6,7 +6,8 @@ class SetupConsole
 public:
   SetupConsole();
   ~SetupConsole();
-  void setFile(const char* fileName);
+  void setFile(const char *fileName);
+
 private:
   std::iostream *myStreamIn;
   std::iostream *myStreamOut;

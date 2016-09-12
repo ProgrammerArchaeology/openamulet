@@ -9,7 +9,6 @@
 // http://www.openip.org
 //
 
-
 // This file declares maps, tables and iterators for several data types
 // as well as template macros for custom maps, tables and iterators.
 // *************************************************************************
@@ -224,45 +223,53 @@
 #include UNIV_MAP__TPL
 
 // Hash value fuctions
-inline int HashValue(int key, int size)
+inline int
+HashValue(int key, int size)
 {
-	return(abs(key % size));
+  return (abs(key % size));
 }
 
-inline int HashValue(const void *key, int size)
+inline int
+HashValue(const void *key, int size)
 {
-	#ifdef _MIPS_SIM_ABI64
-		return(abs(static_cast<int>(reinterpret_cast<long>(key) % size)));
-	#else
-		return(abs((sizeof(key) > sizeof(int)) ? (int)((long)key % size) : (int)key % size));
-	#endif
+#ifdef _MIPS_SIM_ABI64
+  return (abs(static_cast<int>(reinterpret_cast<long>(key) % size)));
+#else
+  return (abs((sizeof(key) > sizeof(int)) ? (int)((long)key % size)
+                                          : (int)key % size));
+#endif
 }
 
 int HashValue(const char *key, int size);
 
 // Key comparison functions
-inline int KeyComp(int key1, int key2)
+inline int
+KeyComp(int key1, int key2)
 {
-	return(key1-key2);
+  return (key1 - key2);
 }
 
-inline int lsign(long l)
+inline int
+lsign(long l)
 {
-	return (l > 0L) ? 1 : (l < 0L) ? -1 : 0;
+  return (l > 0L) ? 1 : (l < 0L) ? -1 : 0;
 }
 
-inline int KeyComp (const void* key1, const void* key2)
+inline int
+KeyComp(const void *key1, const void *key2)
 {
-	#ifdef _MIPS_SIM_ABI64
-		return (lsign((long) key1 - (long) key2));
-	#else
-		return (sizeof(key1) > sizeof(int))? lsign((long)key1 - (long)key2) : (int)key1 - (int)key2;
-	#endif
+#ifdef _MIPS_SIM_ABI64
+  return (lsign((long)key1 - (long)key2));
+#else
+  return (sizeof(key1) > sizeof(int)) ? lsign((long)key1 - (long)key2)
+                                      : (int)key1 - (int)key2;
+#endif
 }
 
-inline int KeyComp(const char *key1, const char *key2)
+inline int
+KeyComp(const char *key1, const char *key2)
 {
-	return(strcmp(key1, key2));
+  return (strcmp(key1, key2));
 }
 
 #endif

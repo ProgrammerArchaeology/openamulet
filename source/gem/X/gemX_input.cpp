@@ -16,7 +16,6 @@
 // isolatin1 character set to be entered from the keyboard. He included a patch
 // to to use XLookupString
 
-
 #include <X11/X.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -43,50 +42,52 @@ bool Am_Main_Loop_Go = true;
 // Taken from Xlib Programming Manual Vol. One, p. 256-57
 //
 static const char *event_names[] = {
-  "",
-  "",
-  "KeyPress",
-  "KeyRelease",
-  "ButtonPress",
-  "ButtonRelease",
-  "MotionNotify",
-  "EnterNotify",
-  "LeaveNotify",
-  "FocusIn",
-  "FocusOut",
-  "KeymapNotify",
-  "Expose",
-  "GraphicsExpose",
-  "NoExpose",
-  "VisibilityNotify",
-  "CreateNotify",
-  "DestroyNotify",
-  "UnmapNotify",
-  "MapNotify",
-  "MapRequest",
-  "ReparentNotify",
-  "ConfigureNotify",
-  "ConfigureRequest",
-  "GravityNotify",
-  "ResizeRequest",
-  "CirculateNotify",
-  "CirculateRequest",
-  "PropertyNotify",
-  "SelectionClear",
-  "SelectionRequest",
-  "SelectionNotify",
-  "ColormapNotify",
-  "ClientMessage",
-  "MappingNotify",
+    "",
+    "",
+    "KeyPress",
+    "KeyRelease",
+    "ButtonPress",
+    "ButtonRelease",
+    "MotionNotify",
+    "EnterNotify",
+    "LeaveNotify",
+    "FocusIn",
+    "FocusOut",
+    "KeymapNotify",
+    "Expose",
+    "GraphicsExpose",
+    "NoExpose",
+    "VisibilityNotify",
+    "CreateNotify",
+    "DestroyNotify",
+    "UnmapNotify",
+    "MapNotify",
+    "MapRequest",
+    "ReparentNotify",
+    "ConfigureNotify",
+    "ConfigureRequest",
+    "GravityNotify",
+    "ResizeRequest",
+    "CirculateNotify",
+    "CirculateRequest",
+    "PropertyNotify",
+    "SelectionClear",
+    "SelectionRequest",
+    "SelectionNotify",
+    "ColormapNotify",
+    "ClientMessage",
+    "MappingNotify",
 };
 
-Bool is_mapnotify(Display * /* dpy */, XEvent *event_return, XPointer xlib_window) {
+Bool
+is_mapnotify(Display * /* dpy */, XEvent *event_return, XPointer xlib_window)
+{
   switch (event_return->type) {
   case MapNotify:
     // Got MapNotify event, but if multiple windows have been created and
     // Process_Event has not yet been called, then old MapNotify events may
     // still be in the queue.  Check that we get the one for our window.
-    if (event_return->xmap.window == *(Window*)xlib_window) {
+    if (event_return->xmap.window == *(Window *)xlib_window) {
       return True;
     }
     break;
@@ -100,68 +101,74 @@ Bool is_mapnotify(Display * /* dpy */, XEvent *event_return, XPointer xlib_windo
 // Convert an X input event into a Am_Input_Char
 // // // // // // // // // // // // // // // // // // // //
 
-int Am_Double_Click_Time = 250;  // in milleseconds
+int Am_Double_Click_Time = 250; // in milleseconds
 
-Am_Click_Count Check_Multi_Click(int code, unsigned int state,
-				 Am_Button_Down down,
-				 Time time, Screen_Desc* screen) {
+Am_Click_Count
+Check_Multi_Click(int code, unsigned int state, Am_Button_Down down, Time time,
+                  Screen_Desc *screen)
+{
 
-    Am_Click_Count result = Am_SINGLE_CLICK;
+  Am_Click_Count result = Am_SINGLE_CLICK;
 
-    if (Am_Double_Click_Time) { // else not interested in multi-click
-	// if a down press, then check if double click. If up, then use current
-	// down count.  If other mouse event, then ignore multi-click
-	if ( down == Am_NEITHER) ; // result is OK, do nothing
-	else if ( down == Am_BUTTON_UP) { // use current value
+  if (Am_Double_Click_Time) { // else not interested in multi-click
+    // if a down press, then check if double click. If up, then use current
+    // down count.  If other mouse event, then ignore multi-click
+    if (down == Am_NEITHER)
+      ;                              // result is OK, do nothing
+    else if (down == Am_BUTTON_UP) { // use current value
 
-	    if (screen->click_counter >= 7) result = Am_MANY_CLICK;
-	    else result = (Am_Click_Count) (screen->click_counter + 1);
-		// otherwise, just use single click, so result OK
-	}
-	else { // is a down press
-	    if ( (code  == screen->last_click_code) &&
-		 (state == screen->last_click_state) &&
-		 ( time <= screen->last_click_time + Am_Double_Click_Time)){
-		// is multi-click
-		++(screen->click_counter);
+      if (screen->click_counter >= 7)
+        result = Am_MANY_CLICK;
+      else
+        result = (Am_Click_Count)(screen->click_counter + 1);
+      // otherwise, just use single click, so result OK
+    } else { // is a down press
+      if ((code == screen->last_click_code) &&
+          (state == screen->last_click_state) &&
+          (time <= screen->last_click_time + Am_Double_Click_Time)) {
+        // is multi-click
+        ++(screen->click_counter);
 
-		if (screen->click_counter >= 7) result = Am_MANY_CLICK;
-		else result = (Am_Click_Count) (screen->click_counter + 1);
-	    }
-	    else screen->click_counter = 0;
+        if (screen->click_counter >= 7)
+          result = Am_MANY_CLICK;
+        else
+          result = (Am_Click_Count)(screen->click_counter + 1);
+      } else
+        screen->click_counter = 0;
 
-	    // in either case, set up variables for next time
-	    screen->last_click_code = code;
-	    screen->last_click_state = state;
-	    screen->last_click_time = time;
-
-	}
+      // in either case, set up variables for next time
+      screen->last_click_code = code;
+      screen->last_click_state = state;
+      screen->last_click_time = time;
     }
-    return result;
+  }
+  return result;
 }
 
+Am_Input_Char
+create_input_char_from_code(short code, unsigned int state, Am_Button_Down down,
+                            Am_Click_Count mouse)
+{
 
-Am_Input_Char create_input_char_from_code (short code,
-					   unsigned int state,
-					   Am_Button_Down down,
-					   Am_Click_Count mouse) {
+  bool shft = false;
+  bool ctrl = false;
+  bool meta = false;
 
-    bool shft = false;
-    bool ctrl = false;
-    bool meta = false;
+  if ((state & ShiftMask))
+    shft = true;
 
-    if ((state & ShiftMask)) shft = true;
+  //only use shift lock for alphabetic characters
+  if ((state & LockMask) && (code >= 'a') && (code <= 'z'))
+    shft = true;
 
-    //only use shift lock for alphabetic characters
-    if ((state & LockMask) &&
-	(code >= 'a') && (code <= 'z')) shft = true;
+  if (state & ControlMask)
+    ctrl = true;
+  if (state & Mod1Mask)
+    meta = true;
 
-    if (state & ControlMask) ctrl = true;
-    if (state & Mod1Mask) meta = true;
+  Am_Input_Char ic = Am_Input_Char(code, shft, ctrl, meta, down, mouse);
 
-    Am_Input_Char ic = Am_Input_Char(code, shft, ctrl, meta, down, mouse);
-
-    return ic;
+  return ic;
 }
 
 #ifndef OA_VERSION
@@ -170,24 +177,27 @@ AM_IMPL_MAP(int2int, int, 0, int, 0)
 static Am_Map_int2int *am_key_map = 0;
 
 // returns character code or 0 if modifier or -1 if illegal
-short Map_Sym_To_Code(KeySym sym)
+short
+Map_Sym_To_Code(KeySym sym)
 {
   short c;
-  if (am_key_map == 0) Am_Init_Key_Map();
-  c = (short)(am_key_map->GetAt((int) sym));
-  if (c) return c;
+  if (am_key_map == 0)
+    Am_Init_Key_Map();
+  c = (short)(am_key_map->GetAt((int)sym));
+  if (c)
+    return c;
 
-  if ( (sym >= 65505) && (sym <= 65518) ) {
+  if ((sym >= 65505) && (sym <= 65518)) {
     // symbol is a modifier key
     c = 0;
-  }
-  else { // unknown character
+  } else { // unknown character
     c = -1;
   }
   return c;
 }
 
-void set_am_key_map (int Sym, int Code)
+void
+set_am_key_map(int Sym, int Code)
 {
   am_key_map->SetAt(Sym, Code);
 }
@@ -195,29 +205,31 @@ void set_am_key_map (int Sym, int Code)
 #if XlibSpecificationRelease < 6
 // define XK_* constants that are not defined in keysymdefs.h prior to X11R6
 // these values are consistent with those used in Amulet V2
-#define XK_Page_Up		0xFF55
-#define XK_Page_Down		0xFF56
-#define XK_KP_Home		0xFF95
-#define XK_KP_Left		0xFF96
-#define XK_KP_Up		0xFF97
-#define XK_KP_Right		0xFF98
-#define XK_KP_Down		0xFF99
-#define XK_KP_Prior		0xFF9A
-#define XK_KP_Page_Up		0xFF9A
-#define XK_KP_Next		0xFF9B
-#define XK_KP_Page_Down		0xFF9B
-#define XK_KP_End		0xFF9C
-#define XK_KP_Begin		0xFF9D
-#define XK_KP_Insert		0xFF9E
-#define XK_KP_Delete		0xFF9F
+#define XK_Page_Up 0xFF55
+#define XK_Page_Down 0xFF56
+#define XK_KP_Home 0xFF95
+#define XK_KP_Left 0xFF96
+#define XK_KP_Up 0xFF97
+#define XK_KP_Right 0xFF98
+#define XK_KP_Down 0xFF99
+#define XK_KP_Prior 0xFF9A
+#define XK_KP_Page_Up 0xFF9A
+#define XK_KP_Next 0xFF9B
+#define XK_KP_Page_Down 0xFF9B
+#define XK_KP_End 0xFF9C
+#define XK_KP_Begin 0xFF9D
+#define XK_KP_Insert 0xFF9E
+#define XK_KP_Delete 0xFF9F
 #endif
 
-void Am_Init_Key_Map()
+void
+Am_Init_Key_Map()
 {
   // The commented out lines have no Amulet equivalent.  Check there first!
   // Look for these XK_* constants in include/X11/keysymdefs.h
 
-  if (am_key_map == 0) am_key_map = new Am_Map_int2int();
+  if (am_key_map == 0)
+    am_key_map = new Am_Map_int2int();
   set_am_key_map(XK_BackSpace, Am_BACKSPACE);
   set_am_key_map(XK_Tab, Am_TAB);
   set_am_key_map(XK_Linefeed, Am_LINEFEED);
@@ -230,7 +242,7 @@ void Am_Init_Key_Map()
   set_am_key_map(XK_Escape, Am_ESC);
   set_am_key_map(XK_Delete, Am_DELETE);
 
-  set_am_key_map (XK_Multi_key, Am_COMPOSE_CHARACTER);
+  set_am_key_map(XK_Multi_key, Am_COMPOSE_CHARACTER);
   set_am_key_map(XK_Home, Am_HOME);
   set_am_key_map(XK_Left, Am_LEFT_ARROW);
   set_am_key_map(XK_Up, Am_UP_ARROW);
@@ -402,7 +414,7 @@ void Am_Init_Key_Map()
   set_am_key_map(XK_bracketright, (short)']');
   set_am_key_map(XK_asciicircum, (short)'^');
   set_am_key_map(XK_underscore, (short)'_');
-//  set_am_key_map(XK_grave, (short)'');
+  //  set_am_key_map(XK_grave, (short)'');
   set_am_key_map(XK_quoteleft, (short)'`');
   set_am_key_map(XK_a, (short)'a');
   set_am_key_map(XK_b, (short)'b');
@@ -543,20 +555,20 @@ void Am_Init_Key_Map()
   // instead of translating it to L anything.
   // 5-31-96 af1x
 
-  set_am_key_map (268500736, Am_REMOVE);
-  set_am_key_map (268500850, Am_INSERT_CHAR);
-  set_am_key_map (268500848, Am_INSERT_LINE);
-  set_am_key_map (268500849, Am_DELETE_LINE);
-  set_am_key_map (268500851, Am_DELETE_CHAR);
-  set_am_key_map (268500847, Am_CLEAR_LINE);
-  set_am_key_map (268500845, Am_USER);
+  set_am_key_map(268500736, Am_REMOVE);
+  set_am_key_map(268500850, Am_INSERT_CHAR);
+  set_am_key_map(268500848, Am_INSERT_LINE);
+  set_am_key_map(268500849, Am_DELETE_LINE);
+  set_am_key_map(268500851, Am_DELETE_CHAR);
+  set_am_key_map(268500847, Am_CLEAR_LINE);
+  set_am_key_map(268500845, Am_USER);
 
-  set_am_key_map (268828528, Am_PROPS_KEY);
-  set_am_key_map (268828529, Am_FRONT_KEY);
-  set_am_key_map (268828530, Am_COPY_KEY);
-  set_am_key_map (268828531, Am_OPEN_KEY);
-  set_am_key_map (268828532, Am_PASTE_KEY);
-  set_am_key_map (268828533, Am_CUT_KEY);
+  set_am_key_map(268828528, Am_PROPS_KEY);
+  set_am_key_map(268828529, Am_FRONT_KEY);
+  set_am_key_map(268828530, Am_COPY_KEY);
+  set_am_key_map(268828531, Am_OPEN_KEY);
+  set_am_key_map(268828532, Am_PASTE_KEY);
+  set_am_key_map(268828533, Am_CUT_KEY);
   /*
     // these aren't handled yet: what Am_ consts should we use?
     case 268828535: c = Am_; break; // SunAudioMute
@@ -564,10 +576,10 @@ void Am_Init_Key_Map()
     case 268828537: c = Am_; break; // SunAudioRaiseVolume
     case 268828534: c = Am_; break; // SunPowerSwitch
     */
-
 }
 
-Am_Input_Char create_input_char_from_key (XKeyEvent& keyevent, Display* disp)
+Am_Input_Char
+create_input_char_from_key(XKeyEvent &keyevent, Display *disp)
 {
   int index;
   if (keyevent.state & ShiftMask)
@@ -591,68 +603,76 @@ Am_Input_Char create_input_char_from_key (XKeyEvent& keyevent, Display* disp)
   if (sym == NoSymbol)
     code = 0;
   else
-    code = Map_Sym_To_Code (sym);
+    code = Map_Sym_To_Code(sym);
 
   if (code == -1) {
     // try again with unshifted symbol
     // This makes SHIFT-R7 etc. work on Sun
-    KeySym second_sym = XKeycodeToKeysym (disp, keyevent.keycode, 0);
-    code = Map_Sym_To_Code (second_sym);
+    KeySym second_sym = XKeycodeToKeysym(disp, keyevent.keycode, 0);
+    code = Map_Sym_To_Code(second_sym);
   }
 
   if (code > 0) {
     // only support keyboard keys going down
-    return create_input_char_from_code (code, keyevent.state, Am_NEITHER,
-				        Am_NOT_MOUSE);
-  }
-  else {
+    return create_input_char_from_code(code, keyevent.state, Am_NEITHER,
+                                       Am_NOT_MOUSE);
+  } else {
     // in case is an illegal character or modifier
     if (code < 0)
-     std::cout << "** Unknown keyboard symbol " << sym << " ignored\n" <<std::flush;
-    return Am_Input_Char (); // null means illegal
+      std::cout << "** Unknown keyboard symbol " << sym << " ignored\n"
+                << std::flush;
+    return Am_Input_Char(); // null means illegal
   }
 }
 
-Am_Input_Char create_input_char_from_mouse (unsigned int button,
-					    unsigned int state,
-					    Am_Button_Down down,
-					    Time time, Screen_Desc* screen)
+Am_Input_Char
+create_input_char_from_mouse(unsigned int button, unsigned int state,
+                             Am_Button_Down down, Time time,
+                             Screen_Desc *screen)
 {
-    int code = 0;
-    if (button == Button1) code = Am_LEFT_MOUSE;
-    else if (button == Button2) code = Am_MIDDLE_MOUSE;
-    else if (button == Button3) code = Am_RIGHT_MOUSE;
-    else {
-     std::cerr << "** Unknown mouse button " << button << "." <<std::endl;
-      Am_Error ();
-    }
+  int code = 0;
+  if (button == Button1)
+    code = Am_LEFT_MOUSE;
+  else if (button == Button2)
+    code = Am_MIDDLE_MOUSE;
+  else if (button == Button3)
+    code = Am_RIGHT_MOUSE;
+  else {
+    std::cerr << "** Unknown mouse button " << button << "." << std::endl;
+    Am_Error();
+  }
 
-    Am_Click_Count cnt = Check_Multi_Click(code, state, down, time, screen);
+  Am_Click_Count cnt = Check_Multi_Click(code, state, down, time, screen);
 
-    return create_input_char_from_code (code, state, down, cnt);
+  return create_input_char_from_code(code, state, down, cnt);
 }
 
 // // // // // // // // // // // // // // // // // // // //
 // Main Input Event Handler
 // // // // // // // // // // // // // // // // // // // //
 
-void set_input_event (Am_Input_Event *ev, Am_Input_Char ic, int x, int y,
-		      unsigned long time, Am_Drawonable *draw) {
+void
+set_input_event(Am_Input_Event *ev, Am_Input_Char ic, int x, int y,
+                unsigned long time, Am_Drawonable *draw)
+{
   // multiple user support is provided in Am_Input_Event::Set()
   ev->Set(ic, x, y, time, draw);
 }
 
-bool exit_if_stop_char(Am_Input_Char ic)
+bool
+exit_if_stop_char(Am_Input_Char ic)
 {
   if (ic == Am_Stop_Character) {
-//   std::cerr << "Got stop event: exiting Amulet main loop." <<std::endl;
+    //   std::cerr << "Got stop event: exiting Amulet main loop." <<std::endl;
     Am_Main_Loop_Go = false;
     return true;
-  }
-  else return false;
+  } else
+    return false;
 }
 
-void handle_selection_request (XEvent& ev, Am_Drawonable_Impl* draw) {
+void
+handle_selection_request(XEvent &ev, Am_Drawonable_Impl *draw)
+{
   // someone wants our selection.
   XEvent notify;
   Atom p;
@@ -661,44 +681,42 @@ void handle_selection_request (XEvent& ev, Am_Drawonable_Impl* draw) {
   else {
     p = ev.xselectionrequest.property;
     XChangeProperty(ev.xselectionrequest.display, //draw->screen->display,
-		    ev.xselectionrequest.requestor,
-		    ev.xselectionrequest.property,
-		    XA_STRING, 8, PropModeReplace,
-		    (unsigned char*)draw->screen->cut_data,
-		    strlen(draw->screen->cut_data));
+                    ev.xselectionrequest.requestor,
+                    ev.xselectionrequest.property, XA_STRING, 8,
+                    PropModeReplace, (unsigned char *)draw->screen->cut_data,
+                    strlen(draw->screen->cut_data));
   }
   notify.xany.type = SelectionNotify;
-  notify.xselection.display =
-    ev.xselectionrequest.display;
+  notify.xselection.display = ev.xselectionrequest.display;
   notify.xselection.send_event = True;
-  notify.xselection.requestor =
-    ev.xselectionrequest.requestor;
-  notify.xselection.selection =
-    ev.xselectionrequest.selection;
+  notify.xselection.requestor = ev.xselectionrequest.requestor;
+  notify.xselection.selection = ev.xselectionrequest.selection;
   notify.xselection.target = XA_STRING;
   notify.xselection.property = p;
-  notify.xselection.time =
-    ev.xselectionrequest.time;
+  notify.xselection.time = ev.xselectionrequest.time;
 
-  int error = XSendEvent(draw->screen->display,
-			 ev.xselectionrequest.requestor,
-			 True, 0, &notify);
- std::cerr << "send event result = " << error <<std::endl;
+  int error = XSendEvent(draw->screen->display, ev.xselectionrequest.requestor,
+                         True, 0, &notify);
+  std::cerr << "send event result = " << error << std::endl;
 
   XSync(draw->screen->display, False);
   // I think we're possibly leaving the property we changed hanging.
 }
 
-Bool selection_event(Display* /* d */, XEvent *ev, char*)
+Bool
+selection_event(Display * /* d */, XEvent *ev, char *)
 {
   if ((ev->xany.type == SelectionNotify) || ev->xany.type == SelectionRequest)
     return True;
-  else return False;
+  else
+    return False;
 }
 
-char* Am_Drawonable_Impl::Get_Cut_Buffer()
+char *
+Am_Drawonable_Impl::Get_Cut_Buffer()
 {
-  if (offscreen) return (0L); // not meaningful for offscreen bitmaps
+  if (offscreen)
+    return (0L); // not meaningful for offscreen bitmaps
 
   // To get a selection properly, we need to send off a SelectionRequest event
   // (this is done with the call to XConvertSelection), and then wait for a
@@ -711,51 +729,53 @@ char* Am_Drawonable_Impl::Get_Cut_Buffer()
   // if the selection is on a different machine than the Amulet program.
 
   if (this == screen->root) { // then we're in a root window
-   std::cerr << "** Gem warning: Get_Cut_Buffer() won't work in a root window.\n";
+    std::cerr
+        << "** Gem warning: Get_Cut_Buffer() won't work in a root window.\n";
     return (0L);
   }
   // Make an atom to get the selection in.
 
   // Request the selection from the X server
-  XConvertSelection(screen->display, XA_PRIMARY, XA_STRING,
-		    screen->cut_buffer, xlib_drawable, CurrentTime);
+  XConvertSelection(screen->display, XA_PRIMARY, XA_STRING, screen->cut_buffer,
+                    xlib_drawable, CurrentTime);
   XSync(screen->display, False);
   // Wait for an event, handling selection requests.
   // if it's a selection notify, get the selection
   XEvent ev;
   while (true) {
-    while (!XPending (screen->display));
+    while (!XPending(screen->display))
+      ;
     //    XNextEvent(screen->display, &ev);
     if (XCheckIfEvent(screen->display, &ev, selection_event, (0L)) == False
-	//	&& XCheckIfEvent(screen->display, &ev, selection_event, (0L)) == False)
-	) {
-	// if we get here, we didn't get any selection notify event back.
-	// should we use cut buffer0 here instead?
-std::cerr << "** missing selection notify event." <<std::endl;
-	//	XPutBackEvent(screen->display, &ev); // checkifevent doesn't dequeue nonmatching events
-	return (0L);
-      }
-    if (ev.xany.type == SelectionNotify) break;
+        //	&& XCheckIfEvent(screen->display, &ev, selection_event, (0L)) == False)
+        ) {
+      // if we get here, we didn't get any selection notify event back.
+      // should we use cut buffer0 here instead?
+      std::cerr << "** missing selection notify event." << std::endl;
+      //	XPutBackEvent(screen->display, &ev); // checkifevent doesn't dequeue nonmatching events
+      return (0L);
+    }
+    if (ev.xany.type == SelectionNotify)
+      break;
     //    if (ev.xany.type == SelectionRequest) {
     Am_Drawonable_Impl *draw =
-      Get_Drawable_Backpointer(ev.xany.display,
-			       ev.xany.window);
-    if (draw) handle_selection_request(ev, draw);
+        Get_Drawable_Backpointer(ev.xany.display, ev.xany.window);
+    if (draw)
+      handle_selection_request(ev, draw);
     //    else handle_selection_request(ev, screen->root);
     //    }
   }
   // if we get here, then we have a selection
-  if (ev.xselection.property == None)
-    { // then there is no selection value, use cut buffer 0 instead.
-     std::cerr << "** No primary selection, using cut buffer." <<std::endl;
-      int n;
-      char* tempstr = XFetchBytes(screen->display, &n);
-      char* str = new char[n+1];
-      strcpy (str, tempstr);
-      XFree(tempstr);
-      return str;
-    }
-  else { // we have a selection value
+  if (ev.xselection.property ==
+      None) { // then there is no selection value, use cut buffer 0 instead.
+    std::cerr << "** No primary selection, using cut buffer." << std::endl;
+    int n;
+    char *tempstr = XFetchBytes(screen->display, &n);
+    char *str = new char[n + 1];
+    strcpy(str, tempstr);
+    XFree(tempstr);
+    return str;
+  } else { // we have a selection value
     // Get the property's value.  I got this from an email from
     // "S.Ramakrishnan" <ramakris@vtopus.cs.vt.edu> to bam@cs.cmu.edu
     char str[200];
@@ -766,266 +786,262 @@ std::cerr << "** missing selection notify event." <<std::endl;
     long begin = 0;
     for (*str = 0, rest = 1; rest; strcat(str, buff), begin++, XFree(buff)) {
       XGetWindowProperty(screen->display, xlib_drawable, ev.xselection.property,
-			 begin, 1, True, AnyPropertyType, &actual_type,
-			 &actual_format, &num_items_ret, &rest, (unsigned char**)&buff);
-      if (!buff) break;
+                         begin, 1, True, AnyPropertyType, &actual_type,
+                         &actual_format, &num_items_ret, &rest,
+                         (unsigned char **)&buff);
+      if (!buff)
+        break;
     }
     buff = new char[strlen(str) + 1];
-    strcpy (buff, str);
+    strcpy(buff, str);
     return buff;
   }
 }
 
-void Am_Handle_Event_Received (XEvent& event_return) {
-  Am_Drawonable_Impl *draw =
-    Get_Drawable_Backpointer(event_return.xany.display,
-			     event_return.xany.window);
-    if (!draw) {
-      if (Am_Debug_Print_Input_Events)
-	 std::cout << "<> Input ignored because no drawonable\n" <<std::flush;
-      return;
-    }
+void
+Am_Handle_Event_Received(XEvent &event_return)
+{
+  Am_Drawonable_Impl *draw = Get_Drawable_Backpointer(event_return.xany.display,
+                                                      event_return.xany.window);
+  if (!draw) {
+    if (Am_Debug_Print_Input_Events)
+      std::cout << "<> Input ignored because no drawonable\n" << std::flush;
+    return;
+  }
   if (draw->ext_handler) {
     //call the external handler IN ADDITION to local handlers
     draw->ext_handler(&event_return);
   }
 
-    Am_Input_Event_Handlers *evh = draw->event_handlers;
-    Am_Input_Char ic;
+  Am_Input_Event_Handlers *evh = draw->event_handlers;
+  Am_Input_Char ic;
 
-    if (!evh) {
-	if (Am_Debug_Print_Input_Events)
-	   std::cout << "<> Input ignored for " << draw <<
-		" because no Event_Handler\n" <<std::flush;
-	return;
+  if (!evh) {
+    if (Am_Debug_Print_Input_Events)
+      std::cout << "<> Input ignored for " << draw
+                << " because no Event_Handler\n"
+                << std::flush;
+    return;
+  }
+
+  switch (event_return.xany.type) {
+  case KeyPress:
+    //ic = create_input_char_from_key (event_return.xkey.keycode,
+    //				 event_return.xkey.state,
+    //				 draw->screen->display);
+    ic = create_input_char_from_key(event_return.xkey, draw->screen->display);
+    if (ic.code != 0) { // then is a legal code
+      if (exit_if_stop_char(ic))
+        return;
+      set_input_event(Am_Current_Input_Event, ic, event_return.xkey.x,
+                      event_return.xkey.y, event_return.xkey.time, draw);
+      draw->event_handlers->Input_Event_Notify(draw, Am_Current_Input_Event);
     }
+    break;
+  case ButtonPress:
+    ic = create_input_char_from_mouse(
+        event_return.xbutton.button, event_return.xbutton.state, Am_BUTTON_DOWN,
+        event_return.xbutton.time, draw->screen);
+    if (exit_if_stop_char(ic))
+      return;
+    set_input_event(Am_Current_Input_Event, ic, event_return.xbutton.x,
+                    event_return.xbutton.y, event_return.xbutton.time, draw);
+    draw->event_handlers->Input_Event_Notify(draw, Am_Current_Input_Event);
+    break;
+  case ButtonRelease:
+    ic = create_input_char_from_mouse(event_return.xbutton.button,
+                                      event_return.xbutton.state, Am_BUTTON_UP,
+                                      event_return.xbutton.time, draw->screen);
+    if (exit_if_stop_char(ic))
+      return;
+    set_input_event(Am_Current_Input_Event, ic, event_return.xbutton.x,
+                    event_return.xbutton.y, event_return.xbutton.time, draw);
+    draw->event_handlers->Input_Event_Notify(draw, Am_Current_Input_Event);
+    break;
+  case MotionNotify:
+    ic = create_input_char_from_code(Am_MOUSE_MOVED, event_return.xmotion.state,
+                                     Am_NEITHER, Am_SINGLE_CLICK);
+    set_input_event(Am_Current_Input_Event, ic, event_return.xmotion.x,
+                    event_return.xmotion.y, event_return.xmotion.time, draw);
+    draw->event_handlers->Input_Event_Notify(draw, Am_Current_Input_Event);
+    break;
+  case EnterNotify:
+    ic = create_input_char_from_code(Am_MOUSE_ENTER_WINDOW,
+                                     event_return.xcrossing.state, Am_NEITHER,
+                                     Am_SINGLE_CLICK);
+    set_input_event(Am_Current_Input_Event, ic, event_return.xcrossing.x,
+                    event_return.xcrossing.y, event_return.xcrossing.time,
+                    draw);
+    draw->event_handlers->Input_Event_Notify(draw, Am_Current_Input_Event);
+    break;
+  case LeaveNotify:
+    ic = create_input_char_from_code(Am_MOUSE_LEAVE_WINDOW,
+                                     event_return.xcrossing.state, Am_NEITHER,
+                                     Am_SINGLE_CLICK);
+    set_input_event(Am_Current_Input_Event, ic, event_return.xcrossing.x,
+                    event_return.xcrossing.y, event_return.xcrossing.time,
+                    draw);
+    draw->event_handlers->Input_Event_Notify(draw, Am_Current_Input_Event);
+    break;
+  case Expose:
+    if (Am_Debug_Print_Input_Events)
+      std::cout << "<> Exposure Event, x=" << event_return.xexpose.x
+                << " y=" << event_return.xexpose.y
+                << " width=" << event_return.xexpose.width
+                << " height=" << event_return.xexpose.height
+                << " drawonable=" << draw << std::endl;
+    draw->event_handlers->Exposure_Notify(
+        draw,
+        //					      event_return.xexpose.count,
+        event_return.xexpose.x, event_return.xexpose.y,
+        event_return.xexpose.width, event_return.xexpose.height);
+    break;
+  case DestroyNotify:
+    if (Am_Debug_Print_Input_Events)
+      std::cout << "<> DestroyNotify, drawonable=" << draw << std::endl;
+    draw->event_handlers->Destroy_Notify(draw);
+    break;
+  //// BUG: Not used
+  // cases UnmapNotify and MapNotify were commented out
+  // EAB: there does not appear to be a way to distinguish internally-generated
+  // map/unmap requests from user-generated iconify/deiconify requests
+  case UnmapNotify:
+    if (Am_Debug_Print_Input_Events)
+      std::cout << "<> UnmapNotify, drawonable=" << draw << std::endl;
+    //	draw->event_handlers->Unmap_Notify(draw);
+    if (draw->expect_map_change) {
+      draw->expect_map_change = false;
+    } else {
+      draw->iconify_notify(true);
+      draw->event_handlers->Iconify_Notify(draw, true);
+    }
+    break;
+  case MapNotify:
+    if (Am_Debug_Print_Input_Events)
+      std::cout << "<> MapNotify, drawonable=" << draw << std::endl;
+    //	  draw->event_handlers->Map_Notify(draw, false);
+    if (draw->expect_map_change) {
+      draw->expect_map_change = false;
+    } else {
+      draw->iconify_notify(false);
+      draw->event_handlers->Iconify_Notify(draw, false);
+    }
+    break;
+  case ReparentNotify: {
+    if (Am_Debug_Print_Input_Events)
+      std::cout << "<> ReparentNotify, drawonable=" << draw << std::endl;
+    int left, top, right, bottom, outer_left, outer_top;
+    draw->Inquire_Window_Borders(left, top, right, bottom, outer_left,
+                                 outer_top);
+    draw->event_handlers->Frame_Resize_Notify(draw, left, top, right, bottom);
+    break;
+  }
+  case ConfigureNotify: {
+    // Configure events may come in for windows that haven't really
+    // changed size or position, and in this case the events are ignored
+    // (i.e., Gem does not pass them on to the user's event-handler).
+    // For example, a 'valid' configure event may be percieved and
+    // dispatched that causes the user's ConfigureNotify Event Handler
+    // to set the size of the window, which in turn generates a 'bogus'
+    // configure event.  When the bogus event is percieved here, we
+    // detect it by noticing that its values are equal to those already
+    // installed in the drawonable, and throw it away.
+    //
+    // A Good ConfigureNotify handler should respond to the event
+    // not by moving the window again, but by just setting its internal
+    // state to correspond to where the window was moved to.  The window
+    // manager doesn't have to put the window where you request, or make
+    // it the correct size.  It tells you where it put it through a
+    // ConfigureNotify event.  If you try to force the WM to put it
+    // where you want by looking at the configureNotify event to find
+    // out where it actually put it, you might get walking windows
+    // no matter what you do.
+    //
+    // Note: Gem specifications dictate that the "left" and "top" of a
+    // window is the left and top of its frame (not necessarily its
+    // drawable area).  The "width" and "height" of a window is the
+    // width and height of its drawable area.
+    // Also, things drawn inside the window have their coordinates
+    // relative to the drawable area's left and top.
+    //
+    int x, y, w, h, left, top, width, height, outer_left, outer_top, lb, tb, rb,
+        bb;
 
-    switch (event_return.xany.type) {
-    case KeyPress:
-      //ic = create_input_char_from_key (event_return.xkey.keycode,
-      //				 event_return.xkey.state,
-      //				 draw->screen->display);
-	ic = create_input_char_from_key (event_return.xkey,
-					 draw->screen->display);
-	if (ic.code != 0) { // then is a legal code
-	    if (exit_if_stop_char(ic)) return;
-	    set_input_event (Am_Current_Input_Event, ic, event_return.xkey.x,
-			 event_return.xkey.y, event_return.xkey.time,
-			 draw);
-	    draw->event_handlers->Input_Event_Notify(draw,
-						     Am_Current_Input_Event);
-	}
-	break;
-    case ButtonPress:
-	ic = create_input_char_from_mouse (event_return.xbutton.button,
-					   event_return.xbutton.state,
-					   Am_BUTTON_DOWN,
-					   event_return.xbutton.time,
-					   draw->screen);
-	if (exit_if_stop_char(ic)) return;
-	set_input_event (Am_Current_Input_Event, ic, event_return.xbutton.x,
-			 event_return.xbutton.y, event_return.xbutton.time,
-			 draw);
-	draw->event_handlers->Input_Event_Notify(draw, Am_Current_Input_Event);
-	break;
-    case ButtonRelease:
-	ic = create_input_char_from_mouse (event_return.xbutton.button,
-					   event_return.xbutton.state,
-					   Am_BUTTON_UP,
-					   event_return.xbutton.time,
-					   draw->screen);
-	if (exit_if_stop_char(ic)) return;
-	set_input_event (Am_Current_Input_Event, ic, event_return.xbutton.x,
-			 event_return.xbutton.y, event_return.xbutton.time,
-			 draw);
-	draw->event_handlers->Input_Event_Notify(draw, Am_Current_Input_Event);
-	break;
-    case MotionNotify:
-	ic = create_input_char_from_code (Am_MOUSE_MOVED,
-					   event_return.xmotion.state,
-					   Am_NEITHER, Am_SINGLE_CLICK);
-	set_input_event (Am_Current_Input_Event, ic, event_return.xmotion.x,
-			 event_return.xmotion.y, event_return.xmotion.time,
-			 draw);
-	draw->event_handlers->Input_Event_Notify(draw, Am_Current_Input_Event);
-	break;
-    case EnterNotify:
-	ic = create_input_char_from_code (Am_MOUSE_ENTER_WINDOW,
-					   event_return.xcrossing.state,
-					   Am_NEITHER, Am_SINGLE_CLICK);
-	set_input_event (Am_Current_Input_Event, ic, event_return.xcrossing.x,
-			 event_return.xcrossing.y,
-			 event_return.xcrossing.time, draw);
-	draw->event_handlers->Input_Event_Notify(draw, Am_Current_Input_Event);
-	break;
-    case LeaveNotify:
-	ic = create_input_char_from_code (Am_MOUSE_LEAVE_WINDOW,
-					   event_return.xcrossing.state,
-					   Am_NEITHER, Am_SINGLE_CLICK);
-	set_input_event (Am_Current_Input_Event, ic, event_return.xcrossing.x,
-			 event_return.xcrossing.y,
-			 event_return.xcrossing.time, draw);
-	draw->event_handlers->Input_Event_Notify(draw, Am_Current_Input_Event);
-	break;
-    case Expose:
-	if (Am_Debug_Print_Input_Events)
-	   std::cout << "<> Exposure Event, x=" << event_return.xexpose.x
-		 << " y=" << event_return.xexpose.y <<
-		" width=" << event_return.xexpose.width <<
-		" height=" << event_return.xexpose.height <<
-		" drawonable=" << draw <<std::endl;
-	draw->event_handlers->Exposure_Notify(draw,
-//					      event_return.xexpose.count,
-					      event_return.xexpose.x,
-					      event_return.xexpose.y,
-					      event_return.xexpose.width,
-					      event_return.xexpose.height);
-	break;
-    case DestroyNotify:
-	if (Am_Debug_Print_Input_Events)
-	   std::cout << "<> DestroyNotify, drawonable=" << draw <<std::endl;
-	draw->event_handlers->Destroy_Notify(draw);
-	break;
-//// BUG: Not used
-// cases UnmapNotify and MapNotify were commented out
-// EAB: there does not appear to be a way to distinguish internally-generated
-// map/unmap requests from user-generated iconify/deiconify requests
-    case UnmapNotify:
-	if (Am_Debug_Print_Input_Events)
-	   std::cout << "<> UnmapNotify, drawonable=" << draw <<std::endl;
-//	draw->event_handlers->Unmap_Notify(draw);
-	if (draw->expect_map_change) {
-	  draw->expect_map_change = false;
-	} else {
-	  draw->iconify_notify(true);
-	  draw->event_handlers->Iconify_Notify(draw, true);
-	}
-	break;
-    case MapNotify:
-	if (Am_Debug_Print_Input_Events)
-	   std::cout << "<> MapNotify, drawonable=" << draw <<std::endl;
-	//	  draw->event_handlers->Map_Notify(draw, false);
-	if (draw->expect_map_change) {
-	  draw->expect_map_change = false;
-	} else {
-	  draw->iconify_notify(false);
-	  draw->event_handlers->Iconify_Notify(draw, false);
-	}
-	break;
-    case ReparentNotify: {
-	if (Am_Debug_Print_Input_Events)
-	   std::cout << "<> ReparentNotify, drawonable=" << draw <<std::endl;
-	int left, top, right, bottom, outer_left, outer_top;
-	draw->Inquire_Window_Borders (left, top, right, bottom,
-				      outer_left, outer_top);
-	draw->event_handlers->Frame_Resize_Notify(draw, left, top,
-						  right, bottom);
-	break;
+    // We need to use inquire_window_borders to calculate the correct
+    // x and y values, because X windows returns local coordinates
+    // in the event, not global coordinates, so they're always (0,0).
+
+    if (draw->Inquire_Window_Borders(lb, tb, rb, bb, outer_left, outer_top)) {
+      x = outer_left;
+      y = outer_top;
+      w = event_return.xconfigure.width;
+      h = event_return.xconfigure.height;
+      draw->Get_Position(left, top);
+      draw->Get_Size(width, height);
+      //	 std::cout << "Configure notify: " << (void*)draw <<  " " << w << " " << h << " " << event_return.xany.window <<std::endl;
+
+      // Only generate a Gem configure-notify event if something changed
+      if ((x != left) || (y != top) || (w != width) || (h != height)) {
+        if (Am_Debug_Print_Input_Events)
+          std::cout << "<> Configure Notify, x=" << x << " y=" << y
+                    << " width=" << width << " height=" << height
+                    << " drawonable=" << draw << std::endl;
+        draw->reconfigure(x, y, w, h);
+        draw->event_handlers->Configure_Notify(draw, x, y, w, h);
       }
-    case ConfigureNotify: {
-	// Configure events may come in for windows that haven't really
-	// changed size or position, and in this case the events are ignored
-	// (i.e., Gem does not pass them on to the user's event-handler).
-	// For example, a 'valid' configure event may be percieved and
-	// dispatched that causes the user's ConfigureNotify Event Handler
-	// to set the size of the window, which in turn generates a 'bogus'
-	// configure event.  When the bogus event is percieved here, we
-	// detect it by noticing that its values are equal to those already
-	// installed in the drawonable, and throw it away.
-	//
-        // A Good ConfigureNotify handler should respond to the event
-	// not by moving the window again, but by just setting its internal
-	// state to correspond to where the window was moved to.  The window
-	// manager doesn't have to put the window where you request, or make
-	// it the correct size.  It tells you where it put it through a
-	// ConfigureNotify event.  If you try to force the WM to put it
-	// where you want by looking at the configureNotify event to find
-	// out where it actually put it, you might get walking windows
-	// no matter what you do.
-	//
-	// Note: Gem specifications dictate that the "left" and "top" of a
-	// window is the left and top of its frame (not necessarily its
-	// drawable area).  The "width" and "height" of a window is the
-	// width and height of its drawable area.
-	// Also, things drawn inside the window have their coordinates
-	// relative to the drawable area's left and top.
-	//
-	int x, y, w, h, left, top, width, height, outer_left, outer_top,
-	  lb, tb, rb, bb;
+    }
+    break;
+  }
+  case ClientMessage:
+    // this is where we get window destroy messages
+    // from the window manager.
+    {
+      // this is speed-inefficient, but it never happens, so who cares.
+      Atom wm_delete_window =
+          XInternAtom(event_return.xclient.display, "WM_DELETE_WINDOW", False);
+      if ((unsigned long)event_return.xclient.data.l[0] != wm_delete_window)
+        break;
+      // not a delete window client message.
+      draw->event_handlers->Destroy_Notify(draw);
+    }
+    break;
+  case SelectionClear:
+    // We get this event when we're forced to release our selection.
+    // We'll ignore it for now.
+    break;
+  case SelectionRequest:
+    handle_selection_request(event_return, draw);
+    break;
+  // next all the events we don't expect to occur
+  case KeyRelease:
+  case FocusIn:
+  case FocusOut:
+  case KeymapNotify:
+  case VisibilityNotify:
+  case MapRequest:
+  case ConfigureRequest:
+  case GravityNotify:
+  case ResizeRequest:
+  case CirculateNotify:
+  case CirculateRequest:
+  case PropertyNotify:
+  case ColormapNotify:
+  case MappingNotify:
+    std::cout << "** Received event of unexpected type: "
+              << event_names[event_return.type] << std::endl;
+  case CreateNotify:
+  case GraphicsExpose:
+  case NoExpose:
+  case SelectionNotify: // we get this here if get_cut_buffer misses it.
 
-	// We need to use inquire_window_borders to calculate the correct
-	// x and y values, because X windows returns local coordinates
-	// in the event, not global coordinates, so they're always (0,0).
-
-	if (draw->Inquire_Window_Borders (lb, tb, rb, bb,
-					  outer_left, outer_top)) {
-	  x = outer_left;
-	  y = outer_top;
-	  w = event_return.xconfigure.width;
-	  h = event_return.xconfigure.height;
-	  draw->Get_Position (left, top);
-	  draw->Get_Size (width, height);
-	  //	 std::cout << "Configure notify: " << (void*)draw <<  " " << w << " " << h << " " << event_return.xany.window <<std::endl;
-
-	  // Only generate a Gem configure-notify event if something changed
-	  if ((x != left) || (y != top) || (w != width) || (h != height)) {
-	    if (Am_Debug_Print_Input_Events)
-	     std::cout << "<> Configure Notify, x=" << x << " y=" << y <<
-		" width=" << width << " height=" << height <<
-		" drawonable=" << draw <<std::endl;
-	    draw->reconfigure (x, y, w, h);
-	    draw->event_handlers->Configure_Notify(draw, x, y, w, h);
-	  }
-	}
-	break;
-      }
-    case ClientMessage:
-      // this is where we get window destroy messages
-      // from the window manager.
-      {
-	// this is speed-inefficient, but it never happens, so who cares.
-	Atom wm_delete_window = XInternAtom(event_return.xclient.display,
-					    "WM_DELETE_WINDOW", False);
-	if ((unsigned long) event_return.xclient.data.l[0] != wm_delete_window) break;
-	// not a delete window client message.
-	draw->event_handlers->Destroy_Notify(draw);
-      }
-      break;
-    case SelectionClear:
-      // We get this event when we're forced to release our selection.
-      // We'll ignore it for now.
-      break;
-    case SelectionRequest:
-      handle_selection_request(event_return, draw);
-      break;
-      // next all the events we don't expect to occur
-    case KeyRelease:
-    case FocusIn:
-    case FocusOut:
-    case KeymapNotify:
-    case VisibilityNotify:
-    case MapRequest:
-    case ConfigureRequest:
-    case GravityNotify:
-    case ResizeRequest:
-    case CirculateNotify:
-    case CirculateRequest:
-    case PropertyNotify:
-    case ColormapNotify:
-    case MappingNotify:
-std::cout << "** Received event of unexpected type: " <<
-	    event_names[event_return.type] <<std::endl;
-    case CreateNotify:
-    case GraphicsExpose:
-    case NoExpose:
-    case SelectionNotify: // we get this here if get_cut_buffer misses it.
-
-	// we do get these events unfortunately, so silently ignore them.
-	break;
-    } // end switch
+    // we do get these events unfortunately, so silently ignore them.
+    break;
+  } // end switch
 }
 
-Bool is_input_event (XEvent& event) {
+Bool
+is_input_event(XEvent &event)
+{
   switch (event.xany.type) {
   case ButtonPress:
   case ButtonRelease:
@@ -1046,43 +1062,45 @@ Bool is_input_event (XEvent& event) {
  *				with the last one.  Disp_ version for multi-
  *				screen, and UseX_ for not
  */
-void Disp_Flush_Extra_Move_Events(XEvent& event_return) {
+void
+Disp_Flush_Extra_Move_Events(XEvent &event_return)
+{
   int cnt = 0;
   if (event_return.xany.type == MotionNotify) {
     XEvent next_event_return;
-    while (Scrn_Mgr.Pending (&next_event_return)) {
+    while (Scrn_Mgr.Pending(&next_event_return)) {
       if (next_event_return.xany.type == MotionNotify) {
-	event_return = next_event_return;
-	cnt ++;
-      }
-      else {
-	Scrn_Mgr.Put_Event_Back (next_event_return);
-	break;
+        event_return = next_event_return;
+        cnt++;
+      } else {
+        Scrn_Mgr.Put_Event_Back(next_event_return);
+        break;
       }
     }
   }
   if (Am_Debug_Print_Input_Events && cnt > 0)
-   std::cout << "<> Multi Ignoring " << cnt << " move events\n" <<std::flush;
+    std::cout << "<> Multi Ignoring " << cnt << " move events\n" << std::flush;
 }
 
-void UseX_Flush_Extra_Move_Events(XEvent& event_return) {
+void
+UseX_Flush_Extra_Move_Events(XEvent &event_return)
+{
   int cnt = 0;
   if (event_return.xany.type == MotionNotify) {
     XEvent next_event_return;
-    while (XPending (Main_Display)) {
-      XNextEvent (Main_Display, &next_event_return);
+    while (XPending(Main_Display)) {
+      XNextEvent(Main_Display, &next_event_return);
       if (next_event_return.xany.type == MotionNotify) {
-	event_return = next_event_return;
-	cnt ++;
-      }
-      else {
-	XPutBackEvent(Main_Display, &next_event_return);
-	break;
+        event_return = next_event_return;
+        cnt++;
+      } else {
+        XPutBackEvent(Main_Display, &next_event_return);
+        break;
       }
     }
   }
   if (Am_Debug_Print_Input_Events && cnt > 0)
-   std::cout << "<> Ignoring " << cnt << " move events\n" <<std::flush;
+    std::cout << "<> Ignoring " << cnt << " move events\n" << std::flush;
 }
 
 /*
@@ -1093,7 +1111,8 @@ void UseX_Flush_Extra_Move_Events(XEvent& event_return) {
  *                            event (excluding the case where the first event
  *                            is an input event) or when the queue is empty.
  */
-void Am_Drawonable::Process_Immediate_Event ()
+void
+Am_Drawonable::Process_Immediate_Event()
 {
   XEvent event_return;
 
@@ -1108,24 +1127,23 @@ void Am_Drawonable::Process_Immediate_Event ()
   /////////////////////////////////////////////////////////////
 
   // if (More_Than_One_Display) {
-    while (Scrn_Mgr.Pending (&event_return)) {
-      Disp_Flush_Extra_Move_Events(event_return);
-      Am_Handle_Event_Received (event_return);
-      // If that was an input event, then process all the remaining
-      // non-input events (and don't process another input event).
-      if (is_input_event (event_return)) {
-        while (Scrn_Mgr.Pending (&event_return)) {
-          if (is_input_event (event_return)) {
-            Scrn_Mgr.Put_Event_Back (event_return);
-            return;
-          }
-          else
-            Am_Handle_Event_Received (event_return);
-        }
-	return;
+  while (Scrn_Mgr.Pending(&event_return)) {
+    Disp_Flush_Extra_Move_Events(event_return);
+    Am_Handle_Event_Received(event_return);
+    // If that was an input event, then process all the remaining
+    // non-input events (and don't process another input event).
+    if (is_input_event(event_return)) {
+      while (Scrn_Mgr.Pending(&event_return)) {
+        if (is_input_event(event_return)) {
+          Scrn_Mgr.Put_Event_Back(event_return);
+          return;
+        } else
+          Am_Handle_Event_Received(event_return);
       }
+      return;
     }
-    //} Always use our Screen_Manager::Pending, don't check for # Disp.
+  }
+  //} Always use our Screen_Manager::Pending, don't check for # Disp.
 
   /*
    * Always use our Screen_Manager::Pending.
@@ -1157,7 +1175,6 @@ void Am_Drawonable::Process_Immediate_Event ()
   *
   * End of defunct single screen XPending processing. *
   *****************************************************/
-
 }
 
 /*
@@ -1175,153 +1192,152 @@ void Am_Drawonable::Process_Immediate_Event ()
 // described above.  It tries hard not to drop events on the floor, by only
 // exiting when it's done with event processing.
 
-void Am_Drawonable::Process_Event (const Am_Time& deadline)
+void
+Am_Drawonable::Process_Event(const Am_Time &deadline)
 {
-	XEvent event_return;
+  XEvent event_return;
 
-	// jh6p Oct 97 : XWindows calls interfere with network hooks
-	// Don't use XPending. It bypasses our network select.
-	// Use Screen_Manager::Pending and Screen_Manager::Block.
-	// Therefore it is like always having multiple displays, since
-	// we didn't use XPending for multiple displays.
-	//
-	// See also: Process_Event
+  // jh6p Oct 97 : XWindows calls interfere with network hooks
+  // Don't use XPending. It bypasses our network select.
+  // Use Screen_Manager::Pending and Screen_Manager::Block.
+  // Therefore it is like always having multiple displays, since
+  // we didn't use XPending for multiple displays.
+  //
+  // See also: Process_Event
 
-	event_return.type = 0;
+  event_return.type = 0;
 
-	// If there is no deadline then we will wait forever, if necessary, for
-	// the next event. Otherwise we will only wait up till the deadline.
-	if(deadline.Zero())
-		Scrn_Mgr.Next_Event(&event_return, static_cast<timeval*>(0L));
-	else
-	{
-		// Figure out when we stop processing
-		Am_Time now = Am_Time::Now();
-		Am_Time timeout;
-		if (deadline > now)
-			timeout = deadline - now;
+  // If there is no deadline then we will wait forever, if necessary, for
+  // the next event. Otherwise we will only wait up till the deadline.
+  if (deadline.Zero())
+    Scrn_Mgr.Next_Event(&event_return, static_cast<timeval *>(0L));
+  else {
+    // Figure out when we stop processing
+    Am_Time now = Am_Time::Now();
+    Am_Time timeout;
+    if (deadline > now)
+      timeout = deadline - now;
 
-		Am_Time_Data* time_data = Am_Time_Data::Narrow(timeout);
+    Am_Time_Data *time_data = Am_Time_Data::Narrow(timeout);
 
-		// Only wait as long as the timeout
-		Scrn_Mgr.Next_Event (&event_return, &time_data->time);
+    // Only wait as long as the timeout
+    Scrn_Mgr.Next_Event(&event_return, &time_data->time);
 
-		time_data->Release();
+    time_data->Release();
 
-		// doesn't always return appn event: could time out.
-		if (!event_return.type) return;  // we timed out.
-	}
+    // doesn't always return appn event: could time out.
+    if (!event_return.type)
+      return; // we timed out.
+  }
 
-	Disp_Flush_Extra_Move_Events(event_return);
-	Am_Handle_Event_Received (event_return);
+  Disp_Flush_Extra_Move_Events(event_return);
+  Am_Handle_Event_Received(event_return);
 
-	if (deadline.Is_Past()) return;
+  if (deadline.Is_Past())
+    return;
 
-	// If that was not an input event, then process all the remaining
-	// non-input events until we have processed an input event.
-	if (!is_input_event (event_return))
-	{
-		while (Scrn_Mgr.Pending (&event_return))
-		{
-			Am_Handle_Event_Received (event_return);
+  // If that was not an input event, then process all the remaining
+  // non-input events until we have processed an input event.
+  if (!is_input_event(event_return)) {
+    while (Scrn_Mgr.Pending(&event_return)) {
+      Am_Handle_Event_Received(event_return);
 
-			if (is_input_event (event_return)) break;
+      if (is_input_event(event_return))
+        break;
 
-			if (deadline.Is_Past()) return;
-		}
-	}
+      if (deadline.Is_Past())
+        return;
+    }
+  }
 
-	// Process all remaining non-input events
-	while (Scrn_Mgr.Pending (&event_return))
-	{
-		if (is_input_event (event_return))
-		{
-			Scrn_Mgr.Put_Event_Back (event_return);
-			return;
-		} else
-			Am_Handle_Event_Received (event_return);
+  // Process all remaining non-input events
+  while (Scrn_Mgr.Pending(&event_return)) {
+    if (is_input_event(event_return)) {
+      Scrn_Mgr.Put_Event_Back(event_return);
+      return;
+    } else
+      Am_Handle_Event_Received(event_return);
 
-		if (deadline.Is_Past()) return;
-	}
+    if (deadline.Is_Past())
+      return;
+  }
 }
-
-
 
 //  Wait_For_Event: waits until the event queue is not empty.  Will return
 //  immediately if queue is already not empty.  Does not process anything
 //
 //  Note: this is never used anywhere. 3-26-96 af1x
-void Am_Drawonable::Wait_For_Event ()
+void
+Am_Drawonable::Wait_For_Event()
 {
-	Scrn_Mgr.Wait_For_Event(static_cast<timeval*>(0L));
+  Scrn_Mgr.Wait_For_Event(static_cast<timeval *>(0L));
 }
 
-void Am_Drawonable::Main_Loop ()
+void
+Am_Drawonable::Main_Loop()
 {
   Am_Time no_timeout;
   while (Am_Main_Loop_Go)
-    Process_Event (no_timeout);
+    Process_Event(no_timeout);
 }
 
 // // // // // // // // // // // // // // // // // // // //
 // Am_Drawonable member functions
 // // // // // // // // // // // // // // // // // // // //
 
-void Am_Drawonable_Impl::Initialize_Event_Mask ()
+void
+Am_Drawonable_Impl::Initialize_Event_Mask()
 {
-    want_enter_leave = false;
-    want_multi_window = false;
-    want_move = false;
-    current_event_mask = ( ButtonPressMask     | ButtonReleaseMask |
-			   KeyPressMask        | ExposureMask      |
-			   StructureNotifyMask );
-    // current_event_mask can be now passed to XCreateWindow as part
-    // of the XSetWindowAttributes
+  want_enter_leave = false;
+  want_multi_window = false;
+  want_move = false;
+  current_event_mask = (ButtonPressMask | ButtonReleaseMask | KeyPressMask |
+                        ExposureMask | StructureNotifyMask);
+  // current_event_mask can be now passed to XCreateWindow as part
+  // of the XSetWindowAttributes
 }
 
-void Am_Drawonable_Impl::set_drawable_event_mask ()
+void
+Am_Drawonable_Impl::set_drawable_event_mask()
 {
   if (want_move) {
     unsigned int pointer_active_mask;
 
     current_event_mask = // *report-motion-em*
-	  ExposureMask | PointerMotionMask |
-	  ButtonPressMask | ButtonReleaseMask |
-	  KeyPressMask | StructureNotifyMask;
+        ExposureMask | PointerMotionMask | ButtonPressMask | ButtonReleaseMask |
+        KeyPressMask | StructureNotifyMask;
     pointer_active_mask = // *report-motion-pem*
-	  (unsigned int)
-	  (ButtonPressMask | ButtonReleaseMask | PointerMotionMask);
+        (unsigned int)(ButtonPressMask | ButtonReleaseMask | PointerMotionMask);
 
     if (want_enter_leave) { // add enter leave masks
-      current_event_mask  |= EnterWindowMask | LeaveWindowMask;
-      pointer_active_mask |=
-	    (unsigned int)(EnterWindowMask | LeaveWindowMask);
+      current_event_mask |= EnterWindowMask | LeaveWindowMask;
+      pointer_active_mask |= (unsigned int)(EnterWindowMask | LeaveWindowMask);
     }
     if (want_multi_window) { // add owner-grab-button
       current_event_mask |= OwnerGrabButtonMask;
-	  // don't use OwnerGrabButtonMask in the p_a_m mask for grab
+      // don't use OwnerGrabButtonMask in the p_a_m mask for grab
     }
 
     // this will change an active grab if one is in process because
     // changing the window's event mask will have no effect if there is
     // an active grab already.  Active grabs happen whenever
     // the mouse button is pressed down.
-    XChangeActivePointerGrab (screen->display, pointer_active_mask,
-                              None, CurrentTime);
-  }
-  else {  // don't want motion events, don't need a pointer mask
+    XChangeActivePointerGrab(screen->display, pointer_active_mask, None,
+                             CurrentTime);
+  } else {               // don't want motion events, don't need a pointer mask
     current_event_mask = // *ignore-motion-em*
-	ExposureMask | ButtonPressMask | ButtonReleaseMask |
-	KeyPressMask | StructureNotifyMask;
+        ExposureMask | ButtonPressMask | ButtonReleaseMask | KeyPressMask |
+        StructureNotifyMask;
 
     if (want_enter_leave)
       current_event_mask |= EnterWindowMask | LeaveWindowMask;
-    if (want_multi_window) current_event_mask |= OwnerGrabButtonMask;
+    if (want_multi_window)
+      current_event_mask |= OwnerGrabButtonMask;
   }
 
   if (Am_Debug_Print_Input_Events)
-   std::cout << "Changing Event Mask to " << current_event_mask << " for "
-	 << this <<std::endl;
+    std::cout << "Changing Event Mask to " << current_event_mask << " for "
+              << this << std::endl;
 
   // now call X to install event mask
   XSelectInput(screen->display, xlib_drawable, current_event_mask);
@@ -1334,51 +1350,57 @@ void Am_Drawonable_Impl::set_drawable_event_mask ()
   XSetGraphicsExposures(screen->display, screen->gc, false);
 }
 
-void Am_Drawonable_Impl::Set_Enter_Leave ( bool want_enter_leave_events )
+void
+Am_Drawonable_Impl::Set_Enter_Leave(bool want_enter_leave_events)
 {
-   if (want_enter_leave_events != want_enter_leave) {
-	want_enter_leave = want_enter_leave_events;
-	this->set_drawable_event_mask ();
-    }
+  if (want_enter_leave_events != want_enter_leave) {
+    want_enter_leave = want_enter_leave_events;
+    this->set_drawable_event_mask();
+  }
 }
 
-void Am_Drawonable_Impl::Set_Want_Move ( bool want_move_events )
+void
+Am_Drawonable_Impl::Set_Want_Move(bool want_move_events)
 {
-    if (want_move != want_move_events) { // then changing
-	want_move = want_move_events;
-	this->set_drawable_event_mask ();
-    }
+  if (want_move != want_move_events) { // then changing
+    want_move = want_move_events;
+    this->set_drawable_event_mask();
+  }
 }
 
-void Am_Drawonable_Impl::Set_Multi_Window ( bool want_multi )
+void
+Am_Drawonable_Impl::Set_Multi_Window(bool want_multi)
 {
-    if (want_multi != want_multi_window) { // then changing
-	want_multi_window = want_multi;
-	this->set_drawable_event_mask ();
-    }
+  if (want_multi != want_multi_window) { // then changing
+    want_multi_window = want_multi;
+    this->set_drawable_event_mask();
+  }
 }
 
-void Am_Drawonable_Impl::Discard_Pending_Events()
+void
+Am_Drawonable_Impl::Discard_Pending_Events()
 {
-    // * NIY *
-   std::cout << "** Discarding pending input events NIY \n";
+  // * NIY *
+  std::cout << "** Discarding pending input events NIY \n";
 }
 
-void Am_Drawonable_Impl::Set_Input_Dispatch_Functions
-          (Am_Input_Event_Handlers* evh)
+void
+Am_Drawonable_Impl::Set_Input_Dispatch_Functions(Am_Input_Event_Handlers *evh)
 {
   event_handlers = evh;
 }
 
-void Am_Drawonable_Impl::Get_Input_Dispatch_Functions
-          (Am_Input_Event_Handlers*& evh)
+void
+Am_Drawonable_Impl::Get_Input_Dispatch_Functions(Am_Input_Event_Handlers *&evh)
 {
   evh = event_handlers;
 }
 
 //Find the child-most drawonable at the current cursor position
-Am_Drawonable* Am_Drawonable_Impl::Get_Drawonable_At_Cursor() {
-  Display* display = screen->display;
+Am_Drawonable *
+Am_Drawonable_Impl::Get_Drawonable_At_Cursor()
+{
+  Display *display = screen->display;
   Window parent, root_return, child_return;
   int root_x_return, root_y_return, win_x_return, win_y_return;
   unsigned int mask_return;
@@ -1387,20 +1409,20 @@ Am_Drawonable* Am_Drawonable_Impl::Get_Drawonable_At_Cursor() {
   Am_Drawonable_Impl *draw = (0L);
   // need to find leaf-most window that contains the cursor, keep
   // going down until fail
-  while(true) {
-    if(!XQueryPointer (display, parent, &root_return, &child_return,
-		       &root_x_return, &root_y_return, &win_x_return,
-		       &win_y_return, &mask_return))
+  while (true) {
+    if (!XQueryPointer(display, parent, &root_return, &child_return,
+                       &root_x_return, &root_y_return, &win_x_return,
+                       &win_y_return, &mask_return))
       return (0L); //if XQueryPointer returns false, then not on right screen
     if (child_return) {
       if (child_return == parent) {
-	// looping, return last good drawonable
-	return return_draw;
-      }
-      else draw = Get_Drawable_Backpointer(display, child_return);
-    }
-    else return return_draw; //no child found, return last good drawonable
-    if (draw) { //save in case this is the last good one
+        // looping, return last good drawonable
+        return return_draw;
+      } else
+        draw = Get_Drawable_Backpointer(display, child_return);
+    } else
+      return return_draw; //no child found, return last good drawonable
+    if (draw) {           //save in case this is the last good one
       return_draw = draw;
     }
     //have a child, loop to see if can find a child of that child
@@ -1413,10 +1435,12 @@ Am_Drawonable* Am_Drawonable_Impl::Get_Drawonable_At_Cursor() {
 // before drawing, then your window may come up blank.
 //
 
-void wait_for_mapnotify (Display *dpy, Window *xlib_window) {
+void
+wait_for_mapnotify(Display *dpy, Window *xlib_window)
+{
   XEvent event_return;
 
-  while(1) {
+  while (1) {
     XPeekIfEvent(dpy, &event_return, is_mapnotify, (XPointer)xlib_window);
     // XPeekIfEvent may have returned without setting event_return (in other
     // words, is_mapnotify returned False).

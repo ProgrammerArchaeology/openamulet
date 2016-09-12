@@ -19,13 +19,12 @@
 #include <am_inc.h>
 
 // class std::ostream;
-#include "amulet/impl/types_wrapper.h"  // to get the Am_Wrapper object
-#include VALUE_LIST__H  //value lists for file names
+#include "amulet/impl/types_wrapper.h" // to get the Am_Wrapper object
+#include VALUE_LIST__H                 //value lists for file names
 
 #include "amulet/impl/gem_flags.h"
 
 #include "amulet/impl/am_font.h"
-
 
 class Am_Style;
 
@@ -55,12 +54,12 @@ extern Am_String Am_Get_Full_Filename(Am_String partial_filename);
 // and then sets file_only_name to the file.  Either one might be
 // empty, but won't be (0L).
 extern Am_String Am_Get_Directory_Part(Am_String filename,
-				       Am_String &file_only_name);
+                                       Am_String &file_only_name);
 
 // attaches directory_part before filename (normally, just a string
 // concatenation, possibly with a separator like "/")
-extern Am_String Am_Concat_Filename (Am_String directory_part,
-				     Am_String filename);
+extern Am_String Am_Concat_Filename(Am_String directory_part,
+                                    Am_String filename);
 
 // Given a filename that might have directories, takes it apart and
 // returns the list of directories. The highest level directory (e.g.:
@@ -83,7 +82,7 @@ extern bool Am_File_Exists(Am_String full_filename);
 extern long Am_Get_File_Size(Am_String filename);
 
 //Under Unix and PC, returns the extension of the file.  If none,
-//returns (0L).  Under Mac, returns the file type as a string.  
+//returns (0L).  Under Mac, returns the file type as a string.
 extern Am_String Am_Get_File_Type(Am_String filename);
 
 //... Will probably need other procedures in the future

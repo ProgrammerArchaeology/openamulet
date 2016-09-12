@@ -20,43 +20,37 @@
 //#include "amulet/impl/object_constr.h"
 #include "amulet/impl/am_constraint_context.h"
 
-
 #include DYNARRAY__H
 
 // disable a VC++ 6 warning about operator new/delete for QItem
-#pragma warning(disable: 4291)
+#pragma warning(disable : 4291)
 
 class CItem;
 
-class QItem {
+class QItem
+{
 #ifdef MEMORY
- public:
-  void* operator new (size_t)
-  {
-     return memory.New ();
-  }
-  void operator delete (void* ptr, size_t)
-  {
-    memory.Delete (ptr);
-  }
+public:
+  void *operator new(size_t) { return memory.New(); }
+  void operator delete(void *ptr, size_t) { memory.Delete(ptr); }
   static Dyn_Memory_Manager memory;
 #endif
- public:
-  QItem (Am_Slot_Demon* demon, unsigned short which_bit,
-         const Am_Slot& param);
-  ~QItem ();
+public:
+  QItem(Am_Slot_Demon *demon, unsigned short which_bit, const Am_Slot &param);
+  ~QItem();
 
-  Am_Slot_Demon* demon;
-  Am_Slot_Data* param;
+  Am_Slot_Demon *demon;
+  Am_Slot_Data *param;
   unsigned short which_bit;
-  QItem* next;
+  QItem *next;
 };
 
 #define DEMONS_ACTIVE 0x8000
 
-class Am_Demon_Queue_Data {
- public:
-  Am_Demon_Queue_Data ()
+class Am_Demon_Queue_Data
+{
+public:
+  Am_Demon_Queue_Data()
   {
     refs = 1;
     head = (0L);
@@ -64,23 +58,22 @@ class Am_Demon_Queue_Data {
     invoke_stack = 0;
     active = true;
   }
-  ~Am_Demon_Queue_Data ()
+  ~Am_Demon_Queue_Data()
   {
-    QItem* curr;
-    QItem* next;
+    QItem *curr;
+    QItem *next;
     for (curr = head; curr; curr = next) {
       next = curr->next;
       delete curr;
     }
   }
-  void Note_Reference ()
-  { ++ refs; }
-  void Release ()
+  void Note_Reference() { ++refs; }
+  void Release()
   {
     if (!--refs)
       delete this;
   }
-  void Enqueue (QItem* item)
+  void Enqueue(QItem *item)
   {
     item->next = (0L);
     if (tail)
@@ -91,28 +84,31 @@ class Am_Demon_Queue_Data {
   }
 
   int refs;
-  QItem* head;
-  QItem* tail;
+  QItem *head;
+  QItem *tail;
   unsigned short invoke_stack;
   bool active;
 };
 
-class Slot_Demon_Holder {
- public:
-  Am_Slot_Demon* demon;
+class Slot_Demon_Holder
+{
+public:
+  Am_Slot_Demon *demon;
   Am_Demon_Protocol protocol;
   unsigned short which_bit;
 };
 
-class Type_Holder {
- public:
-  Am_Type_Check* func;
+class Type_Holder
+{
+public:
+  Am_Type_Check *func;
 };
 
-class Am_Demon_Set_Data {
- public:
-  Am_Demon_Set_Data ();
-  Am_Demon_Set_Data (Am_Demon_Set_Data* proto)
+class Am_Demon_Set_Data
+{
+public:
+  Am_Demon_Set_Data();
+  Am_Demon_Set_Data(Am_Demon_Set_Data *proto)
   {
     refs = 1;
     create_demon = proto->create_demon;
@@ -132,28 +128,23 @@ class Am_Demon_Set_Data {
       type_check_list = new Type_Holder[max_type_check];
       for (i = 0; i < max_type_check; ++i)
         type_check_list[i] = proto->type_check_list[i];
-    }
-    else
+    } else
       type_check_list = (0L);
   }
-  ~Am_Demon_Set_Data ()
-  {
-    delete[] type_check_list;
-  }
-  void Note_Reference ()
-  { ++ refs; }
-  void Release ()
+  ~Am_Demon_Set_Data() { delete[] type_check_list; }
+  void Note_Reference() { ++refs; }
+  void Release()
   {
     if (!--refs)
       delete this;
   }
 
   int refs;
-  Am_Object_Demon* create_demon;
-  Am_Object_Demon* copy_demon;
-  Am_Object_Demon* destroy_demon;
-  Am_Part_Demon* change_owner_demon;
-  Am_Part_Demon* add_part_demon;
+  Am_Object_Demon *create_demon;
+  Am_Object_Demon *copy_demon;
+  Am_Object_Demon *destroy_demon;
+  Am_Part_Demon *change_owner_demon;
+  Am_Part_Demon *add_part_demon;
   unsigned short change_length;
   unsigned short invalid_length;
   Slot_Demon_Holder change_demons[5];
@@ -162,84 +153,79 @@ class Am_Demon_Set_Data {
   Type_Holder *type_check_list;
 };
 
-class Am_Object_Context {
- public:
-  Am_Object_Context (bool in_inherited)
-  { is_inherited = in_inherited; }
+class Am_Object_Context
+{
+public:
+  Am_Object_Context(bool in_inherited) { is_inherited = in_inherited; }
   bool is_inherited;
 };
 
-class am_CList {
- public:
-  am_CList ();
+class am_CList
+{
+public:
+  am_CList();
 
-  CItem* Add_Dep (Am_Constraint* item);
-  Am_Constraint* Remove_Dep (CItem* item);
-  CItem* Add_Con (Am_Constraint* item);
-  Am_Constraint* Remove_Con (CItem* item);
-  void Add_Inv (CItem* item);
-  void Add_Update (CItem* item);
-  void Remove_Inv (CItem* item);
-  void Clear () { head = (0L); }
-  CItem* Find (Am_Constraint* item);
-  CItem* Pop ();
-  void Validate (const Am_Slot& validating_slot);
-  void Invalidate (const Am_Slot& slot_invalidated,
-		   Am_Constraint* invalidating_constraint,
-		   const Am_Value& value);
-  void Change (const Am_Slot& slot_invalidated,
-	       Am_Constraint* invalidating_constraint,
-	       const Am_Value& prev_value, const Am_Value& new_value);
-  void Change (const Am_Slot& slot_invalidated,
-	       Am_Constraint* invalidating_constraint);
-  void Slot_Event (Am_Object_Context* oc, const Am_Slot& slot);
-  bool Empty ()
-  { return !head; }
+  CItem *Add_Dep(Am_Constraint *item);
+  Am_Constraint *Remove_Dep(CItem *item);
+  CItem *Add_Con(Am_Constraint *item);
+  Am_Constraint *Remove_Con(CItem *item);
+  void Add_Inv(CItem *item);
+  void Add_Update(CItem *item);
+  void Remove_Inv(CItem *item);
+  void Clear() { head = (0L); }
+  CItem *Find(Am_Constraint *item);
+  CItem *Pop();
+  void Validate(const Am_Slot &validating_slot);
+  void Invalidate(const Am_Slot &slot_invalidated,
+                  Am_Constraint *invalidating_constraint,
+                  const Am_Value &value);
+  void Change(const Am_Slot &slot_invalidated,
+              Am_Constraint *invalidating_constraint,
+              const Am_Value &prev_value, const Am_Value &new_value);
+  void Change(const Am_Slot &slot_invalidated,
+              Am_Constraint *invalidating_constraint);
+  void Slot_Event(Am_Object_Context *oc, const Am_Slot &slot);
+  bool Empty() { return !head; }
 
-  void Remove_Any_Overridden_By (const Am_Slot& slot,
-				 Am_Constraint* competing_constraint);
+  void Remove_Any_Overridden_By(const Am_Slot &slot,
+                                Am_Constraint *competing_constraint);
 
-  void destroy (const Am_Slot& slot, bool constraint);
+  void destroy(const Am_Slot &slot, bool constraint);
 
-  CItem* head;
+  CItem *head;
 };
 
 // "Is Inherited" means one or more instances of the slot may inherit this
 // slots value. "One of my instances might inherit my value."
-#define BIT_IS_INHERITED      0x0001
+#define BIT_IS_INHERITED 0x0001
 // "Inherits" means the value of the slot is inherited from its
 // prototype.  "I inherit my prototype's value."
-#define BIT_INHERITS          0x0002
-#define BIT_IS_INVALID        0x0004
-#define BIT_VALIDATING_NOW    0x0008
-#define BIT_INVALIDATING_NOW  0x0010
-#define BIT_IS_PART           0x0020
-#define BIT_READ_ONLY         0x0040
+#define BIT_INHERITS 0x0002
+#define BIT_IS_INVALID 0x0004
+#define BIT_VALIDATING_NOW 0x0008
+#define BIT_INVALIDATING_NOW 0x0010
+#define BIT_IS_PART 0x0020
+#define BIT_READ_ONLY 0x0040
 #define BIT_SINGLE_CONSTRAINT 0x0080
-#define DATA_BITS             0x00e0	// masks PART, READ_ONLY, SINGLE_CONSTRAINT
+#define DATA_BITS 0x00e0 // masks PART, READ_ONLY, SINGLE_CONSTRAINT
 
-class Am_Slot_Data : public Am_Value {
+class Am_Slot_Data : public Am_Value
+{
 #ifdef MEMORY
- public:
-  void* operator new (size_t)
-  {
-     return memory.New ();
-  }
-  void operator delete (void* ptr, size_t)
-  {
-    memory.Delete (ptr);
-  }
+public:
+  void *operator new(size_t) { return memory.New(); }
+  void operator delete(void *ptr, size_t) { memory.Delete(ptr); }
   static Dyn_Memory_Manager memory;
 #endif
- public:
-  Am_Slot_Data  (Am_Object_Data*, Am_Slot_Key);
-  Am_Slot_Data  (Am_Object_Data*, Am_Slot_Key, Am_Value_Type);
+public:
+  Am_Slot_Data(Am_Object_Data *, Am_Slot_Key);
+  Am_Slot_Data(Am_Object_Data *, Am_Slot_Key, Am_Value_Type);
 
-  void Set (const Am_Value& new_value, Am_Slot_Flags set_flags);
-  void Destroy ();
+  void Set(const Am_Value &new_value, Am_Slot_Flags set_flags);
+  void Destroy();
 
- public:
-  Am_Object_Data* context;
+public:
+  Am_Object_Data *context;
   am_CList constraints;
   am_CList dependencies;
   am_CList invalid_constraints;

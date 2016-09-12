@@ -24,16 +24,16 @@
 // function can be called on them.
 class Am_Listbox_ABC
 {
-	public:
-		// This function is used by the fillListbox template-function below to
-		// get it hands on all kind of Am_Listbox objects
-		virtual void deleteAllItems()=0;
-		virtual void deleteFirstItem()=0;
-		virtual void deleteLastItem()=0;
+public:
+  // This function is used by the fillListbox template-function below to
+  // get it hands on all kind of Am_Listbox objects
+  virtual void deleteAllItems() = 0;
+  virtual void deleteFirstItem() = 0;
+  virtual void deleteLastItem() = 0;
 
-		virtual void insertItemBack(std::string const &item)=0;
-		virtual void insertItemFront(std::string const &item)=0;
+  virtual void insertItemBack(std::string const &item) = 0;
+  virtual void insertItemFront(std::string const &item) = 0;
 
-		virtual void selectMethod()=0;
+  virtual void selectMethod() = 0;
 };
 #endif

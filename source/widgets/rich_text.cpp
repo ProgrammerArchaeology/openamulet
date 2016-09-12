@@ -28,8 +28,8 @@
 #include INITIALIZER__H
 
 // ???? why is something like this not defined already ????
-#define max(x,y) ((x)>(y)?(x):(y))
-#define min(x,y) ((x)>(y)?(y):(x))
+#define max(x, y) ((x) > (y) ? (x) : (y))
+#define min(x, y) ((x) > (y) ? (y) : (x))
 
 // prints out status messages to aid in testing/debugging
 #define DEBUG_HELP 0
@@ -42,92 +42,89 @@
  *  Global Objects
  */
 
-Am_Object                     Am_Text_Viewer;
+Am_Object Am_Text_Viewer;
 
-Am_Rich_Text                  Am_No_Rich_Text;
-Am_Text_Mark                  Am_No_Text_Mark;
-Am_Text_Cursor                Am_No_Text_Cursor;
-Am_Text_Viewing_Context       Am_No_Text_Viewing_Context;
+Am_Rich_Text Am_No_Rich_Text;
+Am_Text_Mark Am_No_Text_Mark;
+Am_Text_Cursor Am_No_Text_Cursor;
+Am_Text_Viewing_Context Am_No_Text_Viewing_Context;
 
 /******************************************************************************
  *  draw_Rich_text
  */
 
-Am_Define_Method( Am_Draw_Method, void, draw_rich_text,
-                ( Am_Object self, Am_Drawonable* drawonable,
-                  int x_offset, int y_offset) )
+Am_Define_Method(Am_Draw_Method, void, draw_rich_text,
+                 (Am_Object self, Am_Drawonable *drawonable, int x_offset,
+                  int y_offset))
 {
-  int left = self.Get( Am_LEFT );
-  int top  = self.Get( Am_TOP );
-  int width = self.Get( Am_WIDTH );
-  int height = self.Get( Am_HEIGHT );
+  int left = self.Get(Am_LEFT);
+  int top = self.Get(Am_TOP);
+  int width = self.Get(Am_WIDTH);
+  int height = self.Get(Am_HEIGHT);
 
   Am_Value value;
-  self.Make_Unique( Am_TEXT_VIEWER );
-  value=self.Peek(Am_TEXT_VIEWER);
+  self.Make_Unique(Am_TEXT_VIEWER);
+  value = self.Peek(Am_TEXT_VIEWER);
 
-  if( !Am_Text_Viewing_Context::Test( value ) )
-    Am_ERRORO( "The slot Am_TEXT_VIEWER does not contain an Am_Text_Viewing_Context.",
-               self, Am_TEXT_VIEWER );
+  if (!Am_Text_Viewing_Context::Test(value))
+    Am_ERRORO(
+        "The slot Am_TEXT_VIEWER does not contain an Am_Text_Viewing_Context.",
+        self, Am_TEXT_VIEWER);
 
   Am_Text_Viewing_Context vc = value;
-  if( vc.Valid() )
-  {
-    drawonable->Push_Clip( x_offset + left, y_offset + top, width, height );
-    vc.Draw( drawonable, x_offset + left, y_offset + top );
+  if (vc.Valid()) {
+    drawonable->Push_Clip(x_offset + left, y_offset + top, width, height);
+    vc.Draw(drawonable, x_offset + left, y_offset + top);
     drawonable->Pop_Clip();
-  }
-  else
-    Am_ERRORO( "Tried to draw an invalid Am_Text_Viewing_Context.",
-               self, Am_TEXT_VIEWER );
+  } else
+    Am_ERRORO("Tried to draw an invalid Am_Text_Viewing_Context.", self,
+              Am_TEXT_VIEWER);
 }
 
 /******************************************************************************
  *  rich_text_demon
  */
 
-void rich_text_demon(
-  Am_Slot inSlot )
+void
+rich_text_demon(Am_Slot inSlot)
 {
 #if DEBUG_HELP
- std::cout << "Entered Rich_text_demon with inSlot:\n  ";
+  std::cout << "Entered Rich_text_demon with inSlot:\n  ";
   inSlot.Text_Inspect();
 #endif
 
   Am_Object_Advanced self = inSlot.Get_Owner();
-  Am_Slot_Key slot_key    = inSlot.Get_Key();
+  Am_Slot_Key slot_key = inSlot.Get_Key();
   Am_Value value;
 
   // Get the object in Am_TEXT_VIEWER and see if it is a valid
   // Am_Text_Viewing_Context. The object will be modified so make sure that
   // it is unique.
-  self.Make_Unique( Am_TEXT_VIEWER );
-  value=self.Peek(Am_TEXT_VIEWER);
-  if( !Am_Text_Viewing_Context::Test( value ) )
-    Am_ERRORO( "The slot Am_TEXT_VIEWER does not contain an Am_Text_Viewing_Context.",
-               self, Am_TEXT_VIEWER );
+  self.Make_Unique(Am_TEXT_VIEWER);
+  value = self.Peek(Am_TEXT_VIEWER);
+  if (!Am_Text_Viewing_Context::Test(value))
+    Am_ERRORO(
+        "The slot Am_TEXT_VIEWER does not contain an Am_Text_Viewing_Context.",
+        self, Am_TEXT_VIEWER);
 
   Am_Text_Viewing_Context vc = value;
-  if( !vc.Valid() )
+  if (!vc.Valid())
     return;
 
   // At this point we have established that we have a valid viewing context
 
-  if( slot_key == Am_WIDTH )
-  {
-    vc.Set_Width( (long)self.Get( Am_WIDTH ) );
+  if (slot_key == Am_WIDTH) {
+    vc.Set_Width((long)self.Get(Am_WIDTH));
     return;
   }
 
-  if( slot_key == Am_TEXT )
-  {
-    value=self.Peek(Am_TEXT);
-    if( Am_Rich_Text::Test( value ) )
-    {
+  if (slot_key == Am_TEXT) {
+    value = self.Peek(Am_TEXT);
+    if (Am_Rich_Text::Test(value)) {
       Am_Rich_Text rich_text = value;
-      if( !rich_text.Valid() )
+      if (!rich_text.Valid())
         return;
-      vc.Set_Text( rich_text );
+      vc.Set_Text(rich_text);
     }
   }
 }
@@ -140,79 +137,72 @@ void
 Am_Rich_Text_Initialize()
 {
 #ifdef DEBUG
-  Am_Register_Slot_Key( Am_TEXT_VIEWER, "~TEXT_VIEWER~" );
+  Am_Register_Slot_Key(Am_TEXT_VIEWER, "~TEXT_VIEWER~");
 #endif
 
-  Am_Text_Viewer = Am_Graphical_Object.Create(DSTR("Rich_Text_Viewer" ));
+  Am_Text_Viewer = Am_Graphical_Object.Create(DSTR("Rich_Text_Viewer"));
 
   // Installing the demon procedure Rich_text_demon for Am_TEXT and Am_WIDTH
 
   // Get the advanced object of Am_Text_Viewer
-  Am_Object_Advanced obj_adv_viewer = (Am_Object_Advanced&)Am_Text_Viewer;
+  Am_Object_Advanced obj_adv_viewer = (Am_Object_Advanced &)Am_Text_Viewer;
 
   // Make a copy of the inherited demon set.
-  Am_Demon_Set demons( obj_adv_viewer.Get_Demons().Copy() );
+  Am_Demon_Set demons(obj_adv_viewer.Get_Demons().Copy());
 
   // Add the Rich_text_demon to the demon set using Rich_text_demon_bit
-  demons.Set_Slot_Demon( rich_text_demon_bit, rich_text_demon,
-                         Am_DEMON_ON_CHANGE | Am_DEMON_PER_SLOT );
+  demons.Set_Slot_Demon(rich_text_demon_bit, rich_text_demon,
+                        Am_DEMON_ON_CHANGE | Am_DEMON_PER_SLOT);
 
   // Put the modified demon set back into the Am_Text_Viewer
-  obj_adv_viewer.Set_Demons( demons );
+  obj_adv_viewer.Set_Demons(demons);
 
   // Add the Rich_text_demon_bit to the demon bits of the
   // Am_WIDTH and Am_TEXT slots
   Am_Slot slot;
   unsigned short prev_bits;
 
-  slot = obj_adv_viewer.Get_Slot( Am_WIDTH );
+  slot = obj_adv_viewer.Get_Slot(Am_WIDTH);
   prev_bits = slot.Get_Demon_Bits();
-  slot.Set_Demon_Bits( rich_text_demon_bit | prev_bits );
+  slot.Set_Demon_Bits(rich_text_demon_bit | prev_bits);
 
-  slot = obj_adv_viewer.Get_Slot( Am_TEXT );
+  slot = obj_adv_viewer.Get_Slot(Am_TEXT);
   prev_bits = slot.Get_Demon_Bits();
-  slot.Set_Demon_Bits( rich_text_demon_bit | prev_bits );
+  slot.Set_Demon_Bits(rich_text_demon_bit | prev_bits);
 
   // Set the demon mask
   unsigned short mask = obj_adv_viewer.Get_Demon_Mask();
   mask |= rich_text_demon_bit;
-  obj_adv_viewer.Set_Demon_Mask( mask );
+  obj_adv_viewer.Set_Demon_Mask(mask);
 
   // Set the initial values now that the demon procedures are installed
-  Am_Text_Viewer
-    .Set( Am_TOP, 0 )
-    .Set( Am_LEFT, 0 )
-    .Set( Am_WIDTH, 200 )
-    .Set( Am_HEIGHT, 200 )
-    .Set( Am_DRAW_METHOD, draw_rich_text )
-    .Add( Am_TEXT, Am_No_Rich_Text ) // should be a Am_Rich_Text object
-    .Add( Am_TEXT_VIEWER, Am_Text_Viewing_Context() )
-    ;
+  Am_Text_Viewer.Set(Am_TOP, 0)
+      .Set(Am_LEFT, 0)
+      .Set(Am_WIDTH, 200)
+      .Set(Am_HEIGHT, 200)
+      .Set(Am_DRAW_METHOD, draw_rich_text)
+      .Add(Am_TEXT, Am_No_Rich_Text) // should be a Am_Rich_Text object
+      .Add(Am_TEXT_VIEWER, Am_Text_Viewing_Context());
 }
 
-static Am_Initializer* rich_text_init =
-new Am_Initializer(DSTR("Rich_Text"), Am_Rich_Text_Initialize, 6.0);
-
+static Am_Initializer *rich_text_init =
+    new Am_Initializer(DSTR("Rich_Text"), Am_Rich_Text_Initialize, 6.0);
 
 /******************************************************************************
  *  Am_Rich_Text
  *****************************************************************************/
 
-AM_WRAPPER_IMPL( Am_Rich_Text )
+AM_WRAPPER_IMPL(Am_Rich_Text)
 
 /******************************************************************************
  *  Am_Rich_Text
  */
 
-Am_Rich_Text::Am_Rich_Text()
-{
-  data = (0L);
-}
+Am_Rich_Text::Am_Rich_Text() { data = (0L); }
 
-Am_Rich_Text::Am_Rich_Text(
-  const char* inString )
+Am_Rich_Text::Am_Rich_Text(const char *inString)
 {
-  data = new Am_Rich_Text_Data( inString );
+  data = new Am_Rich_Text_Data(inString);
 }
 
 /******************************************************************************
@@ -220,16 +210,12 @@ Am_Rich_Text::Am_Rich_Text(
  */
 
 inline void
-Am_Rich_Text::Draw_Line(
-  Am_Drawonable* inDrawonable,
-  long inLeft,
-  long inTop,
-  Am_Text_Index  inStartIndex,
-  Am_Text_Length inLineLength,
-  unsigned short inAscent )
+Am_Rich_Text::Draw_Line(Am_Drawonable *inDrawonable, long inLeft, long inTop,
+                        Am_Text_Index inStartIndex, Am_Text_Length inLineLength,
+                        unsigned short inAscent)
 {
-  data->Draw_Line( inDrawonable, inLeft, inTop,
-                   inStartIndex, inLineLength, inAscent );
+  data->Draw_Line(inDrawonable, inLeft, inTop, inStartIndex, inLineLength,
+                  inAscent);
 }
 
 /******************************************************************************
@@ -240,19 +226,17 @@ Am_Rich_Text::Draw_Line(
  *    does not return the relative value.
  */
 
-inline Am_Text_Fragment*
-Am_Rich_Text::Get_Fragment_At(
-  const Am_Text_Index inIndex,
-  Am_Text_Length&     outRelIndex ) const
+inline Am_Text_Fragment *
+Am_Rich_Text::Get_Fragment_At(const Am_Text_Index inIndex,
+                              Am_Text_Length &outRelIndex) const
 {
-  return data->Get_Fragment_At( inIndex, outRelIndex );
+  return data->Get_Fragment_At(inIndex, outRelIndex);
 }
 
-inline Am_Text_Fragment*
-Am_Rich_Text::Get_Fragment_At(
-  const Am_Text_Index inIndex ) const
+inline Am_Text_Fragment *
+Am_Rich_Text::Get_Fragment_At(const Am_Text_Index inIndex) const
 {
-  return data->Get_Fragment_At( inIndex );
+  return data->Get_Fragment_At(inIndex);
 }
 
 /******************************************************************************
@@ -289,7 +273,7 @@ Am_Rich_Text::Cursor_Move(
  *  Am_Rich_Text_Data
  *****************************************************************************/
 
-AM_WRAPPER_DATA_IMPL( Am_Rich_Text, (this) )
+AM_WRAPPER_DATA_IMPL(Am_Rich_Text, (this))
 
 /******************************************************************************
  *  Am_Rich_Text_Data
@@ -298,24 +282,23 @@ AM_WRAPPER_DATA_IMPL( Am_Rich_Text, (this) )
 
 Am_Rich_Text_Data::Am_Rich_Text_Data()
 {
-  mHeadFragment  = (0L);
-  mHeadStyle     = (0L);
+  mHeadFragment = (0L);
+  mHeadStyle = (0L);
 }
 
-Am_Rich_Text_Data::Am_Rich_Text_Data(
-  const char* inString,
-  Am_Font     inFont,         // default: Am_Default_Font
-  Am_Style    inTextStyle,    // default: Am_Black
-  Am_Style    inBGStyle )     // default: Am_White
+Am_Rich_Text_Data::Am_Rich_Text_Data(const char *inString,
+                                     Am_Font inFont, // default: Am_Default_Font
+                                     Am_Style inTextStyle, // default: Am_Black
+                                     Am_Style inBGStyle)   // default: Am_White
 {
   //  int len = strlen( inString );
 
-  mHeadFragment = new Am_Text_Fragment( this, inString );
+  mHeadFragment = new Am_Text_Fragment(this, inString);
 
-  mHeadStyle = new Am_Text_Style_Run( strlen( inString ), inFont,
-                                      inTextStyle, inBGStyle );
+  mHeadStyle =
+      new Am_Text_Style_Run(strlen(inString), inFont, inTextStyle, inBGStyle);
 
-/*
+  /*
   mHeadFragment = new Am_Text_Fragment( this, inString );
   mHeadFragment->Break_At( 200 );
   mHeadFragment->Break_At( 150 );
@@ -339,12 +322,13 @@ Am_Rich_Text_Data::Am_Rich_Text_Data(
 */
 }
 
-Am_Rich_Text_Data::Am_Rich_Text_Data(
-  Am_Rich_Text_Data* /* inProto */ )
+Am_Rich_Text_Data::Am_Rich_Text_Data(Am_Rich_Text_Data * /* inProto */)
 {
   // should copy all the data over to this object
   // fragment and styles -- need to change their owner if they have one
-  Am_Error("** Am_Rich_Text_Data constructor. Tried to make a new object from a constructor. Most like you tried to Make_Unique on Am_Rich_Text. This function is not yet supported.");
+  Am_Error("** Am_Rich_Text_Data constructor. Tried to make a new object from "
+           "a constructor. Most like you tried to Make_Unique on Am_Rich_Text. "
+           "This function is not yet supported.");
 }
 
 /******************************************************************************
@@ -352,47 +336,46 @@ Am_Rich_Text_Data::Am_Rich_Text_Data(
  *    Assumes are characters in inStr are '\n' or 0x20 <= c <= 0x7E.
  */
 
-enum EBreakTypes { Space, EOLN, EndOfText };
+enum EBreakTypes
+{
+  Space,
+  EOLN,
+  EndOfText
+};
 struct SBreakInfo
 {
-  EBreakTypes      why;
-  unsigned long    len;
+  EBreakTypes why;
+  unsigned long len;
   Am_Text_Fragment *frag;
 };
 
-struct SBreakInfo
-Find_Next_Break(
-  Am_Text_Index     inRelIndex,    // relative index into inStartFrag
-  Am_Text_Fragment  *inStartFrag)  // on input, the starting fragment
+struct SBreakInfo Find_Next_Break(
+    Am_Text_Index inRelIndex,      // relative index into inStartFrag
+    Am_Text_Fragment *inStartFrag) // on input, the starting fragment
 {
-  SBreakInfo     ret;
+  SBreakInfo ret;
   ret.len = 0;
   ret.frag = inStartFrag;
 
   Am_Text_Length charsRemInFrag = ret.frag->Length() - inRelIndex;
-  char*          str = ret.frag->String( inRelIndex );
+  char *str = ret.frag->String(inRelIndex);
 
   // find the first graphical character
-  while( true )
-  {
+  while (true) {
     // have we reached the end of the fragment?
-    if( charsRemInFrag <= 0 )
-    {
+    if (charsRemInFrag <= 0) {
       ret.frag = ret.frag->Next();
 
-      if( ret.frag == (0L) )
-      {
+      if (ret.frag == (0L)) {
         ret.why = EndOfText;
         return ret;
-      }
-      else
-      {
+      } else {
         charsRemInFrag = ret.frag->Length();
-        str = ret.frag->String( 0 );
+        str = ret.frag->String(0);
       }
     }
 
-    if( isgraph(*str) )
+    if (isgraph(*str))
       break;
 
     ret.len++;
@@ -401,28 +384,22 @@ Find_Next_Break(
   }
 
   // find first non-graphical character or '\n'
-  while( true )
-  {
+  while (true) {
     // have we reached the end of the fragment?
-    if( charsRemInFrag <= 0 )
-    {
+    if (charsRemInFrag <= 0) {
       ret.frag = ret.frag->Next();
 
-      if( ret.frag == (0L) )
-      {
+      if (ret.frag == (0L)) {
         ret.why = EndOfText;
         return ret;
-      }
-      else
-      {
+      } else {
         charsRemInFrag = ret.frag->Length();
-        str = ret.frag->String( 0 );
+        str = ret.frag->String(0);
       }
     }
 
-    if( !isgraph(*str) )
-    {
-      if( (*str) == '\n' )
+    if (!isgraph(*str)) {
+      if ((*str) == '\n')
         ret.why = EOLN;
       else
         ret.why = Space;
@@ -454,91 +431,79 @@ Find_Next_Break(
  */
 
 bool
-Am_Rich_Text_Data::Calc_Line_Dim(
-  Am_Drawonable*    inDrawonable,
-  Am_Text_Index     inStartIndex,
-  unsigned long     inTargetWidth,
-  Am_Text_Length&   outCharsOnLine,
-  unsigned short&   outAscent,
-  unsigned short&   outDescent )
+Am_Rich_Text_Data::Calc_Line_Dim(Am_Drawonable *inDrawonable,
+                                 Am_Text_Index inStartIndex,
+                                 unsigned long inTargetWidth,
+                                 Am_Text_Length &outCharsOnLine,
+                                 unsigned short &outAscent,
+                                 unsigned short &outDescent)
 {
-  unsigned long     cumChars = 0,
-                    cumWidth = 0;
-  Am_Text_Index     relSRIndex   = 0,
-                    chars_rem_in_sr  = 0;
-  SBreakInfo        break_info;
-  SStyleRunInfo     sr_info;
+  unsigned long cumChars = 0, cumWidth = 0;
+  Am_Text_Index relSRIndex = 0, chars_rem_in_sr = 0;
+  SBreakInfo break_info;
+  SStyleRunInfo sr_info;
 
   outCharsOnLine = 0;
   outAscent = 0;
   outDescent = 0;
 
-  sr_info.end_frag = Get_Fragment_At( inStartIndex, sr_info.end_frag_offset );
-  Am_Text_Style_Run*  curSR = Get_Style_Run_At( inStartIndex , relSRIndex );
+  sr_info.end_frag = Get_Fragment_At(inStartIndex, sr_info.end_frag_offset);
+  Am_Text_Style_Run *curSR = Get_Style_Run_At(inStartIndex, relSRIndex);
 
   chars_rem_in_sr = curSR->Length() - relSRIndex + 1; // incl cur char too
 
   // COMMENT .....
-  while( true )
-  {
-    break_info = Find_Next_Break( sr_info.end_frag_offset, sr_info.end_frag );
+  while (true) {
+    break_info = Find_Next_Break(sr_info.end_frag_offset, sr_info.end_frag);
 
     // this loop calculates how many pixels are needed to print until
     // the next break. There may be more than one style run until that break
 
-    Am_Text_Length  break_chars_used = 0,
-                    max_chars        = 0;
-    unsigned long   break_width_used = 0;
-    int             break_ascent     = 0,
-                    break_descent    = 0;
+    Am_Text_Length break_chars_used = 0, max_chars = 0;
+    unsigned long break_width_used = 0;
+    int break_ascent = 0, break_descent = 0;
 
     // Continue stepping through the style runs, until having processed
     // break_info.len characters or used up more pixels than were remaining
-    while( break_chars_used < break_info.len )
-    {
-      max_chars = min( break_info.len - break_chars_used, chars_rem_in_sr );
+    while (break_chars_used < break_info.len) {
+      max_chars = min(break_info.len - break_chars_used, chars_rem_in_sr);
 
-      sr_info = Calc_SR_Dim( inDrawonable, curSR,
-                             sr_info.end_frag, sr_info.end_frag_offset,
-                             max_chars );
+      sr_info = Calc_SR_Dim(inDrawonable, curSR, sr_info.end_frag,
+                            sr_info.end_frag_offset, max_chars);
 
       // Update data about this break
       break_width_used += sr_info.width_used;
       break_chars_used += max_chars;
-      chars_rem_in_sr  -= max_chars;
+      chars_rem_in_sr -= max_chars;
 
-      break_ascent  = max( sr_info.ascent,  break_ascent  );
-      break_descent = max( sr_info.descent, break_descent );
+      break_ascent = max(sr_info.ascent, break_ascent);
+      break_descent = max(sr_info.descent, break_descent);
 
-      if( break_info.why == EndOfText )
+      if (break_info.why == EndOfText)
         break;
 
       // skip to next style run, since there should be more test remaining
-      if( chars_rem_in_sr == 0 )
-      {
+      if (chars_rem_in_sr == 0) {
         curSR = curSR->Next();
-        if( curSR == (0L) )
-	{
-          Am_Error( "Ran out of Style_Run info." );
+        if (curSR == (0L)) {
+          Am_Error("Ran out of Style_Run info.");
           // this should never happen... eventually throw an exception
-	}
+        }
         chars_rem_in_sr = curSR->Length();
       }
     }
 
-    if( cumWidth + break_width_used <= inTargetWidth )
-    {
+    if (cumWidth + break_width_used <= inTargetWidth) {
       outCharsOnLine += break_chars_used;
 
-      outAscent  = max( break_ascent,  outAscent  );
-      outDescent = max( break_descent, outDescent );
+      outAscent = max(break_ascent, outAscent);
+      outDescent = max(break_descent, outDescent);
       cumChars += break_chars_used;
       cumWidth += break_width_used;
-    }
-    else
+    } else
       break;
 
-    if( break_info.why == EndOfText)
+    if (break_info.why == EndOfText)
       break;
   }
 
@@ -558,57 +523,53 @@ Am_Rich_Text_Data::Calc_Line_Dim(
  */
 
 SStyleRunInfo
-Am_Rich_Text_Data::Calc_SR_Dim(
-  Am_Drawonable*      inDrawonable,
-  Am_Text_Style_Run*  inStyleRun,
-  Am_Text_Fragment*   inStartFrag,
-  Am_Text_Offset      inFragRelIndex,
-  Am_Text_Index       inMaxChars )
+Am_Rich_Text_Data::Calc_SR_Dim(Am_Drawonable *inDrawonable,
+                               Am_Text_Style_Run *inStyleRun,
+                               Am_Text_Fragment *inStartFrag,
+                               Am_Text_Offset inFragRelIndex,
+                               Am_Text_Index inMaxChars)
 {
   SStyleRunInfo ret;
-  ret.width_used      = 0;
-  ret.end_frag        = inStartFrag;
+  ret.width_used = 0;
+  ret.end_frag = inStartFrag;
   ret.end_frag_offset = inFragRelIndex;
 
   Am_Font font = inStyleRun->Get_Font();
 
   int ign;
-  inDrawonable->Get_Font_Properties( font, ign, ign, ret.ascent, ret.descent );
+  inDrawonable->Get_Font_Properties(font, ign, ign, ret.ascent, ret.descent);
 
-  char* string = ret.end_frag->String( inFragRelIndex );
+  char *string = ret.end_frag->String(inFragRelIndex);
 
-  int charsRem       = (int) inMaxChars,
-      charsRemInFrag = (int) (ret.end_frag->Length() - inFragRelIndex);
+  int charsRem = (int)inMaxChars,
+      charsRemInFrag = (int)(ret.end_frag->Length() - inFragRelIndex);
 
   //
-  while( true )
-  {
-    int charsToMeasure = min( charsRem, charsRemInFrag );
+  while (true) {
+    int charsToMeasure = min(charsRem, charsRemInFrag);
 
     ret.width_used +=
-          inDrawonable->Get_String_Width( font, string, charsToMeasure );
+        inDrawonable->Get_String_Width(font, string, charsToMeasure);
 
     charsRem -= charsToMeasure;
     ret.end_frag_offset += charsToMeasure;
 
-    if( charsRem > 0 )
-    {
+    if (charsRem > 0) {
       ret.end_frag = ret.end_frag->Next();
       ret.end_frag_offset = 0;
 
-      if( ret.end_frag == (0L) )
+      if (ret.end_frag == (0L))
         Am_Error("Rich Text Engine: Unexpected null fragment in Calc_SR_Dim");
 
-      string = ret.end_frag->String( 0 );
-      charsRemInFrag = (int) ret.end_frag->Length();
-    }
-    else
+      string = ret.end_frag->String(0);
+      charsRemInFrag = (int)ret.end_frag->Length();
+    } else
       break;
   }
 
   return ret;
 
-/*
+  /*
   // Searches for the fragment which contains the end of the style run (1)
   //  or whose width would be longer than the wanted width (2)
   // Assumes that string and strLen are correct at top of loop
@@ -696,55 +657,46 @@ Am_Rich_Text_Data::Calc_SR_Dim(
  */
 
 void
-Am_Rich_Text_Data::Draw_Line(
-  Am_Drawonable* inDrawonable,
-  long inLeft,
-  long inTop,
-  Am_Text_Index  inStartIndex,
-  Am_Text_Length inLineLength,
-  unsigned short inMaxAscent )
+Am_Rich_Text_Data::Draw_Line(Am_Drawonable *inDrawonable, long inLeft,
+                             long inTop, Am_Text_Index inStartIndex,
+                             Am_Text_Length inLineLength,
+                             unsigned short inMaxAscent)
 {
-  Am_Text_Length remCharsSR   = 0,
-                 remCharsFrag = 0,
-                 relFragIndex = 0,
-                 relSRIndex   = 0,
-                 charsToDraw  = 0,
-                 charsLeft    = inLineLength;
-  Am_Text_Fragment*  frag   = Get_Fragment_At( inStartIndex, relFragIndex );
-  Am_Text_Style_Run* sr     = Get_Style_Run_At( inStartIndex, relSRIndex );
+  Am_Text_Length remCharsSR = 0, remCharsFrag = 0, relFragIndex = 0,
+                 relSRIndex = 0, charsToDraw = 0, charsLeft = inLineLength;
+  Am_Text_Fragment *frag = Get_Fragment_At(inStartIndex, relFragIndex);
+  Am_Text_Style_Run *sr = Get_Style_Run_At(inStartIndex, relSRIndex);
 
   remCharsFrag = frag->Length() - relFragIndex;
-  remCharsSR   = sr->Length() - relSRIndex + 1; // sr is 1-based
-  char* string = frag->String() + relFragIndex;
+  remCharsSR = sr->Length() - relSRIndex + 1; // sr is 1-based
+  char *string = frag->String() + relFragIndex;
 
   int srAscent, ignore;
-  inDrawonable->Get_Font_Properties( sr->Get_Font(), ignore, ignore,
-                                     srAscent, ignore );
+  inDrawonable->Get_Font_Properties(sr->Get_Font(), ignore, ignore, srAscent,
+                                    ignore);
 
-  unsigned long top  = inTop + inMaxAscent - srAscent;
+  unsigned long top = inTop + inMaxAscent - srAscent;
   unsigned long left = inLeft;
 
-  while( charsLeft > 0 )
-  {
+  while (charsLeft > 0) {
     charsToDraw = (remCharsFrag > remCharsSR) ? remCharsSR : remCharsFrag;
-    if( charsToDraw > charsLeft )
+    if (charsToDraw > charsLeft)
       charsToDraw = charsLeft;
 
-    inDrawonable->Draw_Text( sr->Get_TextStyle(), string, (int) charsToDraw,
-                             sr->Get_Font(), (int) left, (int) top, Am_DRAW_COPY,
-                             sr->Get_BGStyle(), false );
-    left += inDrawonable->Get_String_Width( sr->Get_Font(), string,
-                                            (int) charsToDraw );
+    inDrawonable->Draw_Text(sr->Get_TextStyle(), string, (int)charsToDraw,
+                            sr->Get_Font(), (int)left, (int)top, Am_DRAW_COPY,
+                            sr->Get_BGStyle(), false);
+    left += inDrawonable->Get_String_Width(sr->Get_Font(), string,
+                                           (int)charsToDraw);
     remCharsFrag -= charsToDraw;
-    remCharsSR   -= charsToDraw;
-    charsLeft    -= charsToDraw;
-    string       += charsToDraw;
+    remCharsSR -= charsToDraw;
+    charsLeft -= charsToDraw;
+    string += charsToDraw;
 
-    if( charsLeft <= 0 )
+    if (charsLeft <= 0)
       return;
 
-    if( remCharsFrag <= 0 )
-    {
+    if (remCharsFrag <= 0) {
       frag = frag->Next();
       // should check for (0L)
       remCharsFrag = frag->Length();
@@ -752,14 +704,13 @@ Am_Rich_Text_Data::Draw_Line(
       relFragIndex = 0;
     }
 
-    if( remCharsSR <= 0 )
-    {
+    if (remCharsSR <= 0) {
       sr = sr->Next();
       // should check for (0L)
       remCharsSR = sr->Length();
-      inDrawonable->Get_Font_Properties( sr->Get_Font(), ignore, ignore,
-                                         srAscent, ignore );
-      top  = inTop + inMaxAscent - srAscent;
+      inDrawonable->Get_Font_Properties(sr->Get_Font(), ignore, ignore,
+                                        srAscent, ignore);
+      top = inTop + inMaxAscent - srAscent;
     }
   }
 }
@@ -772,19 +723,16 @@ Am_Rich_Text_Data::Draw_Line(
  *    is 0-based.
  */
 
-Am_Text_Fragment*
-Am_Rich_Text_Data::Get_Fragment_At(
-  const Am_Text_Index inIndex,
-  Am_Text_Length&     outRelIndex ) const
+Am_Text_Fragment *
+Am_Rich_Text_Data::Get_Fragment_At(const Am_Text_Index inIndex,
+                                   Am_Text_Length &outRelIndex) const
 {
-  Am_Text_Index       endOfFrag = 0;
-  Am_Text_Fragment*   frag      = mHeadFragment;
+  Am_Text_Index endOfFrag = 0;
+  Am_Text_Fragment *frag = mHeadFragment;
 
-  while( frag != (0L) )
-  {
+  while (frag != (0L)) {
     endOfFrag += frag->Length();
-    if( inIndex <= endOfFrag )
-    {
+    if (inIndex <= endOfFrag) {
       // find the relative index
       outRelIndex = frag->Length() - endOfFrag + inIndex - 1;
       break;
@@ -794,17 +742,15 @@ Am_Rich_Text_Data::Get_Fragment_At(
   return frag;
 }
 
-Am_Text_Fragment*
-Am_Rich_Text_Data::Get_Fragment_At(
-  const Am_Text_Index inIndex ) const
+Am_Text_Fragment *
+Am_Rich_Text_Data::Get_Fragment_At(const Am_Text_Index inIndex) const
 {
-  Am_Text_Index       endOfFrag = 0;
-  Am_Text_Fragment* frag      = mHeadFragment;
+  Am_Text_Index endOfFrag = 0;
+  Am_Text_Fragment *frag = mHeadFragment;
 
-  while( frag != (0L) )
-  {
+  while (frag != (0L)) {
     endOfFrag += frag->Length();
-    if( inIndex <= endOfFrag )
+    if (inIndex <= endOfFrag)
       break;
     frag = frag->Next();
   }
@@ -818,20 +764,17 @@ Am_Rich_Text_Data::Get_Fragment_At(
  *    after the inIndex char that are left in the style run.
  */
 
-Am_Text_Style_Run*
-Am_Rich_Text_Data::Get_Style_Run_At(
-  const Am_Text_Index inIndex,
-  Am_Text_Length&     outRemChars ) const
+Am_Text_Style_Run *
+Am_Rich_Text_Data::Get_Style_Run_At(const Am_Text_Index inIndex,
+                                    Am_Text_Length &outRemChars) const
 {
-  Am_Text_Index      lastCharInRun = 0;
-  Am_Text_Style_Run* sr = mHeadStyle;
+  Am_Text_Index lastCharInRun = 0;
+  Am_Text_Style_Run *sr = mHeadStyle;
   outRemChars = 0; // just in case
 
-  while( sr != (0L) )
-  {
+  while (sr != (0L)) {
     lastCharInRun += sr->Length();
-    if( inIndex <= lastCharInRun )
-    {
+    if (inIndex <= lastCharInRun) {
       // find the relative index
       outRemChars = sr->Length() - lastCharInRun + inIndex;
       break;
@@ -841,17 +784,15 @@ Am_Rich_Text_Data::Get_Style_Run_At(
   return sr;
 }
 
-Am_Text_Style_Run*
-Am_Rich_Text_Data::Get_Style_Run_At(
-  const Am_Text_Index inIndex ) const
+Am_Text_Style_Run *
+Am_Rich_Text_Data::Get_Style_Run_At(const Am_Text_Index inIndex) const
 {
-  Am_Text_Index        endOfRun = 0;
-  Am_Text_Style_Run* sr       = mHeadStyle;
+  Am_Text_Index endOfRun = 0;
+  Am_Text_Style_Run *sr = mHeadStyle;
 
-  while( sr != (0L) )
-  {
+  while (sr != (0L)) {
     endOfRun += sr->Length();
-    if( inIndex <= endOfRun )
+    if (inIndex <= endOfRun)
       break;
     sr = sr->Next();
   }
@@ -863,13 +804,13 @@ Am_Rich_Text_Data::Get_Style_Run_At(
  */
 
 bool
-Am_Rich_Text_Data::operator==(const Am_Rich_Text_Data& /* inText */ )
+Am_Rich_Text_Data::operator==(const Am_Rich_Text_Data & /* inText */)
 {
   return false;
 }
 
 bool
-Am_Rich_Text_Data::operator==(const Am_Rich_Text_Data& /* inText */ ) const
+Am_Rich_Text_Data::operator==(const Am_Rich_Text_Data & /* inText */) const
 {
   return false;
 }
@@ -889,27 +830,21 @@ Am_Rich_Text_Data::operator==(const Am_Rich_Text_Data& /* inText */ ) const
  *  Am_Text_Mark
  *****************************************************************************/
 
-AM_WRAPPER_IMPL( Am_Text_Mark )
+AM_WRAPPER_IMPL(Am_Text_Mark)
 
 /******************************************************************************
  *  Am_Text_Mark
  */
 
-Am_Text_Mark::Am_Text_Mark()
-{
-  data = (0L);
-}
+Am_Text_Mark::Am_Text_Mark() { data = (0L); }
 
 Am_Text_Mark::Am_Text_Mark(
-  const Am_Rich_Text* inText,
-  Am_Text_Index inWhere, // by default create a beginning
-  Am_Value inMarkData,
-  bool inStickyLeft,
-  bool inDeleteable,
-  bool inVisible )
+    const Am_Rich_Text *inText,
+    Am_Text_Index inWhere, // by default create a beginning
+    Am_Value inMarkData, bool inStickyLeft, bool inDeleteable, bool inVisible)
 {
-  data = new Am_Text_Mark_Data( inText, inWhere, inMarkData,
-                                  inStickyLeft, inDeleteable, inVisible );
+  data = new Am_Text_Mark_Data(inText, inWhere, inMarkData, inStickyLeft,
+                               inDeleteable, inVisible);
 }
 
 /*
@@ -963,15 +898,14 @@ Am_Text_Mark::Get_Absolute_Index() const
  *  Get_Next && Set_Next
  */
 
-inline Am_Text_Mark*
+inline Am_Text_Mark *
 Am_Text_Mark::Get_Next()
 {
   return mNext;
 }
 
 inline void
-Am_Text_Mark::Set_Next(
-  Am_Text_Mark* inNext )
+Am_Text_Mark::Set_Next(Am_Text_Mark *inNext)
 {
   mNext = inNext;
 }
@@ -980,40 +914,38 @@ Am_Text_Mark::Set_Next(
  *  Am_Text_Mark_Data
  *****************************************************************************/
 
-AM_WRAPPER_DATA_IMPL( Am_Text_Mark, (this) )
+AM_WRAPPER_DATA_IMPL(Am_Text_Mark, (this))
 
 /******************************************************************************
  *  Am_Text_Mark_Data
  */
 
 Am_Text_Mark_Data::Am_Text_Mark_Data(
-  const Am_Rich_Text* inText,
-  Am_Text_Index inWhere,    // default: 0 => create at beginning
-  Am_Value inMarkData,      // default: Am_No_Value
-  bool inStickyLeft,        // default: true
-  bool inDeleteable,        // default: true
-  bool inVisible )          // default: false
+    const Am_Rich_Text *inText,
+    Am_Text_Index inWhere, // default: 0 => create at beginning
+    Am_Value inMarkData,   // default: Am_No_Value
+    bool inStickyLeft,     // default: true
+    bool inDeleteable,     // default: true
+    bool inVisible)        // default: false
 {
-  mFragment = inText->Get_Fragment_At( inWhere );
+  mFragment = inText->Get_Fragment_At(inWhere);
   mIndex = inWhere; // temp until above works
-  Set_Data( inMarkData );
-  Set_Sticky_Left( inStickyLeft );
-  Set_Deleteable( inDeleteable );
-  Set_Visible( inVisible );
-//  mFragment->Add_Mark( this );
-
+  Set_Data(inMarkData);
+  Set_Sticky_Left(inStickyLeft);
+  Set_Deleteable(inDeleteable);
+  Set_Visible(inVisible);
+  //  mFragment->Add_Mark( this );
 }
 
-Am_Text_Mark_Data::Am_Text_Mark_Data(
-  Am_Text_Mark_Data* inProto )
+Am_Text_Mark_Data::Am_Text_Mark_Data(Am_Text_Mark_Data *inProto)
 {
-//  Rich_ragment = inText->Get_Fragment_At( inWhere );
-//  Rich_ragment->Add_Mark( this );
+  //  Rich_ragment = inText->Get_Fragment_At( inWhere );
+  //  Rich_ragment->Add_Mark( this );
   mIndex = inProto->mIndex;
-  Set_Data( inProto->Get_Data() );
-  Set_Sticky_Left( inProto->Is_Sticky_Left() );
-  Set_Deleteable( inProto->Is_Deleteable() );
-  Set_Visible( inProto->Is_Visible() );
+  Set_Data(inProto->Get_Data());
+  Set_Sticky_Left(inProto->Is_Sticky_Left());
+  Set_Deleteable(inProto->Is_Deleteable());
+  Set_Visible(inProto->Is_Visible());
 }
 
 /******************************************************************************
@@ -1055,7 +987,7 @@ Am_Text_Mark_Data::Destroy()
  *    returns the fragment to which this mark belongs
  */
 
-Am_Text_Fragment*
+Am_Text_Fragment *
 Am_Text_Mark_Data::Get_Fragment() const
 {
   return mFragment;
@@ -1066,7 +998,7 @@ Am_Text_Mark_Data::Get_Fragment() const
  *    returns the text object to which this mark belongs
  */
 
-Am_Rich_Text_Data*
+Am_Rich_Text_Data *
 Am_Text_Mark_Data::Get_Text_Object() const
 {
   return mFragment->Text_Object();
@@ -1084,8 +1016,7 @@ Am_Text_Mark_Data::Get_Text_Object() const
  */
 
 inline void
-Am_Text_Mark_Data::Set_Sticky_Left(
-  bool inStickyBit )
+Am_Text_Mark_Data::Set_Sticky_Left(bool inStickyBit)
 {
   mFlags |= (inStickyBit) ? kStickyLeft : kStickyRight;
 }
@@ -1116,12 +1047,14 @@ Am_Text_Mark_Data::Is_Sticky_Right() const
  *    am_fragment if sticky left and the right am_fragment if sticky right)
  */
 
-inline void Am_Text_Mark_Data::Set_Deleteable(bool inDeleteable )
+inline void
+Am_Text_Mark_Data::Set_Deleteable(bool inDeleteable)
 {
   mFlags |= (inDeleteable) ? kDeleteableFlag : kFalseFlag;
 }
 
-inline bool Am_Text_Mark_Data::Is_Deleteable() const
+inline bool
+Am_Text_Mark_Data::Is_Deleteable() const
 {
   return (mFlags & kDeleteableFlag) ? true : false;
 }
@@ -1133,8 +1066,7 @@ inline bool Am_Text_Mark_Data::Is_Deleteable() const
  */
 
 inline void
-Am_Text_Mark_Data::Set_Visible(
-  bool inVisible )
+Am_Text_Mark_Data::Set_Visible(bool inVisible)
 {
   mFlags |= (inVisible) ? kVisibleFlag : kFalseFlag;
 }
@@ -1156,8 +1088,7 @@ Am_Text_Mark_Data::Is_Visible() const
  */
 
 inline void
-Am_Text_Mark_Data::Set_Synced_With_Frag(
-  bool inSyncedWithFrag )
+Am_Text_Mark_Data::Set_Synced_With_Frag(bool inSyncedWithFrag)
 {
   mFlags |= (inSyncedWithFrag) ? kSyncedWithFragFlag : kFalseFlag;
 }
@@ -1175,8 +1106,7 @@ Am_Text_Mark_Data::Is_Synced_With_Frag() const
  */
 
 inline void
-Am_Text_Mark_Data::Set_Data(
-  Am_Value inData )
+Am_Text_Mark_Data::Set_Data(Am_Value inData)
 {
   mData = inData;
 }
@@ -1193,8 +1123,7 @@ Am_Text_Mark_Data::Get_Data() const
  */
 
 inline void
-Am_Text_Mark_Data::Set_Draw_Style(
-  Am_Style inStyle )
+Am_Text_Mark_Data::Set_Draw_Style(Am_Style inStyle)
 {
   mStyle = inStyle;
 }
@@ -1210,8 +1139,7 @@ Am_Text_Mark_Data::Get_Draw_Style() const
  */
 
 inline Am_Text_Index
-Am_Text_Mark_Data::Set_Index(
-  Am_Text_Index inIndex )
+Am_Text_Mark_Data::Set_Index(Am_Text_Index inIndex)
 {
   return mIndex = inIndex;
 }
@@ -1237,7 +1165,7 @@ Am_Text_Mark_Data::Get_Index() const
 inline Am_Text_Index
 Am_Text_Mark_Data::Get_Absolute_Index() const
 {
-  return /* Rich_ragment->Get_Start_Index() */ + mIndex;
+  return /* Rich_ragment->Get_Start_Index() */ +mIndex;
 }
 
 //  Am_Rich_Text Get_Reference_Text(); // text the mark is with respect to
@@ -1279,12 +1207,14 @@ Am_Text_Mark_Data::Get_Absolute_Index() const
  *  operator== && operator!= && operator<=
  */
 
-bool Am_Text_Mark_Data::operator==(const Am_Text_Mark_Data& /* inOtherMark */ )
+bool
+Am_Text_Mark_Data::operator==(const Am_Text_Mark_Data & /* inOtherMark */)
 {
   return false;
 }
 
-bool Am_Text_Mark_Data::operator==(const Am_Text_Mark_Data& /* inOtherMark */ ) const
+bool
+Am_Text_Mark_Data::operator==(const Am_Text_Mark_Data & /* inOtherMark */) const
 {
   return false;
 }
@@ -1308,55 +1238,48 @@ Am_Text_Mark_Data::operator<=(
  *  Am_Text_Cursor
  *****************************************************************************/
 
-AM_WRAPPER_IMPL( Am_Text_Cursor )
+AM_WRAPPER_IMPL(Am_Text_Cursor)
 
 /******************************************************************************
  *  Am_Text_Cursor
  */
 
-Am_Text_Cursor::Am_Text_Cursor()
-{
-  data = (0L);
-}
+Am_Text_Cursor::Am_Text_Cursor() { data = (0L); }
 
 Am_Text_Cursor::Am_Text_Cursor(
-  const Am_Rich_Text* inText,
-  Am_Value inMarkData,
-  Am_Text_Index inWhere, // by default create at beginning
-  bool inStickyLeft,
-  bool inDeleteable,
-  bool inVisible )
+    const Am_Rich_Text *inText, Am_Value inMarkData,
+    Am_Text_Index inWhere, // by default create at beginning
+    bool inStickyLeft, bool inDeleteable, bool inVisible)
 {
-  data = new Am_Text_Cursor_Data( inText, inWhere, inMarkData,
-                                    inStickyLeft, inDeleteable, inVisible );
+  data = new Am_Text_Cursor_Data(inText, inWhere, inMarkData, inStickyLeft,
+                                 inDeleteable, inVisible);
 }
 
 /******************************************************************************
  *  Am_Text_Cursor_Data
  *****************************************************************************/
 
-AM_WRAPPER_DATA_IMPL( Am_Text_Cursor, (this) )
+AM_WRAPPER_DATA_IMPL(Am_Text_Cursor, (this))
 
 /******************************************************************************
  *  Am_Text_Cursor_Data
  */
 
 Am_Text_Cursor_Data::Am_Text_Cursor_Data(
-  const Am_Rich_Text* inText,
-  Am_Text_Index inWhere,    // default: 0
-  Am_Value inMarkData,      // default: Am_No_Value
-  bool inStickyLeft,        // default: true
-  bool inDeleteable,        // default: true
-  bool inVisible )          // default: true
-  : Am_Text_Mark_Data( inText, inWhere, inMarkData, inStickyLeft,
-                         inDeleteable, inVisible )
+    const Am_Rich_Text *inText,
+    Am_Text_Index inWhere, // default: 0
+    Am_Value inMarkData,   // default: Am_No_Value
+    bool inStickyLeft,     // default: true
+    bool inDeleteable,     // default: true
+    bool inVisible)        // default: true
+    : Am_Text_Mark_Data(inText, inWhere, inMarkData, inStickyLeft, inDeleteable,
+                        inVisible)
 {
-  Set_Synced_With_Frag( false );
+  Set_Synced_With_Frag(false);
 }
 
-Am_Text_Cursor_Data::Am_Text_Cursor_Data(
-  Am_Text_Cursor_Data* inProto )
-  : Am_Text_Mark_Data( inProto )
+Am_Text_Cursor_Data::Am_Text_Cursor_Data(Am_Text_Cursor_Data *inProto)
+    : Am_Text_Mark_Data(inProto)
 {
 }
 
@@ -1367,8 +1290,7 @@ Am_Text_Cursor_Data::Am_Text_Cursor_Data(
  */
 
 void
-Am_Text_Cursor_Data::Add_Char(
-  const char /* inChar */ )
+Am_Text_Cursor_Data::Add_Char(const char /* inChar */)
 {
 }
 
@@ -1379,8 +1301,7 @@ Am_Text_Cursor_Data::Add_Char(
  */
 
 void
-Am_Text_Cursor_Data::Add_String(
-  const char* /* inString */ )
+Am_Text_Cursor_Data::Add_String(const char * /* inString */)
 {
 }
 
@@ -1388,11 +1309,10 @@ Am_Text_Cursor_Data::Add_String(
  *  Add_Object
  */
 
-void
-Am_Text_Cursor_Data::Add_Object(
-  Am_Object /* inObject */ )
+void Am_Text_Cursor_Data::Add_Object(Am_Object /* inObject */)
 {
-  Am_Error("Adding an object to a Am_Rich_Text is not yet implemented.\nIn Am_Text_Cursor::Add_Object()" );
+  Am_Error("Adding an object to a Am_Rich_Text is not yet implemented.\nIn "
+           "Am_Text_Cursor::Add_Object()");
 }
 
 /******************************************************************************
@@ -1408,42 +1328,32 @@ Am_Text_Cursor_Data::Add_Newline()
  *  Change_Font
  */
 
-void
-Am_Text_Cursor_Data::Change_Font(
-  Am_Font /* inFont */ )
-{
-}
+void Am_Text_Cursor_Data::Change_Font(Am_Font /* inFont */) {}
 
 /******************************************************************************
  *  Change_Text_Style
  */
 
-void
-Am_Text_Cursor_Data::Change_Text_Style(
-  Am_Style /* inTextStyle */ )
-{
-}
+void Am_Text_Cursor_Data::Change_Text_Style(Am_Style /* inTextStyle */) {}
 
 /******************************************************************************
  *  Change_BG_Style
  */
 
-void
-Am_Text_Cursor_Data::Change_BG_Style(
-  Am_Style /* inBGStyle */ )
-{
-}
+void Am_Text_Cursor_Data::Change_BG_Style(Am_Style /* inBGStyle */) {}
 
 /******************************************************************************
  *  operator== && operator!= && operator<=
  */
 
-bool Am_Text_Cursor_Data::operator==(const Am_Text_Cursor_Data& inOtherCursor )
+bool
+Am_Text_Cursor_Data::operator==(const Am_Text_Cursor_Data &inOtherCursor)
 {
   return (*this == inOtherCursor);
 }
 
-bool Am_Text_Cursor_Data::operator==(const Am_Text_Cursor_Data& inOtherCursor ) const
+bool
+Am_Text_Cursor_Data::operator==(const Am_Text_Cursor_Data &inOtherCursor) const
 {
   return (*this == inOtherCursor);
 }
@@ -1467,7 +1377,7 @@ Am_Text_Cursor_Data::operator<=(
  *  Am_Text_Viewing_Context
  *****************************************************************************/
 
-AM_WRAPPER_IMPL( Am_Text_Viewing_Context )
+AM_WRAPPER_IMPL(Am_Text_Viewing_Context)
 
 /******************************************************************************
  *  Am_Text_Viewing_Context
@@ -1485,10 +1395,9 @@ Am_Text_Viewing_Context::Am_Text_Viewing_Context()
 /**** NDY: should Make_Unique ****/
 
 void
-Am_Text_Viewing_Context::Set_Text(
-  const Am_Rich_Text& inText )
+Am_Text_Viewing_Context::Set_Text(const Am_Rich_Text &inText)
 {
-  data->Set_Text( inText );
+  data->Set_Text(inText);
 }
 
 /******************************************************************************
@@ -1498,10 +1407,9 @@ Am_Text_Viewing_Context::Set_Text(
 /**** NDY: should Make_Unique ****/
 
 void
-Am_Text_Viewing_Context::Set_Width(
-  const unsigned long inWidth )
+Am_Text_Viewing_Context::Set_Width(const unsigned long inWidth)
 {
-  data->Set_Width( inWidth );
+  data->Set_Width(inWidth);
 }
 
 /******************************************************************************
@@ -1509,27 +1417,26 @@ Am_Text_Viewing_Context::Set_Width(
  */
 
 void
-Am_Text_Viewing_Context::Draw(
-  Am_Drawonable* inDrawonable,
-  long inLeft,
-  long inTop )
+Am_Text_Viewing_Context::Draw(Am_Drawonable *inDrawonable, long inLeft,
+                              long inTop)
 {
-  data->Draw( inDrawonable, inLeft, inTop );
+  data->Draw(inDrawonable, inLeft, inTop);
 }
 
 /******************************************************************************
  *  Am_Text_Viewing_Context_Data
  *****************************************************************************/
 
-AM_WRAPPER_DATA_IMPL( Am_Text_Viewing_Context, (this) )
+AM_WRAPPER_DATA_IMPL(Am_Text_Viewing_Context, (this))
 
 /******************************************************************************
  *  Am_Text_Viewing_Context_Data
  */
 
-Am_Text_Viewing_Context_Data::SLIBlock::SLIBlock() {
-  for( unsigned long line = 0; line < kLinesInBlock; line++ ) {
-    li[line].fFirst  = 0;
+Am_Text_Viewing_Context_Data::SLIBlock::SLIBlock()
+{
+  for (unsigned long line = 0; line < kLinesInBlock; line++) {
+    li[line].fFirst = 0;
     li[line].fLength = 0;
     li[line].fHeight = 0;
   }
@@ -1538,31 +1445,29 @@ Am_Text_Viewing_Context_Data::SLIBlock::SLIBlock() {
 
 Am_Text_Viewing_Context_Data::Am_Text_Viewing_Context_Data()
 {
-  Init( Am_No_Rich_Text, 0 ); //Am_Rich_Text( preamble ), 0 );
+  Init(Am_No_Rich_Text, 0); //Am_Rich_Text( preamble ), 0 );
 }
 
 Am_Text_Viewing_Context_Data::Am_Text_Viewing_Context_Data(
-  Am_Text_Viewing_Context_Data* inProto )
+    Am_Text_Viewing_Context_Data *inProto)
 {
-  mWidth        = inProto->mWidth;
-  mText         = inProto->mText;
+  mWidth = inProto->mWidth;
+  mText = inProto->mText;
 
-  mNumLines     = 0;
+  mNumLines = 0;
   mFirstLIBlock = new SLIBlock();
-  mLIValid      = false; // forces a call to Layout()
-
+  mLIValid = false; // forces a call to Layout()
 }
 
 Am_Text_Viewing_Context_Data::Am_Text_Viewing_Context_Data(
-  Am_Text_Viewing_Context_Data& inProto )
+    Am_Text_Viewing_Context_Data &inProto)
 {
-  mWidth        = inProto.mWidth;
-  mText         = inProto.mText;
+  mWidth = inProto.mWidth;
+  mText = inProto.mText;
 
-  mNumLines     = 0;
+  mNumLines = 0;
   mFirstLIBlock = new SLIBlock();
-  mLIValid      = false; // forces a call to Layout()
-
+  mLIValid = false; // forces a call to Layout()
 }
 
 Am_Text_Viewing_Context_Data::~Am_Text_Viewing_Context_Data()
@@ -1575,16 +1480,14 @@ Am_Text_Viewing_Context_Data::~Am_Text_Viewing_Context_Data()
  */
 
 void
-Am_Text_Viewing_Context_Data::Init(
-  Am_Rich_Text  inText,
-  unsigned long inWidth )
+Am_Text_Viewing_Context_Data::Init(Am_Rich_Text inText, unsigned long inWidth)
 {
-  mLIValid      = false;
-  mText         = inText;
-  mCursorRef    = -1; // (inText == Am_No_Rich_Text)
-    //  ? Am_No_Cursor : Am_No_Cursor; // inText->New_Cursor( this );
-  mWidth        = inWidth;
-  mNumLines     = 0;
+  mLIValid = false;
+  mText = inText;
+  mCursorRef = -1; // (inText == Am_No_Rich_Text)
+  //  ? Am_No_Cursor : Am_No_Cursor; // inText->New_Cursor( this );
+  mWidth = inWidth;
+  mNumLines = 0;
   mFirstLIBlock = new SLIBlock;
 }
 
@@ -1593,50 +1496,47 @@ Am_Text_Viewing_Context_Data::Init(
  *    Computes the indexes of the first character of each line.
  */
 
-void
-Am_Text_Viewing_Context_Data::Layout(
-  Am_Drawonable* inDrawonable,
-  Am_Text_Index  /* inFirstInvChar */, // ignored for now - uses 0
-  Am_Text_Index  /* inLastInvChar */ ) // ignored for now - uses end of text
+void Am_Text_Viewing_Context_Data::Layout(
+    Am_Drawonable *inDrawonable,
+    Am_Text_Index /* inFirstInvChar */, // ignored for now - uses 0
+    Am_Text_Index /* inLastInvChar */)  // ignored for now - uses end of text
 {
-  #if DEBUG_HELP
- std::cout << "Am_Text_Viewing_Context_Data::Layout" <<std::endl;
-  #endif
+#if DEBUG_HELP
+  std::cout << "Am_Text_Viewing_Context_Data::Layout" << std::endl;
+#endif
 
-  bool           endOfText   = false;
-  unsigned long  charsOnLine = 0;
-  unsigned short ascent      = 0,
-                 descent     = 0;
-  Am_Text_Index  textIndex   = 1;
+  bool endOfText = false;
+  unsigned long charsOnLine = 0;
+  unsigned short ascent = 0, descent = 0;
+  Am_Text_Index textIndex = 1;
 
-  if( mText == Am_No_Rich_Text ) // || mWidth <= 0 )
+  if (mText == Am_No_Rich_Text) // || mWidth <= 0 )
     return;
 
-  Am_Rich_Text_Data* textData = Am_Rich_Text_Data::Narrow( mText );
+  Am_Rich_Text_Data *textData = Am_Rich_Text_Data::Narrow(mText);
 
-  SLIBlock* liBlock = mFirstLIBlock;
+  SLIBlock *liBlock = mFirstLIBlock;
 
   unsigned long line = 0;
-  while( true )
-  {
-    endOfText = textData->Calc_Line_Dim( inDrawonable, textIndex, mWidth,
-                                         charsOnLine, ascent, descent );
-    #if DEBUG_HELP
-   std::cout << "  Calculated line: " << line <<std::endl;
-    #endif
+  while (true) {
+    endOfText = textData->Calc_Line_Dim(inDrawonable, textIndex, mWidth,
+                                        charsOnLine, ascent, descent);
+#if DEBUG_HELP
+    std::cout << "  Calculated line: " << line << std::endl;
+#endif
 
-    liBlock->li[line % kLinesInBlock].fFirst  = textIndex;
+    liBlock->li[line % kLinesInBlock].fFirst = textIndex;
     liBlock->li[line % kLinesInBlock].fLength = charsOnLine;
-    liBlock->li[line % kLinesInBlock].fHeight = (ascent<<16)+(descent+ascent);
+    liBlock->li[line % kLinesInBlock].fHeight =
+        (ascent << 16) + (descent + ascent);
     textIndex += charsOnLine;
 
     line++;
-    if( endOfText )
+    if (endOfText)
       break;
 
-    if( line % kLinesInBlock == 0 )
-    {
-      if( liBlock->fNext == (0L) )
+    if (line % kLinesInBlock == 0) {
+      if (liBlock->fNext == (0L))
         liBlock->fNext = new SLIBlock;
       liBlock = liBlock->fNext;
     }
@@ -1646,9 +1546,9 @@ Am_Text_Viewing_Context_Data::Layout(
   textData->Release();
   mLIValid = true;
 
-  #if DEBUG_HELP
- std::cout << "mNumLines = " << mNumLines <<std::endl;
-  #endif
+#if DEBUG_HELP
+  std::cout << "mNumLines = " << mNumLines << std::endl;
+#endif
 }
 
 /******************************************************************************
@@ -1656,54 +1556,52 @@ Am_Text_Viewing_Context_Data::Layout(
  */
 
 void
-Am_Text_Viewing_Context_Data::Draw(
-  Am_Drawonable* inDrawonable,
-  long inLeft,
-  long inTop )
+Am_Text_Viewing_Context_Data::Draw(Am_Drawonable *inDrawonable, long inLeft,
+                                   long inTop)
 {
-  if( !mLIValid )
-  {
-    #if DEBUG_HELP
-   std::cout << "Am_Text_Viewing_Context_Data::Draw calling Layout" <<std::endl;
-    #endif
-    Layout( inDrawonable );
+  if (!mLIValid) {
+#if DEBUG_HELP
+    std::cout << "Am_Text_Viewing_Context_Data::Draw calling Layout"
+              << std::endl;
+#endif
+    Layout(inDrawonable);
   }
 
   // if Layout could not validate the object (mWidth <= 0) do not draw
-  if( !mLIValid )
-  {
-    #if DEBUG_HELP
-   std::cout << "Am_Text_Viewing_Context_Data::Draw: call to Layout did not validate the line info." <<std::endl;
-    #endif
+  if (!mLIValid) {
+#if DEBUG_HELP
+    std::cout << "Am_Text_Viewing_Context_Data::Draw: call to Layout did not "
+                 "validate the line info."
+              << std::endl;
+#endif
     return;
   }
 
-  #if DEBUG_HELP
- std::cout << "Am_Text_Viewing_Context_Data::Draw drawing the viewing context" <<std::endl;
-  #endif
+#if DEBUG_HELP
+  std::cout << "Am_Text_Viewing_Context_Data::Draw drawing the viewing context"
+            << std::endl;
+#endif
 
-  long left = inLeft,
-       top  = inTop;
+  long left = inLeft, top = inTop;
 
-  SLIBlock* liBlock = mFirstLIBlock;
+  SLIBlock *liBlock = mFirstLIBlock;
 
   // assume liBlock is valid
   unsigned long line = 0;
-  while( true )
-  {
+  while (true) {
     //   std::cout << "Drawing line: " << line << "  Top: " << top <<std::endl;
-    mText.Draw_Line( inDrawonable, left, top,
-                     liBlock->li[line % kLinesInBlock].fFirst,
-                     liBlock->li[line % kLinesInBlock].fLength,
-                     (unsigned short)(liBlock->li[line % kLinesInBlock].fHeight >> 16) );
+    mText.Draw_Line(
+        inDrawonable, left, top, liBlock->li[line % kLinesInBlock].fFirst,
+        liBlock->li[line % kLinesInBlock].fLength,
+        (unsigned short)(liBlock->li[line % kLinesInBlock].fHeight >> 16));
 
     top += (liBlock->li[line % kLinesInBlock].fHeight & 0x0000FFFF);
 
     line++;
-    if( line == mNumLines )
+    if (line == mNumLines)
       break;
 
-    if( line % kLinesInBlock == 0 )
+    if (line % kLinesInBlock == 0)
       liBlock = liBlock->fNext;
   }
 }
@@ -1713,10 +1611,9 @@ Am_Text_Viewing_Context_Data::Draw(
  */
 
 inline void
-Am_Text_Viewing_Context_Data::Set_Text(
-  const Am_Rich_Text& inText )
+Am_Text_Viewing_Context_Data::Set_Text(const Am_Rich_Text &inText)
 {
-  mText    = inText; // this calls Release on the old text object
+  mText = inText; // this calls Release on the old text object
   mLIValid = false;
 }
 
@@ -1735,8 +1632,7 @@ Am_Text_Viewing_Context_Data::Set_Text(
  */
 
 inline void
-Am_Text_Viewing_Context_Data::Set_Width(
-  unsigned long inWidth )
+Am_Text_Viewing_Context_Data::Set_Width(unsigned long inWidth)
 {
   mWidth = inWidth;
   mLIValid = false;
@@ -1748,10 +1644,8 @@ Am_Text_Viewing_Context_Data::Set_Width(
 
 /**** NDY: might not need to invalidate the entire range ****/
 
-void
-Am_Text_Viewing_Context_Data::Invalidate_Text_Range(
-  Am_Text_Index   /* inStart */,
-  Am_Text_Length  /* inLength */ )
+void Am_Text_Viewing_Context_Data::Invalidate_Text_Range(
+    Am_Text_Index /* inStart */, Am_Text_Length /* inLength */)
 {
   mLIValid = false;
 }
@@ -1760,12 +1654,16 @@ Am_Text_Viewing_Context_Data::Invalidate_Text_Range(
  *  operator==
  */
 
-bool Am_Text_Viewing_Context_Data::operator==(const Am_Text_Viewing_Context_Data& /* inOtherVC */ )
+bool
+Am_Text_Viewing_Context_Data::
+operator==(const Am_Text_Viewing_Context_Data & /* inOtherVC */)
 {
   return false;
 }
 
-bool Am_Text_Viewing_Context_Data::operator==(const Am_Text_Viewing_Context_Data& /* inOtherVC */ ) const
+bool
+Am_Text_Viewing_Context_Data::
+operator==(const Am_Text_Viewing_Context_Data & /* inOtherVC */) const
 {
   return false;
 }
@@ -1779,12 +1677,11 @@ bool Am_Text_Viewing_Context_Data::operator==(const Am_Text_Viewing_Context_Data
  */
 
 #ifdef NEED_MEMMOVE
-extern void memmove (char* dest, const char* src, int length);
+extern void memmove(char *dest, const char *src, int length);
 #endif
 
-Am_Text_Fragment::Am_Text_Fragment(
-  Am_Rich_Text_Data* inTextObject,
-  const char*     inString )
+Am_Text_Fragment::Am_Text_Fragment(Am_Rich_Text_Data *inTextObject,
+                                   const char *inString)
 {
   mType = Am_STRING;
   mTextObject = inTextObject;
@@ -1792,25 +1689,21 @@ Am_Text_Fragment::Am_Text_Fragment(
   mFirstMark = (0L);
   mPrev = mNext = (0L);
 
-  Am_Text_Length stringLen = strlen( inString );
+  Am_Text_Length stringLen = strlen(inString);
 
-  if( stringLen > kFragStrSize )
-  {
+  if (stringLen > kFragStrSize) {
     mStrLen = kFragStrSize;
-    memmove( mString, inString, (int) mStrLen );
-    mNext = new Am_Text_Fragment( inTextObject, mString + kFragStrSize );
-  }
-  else
-  {
+    memmove(mString, inString, (int)mStrLen);
+    mNext = new Am_Text_Fragment(inTextObject, mString + kFragStrSize);
+  } else {
     mStrLen = stringLen;
-    memmove( mString, inString, (int) mStrLen );
+    memmove(mString, inString, (int)mStrLen);
   }
 }
 
-Am_Text_Fragment::Am_Text_Fragment(
-  Am_Rich_Text_Data* inTextObject,
-  const char*     inString,
-  Am_Text_Length  inStrLen )
+Am_Text_Fragment::Am_Text_Fragment(Am_Rich_Text_Data *inTextObject,
+                                   const char *inString,
+                                   Am_Text_Length inStrLen)
 {
   mType = Am_STRING;
   mTextObject = inTextObject;
@@ -1819,17 +1712,14 @@ Am_Text_Fragment::Am_Text_Fragment(
   mFirstMark = (0L);
   mPrev = mNext = (0L);
 
-  if( inStrLen > kFragStrSize )
-  {
+  if (inStrLen > kFragStrSize) {
     mStrLen = kFragStrSize;
-    memmove( mString, inString, (int) mStrLen );
-    mNext = new Am_Text_Fragment( inTextObject, mString + kFragStrSize,
-                                  inStrLen - kFragStrSize );
-  }
-  else
-  {
+    memmove(mString, inString, (int)mStrLen);
+    mNext = new Am_Text_Fragment(inTextObject, mString + kFragStrSize,
+                                 inStrLen - kFragStrSize);
+  } else {
     mStrLen = inStrLen;
-    memmove( mString, inString, (int) mStrLen );
+    memmove(mString, inString, (int)mStrLen);
   }
 }
 
@@ -1837,7 +1727,7 @@ Am_Text_Fragment::Am_Text_Fragment(
  *  Text_Object
  */
 
-Am_Rich_Text_Data*
+Am_Rich_Text_Data *
 Am_Text_Fragment::Text_Object() const
 {
   return mTextObject;
@@ -1878,13 +1768,12 @@ Am_Text_Fragment::Length() const
  *  String
  */
 
-inline char*
-Am_Text_Fragment::String(
-  Am_Text_Offset inOffset ) const
+inline char *
+Am_Text_Fragment::String(Am_Text_Offset inOffset) const
 {
-  if( (unsigned)inOffset < mStrLen ) // signed vs unsigned comparison
-                           // make sure that inOffset > 0
-    return (char*)mString + inOffset;
+  if ((unsigned)inOffset < mStrLen) // signed vs unsigned comparison
+                                    // make sure that inOffset > 0
+    return (char *)mString + inOffset;
   else
     return (0L); // probably should raise some error, throw an exception...
 }
@@ -1894,12 +1783,11 @@ Am_Text_Fragment::String(
  */
 
 void
-Am_Text_Fragment::Add_Mark(
-  Am_Text_Mark* /* inMarkToAdd */ )
+Am_Text_Fragment::Add_Mark(Am_Text_Mark * /* inMarkToAdd */)
 {
   return;
 
-/*
+  /*
   Am_Text_Index searchIndex = inMarkToAdd->Get_Index();
 
   // check for legal range
@@ -1924,12 +1812,12 @@ Am_Text_Fragment::Add_Mark(
 
   // by now we are inserting after the first item
   // NDY: finish the insert
-//   Am_Rich_Text_Index* mark = mHead;
-//   while( mark != (0L) )
-//   {
-//     if( searchIndex > mark->Get_Index()
-//
-//   }
+  //   Am_Rich_Text_Index* mark = mHead;
+  //   while( mark != (0L) )
+  //   {
+  //     if( searchIndex > mark->Get_Index()
+  //
+  //   }
 }
 
 /******************************************************************************
@@ -1937,20 +1825,17 @@ Am_Text_Fragment::Add_Mark(
  */
 
 void
-Am_Text_Fragment::Break_At(
-  Am_Text_Index inRelIndex ) // first char in next frag
+Am_Text_Fragment::Break_At(Am_Text_Index inRelIndex) // first char in next frag
 {
-  if( inRelIndex > mStrLen )
+  if (inRelIndex > mStrLen)
     return;
 
-  Am_Text_Fragment* new_frag =
-                        new Am_Text_Fragment( mTextObject,
-                                              (char*)mString + inRelIndex - 1,
-                                              mStrLen - inRelIndex + 1 );
+  Am_Text_Fragment *new_frag = new Am_Text_Fragment(
+      mTextObject, (char *)mString + inRelIndex - 1, mStrLen - inRelIndex + 1);
   mStrLen = inRelIndex - 1;
 
   new_frag->mNext = this->mNext;
-  if( this->mNext != (0L) )
+  if (this->mNext != (0L))
     this->mNext->mPrev = new_frag;
 
   this->mNext = new_frag;
@@ -1961,13 +1846,13 @@ Am_Text_Fragment::Break_At(
  *  Next_Frag & Prev_Frag
  */
 
-inline Am_Text_Fragment*
+inline Am_Text_Fragment *
 Am_Text_Fragment::Next()
 {
   return mNext;
 }
 
-inline Am_Text_Fragment*
+inline Am_Text_Fragment *
 Am_Text_Fragment::Prev()
 {
   return mPrev;
@@ -1981,17 +1866,14 @@ Am_Text_Fragment::Prev()
  *  Am_Text_Style_Run
  */
 
-Am_Text_Style_Run::Am_Text_Style_Run(
-  unsigned long inCharsInRun,
-  Am_Font       inFont,
-  Am_Style      inTextStyle,
-  Am_Style      inBGStyle )
+Am_Text_Style_Run::Am_Text_Style_Run(unsigned long inCharsInRun, Am_Font inFont,
+                                     Am_Style inTextStyle, Am_Style inBGStyle)
 {
   mCharsInRun = inCharsInRun;
-  mFont       = inFont;
-  mTextStyle  = inTextStyle;
-  mBGStyle    = inBGStyle;
-  mNext       = (0L);
+  mFont = inFont;
+  mTextStyle = inTextStyle;
+  mBGStyle = inBGStyle;
+  mNext = (0L);
 }
 
 /******************************************************************************
@@ -2009,8 +1891,7 @@ Am_Text_Style_Run::Length() const
  */
 
 inline unsigned long
-Am_Text_Style_Run::Change_Length(
-  Am_Text_Offset inDelta )
+Am_Text_Style_Run::Change_Length(Am_Text_Offset inDelta)
 {
   return mCharsInRun += inDelta;
 }
@@ -2019,7 +1900,7 @@ Am_Text_Style_Run::Change_Length(
  *  Next
  */
 
-inline Am_Text_Style_Run*
+inline Am_Text_Style_Run *
 Am_Text_Style_Run::Next() const
 {
   return mNext;
@@ -2030,8 +1911,7 @@ Am_Text_Style_Run::Next() const
  */
 
 inline void
-Am_Text_Style_Run::Set_Next(
-  Am_Text_Style_Run* inNext )
+Am_Text_Style_Run::Set_Next(Am_Text_Style_Run *inNext)
 {
   mNext = inNext;
 }

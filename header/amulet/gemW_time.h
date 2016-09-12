@@ -12,14 +12,10 @@ class Am_Time_Data : public Am_Wrapper
   friend class Am_Time;
   AM_WRAPPER_DATA_DECL(Am_Time)
 public:
-  void Print (std::ostream& out) const;
+  void Print(std::ostream &out) const;
   Am_Time_Data() { time = 0; }
-  Am_Time_Data(Am_Time_Data* other) 
-    { time = other->time; }
+  Am_Time_Data(Am_Time_Data *other) { time = other->time; }
   unsigned long time;
-  bool operator== (Am_Time_Data& other)
-    { return time == other.time; }
-  bool operator== (Am_Time_Data& other) const
-    { return time == other.time; }
+  bool operator==(Am_Time_Data &other) { return time == other.time; }
+  bool operator==(Am_Time_Data &other) const { return time == other.time; }
 };
-

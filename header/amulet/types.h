@@ -20,14 +20,13 @@
 // am_value.hpp defines some constants, therefore we must guard
 // against double definitions
 #ifndef AM_VALUE_HPP
-	#include AM_VALUE__H
+#include AM_VALUE__H
 #endif
 
 #include "amulet/impl/types_basic.h"
 #include "amulet/impl/types_slot.h"
 
 #include "amulet/impl/types_logging.h"
-
 
 // class Am_Registered_Type; 	//forward reference
 // class Am_Wrapper; 			//forward reference
@@ -48,10 +47,8 @@
 
 #include "amulet/impl/types_string.h"
 
-
 #include "amulet/impl/types_misc.h"
 
 #include "amulet/impl/types_load_save.h"
-
 
 #endif

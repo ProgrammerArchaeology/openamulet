@@ -20,8 +20,8 @@
 #include "amulet/impl/types_enum.h"
 #include "amulet/impl/types_method.h"
 
-#include "amulet/impl/am_object.h"  // basic object definitions
-#include IDEFS__H   // Am_Input_Char
+#include "amulet/impl/am_object.h" // basic object definitions
+#include IDEFS__H                  // Am_Input_Char
 #include FORMULA__H
 
 //lint -e752 ok that local declarators are not referenced
@@ -35,15 +35,17 @@
 //This enum is used internally; users should use the Am_Animation_End_Action
 // values instead.
 enum Am_Animation_End_Action_vals
-{ Am_ANIMATION_STOP_val, Am_ANIMATION_WRAP_val, Am_ANIMATION_BOUNCE_val };
+{
+  Am_ANIMATION_STOP_val,
+  Am_ANIMATION_WRAP_val,
+  Am_ANIMATION_BOUNCE_val
+};
 
 // Control for what to do at the end of an animation cycle
 AM_DEFINE_ENUM_TYPE(Am_Animation_End_Action, Am_Animation_End_Action_vals)
 const Am_Animation_End_Action Am_ANIMATION_STOP(Am_ANIMATION_STOP_val);
 const Am_Animation_End_Action Am_ANIMATION_WRAP(Am_ANIMATION_WRAP_val);
 const Am_Animation_End_Action Am_ANIMATION_BOUNCE(Am_ANIMATION_BOUNCE_val);
-
-
 
 //use Am_Animation_Command when want Do method called each time
 _OA_DL_IMPORT extern Am_Object Am_Animation_Command;
@@ -83,22 +85,25 @@ _OA_DL_IMPORT extern Am_Object Am_Animation_Blink_Command;
 //
 
 // Update method
-AM_DEFINE_METHOD_TYPE(Am_Anim_Update_Method, void, (Am_Object interpolator, const Am_Value& value))
+AM_DEFINE_METHOD_TYPE(Am_Anim_Update_Method, void,
+                      (Am_Object interpolator, const Am_Value &value))
 
 #include "amulet/impl/anim_misc.h"
 
 // Global functions
-_OA_DL_IMPORT Am_Constraint* Am_Animate_With (const Am_Object& animator);
-_OA_DL_IMPORT Am_Object Am_Get_Animator (Am_Object obj, Am_Slot_Key key);
-_OA_DL_IMPORT Am_Object Am_Get_Animator (Am_Constraint* constraint);
-_OA_DL_IMPORT void Am_Set_Animated_Slots (Am_Object interp);
-
+_OA_DL_IMPORT Am_Constraint *Am_Animate_With(const Am_Object &animator);
+_OA_DL_IMPORT Am_Object Am_Get_Animator(Am_Object obj, Am_Slot_Key key);
+_OA_DL_IMPORT Am_Object Am_Get_Animator(Am_Constraint *constraint);
+_OA_DL_IMPORT void Am_Set_Animated_Slots(Am_Object interp);
 
 // from inter_polators.cc
 
-_OA_DL_IMPORT void Am_Start_Animator(Am_Object interp, const Am_Value &value1 = Am_No_Value, const Am_Value &value2 = Am_No_Value);
+_OA_DL_IMPORT void Am_Start_Animator(Am_Object interp,
+                                     const Am_Value &value1 = Am_No_Value,
+                                     const Am_Value &value2 = Am_No_Value);
 //void Am_Start_Animator(Am_Object interp, const Am_Value value1 = Am_No_Value, const Am_Value value2 = Am_No_Value);
-_OA_DL_IMPORT void Am_Interrupt_Animator(const Am_Object &interp, const Am_Value &new_value);
+_OA_DL_IMPORT void Am_Interrupt_Animator(const Am_Object &interp,
+                                         const Am_Value &new_value);
 //void Am_Interrupt_Animator(const Am_Object interp, const Am_Value new_value);
 _OA_DL_IMPORT void Am_Abort_Animator(Am_Object interp);
 _OA_DL_IMPORT void Am_Stop_Animator(Am_Object interp);
@@ -116,18 +121,17 @@ _OA_DL_IMPORT extern Am_Object Am_Point_List_Animator;
 _OA_DL_IMPORT extern Am_Object Am_Fly_Apart_Animator;
 
 // timing functions
-AM_DEFINE_METHOD_TYPE (Am_Timing_Function, float, (Am_Object command_obj,
-						   Am_Time t))
+AM_DEFINE_METHOD_TYPE(Am_Timing_Function, float,
+                      (Am_Object command_obj, Am_Time t))
 
 _OA_DL_IMPORT extern Am_Timing_Function Am_Linear_Timing;
 _OA_DL_IMPORT extern Am_Timing_Function Am_Delayed_Timing;
 _OA_DL_IMPORT extern Am_Timing_Function Am_Slow_In_Slow_Out;
 
 // path functions
-AM_DEFINE_METHOD_TYPE (Am_Path_Function, Am_Value, (Am_Object command_obj,
-						    Am_Value value1,
-						    Am_Value value2,
-						    float tau))
+AM_DEFINE_METHOD_TYPE(Am_Path_Function, Am_Value,
+                      (Am_Object command_obj, Am_Value value1, Am_Value value2,
+                       float tau))
 
 // Am_COMPUTE_DISTANCE: when path function is called with this special value,
 // it should return the absolute value of the distance between VALUE_1 and
@@ -143,7 +147,5 @@ _OA_DL_IMPORT extern Am_Path_Function Am_Through_List_Path;
 // command objects
 _OA_DL_IMPORT extern Am_Object Am_Animation_Wrap_Command;
 _OA_DL_IMPORT extern Am_Object Am_Animation_Bounce_Command;
-
-
 
 #endif // ANIM_H

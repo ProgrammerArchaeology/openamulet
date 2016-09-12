@@ -11,7 +11,7 @@ class Am_Slot;
 typedef void Am_Object_Demon(Am_Object object);
 typedef void Am_Slot_Demon(Am_Slot first_invalidated);
 typedef void Am_Part_Demon(Am_Object owner, Am_Object old_object,
-                            Am_Object new_object);
-typedef const char* Am_Type_Check(const Am_Value& value);
+                           Am_Object new_object);
+typedef const char *Am_Type_Check(const Am_Value &value);
 
 #endif // TYPES_DEMON_H

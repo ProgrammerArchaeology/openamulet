@@ -10,11 +10,12 @@
 
 Am_Object Am_User_Id;
 
-
-static void init()
+static void
+init()
 {
-	Am_User_Id = Am_Root_Object.Create(DSTR("Am_User_Id"))
-		.Add (Am_USER_ID, Am_USER_ZERO);              // supports multiple users
+  Am_User_Id = Am_Root_Object.Create(DSTR("Am_User_Id"))
+                   .Add(Am_USER_ID, Am_USER_ZERO); // supports multiple users
 }
 
-static Am_Initializer* initializer = new Am_Initializer(DSTR("Am_User_Id"), init, 3.2f, 0);
+static Am_Initializer *initializer =
+    new Am_Initializer(DSTR("Am_User_Id"), init, 3.2f, 0);

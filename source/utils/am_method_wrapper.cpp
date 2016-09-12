@@ -9,8 +9,10 @@
 //the default looks up the name, and if found, returns it.  Otherwise,
 //returns Am_No_Object.  Ignores the item it is called on.
 #ifdef DEBUG
-Am_Value Am_Method_Wrapper::From_String(const char * string) const {
-  Am_Method_Wrapper* item = (Am_Method_Wrapper*)Am_Get_Named_Item (string);
+Am_Value
+Am_Method_Wrapper::From_String(const char *string) const
+{
+  Am_Method_Wrapper *item = (Am_Method_Wrapper *)Am_Get_Named_Item(string);
   if (item) {
     Am_Value v(item);
     return v;
@@ -18,15 +20,19 @@ Am_Value Am_Method_Wrapper::From_String(const char * string) const {
   return Am_No_Value;
 }
 #else
-Am_Value Am_Method_Wrapper::From_String(const char* /* string */) const {
+Am_Value
+Am_Method_Wrapper::From_String(const char * /* string */) const
+{
   return Am_No_Value;
 }
 #endif
 
-void Am_Method_Wrapper::Print(std::ostream& os) const {
+void
+Am_Method_Wrapper::Print(std::ostream &os) const
+{
 #ifdef DEBUG
   const char *name = Am_Get_Name_Of_Item(this);
-  if(name) {
+  if (name) {
     os << name;
     return;
   }
@@ -35,13 +41,11 @@ void Am_Method_Wrapper::Print(std::ostream& os) const {
 }
 
 #ifdef DEBUG
-Am_Method_Wrapper::Am_Method_Wrapper(Am_ID_Tag* id_ptr,
-				     Am_Generic_Procedure *p,
-				     const char * name)
+Am_Method_Wrapper::Am_Method_Wrapper(Am_ID_Tag *id_ptr, Am_Generic_Procedure *p,
+                                     const char *name)
 #else
-Am_Method_Wrapper::Am_Method_Wrapper(Am_ID_Tag* id_ptr,
-				     Am_Generic_Procedure *p,
-				     const char * /* name */)
+Am_Method_Wrapper::Am_Method_Wrapper(Am_ID_Tag *id_ptr, Am_Generic_Procedure *p,
+                                     const char * /* name */)
 #endif
 {
   ID_Ptr = id_ptr;
@@ -50,4 +54,3 @@ Am_Method_Wrapper::Am_Method_Wrapper(Am_ID_Tag* id_ptr,
   Am_Register_Name(this, name);
 #endif
 }
-

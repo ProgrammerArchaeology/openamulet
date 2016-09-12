@@ -29,12 +29,12 @@
 #define KKLINE_FONT KTM_Font
 #define KCLINE_FONT CTM_Font
 #define KLINE_LEFT 25
-#define EUC_KANJI KANJI // same as S-JIS on PC
-#define EUC_TEST_STRING TEST_STRING // same as S-JIS on PC
-#define EUC_KANJIE KANJI // same as S-JIS on PC
+#define EUC_KANJI KANJI               // same as S-JIS on PC
+#define EUC_TEST_STRING TEST_STRING   // same as S-JIS on PC
+#define EUC_KANJIE KANJI              // same as S-JIS on PC
 #define EUC_PTEXT_STRING PTEXT_STRING // same as S-JIS on PC
 
-#define MSM_FONT  "‚l‚r –¾’©"
-#define MSG_FONT  "‚l‚r ƒSƒVƒbƒN"
+#define MSM_FONT "‚l‚r –¾’©"
+#define MSG_FONT "‚l‚r ƒSƒVƒbƒN"
 #define MSMP_FONT "‚l‚r ‚o–¾’©"
 #define MSGP_FONT "‚l‚r ‚oƒSƒVƒbƒN"

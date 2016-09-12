@@ -13,24 +13,28 @@
 
 Am_Drawonable *root, *d1, *d2, *d3, *d4;
 
-Am_Style black (0.0, 0.0, 0.0);
-Am_Style green (0.0, 1.0, 0.0);
-Am_Font font1 (Am_FONT_FIXED, true, false, false, Am_FONT_VERY_LARGE);
-Am_Font font2 (Am_FONT_FIXED, false, false, false, Am_FONT_LARGE);
+Am_Style black(0.0, 0.0, 0.0);
+Am_Style green(0.0, 1.0, 0.0);
+Am_Font font1(Am_FONT_FIXED, true, false, false, Am_FONT_VERY_LARGE);
+Am_Font font2(Am_FONT_FIXED, false, false, false, Am_FONT_LARGE);
 Am_Font font3;
 
-void init_windows() {
+void
+init_windows()
+{
   root = Am_Drawonable::Get_Root_Drawonable();
   d1 = root->Create(850, 180, 220, 100);
-  d2 = d1->Create(-15, 22, 175, 100, "D2", "D2 Icon", true, false,
-		  Am_No_Style, false, 1, 1, 0, 0,
-		  // want a title-bar when placed at top-level
-		  true);
+  d2 = d1->Create(-15, 22, 175, 100, "D2", "D2 Icon", true, false, Am_No_Style,
+                  false, 1, 1, 0, 0,
+                  // want a title-bar when placed at top-level
+                  true);
   d3 = d2->Create(30, 18, 150, 100);
 }
 
-void draw_strings() {
-  
+void
+draw_strings()
+{
+
   static const char *string1 = "Top-level window";
   static int string1_len = 16;
   static const char *string2 = "Child of top-level";
@@ -41,10 +45,12 @@ void draw_strings() {
   d1->Draw_Text(black, string1, string1_len, font1, 5, 7);
   d2->Draw_Text(black, string2, string2_len, font2, 5, 7);
   d3->Draw_Text(black, string3, string3_len, font3, 5, 7);
-  d1->Flush_Output ();  
-}  
+  d1->Flush_Output();
+}
 
-void test_reparent1() {
+void
+test_reparent1()
+{
 
   printf("Hit RETURN to make D3 a sibling of D2:");
   getchar();
@@ -63,13 +69,14 @@ void test_reparent1() {
   d2->Reparent(d1);
 }
 
-int main ()
+int
+main()
 {
   init_windows();
   draw_strings();
 
   test_reparent1();
-  
+
   ///
   ///  Exit
   ///

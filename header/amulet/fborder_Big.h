@@ -5,4 +5,3 @@
 #define ntolf(float f) (f)
 #define ltond(double d) (d)
 #define ntold(double d) (d)
-

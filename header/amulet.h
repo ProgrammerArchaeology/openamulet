@@ -37,12 +37,12 @@
 #include INITIALIZER__H
 
 #ifdef AMULET_NETWORKS
-	#include NETWORK__H
+#include NETWORK__H
 #endif
 
 // in debug mode we want to use the inspector
 #ifdef DEBUG
-	#include DEBUGGER__H
+#include DEBUGGER__H
 #endif
 
 #endif // AMULET_H

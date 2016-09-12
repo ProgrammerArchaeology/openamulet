@@ -26,44 +26,47 @@ AM_WRAPPER_IMPL(Am_Time)
 
 Am_Time Am_No_Time;
 
-Am_Time::Am_Time ()
-{
-  data = new Am_Time_Data;
-}
+Am_Time::Am_Time() { data = new Am_Time_Data; }
 
-Am_Time::Am_Time (unsigned long milliseconds)
+Am_Time::Am_Time(unsigned long milliseconds)
 {
   data = new Am_Time_Data;
   data->time = milliseconds;
 }
 
-Am_Time Am_Time::Now()
+Am_Time
+Am_Time::Now()
 {
-  Am_Time t((unsigned long) timeGetTime());
+  Am_Time t((unsigned long)timeGetTime());
   return t;
 }
 
-bool Am_Time::operator> (const Am_Time& other) const
+bool
+Am_Time::operator>(const Am_Time &other) const
 {
   return data->time > other.data->time;
 }
 
-bool Am_Time::operator< (const Am_Time& other) const
+bool
+Am_Time::operator<(const Am_Time &other) const
 {
   return data->time < other.data->time;
 }
 
-bool Am_Time::operator>= (const Am_Time& other) const
+bool
+Am_Time::operator>=(const Am_Time &other) const
 {
   return data->time >= other.data->time;
 }
 
-bool Am_Time::operator<= (const Am_Time& other) const
+bool
+Am_Time::operator<=(const Am_Time &other) const
 {
   return data->time <= other.data->time;
 }
 
-Am_Time Am_Time::operator+ (unsigned long milliseconds) const
+Am_Time
+Am_Time::operator+(unsigned long milliseconds) const
 {
   Am_Time rt;
 
@@ -71,7 +74,8 @@ Am_Time Am_Time::operator+ (unsigned long milliseconds) const
   return rt;
 }
 
-Am_Time Am_Time::operator- (unsigned long milliseconds) const
+Am_Time
+Am_Time::operator-(unsigned long milliseconds) const
 {
   Am_Time rt;
 
@@ -79,7 +83,8 @@ Am_Time Am_Time::operator- (unsigned long milliseconds) const
   return rt;
 }
 
-Am_Time Am_Time::operator+ (const Am_Time& other) const
+Am_Time
+Am_Time::operator+(const Am_Time &other) const
 {
   Am_Time rt;
 
@@ -87,7 +92,8 @@ Am_Time Am_Time::operator+ (const Am_Time& other) const
   return rt;
 }
 
-Am_Time Am_Time::operator- (const Am_Time& other) const
+Am_Time
+Am_Time::operator-(const Am_Time &other) const
 {
   Am_Time rt;
 
@@ -95,64 +101,76 @@ Am_Time Am_Time::operator- (const Am_Time& other) const
   return rt;
 }
 
-void Am_Time::operator+= (const Am_Time& other)
+void
+Am_Time::operator+=(const Am_Time &other)
 {
   data->time += other.data->time;
 }
 
-void Am_Time::operator-= (const Am_Time& other)
+void
+Am_Time::operator-=(const Am_Time &other)
 {
   data->time -= other.data->time;
 }
 
-void Am_Time::operator+= (unsigned long milliseconds)
+void
+Am_Time::operator+=(unsigned long milliseconds)
 {
   data->time += milliseconds;
 }
 
-void Am_Time::operator-= (unsigned long milliseconds)
+void
+Am_Time::operator-=(unsigned long milliseconds)
 {
   data->time -= milliseconds;
 }
 
-unsigned long Am_Time::Milliseconds () const  // return # of milliseconds
+unsigned long Am_Time::Milliseconds() const // return # of milliseconds
 {
   return data->time;
 }
 
-bool Am_Time::Zero() const
+bool
+Am_Time::Zero() const
 {
   return (data->time == 0);
 }
 
-bool Am_Time::Is_Future () const
+bool
+Am_Time::Is_Future() const
 {
   return (*this > Now());
 }
 
-bool Am_Time::Is_Past () const
+bool
+Am_Time::Is_Past() const
 {
   return (*this < Now());
 }
 
 AM_WRAPPER_DATA_IMPL(Am_Time, (this))
 
-void Am_Time_Data::Print(std::ostream& os) const
+void
+Am_Time_Data::Print(std::ostream &os) const
 {
-  os << time <<" milliseconds";
+  os << time << " milliseconds";
 }
 
-std::ostream& operator<< (std::ostream& os, const Am_Time& time) {
+std::ostream &
+operator<<(std::ostream &os, const Am_Time &time)
+{
   time.Print(os);
   return os;
 }
 
 //returns the current time and date as a string, like
 //  "Fri Jan 17 16:03:55 EST 1997\n".
-Am_String Am_Get_Time_And_Date() {
+Am_String
+Am_Get_Time_And_Date()
+{
   Am_String str;
   time_t time_ptr;
-  (void) time(&time_ptr);
+  (void)time(&time_ptr);
 
   char *s = ctime(&time_ptr);
   str = s;

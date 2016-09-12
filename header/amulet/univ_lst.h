@@ -20,11 +20,11 @@
 
 #include <am_inc.h>
 #include TYPEDEFS__HPP
-#include TYPES__H		//for type 'bool'
+#include TYPES__H //for type 'bool'
 
 #include "univ_lst.hpp" //templates
 
 // List of void*
-AM_DECL_LIST(Ptr, void*, (0L))
+AM_DECL_LIST(Ptr, void *, (0L))
 
 #endif

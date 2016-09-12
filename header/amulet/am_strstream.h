@@ -1,4 +1,4 @@
- /* ************************************************************************ 
+/* ************************************************************************ 
  *         The Amulet User Interface Development Environment              *
  * ************************************************************************
  * This code was written as part of the Amulet project at                 *
@@ -52,9 +52,9 @@
 
 #include <strstream>
 
-#define OSTRSTREAM std::ostrstream 
-#define OSTRSTREAM_CONSTR(a,b,c,d) 	std::ostrstream a(b,c,d)
-#define OSTRSTREAM_COPY(a,b,c) 		/* do nothing here */
+#define OSTRSTREAM std::ostrstream
+#define OSTRSTREAM_CONSTR(a, b, c, d) std::ostrstream a(b, c, d)
+#define OSTRSTREAM_COPY(a, b, c) /* do nothing here */
 
 //lint --e(752) ok, isn't referenced here but included for convinience
-extern void reset_ostrstream(OSTRSTREAM &oss);  // implemented in types.cc
+extern void reset_ostrstream(OSTRSTREAM &oss); // implemented in types.cc

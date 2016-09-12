@@ -22,9 +22,9 @@
 #include STANDARD_SLOTS__H
 
 #ifdef OA_VERSION
-	#include <amulet/univ_map_oa.hpp>
+#include <amulet/univ_map_oa.hpp>
 #else
-	#include UNIV_MAP__H
+#include UNIV_MAP__H
 #endif
 
 #include SOCKET_STUBS__H
@@ -37,62 +37,63 @@ class Am_Connection;
 
 // Method used to Unmarshall a value from a socket.  Use the Am_Connection
 // parameter to Unmarshall nested items from the same socket.
-AM_DEFINE_METHOD_TYPE (Am_Unmarshall_Method, Am_Value, (int the_socket, Am_Connection *my_connection))
+AM_DEFINE_METHOD_TYPE(Am_Unmarshall_Method, Am_Value,
+                      (int the_socket, Am_Connection *my_connection))
 
 // Method used to Marshall a value into a socket.  Use the Am_Connection
 // parameter to Marshall nested items to the same socket.
-AM_DEFINE_METHOD_TYPE(Am_Marshall_Method, void,(int the_socket, const Am_Value& value, Am_Connection *my_connection))
+AM_DEFINE_METHOD_TYPE(Am_Marshall_Method, void,
+                      (int the_socket, const Am_Value &value,
+                       Am_Connection *my_connection))
 
 extern Am_Unmarshall_Method Am_No_Unmarshall_Method;
-extern Am_Marshall_Method	Am_No_Marshall_Method;
+extern Am_Marshall_Method Am_No_Marshall_Method;
 
 #ifdef OA_VERSION
-	typedef OpenAmulet::Map<Am_Value_Type,Am_Marshall_Method> 	Am_Map_Marshall_Methods;
-	typedef OpenAmulet::Map_Iterator<Am_Map_Marshall_Methods> 	Am_MapIterator_Marshall_Methods;
+typedef OpenAmulet::Map<Am_Value_Type, Am_Marshall_Method>
+    Am_Map_Marshall_Methods;
+typedef OpenAmulet::Map_Iterator<Am_Map_Marshall_Methods>
+    Am_MapIterator_Marshall_Methods;
 
-	typedef OpenAmulet::Map<Am_Value_Type,Am_Unmarshall_Method>	Am_Map_Unmarshall_Methods;
-	typedef OpenAmulet::Map_Iterator<Am_Map_Unmarshall_Methods>	Am_MapIterator_Unmarshall_Methods;
+typedef OpenAmulet::Map<Am_Value_Type, Am_Unmarshall_Method>
+    Am_Map_Unmarshall_Methods;
+typedef OpenAmulet::Map_Iterator<Am_Map_Unmarshall_Methods>
+    Am_MapIterator_Unmarshall_Methods;
 
-	typedef OpenAmulet::Map<Am_Value,Am_Value_Type> 			Am_Map_Types;
-	typedef OpenAmulet::Map_Iterator<Am_Map_Types> 				Am_MapIterator_Types;
+typedef OpenAmulet::Map<Am_Value, Am_Value_Type> Am_Map_Types;
+typedef OpenAmulet::Map_Iterator<Am_Map_Types> Am_MapIterator_Types;
 
-	typedef OpenAmulet::Map<Am_Value_Type,Am_Value> 			Am_Map_Net_IDs;
-	typedef OpenAmulet::Map_Iterator<Am_Map_Net_IDs> 			Am_MapIterator_Net_IDs;
+typedef OpenAmulet::Map<Am_Value_Type, Am_Value> Am_Map_Net_IDs;
+typedef OpenAmulet::Map_Iterator<Am_Map_Net_IDs> Am_MapIterator_Net_IDs;
 #else
-	// Note the unsigned long type id is stored in machine byte order
-	// *NOT* network byte order.
-	AM_DECL_MAP (Marshall_Methods, Am_Value_Type, Am_Marshall_Method)
-	AM_DECL_MAP (Unmarshall_Methods, Am_Value_Type, Am_Unmarshall_Method)
+// Note the unsigned long type id is stored in machine byte order
+// *NOT* network byte order.
+AM_DECL_MAP(Marshall_Methods, Am_Value_Type, Am_Marshall_Method)
+AM_DECL_MAP(Unmarshall_Methods, Am_Value_Type, Am_Unmarshall_Method)
 
-	// Types should always be the inverse of Net_IDs.
-	AM_DECL_MAP (Types, Am_Value, Am_Value_Type)
-	AM_DECL_MAP (Net_IDs, Am_Value_Type, Am_Value)
+// Types should always be the inverse of Net_IDs.
+AM_DECL_MAP(Types, Am_Value, Am_Value_Type)
+AM_DECL_MAP(Net_IDs, Am_Value_Type, Am_Value)
 #endif
-
 
 ////////////////////////////////////////////////////
 // There may be one Receiver method per connection. It should Pop() items from
 // the Value Queue and act upon them. It will be cxalled immediately after the
 // Unmarshall methods are done.
 
-AM_DEFINE_METHOD_TYPE (Am_Receive_Method, void,
-                       (Am_Connection *my_connection))
-
+AM_DEFINE_METHOD_TYPE(Am_Receive_Method, void, (Am_Connection * my_connection))
 
 class connection_list_class;
-typedef class connection_list_class
-  Connection_List_Type, * Connection_List_Ptr;
+typedef class connection_list_class Connection_List_Type, *Connection_List_Ptr;
 
 //////////////////////////////////////////////////////////////////////////////
 // Am_Connection declaration
 /////////////////////////////
 
-
 class Am_Connection
 {
-  AM_WRAPPER_DECL (Am_Connection)
+  AM_WRAPPER_DECL(Am_Connection)
 public:
-
   Am_Connection(void);
   // The destructor is declared by AM_WRAPPER_DECL (??)
 
@@ -107,7 +108,7 @@ public:
 
   static Am_Connection *Open(char addr[]);
   static Am_Connection *Open(struct sockaddr *sa);
-  static Am_Connection *Open(void );
+  static Am_Connection *Open(void);
 
   // These methods register the types for sending across an Am_Connection.
   // Each type needs a method to flatten the type into network bytes, and a
@@ -118,13 +119,12 @@ public:
   // This is because recieving some types requires knowledge of the data in
   // order to know the length.
 
-  static bool Register_Type (Am_Value_Type type,
-		      const Am_Marshall_Method& marshall,
-		      const Am_Unmarshall_Method& unmarshall,
-		      unsigned long id = 0 );
+  static bool Register_Type(Am_Value_Type type,
+                            const Am_Marshall_Method &marshall,
+                            const Am_Unmarshall_Method &unmarshall,
+                            unsigned long id = 0);
   // Is the network being used?
-  static bool Active(void)
-  { return num_sockets != 0; }
+  static bool Active(void) { return num_sockets != 0; }
 
   // Block Pending incomming connection. Use with Caution:
   // No other events can take place until this returns.
@@ -150,8 +150,6 @@ public:
   // the application hence they shouldn't (or possibly can't) be Sent as
   // well.
 
-
-
   //returns the name if the value is registered as a prototype.  If
   //not registered, returns (0L)
 
@@ -160,25 +158,22 @@ public:
   //
   //Object Marshalling Methods
   //
-  static const char * Get_Net_Proto_Name(Am_Object &the_obj);
-  static Am_Object  Get_Net_Prototype(const char * proto_name);
-  static const char * Get_Net_Object_ID(Am_Object &the_obj);
-  static Am_Object  Get_Net_Instance(const char *proto_name,
-				     int instance_num);
+  static const char *Get_Net_Proto_Name(Am_Object &the_obj);
+  static Am_Object Get_Net_Prototype(const char *proto_name);
+  static const char *Get_Net_Object_ID(Am_Object &the_obj);
+  static Am_Object Get_Net_Instance(const char *proto_name, int instance_num);
 
-  static bool Register_Prototype (Am_String name, Am_Object & obj);
-  static void Set_Net_Instance(Am_Object &the_obj_ptr,
-			        const char * proto_name,
-			       int instance_num);
+  static bool Register_Prototype(Am_String name, Am_Object &obj);
+  static void Set_Net_Instance(Am_Object &the_obj_ptr, const char *proto_name,
+                               int instance_num);
   static int Num_Instances(void);
 
+  //////////////////////////////////////////////////////////////////////////////
+  // Instance Methods
+  ///////////////////////
 
- //////////////////////////////////////////////////////////////////////////////
- // Instance Methods
- ///////////////////////
-
-  void Send(Am_Value value);     // Will call the apropriate method
-  Am_Value Receive(void);  // Retireves Value from Queue Syncronously
+  void Send(Am_Value value); // Will call the apropriate method
+  Am_Value Receive(void);    // Retireves Value from Queue Syncronously
 
   // List marshalling methods
   //
@@ -192,7 +187,7 @@ public:
 
   // Object methods
 
-  long int Extract_Instance_Num(const char * id_str);
+  long int Extract_Instance_Num(const char *id_str);
   //char * Extract_Proto_Name(char * id_str);
   //Am_Object Extract_Prototype(char * id_str);
 
@@ -204,14 +199,14 @@ public:
   // Input loop mehtods
 
   void Handle_Input(void); // Automatically invokes marshall methods, which
-			   // must queue an  Am_Value on the Value_Queue,
+                           // must queue an  Am_Value on the Value_Queue,
                            // and calls the Receive method if there is one.
 
   bool Register_Receiver(Am_Receive_Method &receiver); // Async Receive
 
   void Close(void);
 
-// Data access methods
+  // Data access methods
   int Get_Socket(void);
   bool Connected(void);
   bool Valid(void);
@@ -240,25 +235,22 @@ public:
   static Am_Map_Types Types;
   static void Register_Default_Methods(void);
 
-
   //Object Handling
   static Am_Value_List Net_Prototypes;
   static Am_Value_List Net_Instances;
 
-
   //
   // Data Members
   //
-  static unsigned long id_count;   // For generating unique IDs to do
-                                   //   type ID over the network.
-  static long num_sockets;         // How many sockets are there?
-  static int max_socket;           // We tell select this is the highest
-                                   //   socket number to listen to?
-  static int m_parent_socket;      // The socket used to receive incomming
-                                   //   connections.
-  static fd_set *socket_flags;       // Used for rapid check for input.
+  static unsigned long id_count; // For generating unique IDs to do
+                                 //   type ID over the network.
+  static long num_sockets;       // How many sockets are there?
+  static int max_socket;         // We tell select this is the highest
+                                 //   socket number to listen to?
+  static int m_parent_socket;    // The socket used to receive incomming
+                                 //   connections.
+  static fd_set *socket_flags;   // Used for rapid check for input.
 };
-
 
 #endif // _WIN32
 #endif // CONNECTION__H

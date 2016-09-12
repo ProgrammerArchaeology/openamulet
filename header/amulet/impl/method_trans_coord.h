@@ -10,6 +10,6 @@
 //  - For scrolling groups, it is more complicated.  For windows,
 //    uses the gem function.
 AM_DEFINE_METHOD_TYPE(Am_Translate_Coordinates_Method, void,
-		      (const Am_Object& obj, const Am_Object& for_part,
-		       int in_x, int in_y, int& out_x, int& out_y))
+                      (const Am_Object &obj, const Am_Object &for_part,
+                       int in_x, int in_y, int &out_x, int &out_y))
 #endif // METHOD_TRANS_COORD_H

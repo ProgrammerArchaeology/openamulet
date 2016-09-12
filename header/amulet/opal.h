@@ -37,8 +37,8 @@
 // succeeds, the procedure will return true and the image may be used without
 // error.  Otherwise, the procedure will return false and the image should not
 // be used (reassign value to Am_No_Image_Array or another image).
-_OA_DL_IMPORT extern bool Am_Test_Image_File (const Am_Object& screen,
-				const Am_Image_Array& image);
+_OA_DL_IMPORT extern bool Am_Test_Image_File(const Am_Object &screen,
+                                             const Am_Image_Array &image);
 
 #include "amulet/impl/opal_load_save.h"
 

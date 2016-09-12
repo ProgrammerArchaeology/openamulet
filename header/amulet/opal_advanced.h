@@ -13,7 +13,7 @@
 
 #include <am_inc.h>
 
-#include OBJECT_ADVANCED__H  // for Am_Demon_Queue
+#include OBJECT_ADVANCED__H // for Am_Demon_Queue
 //#include OBJECT__H
 #include "amulet/impl/am_object.h"
 #include GEM__H
@@ -29,11 +29,9 @@
 
 #include "amulet/impl/opal_default_demon.h"
 
-
 #include "amulet/impl/opal_misc.h"
 
 #include "amulet/impl/timers.h"
-
 
 // // // // // // // // // // // // // // // // // // // // // //
 //  Things needed to have external controlled drawables
@@ -42,6 +40,4 @@
 //the standard event handler functions for opal and interactors
 extern Am_Input_Event_Handlers *Am_Global_Opal_Handlers;
 
-
 #endif
-

@@ -4,17 +4,18 @@
 #if !defined(GWINCHAR_H)
 #define GWINCHAR_H
 
-//#pragma pack()			  
+//#pragma pack()
 #ifndef OA_VERSION
 AM_DECL_MAP(Int2Int, int, int)
 #endif
 
 #include <windows.h> //virtual scan codes
 
-void Am_Init_Key_Map ();
+void Am_Init_Key_Map();
 
-short Am_WinScanToCode (WORD wScan, bool fChar);
-BOOL WinScanSpec(WORD wScan); //TRUE if wScan is NOT translated into WM_CHAR message
+short Am_WinScanToCode(WORD wScan, bool fChar);
+BOOL
+WinScanSpec(WORD wScan); //TRUE if wScan is NOT translated into WM_CHAR message
 
 #define WinKeyPressed(V) ((GetKeyState(V) & 0x8000) != 0x0)
 #define WinKeyToggled(V) (GetKeyState(V) & 0x0001)

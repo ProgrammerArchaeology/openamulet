@@ -25,44 +25,45 @@
  * Event Handling
  */
 
-void  Handle_Event_Received (EventRecord& mac_event);
+void Handle_Event_Received(EventRecord &mac_event);
 
 /*******************************************************************************
  * Mouse Events
  */
- 
-void Check_Mouse_Events(const EventRecord& mac_event);
-void Handle_Cursor(const EventRecord& mac_event);
-void Handle_MouseDown(const EventRecord& mac_event);
-void Handle_MouseUp(const EventRecord& mac_event);
-void Handle_MenuBar(const EventRecord& mac_event);
-void Handle_ClickContent(const EventRecord& mac_event, WindowRef mac_window);
-void Handle_Drag(const EventRecord& mac_event, WindowRef mac_window);
-void Handle_Grow(const EventRecord& mac_event, WindowRef mac_window);
-void Handle_GoAway(const EventRecord& mac_event, WindowRef mac_window);
-void Handle_Zoom(const EventRecord& mac_event, WindowRef mac_window, short window_part);
-void Handle_DiskEvt(const EventRecord& mac_event);
 
-int  Get_Button_State(int code);
-void ButtonDown(int code, const EventRecord& mac_event, WindowRef mac_window);
-void ButtonUp(int code, const EventRecord& mac_event);
+void Check_Mouse_Events(const EventRecord &mac_event);
+void Handle_Cursor(const EventRecord &mac_event);
+void Handle_MouseDown(const EventRecord &mac_event);
+void Handle_MouseUp(const EventRecord &mac_event);
+void Handle_MenuBar(const EventRecord &mac_event);
+void Handle_ClickContent(const EventRecord &mac_event, WindowRef mac_window);
+void Handle_Drag(const EventRecord &mac_event, WindowRef mac_window);
+void Handle_Grow(const EventRecord &mac_event, WindowRef mac_window);
+void Handle_GoAway(const EventRecord &mac_event, WindowRef mac_window);
+void Handle_Zoom(const EventRecord &mac_event, WindowRef mac_window,
+                 short window_part);
+void Handle_DiskEvt(const EventRecord &mac_event);
+
+int Get_Button_State(int code);
+void ButtonDown(int code, const EventRecord &mac_event, WindowRef mac_window);
+void ButtonUp(int code, const EventRecord &mac_event);
 
 /*******************************************************************************
  * Key Events
  */
 
-void Handle_KeyDown(const EventRecord& mac_event);
-void Handle_AutoKey(const EventRecord& mac_event);
-void Handle_KeyUp(const EventRecord& mac_event);
-void Key_Press(const EventRecord& mac_event);
+void Handle_KeyDown(const EventRecord &mac_event);
+void Handle_AutoKey(const EventRecord &mac_event);
+void Handle_KeyUp(const EventRecord &mac_event);
+void Key_Press(const EventRecord &mac_event);
 
 /*******************************************************************************
  * Mac OS Events
  */
 
-void Handle_Update(const EventRecord& mac_event);
-void Handle_Activate(const EventRecord& mac_event);
-void Handle_OS(const EventRecord& mac_event);
+void Handle_Update(const EventRecord &mac_event);
+void Handle_Activate(const EventRecord &mac_event);
+void Handle_OS(const EventRecord &mac_event);
 
 /*******************************************************************************
  * Menu Events
@@ -74,45 +75,49 @@ bool Handle_Menu(long menu_result);
  * Utilities
  */
 
-WindowRef find_window_at( Point where );
-Am_Drawonable_Impl* find_subwindow_at( Point where, child* children );
-Am_Drawonable_Impl* find_drawonable_at( Point where, WindowRef mac_window = (0L) );
-Am_Drawonable_Impl* get_keyboard_focus();
-void send_input_char( Am_Drawonable_Impl* d, Am_Input_Char& ic, const EventRecord& mac_event );
-Am_Click_Count check_multi_click( short code, EventModifiers modifiers, Point where,
-                                  Am_Button_Down down, long time );
-bool points_are_close( Point a, Point b );
-bool is_input_event( EventRecord& event );
-bool process_one_input_event( EventRecord& mac_event );
+WindowRef find_window_at(Point where);
+Am_Drawonable_Impl *find_subwindow_at(Point where, child *children);
+Am_Drawonable_Impl *find_drawonable_at(Point where,
+                                       WindowRef mac_window = (0L));
+Am_Drawonable_Impl *get_keyboard_focus();
+void send_input_char(Am_Drawonable_Impl *d, Am_Input_Char &ic,
+                     const EventRecord &mac_event);
+Am_Click_Count check_multi_click(short code, EventModifiers modifiers,
+                                 Point where, Am_Button_Down down, long time);
+bool points_are_close(Point a, Point b);
+bool is_input_event(EventRecord &event);
+bool process_one_input_event(EventRecord &mac_event);
 
 /*******************************************************************************
  * Event Translation
  * note:  these do not support multiple users
  */
 
-Am_Input_Char create_input_char_from_key( const EventRecord& mac_event );
-short Map_Message_To_Code( unsigned char charCode, unsigned char vKeyCode, bool shift, 
-                           bool ctrl, bool meta );
-                           
+Am_Input_Char create_input_char_from_key(const EventRecord &mac_event);
+short Map_Message_To_Code(unsigned char charCode, unsigned char vKeyCode,
+                          bool shift, bool ctrl, bool meta);
+
 /*******************************************************************************
  * Event Translation
  * note:  supports multiple users
  */
 
-Am_Input_Char create_input_char_from_mouse( short code, Am_Button_Down down,
-                                            const EventRecord& mac_event );
-static Am_Value get_user_id(EventRecord& mac_event);
+Am_Input_Char create_input_char_from_mouse(short code, Am_Button_Down down,
+                                           const EventRecord &mac_event);
+static Am_Value get_user_id(EventRecord &mac_event);
 
 /*******************************************************************************
  * Constants
  */
 
-const EventMask kMacNonInputEventMask = everyEvent - ( mDownMask | mUpMask | keyDownMask | keyUpMask | autoKeyMask);
+const EventMask kMacNonInputEventMask =
+    everyEvent - (mDownMask | mUpMask | keyDownMask | keyUpMask | autoKeyMask);
 
 const char char_MiddleButton = 0x1C;
-const char char_RightButton  = 0x1D;
+const char char_RightButton = 0x1D;
 
-enum {
+enum
+{
   Am_LEFT_BUTTON_STATE,
   Am_MIDDLE_BUTTON_STATE,
   Am_RIGHT_BUTTON_STATE
@@ -122,26 +127,24 @@ enum {
  * Global Variables
  */
 
-static Am_Drawonable_Impl* window_mouse_down = (0L);
-static Am_Drawonable_Impl* window_mouse_over = (0L);
-static bool button_states[3] = { false, false, false };
+static Am_Drawonable_Impl *window_mouse_down = (0L);
+static Am_Drawonable_Impl *window_mouse_over = (0L);
+static bool button_states[3] = {false, false, false};
 static short button_down_code = 0;
-static Point last_where = { -32768, -32768 };
+static Point last_where = {-32768, -32768};
 static short last_click_code = 0;
 static EventModifiers last_click_modifiers = 0;
 static long last_click_time = 0;
 static Am_Click_Count click_counter = (Am_Click_Count)0;
 
-bool Am_Main_Loop_Go      = true;  // Declared in idefs.h
-int  Am_Double_Click_Time = 250;   // Declared in gem.h
+bool Am_Main_Loop_Go = true;    // Declared in idefs.h
+int Am_Double_Click_Time = 250; // Declared in gem.h
 
 short
-FindWin(
-  Point      thePoint,
-  WindowRef *theWindow )
+FindWin(Point thePoint, WindowRef *theWindow)
 {
-// std::cout << "In FindWin" <<std::endl;
-  return FindWindow( thePoint, theWindow );
+  // std::cout << "In FindWin" <<std::endl;
+  return FindWindow(thePoint, theWindow);
 }
 
 /*******************************************************************************
@@ -149,21 +152,35 @@ FindWin(
  */
 
 void
-Handle_Event_Received(EventRecord& mac_event)
+Handle_Event_Received(EventRecord &mac_event)
 {
 
   Handle_Cursor(mac_event);
-  
+
   Check_Mouse_Events(mac_event);
 
-  switch(mac_event.what) {
-    case keyDown:      Handle_KeyDown(mac_event);   break;
-    case autoKey:      Handle_AutoKey(mac_event);   break;
-    case keyUp:        Handle_KeyUp(mac_event);     break;
-    case updateEvt:    Handle_Update(mac_event);    break;
-    case diskEvt:      Handle_DiskEvt(mac_event);   break;
-    case activateEvt:  Handle_Activate(mac_event);  break;
-    case osEvt:        Handle_OS(mac_event);        break;
+  switch (mac_event.what) {
+  case keyDown:
+    Handle_KeyDown(mac_event);
+    break;
+  case autoKey:
+    Handle_AutoKey(mac_event);
+    break;
+  case keyUp:
+    Handle_KeyUp(mac_event);
+    break;
+  case updateEvt:
+    Handle_Update(mac_event);
+    break;
+  case diskEvt:
+    Handle_DiskEvt(mac_event);
+    break;
+  case activateEvt:
+    Handle_Activate(mac_event);
+    break;
+  case osEvt:
+    Handle_OS(mac_event);
+    break;
   }
 }
 
@@ -174,16 +191,16 @@ Handle_Event_Received(EventRecord& mac_event)
  */
 
 void
-Check_Mouse_Events(const EventRecord& mac_event)
+Check_Mouse_Events(const EventRecord &mac_event)
 {
-  Boolean do_mouse_down  = ( mac_event.what == mouseDown );
-  Boolean do_mouse_up    = ( button_states[Get_Button_State( last_click_code )] == true &&
-                           ( mac_event.what == mouseUp ||
-                             do_mouse_down == true ||
-                             Button() == false) );
-  if( do_mouse_up )
+  Boolean do_mouse_down = (mac_event.what == mouseDown);
+  Boolean do_mouse_up =
+      (button_states[Get_Button_State(last_click_code)] == true &&
+       (mac_event.what == mouseUp || do_mouse_down == true ||
+        Button() == false));
+  if (do_mouse_up)
     Handle_MouseUp(mac_event);
-  if( do_mouse_down )
+  if (do_mouse_down)
     Handle_MouseDown(mac_event);
 }
 
@@ -192,33 +209,35 @@ Check_Mouse_Events(const EventRecord& mac_event)
  */
 
 void
-Handle_Cursor(const EventRecord& mac_event)
+Handle_Cursor(const EventRecord &mac_event)
 {
-  Am_Input_Char  ic;
+  Am_Input_Char ic;
 
-  Am_Drawonable_Impl*  d = find_drawonable_at(mac_event.where);
+  Am_Drawonable_Impl *d = find_drawonable_at(mac_event.where);
   SetCursor(d ? d->mac_cursor : &qd.arrow);
 
   if (d != window_mouse_over) {
-    if (window_mouse_over != (0L) && window_mouse_over->want_enter_leave == true) {
-      ic = create_input_char_from_mouse(Am_MOUSE_LEAVE_WINDOW, Am_NEITHER, mac_event);
+    if (window_mouse_over != (0L) &&
+        window_mouse_over->want_enter_leave == true) {
+      ic = create_input_char_from_mouse(Am_MOUSE_LEAVE_WINDOW, Am_NEITHER,
+                                        mac_event);
       send_input_char(window_mouse_over, ic, mac_event);
     }
     if (d != (0L) && d->want_enter_leave == true) {
-      ic = create_input_char_from_mouse(Am_MOUSE_ENTER_WINDOW, Am_NEITHER, mac_event);
+      ic = create_input_char_from_mouse(Am_MOUSE_ENTER_WINDOW, Am_NEITHER,
+                                        mac_event);
       send_input_char(d, ic, mac_event);
     }
     window_mouse_over = d;
   }
 
-  Am_Drawonable_Impl*  destWin = window_mouse_over;    // where to send the message
+  Am_Drawonable_Impl *destWin = window_mouse_over; // where to send the message
 
   if (window_mouse_over) {
     if (!window_mouse_over->want_move) {
       destWin = window_mouse_down;
     }
-  }
-  else {
+  } else {
     destWin = window_mouse_down;
   }
 
@@ -237,20 +256,34 @@ Handle_Cursor(const EventRecord& mac_event)
  */
 
 void
-Handle_MouseDown(const EventRecord& mac_event)
+Handle_MouseDown(const EventRecord &mac_event)
 {
-  WindowRef  mac_window;
-  short    window_part = FindWin(mac_event.where, &mac_window);
+  WindowRef mac_window;
+  short window_part = FindWin(mac_event.where, &mac_window);
 
   switch (window_part) {
-    case inMenuBar:    Handle_MenuBar(mac_event);                  break;
-    case inSysWindow:  SystemClick(&mac_event, mac_window );       break;
-    case inContent:    Handle_ClickContent(mac_event, mac_window); break;
-    case inDrag:       Handle_Drag(mac_event, mac_window);         break;
-    case inGrow:       Handle_Grow(mac_event, mac_window);         break;
-    case inGoAway:     Handle_GoAway(mac_event, mac_window);       break;
-    case inZoomIn:
-    case inZoomOut:    Handle_Zoom(mac_event, mac_window, window_part);  break;
+  case inMenuBar:
+    Handle_MenuBar(mac_event);
+    break;
+  case inSysWindow:
+    SystemClick(&mac_event, mac_window);
+    break;
+  case inContent:
+    Handle_ClickContent(mac_event, mac_window);
+    break;
+  case inDrag:
+    Handle_Drag(mac_event, mac_window);
+    break;
+  case inGrow:
+    Handle_Grow(mac_event, mac_window);
+    break;
+  case inGoAway:
+    Handle_GoAway(mac_event, mac_window);
+    break;
+  case inZoomIn:
+  case inZoomOut:
+    Handle_Zoom(mac_event, mac_window, window_part);
+    break;
   }
 }
 
@@ -259,9 +292,9 @@ Handle_MouseDown(const EventRecord& mac_event)
  */
 
 void
-Handle_MouseUp(const EventRecord& mac_event )
+Handle_MouseUp(const EventRecord &mac_event)
 {
-  ButtonUp( button_down_code, mac_event );
+  ButtonUp(button_down_code, mac_event);
 }
 
 /*******************************************************************************
@@ -269,9 +302,9 @@ Handle_MouseUp(const EventRecord& mac_event )
  */
 
 void
-Handle_MenuBar(const EventRecord& mac_event)
+Handle_MenuBar(const EventRecord &mac_event)
 {
-  long  menu_result = MenuSelect(mac_event.where);
+  long menu_result = MenuSelect(mac_event.where);
   Handle_Menu(menu_result);
 }
 
@@ -279,20 +312,20 @@ Handle_MenuBar(const EventRecord& mac_event)
  * Handle_ClickContent
  */
 
-void  Handle_ClickContent(const EventRecord& mac_event, WindowRef mac_window)
+void
+Handle_ClickContent(const EventRecord &mac_event, WindowRef mac_window)
 {
   int code = Am_LEFT_MOUSE;
 
-  if( mac_event.modifiers & optionKey ) {
-    if( mac_event.modifiers & shiftKey ) {
+  if (mac_event.modifiers & optionKey) {
+    if (mac_event.modifiers & shiftKey) {
       code = Am_MIDDLE_MOUSE; // option and shift key
-    }
-    else {
+    } else {
       code = Am_RIGHT_MOUSE; // just shiftkey
     }
   }
 
-  ButtonDown( code, mac_event, mac_window );
+  ButtonDown(code, mac_event, mac_window);
 }
 
 /*******************************************************************************
@@ -300,23 +333,23 @@ void  Handle_ClickContent(const EventRecord& mac_event, WindowRef mac_window)
  */
 
 void
-Handle_Drag(const EventRecord& mac_event, WindowRef mac_window)
+Handle_Drag(const EventRecord &mac_event, WindowRef mac_window)
 {
-  Rect  drag_bounds = (**GetGrayRgn()).rgnBBox;
-  InsetRect( &drag_bounds, 4, 4 );
-  DragWindow( mac_window, mac_event.where, &drag_bounds );
+  Rect drag_bounds = (**GetGrayRgn()).rgnBBox;
+  InsetRect(&drag_bounds, 4, 4);
+  DragWindow(mac_window, mac_event.where, &drag_bounds);
 
-  Am_Drawonable_Impl*  d = Get_Drawable_Backpointer(mac_window);
+  Am_Drawonable_Impl *d = Get_Drawable_Backpointer(mac_window);
   if (d != (0L)) {
     SetPortWindowPort(mac_window);
     SetOrigin(0, 0);
-    Point  windowPos = { 0, 0 };
+    Point windowPos = {0, 0};
     LocalToGlobal(&windowPos);
 
-    int    w, h;
+    int w, h;
     d->Get_Size(w, h);
 
-    d->reconfigure (windowPos.h, windowPos.v, w, h);
+    d->reconfigure(windowPos.h, windowPos.v, w, h);
     if (d->event_handlers != (0L)) {
       d->event_handlers->Configure_Notify(d, windowPos.h, windowPos.v, w, h);
     }
@@ -328,31 +361,33 @@ Handle_Drag(const EventRecord& mac_event, WindowRef mac_window)
  */
 
 void
-Handle_Grow(const EventRecord& mac_event, WindowRef mac_window )
+Handle_Grow(const EventRecord &mac_event, WindowRef mac_window)
 {
-  Am_Drawonable_Impl*  d = Get_Drawable_Backpointer(mac_window);
+  Am_Drawonable_Impl *d = Get_Drawable_Backpointer(mac_window);
   if (d != (0L)) {
-    int  min_w, min_h, max_w, max_h;
+    int min_w, min_h, max_w, max_h;
     d->Get_Min_Size(min_w, min_h);
     d->Get_Max_Size(max_w, max_h);
 
-    Rect  grow_bounds;
+    Rect grow_bounds;
 
     // Amulet specifies 0 to mean any maximum size
     // We limit it to the maximum area of the desktop
-    Rect  desktop_bounds = (**GetGrayRgn()).rgnBBox;
+    Rect desktop_bounds = (**GetGrayRgn()).rgnBBox;
     grow_bounds.left = MAX(min_w, 50);
     grow_bounds.top = MAX(min_h, 50);
-    grow_bounds.right = max_w ? max_w : desktop_bounds.right - desktop_bounds.left;
-    grow_bounds.bottom = max_h ? max_h : desktop_bounds.bottom - desktop_bounds.top;
+    grow_bounds.right =
+        max_w ? max_w : desktop_bounds.right - desktop_bounds.left;
+    grow_bounds.bottom =
+        max_h ? max_h : desktop_bounds.bottom - desktop_bounds.top;
 
-    long  new_size = GrowWindow(mac_window, mac_event.where, &grow_bounds);
+    long new_size = GrowWindow(mac_window, mac_event.where, &grow_bounds);
     if (new_size) {
 
-      int    x, y;
+      int x, y;
       d->Get_Position(x, y);
-      int    w = LoWord(new_size);
-      int    h = HiWord(new_size);
+      int w = LoWord(new_size);
+      int h = HiWord(new_size);
       d->Set_Size(w, h);
       if (d->event_handlers != (0L)) {
         d->event_handlers->Configure_Notify(d, x, y, w, h);
@@ -366,12 +401,12 @@ Handle_Grow(const EventRecord& mac_event, WindowRef mac_window )
  */
 
 void
-Handle_GoAway(const EventRecord& mac_event, WindowRef mac_window )
+Handle_GoAway(const EventRecord &mac_event, WindowRef mac_window)
 {
   if (TrackGoAway(mac_window, mac_event.where)) {
-    Am_Drawonable_Impl*  d = Get_Drawable_Backpointer(mac_window);
+    Am_Drawonable_Impl *d = Get_Drawable_Backpointer(mac_window);
     if (d != (0L) && d->event_handlers != NULL) {
-      d->event_handlers->Destroy_Notify (d);
+      d->event_handlers->Destroy_Notify(d);
     }
   }
 }
@@ -381,8 +416,8 @@ Handle_GoAway(const EventRecord& mac_event, WindowRef mac_window )
  */
 
 void
-Handle_Zoom( const EventRecord&  /* mac_event */, WindowRef /* mac_window */,
-              short /* window_part */)
+Handle_Zoom(const EventRecord & /* mac_event */, WindowRef /* mac_window */,
+            short /* window_part */)
 {
 }
 
@@ -394,17 +429,17 @@ int
 Get_Button_State(int code)
 {
   switch (code) {
-    case Am_LEFT_MOUSE:
-      return Am_LEFT_BUTTON_STATE;
-      break;
+  case Am_LEFT_MOUSE:
+    return Am_LEFT_BUTTON_STATE;
+    break;
 
-    case Am_MIDDLE_MOUSE:
-      return Am_MIDDLE_BUTTON_STATE;
-      break;
+  case Am_MIDDLE_MOUSE:
+    return Am_MIDDLE_BUTTON_STATE;
+    break;
 
-    case Am_RIGHT_MOUSE:
-      return Am_RIGHT_BUTTON_STATE;
-      break;
+  case Am_RIGHT_MOUSE:
+    return Am_RIGHT_BUTTON_STATE;
+    break;
   }
 
   return 0;
@@ -415,21 +450,21 @@ Get_Button_State(int code)
  */
 
 void
-ButtonDown( int code, const EventRecord& mac_event, WindowRef mac_window)
+ButtonDown(int code, const EventRecord &mac_event, WindowRef mac_window)
 {
-  if( mac_window == (0L) )
+  if (mac_window == (0L))
     return;
 
-  int id = Get_Button_State( code );
-  button_states[ id ] = true;
+  int id = Get_Button_State(code);
+  button_states[id] = true;
 
-  if( mac_window != FrontWindow() )
+  if (mac_window != FrontWindow())
     SelectWindow(mac_window);
 
-  Am_Input_Char ic = create_input_char_from_mouse( code, Am_BUTTON_DOWN, 
-                             mac_event );
+  Am_Input_Char ic =
+      create_input_char_from_mouse(code, Am_BUTTON_DOWN, mac_event);
 
-  Am_Drawonable_Impl*  d = find_drawonable_at(mac_event.where, mac_window);
+  Am_Drawonable_Impl *d = find_drawonable_at(mac_event.where, mac_window);
   if (d != (0L)) {
     send_input_char(d, ic, mac_event);
   }
@@ -443,18 +478,19 @@ ButtonDown( int code, const EventRecord& mac_event, WindowRef mac_window)
  */
 
 void
-ButtonUp(int code, const EventRecord& mac_event)
+ButtonUp(int code, const EventRecord &mac_event)
 {
-  int  id = Get_Button_State(code);
+  int id = Get_Button_State(code);
   button_states[id] = false;
 
-  Am_Input_Char  ic = create_input_char_from_mouse (code, Am_BUTTON_UP, mac_event);
+  Am_Input_Char ic =
+      create_input_char_from_mouse(code, Am_BUTTON_UP, mac_event);
 
   // When window_mouse_down and window_mouse_over are not equal and
   // want_multi_window == true for both of them, the message is sent to window_mouse_over
   // Otherwise, the message is always returned to window_mouse_down
 
-  Am_Drawonable_Impl*  destWin = window_mouse_down;    // Where to send the message
+  Am_Drawonable_Impl *destWin = window_mouse_down; // Where to send the message
 
   if (window_mouse_down->want_multi_window) {
     window_mouse_over = find_drawonable_at(mac_event.where);
@@ -475,19 +511,19 @@ ButtonUp(int code, const EventRecord& mac_event)
  * Handle_KeyDown
  */
 void
-Handle_KeyDown( const EventRecord& mac_event )
+Handle_KeyDown(const EventRecord &mac_event)
 {
   bool key_processed = false;
   char ch = mac_event.message & charCodeMask;
 
-  if( mac_event.modifiers & cmdKey ) {
+  if (mac_event.modifiers & cmdKey) {
     // Check to see if this is a mac menu bar short cut
-    long  menu_result = MenuKey( ch);
-    key_processed = Handle_Menu( menu_result );
+    long menu_result = MenuKey(ch);
+    key_processed = Handle_Menu(menu_result);
   }
 
-  if( !key_processed )
-     Key_Press(mac_event);
+  if (!key_processed)
+    Key_Press(mac_event);
 }
 
 /*******************************************************************************
@@ -495,7 +531,7 @@ Handle_KeyDown( const EventRecord& mac_event )
  */
 
 void
-Handle_KeyUp( const EventRecord& /* mac_event */)
+Handle_KeyUp(const EventRecord & /* mac_event */)
 {
 }
 
@@ -504,11 +540,10 @@ Handle_KeyUp( const EventRecord& /* mac_event */)
  */
 
 void
-Handle_AutoKey(
-  const EventRecord& mac_event )
+Handle_AutoKey(const EventRecord &mac_event)
 {
   char ch = mac_event.message & charCodeMask;
-  Key_Press( mac_event );
+  Key_Press(mac_event);
 }
 
 /*******************************************************************************
@@ -516,15 +551,15 @@ Handle_AutoKey(
  */
 
 void
-Key_Press(const EventRecord& mac_event)
+Key_Press(const EventRecord &mac_event)
 {
-  Am_Input_Char ic = create_input_char_from_key( mac_event );
-  if( ic.code != 0 ) {   // Check for legal code
-    if( ic.Exit_If_Stop_Char() == true )
+  Am_Input_Char ic = create_input_char_from_key(mac_event);
+  if (ic.code != 0) { // Check for legal code
+    if (ic.Exit_If_Stop_Char() == true)
       return;
 
-    Am_Drawonable_Impl*  d = get_keyboard_focus();
-    if( d != (0L) )
+    Am_Drawonable_Impl *d = get_keyboard_focus();
+    if (d != (0L))
       send_input_char(d, ic, mac_event);
   }
 }
@@ -534,12 +569,11 @@ Key_Press(const EventRecord& mac_event)
  */
 
 void
-Handle_Update(
-  const EventRecord& mac_event )
+Handle_Update(const EventRecord &mac_event)
 {
-  WindowRef  mac_window = (WindowRef)mac_event.message;
+  WindowRef mac_window = (WindowRef)mac_event.message;
 
-  Am_Drawonable_Impl*  d = Get_Drawable_Backpointer(mac_window);
+  Am_Drawonable_Impl *d = Get_Drawable_Backpointer(mac_window);
 
   SetPortWindowPort(mac_window);
   BeginUpdate(mac_window);
@@ -547,8 +581,8 @@ Handle_Update(
   if (d != (0L)) {
     SetOrigin(0, 0);
 
-    Rect  r = (**GetWindowPort(mac_window)->visRgn).rgnBBox;
-    int    x, y, w, h;
+    Rect r = (**GetWindowPort(mac_window)->visRgn).rgnBBox;
+    int x, y, w, h;
     x = r.left;
     y = r.top;
     w = r.right - x;
@@ -566,12 +600,11 @@ Handle_Update(
  */
 
 void
-Handle_Activate(
-  const EventRecord& mac_event )
+Handle_Activate(const EventRecord &mac_event)
 {
-  WindowRef  mac_window = (WindowRef)mac_event.message;
+  WindowRef mac_window = (WindowRef)mac_event.message;
 
-  Am_Drawonable_Impl*  d = Get_Drawable_Backpointer(mac_window);
+  Am_Drawonable_Impl *d = Get_Drawable_Backpointer(mac_window);
   if (d != (0L)) {
     SetPortWindowPort(mac_window);
     SetOrigin(0, 0);
@@ -584,17 +617,17 @@ Handle_Activate(
  * Handle_OS
  */
 void
-Handle_OS(const EventRecord& mac_event)
+Handle_OS(const EventRecord &mac_event)
 {
-  switch( (mac_event.message & osEvtMessageMask) >> 24)  {
-    case suspendResumeMessage:
-      if (mac_event.message & resumeFlag)
-        HiliteMenu(0);
-      break;
+  switch ((mac_event.message & osEvtMessageMask) >> 24) {
+  case suspendResumeMessage:
+    if (mac_event.message & resumeFlag)
+      HiliteMenu(0);
+    break;
 
-    case mouseMovedMessage:
-      // currently the mouse moved event is not requested, eventually should do so
-      break;
+  case mouseMovedMessage:
+    // currently the mouse moved event is not requested, eventually should do so
+    break;
   }
 }
 
@@ -603,14 +636,14 @@ Handle_OS(const EventRecord& mac_event)
  */
 
 void
-Handle_DiskEvt(const EventRecord& mac_event)
+Handle_DiskEvt(const EventRecord &mac_event)
 {
   Point point;
-  SetPt( &point, 120, 120 );
-  if( mac_event.message >> 16 != noErr ) { // hi word contains error code
+  SetPt(&point, 120, 120);
+  if (mac_event.message >> 16 != noErr) { // hi word contains error code
 
     DILoad();
-    DIBadMount( point, mac_event.message );
+    DIBadMount(point, mac_event.message);
     DIUnload();
   }
 }
@@ -629,34 +662,34 @@ bool
 Handle_Menu(long menu_result)
 {
   bool cmd_handled = false;
-  int  menu_id = HiWord( menu_result );
-  int  menu_item = LoWord( menu_result );
+  int menu_id = HiWord(menu_result);
+  int menu_item = LoWord(menu_result);
 
-  switch( menu_id ) {
-    case kAppleMenuID:
-      if( menu_item == 1 ) {
-        Alert( kAboutBoxAlert, nil );
-      }
+  switch (menu_id) {
+  case kAppleMenuID:
+    if (menu_item == 1) {
+      Alert(kAboutBoxAlert, nil);
+    }
 
-      if( menu_item > 2 ) {
-        MenuHandle apple_menu = GetMenuHandle( kAppleMenuID );
-        Str255     item_text;
+    if (menu_item > 2) {
+      MenuHandle apple_menu = GetMenuHandle(kAppleMenuID);
+      Str255 item_text;
 
-        GetMenuItemText( apple_menu, menu_item, item_text );
-        OpenDeskAcc( item_text );
-      }
+      GetMenuItemText(apple_menu, menu_item, item_text);
+      OpenDeskAcc(item_text);
+    }
+    cmd_handled = true;
+    break;
+
+  case kFileMenuID:
+    if (menu_item == 1) {
+      Am_Main_Loop_Go = false;
       cmd_handled = true;
-      break;
-
-    case kFileMenuID:
-      if( menu_item == 1 ) {
-        Am_Main_Loop_Go = false;
-        cmd_handled = true;
-      }
-      break;
+    }
+    break;
   }
 
-  if( cmd_handled == true )
+  if (cmd_handled == true)
     HiliteMenu(0);
 
   return cmd_handled;
@@ -670,19 +703,17 @@ Handle_Menu(long menu_result)
  * find_window_at
  */
 
-WindowRef
-find_window_at(
-  Point where )  // where is in global coordinates
+WindowRef find_window_at(Point where) // where is in global coordinates
 {
-  WindowRef  window;
-  short window_part = FindWin( where, &window );
+  WindowRef window;
+  short window_part = FindWin(where, &window);
 
-  if( window_part == inContent )
+  if (window_part == inContent)
     return window;
   else
     return (0L);
 
-/*
+  /*
   RgnHandle contentRgn = NewRgn();
   WindowRef window = FrontWindow();
   GetWindowContentRgn( window, contentRgn );
@@ -692,7 +723,7 @@ find_window_at(
     return nil;
 */
 
-/*
+  /*
   WindowRef fWindow = FrontWindow(), // should be FWindow
             window  = fWindow;
 
@@ -717,20 +748,20 @@ find_window_at(
  * find_subwindow_at
  */
 
-Am_Drawonable_Impl*
-find_subwindow_at( Point where, child* children )
+Am_Drawonable_Impl *
+find_subwindow_at(Point where, child *children)
 {
-  Am_Drawonable_Impl*  d = (0L);
+  Am_Drawonable_Impl *d = (0L);
 
-  child* scan = children;
-  while( scan ) {
-    if( scan->d->Get_Visible() ) {
+  child *scan = children;
+  while (scan) {
+    if (scan->d->Get_Visible()) {
       Rect bounds;
-      scan->d->get_global_bounds( bounds );
+      scan->d->get_global_bounds(bounds);
 
-      if( PtInRect( where, &bounds ) ) {
-        d = find_subwindow_at( where, scan->d->children );
-        if( d )
+      if (PtInRect(where, &bounds)) {
+        d = find_subwindow_at(where, scan->d->children);
+        if (d)
           return d;
         else
           return scan->d;
@@ -746,17 +777,16 @@ find_subwindow_at( Point where, child* children )
  * find_drawonable_at
  */
 
-Am_Drawonable_Impl*
-find_drawonable_at( Point where,
-  WindowRef mac_window ) // default = (0L)
+Am_Drawonable_Impl *find_drawonable_at(Point where,
+                                       WindowRef mac_window) // default = (0L)
 {
-  if( mac_window == (0L) )
-    mac_window = find_window_at( where );
+  if (mac_window == (0L))
+    mac_window = find_window_at(where);
 
-  Am_Drawonable_Impl* d = Get_Drawable_Backpointer( mac_window );
-  if( d ) {
-    Am_Drawonable_Impl* subwindow = find_subwindow_at( where, d->children );
-    if( subwindow )
+  Am_Drawonable_Impl *d = Get_Drawable_Backpointer(mac_window);
+  if (d) {
+    Am_Drawonable_Impl *subwindow = find_subwindow_at(where, d->children);
+    if (subwindow)
       return subwindow;
   }
 
@@ -767,14 +797,14 @@ find_drawonable_at( Point where,
  * get_keyboard_focus
  */
 
-Am_Drawonable_Impl*
+Am_Drawonable_Impl *
 get_keyboard_focus()
 {
   Point where;
-  GetMouse( &where );
-  LocalToGlobal( &where );
+  GetMouse(&where);
+  LocalToGlobal(&where);
 
-  return find_drawonable_at( where, (0L) );
+  return find_drawonable_at(where, (0L));
 }
 
 /*******************************************************************************
@@ -782,27 +812,26 @@ get_keyboard_focus()
  */
 
 void
-send_input_char( Am_Drawonable_Impl* d, Am_Input_Char& ic,
-                const EventRecord&  mac_event)
+send_input_char(Am_Drawonable_Impl *d, Am_Input_Char &ic,
+                const EventRecord &mac_event)
 {
-  Am_Input_Event_Handlers* evh = d->event_handlers;
-  if( evh != (0L) ) {
-    SetPortWindowPort( d->mac_window );
+  Am_Input_Event_Handlers *evh = d->event_handlers;
+  if (evh != (0L)) {
+    SetPortWindowPort(d->mac_window);
 
     int h = mac_event.where.h;
     int v = mac_event.where.v;
 
-    d->add_total_offset_global( h, v );
+    d->add_total_offset_global(h, v);
 
     Am_Input_Event event;
-    event.Set( ic, h, v, mac_event.when, d );
+    event.Set(ic, h, v, mac_event.when, d);
 
     Am_Current_Input_Event = &event;
-    evh->Input_Event_Notify( d, Am_Current_Input_Event );
-  }
-  else
-    if (Am_Debug_Print_Input_Events)
-     std::cout << "<> Input ignored for " << d << "because no Event_Handler" <<std::endl;
+    evh->Input_Event_Notify(d, Am_Current_Input_Event);
+  } else if (Am_Debug_Print_Input_Events)
+    std::cout << "<> Input ignored for " << d << "because no Event_Handler"
+              << std::endl;
 }
 
 /*******************************************************************************
@@ -810,39 +839,36 @@ send_input_char( Am_Drawonable_Impl* d, Am_Input_Char& ic,
  */
 
 Am_Click_Count
-check_multi_click( short code, EventModifiers modifiers, Point where,
-                   Am_Button_Down down, long time )
+check_multi_click(short code, EventModifiers modifiers, Point where,
+                  Am_Button_Down down, long time)
 {
   Am_Click_Count result = Am_SINGLE_CLICK;
-  if( Am_Double_Click_Time ) {
+  if (Am_Double_Click_Time) {
     // else not interested in multi-click
     // if a down press, then check if double click. If up, then use current
     // down count.  If other mouse event, then ignore multi-click
-    if( down == Am_NEITHER ) // result is OK, do nothing
+    if (down == Am_NEITHER) // result is OK, do nothing
       ;
-    else if( down == Am_BUTTON_UP ) {  // use current value
+    else if (down == Am_BUTTON_UP) { // use current value
 
-      if( click_counter >= 7 )
+      if (click_counter >= 7)
         result = Am_MANY_CLICK;
       else
         result = (Am_Click_Count)(click_counter + 1);
-        // otherwise, just use single click, so result OK
-    }
-    else {  // is a down press
+      // otherwise, just use single click, so result OK
+    } else { // is a down press
 
-      if( ( code == last_click_code ) &&
-        ( modifiers == last_click_modifiers ) &&
-        ( (time - last_click_time) <= GetDblTime()) &&
-        ( points_are_close(where, last_where)) ) {
+      if ((code == last_click_code) && (modifiers == last_click_modifiers) &&
+          ((time - last_click_time) <= GetDblTime()) &&
+          (points_are_close(where, last_where))) {
         // is multi-click
         click_counter = (Am_Click_Count)(click_counter + 1);
 
-        if( click_counter >= 7 )
+        if (click_counter >= 7)
           result = Am_MANY_CLICK;
         else
           result = (Am_Click_Count)(click_counter + 1);
-      }
-      else {
+      } else {
         click_counter = (Am_Click_Count)0;
       }
 
@@ -859,13 +885,13 @@ check_multi_click( short code, EventModifiers modifiers, Point where,
  */
 
 bool
-points_are_close(Point a, Point b )
+points_are_close(Point a, Point b)
 {
 #define Abs(a) ((a) < 0 ? (-a) : (a))
-#define MULTI_CLICK_DISTANCE  4
+#define MULTI_CLICK_DISTANCE 4
 
   return (Abs(a.h - b.h) <= MULTI_CLICK_DISTANCE &&
-       Abs(a.v - b.v) <= MULTI_CLICK_DISTANCE);
+          Abs(a.v - b.v) <= MULTI_CLICK_DISTANCE);
 }
 
 /*******************************************************************************
@@ -873,15 +899,15 @@ points_are_close(Point a, Point b )
  */
 
 bool
-is_input_event(EventRecord& event )
+is_input_event(EventRecord &event)
 {
-  switch( event.what ) {
-    case mouseDown:
-    case mouseUp:
-    case keyDown:
-    case keyUp:
-    case autoKey:
-      return true;
+  switch (event.what) {
+  case mouseDown:
+  case mouseUp:
+  case keyDown:
+  case keyUp:
+  case autoKey:
+    return true;
   }
   return false;
 }
@@ -890,42 +916,39 @@ is_input_event(EventRecord& event )
  * process_one_input_event
  */
 
-bool
-process_one_input_event() // eventually this should accept a timeout value
+bool process_one_input_event() // eventually this should accept a timeout value
 {
   EventRecord mac_event;
   bool result = false;
 
-  if( WaitNextEvent( everyEvent, &mac_event, kNoSleepTime, nil ) ) {
+  if (WaitNextEvent(everyEvent, &mac_event, kNoSleepTime, nil)) {
 
-    Handle_Event_Received( mac_event );
+    Handle_Event_Received(mac_event);
 
     // If that was not an input event, then process all the remaining
     // non-input events until we have processed an input event.
-    if( !is_input_event( mac_event ) ) {
-    
-      while( EventAvail( everyEvent, &mac_event ) ) {
-      
-        WaitNextEvent( everyEvent, &mac_event, kNoSleepTime, nil );
-        Handle_Event_Received( mac_event );
+    if (!is_input_event(mac_event)) {
 
-        if( is_input_event( mac_event ) )
+      while (EventAvail(everyEvent, &mac_event)) {
+
+        WaitNextEvent(everyEvent, &mac_event, kNoSleepTime, nil);
+        Handle_Event_Received(mac_event);
+
+        if (is_input_event(mac_event))
           break;
       }
-    }
-    else
+    } else
       result = true;
 
     // Process all remaining non-input events
-    while( EventAvail( kMacNonInputEventMask, &mac_event ) ) {
-    
-      WaitNextEvent( kMacNonInputEventMask, &mac_event, kNoSleepTime, nil );
-      Handle_Event_Received( mac_event );
+    while (EventAvail(kMacNonInputEventMask, &mac_event)) {
+
+      WaitNextEvent(kMacNonInputEventMask, &mac_event, kNoSleepTime, nil);
+      Handle_Event_Received(mac_event);
     }
-  }
-  else {
-    Handle_Cursor( mac_event );
-    Check_Mouse_Events( mac_event );
+  } else {
+    Handle_Cursor(mac_event);
+    Check_Mouse_Events(mac_event);
   }
 
   return result;
@@ -959,12 +982,11 @@ Am_Drawonable::Process_Immediate_Event()
  */
 
 void
-Am_Drawonable::Process_Event(
-  const Am_Time& /* timeout */ )
+Am_Drawonable::Process_Event(const Am_Time & /* timeout */)
 {
-//  Am_Time_Data* time_data = Am_Time_Data::Narrow(timeout);
-//  unsigned long ticks = time_data->To_Ticks();
-//  time_data->Release();
+  //  Am_Time_Data* time_data = Am_Time_Data::Narrow(timeout);
+  //  unsigned long ticks = time_data->To_Ticks();
+  //  time_data->Release();
 
   process_one_input_event();
 }
@@ -977,8 +999,8 @@ void
 Am_Drawonable::Main_Loop()
 {
   Am_Time no_timeout;
-  while( Am_Main_Loop_Go )
-    Process_Event( no_timeout );
+  while (Am_Main_Loop_Go)
+    Process_Event(no_timeout);
 }
 
 /*******************************************************************************
@@ -993,9 +1015,9 @@ Am_Drawonable::Main_Loop()
 void
 Am_Drawonable_Impl::Initialize_Event_Mask()
 {
-    want_enter_leave = false;
-    want_multi_window = false;
-    want_move = false;
+  want_enter_leave = false;
+  want_multi_window = false;
+  want_move = false;
 }
 
 /*******************************************************************************
@@ -1012,10 +1034,9 @@ Am_Drawonable_Impl::set_drawable_event_mask()
  */
 
 void
-Am_Drawonable_Impl::Set_Enter_Leave( bool want_enter_leave_events )
+Am_Drawonable_Impl::Set_Enter_Leave(bool want_enter_leave_events)
 {
-  if( want_enter_leave_events != want_enter_leave )
-  {
+  if (want_enter_leave_events != want_enter_leave) {
     want_enter_leave = want_enter_leave_events;
     this->set_drawable_event_mask();
   }
@@ -1026,9 +1047,9 @@ Am_Drawonable_Impl::Set_Enter_Leave( bool want_enter_leave_events )
  */
 
 void
-Am_Drawonable_Impl::Set_Want_Move(bool want_move_events )
+Am_Drawonable_Impl::Set_Want_Move(bool want_move_events)
 {
-  if( want_move != want_move_events ) // then changing
+  if (want_move != want_move_events) // then changing
   {
     want_move = want_move_events;
     this->set_drawable_event_mask();
@@ -1040,9 +1061,9 @@ Am_Drawonable_Impl::Set_Want_Move(bool want_move_events )
  */
 
 void
-Am_Drawonable_Impl::Set_Multi_Window( bool want_multi )
+Am_Drawonable_Impl::Set_Multi_Window(bool want_multi)
 {
-  if( want_multi != want_multi_window ) { // then changing
+  if (want_multi != want_multi_window) { // then changing
 
     want_multi_window = want_multi;
     this->set_drawable_event_mask();
@@ -1058,8 +1079,8 @@ void
 Am_Drawonable_Impl::Discard_Pending_Events()
 {
   EventRecord event;
-  while( EventAvail( everyEvent, &event ) )
-    GetNextEvent( everyEvent, &event );
+  while (EventAvail(everyEvent, &event))
+    GetNextEvent(everyEvent, &event);
 }
 
 /*******************************************************************************
@@ -1067,7 +1088,7 @@ Am_Drawonable_Impl::Discard_Pending_Events()
  */
 
 void
-Am_Drawonable_Impl::Set_Input_Dispatch_Functions( Am_Input_Event_Handlers* evh )
+Am_Drawonable_Impl::Set_Input_Dispatch_Functions(Am_Input_Event_Handlers *evh)
 {
   event_handlers = evh;
 }
@@ -1077,7 +1098,7 @@ Am_Drawonable_Impl::Set_Input_Dispatch_Functions( Am_Input_Event_Handlers* evh )
  */
 
 void
-Am_Drawonable_Impl::Get_Input_Dispatch_Functions( Am_Input_Event_Handlers*& evh )
+Am_Drawonable_Impl::Get_Input_Dispatch_Functions(Am_Input_Event_Handlers *&evh)
 {
   evh = event_handlers;
 }
@@ -1087,13 +1108,13 @@ Am_Drawonable_Impl::Get_Input_Dispatch_Functions( Am_Input_Event_Handlers*& evh 
  *   Find the child-most drawonable at the current cursor position
  */
 
-Am_Drawonable*
+Am_Drawonable *
 Am_Drawonable_Impl::Get_Drawonable_At_Cursor()
 {
   Point where;
-  GetMouse( &where );
-  LocalToGlobal( &where );
-  return find_drawonable_at( where );
+  GetMouse(&where);
+  LocalToGlobal(&where);
+  return find_drawonable_at(where);
 }
 
 /*******************************************************************************
@@ -1101,15 +1122,16 @@ Am_Drawonable_Impl::Get_Drawonable_At_Cursor()
  */
 
 Am_Input_Char
-create_input_char_from_mouse(short code, Am_Button_Down down, 
-                             const EventRecord& mac_event)
+create_input_char_from_mouse(short code, Am_Button_Down down,
+                             const EventRecord &mac_event)
 {
-  Am_Click_Count count = check_multi_click( code, mac_event.modifiers, mac_event.where,
-                                            down, TickCount() );
+  Am_Click_Count count = check_multi_click(code, mac_event.modifiers,
+                                           mac_event.where, down, TickCount());
 
-  bool  shift = ((mac_event.modifiers & shiftKey) != 0) && ((mac_event.modifiers & optionKey) == 0);
-  bool  control = (mac_event.modifiers & controlKey) != 0;
-  bool  meta = (mac_event.modifiers & cmdKey) != 0;
+  bool shift = ((mac_event.modifiers & shiftKey) != 0) &&
+               ((mac_event.modifiers & optionKey) == 0);
+  bool control = (mac_event.modifiers & controlKey) != 0;
+  bool meta = (mac_event.modifiers & cmdKey) != 0;
 
   return Am_Input_Char(code, shift, control, meta, down, count);
 }
@@ -1198,15 +1220,15 @@ create_input_char_from_mouse(short code, Am_Button_Down down,
  */
 
 Am_Input_Char
-create_input_char_from_key( const EventRecord& mac_event )
+create_input_char_from_key(const EventRecord &mac_event)
 {
-  unsigned char ch         =  mac_event.message & charCodeMask,
+  unsigned char ch = mac_event.message & charCodeMask,
                 virtualKey = (mac_event.message & keyCodeMask) >> 8;
 
-  bool shift   = ((mac_event.modifiers & (shiftKey | rightShiftKey)) != 0 ) ||
-                 (ch >= 'A' && ch <= 'Z');
-  bool control =  (mac_event.modifiers & (controlKey | rightControlKey)) != 0;
-  bool meta    =  (mac_event.modifiers & cmdKey) != 0;
+  bool shift = ((mac_event.modifiers & (shiftKey | rightShiftKey)) != 0) ||
+               (ch >= 'A' && ch <= 'Z');
+  bool control = (mac_event.modifiers & (controlKey | rightControlKey)) != 0;
+  bool meta = (mac_event.modifiers & cmdKey) != 0;
 
   // Retranslate the key event
   unsigned short keyCode = 0;
@@ -1218,23 +1240,25 @@ create_input_char_from_key( const EventRecord& mac_event )
   // bits 8-15 contain the modifers. We only keep shift and alpha lock,
   //   ignoring the control, option and command keys
 
-  unsigned short modifiers = mac_event.modifiers & (shiftKey | rightShiftKey | alphaLock);
-  keyCode  = virtualKey | modifiers | 0x80;
+  unsigned short modifiers =
+      mac_event.modifiers & (shiftKey | rightShiftKey | alphaLock);
+  keyCode = virtualKey | modifiers | 0x80;
 
   // get the default 'KCHR' resource
-  void* KCHRPtr = (void*)GetScriptManagerVariable( smKCHRCache );
+  void *KCHRPtr = (void *)GetScriptManagerVariable(smKCHRCache);
 
-  unsigned long result = KeyTranslate( KCHRPtr, keyCode, 0 );
+  unsigned long result = KeyTranslate(KCHRPtr, keyCode, 0);
   ch = result & charCodeMask;
 
-  short code = Map_Message_To_Code( ch, virtualKey, shift, control, meta );
+  short code = Map_Message_To_Code(ch, virtualKey, shift, control, meta);
 
-  if( code > 0 ) //  Only support keyboard keys going down
-    return Am_Input_Char( code, shift, control, meta, Am_NEITHER, Am_NOT_MOUSE );
+  if (code > 0) //  Only support keyboard keys going down
+    return Am_Input_Char(code, shift, control, meta, Am_NEITHER, Am_NOT_MOUSE);
   else {
-   std::cout << "** Unknown keyboard event, ignored\n"
-         << "   Character code was 0x" <<std::hex << (int)ch << endl
-         << "   Virtual Key code was 0x" <<std::hex << (int)virtualKey <<std::endl;
+    std::cout << "** Unknown keyboard event, ignored\n"
+              << "   Character code was 0x" << std::hex << (int)ch << endl
+              << "   Virtual Key code was 0x" << std::hex << (int)virtualKey
+              << std::endl;
     return Am_Input_Char();
   }
 }
@@ -1244,69 +1268,96 @@ create_input_char_from_key( const EventRecord& mac_event )
  */
 
 // returns character code or -1 if illegal
-short Map_Message_To_Code(
-  unsigned char charCode,   // an ascii character
-  unsigned char vKeyCode,   // the virtual key pressed
-  bool          /* shift */,
-  bool          /* ctrl */,
-  bool          /* meta */)
+short
+Map_Message_To_Code(unsigned char charCode, // an ascii character
+                    unsigned char vKeyCode, // the virtual key pressed
+                    bool /* shift */, bool /* ctrl */, bool /* meta */)
 {
 
   // Try to convert directly if charCode is printable.
 
-  if( charCode >= char_FirstPrinting && charCode <= char_LastPrinting )
+  if (charCode >= char_FirstPrinting && charCode <= char_LastPrinting)
     return charCode;
 
   // Ignore any high characters (bit 16 is on)
-  if( charCode >= 0x80 )
+  if (charCode >= 0x80)
     return -1;
 
   // Now convert control characters
-  switch( charCode ) {
-    case char_Home:        return Am_HOME;
-    case char_Enter:       return Am_ENTER;
-    case char_End:         return Am_END;
-    case char_Help:        return Am_HELP;
-    case char_Delete:      return Am_DELETE;
-    case char_Tab:         return Am_TAB;
-    case char_PageUp:      return Am_PAGE_UP;
-    case char_PageDown:    return Am_PAGE_DOWN;
-    case char_Return:      return Am_RETURN;
-    case char_LeftArrow:   return Am_LEFT_ARROW;
-    case char_RightArrow:  return Am_RIGHT_ARROW;
-    case char_UpArrow:     return Am_UP_ARROW;
-    case char_DownArrow:   return Am_DOWN_ARROW;
-    case char_FwdDelete:   return Am_DELETE_CHAR;
+  switch (charCode) {
+  case char_Home:
+    return Am_HOME;
+  case char_Enter:
+    return Am_ENTER;
+  case char_End:
+    return Am_END;
+  case char_Help:
+    return Am_HELP;
+  case char_Delete:
+    return Am_DELETE;
+  case char_Tab:
+    return Am_TAB;
+  case char_PageUp:
+    return Am_PAGE_UP;
+  case char_PageDown:
+    return Am_PAGE_DOWN;
+  case char_Return:
+    return Am_RETURN;
+  case char_LeftArrow:
+    return Am_LEFT_ARROW;
+  case char_RightArrow:
+    return Am_RIGHT_ARROW;
+  case char_UpArrow:
+    return Am_UP_ARROW;
+  case char_DownArrow:
+    return Am_DOWN_ARROW;
+  case char_FwdDelete:
+    return Am_DELETE_CHAR;
 
-    case char_Clear: // same as char_Escape
-      if( vKeyCode == vKey_Clear )
-        return Am_CLEAR;
-      else
-        return Am_ESC;
-      break;
+  case char_Clear: // same as char_Escape
+    if (vKeyCode == vKey_Clear)
+      return Am_CLEAR;
+    else
+      return Am_ESC;
+    break;
 
-    case char_FunctionKey:
-      switch( vKeyCode ) {
-        case vKey_F1:      return Am_F1;
-        case vKey_F2:      return Am_F2;
-        case vKey_F3:      return Am_F3;
-        case vKey_F4:      return Am_F4;
-        case vKey_F5:      return Am_F5;
-        case vKey_F6:      return Am_F6;
-        case vKey_F7:      return Am_F7;
-        case vKey_F8:      return Am_F8;
-        case vKey_F9:      return Am_F9;
-        case vKey_F10:     return Am_F10;
-        case vKey_F11:     return Am_F11;
-        case vKey_F12:     return Am_F12;
-        case vKey_F13:     return Am_F13;
-        case vKey_F14:     return Am_F14;
-        case vKey_F15:     return Am_F15;
-      }
+  case char_FunctionKey:
+    switch (vKeyCode) {
+    case vKey_F1:
+      return Am_F1;
+    case vKey_F2:
+      return Am_F2;
+    case vKey_F3:
+      return Am_F3;
+    case vKey_F4:
+      return Am_F4;
+    case vKey_F5:
+      return Am_F5;
+    case vKey_F6:
+      return Am_F6;
+    case vKey_F7:
+      return Am_F7;
+    case vKey_F8:
+      return Am_F8;
+    case vKey_F9:
+      return Am_F9;
+    case vKey_F10:
+      return Am_F10;
+    case vKey_F11:
+      return Am_F11;
+    case vKey_F12:
+      return Am_F12;
+    case vKey_F13:
+      return Am_F13;
+    case vKey_F14:
+      return Am_F14;
+    case vKey_F15:
+      return Am_F15;
+    }
   }
   return -1;
 
-/*
+  /*
     This old stuff was left here in case something broke, since it might be convenient
     to see this. The new key mapping was implemented by Andrew Faulring on 15 Jun 96.
     If you code experiences and key input problems send mail to <amulet-bugs@cs.cmu.edu>
@@ -1319,9 +1370,9 @@ short Map_Message_To_Code(
     key while ignoring the option keys.
 
 */
-//  char character_code = (message & charCodeMask);  // See Inside Mac, I-250
-//  char key_code = ((message & keyCodeMask) >> 8);
-/*
+  //  char character_code = (message & charCodeMask);  // See Inside Mac, I-250
+  //  char key_code = ((message & keyCodeMask) >> 8);
+  /*
   char code = 0;
 
   switch( vKeyCode )

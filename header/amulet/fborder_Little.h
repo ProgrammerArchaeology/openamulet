@@ -1,7 +1,6 @@
 // fborder.h float byte order
 
-
-#define FLOAT_BYTES  4
+#define FLOAT_BYTES 4
 #define DOUBLE_BYTES 8
 
 float htonf(float host_float);

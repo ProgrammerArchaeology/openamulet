@@ -17,41 +17,43 @@
 
 // only in debug mode we need the registry features
 #ifdef DEBUG
-	#include REGISTRY__H
+#include REGISTRY__H
 #else
 //	#ifndef REGISTERED_TYPE_HPP
 //		#include REGISTERED_TYPE__HPP
 //	#endif
 #endif
 
-const char * Am_Registered_Type::To_String () const
+const char *
+Am_Registered_Type::To_String() const
 {
-	#ifdef DEBUG
-		const char *name = Am_Get_Name_Of_Item(this);
-		return(name);
-	#else
-		return(0L);
-	#endif
+#ifdef DEBUG
+  const char *name = Am_Get_Name_Of_Item(this);
+  return (name);
+#else
+  return (0L);
+#endif
 }
 
-void Am_Registered_Type::Print(std::ostream& out) const
+void
+Am_Registered_Type::Print(std::ostream &out) const
 {
-	#ifdef DEBUG
-		const char *name = Am_Get_Name_Of_Item(this);
-		if(name)
-		{
-			out << name;
-			return;
-		}
-	#endif
+#ifdef DEBUG
+  const char *name = Am_Get_Name_Of_Item(this);
+  if (name) {
+    out << name;
+    return;
+  }
+#endif
 
-	//standard print if no name or not debugging
-	Am_Standard_Print(out, (unsigned long)this, ID());
+  //standard print if no name or not debugging
+  Am_Standard_Print(out, (unsigned long)this, ID());
 }
 
-void Am_Registered_Type::Println() const
+void
+Am_Registered_Type::Println() const
 {
-	Print(std::cout);
- std::cout <<std::endl;
+  Print(std::cout);
+  std::cout << std::endl;
   return;
 }

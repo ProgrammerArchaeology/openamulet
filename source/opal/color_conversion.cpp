@@ -15,14 +15,16 @@
 
 // Color conversion routines.  RGB to HSV and HSV to RGB
 // Algorithms grabbed from Foley & vanDam
-void Am_RGB_To_HSV (float r, float g, float b, float& h, float& s, float& v)
+void
+Am_RGB_To_HSV(float r, float g, float b, float &h, float &s, float &v)
 {
   float min, max;
   if (r > g) {
-    max = r; min = g;
-  }
-  else {
-    max = g; min = r;
+    max = r;
+    min = g;
+  } else {
+    max = g;
+    min = r;
   }
   if (max < b)
     max = b;
@@ -44,19 +46,18 @@ void Am_RGB_To_HSV (float r, float g, float b, float& h, float& s, float& v)
     h = h * 60.0f;
     if (h < 0.0)
       h += 360.0;
-  }
-  else
+  } else
     h = 0.0;
 }
 
-void Am_HSV_To_RGB (float h, float s, float v, float& r, float& g, float& b)
+void
+Am_HSV_To_RGB(float h, float s, float v, float &r, float &g, float &b)
 {
   if (s == 0.0) {
     r = v;
     g = v;
     b = v;
-  }
-  else {
+  } else {
     while (h >= 360.0)
       h -= 360.0;
     h = h / 60.0f;
@@ -67,24 +68,35 @@ void Am_HSV_To_RGB (float h, float s, float v, float& r, float& g, float& b)
     float t = v * (1 - (s * (1 - frac)));
     switch (region) {
     case 0:
-      r = v; g = t; b = p;
+      r = v;
+      g = t;
+      b = p;
       break;
     case 1:
-      r = q; g = v; b = p;
+      r = q;
+      g = v;
+      b = p;
       break;
     case 2:
-      r = p; g = v; b = t;
+      r = p;
+      g = v;
+      b = t;
       break;
     case 3:
-      r = p; g = q; b = v;
+      r = p;
+      g = q;
+      b = v;
       break;
     case 4:
-      r = t; g = p; b = v;
+      r = t;
+      g = p;
+      b = v;
       break;
     case 5:
-      r = v; g = p; b = q;
+      r = v;
+      g = p;
+      b = q;
       break;
     }
   }
 }
-

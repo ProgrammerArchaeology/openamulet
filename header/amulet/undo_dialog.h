@@ -27,8 +27,9 @@ _OA_DL_IMPORT extern Am_Slot_Key Am_UNDO_BUTTON_PANEL;
 _OA_DL_IMPORT extern Am_Slot_Key Am_UNDO_MENU_OF_COMMANDS;
 _OA_DL_IMPORT extern Am_Slot_Key Am_SCROLLING_GROUP_SLOT;
 
-_OA_DL_IMPORT extern Am_Slot_Key Am_UNDO_DIALOG_BOX_SLOT; // put the dialog box into this slot of
-				            // the Am_Show_Undo_Dialog_Box_Command  
+_OA_DL_IMPORT extern Am_Slot_Key
+    Am_UNDO_DIALOG_BOX_SLOT; // put the dialog box into this slot of
+                             // the Am_Show_Undo_Dialog_Box_Command
 
 extern void Am_Initialize_Undo_Dialog_Box();
 

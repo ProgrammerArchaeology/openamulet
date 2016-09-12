@@ -5,39 +5,40 @@
 #include <am_inc.h>
 
 #ifdef OA_VERSION
-	#include <amulet/univ_map_oa.hpp>
+#include <amulet/univ_map_oa.hpp>
 #else
-	#include UNIV_MAP__H
+#include UNIV_MAP__H
 #endif
 #include UNIV_LST__H
-
 
 //#pragma pack()
 
 #if !defined(DEBUG)
-#define GWFASTCALL	__fastcall
+#define GWFASTCALL __fastcall
 #else
 #define GWFASTCALL
 #endif
 
-char* strnew (const char* src);
+char *strnew(const char *src);
 
-inline void strdel(char* s)
+inline void
+strdel(char *s)
 {
-	if (s) free((void*)s);
+  if (s)
+    free((void *)s);
 }
 
 #if !defined(_WIN32)
-#define CODE_BASED	__based(__segname("_CODE"))
+#define CODE_BASED __based(__segname("_CODE"))
 #else
 #define CODE_BASED
 #endif
 
-#define	LOSHORT(X)	((SHORT)(LOWORD(X)))
-#define	HISHORT(X)	((SHORT)(HIWORD(X)))
+#define LOSHORT(X) ((SHORT)(LOWORD(X)))
+#define HISHORT(X) ((SHORT)(HIWORD(X)))
 
 #ifndef OA_VERSION
-AM_DECL_MAP(Ptr2Ptr, void*, void*)
+AM_DECL_MAP(Ptr2Ptr, void *, void *)
 #endif
 AM_DECL_LIST(Long, long, 0L)
 

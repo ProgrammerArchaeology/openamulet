@@ -14,32 +14,35 @@
 
 #include "amulet/impl/types_wrapper.h"
 
-class _OA_DL_CLASSIMPORT Am_Double_Data : public Am_Wrapper {
-  AM_WRAPPER_DATA_DECL (Am_Double)
- public:
-  bool operator== (const Am_Double_Data& test_value) const;
-  operator double () const;
-  Am_Double_Data (double value);
-  void Print (std::ostream& out) const;
- private:
+class _OA_DL_CLASSIMPORT Am_Double_Data : public Am_Wrapper
+{
+  AM_WRAPPER_DATA_DECL(Am_Double)
+public:
+  bool operator==(const Am_Double_Data &test_value) const;
+  operator double() const;
+  Am_Double_Data(double value);
+  void Print(std::ostream &out) const;
+
+private:
   double value;
 };
 
-class Am_String_Data : public Am_Wrapper {
-  AM_WRAPPER_DATA_DECL (Am_String)
- public:
-  bool operator== (const Am_String_Data& test_value) const;
-  bool operator== (const char* test_value) const;
-  operator const char* () const;
-  operator char* () const;
-  Am_String_Data (const char* value, bool copy = true);
-  ~Am_String_Data ();
-  void Print (std::ostream& out) const;
-  const char * To_String() const;
-  virtual Am_Value From_String(const char * string) const;
+class Am_String_Data : public Am_Wrapper
+{
+  AM_WRAPPER_DATA_DECL(Am_String)
+public:
+  bool operator==(const Am_String_Data &test_value) const;
+  bool operator==(const char *test_value) const;
+  operator const char *() const;
+  operator char *() const;
+  Am_String_Data(const char *value, bool copy = true);
+  ~Am_String_Data();
+  void Print(std::ostream &out) const;
+  const char *To_String() const;
+  virtual Am_Value From_String(const char *string) const;
 
- private:
-  const char* value;
+private:
+  const char *value;
 };
 
 #endif

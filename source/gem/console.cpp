@@ -14,8 +14,8 @@ SetupConsole::SetupConsole() : myStreamIn(0), myStreamOut(0), myStreamErr(0)
   HANDLE OutH = GetStdHandle(STD_OUTPUT_HANDLE);
   COORD buffer_size;
 
-  buffer_size.X = 80;  // 80 columns
-  buffer_size.Y = 25;  // 25 rows
+  buffer_size.X = 80; // 80 columns
+  buffer_size.Y = 25; // 25 rows
 
   SetConsoleScreenBufferSize(OutH, buffer_size);
 
@@ -29,22 +29,23 @@ SetupConsole::SetupConsole() : myStreamIn(0), myStreamOut(0), myStreamErr(0)
 
   std::cin = *(myStreamIn);
   std::cout = *(myStreamOut);
- std::cerr = *(myStreamErr);
+  std::cerr = *(myStreamErr);
 }
 
 SetupConsole::~SetupConsole()
 {
-  delete(myStreamIn);
-  delete(myStreamOut);
-  delete(myStreamErr);
+  delete (myStreamIn);
+  delete (myStreamOut);
+  delete (myStreamErr);
   FreeConsole();
 }
 
-void SetupConsole::setFile(const char* fileName)
+void
+SetupConsole::setFile(const char *fileName)
 {
-  delete(myStreamIn);
-  delete(myStreamOut);
-  delete(myStreamErr);
+  delete (myStreamIn);
+  delete (myStreamOut);
+  delete (myStreamErr);
 
   freopen(fileName, "rt", stdin);
   freopen(fileName, "wt", stdout);
@@ -57,7 +58,7 @@ void SetupConsole::setFile(const char* fileName)
 
   std::cin = *(myStreamIn);
   std::cout = *(myStreamOut);
- std::cerr = *(myStreamErr);    
+  std::cerr = *(myStreamErr);
 }
 
 SetupConsole setupConsole;

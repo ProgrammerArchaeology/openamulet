@@ -16,25 +16,25 @@
 // registry.
 class Am_Registered_Type
 {
-	public:
-		//:Destructor should be virtual
-		virtual ~Am_Registered_Type()
-		{
-			// nothing to do
-			;
-		}
+public:
+  //:Destructor should be virtual
+  virtual ~Am_Registered_Type()
+  {
+    // nothing to do
+    ;
+  }
 
-		//:returns unique tag for each derived type.
-		virtual Am_ID_Tag ID() const = 0;
+  //:returns unique tag for each derived type.
+  virtual Am_ID_Tag ID() const = 0;
 
-		//printing and reading for debugging
-		virtual const char* To_String() const;
-		virtual void 		Print(std::ostream& out) const;
-		void Println() const
-		{
-			Print(cout);
-		std::cout <<std::endl <<std::flush;
-		}
+  //printing and reading for debugging
+  virtual const char *To_String() const;
+  virtual void Print(std::ostream &out) const;
+  void Println() const
+  {
+    Print(cout);
+    std::cout << std::endl << std::flush;
+  }
 };
 
 #endif

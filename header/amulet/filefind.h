@@ -21,7 +21,7 @@
 
 #ifdef _WIN32
 #ifdef _MSC_VER
-#pragma warning(disable: 4786)
+#pragma warning(disable : 4786)
 #endif
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -32,19 +32,20 @@ class Am_Filename
 public:
   // CREATORS
   Am_Filename() : filename() {}
-  Am_Filename(const char* in_fname);
+  Am_Filename(const char *in_fname);
   Am_Filename(const std::string in_fname);
   Am_Filename(const Am_Filename head, const Am_Filename tail);
   // OPERATORS
-  const char* c_str() const;
+  const char *c_str() const;
   std::string name() const;
-  bool operator== (Am_Filename f);
-  bool operator== (const Am_Filename f) const;
+  bool operator==(Am_Filename f);
+  bool operator==(const Am_Filename f) const;
   // ACCESSORS
   bool Is_Directory() const;
   bool Is_Relative() const;
   bool Exists() const;
-  void Print(std::ostream& out) const;
+  void Print(std::ostream &out) const;
+
 private:
   std::string filename;
 };
@@ -53,16 +54,18 @@ class Am_Data_Locator
 {
 private:
   typedef std::list<std::pair<Am_Filename, unsigned int> > dir_list_t;
+
 public:
   // CREATORS
-  Am_Data_Locator(const Am_Filename first_dir, const char* envvarname);
+  Am_Data_Locator(const Am_Filename first_dir, const char *envvarname);
   // OPERATORS
   // ACCESSORS
-  bool Find_File (const Am_Filename f, Am_Filename& found) const;
+  bool Find_File(const Am_Filename f, Am_Filename &found) const;
   // MANIPULATORS
-  void Add_Search_Directory (const Am_Filename dir);
-  void Remove_Search_Directory (const Am_Filename dir);
-  void Print (std::ostream& out) const;
+  void Add_Search_Directory(const Am_Filename dir);
+  void Remove_Search_Directory(const Am_Filename dir);
+  void Print(std::ostream &out) const;
+
 private:
   dir_list_t search_list;
 };
@@ -71,7 +74,7 @@ private:
 extern Am_Data_Locator Am_Default_Data_Locator;
 
 // Output functions
-std::ostream& operator<<(std::ostream& out, const Am_Filename& f);
-std::ostream& operator<<(std::ostream& out, const Am_Data_Locator& l);
+std::ostream &operator<<(std::ostream &out, const Am_Filename &f);
+std::ostream &operator<<(std::ostream &out, const Am_Data_Locator &l);
 
 #endif // OA_FILEFIND_H

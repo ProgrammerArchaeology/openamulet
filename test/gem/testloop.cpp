@@ -30,16 +30,17 @@
 
 Am_Drawonable *root, *d1, *d2, *d3;
 
-Am_Style black (0.0, 0.0, 0.0);
-Am_Style green (0.0, 1.0, 0.0);
-Am_Font font1 (Am_FONT_FIXED, true, false, false, Am_FONT_VERY_LARGE);
-Am_Font font2 (Am_FONT_FIXED, false, false, false, Am_FONT_LARGE);
+Am_Style black(0.0, 0.0, 0.0);
+Am_Style green(0.0, 1.0, 0.0);
+Am_Font font1(Am_FONT_FIXED, true, false, false, Am_FONT_VERY_LARGE);
+Am_Font font2(Am_FONT_FIXED, false, false, false, Am_FONT_LARGE);
 Am_Font font3;
-			 
 
 int state_counter = 0;
 
-void print_state_instruction () {
+void
+print_state_instruction()
+{
   switch (state_counter) {
   case 0:
     printf("Do LEFT_DOWN in window to make D3 a sibling of D2:\n");
@@ -59,9 +60,10 @@ void print_state_instruction () {
   }
   fflush(stdout);
 }
-  
 
-void redraw (Am_Drawonable *d) {
+void
+redraw(Am_Drawonable *d)
+{
   static const char *string1 = "Top-level window";
   static int string1_len = 16;
   static const char *string2 = "Child of top-level";
@@ -75,10 +77,12 @@ void redraw (Am_Drawonable *d) {
     d2->Draw_Text(black, string2, string2_len, font2, 5, 7);
   else
     d3->Draw_Text(black, string3, string3_len, font3, 5, 7);
-  d1->Flush_Output ();
+  d1->Flush_Output();
 }
 
-void test_reparent1() {
+void
+test_reparent1()
+{
 
   switch (state_counter) {
   case 0:
@@ -104,43 +108,50 @@ void test_reparent1() {
   state_counter = state_counter + 1;
 }
 
-class testloop_handlers : public Am_Input_Event_Handlers {
-  void Iconify_Notify (Am_Drawonable*, bool) {}
-  void Frame_Resize_Notify (Am_Drawonable*, int, int, int, int) {}
-  void Destroy_Notify (Am_Drawonable*) {}
-  void Configure_Notify (Am_Drawonable* /*d*/, int /*l*/, int /*t*/, int /*w*/, int /*h*/) {
-//    d->Set_Position(l, t);
-//    d->Set_Size(w,h);
+class testloop_handlers : public Am_Input_Event_Handlers
+{
+  void Iconify_Notify(Am_Drawonable *, bool) {}
+  void Frame_Resize_Notify(Am_Drawonable *, int, int, int, int) {}
+  void Destroy_Notify(Am_Drawonable *) {}
+  void Configure_Notify(Am_Drawonable * /*d*/, int /*l*/, int /*t*/, int /*w*/,
+                        int /*h*/)
+  {
+    //    d->Set_Position(l, t);
+    //    d->Set_Size(w,h);
   }
-  void Exposure_Notify (Am_Drawonable *draw, int, int, int, int) {
-    redraw (draw);
+  void Exposure_Notify(Am_Drawonable *draw, int, int, int, int)
+  {
+    redraw(draw);
   }
-  void Input_Event_Notify (Am_Drawonable*, Am_Input_Event *ev) {
-    if ( ev->input_char == "LEFT_DOWN" )
+  void Input_Event_Notify(Am_Drawonable *, Am_Input_Event *ev)
+  {
+    if (ev->input_char == "LEFT_DOWN")
       test_reparent1();
-    else if ( ev->input_char == "MIDDLE_DOWN" )
-      d2->Set_Position(0,0);
-    else if ( ev->input_char == "RIGHT_DOWN" ) {
+    else if (ev->input_char == "MIDDLE_DOWN")
+      d2->Set_Position(0, 0);
+    else if (ev->input_char == "RIGHT_DOWN") {
       static bool visible = true;
       if (visible == true)
-	visible = false;
+        visible = false;
       else
-	visible = true;
+        visible = true;
       d2->Set_Visible(visible);
     }
   }
 };
 
-void init_windows(testloop_handlers& handlers) {
+void
+init_windows(testloop_handlers &handlers)
+{
 
   // Am_Debug_Print_Input_Events = 1;
 
   root = Am_Drawonable::Get_Root_Drawonable();
   d1 = root->Create(TESTLOOP_D1_LEFT, 180, 220, 180, "D1");
-  d2 = d1->Create(-15, 100, 175, 100, "D2", "D2 Icon", true, false,
-		  Am_No_Style, false, 1, 1, 0, 0,
-		  // want a title-bar when placed at top-level
-		  true);
+  d2 = d1->Create(-15, 100, 175, 100, "D2", "D2 Icon", true, false, Am_No_Style,
+                  false, 1, 1, 0, 0,
+                  // want a title-bar when placed at top-level
+                  true);
   d3 = d2->Create(30, 18, 150, 100, "D3");
 
   d1->Set_Input_Dispatch_Functions(&handlers);
@@ -151,7 +162,8 @@ void init_windows(testloop_handlers& handlers) {
   d1->Process_Event(0UL);
 }
 
-int main ()
+int
+main()
 {
   Am_Debug_Print_Input_Events = 0;
 

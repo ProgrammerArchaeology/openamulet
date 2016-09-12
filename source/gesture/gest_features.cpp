@@ -25,142 +25,161 @@
 double dist_sq_threshold = DIST_SQ_THRESHOLD;
 double se_th_rolloff = SE_TH_ROLLOFF;
 
-#define	EPS	(1.0e-4)
+#define EPS (1.0e-4)
 
 // A hack as there are some problems with this function sometimes
 // we use _hypot even we shouldn't but hypot is	a defined function
 // in math.h on unix
 #undef _hypot
-inline double _hypot(double x, double y)
+inline double
+_hypot(double x, double y)
 {
-	return sqrt(x*x + y*y);
+  return sqrt(x * x + y * y);
 }
 
 // // // // // // // // // // // // // // // // // // // //
 // Am_Feature_Vector
 // // // // // // // // // // // // // // // // // // // //
 
-AM_WRAPPER_IMPL (Am_Feature_Vector)
+AM_WRAPPER_IMPL(Am_Feature_Vector)
 
-Am_Feature_Vector::Am_Feature_Vector ()
-{
-  data = new Am_Feature_Vector_Data ();
-}
+Am_Feature_Vector::Am_Feature_Vector() { data = new Am_Feature_Vector_Data(); }
 
-Am_Feature_Vector::Am_Feature_Vector (Am_Point_List& pl)
+Am_Feature_Vector::Am_Feature_Vector(Am_Point_List &pl)
 {
-  data = new Am_Feature_Vector_Data ();
+  data = new Am_Feature_Vector_Data();
   int x, y;
 
   for (pl.Start(); !pl.Last(); pl.Next()) {
-    pl.Get(x,y);
-    data->Add_Point (x, y);
+    pl.Get(x, y);
+    data->Add_Point(x, y);
   }
   data->points = pl;
 }
 
-void Am_Feature_Vector::Add_Point (int x, int y)
+void
+Am_Feature_Vector::Add_Point(int x, int y)
 {
-  data->Add_Point (x, y);
-  data->points.Add ((float)x, (float)y);
+  data->Add_Point(x, y);
+  data->points.Add((float)x, (float)y);
 }
 
-Am_Point_List Am_Feature_Vector::Points()
+Am_Point_List
+Am_Feature_Vector::Points()
 {
   return data->points;
 }
 
-bool Am_Feature_Vector::IsDot ()
+bool
+Am_Feature_Vector::IsDot()
 {
   return data->npoints == 1;
 }
 
-double Am_Feature_Vector::StartX()
+double
+Am_Feature_Vector::StartX()
 {
   return data->startx;
 }
 
-double Am_Feature_Vector::StartY()
+double
+Am_Feature_Vector::StartY()
 {
   return data->starty;
 }
 
-double Am_Feature_Vector::InitialSin()
+double
+Am_Feature_Vector::InitialSin()
 {
   return data->initial_sin;
 }
 
-double Am_Feature_Vector::InitialCos()
+double
+Am_Feature_Vector::InitialCos()
 {
   return data->initial_cos;
 }
 
-double Am_Feature_Vector::Dx2()
+double
+Am_Feature_Vector::Dx2()
 {
   return data->dx2;
 }
 
-double Am_Feature_Vector::Dy2()
+double
+Am_Feature_Vector::Dy2()
 {
   return data->dy2;
 }
 
-double Am_Feature_Vector::MagSq2()
+double
+Am_Feature_Vector::MagSq2()
 {
   return data->magsq2;
 }
 
-double Am_Feature_Vector::EndX()
+double
+Am_Feature_Vector::EndX()
 {
   return data->endx;
 }
 
-double Am_Feature_Vector::EndY()
+double
+Am_Feature_Vector::EndY()
 {
   return data->endy;
 }
 
-double Am_Feature_Vector::MinX()
+double
+Am_Feature_Vector::MinX()
 {
   return data->minx;
 }
 
-double Am_Feature_Vector::MaxX()
+double
+Am_Feature_Vector::MaxX()
 {
   return data->maxx;
 }
 
-double Am_Feature_Vector::MinY()
+double
+Am_Feature_Vector::MinY()
 {
   return data->miny;
 }
 
-double Am_Feature_Vector::MaxY()
+double
+Am_Feature_Vector::MaxY()
 {
   return data->maxy;
 }
 
-double Am_Feature_Vector::PathR()
+double
+Am_Feature_Vector::PathR()
 {
   return data->path_r;
 }
 
-double Am_Feature_Vector::PathTh()
+double
+Am_Feature_Vector::PathTh()
 {
   return data->path_th;
 }
 
-double Am_Feature_Vector::AbsTh()
+double
+Am_Feature_Vector::AbsTh()
 {
   return data->abs_th;
 }
 
-double Am_Feature_Vector::Sharpness()
+double
+Am_Feature_Vector::Sharpness()
 {
   return data->sharpness;
 }
 
-double *Am_Feature_Vector::Vector()
+double *
+Am_Feature_Vector::Vector()
 {
   if (!data->calculated)
     data->Calc();
@@ -171,9 +190,9 @@ double *Am_Feature_Vector::Vector()
 // Am_Feature_Vector_Data
 // // // // // // // // // // // // // // // // // // // //
 
-AM_WRAPPER_DATA_IMPL (Am_Feature_Vector, (this))
+AM_WRAPPER_DATA_IMPL(Am_Feature_Vector, (this))
 
-Am_Feature_Vector_Data::Am_Feature_Vector_Data ()
+Am_Feature_Vector_Data::Am_Feature_Vector_Data()
 {
   register int i;
 
@@ -185,12 +204,12 @@ Am_Feature_Vector_Data::Am_Feature_Vector_Data ()
   path_th = 0;
   abs_th = 0;
   sharpness = 0;
-  for(i = 0; i < NFEATURES; i++)
+  for (i = 0; i < NFEATURES; i++)
     y[i] = 0.0;
   calculated = false;
 }
 
-Am_Feature_Vector_Data::Am_Feature_Vector_Data (Am_Feature_Vector_Data *d)
+Am_Feature_Vector_Data::Am_Feature_Vector_Data(Am_Feature_Vector_Data *d)
 {
   register int i;
 
@@ -216,64 +235,73 @@ Am_Feature_Vector_Data::Am_Feature_Vector_Data (Am_Feature_Vector_Data *d)
   abs_th = d->abs_th;
   sharpness = d->sharpness;
 
-  for(i = 0; i < NFEATURES; i++)
+  for (i = 0; i < NFEATURES; i++)
     y[i] = d->y[i];
   calculated = d->calculated;
 }
 
-Am_Feature_Vector_Data::~Am_Feature_Vector_Data ()
+Am_Feature_Vector_Data::~Am_Feature_Vector_Data()
 {
-  FreeVector(y); y = (0L);
+  FreeVector(y);
+  y = (0L);
 }
 
-void Am_Feature_Vector_Data::Add_Point(int x, int y)
+void
+Am_Feature_Vector_Data::Add_Point(int x, int y)
 {
-	double dx1, dy1, magsq1;
-	double th, absth, d;
+  double dx1, dy1, magsq1;
+  double th, absth, d;
 
-	if(++npoints == 1) {
-		startx = endx = minx = maxx = x;
-		starty = endy = miny = maxy = y;
-		endx = x; endy = y;
-		return;
-	}
+  if (++npoints == 1) {
+    startx = endx = minx = maxx = x;
+    starty = endy = miny = maxy = y;
+    endx = x;
+    endy = y;
+    return;
+  }
 
-	dx1 = x - endx; dy1 = y - endy;
-	magsq1 = dx1 * dx1 + dy1 * dy1;
+  dx1 = x - endx;
+  dy1 = y - endy;
+  magsq1 = dx1 * dx1 + dy1 * dy1;
 
-	if(magsq1 <= dist_sq_threshold) {
-		npoints--;
-		return;		/* ignore this point */
-	}
+  if (magsq1 <= dist_sq_threshold) {
+    npoints--;
+    return; /* ignore this point */
+  }
 
-	if(x < minx) minx = x;
-	if(x > maxx) maxx = x;
-	if(y < miny) miny = y;
-	if(y > maxy) maxy = y;
+  if (x < minx)
+    minx = x;
+  if (x > maxx)
+    maxx = x;
+  if (y < miny)
+    miny = y;
+  if (y > maxy)
+    maxy = y;
 
-	d = sqrt(magsq1);
-	path_r += d;
+  d = sqrt(magsq1);
+  path_r += d;
 
-	/* calculate initial theta */
-	/*if(npoints == 2 || npoints == 3) {*/
-	/*if(npoints == 3) {	debug*/
-	/*if(path_r >= kludge['r'] && path_r <= kludge['R']) {*/
-	/*if(npoints <= 3 || path_r <= kludge['R']) {*/
-	/*if(npoints == 3 ||
+  /* calculate initial theta */
+  /*if(npoints == 2 || npoints == 3) {*/
+  /*if(npoints == 3) {	debug*/
+  /*if(path_r >= kludge['r'] && path_r <= kludge['R']) {*/
+  /*if(npoints <= 3 || path_r <= kludge['R']) {*/
+  /*if(npoints == 3 ||
 	  (npoints > 3 && path_r <= kludge['r'])) {*/
-	if(npoints == 3) {
-		double magsq, dx, dy, recip;
-		dx = x - startx; dy = y - starty;
-		magsq = dx * dx + dy * dy;
-		if(magsq > dist_sq_threshold)  {
-			/* find angle w.r.t. positive x axis e.g. (1,0) */
-			recip = 1 / sqrt(magsq);
-			initial_cos = dx * recip;
-			initial_sin = dy * recip;
-		}
-	}
+  if (npoints == 3) {
+    double magsq, dx, dy, recip;
+    dx = x - startx;
+    dy = y - starty;
+    magsq = dx * dx + dy * dy;
+    if (magsq > dist_sq_threshold) {
+      /* find angle w.r.t. positive x axis e.g. (1,0) */
+      recip = 1 / sqrt(magsq);
+      initial_cos = dx * recip;
+      initial_sin = dy * recip;
+    }
+  }
 
-	if(npoints >= 3) {
+  if (npoints >= 3) {
 #if 0 // debugging
 		Z(T) {
 			dot = dx1 * dx2 + dy1 * dy2;
@@ -287,69 +315,71 @@ void Am_Feature_Vector_Data::Add_Point(int x, int y)
 		}
 		else
 #endif
-		  {
-			th = absth = atan2(dx1 * dy2 - dx2 * dy1,
-					     dx1 * dx2 + dy1 * dy2);
-			if(absth < 0) absth = -absth;
-			path_th += th;
-			abs_th += absth;
-			sharpness += th*th;
-		}
+    {
+      th = absth = atan2(dx1 * dy2 - dx2 * dy1, dx1 * dx2 + dy1 * dy2);
+      if (absth < 0)
+        absth = -absth;
+      path_th += th;
+      abs_th += absth;
+      sharpness += th * th;
+    }
 
 #ifdef PF_MAXV
-		if(endtime > lasttime &&
-		   (v = d / (endtime - lasttime)) > maxv)
-			maxv = v;
+    if (endtime > lasttime && (v = d / (endtime - lasttime)) > maxv)
+      maxv = v;
 #endif
-	}
+  }
 
-	endx = x; endy = y;
-	dx2 = dx1; dy2 = dy1;
-	magsq2 = magsq1;
+  endx = x;
+  endy = y;
+  dx2 = dx1;
+  dy2 = dy1;
+  magsq2 = magsq1;
 }
 
-void Am_Feature_Vector_Data::Calc ()
+void
+Am_Feature_Vector_Data::Calc()
 {
-	double bblen, selen, factor;
+  double bblen, selen, factor;
 
-	if(npoints < 1) {
-	  calculated = true;
-		return;
-	}
+  if (npoints < 1) {
+    calculated = true;
+    return;
+  }
 
-	y[PF_INIT_COS] = initial_cos;
-	y[PF_INIT_SIN] = initial_sin;
+  y[PF_INIT_COS] = initial_cos;
+  y[PF_INIT_SIN] = initial_sin;
 
-	bblen = _hypot(maxx - minx, maxy - miny);
+  bblen = _hypot(maxx - minx, maxy - miny);
 
-	y[PF_BB_LEN] = bblen;
+  y[PF_BB_LEN] = bblen;
 
-	if(bblen * bblen > dist_sq_threshold)
-		y[PF_BB_TH] = atan2(maxy - miny,
-					maxx - minx);
+  if (bblen * bblen > dist_sq_threshold)
+    y[PF_BB_TH] = atan2(maxy - miny, maxx - minx);
 
-	selen = _hypot(endx - startx, endy - starty);
-	y[PF_SE_LEN] = selen;
+  selen = _hypot(endx - startx, endy - starty);
+  y[PF_SE_LEN] = selen;
 
 #if 0 // debugging
 	Z(R) factor = selen * selen / 10;
 	else
 #endif
-	  factor = selen * selen / se_th_rolloff;
-	if(factor > 1.0) factor = 1.0;
-	factor = selen > EPS ? factor/selen : 0.0;
-	y[PF_SE_COS] = (endx - startx) * factor;
-	y[PF_SE_SIN] = (endy - starty) * factor;
+  factor = selen * selen / se_th_rolloff;
+  if (factor > 1.0)
+    factor = 1.0;
+  factor = selen > EPS ? factor / selen : 0.0;
+  y[PF_SE_COS] = (endx - startx) * factor;
+  y[PF_SE_SIN] = (endy - starty) * factor;
 
-	y[PF_LEN] =  path_r;
-	y[PF_TH] = path_th;
-	y[PF_ATH] = abs_th;
-	y[PF_SQTH] = sharpness;
+  y[PF_LEN] = path_r;
+  y[PF_TH] = path_th;
+  y[PF_ATH] = abs_th;
+  y[PF_SQTH] = sharpness;
 
 #ifdef PF_DUR
-	y[PF_DUR] = (endtime - starttime)*.01;
+  y[PF_DUR] = (endtime - starttime) * .01;
 
-#if 0 // debugging
+#if 0  // debugging
 	Z(D) {
 		int i;
 		for(i = NROWS(y); i > 0; i--) y[i] = y[i-1];
@@ -359,9 +389,8 @@ void Am_Feature_Vector_Data::Calc ()
 #endif // PF_DUR
 
 #ifdef PF_MAXV
-	y[PF_MAXV] = maxv * 10000;
+  y[PF_MAXV] = maxv * 10000;
 #endif
 
-	calculated = true;
+  calculated = true;
 }
-

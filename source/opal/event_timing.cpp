@@ -36,7 +36,8 @@ Am_Timer_State Am_Global_Timer_State = Am_TIMERS_RUNNING;
 
 // am_clock(): returns current time-of-day unless all timers are suspended,
 // in which case it returns the moment of suspension
-static inline Am_Time am_clock ()
+static inline Am_Time
+am_clock()
 {
   static Am_Time clock;
 
@@ -49,10 +50,11 @@ static inline Am_Time am_clock ()
 // This stores the information required to take care of the animation
 // interactors' timing events.  gdefs.h defines Am_Time.
 
-class Am_Interactor_Time_Event {
+class Am_Interactor_Time_Event
+{
 public:
-  Am_Interactor_Time_Event (Am_Time new_delta, Am_Object obj,
-			    Am_Slot_Key key, bool once)
+  Am_Interactor_Time_Event(Am_Time new_delta, Am_Object obj, Am_Slot_Key key,
+                           bool once)
   {
     delta = new_delta;
     object = obj;
@@ -61,23 +63,24 @@ public:
     start_time = am_clock();
     next_timeout = start_time + delta;
   }
-  Am_Object object;         // object to call timeout method on
-  Am_Slot_Key method_slot;  // slot key containing timeout method
-  bool only_once;           // if true, only time out once
-  Am_Time delta;            // time between events
-  Am_Time next_timeout;     // next time it should time out
-  Am_Time start_time;    // time when this event was added to timing event list.
+  Am_Object object;        // object to call timeout method on
+  Am_Slot_Key method_slot; // slot key containing timeout method
+  bool only_once;          // if true, only time out once
+  Am_Time delta;           // time between events
+  Am_Time next_timeout;    // next time it should time out
+  Am_Time start_time; // time when this event was added to timing event list.
 };
 
 static Am_Value_List am_timing_events;
 
-static void am_add_timing_event(Am_Interactor_Time_Event* new_event)
+static void
+am_add_timing_event(Am_Interactor_Time_Event *new_event)
 {
   Am_Interactor_Time_Event *e;
   Am_Time new_time = new_event->next_timeout;
   for (am_timing_events.Start(); !am_timing_events.Last();
        am_timing_events.Next()) {
-    e = (Am_Interactor_Time_Event*)(Am_Ptr)(am_timing_events.Get());
+    e = (Am_Interactor_Time_Event *)(Am_Ptr)(am_timing_events.Get());
     if (e->next_timeout > new_time) {
       am_timing_events.Insert((Am_Ptr)new_event, Am_BEFORE);
       return;
@@ -86,21 +89,23 @@ static void am_add_timing_event(Am_Interactor_Time_Event* new_event)
   am_timing_events.Add((Am_Ptr)new_event, Am_TAIL);
 }
 
-void Am_Register_Timer(Am_Time wait_time, Am_Object obj,
-               Am_Slot_Key method_slot, bool once)
+void
+Am_Register_Timer(Am_Time wait_time, Am_Object obj, Am_Slot_Key method_slot,
+                  bool once)
 {
-  Am_Interactor_Time_Event* new_event =
-    new Am_Interactor_Time_Event(wait_time, obj, method_slot, once);
+  Am_Interactor_Time_Event *new_event =
+      new Am_Interactor_Time_Event(wait_time, obj, method_slot, once);
   am_add_timing_event(new_event);
 }
 
 // deletes the first timer event which matches obj and slot.
-void Am_Stop_Timer(Am_Object obj, Am_Slot_Key slot)
+void
+Am_Stop_Timer(Am_Object obj, Am_Slot_Key slot)
 {
   Am_Interactor_Time_Event *e;
   for (am_timing_events.Start(); !am_timing_events.Last();
        am_timing_events.Next()) {
-    e = (Am_Interactor_Time_Event*)(Am_Ptr)am_timing_events.Get();
+    e = (Am_Interactor_Time_Event *)(Am_Ptr)am_timing_events.Get();
     if (e->object == obj && e->method_slot == slot) {
       am_timing_events.Delete();
       delete e;
@@ -111,19 +116,20 @@ void Am_Stop_Timer(Am_Object obj, Am_Slot_Key slot)
   //     << " but hasn't been registered")
 }
 
-void Am_Reset_Timer_Start(Am_Object obj, Am_Slot_Key slot)
+void
+Am_Reset_Timer_Start(Am_Object obj, Am_Slot_Key slot)
 {
   Am_Interactor_Time_Event *e;
   for (am_timing_events.Start(); !am_timing_events.Last();
        am_timing_events.Next()) {
-    e = (Am_Interactor_Time_Event*)(Am_Ptr)am_timing_events.Get();
+    e = (Am_Interactor_Time_Event *)(Am_Ptr)am_timing_events.Get();
     if (e->object == obj && e->method_slot == slot) {
       e->start_time = am_clock();
       return;
     }
   }
   Am_ERROR("Am_Reset_Timer_Start on " << obj << " slot " << slot
-       << " but hasn't been registered")
+                                      << " but hasn't been registered")
 }
 
 // am_Handle_Timing_Events calls the methods for any timing events that have
@@ -137,12 +143,13 @@ void Am_Reset_Timer_Start(Am_Object obj, Am_Slot_Key slot)
 // Returns the deadline of the next timing event.
 // If no timing events are active, returns time Zero.
 //
-static Am_Time am_Handle_Timing_Events()
+static Am_Time
+am_Handle_Timing_Events()
 {
   bool ticked = false;
   Am_Time return_time; // next deadline
-  if (Am_Global_Timer_State != Am_TIMERS_SUSPENDED
-      && !am_timing_events.Empty()) {
+  if (Am_Global_Timer_State != Am_TIMERS_SUSPENDED &&
+      !am_timing_events.Empty()) {
     Am_Timer_Method method;
     Am_Time next_timeout_time;
     Am_Time now = am_clock();
@@ -155,38 +162,38 @@ static Am_Time am_Handle_Timing_Events()
     while (true) { // stop when the next event is not past
       am_timing_events.Start();
       if (am_timing_events.Empty()) {
-	//deleted the last event
-	return return_time; // will be uninitialized
+        //deleted the last event
+        return return_time; // will be uninitialized
       }
-      next_event = (Am_Interactor_Time_Event*)(Am_Ptr)am_timing_events.Get();
-      if (next_event->next_timeout < now ) {
-	// Deal with moving the timing event in its queue _before_ we
-	// call the method.  The method might call Am_Stop_Timer,
-	// removing this event from the queue, which deletes it.
-	next_event->next_timeout += next_event->delta;
-	am_timing_events.Delete();
-	method_object = next_event->object;
-	method_slot = next_event->method_slot;
-	inter_start_time = next_event->start_time;
-	if (next_event->only_once)
-	  delete next_event;
-	else
-	  am_add_timing_event(next_event);
-	if (method_object.Valid()) {
-	  //  Call the method for this object
-	  method = method_object.Get(method_slot);
-	  if (method.Valid()) {
-	    elapsed_time = now - inter_start_time;
-	    method.Call(method_object, elapsed_time);
-	  }
-	}
-	ticked = true;
-      }
-      else break;
+      next_event = (Am_Interactor_Time_Event *)(Am_Ptr)am_timing_events.Get();
+      if (next_event->next_timeout < now) {
+        // Deal with moving the timing event in its queue _before_ we
+        // call the method.  The method might call Am_Stop_Timer,
+        // removing this event from the queue, which deletes it.
+        next_event->next_timeout += next_event->delta;
+        am_timing_events.Delete();
+        method_object = next_event->object;
+        method_slot = next_event->method_slot;
+        inter_start_time = next_event->start_time;
+        if (next_event->only_once)
+          delete next_event;
+        else
+          am_add_timing_event(next_event);
+        if (method_object.Valid()) {
+          //  Call the method for this object
+          method = method_object.Get(method_slot);
+          if (method.Valid()) {
+            elapsed_time = now - inter_start_time;
+            method.Call(method_object, elapsed_time);
+          }
+        }
+        ticked = true;
+      } else
+        break;
     }
 
     if (ticked && Am_Global_Timer_State == Am_TIMERS_SINGLE_STEP)
-      Am_Set_Timer_State (Am_TIMERS_SUSPENDED);
+      Am_Set_Timer_State(Am_TIMERS_SUSPENDED);
 
     return_time = next_event->next_timeout;
   }
@@ -218,9 +225,10 @@ static void am_Adjust_Timeout (Am_Time& timeout)
 }
 #endif
 
-void Am_Set_Timer_State (Am_Timer_State new_state)
+void
+Am_Set_Timer_State(Am_Timer_State new_state)
 {
-  Am_Time before = am_clock ();
+  Am_Time before = am_clock();
   Am_Global_Timer_State = new_state;
   Am_Time after = am_clock();
 
@@ -232,44 +240,47 @@ void Am_Set_Timer_State (Am_Timer_State new_state)
     Am_Interactor_Time_Event *next_event;
     Am_Value_List events = am_timing_events;
     for (events.Start(); !events.Last(); events.Next()) {
-      next_event = (Am_Interactor_Time_Event*)(Am_Ptr)events.Get();
+      next_event = (Am_Interactor_Time_Event *)(Am_Ptr)events.Get();
       next_event->next_timeout = next_event->next_timeout + diff;
       next_event->start_time = next_event->start_time + diff;
     }
   }
 }
 
-bool Am_Do_Events (bool wait)
+bool
+Am_Do_Events(bool wait)
 {
   am_Handle_Timing_Events();
-  Am_Update_All ();
+  Am_Update_All();
   if (wait) {
     Am_Time deadline = Am_Time::Now() + 100UL; // 100 milliseconds from now
-    Am_Drawonable::Process_Event (deadline);
-  }
-  else
-    Am_Drawonable::Process_Immediate_Event ();
-  Am_Update_All ();
+    Am_Drawonable::Process_Event(deadline);
+  } else
+    Am_Drawonable::Process_Immediate_Event();
+  Am_Update_All();
   return Am_Main_Loop_Go;
 }
 
-void Am_Main_Event_Loop ()
+void
+Am_Main_Event_Loop()
 {
   //// TODO: make exit when no windows are owned. (visible?)
   Am_Time deadline;
   while (Am_Main_Loop_Go) {
     deadline = am_Handle_Timing_Events();
-    Am_Update_All ();
-    Am_Drawonable::Process_Event (deadline);
+    Am_Update_All();
+    Am_Drawonable::Process_Event(deadline);
   }
 }
 
-void Am_Exit_Main_Event_Loop ()
+void
+Am_Exit_Main_Event_Loop()
 {
   Am_Main_Loop_Go = false;
 }
 
-void Am_Wait_For_Event ()
+void
+Am_Wait_For_Event()
 {
-  Am_Drawonable::Wait_For_Event ();
+  Am_Drawonable::Wait_For_Event();
 }

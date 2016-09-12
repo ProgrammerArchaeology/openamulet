@@ -50,7 +50,7 @@ _OA_DL_IMPORT extern Am_Style Am_Diamond_Stipple;
 _OA_DL_IMPORT extern Am_Style Am_Opaque_Diamond_Stipple;
 
 _OA_DL_IMPORT extern Am_Font Am_Default_Font;
-_OA_DL_IMPORT extern Am_Font Am_Japanese_Font;  // Japanese standard font
+_OA_DL_IMPORT extern Am_Font Am_Japanese_Font; // Japanese standard font
 
 // The root object.  This object is instanced to create other objects.  The
 // Am_Root_Object has no slots and no parts.
@@ -76,7 +76,8 @@ _OA_DL_IMPORT extern Am_Object Am_Resize_Parts_Group;
 _OA_DL_IMPORT extern Am_Object Am_Fade_Group;
 _OA_DL_IMPORT extern Am_Object Am_Flip_Book_Group;
 
-_OA_DL_IMPORT extern Am_Object Am_Aggregate;  // Usually you want to create instances of
-                                // Am_Group or Am_Map
+_OA_DL_IMPORT extern Am_Object
+    Am_Aggregate; // Usually you want to create instances of
+                  // Am_Group or Am_Map
 
 #endif /* OPAL_STANDARD_OBJ_H */

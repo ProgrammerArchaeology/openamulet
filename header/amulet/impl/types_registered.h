@@ -9,18 +9,19 @@
 
 // class std::ostream;
 
-class _OA_DL_CLASSIMPORT Am_Registered_Type {
+class _OA_DL_CLASSIMPORT Am_Registered_Type
+{
 public:
   // returns unique tag for each derived type.
   virtual Am_ID_Tag ID() const = 0;
 
   //printing and reading for debugging
-  virtual const char * To_String() const;
-  virtual void Print(std::ostream& out) const;
+  virtual const char *To_String() const;
+  virtual void Print(std::ostream &out) const;
 
   void Println() const;
 
-  virtual ~Am_Registered_Type () { } // destructor should be virtual
+  virtual ~Am_Registered_Type() {} // destructor should be virtual
 };
 
 #endif //TYPES_REGISTERED_H

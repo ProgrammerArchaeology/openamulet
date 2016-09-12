@@ -1,8 +1,11 @@
 //scroll bars
 
 enum Am_Scroll_Arrow_Direction
-{ Am_SCROLL_ARROW_UP, Am_SCROLL_ARROW_DOWN,
-	Am_SCROLL_ARROW_LEFT, Am_SCROLL_ARROW_RIGHT
+{
+  Am_SCROLL_ARROW_UP,
+  Am_SCROLL_ARROW_DOWN,
+  Am_SCROLL_ARROW_LEFT,
+  Am_SCROLL_ARROW_RIGHT
 };
 
 //used to make the individual scroll-indicator drags not queued for undo

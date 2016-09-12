@@ -4,9 +4,8 @@
 #include <am_inc.h>
 #include AM_IO__H
 #include "types_method.h"
-#include "types_logging.h" 
+#include "types_logging.h"
 #include AM_VALUE__H
-
 
 #include "method_object.h"
 

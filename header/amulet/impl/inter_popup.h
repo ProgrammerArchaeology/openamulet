@@ -10,9 +10,10 @@
 // to call Am_Finish_Pop_Up_Waiting on that window.  Returns the value
 // passed to Am_Finish_Pop_Up_Waiting.
 _OA_DL_IMPORT extern void Am_Pop_Up_Window_And_Wait(Am_Object window,
-				      Am_Value &return_value,
-				      bool modal = true);
+                                                    Am_Value &return_value,
+                                                    bool modal = true);
 
 //Sets window's visible to FALSE, and makes the
 //Am_Pop_Up_Window_And_Wait called on the same window return
-_OA_DL_IMPORT extern void Am_Finish_Pop_Up_Waiting(Am_Object window, Am_Value return_value);
+_OA_DL_IMPORT extern void Am_Finish_Pop_Up_Waiting(Am_Object window,
+                                                   Am_Value return_value);

@@ -16,28 +16,29 @@
 #include GEM__H
 #include "test_utils.h"
 
-wins *wins_array;   // The wins class is defined in test_utils.h
+wins *wins_array; // The wins class is defined in test_utils.h
 
-int main (int argc, char **argv)
+int
+main(int argc, char **argv)
 {
 
   if (argc > 3) {
-    Am_Error ("** usage: testdpy [scrn1] [scrn2]\n");
+    Am_Error("** usage: testdpy [scrn1] [scrn2]\n");
   };
 
   int ar_len;
-  wins_array = create_wins_array (argc, argv, ar_len);
+  wins_array = create_wins_array(argc, argv, ar_len);
 
-  test_colors (wins_array, ar_len);
-  test_fonts (wins_array, ar_len);
-  test_bits (wins_array, ar_len);
-  //  test_win_props (wins_array, ar_len);
-  
-  ///
-  ///  Exit
-  ///
+  test_colors(wins_array, ar_len);
+  test_fonts(wins_array, ar_len);
+  test_bits(wins_array, ar_len);
+//  test_win_props (wins_array, ar_len);
+
+///
+///  Exit
+///
 #if _MACINTOSH
-  // on the Macintosh, we need to be in the main loop in order to 
+  // on the Macintosh, we need to be in the main loop in order to
   // get cursor changes correctly.
 
   cout << "Entering main loop" << endl;
