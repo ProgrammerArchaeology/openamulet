@@ -36,7 +36,7 @@
 
 #include <amulet/standard_slots.h>
 #include <amulet/object_advanced.h> // for Am_Constraint_Iterator, Am_Set_Reason
-#include <amulet/value_list.h>     // for Am_Value_List type
+#include <amulet/value_list.h>      // for Am_Value_List type
 #include <amulet/formula_advanced.h>
 #include <amulet/opal_advanced.h>  // for Am_DRAWONABLE
 #include <amulet/inter_advanced.h> // for Am_Modal_Windows

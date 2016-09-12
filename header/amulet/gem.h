@@ -22,7 +22,7 @@
 
 #include <amulet/types.h>          // to get the Value object
 #include <amulet/gdefs.h>          // constants and definitions for graphics
-#include <amulet/idefs.h>  // constants and definitions for input
+#include <amulet/idefs.h>          // constants and definitions for input
 #include <amulet/inter.h>          // supports multiple users
 #include <amulet/standard_slots.h> // supports multiple users
 

@@ -114,7 +114,7 @@ Dyn_Memory_Manager::New()
       block = new_block;
     }
 
-// x86 alloc
+    // x86 alloc
     // get the next free block and return it
     new_ptr = reinterpret_cast<void *>(
         ((uintptr_t)block) + block_position * data_size + sizeof(Dyn_Link));

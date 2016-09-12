@@ -20,7 +20,7 @@
 
 // class std::ostream;
 #include "amulet/impl/types_wrapper.h" // to get the Am_Wrapper object
-#include <amulet/value_list.h>                 //value lists for file names
+#include <amulet/value_list.h>         //value lists for file names
 
 #include "amulet/impl/gem_flags.h"
 
