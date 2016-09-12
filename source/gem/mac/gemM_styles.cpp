@@ -23,8 +23,8 @@
 
 static RGBColor rgb_NullValue     = { 0, 0, 0 };
 
-Am_DECL_MAP(Str2RGB, const char*, RGBColor)
-Am_IMPL_MAP(Str2RGB, const char*, (0L), RGBColor, rgb_NullValue);
+AM_DECL_MAP(Str2RGB, const char*, RGBColor)
+AM_IMPL_MAP(Str2RGB, const char*, (0L), RGBColor, rgb_NullValue);
 
 static Am_Map_Str2RGB*    color_map;
 
@@ -68,7 +68,7 @@ void    Am_Initialize_Color_Map()
 // Styles
 // // // // // // // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_IMPL (Am_Style);
+AM_WRAPPER_IMPL (Am_Style);
 
 const char* Am_Style::Get_Color_Name () const
 {
@@ -257,7 +257,7 @@ Am_Style Am_On_Bits (on_bits);
 static Am_Style_Data * off_bits = new Am_Style_Data ("Am_Off_Bits", false);
 Am_Style Am_Off_Bits (off_bits);
 
-Am_WRAPPER_DATA_IMPL (Am_Style, (this))
+AM_WRAPPER_DATA_IMPL (Am_Style, (this))
 
 Am_Style_Data::Am_Style_Data (Am_Style_Data* proto)
 {

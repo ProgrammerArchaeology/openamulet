@@ -61,7 +61,7 @@ class Am_Object_Data;
 
 class _OA_DL_CLASSIMPORT Am_Object
 {
-  Am_WRAPPER_DECL(Am_Object)
+  AM_WRAPPER_DECL(Am_Object)
 
 	public:
 		// CREATORS

@@ -67,7 +67,7 @@
 class _OA_DL_CLASSIMPORT Am_Feature_Vector_Data : public Am_Wrapper {
 friend class Am_Feature_Vector;
   
-  Am_WRAPPER_DATA_DECL(Am_Feature_Vector)
+  AM_WRAPPER_DATA_DECL(Am_Feature_Vector)
 public:
   Am_Feature_Vector_Data (Am_Feature_Vector_Data*);
   Am_Feature_Vector_Data ();
@@ -128,7 +128,7 @@ friend class Am_Gesture_Trainer_Data;
 friend std::ostream&  operator<< (std::ostream& s, Am_Gesture_Classifier& gc);
 friend std::istream&  operator>> (std::istream& s, Am_Gesture_Classifier& gc);
   
-  Am_WRAPPER_DATA_DECL(Am_Gesture_Classifier)
+  AM_WRAPPER_DATA_DECL(Am_Gesture_Classifier)
 public:
   void Print (std::ostream& os) const; //print my contents on the stream
 
@@ -175,7 +175,7 @@ friend class Am_Gesture_Trainer;
 friend std::ostream&  operator<< (std::ostream& s, Am_Gesture_Trainer& gc);
 friend std::istream&  operator>> (std::istream& s, Am_Gesture_Trainer& gc);
   
-  Am_WRAPPER_DATA_DECL(Am_Gesture_Trainer)
+  AM_WRAPPER_DATA_DECL(Am_Gesture_Trainer)
 public:
   Am_Gesture_Trainer_Data (Am_Gesture_Trainer_Data*);
   Am_Gesture_Trainer_Data ();

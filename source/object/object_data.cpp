@@ -71,7 +71,7 @@ static char* append_number_to_name (const char* orig_name)
 }
 #endif
 
-Am_WRAPPER_DATA_IMPL_ID(Am_Object, (), Am_OBJECT)
+AM_WRAPPER_DATA_IMPL_ID(Am_Object, (), Am_OBJECT)
 
 Am_Object_Data::Am_Object_Data() :
 	prototype((0L)),

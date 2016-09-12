@@ -10,8 +10,8 @@
 class Am_Image_Array_Data : public Am_Wrapper
 {
 friend class Am_Image_Array;
-  Am_WRAPPER_DATA_DECL(Am_Image_Array)
-  Am_DECL_WINCLEAN(Am_Image_Array_Data)
+  AM_WRAPPER_DATA_DECL(Am_Image_Array)
+  AM_DECL_WINCLEAN(Am_Image_Array_Data)
 public:
   Am_Image_Array_Data ();
   Am_Image_Array_Data (Am_Image_Array_Data* proto);

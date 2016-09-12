@@ -41,7 +41,7 @@ Am_Define_Method(Am_Text_Check_Legal_Method, Am_Text_Abort_Or_Stop_Code,
        <<std::endl <<std::flush;
 #endif
   if (!ok) {
-    Am_POP_UP_ERROR_WINDOW("Sorry, could not parse `" << str << "' as a "
+    AM_POP_UP_ERROR_WINDOW("Sorry, could not parse `" << str << "' as a "
 			   << Am_Get_Type_Name(old_value.type));
     return Am_TEXT_ABORT_AND_RESTORE;
   }
@@ -68,7 +68,7 @@ Am_Define_Method(Am_Text_Check_Legal_Method, Am_Text_Abort_Or_Stop_Code,
        <<std::endl <<std::flush;
 #endif
   if (!ok) {
-    Am_POP_UP_ERROR_WINDOW("Sorry, could not parse `" << str
+    AM_POP_UP_ERROR_WINDOW("Sorry, could not parse `" << str
 			   << "' as a list of "
 			   << Am_Get_Type_Name(first_val.type));
     return Am_TEXT_ABORT_AND_RESTORE;

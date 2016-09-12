@@ -22,7 +22,7 @@
 ////////////
 // Am_Cursor
 
-Am_WRAPPER_IMPL(Am_Cursor)
+AM_WRAPPER_IMPL(Am_Cursor)
 
 Am_Cursor::Am_Cursor ()
 {
@@ -55,7 +55,7 @@ Am_Cursor Am_Default_Cursor;
 //////////////////
 // Am_Cursor_Data::Am_Wrapper
 
-Am_WRAPPER_DATA_IMPL(Am_Cursor, (this))
+AM_WRAPPER_DATA_IMPL(Am_Cursor, (this))
 
 // default constructor
 Am_Cursor_Data::Am_Cursor_Data () :
@@ -176,7 +176,7 @@ HCURSOR Am_Cursor_Data::WinCursor (HINSTANCE hinst)
 }
 
 #ifdef USE_WINCLEANER
-Am_IMPL_WINCLEAN_FORWRAPPER(Am_Cursor_Data)
+AM_IMPL_WINCLEAN_FORWRAPPER(Am_Cursor_Data)
 
 BOOL Am_Cursor_Data::WinHasRes () const
 {

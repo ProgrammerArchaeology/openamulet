@@ -13,5 +13,5 @@
 #include <amulet/symbol_table.h>
 
 #ifndef OA_VERSION
-	Am_IMPL_MAP(CStr2Int, const char*, (0L), int, -1)
+	AM_IMPL_MAP(CStr2Int, const char*, (0L), int, -1)
 #endif

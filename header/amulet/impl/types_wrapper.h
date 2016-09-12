@@ -67,7 +67,7 @@ class _OA_DL_CLASSIMPORT Am_Wrapper : public Am_Registered_Type
 // Definition of the Wrapper Macros //
 //////////////////////////////////////
 
-#define Am_WRAPPER_DATA_DECL(Type_name)                  \
+#define AM_WRAPPER_DATA_DECL(Type_name)                  \
    public:                                               \
     Am_Wrapper* Make_Unique ();                          \
     bool operator== (const Am_Wrapper& test_value);        \
@@ -80,7 +80,7 @@ class _OA_DL_CLASSIMPORT Am_Wrapper : public Am_Registered_Type
    private:                                              \
     _OA_DL_MEMBERIMPORT static Am_ID_Tag id;
 
-#define Am_WRAPPER_DATA_IMPL_NO_ID(Type_name, create_args)     \
+#define AM_WRAPPER_DATA_IMPL_NO_ID(Type_name, create_args)     \
 Type_name##_Data* Type_name##_Data::Narrow (Am_Wrapper* value) \
 {                                                              \
   if (value && (value->ID () == id))                           \
@@ -118,16 +118,16 @@ Am_Wrapper* Type_name##_Data::Make_Unique ()                   \
   }                                                            \
 }
 
-#define Am_WRAPPER_DATA_IMPL(Type_name, create_args) \
-Am_WRAPPER_DATA_IMPL_NO_ID (Type_name, create_args)  \
+#define AM_WRAPPER_DATA_IMPL(Type_name, create_args) \
+AM_WRAPPER_DATA_IMPL_NO_ID (Type_name, create_args)  \
 Am_ID_Tag Type_name##_Data::id = Am_Get_Unique_ID_Tag (DSTR(#Type_name), \
                                               Am_WRAPPER_TYPE);
 
-#define Am_WRAPPER_DATA_IMPL_ID(Type_name, create_args, in_id) \
-Am_WRAPPER_DATA_IMPL_NO_ID (Type_name, create_args)            \
+#define AM_WRAPPER_DATA_IMPL_ID(Type_name, create_args, in_id) \
+AM_WRAPPER_DATA_IMPL_NO_ID (Type_name, create_args)            \
 Am_ID_Tag Type_name##_Data::id = Am_Get_Unique_ID_Tag (DSTR(#Type_name), in_id);
 
-#define Am_WRAPPER_DECL(Type_name)                    \
+#define AM_WRAPPER_DECL(Type_name)                    \
  public:                                              \
   Type_name (const Type_name&);                       \
   Type_name (const Am_Value&);                        \
@@ -149,7 +149,7 @@ Am_ID_Tag Type_name##_Data::id = Am_Get_Unique_ID_Tag (DSTR(#Type_name), in_id);
   _OA_DL_MEMBERIMPORT void Println() const;				      \
   Type_name##_Data* data;
 
-#define Am_WRAPPER_IMPL(Type_name)                                  \
+#define AM_WRAPPER_IMPL(Type_name)                                  \
 Type_name::Type_name (const Type_name& prev)                        \
 {                                                                   \
   data = prev.data;                                                 \

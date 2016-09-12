@@ -26,7 +26,7 @@
 // Am_Point_Array_Data  (defined in gemW_points.h)
 // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_IMPL (Am_Point_Array)
+AM_WRAPPER_IMPL (Am_Point_Array)
 
 Am_Point_Array::Am_Point_Array (Am_Point_List pl)
 {
@@ -82,7 +82,7 @@ void Am_Point_Array::Translate (int offset_x, int offset_y)
 // Am_Point_Array_Data constructors must set refs=1
 //////
 
-Am_WRAPPER_DATA_IMPL (Am_Point_Array, (this))
+AM_WRAPPER_DATA_IMPL (Am_Point_Array, (this))
 
 Am_Point_Array_Data::Am_Point_Array_Data (Am_Point_Array_Data *proto)
 {

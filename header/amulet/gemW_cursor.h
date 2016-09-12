@@ -6,8 +6,8 @@
 class Am_Cursor_Data : public Am_Wrapper
 {
 friend class Am_Cursor;
-	Am_WRAPPER_DATA_DECL(Am_Cursor)
-	Am_DECL_WINCLEAN(Am_Cursor_Data)
+	AM_WRAPPER_DATA_DECL(Am_Cursor)
+	AM_DECL_WINCLEAN(Am_Cursor_Data)
 public:
 	Am_Cursor_Data ();
 	Am_Cursor_Data (Am_Cursor_Data* proto);

@@ -5,7 +5,7 @@
 class Am_String_Data;
 
 class _OA_DL_CLASSIMPORT Am_String {
-  Am_WRAPPER_DECL (Am_String)
+  AM_WRAPPER_DECL (Am_String)
  public:
   Am_String ()
   { data = (0L); }

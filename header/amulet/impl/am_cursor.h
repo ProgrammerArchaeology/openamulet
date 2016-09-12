@@ -5,7 +5,7 @@ class Am_Cursor_Data;
 
 class _OA_DL_CLASSIMPORT Am_Cursor 
 {
-  Am_WRAPPER_DECL(Am_Cursor)
+  AM_WRAPPER_DECL(Am_Cursor)
 
 public:
   // creators

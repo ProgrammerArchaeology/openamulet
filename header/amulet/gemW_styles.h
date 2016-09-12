@@ -11,8 +11,8 @@ int WinPolyFillMode (Am_Fill_Poly_Flag fpflag);
 class Am_Style_Data : public Am_Wrapper
 {
 friend class Am_Style;
-  Am_WRAPPER_DATA_DECL(Am_Style)
-  Am_DECL_WINCLEAN(Am_Style_Data)
+  AM_WRAPPER_DATA_DECL(Am_Style)
+  AM_DECL_WINCLEAN(Am_Style_Data)
 public:
   void Print (std::ostream& os) const;
   Am_Style_Data (Am_Style_Data* proto);

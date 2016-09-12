@@ -9,7 +9,7 @@ enum Am_Location_Value_Control { Am_LOCATION_OK, Am_LOCATION_RELATIVE,
 class Am_Inter_Location_Data;
   
 class _OA_DL_CLASSIMPORT Am_Inter_Location {
-  Am_WRAPPER_DECL (Am_Inter_Location)
+  AM_WRAPPER_DECL (Am_Inter_Location)
 public:
   Am_Inter_Location (); // empty
   Am_Inter_Location (bool as_line, Am_Object ref_obj,

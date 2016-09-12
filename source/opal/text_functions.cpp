@@ -751,14 +751,14 @@ int KeyComp (Am_Input_Char key1, Am_Input_Char key2)
   return key1 != key2;
 }
 
-Am_DECL_MAP (in_char2text_op, Am_Input_Char, Am_Text_Edit_Operation*)
+AM_DECL_MAP (in_char2text_op, Am_Input_Char, Am_Text_Edit_Operation*)
 
-Am_IMPL_MAP (in_char2text_op, Am_Input_Char, Am_Input_Char (-1),
+AM_IMPL_MAP (in_char2text_op, Am_Input_Char, Am_Input_Char (-1),
 	     Am_Text_Edit_Operation*, 0)
 
 class Am_Edit_Translation_Table_Data : public Am_Wrapper {
   // declares Copy, Release, operator==, ID, Narrow, Am_Edit_Translation_ID, id
-  Am_WRAPPER_DATA_DECL(Am_Edit_Translation_Table)
+  AM_WRAPPER_DATA_DECL(Am_Edit_Translation_Table)
  public:
   Am_Edit_Translation_Table_Data ()
   {
@@ -780,7 +780,7 @@ class Am_Edit_Translation_Table_Data : public Am_Wrapper {
   Am_Map_in_char2text_op *table;
 };
 
-Am_WRAPPER_IMPL (Am_Edit_Translation_Table)
+AM_WRAPPER_IMPL (Am_Edit_Translation_Table)
      
 Am_Edit_Translation_Table::Am_Edit_Translation_Table ()
 {
@@ -845,7 +845,7 @@ void Am_Edit_Translation_Table::Remove (Am_Input_Char ic)
   data->Remove (ic);
 }
 
-Am_WRAPPER_DATA_IMPL (Am_Edit_Translation_Table, (this))
+AM_WRAPPER_DATA_IMPL (Am_Edit_Translation_Table, (this))
 
 void Am_Edit_Translation_Table_Data::Add (Am_Input_Char ic,
 					  Am_Text_Edit_Operation *func)

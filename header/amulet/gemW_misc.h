@@ -37,8 +37,8 @@ inline void strdel(char* s)
 #define	HISHORT(X)	((SHORT)(HIWORD(X)))
 
 #ifndef OA_VERSION
-Am_DECL_MAP(Ptr2Ptr, void*, void*)
+AM_DECL_MAP(Ptr2Ptr, void*, void*)
 #endif
-Am_DECL_LIST(Long, long, 0L)
+AM_DECL_LIST(Long, long, 0L)
 
 #endif

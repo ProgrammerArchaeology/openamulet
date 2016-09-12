@@ -2,4 +2,4 @@
 
 #include UNIV_LST__H
 
-Am_IMPL_LIST(Ptr, void*, (0L))
+AM_IMPL_LIST(Ptr, void*, (0L))

@@ -3,7 +3,7 @@ class Am_Time_Data;
 
 class _OA_DL_CLASSIMPORT Am_Time 
 {
-  Am_WRAPPER_DECL (Am_Time)
+  AM_WRAPPER_DECL (Am_Time)
 public:
   Am_Time();  // defaults to 0 delta time
   Am_Time (unsigned long milliseconds); // starting number of msec

@@ -31,7 +31,7 @@ static bool fix_classifier (Matrix avgcov, Matrix invavgcov);
 // Am_Gesture_Trainer
 // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_IMPL (Am_Gesture_Trainer)
+AM_WRAPPER_IMPL (Am_Gesture_Trainer)
 
 //////
 // Am_Gesture_Trainer constructors
@@ -288,7 +288,7 @@ std::istream&  operator>> (std::istream& s, Am_Gesture_Trainer& tr)
 // Am_Gesture_Trainer_Data
 // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_DATA_IMPL (Am_Gesture_Trainer, (this))
+AM_WRAPPER_DATA_IMPL (Am_Gesture_Trainer, (this))
 
 Am_Gesture_Trainer_Data::Am_Gesture_Trainer_Data ()
 {

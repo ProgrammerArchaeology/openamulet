@@ -10,7 +10,7 @@
 class Am_Time_Data : public Am_Wrapper
 {
   friend class Am_Time;
-  Am_WRAPPER_DATA_DECL(Am_Time)
+  AM_WRAPPER_DATA_DECL(Am_Time)
 public:
   void Print (std::ostream& out) const;
   Am_Time_Data() { time = 0; }

@@ -23,7 +23,7 @@ class Am_List_Item;
 
 //internal
 class _OA_DL_CLASSIMPORT Am_Assoc_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL(Am_Assoc)
+  AM_WRAPPER_DATA_DECL(Am_Assoc)
  public:
   Am_Value value_1, value_2;
 
@@ -40,7 +40,7 @@ class _OA_DL_CLASSIMPORT Am_Assoc_Data : public Am_Wrapper {
 
 //use this for association lists
 class _OA_DL_CLASSIMPORT Am_Assoc {
-  Am_WRAPPER_DECL (Am_Assoc)
+  AM_WRAPPER_DECL (Am_Assoc)
  public:
   
   Am_Assoc () {data = (0L);}
@@ -64,7 +64,7 @@ _OA_DL_IMPORT std::ostream& operator<< (std::ostream& os, const Am_Assoc& list);
 
 
 class _OA_DL_CLASSIMPORT Am_Value_List {
-  Am_WRAPPER_DECL (Am_Value_List)
+  AM_WRAPPER_DECL (Am_Value_List)
  public:
   Am_Value_List ();
 

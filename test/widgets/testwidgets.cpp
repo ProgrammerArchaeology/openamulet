@@ -20,7 +20,7 @@
 #include REGISTRY__H
 #include MISC__H
 #include WIDGETS_ADVANCED__H  //**TEMP for accelerator_inter
-#include STR_STREAM__H  // strstream is needed for Am_POP_UP_ERROR_WINDOW which is tested below
+#include STR_STREAM__H  // strstream is needed for AM_POP_UP_ERROR_WINDOW which is tested below
 
 Am_Slot_Key R0 = Am_Register_Slot_Name ("R0");
 Am_Slot_Key R1 = Am_Register_Slot_Name ("R1");
@@ -1229,7 +1229,7 @@ void load_bitmap() {
 
 //// testing dialog boxes
 Am_Define_Method(Am_Object_Method, void, do_pop_up_error, (Am_Object /*cmd*/)){
-  Am_POP_UP_ERROR_WINDOW("This is an error message");
+  AM_POP_UP_ERROR_WINDOW("This is an error message");
 }
 
 Am_Define_Method(Am_Object_Method, void, do_pop_up_alert, (Am_Object /*cmd*/)){

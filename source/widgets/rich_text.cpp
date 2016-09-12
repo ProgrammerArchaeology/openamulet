@@ -198,7 +198,7 @@ new Am_Initializer(DSTR("Rich_Text"), Am_Rich_Text_Initialize, 6.0);
  *  Am_Rich_Text
  *****************************************************************************/
 
-Am_WRAPPER_IMPL( Am_Rich_Text )
+AM_WRAPPER_IMPL( Am_Rich_Text )
 
 /******************************************************************************
  *  Am_Rich_Text
@@ -289,7 +289,7 @@ Am_Rich_Text::Cursor_Move(
  *  Am_Rich_Text_Data
  *****************************************************************************/
 
-Am_WRAPPER_DATA_IMPL( Am_Rich_Text, (this) )
+AM_WRAPPER_DATA_IMPL( Am_Rich_Text, (this) )
 
 /******************************************************************************
  *  Am_Rich_Text_Data
@@ -889,7 +889,7 @@ Am_Rich_Text_Data::operator==(const Am_Rich_Text_Data& /* inText */ ) const
  *  Am_Text_Mark
  *****************************************************************************/
 
-Am_WRAPPER_IMPL( Am_Text_Mark )
+AM_WRAPPER_IMPL( Am_Text_Mark )
 
 /******************************************************************************
  *  Am_Text_Mark
@@ -980,7 +980,7 @@ Am_Text_Mark::Set_Next(
  *  Am_Text_Mark_Data
  *****************************************************************************/
 
-Am_WRAPPER_DATA_IMPL( Am_Text_Mark, (this) )
+AM_WRAPPER_DATA_IMPL( Am_Text_Mark, (this) )
 
 /******************************************************************************
  *  Am_Text_Mark_Data
@@ -1308,7 +1308,7 @@ Am_Text_Mark_Data::operator<=(
  *  Am_Text_Cursor
  *****************************************************************************/
 
-Am_WRAPPER_IMPL( Am_Text_Cursor )
+AM_WRAPPER_IMPL( Am_Text_Cursor )
 
 /******************************************************************************
  *  Am_Text_Cursor
@@ -1335,7 +1335,7 @@ Am_Text_Cursor::Am_Text_Cursor(
  *  Am_Text_Cursor_Data
  *****************************************************************************/
 
-Am_WRAPPER_DATA_IMPL( Am_Text_Cursor, (this) )
+AM_WRAPPER_DATA_IMPL( Am_Text_Cursor, (this) )
 
 /******************************************************************************
  *  Am_Text_Cursor_Data
@@ -1467,7 +1467,7 @@ Am_Text_Cursor_Data::operator<=(
  *  Am_Text_Viewing_Context
  *****************************************************************************/
 
-Am_WRAPPER_IMPL( Am_Text_Viewing_Context )
+AM_WRAPPER_IMPL( Am_Text_Viewing_Context )
 
 /******************************************************************************
  *  Am_Text_Viewing_Context
@@ -1521,7 +1521,7 @@ Am_Text_Viewing_Context::Draw(
  *  Am_Text_Viewing_Context_Data
  *****************************************************************************/
 
-Am_WRAPPER_DATA_IMPL( Am_Text_Viewing_Context, (this) )
+AM_WRAPPER_DATA_IMPL( Am_Text_Viewing_Context, (this) )
 
 /******************************************************************************
  *  Am_Text_Viewing_Context_Data

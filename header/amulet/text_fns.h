@@ -105,7 +105,7 @@ _OA_DL_IMPORT extern void Am_Insert_Cut_Buffer_At_Cursor (Am_Object text);
 class Am_Edit_Translation_Table_Data;
 
 class Am_Edit_Translation_Table {
-  Am_WRAPPER_DECL (Am_Edit_Translation_Table)
+  AM_WRAPPER_DECL (Am_Edit_Translation_Table)
  public:
   Am_Edit_Translation_Table ();
 

@@ -22,8 +22,8 @@ typedef OpenAmulet::Map_Iterator_Int2Str Am_MapIterator_Int2Str;
 #else
 #include <amulet/univ_map.h>			// for data-structure test
 	// Map int -> char*
-	Am_DECL_MAP(Int2Str, int, char*)
-	Am_IMPL_MAP(Int2Str, int	, 0		, char*	, (0L))
+	AM_DECL_MAP(Int2Str, int, char*)
+	AM_IMPL_MAP(Int2Str, int	, 0		, char*	, (0L))
 #endif
 
 //  This file contains code to time various functions in Amulet. It is used to 

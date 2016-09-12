@@ -16,7 +16,7 @@ struct Am_Point {
     x(0), y(0) { };
 };
 
-#define Am_DECL_WINNARROW(Name)                                    \
+#define AM_DECL_WINNARROW(Name)                                    \
 public:                                                            \
 	static Am_Win##Name* Narrow (void* item)                       \
 	{                                                              \

@@ -31,7 +31,7 @@ MahalanobisDistance(register Vector v, register Vector u, register Matrix sigma)
 // Am_Gesture_Classifier
 // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_IMPL (Am_Gesture_Classifier)
+AM_WRAPPER_IMPL (Am_Gesture_Classifier)
 
 //////
 // Am_Gesture_Classifier constructors
@@ -226,7 +226,7 @@ lFail:
 // Am_Gesture_Classifier_Data
 // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_DATA_IMPL (Am_Gesture_Classifier, (this))
+AM_WRAPPER_DATA_IMPL (Am_Gesture_Classifier, (this))
 
 Am_Gesture_Classifier_Data::Am_Gesture_Classifier_Data ()
 {

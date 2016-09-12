@@ -16,7 +16,7 @@
 		return KeyComp((const void*)key1, (const void*)key2);
 	}
 
-	Am_DECL_MAP(Style2MotifRec, Am_Wrapper*, Computed_Colors_Record_Data*)
+	AM_DECL_MAP(Style2MotifRec, Am_Wrapper*, Computed_Colors_Record_Data*)
 #else
 	typedef OpenAmulet::Map<Am_Wrapper*, Computed_Colors_Record_Data*> 	Am_Map_Style2MotifRec;
 	typedef OpenAmulet::Map_Iterator<Am_Map_Style2MotifRec> 				Am_Map_Iterator_Style2MotifRec;

@@ -165,7 +165,7 @@ Am_Input_Char create_input_char_from_code (short code,
 }
 
 #ifndef OA_VERSION
-Am_IMPL_MAP(int2int, int, 0, int, 0)
+AM_IMPL_MAP(int2int, int, 0, int, 0)
 #endif
 static Am_Map_int2int *am_key_map = 0;
 

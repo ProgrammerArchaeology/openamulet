@@ -9,7 +9,7 @@
 
 // Template macros for Amulet lists
 
-#define Am_DECL_LIST(Name, ItemType, NullItem)                       \
+#define AM_DECL_LIST(Name, ItemType, NullItem)                       \
 struct Am_Elem_##Name {                                              \
   ItemType m_item;                                                   \
   Am_Elem_##Name* m_next;                                            \
@@ -58,7 +58,7 @@ inline ItemType Am_List_##Name::GetAt (Am_Position pos) const        \
 { return pos? ((Am_Elem_##Name*)pos) -> m_item : NullItem; }
 
 
-#define Am_IMPL_LIST(Name, ItemType, NullItem)                       \
+#define AM_IMPL_LIST(Name, ItemType, NullItem)                       \
 Am_List_##Name::~Am_List_##Name ()                                   \
 {                                                                    \
   Clear();                                                           \

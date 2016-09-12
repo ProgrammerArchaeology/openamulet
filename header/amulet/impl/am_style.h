@@ -14,7 +14,7 @@ class Am_Style_Data;
 
 class _OA_DL_CLASSIMPORT Am_Style
  {
-  Am_WRAPPER_DECL (Am_Style)
+  AM_WRAPPER_DECL (Am_Style)
 public:
     //creators
   Am_Style ();

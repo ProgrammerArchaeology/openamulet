@@ -137,7 +137,7 @@ void Am_Rich_Text_Initialize();
 
 class _OA_DL_CLASSIMPORT Am_Rich_Text
 {
-  Am_WRAPPER_DECL( Am_Rich_Text )
+  AM_WRAPPER_DECL( Am_Rich_Text )
 public:
   Am_Rich_Text();
   Am_Rich_Text( const char* inString );
@@ -173,7 +173,7 @@ typedef struct SStyleRunInfo
 
 class Am_Rich_Text_Data : public Am_Wrapper
 {
-  Am_WRAPPER_DATA_DECL( Am_Rich_Text )
+  AM_WRAPPER_DATA_DECL( Am_Rich_Text )
 
 public:
 
@@ -353,7 +353,7 @@ private:
 
 class _OA_DL_CLASSIMPORT Am_Text_Mark
 {
-  Am_WRAPPER_DECL( Am_Text_Mark )
+  AM_WRAPPER_DECL( Am_Text_Mark )
 public:
   Am_Text_Mark();
   Am_Text_Mark( const Am_Rich_Text* inText,
@@ -385,7 +385,7 @@ private:
 
 class Am_Text_Mark_Data : public Am_Wrapper
 {
-  Am_WRAPPER_DATA_DECL( Am_Text_Mark )
+  AM_WRAPPER_DATA_DECL( Am_Text_Mark )
   friend class Am_Text_Fragment;
 public:
 
@@ -509,7 +509,7 @@ private:
 
 class _OA_DL_CLASSIMPORT Am_Text_Cursor
 {
-  Am_WRAPPER_DECL( Am_Text_Cursor )
+  AM_WRAPPER_DECL( Am_Text_Cursor )
 public:
   Am_Text_Cursor();
   Am_Text_Cursor( const Am_Rich_Text* inText,
@@ -526,7 +526,7 @@ public:
 
 class Am_Text_Cursor_Data : public Am_Text_Mark_Data
 {                                    /* subclass of Am_WRAPPER */
-  Am_WRAPPER_DATA_DECL( Am_Text_Cursor )
+  AM_WRAPPER_DATA_DECL( Am_Text_Cursor )
 public:
 
   Am_Text_Cursor_Data( Am_Text_Cursor_Data* inProto );
@@ -591,7 +591,7 @@ private:
 /*
 
 class Am_Rich_Text_Region {
-  Am_WRAPPER_DECL (Am_Rich_Text_Region)
+  AM_WRAPPER_DECL (Am_Rich_Text_Region)
 public:
   Am_Rich_Text_Region ();
     //create a new region based on another region.
@@ -678,7 +678,7 @@ public:
 
 class _OA_DL_CLASSIMPORT Am_Text_Viewing_Context
 {
-  Am_WRAPPER_DECL( Am_Text_Viewing_Context )
+  AM_WRAPPER_DECL( Am_Text_Viewing_Context )
 public:
   Am_Text_Viewing_Context();
   void Set_Text( const Am_Rich_Text& inText );
@@ -700,7 +700,7 @@ const unsigned long kLinesInBlock = 16;
 
 class Am_Text_Viewing_Context_Data : public Am_Wrapper
 {
-  Am_WRAPPER_DATA_DECL( Am_Text_Viewing_Context )
+  AM_WRAPPER_DATA_DECL( Am_Text_Viewing_Context )
 public:
   Am_Text_Viewing_Context_Data();
   Am_Text_Viewing_Context_Data( Am_Text_Viewing_Context_Data* inProto );

@@ -31,7 +31,7 @@
 	class Am_Symbol_Table
 #else
 	#include UNIV_MAP__H
-	Am_DECL_MAP(CStr2Int, const char*, int)
+	AM_DECL_MAP(CStr2Int, const char*, int)
 	class Am_Symbol_Table : public Am_Map_CStr2Int
 #endif
 {

@@ -104,10 +104,10 @@ void test_symbol_table ()
 int HashValue (double key, int size);      // |
 int KeyComp (double key1, double key2);    // |
                                            //  > this can be in a .h file
-Am_DECL_MAP(Dbl2Int, double, int)          // |
-Am_DECL_MAP(Int2Dbl, int, double)          // |
+AM_DECL_MAP(Dbl2Int, double, int)          // |
+AM_DECL_MAP(Int2Dbl, int, double)          // |
 
-Am_IMPL_MAP(Int2Dbl, int, 0, double, 0.0)
+AM_IMPL_MAP(Int2Dbl, int, 0, double, 0.0)
 
 #include <limits.h> //for INT_MAX
 
@@ -130,9 +130,9 @@ int KeyComp (double key1, double key2)
 	return (key1 > key2)? 1 : (key1 == key2)? 0 : -1;
 }
 
-Am_IMPL_MAP(Dbl2Int, double, 0.0, int, 0)
+AM_IMPL_MAP(Dbl2Int, double, 0.0, int, 0)
 
-Am_DECL_TABLE(Int2Dbl, Dbl2Int, int, double)  // this can be in a .h file
+AM_DECL_TABLE(Int2Dbl, Dbl2Int, int, double)  // this can be in a .h file
 
 void test_custom_maps()
 {

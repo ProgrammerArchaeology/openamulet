@@ -8,7 +8,7 @@ class Am_Style;
 
 class _OA_DL_CLASSIMPORT Am_Image_Array
 {
-  Am_WRAPPER_DECL (Am_Image_Array)
+  AM_WRAPPER_DECL (Am_Image_Array)
 public:
   // creators
   // create by read from file

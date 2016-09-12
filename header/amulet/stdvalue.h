@@ -15,7 +15,7 @@
 #include "amulet/impl/types_wrapper.h"
 
 class _OA_DL_CLASSIMPORT Am_Double_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Am_Double)
+  AM_WRAPPER_DATA_DECL (Am_Double)
  public:
   bool operator== (const Am_Double_Data& test_value) const;
   operator double () const;
@@ -26,7 +26,7 @@ class _OA_DL_CLASSIMPORT Am_Double_Data : public Am_Wrapper {
 };
 
 class Am_String_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Am_String)
+  AM_WRAPPER_DATA_DECL (Am_String)
  public:
   bool operator== (const Am_String_Data& test_value) const;
   bool operator== (const char* test_value) const;

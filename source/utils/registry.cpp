@@ -29,24 +29,24 @@
 	#include UNIV_MAP__H
 
 	// Map (hash table) int -> void*
-	Am_DECL_MAP(Int2Ptr, int, void*)
+	AM_DECL_MAP(Int2Ptr, int, void*)
 
 	// Map int -> char*
-	Am_DECL_MAP(Int2Str, int, char*)
+	AM_DECL_MAP(Int2Str, int, char*)
 
 	// Map void* -> int
-	Am_DECL_MAP(Ptr2Int, void*, int)
+	AM_DECL_MAP(Ptr2Int, void*, int)
 
 	// Map char* -> int
-	Am_DECL_MAP(Str2Int, char*, int)
+	AM_DECL_MAP(Str2Int, char*, int)
 
 	// Table (double hash table) int <-> char*
-	Am_DECL_TABLE(Int2Str, Str2Int, int, char*)
+	AM_DECL_TABLE(Int2Str, Str2Int, int, char*)
 
-	Am_IMPL_MAP(Int2Ptr, int	, 0		, void*	, (0L))
-	Am_IMPL_MAP(Int2Str, int	, 0		, char*	, (0L))
-	Am_IMPL_MAP(Ptr2Int, void*	, (0L)	, int	, 0)
-	Am_IMPL_MAP(Str2Int, char*	, (0L)	, int	, 0)
+	AM_IMPL_MAP(Int2Ptr, int	, 0		, void*	, (0L))
+	AM_IMPL_MAP(Int2Str, int	, 0		, char*	, (0L))
+	AM_IMPL_MAP(Ptr2Int, void*	, (0L)	, int	, 0)
+	AM_IMPL_MAP(Str2Int, char*	, (0L)	, int	, 0)
 #endif
 
 // only compile this in if we're debugging.
@@ -170,15 +170,15 @@ const Am_Registered_Type* Am_No_Registry_Entry = (0L);
 	typedef OpenAmulet::Table<Am_Registry_Key, const Am_Registered_Type*, Am_Registry_Key_less<Am_Registry_Key> > Am_Table_Registry;
 #else
 	// the forward mapping (key to entry)
-	Am_DECL_MAP (Registry, Am_Registry_Key, const Am_Registered_Type*)
-	Am_IMPL_MAP (Registry, Am_Registry_Key, Am_No_Registry_Key, const Am_Registered_Type*, Am_No_Registry_Entry);
+	AM_DECL_MAP (Registry, Am_Registry_Key, const Am_Registered_Type*)
+	AM_IMPL_MAP (Registry, Am_Registry_Key, Am_No_Registry_Key, const Am_Registered_Type*, Am_No_Registry_Entry);
 
 	// the reverse mapping (entry back to key)
-	Am_DECL_MAP (Registry_Reverse, const Am_Registered_Type*, Am_Registry_Key)
-	Am_IMPL_MAP (Registry_Reverse, const Am_Registered_Type*, Am_No_Registry_Entry, Am_Registry_Key, Am_No_Registry_Key);
+	AM_DECL_MAP (Registry_Reverse, const Am_Registered_Type*, Am_Registry_Key)
+	AM_IMPL_MAP (Registry_Reverse, const Am_Registered_Type*, Am_No_Registry_Entry, Am_Registry_Key, Am_No_Registry_Key);
 
 	// the bidirectional table
-	Am_DECL_TABLE (Registry, Registry_Reverse, Am_Registry_Key, const Am_Registered_Type*);
+	AM_DECL_TABLE (Registry, Registry_Reverse, Am_Registry_Key, const Am_Registered_Type*);
 #endif
 
 

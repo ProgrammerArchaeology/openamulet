@@ -50,7 +50,7 @@ static char stipples[][4] = {
 // Am_Image_Array
 // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_IMPL (Am_Image_Array)
+AM_WRAPPER_IMPL (Am_Image_Array)
 
 /////
 // Am_Image_Array constructors.
@@ -104,7 +104,7 @@ Am_Image_Array Am_No_Image;
 // Am_Image_Array_Data constructors
 ////
 
-Am_WRAPPER_DATA_IMPL (Am_Image_Array, (this))
+AM_WRAPPER_DATA_IMPL (Am_Image_Array, (this))
 
 Am_Image_Array_Data* Am_Image_Array_Data::list = (0L);
 

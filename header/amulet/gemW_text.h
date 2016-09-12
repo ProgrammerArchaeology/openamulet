@@ -5,8 +5,8 @@
 
 class Am_Font_Data : public Am_Wrapper {
 friend class Am_Font;
-	Am_WRAPPER_DATA_DECL(Am_Font)
-	Am_DECL_WINCLEAN(Am_Font_Data)
+	AM_WRAPPER_DATA_DECL(Am_Font)
+	AM_DECL_WINCLEAN(Am_Font_Data)
 public:
   void Print (std::ostream& os) const;
 	Am_Font_Data (Am_Font_Data* proto);

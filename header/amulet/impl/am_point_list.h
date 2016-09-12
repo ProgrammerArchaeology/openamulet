@@ -8,7 +8,7 @@ class Am_Point_Item;
 class Am_Point_List_Data;
 
 class _OA_DL_CLASSIMPORT Am_Point_List {
-  Am_WRAPPER_DECL (Am_Point_List)
+  AM_WRAPPER_DECL (Am_Point_List)
 public:
   Am_Point_List ();
 //  Am_Point_List (Am_Point_List&);

@@ -57,7 +57,7 @@ class Am_Time;
 	// defined in univ_map.cpp
 	typedef	OpenAmulet::Map_Int2Int	Am_Map_int2int;
 #else
-	Am_DECL_MAP(int2int, int, int)
+	AM_DECL_MAP(int2int, int, int)
 #endif
 
 void Am_Init_Key_Map();

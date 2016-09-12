@@ -234,7 +234,7 @@ bool is_light(Am_Style &color) {
   else return false;
 }
 
-Am_WRAPPER_DATA_IMPL (Computed_Colors_Record, (this))
+AM_WRAPPER_DATA_IMPL (Computed_Colors_Record, (this))
 
 std::ostream& operator<< (std::ostream& os, Computed_Colors_Record_Data& rec) {
   rec.Print(os);
@@ -296,7 +296,7 @@ Computed_Colors_Record_Data::
 //////// define the hash table from a style to a Computed_Colors_Record //////
 
 #ifndef OA_VERSION
-Am_IMPL_MAP (Style2MotifRec, Am_Wrapper*, (0L),
+AM_IMPL_MAP (Style2MotifRec, Am_Wrapper*, (0L),
              Computed_Colors_Record_Data*, (0L))
 #endif
 

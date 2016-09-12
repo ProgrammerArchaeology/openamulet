@@ -25,7 +25,7 @@
 // Am_Style
 // // // // // // // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_IMPL (Am_Style);
+AM_WRAPPER_IMPL (Am_Style);
 
 const char* Am_Style::Get_Color_Name () const
 {
@@ -231,7 +231,7 @@ Am_Style Am_Off_Bits (static_cast<Am_Wrapper*>(&Am_Off_Bits_Data));
 // Am_Style_Data
 // // // // // // // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_DATA_IMPL (Am_Style, (this));
+AM_WRAPPER_DATA_IMPL (Am_Style, (this));
 
 Am_Style_Data* Am_Style_Data::list = (0L);
 

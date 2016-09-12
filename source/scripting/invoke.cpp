@@ -109,7 +109,7 @@ void internal_invokegen_ok(Am_Object &valinvokegen_window) {
     create_cmd = valinvokegen_window.Get_Object(Am_ALL_FROM_COMMAND_WIDGET)
       .Get(Am_VALUES, Am_RETURN_ZERO_ON_ERROR);
     if (!create_cmd.Valid()) {
-      Am_POP_UP_ERROR_WINDOW("Command not filled in.");
+      AM_POP_UP_ERROR_WINDOW("Command not filled in.");
       return; //don't finish with this window
     }
     proto = Am_All_Values_From_Command_Placeholder;
@@ -254,7 +254,7 @@ Am_Define_Method(Am_Object_Method, void, am_load_current_command_from_main,
   Am_Value_List new_cmds = undo_db.Get_Object(Am_UNDO_SCROLL_GROUP)
     .Get(Am_VALUE);
   if (new_cmds.Length() != 1) {
-    Am_POP_UP_ERROR_WINDOW("Select exactly one command in the main undo dialog box");
+    AM_POP_UP_ERROR_WINDOW("Select exactly one command in the main undo dialog box");
     return;
   }
   Am_Object sel_cmd = new_cmds.Get_First();
@@ -358,13 +358,13 @@ Am_Define_Method(Am_Object_Method, void, am_invoke_ok, (Am_Object cmd)) {
       Am_Object other_cmd =
 	Am_Check_Accelerator_Char_For_Window(accel_char, window);
       if (other_cmd.Valid() && other_cmd != script_execute_command) {
-	Am_POP_UP_ERROR_WINDOW("Accelerator " << accel_char
+	AM_POP_UP_ERROR_WINDOW("Accelerator " << accel_char
 			       << " already in use by " << other_cmd);
 	return; //don't make the window invisible if invalid
       }
     }
     else {
-      Am_POP_UP_ERROR_WINDOW("To attach to accelerator, need to fill in key");
+      AM_POP_UP_ERROR_WINDOW("To attach to accelerator, need to fill in key");
       return; //don't make the window invisible if invalid
     }
   }
@@ -376,7 +376,7 @@ Am_Define_Method(Am_Object_Method, void, am_invoke_ok, (Am_Object cmd)) {
   Am_Object match_command = invoke_window.Get(Am_INVOKE_MATCH_COMMAND);
   if (before_after.Valid()) {
     if (!match_command.Valid()) {
-      Am_POP_UP_ERROR_WINDOW(
+      AM_POP_UP_ERROR_WINDOW(
 	     "For before/after command, need to use \"Load\" button.");
       return; //don't make the window invisible if invalid
     }
@@ -765,7 +765,7 @@ bool am_install_match_command(Am_Object &match_command,
  std::cout << "Found widget " << widget << " for " << orig_command
        <<std::endl <<std::flush;
   if (command.Peek(Am_REGISTER_COMMAND).Valid()) {
-    Am_POP_UP_ERROR_WINDOW("Sorry, invoking on ANY command not implemented");
+    AM_POP_UP_ERROR_WINDOW("Sorry, invoking on ANY command not implemented");
     return false;
   }
   match_command.Set(Am_WIDGET_FOR_COMMAND, widget);

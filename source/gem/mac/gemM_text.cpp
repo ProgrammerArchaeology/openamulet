@@ -24,7 +24,7 @@
 // Fonts
 // // // // // // // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_IMPL (Am_Font);
+AM_WRAPPER_IMPL (Am_Font);
 
 Am_Font::Am_Font (const char *the_name)
 {
@@ -80,7 +80,7 @@ void Am_Font::Get(Am_String& font_name, Am_Font_Family_Flag &f,
 // Utility functions
 // // // // // // // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_DATA_IMPL(Am_Font, (this))
+AM_WRAPPER_DATA_IMPL(Am_Font, (this))
 
 void Am_Font_Data::Get_Values (Am_Font_Family_Flag& f,
 							   bool& is_bold,

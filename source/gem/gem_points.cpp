@@ -30,7 +30,7 @@ class Am_Point_Item {
 };
 
 class Am_Point_List_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Am_Point_List)
+  AM_WRAPPER_DATA_DECL (Am_Point_List)
  public:
   Am_Point_List_Data ();
   Am_Point_List_Data (Am_Point_List_Data* proto);
@@ -58,7 +58,7 @@ class Am_Point_List_Data : public Am_Wrapper {
 // (with .5 rounding up to 1) 
 inline int round(float f) { return (int)floor(f + 0.5); }
 
-Am_WRAPPER_DATA_IMPL (Am_Point_List, (this))
+AM_WRAPPER_DATA_IMPL (Am_Point_List, (this))
 
 Am_Point_List_Data::Am_Point_List_Data ()
 {
@@ -306,10 +306,10 @@ Am_Point_List::Am_Point_List (float *ar, int size)
 }
 
 /////////////////////////////////////////////////////////////////////
-//////// BEGIN Specialized Am_WRAPPER_IMPL
-//////// This code was manually instantiated from Am_WRAPPER_IMPL,
+//////// BEGIN Specialized AM_WRAPPER_IMPL
+//////// This code was manually instantiated from AM_WRAPPER_IMPL,
 //////// adding the "item" field to constructors and assignment ops.
-//////// Please keep it up-to-date with respect to Am_WRAPPER_IMPL.
+//////// Please keep it up-to-date with respect to AM_WRAPPER_IMPL.
 ////////////////////////////////////////////////////////////////////
 Am_Point_List::Am_Point_List (const Am_Point_List& prev)
 {
@@ -409,7 +409,7 @@ Am_Value_Type Am_Point_List::Type_ID ()
   return Am_Point_List_Data::Am_Point_List_Data_ID ();
 }
 /////////////////////////////////////////////////////////////////////
-//////// END Specialized Am_WRAPPER_IMPL
+//////// END Specialized AM_WRAPPER_IMPL
 /////////////////////////////////////////////////////////////////////
      
 bool Am_Point_List::operator== (const Am_Point_List& test_value) const

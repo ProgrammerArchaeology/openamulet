@@ -174,29 +174,29 @@ typedef OpenAmulet::Map<Wrapper_Holder, int>			Am_Map_References;
 typedef OpenAmulet::Map_Iterator<Am_Map_References>		Am_MapIterator_References;
 
 #else
-Am_DECL_MAP (Loader, const char*, Am_Load_Method)
-Am_IMPL_MAP (Loader, const char*, (0L), Am_Load_Method, Am_No_Load_Method)
+AM_DECL_MAP (Loader, const char*, Am_Load_Method)
+AM_IMPL_MAP (Loader, const char*, (0L), Am_Load_Method, Am_No_Load_Method)
 
-Am_DECL_MAP (Saver, Am_ID_Tag, Am_Save_Method)
-Am_IMPL_MAP (Saver, Am_ID_Tag, Am_NONE, Am_Save_Method, Am_No_Save_Method)
+AM_DECL_MAP (Saver, Am_ID_Tag, Am_Save_Method)
+AM_IMPL_MAP (Saver, Am_ID_Tag, Am_NONE, Am_Save_Method, Am_No_Save_Method)
 
-Am_DECL_MAP (Prototypes, Name_Num, Wrapper_Holder)
-Am_IMPL_MAP (Prototypes, Name_Num, Name_Num (), Wrapper_Holder, No_Wrapper)
+AM_DECL_MAP (Prototypes, Name_Num, Wrapper_Holder)
+AM_IMPL_MAP (Prototypes, Name_Num, Name_Num (), Wrapper_Holder, No_Wrapper)
 
-Am_DECL_MAP (Names, Wrapper_Holder, Name_Num)
-Am_IMPL_MAP (Names, Wrapper_Holder, No_Wrapper, Name_Num, Name_Num ())
+AM_DECL_MAP (Names, Wrapper_Holder, Name_Num)
+AM_IMPL_MAP (Names, Wrapper_Holder, No_Wrapper, Name_Num, Name_Num ())
 
-Am_DECL_MAP (Wrappers, int, Wrapper_Holder)
-Am_IMPL_MAP (Wrappers, int, -1, Wrapper_Holder, No_Wrapper)
+AM_DECL_MAP (Wrappers, int, Wrapper_Holder)
+AM_IMPL_MAP (Wrappers, int, -1, Wrapper_Holder, No_Wrapper)
 
-Am_DECL_MAP (References, Wrapper_Holder, int)
-Am_IMPL_MAP (References, Wrapper_Holder, No_Wrapper, int, -1)
+AM_DECL_MAP (References, Wrapper_Holder, int)
+AM_IMPL_MAP (References, Wrapper_Holder, No_Wrapper, int, -1)
 
 #endif
 
 class Am_Load_Save_Context_Data : public Am_Wrapper
 {
-	Am_WRAPPER_DATA_DECL(Am_Load_Save_Context)
+	AM_WRAPPER_DATA_DECL(Am_Load_Save_Context)
 
 	public:
 		Am_Load_Save_Context_Data();
@@ -222,9 +222,9 @@ class Am_Load_Save_Context_Data : public Am_Wrapper
 		int counter;
 };
 
-Am_WRAPPER_DATA_IMPL (Am_Load_Save_Context, (this))
+AM_WRAPPER_DATA_IMPL (Am_Load_Save_Context, (this))
 
-// This ctor is called as a result of including Am_WRAPPER_DECL(Am_Load_Save_Context)
+// This ctor is called as a result of including AM_WRAPPER_DECL(Am_Load_Save_Context)
 // in class Am_Load_Save_Context, which declares the data-member 'data' of type
 // Am_Load_Save_Context_Data.
 Am_Load_Save_Context_Data::Am_Load_Save_Context_Data()
@@ -283,7 +283,7 @@ Am_Load_Save_Context_Data::~Am_Load_Save_Context_Data()
 	delete(references);
 }
 
-Am_WRAPPER_IMPL(Am_Load_Save_Context)
+AM_WRAPPER_IMPL(Am_Load_Save_Context)
 
 void Am_Load_Save_Context::Register_Prototype(const char* name, Am_Wrapper* value)
 {
@@ -718,29 +718,29 @@ typedef OpenAmulet::Map<Wrapper_Holder, int>			Am_Map_References;
 typedef OpenAmulet::Map_Iterator<Am_Map_References>		Am_MapIterator_References;
 
 #else
-Am_DECL_MAP (Loader, const char*, Am_Load_Method)
-Am_IMPL_MAP (Loader, const char*, (0L), Am_Load_Method, Am_No_Load_Method)
+AM_DECL_MAP (Loader, const char*, Am_Load_Method)
+AM_IMPL_MAP (Loader, const char*, (0L), Am_Load_Method, Am_No_Load_Method)
 
-Am_DECL_MAP (Saver, Am_ID_Tag, Am_Save_Method)
-Am_IMPL_MAP (Saver, Am_ID_Tag, Am_NONE, Am_Save_Method, Am_No_Save_Method)
+AM_DECL_MAP (Saver, Am_ID_Tag, Am_Save_Method)
+AM_IMPL_MAP (Saver, Am_ID_Tag, Am_NONE, Am_Save_Method, Am_No_Save_Method)
 
-Am_DECL_MAP (Prototypes, Name_Num, Wrapper_Holder)
-Am_IMPL_MAP (Prototypes, Name_Num, Name_Num (), Wrapper_Holder, No_Wrapper)
+AM_DECL_MAP (Prototypes, Name_Num, Wrapper_Holder)
+AM_IMPL_MAP (Prototypes, Name_Num, Name_Num (), Wrapper_Holder, No_Wrapper)
 
-Am_DECL_MAP (Names, Wrapper_Holder, Name_Num)
-Am_IMPL_MAP (Names, Wrapper_Holder, No_Wrapper, Name_Num, Name_Num ())
+AM_DECL_MAP (Names, Wrapper_Holder, Name_Num)
+AM_IMPL_MAP (Names, Wrapper_Holder, No_Wrapper, Name_Num, Name_Num ())
 
-Am_DECL_MAP (Wrappers, int, Wrapper_Holder)
-Am_IMPL_MAP (Wrappers, int, -1, Wrapper_Holder, No_Wrapper)
+AM_DECL_MAP (Wrappers, int, Wrapper_Holder)
+AM_IMPL_MAP (Wrappers, int, -1, Wrapper_Holder, No_Wrapper)
 
-Am_DECL_MAP (References, Wrapper_Holder, int)
-Am_IMPL_MAP (References, Wrapper_Holder, No_Wrapper, int, -1)
+AM_DECL_MAP (References, Wrapper_Holder, int)
+AM_IMPL_MAP (References, Wrapper_Holder, No_Wrapper, int, -1)
 
 #endif
 
 class Am_Load_Save_Context_Data : public Am_Wrapper
 {
-	Am_WRAPPER_DATA_DECL(Am_Load_Save_Context)
+	AM_WRAPPER_DATA_DECL(Am_Load_Save_Context)
 
 	public:
 		Am_Load_Save_Context_Data();
@@ -766,9 +766,9 @@ class Am_Load_Save_Context_Data : public Am_Wrapper
 		int counter;
 };
 
-Am_WRAPPER_DATA_IMPL (Am_Load_Save_Context, (this))
+AM_WRAPPER_DATA_IMPL (Am_Load_Save_Context, (this))
 
-// This ctor is called as a result of including Am_WRAPPER_DECL(Am_Load_Save_Context)
+// This ctor is called as a result of including AM_WRAPPER_DECL(Am_Load_Save_Context)
 // in class Am_Load_Save_Context, which declares the data-member 'data' of type
 // Am_Load_Save_Context_Data.
 Am_Load_Save_Context_Data::Am_Load_Save_Context_Data()
@@ -825,7 +825,7 @@ Am_Load_Save_Context_Data::~Am_Load_Save_Context_Data()
 	delete(references);
 }
 
-Am_WRAPPER_IMPL(Am_Load_Save_Context)
+AM_WRAPPER_IMPL(Am_Load_Save_Context)
 
 void Am_Load_Save_Context::Register_Prototype(const char* name, Am_Wrapper* value)
 {

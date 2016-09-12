@@ -575,7 +575,7 @@ class Font_Index
 class Am_Font_Data : public Am_Wrapper
 {
   friend class Am_Font;
-  Am_WRAPPER_DATA_DECL(Am_Font);
+  AM_WRAPPER_DATA_DECL(Am_Font);
  public:
   void Print (std::ostream& os) const;
   Am_Font_Data (Am_Font_Data* proto);
@@ -655,7 +655,7 @@ class Cursor_Item
 class Am_Cursor_Data : public Am_Wrapper
 {
   friend class Am_Cursor;
-  Am_WRAPPER_DATA_DECL(Am_Cursor);
+  AM_WRAPPER_DATA_DECL(Am_Cursor);
 
  public:
   // creators
@@ -732,7 +732,7 @@ class Bitmap_Item
 class Am_Image_Array_Data : public Am_Wrapper
 {
   friend class Am_Image_Array;
-  Am_WRAPPER_DATA_DECL(Am_Image_Array);
+  AM_WRAPPER_DATA_DECL(Am_Image_Array);
  public:
   Am_Image_Array_Data ();
   Am_Image_Array_Data (Am_Image_Array_Data* proto);
@@ -815,7 +815,7 @@ protected:
 class Am_Style_Data : public Am_Wrapper
 {
   friend class Am_Style;
-  Am_WRAPPER_DATA_DECL(Am_Style);
+  AM_WRAPPER_DATA_DECL(Am_Style);
  public:
   void Print (std::ostream& os) const;
 
@@ -901,7 +901,7 @@ class Am_Point_Array_Data : public Am_Wrapper
   friend class Am_Point_Array;
   // for direct access to XPoint representation
   friend class Am_Drawonable_Impl;
-  Am_WRAPPER_DATA_DECL(Am_Point_Array);
+  AM_WRAPPER_DATA_DECL(Am_Point_Array);
  public:
   Am_Point_Array_Data (Am_Point_Array_Data *proto);
   Am_Point_Array_Data (Am_Point_List pl, int offset_x, int offset_y);

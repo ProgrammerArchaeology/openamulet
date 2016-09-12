@@ -43,7 +43,7 @@
    -----------------------------------------------------------------------
    
    TO SUPPORT WITH A NEW COMPILER:
-   also when you change stuff below, be sure to change Am_POP_UP_ERROR_WINDOW
+   also when you change stuff below, be sure to change AM_POP_UP_ERROR_WINDOW
    in widgets.h too or it will not work
    
    bdk 6/15/97

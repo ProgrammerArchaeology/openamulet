@@ -31,7 +31,7 @@ class Am_List_Item : public Am_Value {
 };
 
 class Am_Value_List_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Am_Value_List)
+  AM_WRAPPER_DATA_DECL (Am_Value_List)
  public:
   Am_Value_List_Data ();
   Am_Value_List_Data (Am_Value_List_Data* proto);
@@ -50,7 +50,7 @@ class Am_Value_List_Data : public Am_Wrapper {
   Am_List_Item* tail;
 };
 
-Am_WRAPPER_DATA_IMPL_ID (Am_Value_List, (this), Am_VALUE_LIST)
+AM_WRAPPER_DATA_IMPL_ID (Am_Value_List, (this), Am_VALUE_LIST)
 
 Am_Value_List_Data::Am_Value_List_Data ()
 {
@@ -772,7 +772,7 @@ Am_Value_List Am_Value_List::Empty_List ()
 }
 
 //////////////////////////////////
-//Am_Value_List doesn't use Am_WRAPPER_IMPL, so repeat all the
+//Am_Value_List doesn't use AM_WRAPPER_IMPL, so repeat all the
 //printing functions here
 
 const char * Am_Value_List::To_String() const {
@@ -793,8 +793,8 @@ Am_Value_List Am_No_Value_List;
 
 ////////////////////////////////// Association Lists //////////////////////
 
-Am_WRAPPER_IMPL (Am_Assoc)
-Am_WRAPPER_DATA_IMPL (Am_Assoc, (this))
+AM_WRAPPER_IMPL (Am_Assoc)
+AM_WRAPPER_DATA_IMPL (Am_Assoc, (this))
 
 void Am_Assoc_Data::Print(std::ostream& out) const
 {

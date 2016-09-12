@@ -9,7 +9,7 @@
 
 // Template macros for Amulet maps, iterators and tables
 
-#define Am_DECL_MAP(Name, KeyType, ItemType)                         \
+#define AM_DECL_MAP(Name, KeyType, ItemType)                         \
 struct Am_Assoc_##Name {                                             \
   KeyType m_key;                                                     \
   ItemType m_item;                                                   \
@@ -69,7 +69,7 @@ class Am_MapIterator_##Name {                                        \
 
 #define Cast_Return_Type(x)	(x)	// GCC needs non-redundant cast
 
-#define Am_IMPL_MAP(Name, KeyType, NullKey, ItemType, NullItem)      \
+#define AM_IMPL_MAP(Name, KeyType, NullKey, ItemType, NullItem)      \
 /**/                                                                 \
 Am_Map_##Name::Am_Map_##Name (int size) : m_count(0)                 \
 {                                                                    \
@@ -256,7 +256,7 @@ void Am_MapIterator_##Name::NextTblEntry ()                          \
 }
 
 
-#define Am_DECL_TABLE(Name1, Name2, KeyType1, KeyType2)              \
+#define AM_DECL_TABLE(Name1, Name2, KeyType1, KeyType2)              \
 class Am_Table_##Name1;  /* needed for Solaris gcc for some reason */\
 class Am_Table_##Name1 :                                             \
 	public Am_Map_##Name1, public Am_Map_##Name2 {               \

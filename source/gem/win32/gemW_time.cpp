@@ -22,7 +22,7 @@
 
 #include "amulet/gemW_time.h"
 
-Am_WRAPPER_IMPL(Am_Time)
+AM_WRAPPER_IMPL(Am_Time)
 
 Am_Time Am_No_Time;
 
@@ -135,7 +135,7 @@ bool Am_Time::Is_Past () const
   return (*this < Now());
 }
 
-Am_WRAPPER_DATA_IMPL(Am_Time, (this))
+AM_WRAPPER_DATA_IMPL(Am_Time, (this))
 
 void Am_Time_Data::Print(std::ostream& os) const
 {

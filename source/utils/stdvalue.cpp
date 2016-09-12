@@ -14,7 +14,7 @@
 #include STDVALUE__H
 #include TYPES__H
 
-Am_WRAPPER_DATA_IMPL_ID (Am_Double, (value), Am_DOUBLE)
+AM_WRAPPER_DATA_IMPL_ID (Am_Double, (value), Am_DOUBLE)
 
 bool Am_Double_Data::operator== (const Am_Double_Data& test_value) const
 {
@@ -35,7 +35,7 @@ void Am_Double_Data::Print (std::ostream& out) const {
   out << value;
 }
   
-Am_WRAPPER_DATA_IMPL_ID (Am_String, (value), Am_STRING)
+AM_WRAPPER_DATA_IMPL_ID (Am_String, (value), Am_STRING)
 
 bool Am_String_Data::operator== (const Am_String_Data& test_value) const
 {

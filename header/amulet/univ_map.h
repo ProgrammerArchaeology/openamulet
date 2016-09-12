@@ -163,11 +163,11 @@
 //
 // **file my_map_int2dbl.h
 //	#include <amulet/univ_map.h>
-//	Am_DECL_MAP(Int2Dbl, int, double) //Name suffix, key type, value type
+//	AM_DECL_MAP(Int2Dbl, int, double) //Name suffix, key type, value type
 //
 // **file my_map_int2dbl.cc
 //	#include "my_map_int2dbl.h"
-//	Am_IMPL_MAP(Int2Dbl, int, 0, double, 0.0)
+//	AM_IMPL_MAP(Int2Dbl, int, 0, double, 0.0)
 //		//Name suffix, key type, null key, value type, null value
 //
 // That was it. You get the new map as class Am_Map_Int2Dbl and the matching
@@ -183,7 +183,7 @@
 //	#include "univ_map.h"
 //	int HashValue (double key, int size);
 //	int KeyComp (double key1, double key2);
-//	Am_DECL_MAP(Dbl2Int, double, int)
+//	AM_DECL_MAP(Dbl2Int, double, int)
 //
 // **file my_map_dbl2int.cc
 //	#include "my_map_dbl2int.h"
@@ -199,7 +199,7 @@
 //	  return (key1 > key2)? 1 : (key1 == key2)? 0 : -1;
 //	}
 //
-//	Am_IMPL_MAP(Dbl2Int, double, 0.0, int, 0)
+//	AM_IMPL_MAP(Dbl2Int, double, 0.0, int, 0)
 //
 // Having these two maps, you can define the corresponding table.
 //
@@ -208,7 +208,7 @@
 // **file my_tbl_int2dbl.h
 //	#include "my_map_int2dbl.h"
 //	#include "my_map_dbl2int.h"
-//	Am_DECL_TABLE(Int2Dbl, Dbl2Int, int, double)
+//	AM_DECL_TABLE(Int2Dbl, Dbl2Int, int, double)
 //
 // No .cc file is needed. You get class Am_Table_Int2Dbl.
 //

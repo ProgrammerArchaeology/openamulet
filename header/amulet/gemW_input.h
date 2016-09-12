@@ -6,7 +6,7 @@
 
 //#pragma pack()			  
 #ifndef OA_VERSION
-Am_DECL_MAP(Int2Int, int, int)
+AM_DECL_MAP(Int2Int, int, int)
 #endif
 
 #include <windows.h> //virtual scan codes

@@ -343,7 +343,7 @@ extern void Set_Drawable_Backpointer (WindowRef a_mac_win, Am_Drawonable_Impl* d
 
 class Am_Font_Data : public Am_Wrapper {
 friend class Am_Font;
-  Am_WRAPPER_DATA_DECL(Am_Font)
+  AM_WRAPPER_DATA_DECL(Am_Font)
 public:
   Am_Font_Data (Am_Font_Data* proto);
   Am_Font_Data (const char* the_name);
@@ -388,7 +388,7 @@ protected:
 class Am_Cursor_Data : public Am_Wrapper
 {
 friend class Am_Cursor;
-	Am_WRAPPER_DATA_DECL(Am_Cursor)
+	AM_WRAPPER_DATA_DECL(Am_Cursor)
 
 public:
 	// creators
@@ -417,7 +417,7 @@ protected:
 class Am_Image_Array_Data : public Am_Wrapper
 {
 friend class Am_Image_Array;
-	Am_WRAPPER_DATA_DECL(Am_Image_Array)
+	AM_WRAPPER_DATA_DECL(Am_Image_Array)
 public:
 	Am_Image_Array_Data ();
 	Am_Image_Array_Data (Am_Image_Array_Data* proto);
@@ -451,7 +451,7 @@ protected:
 class Am_Style_Data : public Am_Wrapper
 {
 friend class Am_Style;
-	Am_WRAPPER_DATA_DECL(Am_Style)
+	AM_WRAPPER_DATA_DECL(Am_Style)
 public:
 
 	Am_Style_Data (Am_Style_Data* proto);
@@ -511,7 +511,7 @@ class Am_Point_Array_Data : public Am_Wrapper {
 friend class Am_Point_Array;
 friend class Am_Drawonable_Impl; // for direct access to XPoint representation
 
-  Am_WRAPPER_DATA_DECL(Am_Point_Array)
+  AM_WRAPPER_DATA_DECL(Am_Point_Array)
 public:
   Am_Point_Array_Data (Am_Point_Array_Data *proto);
   Am_Point_Array_Data (Am_Point_List pl, int offset_x, int offset_y);
@@ -573,7 +573,7 @@ typedef struct {
 class Am_Time_Data : public Am_Wrapper
 {
   friend class Am_Time;
-  Am_WRAPPER_DATA_DECL(Am_Time)
+  AM_WRAPPER_DATA_DECL(Am_Time)
 public:
   Am_Time_Data() { time.tv_usec = 0; time.tv_sec = 0; }
   Am_Time_Data(Am_Time_Data* other) 

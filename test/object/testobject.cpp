@@ -464,7 +464,7 @@ Am_Define_No_Self_Formula (double, retdbl)
 int data_test;
 
 class Store_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Store)
+  AM_WRAPPER_DATA_DECL (Store)
  public:
   Store_Data (int in_datum)
   {
@@ -484,7 +484,7 @@ class Store_Data : public Am_Wrapper {
   int datum;
 };
 
-Am_WRAPPER_DATA_IMPL (Store, (this))
+AM_WRAPPER_DATA_IMPL (Store, (this))
 
 Am_Define_No_Self_Formula (const char*, retstr)
 {
@@ -596,7 +596,7 @@ void create_object (Am_Object self)
 
 class Am_Foo_Data;
 class Am_Foo {
-  Am_WRAPPER_DECL (Am_Foo)
+  AM_WRAPPER_DECL (Am_Foo)
  public:
   Am_Foo (int store);
   void Set (int store);
@@ -604,7 +604,7 @@ class Am_Foo {
 };
 
 class Am_Foo_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Am_Foo)
+  AM_WRAPPER_DATA_DECL (Am_Foo)
  public:
   Am_Foo_Data (int in_store)
   {
@@ -620,9 +620,9 @@ class Am_Foo_Data : public Am_Wrapper {
   int store;
 };
 
-Am_WRAPPER_DATA_IMPL (Am_Foo, (store))
+AM_WRAPPER_DATA_IMPL (Am_Foo, (store))
 
-Am_WRAPPER_IMPL (Am_Foo)
+AM_WRAPPER_IMPL (Am_Foo)
 
 Am_Foo::Am_Foo (int store)
 {

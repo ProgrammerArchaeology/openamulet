@@ -10,7 +10,7 @@
 // The Am_String procedures
 /////////////////////////////////////////////////////////////////
 
-Am_WRAPPER_IMPL (Am_String)
+AM_WRAPPER_IMPL (Am_String)
 
 Am_String Am_No_String;
 

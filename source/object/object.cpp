@@ -1129,7 +1129,7 @@ const Am_Value& Am_Object::Get (Am_Slot_Key key, Am_Slot_Flags flags) const
 }
 
 //////////////////////////////////
-//Am_Object doesn't use Am_WRAPPER_IMPL, so repeat all the
+//Am_Object doesn't use AM_WRAPPER_IMPL, so repeat all the
 //printing functions here
 
 const char * Am_Object::To_String() const {

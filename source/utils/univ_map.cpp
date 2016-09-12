@@ -19,10 +19,10 @@
 #include <stdlib.h>
 
 #ifndef OA_VERSION
-Am_IMPL_MAP(Int2Ptr, int	, 0		, void*	, (0L))
-Am_IMPL_MAP(Int2Str, int	, 0		, char*	, (0L))
-Am_IMPL_MAP(Ptr2Int, void*	, (0L)	, int	, 0)
-Am_IMPL_MAP(Str2Int, char*	, (0L)	, int	, 0)
+AM_IMPL_MAP(Int2Ptr, int	, 0		, void*	, (0L))
+AM_IMPL_MAP(Int2Str, int	, 0		, char*	, (0L))
+AM_IMPL_MAP(Ptr2Int, void*	, (0L)	, int	, 0)
+AM_IMPL_MAP(Str2Int, char*	, (0L)	, int	, 0)
 #endif
 
 #ifdef OA_VERSION

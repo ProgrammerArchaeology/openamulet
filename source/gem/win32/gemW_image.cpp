@@ -22,7 +22,7 @@
 /////////////////
 // Am_Image_Array
 
-Am_WRAPPER_IMPL (Am_Image_Array)
+AM_WRAPPER_IMPL (Am_Image_Array)
 
 // Am_Image_Array constructors.
 
@@ -129,7 +129,7 @@ void Am_Image_Array::Set_Hot_Spot (int x, int y)
 //////////////////////
 // Am_Image_Array_Data::Am_Wrapper
 
-Am_WRAPPER_DATA_IMPL(Am_Image_Array, (this))
+AM_WRAPPER_DATA_IMPL(Am_Image_Array, (this))
 
 // default constructor
 Am_Image_Array_Data::Am_Image_Array_Data () :
@@ -371,7 +371,7 @@ HBITMAP Am_Image_Array_Data::WinBitmap (HDC hdc)
 }
 
 #ifdef USE_WINCLEANER
-Am_IMPL_WINCLEAN_FORWRAPPER(Am_Image_Array_Data)
+AM_IMPL_WINCLEAN_FORWRAPPER(Am_Image_Array_Data)
 
 BOOL Am_Image_Array_Data::WinHasRes () const
 {

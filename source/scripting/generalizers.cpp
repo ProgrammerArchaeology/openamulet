@@ -229,14 +229,14 @@ bool get_value_from_chain (Am_Value &start_value,
     key = part_chain.Get();
     if (key < 0) { // then is slot name
       if (this_value.type != Am_OBJECT) {
-	Am_POP_UP_ERROR_WINDOW("Could not get slot " << -key
+	AM_POP_UP_ERROR_WINDOW("Could not get slot " << -key
 			       << " out of value " << this_value);
 	return false;
       }
       obj = this_value;
       v = obj.Peek(-key);
       if (!v.Exists()) {
-	Am_POP_UP_ERROR_WINDOW("Could not find value referenced as "
+	AM_POP_UP_ERROR_WINDOW("Could not find value referenced as "
 			       << part_chain << " from " << new_value
 			       << " using slot " << -key << " of " << obj);
 	return false;
@@ -252,12 +252,12 @@ bool get_value_from_chain (Am_Value &start_value,
 	list = this_value;
       }
       else {
-	Am_POP_UP_ERROR_WINDOW("Could not get index " << key
+	AM_POP_UP_ERROR_WINDOW("Could not get index " << key
 			       << " out of value " << this_value);
 	return false;
       }
       if (key >= list.Length()) {
-	Am_POP_UP_ERROR_WINDOW("Could not find value referenced as "
+	AM_POP_UP_ERROR_WINDOW("Could not find value referenced as "
 			       << part_chain << " from " << new_value
 			       << " using index " << key << " in list "
 			       << list);
@@ -279,7 +279,7 @@ Am_Define_Method(Am_Placeholder_Set_Value_Method, bool,
   Am_Slot_Key slot = (Am_Slot_Key)(int)ph.Get(Am_SLOT_FOR_VALUE);
   Am_Value v = new_cmd.Peek(slot);
   if (!v.Exists()) {
-    Am_POP_UP_ERROR_WINDOW("Can't get value from slot " <<
+    AM_POP_UP_ERROR_WINDOW("Can't get value from slot " <<
 			   Am_Get_Slot_Name(slot) << " of command " << 
 			   new_cmd.Get(Am_LABEL));
     return false;
@@ -398,7 +398,7 @@ bool Am_Handle_Placeholders_And_Call_Command(int cnt, Am_Object &cmd,
  
   if (replaced_obj_mod || replaced_value || replaced_create || selectdir) {
     if(!new_allowed_method.Call(cmd, new_obj_mod, new_value)) {
-      Am_POP_UP_ERROR_WINDOW("Can't execute command " << cnt
+      AM_POP_UP_ERROR_WINDOW("Can't execute command " << cnt
 			     << ". " << cmd.Get(Am_LABEL)
 			     << " on NEW objects  " << new_obj_mod
 			     << " with new value " << new_value
@@ -412,7 +412,7 @@ bool Am_Handle_Placeholders_And_Call_Command(int cnt, Am_Object &cmd,
   }
   else { // not on new objects
     if(!same_allowed_method.Call(cmd)) {
-      Am_POP_UP_ERROR_WINDOW("Can't execute command " << cnt
+      AM_POP_UP_ERROR_WINDOW("Can't execute command " << cnt
 			     << ". " << cmd.Get(Am_LABEL)
 			     << " on SAME; command object " << cmd);
       return false;
@@ -426,7 +426,7 @@ bool Am_Handle_Placeholders_And_Call_Command(int cnt, Am_Object &cmd,
   }
   if (Am_Beep_Happened) {
     Am_String s = am_gen_command_label(cmd);
-    Am_POP_UP_ERROR_WINDOW("Quitting due to Beep from command " << s
+    AM_POP_UP_ERROR_WINDOW("Quitting due to Beep from command " << s
 			   << "; command object " << cmd);
     return false;
   }
@@ -1567,7 +1567,7 @@ Am_Define_Method(Am_Object_Method, void, am_objgen_ok,
     create_cmd = objgen_window.Get_Object(Am_ALL_FROM_COMMAND_WIDGET)
       .Get(Am_VALUES, Am_RETURN_ZERO_ON_ERROR);
     if (!create_cmd.Valid()) {
-      Am_POP_UP_ERROR_WINDOW("Command not filled in for All Objects");
+      AM_POP_UP_ERROR_WINDOW("Command not filled in for All Objects");
       return; //don't finish with this window
     }
     Am_Value v = create_cmd.Get(Am_VALUE);
@@ -1576,7 +1576,7 @@ Am_Define_Method(Am_Object_Method, void, am_objgen_ok,
       if (obj_or_objects(v))
 	slot_for_value = (int)Am_OBJECT_MODIFIED;
       else {
-	Am_POP_UP_ERROR_WINDOW("Command's value is not an object.  Is: "
+	AM_POP_UP_ERROR_WINDOW("Command's value is not an object.  Is: "
 			       << v);
 	return; //don't finish with this window
       }
@@ -1589,12 +1589,12 @@ Am_Define_Method(Am_Object_Method, void, am_objgen_ok,
     create_cmd = objgen_window.Get_Object(Am_SOME_OBJECTS_WIDGET)
       .Get(Am_VALUES, Am_RETURN_ZERO_ON_ERROR);
     if (!create_cmd.Valid()) {
-      Am_POP_UP_ERROR_WINDOW("Command not filled in for The Object");
+      AM_POP_UP_ERROR_WINDOW("Command not filled in for The Object");
       return; //don't finish with this window
     }
     Am_Value v = create_cmd.Get(Am_VALUE);
     if (!obj_or_objects(v)) {
-      Am_POP_UP_ERROR_WINDOW("Command's value is not an object.  Is: "
+      AM_POP_UP_ERROR_WINDOW("Command's value is not an object.  Is: "
 			     << v);
       return; //don't finish with this window
     }
@@ -1670,10 +1670,10 @@ Am_Define_Method(Am_Object_Method, void, am_load_current_command,
 	 << " script_window " << script_window <<std::endl <<std::flush;
   Am_Value_List l=script_window.Get_Object(Am_UNDO_SCROLL_GROUP).Get(Am_VALUE);
   if (!l.Valid()) {
-   Am_POP_UP_ERROR_WINDOW("Select one script line in the Script Window first");
+   AM_POP_UP_ERROR_WINDOW("Select one script line in the Script Window first");
   }
   else if (l.Length() > 1) {
-   Am_POP_UP_ERROR_WINDOW("Select only one script line in the Script Window");
+   AM_POP_UP_ERROR_WINDOW("Select only one script line in the Script Window");
   }
   else {
     l.Start();
@@ -1711,12 +1711,12 @@ bool am_get_placeholder_from(Am_Value &current_val, Am_Object &ph) {
 	  Am_Object(val).Is_Instance_Of(Am_A_Placeholder)) {
 	ph = val;
 	if (found_reg) {
-	  Am_POP_UP_ERROR_WINDOW(
+	  AM_POP_UP_ERROR_WINDOW(
 "Not yet implemented to generalize when some are placeholders already");
 	  return false;
 	}
 	if (found_ph) {
-	  Am_POP_UP_ERROR_WINDOW(
+	  AM_POP_UP_ERROR_WINDOW(
 "Not yet implemented when contains more than one placeholder");
 	  return false;
 	}
@@ -1724,7 +1724,7 @@ bool am_get_placeholder_from(Am_Value &current_val, Am_Object &ph) {
       }
       else { //here, val isn't a placeholder
 	if (found_ph) {
-	  Am_POP_UP_ERROR_WINDOW(
+	  AM_POP_UP_ERROR_WINDOW(
 "Not yet implemented to generalize when some are placeholders already");
 	  return false;
 	}
@@ -1994,7 +1994,7 @@ bool set_location_window_from_val(Am_Object &locgen_window,
   current_val.Get_Location (as_line, ref_obj, a, b, c, d);
   bool growing = current_val.Get_Growing();
   if (as_line) {
-	  Am_POP_UP_ERROR_WINDOW(
+	  AM_POP_UP_ERROR_WINDOW(
 "Not yet implemented to generalize when as a line");
 	  return false;    
 	}
@@ -2175,7 +2175,7 @@ Am_Define_Method(Am_Object_Method, void, am_valgen_ok,
     create_cmd = valgen_window.Get_Object(Am_ALL_FROM_COMMAND_WIDGET)
       .Get(Am_VALUES, Am_RETURN_ZERO_ON_ERROR);
     if (!create_cmd.Valid()) {
-      Am_POP_UP_ERROR_WINDOW("Command not filled in.");
+      AM_POP_UP_ERROR_WINDOW("Command not filled in.");
       return; //don't finish with this window
     }
     proto = Am_All_Values_From_Command_Placeholder; break;
@@ -2339,14 +2339,14 @@ void Am_Pop_Up_Generalize_DB(Am_Object &script_window,
 				       script_window, sel_list);
     }
     else if (Am_Value_List::Test(value) && Am_Value_List(value).Length() > 1) {
-      Am_POP_UP_ERROR_WINDOW("Generalizing on List of Values not yet implemented.  Select one value in list.");
+      AM_POP_UP_ERROR_WINDOW("Generalizing on List of Values not yet implemented.  Select one value in list.");
     }
     else if (value.type == Am_OBJECT) {
       Am_Object obj = value;
       if (!obj.Is_Instance_Of(Am_A_Placeholder)) {
 	// not a placeholder
 	if (key == Am_VALUE) {
-	  Am_POP_UP_ERROR_WINDOW(
+	  AM_POP_UP_ERROR_WINDOW(
 		   "Can't generalize on Objects returned from commands.");
 	}
 	else 

@@ -42,7 +42,7 @@ BYTE WinFntFamily (Am_Font_Family_Flag amff)
 ///////////////
 // Am_Font_Data::Am_Wrapper
 
-Am_WRAPPER_DATA_IMPL(Am_Font, (this))
+AM_WRAPPER_DATA_IMPL(Am_Font, (this))
 
 Am_Font_Data::Am_Font_Data (Am_Font_Data* proto)
 {
@@ -158,7 +158,7 @@ HFONT Am_Font_Data::WinFont (HDC hdc)
 }
 
 #ifdef USE_WINCLEANER
-Am_IMPL_WINCLEAN_FORWRAPPER(Am_Font_Data)
+AM_IMPL_WINCLEAN_FORWRAPPER(Am_Font_Data)
 
 BOOL Am_Font_Data::WinHasRes () const
 {
@@ -179,7 +179,7 @@ BOOL Am_Font_Data::WinFreeRes ()
 //////////
 // Am_Font
 
-Am_WRAPPER_IMPL (Am_Font)
+AM_WRAPPER_IMPL (Am_Font)
 
 Am_Font::Am_Font (const char *the_name)
 {

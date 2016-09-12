@@ -28,7 +28,7 @@
 class Am_Feature_Vector_Data;
   
 class _OA_DL_CLASSIMPORT Am_Feature_Vector {
-  Am_WRAPPER_DECL (Am_Feature_Vector)
+  AM_WRAPPER_DECL (Am_Feature_Vector)
 public:
   Am_Feature_Vector (); // no points
   Am_Feature_Vector (Am_Point_List& pl);
@@ -68,7 +68,7 @@ class _OA_DL_CLASSIMPORT Am_Gesture_Classifier {
 friend std::ostream&  operator<< (std::ostream& s, Am_Gesture_Classifier& gc);
 friend std::istream&  operator>> (std::istream& s, Am_Gesture_Classifier& gc);
 
-  Am_WRAPPER_DECL (Am_Gesture_Classifier)
+  AM_WRAPPER_DECL (Am_Gesture_Classifier)
 public:
   Am_Gesture_Classifier (); // empty classifier
   Am_Gesture_Classifier (const char *filename); // read from file
@@ -90,7 +90,7 @@ class _OA_DL_CLASSIMPORT Am_Gesture_Trainer {
 friend std::ostream&  operator<< (std::ostream& s, Am_Gesture_Trainer& gc);
 friend std::istream&  operator>> (std::istream& s, Am_Gesture_Trainer& gc);
 
-  Am_WRAPPER_DECL (Am_Gesture_Trainer)
+  AM_WRAPPER_DECL (Am_Gesture_Trainer)
 public:
   Am_Gesture_Trainer (); // empty Trainer
   Am_Gesture_Trainer (const char *filename); // read from file

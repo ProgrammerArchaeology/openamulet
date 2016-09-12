@@ -40,7 +40,7 @@ inline double _hypot(double x, double y)
 // Am_Feature_Vector
 // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_IMPL (Am_Feature_Vector)
+AM_WRAPPER_IMPL (Am_Feature_Vector)
 
 Am_Feature_Vector::Am_Feature_Vector ()
 {
@@ -171,7 +171,7 @@ double *Am_Feature_Vector::Vector()
 // Am_Feature_Vector_Data
 // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_DATA_IMPL (Am_Feature_Vector, (this))
+AM_WRAPPER_DATA_IMPL (Am_Feature_Vector, (this))
 
 Am_Feature_Vector_Data::Am_Feature_Vector_Data ()
 {

@@ -34,8 +34,8 @@ protected:
 };
 
 class Am_WinRegion : public Am_Region {
-	Am_DECL_WINNARROW(Region)
-	Am_DECL_WINCLEAN(Am_WinRegion)
+	AM_DECL_WINNARROW(Region)
+	AM_DECL_WINCLEAN(Am_WinRegion)
 public:
 	Am_WinRegion ();
 	Am_WinRegion (int the_left, int the_top,

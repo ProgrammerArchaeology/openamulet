@@ -18,7 +18,7 @@ class Am_Point_Array_Data : public Am_Wrapper {
 friend class Am_Point_Array;
 friend class Am_WinDrawonable; // for direct access to POINT representation
 
-  Am_WRAPPER_DATA_DECL(Am_Point_Array)
+  AM_WRAPPER_DATA_DECL(Am_Point_Array)
 public:
   Am_Point_Array_Data (Am_Point_Array_Data *proto);
   Am_Point_Array_Data (Am_Point_List pl, int offset_x, int offset_y);

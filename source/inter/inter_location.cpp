@@ -37,7 +37,7 @@
 
 class Am_Inter_Location_Data : public Am_Wrapper
 {
-	Am_WRAPPER_DATA_DECL(Am_Inter_Location)
+	AM_WRAPPER_DATA_DECL(Am_Inter_Location)
 
 	public:
 		// empty
@@ -115,7 +115,7 @@ class Am_Inter_Location_Data : public Am_Wrapper
 		} data;
 };
 
-Am_WRAPPER_IMPL (Am_Inter_Location);
+AM_WRAPPER_IMPL (Am_Inter_Location);
 
 Am_Inter_Location Am_No_Location;
 
@@ -604,7 +604,7 @@ std::ostream& operator<< (std::ostream& os, Am_Inter_Location& loc) {
   return os;
 }
 
-Am_WRAPPER_DATA_IMPL (Am_Inter_Location, (this))
+AM_WRAPPER_DATA_IMPL (Am_Inter_Location, (this))
 
 void Am_Inter_Location_Data::Print (std::ostream& os) const {
   os << "(";

@@ -204,8 +204,8 @@ Am_Type_Support *type_type_support = new Am_Type_Type_Support_Class();
 	typedef OpenAmulet::Map<Am_Value_Type, Am_Type_Support*>	Am_Map_Support;
 	typedef OpenAmulet::Map_Iterator<Am_Map_Support>		Am_MapIterator_Support;
 #else
-	Am_DECL_MAP (Support, Am_Value_Type, Am_Type_Support*)
-	Am_IMPL_MAP (Support, Am_Value_Type, Am_NONE, Am_Type_Support*, (0L))
+	AM_DECL_MAP (Support, Am_Value_Type, Am_Type_Support*)
+	AM_IMPL_MAP (Support, Am_Value_Type, Am_NONE, Am_Type_Support*, (0L))
 #endif
 
 static Am_Map_Support * Support_Table;

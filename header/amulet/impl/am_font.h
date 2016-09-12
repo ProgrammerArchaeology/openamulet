@@ -6,7 +6,7 @@
 class Am_Font_Data;
 
 class _OA_DL_CLASSIMPORT Am_Font {
-  Am_WRAPPER_DECL (Am_Font)
+  AM_WRAPPER_DECL (Am_Font)
 public:
     //creators
   Am_Font (const char* the_name);

@@ -484,7 +484,7 @@ class Am_WinDrawonable : public Am_Drawonable
 		bool m_want_multi_window;
 
 	private:
-		Am_DECL_WINNARROW(Drawonable)
+		AM_DECL_WINNARROW(Drawonable)
 		friend std::ostream& operator<< (std::ostream& os, Am_Drawonable *d);
 };
 

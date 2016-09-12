@@ -214,7 +214,7 @@ HRGN Am_WinRegion::WinRegion ()
 }
 
 #ifdef USE_WINCLEANER
-Am_IMPL_WINCLEAN(Am_WinRegion)
+AM_IMPL_WINCLEAN(Am_WinRegion)
 
 BOOL Am_WinRegion::WinHasRes ()	const
 {

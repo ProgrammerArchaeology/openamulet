@@ -2,7 +2,7 @@
 
 class Computed_Colors_Record_Data : public Am_Wrapper
 {
-		Am_WRAPPER_DATA_DECL(Computed_Colors_Record)
+		AM_WRAPPER_DATA_DECL(Computed_Colors_Record)
 
 	public:
 		// CREATORS

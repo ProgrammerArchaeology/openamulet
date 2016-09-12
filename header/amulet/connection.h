@@ -61,12 +61,12 @@ extern Am_Marshall_Method	Am_No_Marshall_Method;
 #else
 	// Note the unsigned long type id is stored in machine byte order
 	// *NOT* network byte order.
-	Am_DECL_MAP (Marshall_Methods, Am_Value_Type, Am_Marshall_Method)
-	Am_DECL_MAP (Unmarshall_Methods, Am_Value_Type, Am_Unmarshall_Method)
+	AM_DECL_MAP (Marshall_Methods, Am_Value_Type, Am_Marshall_Method)
+	AM_DECL_MAP (Unmarshall_Methods, Am_Value_Type, Am_Unmarshall_Method)
 
 	// Types should always be the inverse of Net_IDs.
-	Am_DECL_MAP (Types, Am_Value, Am_Value_Type)
-	Am_DECL_MAP (Net_IDs, Am_Value_Type, Am_Value)
+	AM_DECL_MAP (Types, Am_Value, Am_Value_Type)
+	AM_DECL_MAP (Net_IDs, Am_Value_Type, Am_Value)
 #endif
 
 
@@ -90,11 +90,11 @@ typedef class connection_list_class
 
 class Am_Connection
 {
-  Am_WRAPPER_DECL (Am_Connection)
+  AM_WRAPPER_DECL (Am_Connection)
 public:
 
   Am_Connection(void);
-  // The destructor is declared by Am_WRAPPER_DECL (??)
+  // The destructor is declared by AM_WRAPPER_DECL (??)
 
   ///////////////////////////////////////////////////////
   // Static constructors

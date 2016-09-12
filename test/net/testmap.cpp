@@ -3,15 +3,15 @@
 #include <am_inc.h>
 #include TYPES__H
 
-Am_DECL_MAP(objstr, Am_Object, Am_String);
-Am_DECL_MAP(objpstr, Am_Object*, Am_String);
-Am_DECL_MAP(objchr, Am_Object, char *);
-Am_DECL_MAP(objpchr, Am_Object*, char*);
+AM_DECL_MAP(objstr, Am_Object, Am_String);
+AM_DECL_MAP(objpstr, Am_Object*, Am_String);
+AM_DECL_MAP(objchr, Am_Object, char *);
+AM_DECL_MAP(objpchr, Am_Object*, char*);
 
-Am_IMPL_MAP(objstr, Am_Object,  Am_No_Object, Am_String,  Am_No_String);
-Am_IMPL_MAP(objpstr, Am_Object*,  &Am_No_Object, Am_String,  Am_No_String);
-Am_IMPL_MAP(objchr, Am_Object, Am_No_Object, char *,  (0L));
-Am_IMPL_MAP(objpchr, Am_Object*,  &Am_No_Object,  char *,  (0L));
+AM_IMPL_MAP(objstr, Am_Object,  Am_No_Object, Am_String,  Am_No_String);
+AM_IMPL_MAP(objpstr, Am_Object*,  &Am_No_Object, Am_String,  Am_No_String);
+AM_IMPL_MAP(objchr, Am_Object, Am_No_Object, char *,  (0L));
+AM_IMPL_MAP(objpchr, Am_Object*,  &Am_No_Object,  char *,  (0L));
 
   Am_Map_objstr os;
   Am_Map_objpstr ops;

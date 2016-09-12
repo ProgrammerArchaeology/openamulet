@@ -21,7 +21,7 @@
 #include "amulet/gemW_input.h"
 
 #ifndef OA_VERSION
-Am_IMPL_MAP(Int2Int, int, 0, int, 0)
+AM_IMPL_MAP(Int2Int, int, 0, int, 0)
 #endif
 
 #pragma init_seg(lib)	   

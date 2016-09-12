@@ -23,7 +23,7 @@
 // Am_Cursor
 // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_IMPL (Am_Cursor)
+AM_WRAPPER_IMPL (Am_Cursor)
 
 /////
 // Am_Cursor constructors.
@@ -59,7 +59,7 @@ void Am_Cursor::Get_Size(int &width, int &height)
 Am_Cursor Am_Default_Cursor;
 
 /* functions for Am_Cursor_Data */
-Am_WRAPPER_DATA_IMPL (Am_Cursor, (this))
+AM_WRAPPER_DATA_IMPL (Am_Cursor, (this))
 
 Am_Cursor_Data* Am_Cursor_Data::list = (0L);
 

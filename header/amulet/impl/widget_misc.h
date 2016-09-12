@@ -19,7 +19,7 @@ _OA_DL_IMPORT extern Am_Input_Char Am_Default_Widget_Start_Char;
 
 _OA_DL_IMPORT void Am_Pop_Up_Error_Window(const char *error_string);
 
-#define Am_POP_UP_ERROR_WINDOW(error_string)     \
+#define AM_POP_UP_ERROR_WINDOW(error_string)     \
 { char line[250];                                \
   OSTRSTREAM_CONSTR (oss,line, 250, std::ios::out);   \
   oss << error_string << std::ends;                   \

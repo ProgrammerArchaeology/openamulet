@@ -5,7 +5,7 @@
 
 class Am_Object_Data : public Am_Wrapper
 {
-		Am_WRAPPER_DATA_DECL(Am_Object)
+		AM_WRAPPER_DATA_DECL(Am_Object)
 
 	public:
 		// CREATORS

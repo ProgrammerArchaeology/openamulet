@@ -33,9 +33,9 @@
 #define	Am_WINCLEAN_CONSTR(C)
 #define	Am_WINCLEAN_DESTR
 
-#define Am_DECL_WINCLEAN(C)
-#define Am_IMPL_WINCLEAN(C)
-#define Am_IMPL_WINCLEAN_FORWRAPPERS(C)
+#define AM_DECL_WINCLEAN(C)
+#define AM_IMPL_WINCLEAN(C)
+#define AM_IMPL_WINCLEAN_FORWRAPPERS(C)
 
 #else
 // do GDI reference counting
@@ -82,7 +82,7 @@ extern Am_WinCleaner g_cleaner; // the one & only global cleaner
 
 #define Am_WINCLEAN_FUNC(C)	Clean_##C
 
-#define Am_DECL_WINCLEAN(C)											 \
+#define AM_DECL_WINCLEAN(C)											 \
 	friend Am_WINCLEAN_FUNC(C) (void* item, Am_WinCleanAction act);	 \
 private:															 \
 	BOOL m_fUsedRes;												 \
@@ -94,7 +94,7 @@ protected:															 \
 	BOOL WinHasRes () const;										 \
 	BOOL WinFreeRes ();
 																	 
-#define Am_IMPL_WINCLEAN(C)											 \
+#define AM_IMPL_WINCLEAN(C)											 \
 BOOL Am_WINCLEAN_FUNC(C) (void* item, Am_WinCleanAction act)         \
 {                                                                    \
 	switch (act) {                                                   \
@@ -116,7 +116,7 @@ BOOL Am_WINCLEAN_FUNC(C) (void* item, Am_WinCleanAction act)         \
 	return FALSE;                                                    \
 }
 
-#define Am_IMPL_WINCLEAN_FORWRAPPER(C)								 \
+#define AM_IMPL_WINCLEAN_FORWRAPPER(C)								 \
 BOOL Am_WINCLEAN_FUNC(C) (void* item, Am_WinCleanAction act)         \
 {                                                                    \
 	switch (act) {                                                   \

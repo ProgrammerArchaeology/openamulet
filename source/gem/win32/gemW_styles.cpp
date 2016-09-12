@@ -150,7 +150,7 @@ void Am_Initialize_Color_Map ()
 ///////////
 // Am_Style
 
-Am_WRAPPER_IMPL(Am_Style)
+AM_WRAPPER_IMPL(Am_Style)
 
 Am_Style Am_No_Style;
 
@@ -368,7 +368,7 @@ void Am_Style::Add_Image(Am_Image_Array image)
 ////////////////
 // Am_Style_Data::Am_Wrapper
 
-Am_WRAPPER_DATA_IMPL(Am_Style, (this))
+AM_WRAPPER_DATA_IMPL(Am_Style, (this))
 
 #if _MSC_VER >= 1200
 	HBRUSH Am_Style_Data::hbrNullBrush	= reinterpret_cast<HBRUSH__*>(GetStockObject(NULL_BRUSH));
@@ -639,7 +639,7 @@ HPEN Am_Style_Data::WinPen (int emulate)
 }
 
 #ifdef USE_WINCLEANER
-Am_IMPL_WINCLEAN_FORWRAPPER(Am_Style_Data)
+AM_IMPL_WINCLEAN_FORWRAPPER(Am_Style_Data)
 
 BOOL Am_Style_Data::WinHasRes () const
 {

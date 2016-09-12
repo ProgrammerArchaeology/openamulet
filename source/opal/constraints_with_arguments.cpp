@@ -29,7 +29,7 @@
  */
 
 class Key_Store_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Key_Store)
+  AM_WRAPPER_DATA_DECL (Key_Store)
  public:
   Key_Store_Data (Am_Slot_Key in_key) : key(in_key)
     { }
@@ -43,7 +43,7 @@ class Key_Store_Data : public Am_Wrapper {
   Am_Slot_Key key;
 };
 
-Am_WRAPPER_DATA_IMPL (Key_Store, (this))
+AM_WRAPPER_DATA_IMPL (Key_Store, (this))
 
 static Am_Value same_as_procedure (Am_Object& self)
 {
@@ -85,7 +85,7 @@ Am_Formula Am_From_Owner (Am_Slot_Key key)
 }
 
 class Part_Key_Store_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Part_Key_Store)
+  AM_WRAPPER_DATA_DECL (Part_Key_Store)
  public:
   Part_Key_Store_Data (Am_Slot_Key in_part, Am_Slot_Key in_key)
     : part(in_part), key(in_key)
@@ -102,7 +102,7 @@ class Part_Key_Store_Data : public Am_Wrapper {
   Am_Slot_Key key;
 };
 
-Am_WRAPPER_DATA_IMPL (Part_Key_Store, (this))
+AM_WRAPPER_DATA_IMPL (Part_Key_Store, (this))
 
 static Am_Value from_part_procedure (Am_Object& self)
 {
@@ -139,7 +139,7 @@ Am_Formula Am_From_Sibling (Am_Slot_Key part, Am_Slot_Key key)
 }
 
 class Object_Key_Store_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Object_Key_Store)
+  AM_WRAPPER_DATA_DECL (Object_Key_Store)
  public:
   Object_Key_Store_Data (Am_Object in_object, Am_Slot_Key in_key)
     : object(in_object), key(in_key)
@@ -156,7 +156,7 @@ class Object_Key_Store_Data : public Am_Wrapper {
   Am_Slot_Key key;
 };
 
-Am_WRAPPER_DATA_IMPL (Object_Key_Store, (this))
+AM_WRAPPER_DATA_IMPL (Object_Key_Store, (this))
 
 static Am_Value from_object_procedure (Am_Object& /*self*/)
 {
@@ -176,7 +176,7 @@ Am_Formula Am_From_Object (Am_Object object, Am_Slot_Key key)
 }
 
 class Key_Offset_Store_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Key_Offset_Store)
+  AM_WRAPPER_DATA_DECL (Key_Offset_Store)
  public:
   Key_Offset_Store_Data (Am_Slot_Key in_key, int in_offset,
 			 float in_multiplier)
@@ -198,7 +198,7 @@ class Key_Offset_Store_Data : public Am_Wrapper {
   float multiplier;
 };
 
-Am_WRAPPER_DATA_IMPL (Key_Offset_Store, (this))
+AM_WRAPPER_DATA_IMPL (Key_Offset_Store, (this))
 
 inline void modify_value (Am_Value& value, int offset, float multiplier)
 {
@@ -265,7 +265,7 @@ Am_Formula Am_From_Owner (Am_Slot_Key key, int offset, float multiplier)
 }
 
 class Part_Key_Offset_Store_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Part_Key_Offset_Store)
+  AM_WRAPPER_DATA_DECL (Part_Key_Offset_Store)
  public:
   Part_Key_Offset_Store_Data (Am_Slot_Key in_part, Am_Slot_Key in_key,
 			      int in_offset, float in_multiplier)
@@ -288,7 +288,7 @@ class Part_Key_Offset_Store_Data : public Am_Wrapper {
   float multiplier;
 };
 
-Am_WRAPPER_DATA_IMPL (Part_Key_Offset_Store, (this))
+AM_WRAPPER_DATA_IMPL (Part_Key_Offset_Store, (this))
 
 static Am_Value offset_from_part_procedure (Am_Object& self)
 {
@@ -393,7 +393,7 @@ Am_Formula Am_Rest_Of_Height_Above (Am_Slot_Key sibling, int offset)
 }
 
 class Object_Key_Offset_Store_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Object_Key_Offset_Store)
+  AM_WRAPPER_DATA_DECL (Object_Key_Offset_Store)
  public:
   Object_Key_Offset_Store_Data (Am_Object in_object, Am_Slot_Key in_key,
 				int in_offset, float in_multiplier)
@@ -416,7 +416,7 @@ class Object_Key_Offset_Store_Data : public Am_Wrapper {
   float multiplier;
 };
 
-Am_WRAPPER_DATA_IMPL (Object_Key_Offset_Store, (this))
+AM_WRAPPER_DATA_IMPL (Object_Key_Offset_Store, (this))
 
 static Am_Value offset_from_object_procedure (Am_Object& /*self*/)
 {
@@ -447,7 +447,7 @@ Am_Formula Am_From_Object (Am_Object object, Am_Slot_Key key, int offset,
  */
 
 class Key_Store_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Key_Store)
+  AM_WRAPPER_DATA_DECL (Key_Store)
  public:
   Key_Store_Data (Am_Slot_Key in_key)
   {
@@ -466,7 +466,7 @@ class Key_Store_Data : public Am_Wrapper {
   Am_Slot_Key key;
 };
 
-Am_WRAPPER_DATA_IMPL (Key_Store, (this))
+AM_WRAPPER_DATA_IMPL (Key_Store, (this))
 
 static Am_Value same_as_procedure (Am_Object& self)
 {
@@ -508,7 +508,7 @@ Am_Formula Am_From_Owner (Am_Slot_Key key)
 }
 
 class Part_Key_Store_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Part_Key_Store)
+  AM_WRAPPER_DATA_DECL (Part_Key_Store)
  public:
   Part_Key_Store_Data (Am_Slot_Key in_part, Am_Slot_Key in_key)
   {
@@ -530,7 +530,7 @@ class Part_Key_Store_Data : public Am_Wrapper {
   Am_Slot_Key key;
 };
 
-Am_WRAPPER_DATA_IMPL (Part_Key_Store, (this))
+AM_WRAPPER_DATA_IMPL (Part_Key_Store, (this))
 
 static Am_Value from_part_procedure (Am_Object& self)
 {
@@ -567,7 +567,7 @@ Am_Formula Am_From_Sibling (Am_Slot_Key part, Am_Slot_Key key)
 }
 
 class Object_Key_Store_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Object_Key_Store)
+  AM_WRAPPER_DATA_DECL (Object_Key_Store)
  public:
   Object_Key_Store_Data (Am_Object in_object, Am_Slot_Key in_key)
   {
@@ -589,7 +589,7 @@ class Object_Key_Store_Data : public Am_Wrapper {
   Am_Slot_Key key;
 };
 
-Am_WRAPPER_DATA_IMPL (Object_Key_Store, (this))
+AM_WRAPPER_DATA_IMPL (Object_Key_Store, (this))
 
 static Am_Value from_object_procedure (Am_Object& /*self*/)
 {
@@ -609,7 +609,7 @@ Am_Formula Am_From_Object (Am_Object object, Am_Slot_Key key)
 }
 
 class Key_Offset_Store_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Key_Offset_Store)
+  AM_WRAPPER_DATA_DECL (Key_Offset_Store)
  public:
   Key_Offset_Store_Data (Am_Slot_Key in_key, int in_offset,
 			 float in_multiplier)
@@ -637,7 +637,7 @@ class Key_Offset_Store_Data : public Am_Wrapper {
   float multiplier;
 };
 
-Am_WRAPPER_DATA_IMPL (Key_Offset_Store, (this))
+AM_WRAPPER_DATA_IMPL (Key_Offset_Store, (this))
 
 inline void modify_value (Am_Value& value, int offset, float multiplier)
 {
@@ -704,7 +704,7 @@ Am_Formula Am_From_Owner (Am_Slot_Key key, int offset, float multiplier)
 }
 
 class Part_Key_Offset_Store_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Part_Key_Offset_Store)
+  AM_WRAPPER_DATA_DECL (Part_Key_Offset_Store)
  public:
   Part_Key_Offset_Store_Data (Am_Slot_Key in_part, Am_Slot_Key in_key,
 			      int in_offset, float in_multiplier)
@@ -735,7 +735,7 @@ class Part_Key_Offset_Store_Data : public Am_Wrapper {
   float multiplier;
 };
 
-Am_WRAPPER_DATA_IMPL (Part_Key_Offset_Store, (this))
+AM_WRAPPER_DATA_IMPL (Part_Key_Offset_Store, (this))
 
 static Am_Value offset_from_part_procedure (Am_Object& self)
 {
@@ -840,7 +840,7 @@ Am_Formula Am_Rest_Of_Height_Above (Am_Slot_Key sibling, int offset)
 }
 
 class Object_Key_Offset_Store_Data : public Am_Wrapper {
-  Am_WRAPPER_DATA_DECL (Object_Key_Offset_Store)
+  AM_WRAPPER_DATA_DECL (Object_Key_Offset_Store)
  public:
   Object_Key_Offset_Store_Data (Am_Object in_object, Am_Slot_Key in_key,
 				int in_offset, float in_multiplier)
@@ -871,7 +871,7 @@ class Object_Key_Offset_Store_Data : public Am_Wrapper {
   float multiplier;
 };
 
-Am_WRAPPER_DATA_IMPL (Object_Key_Offset_Store, (this))
+AM_WRAPPER_DATA_IMPL (Object_Key_Offset_Store, (this))
 
 static Am_Value offset_from_object_procedure (Am_Object& /*self*/)
 {

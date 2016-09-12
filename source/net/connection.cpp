@@ -109,10 +109,10 @@ Am_Marshall_Method Am_No_Marshall_Method;
 //Method maps
 
 #ifndef OA_VERSION
-	Am_IMPL_MAP(Unmarshall_Methods, Am_Value_Type, Am_NONE, Am_Unmarshall_Method, Am_No_Unmarshall_Method)
-	Am_IMPL_MAP(Marshall_Methods, Am_Value_Type, Am_NONE, Am_Marshall_Method, Am_No_Marshall_Method)
-	Am_IMPL_MAP(Types, Am_Value, Am_NONE, Am_Value_Type, Am_NONE)
-	Am_IMPL_MAP(Net_IDs, Am_Value_Type, Am_NONE, Am_Value, Am_NONE)
+	AM_IMPL_MAP(Unmarshall_Methods, Am_Value_Type, Am_NONE, Am_Unmarshall_Method, Am_No_Unmarshall_Method)
+	AM_IMPL_MAP(Marshall_Methods, Am_Value_Type, Am_NONE, Am_Marshall_Method, Am_No_Marshall_Method)
+	AM_IMPL_MAP(Types, Am_Value, Am_NONE, Am_Value_Type, Am_NONE)
+	AM_IMPL_MAP(Net_IDs, Am_Value_Type, Am_NONE, Am_Value, Am_NONE)
 #endif
 
 Am_Map_Unmarshall_Methods Am_Connection::Unmarshall_Methods;
@@ -177,7 +177,7 @@ Am_Object Am_Connection::Extract_Prototype(char * id_str)
 
 class Am_Connection_Data : public Am_Wrapper
 {
-  Am_WRAPPER_DATA_DECL (Am_Connection)
+  AM_WRAPPER_DATA_DECL (Am_Connection)
 
     friend class Am_Connection;
 public:
@@ -199,7 +199,7 @@ private:
 
 
 
-Am_WRAPPER_IMPL (Am_Connection)
+AM_WRAPPER_IMPL (Am_Connection)
 
 Am_Connection::Am_Connection(void)
 {
@@ -719,7 +719,7 @@ void Am_Connection::Set_Waiting_Flag(bool state)
 /////////////////////////////////////////////////////////////////
 // Am_Connection_Data Definitions
 
-Am_WRAPPER_DATA_IMPL (Am_Connection, (this))
+AM_WRAPPER_DATA_IMPL (Am_Connection, (this))
 
 Am_Connection_Data::Am_Connection_Data(void)
 {

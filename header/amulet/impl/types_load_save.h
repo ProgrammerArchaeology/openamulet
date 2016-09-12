@@ -31,7 +31,7 @@ class Am_Load_Save_Context_Data;
 // previously loaded or saved.
 class _OA_DL_CLASSIMPORT Am_Load_Save_Context
 {
-	Am_WRAPPER_DECL(Am_Load_Save_Context)
+	AM_WRAPPER_DECL(Am_Load_Save_Context)
 
 	public:
 		Am_Load_Save_Context()

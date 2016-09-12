@@ -545,7 +545,7 @@ bool icheck_max_min(Am_Value &result, long mini, long maxi, bool want_db,
 		    Am_Object &widget) {
   if (result.type != Am_LONG) {
     if (want_db) {
-      Am_POP_UP_ERROR_WINDOW("Value must be an integer (no '.' or 'e').");
+      AM_POP_UP_ERROR_WINDOW("Value must be an integer (no '.' or 'e').");
     }
     else Am_Beep(widget.Get(Am_WINDOW));
     return false;
@@ -553,7 +553,7 @@ bool icheck_max_min(Am_Value &result, long mini, long maxi, bool want_db,
   long result_int = result;
   if (result_int < mini || result_int > maxi) {
     if (want_db) {
-      Am_POP_UP_ERROR_WINDOW("Value must be between " << mini << " and "
+      AM_POP_UP_ERROR_WINDOW("Value must be between " << mini << " and "
 			     << maxi);
     }
     else Am_Beep(widget.Get(Am_WINDOW));
@@ -566,7 +566,7 @@ bool fcheck_max_min(Am_Value &result, float minf, float maxf, bool want_db,
   float result_float = result;
   if (result_float < minf || result_float > maxf) {
     if (want_db) {
-      Am_POP_UP_ERROR_WINDOW("Value must be between " << minf << " and "
+      AM_POP_UP_ERROR_WINDOW("Value must be between " << minf << " and "
 			     << maxf);
     }
     else Am_Beep(widget.Get(Am_WINDOW));
@@ -624,7 +624,7 @@ Am_Define_Method(Am_Text_Check_Legal_Method, Am_Text_Abort_Or_Stop_Code,
   bool want_db = (bool)widget.Get(Am_USE_ERROR_DIALOG);
   if (!ok) {
     if (want_db)
-      Am_POP_UP_ERROR_WINDOW("Value must be a number.")
+      AM_POP_UP_ERROR_WINDOW("Value must be a number.")
     else Am_Beep(widget.Get(Am_WINDOW));
     return Am_TEXT_ABORT_AND_RESTORE;
   }

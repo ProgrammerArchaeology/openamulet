@@ -27,7 +27,7 @@
 // Fonts
 // // // // // // // // // // // // // // // // // // // // // // // // // //
 
-Am_WRAPPER_IMPL (Am_Font);
+AM_WRAPPER_IMPL (Am_Font);
 
 Am_Font::Am_Font (const char *the_name)
 {
@@ -305,7 +305,7 @@ void initialize_standard_font(Display *dpy, int screen_number,
   free_font_name (font_names);
 }
 
-Am_WRAPPER_DATA_IMPL(Am_Font, (this))
+AM_WRAPPER_DATA_IMPL(Am_Font, (this))
 
 Am_Font_Data* Am_Font_Data::list = (0L);
 
