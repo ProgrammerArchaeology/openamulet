@@ -8,9 +8,9 @@
 #include <iostream>
 
 #if defined(TRACE)
-#define Am_TRACE(A)	{std::cout << A; }
+#define AM_TRACE(A)	{std::cout << A; }
 #else
-#define Am_TRACE(A)	{ ; }
+#define AM_TRACE(A)	{ ; }
 #endif
 
 #endif

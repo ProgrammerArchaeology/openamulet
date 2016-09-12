@@ -103,12 +103,12 @@ BOOL Am_WINCLEAN_FUNC(C) (void* item, Am_WinCleanAction act)         \
 		case Am_CLEAN_CHECKUSED:                                     \
 			return ((C*)item) -> WinCheckUsedRes();					 \
 		case Am_CLEAN_DELETE:                                        \
-			Am_TRACE("##Clean: deleting " #C " @" << item <<std::endl)   \
+			AM_TRACE("##Clean: deleting " #C " @" << item <<std::endl)   \
 			delete (C*)item;                                         \
 			return TRUE;                                             \
 		case Am_CLEAN_FREERES:                                       \
 			if (((C*)item) -> WinFreeRes()) {                        \
-				Am_TRACE("##Clean: free res " #C " @" << item <<std::endl)\
+				AM_TRACE("##Clean: free res " #C " @" << item <<std::endl)\
 				return TRUE;                                         \
 			}                                                        \
 			break;                                                   \
@@ -125,15 +125,15 @@ BOOL Am_WINCLEAN_FUNC(C) (void* item, Am_WinCleanAction act)         \
 		case Am_CLEAN_CHECKUSED:                                     \
 			return ((C*)item) -> WinCheckUsedRes();					 \
 		case Am_CLEAN_DELETE:                                        \
-			/*Am_TRACE("##Clean: releasing " #C " @" << item <<std::endl)*/  \
-			Am_TRACE("##Clean: not releasing " #C " @" << item <<std::endl)  \
+			/*AM_TRACE("##Clean: releasing " #C " @" << item <<std::endl)*/  \
+			AM_TRACE("##Clean: not releasing " #C " @" << item <<std::endl)  \
 			((C*)item) -> WinFreeRes();                              \
 			/*((C*)item) -> Release();*/                                 \
 			/*delete (C*)item;*/                                     \
 			return TRUE;                                             \
 		case Am_CLEAN_FREERES:                                       \
 			if (((C*)item) -> WinFreeRes()) {                        \
-				Am_TRACE("##Clean: free res " #C " @" << item <<std::endl)\
+				AM_TRACE("##Clean: free res " #C " @" << item <<std::endl)\
 				return TRUE;                                         \
 			}                                                        \
 			break;                                                   \

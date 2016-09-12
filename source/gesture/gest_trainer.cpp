@@ -246,7 +246,7 @@ std::istream&  operator>> (std::istream& s, Am_Gesture_Trainer& tr)
   // Now look for examples.  Examples have the check character 'x'.
   
   if ((s >> check) && check == 'x') {
-    //Am_TRACE("Reading training examples\n");
+    //AM_TRACE("Reading training examples\n");
     
     do {
       Am_Feature_Vector fv;

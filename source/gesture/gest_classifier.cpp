@@ -159,16 +159,16 @@ std::istream&  operator>> (std::istream& s, Am_Gesture_Classifier& cl)
   cldata = new Am_Gesture_Classifier_Data (n);
   classes = cldata->classes;
 
-  //Am_TRACE(n << " classes " <<std::flush);
+  //AM_TRACE(n << " classes " <<std::flush);
   for(i = 0; i < n; i++) {
     s.get (buf, sizeof(buf));
     if (!s.get(check) || check != '\n')
       // class name too long
       goto lFail;
     classes[i].name = buf;
-    //Am_TRACE(buf << " " <<std::flush);
+    //AM_TRACE(buf << " " <<std::flush);
   }
-  //Am_TRACE(endl);
+  //AM_TRACE(endl);
 
   // Now look for weights, constants, covariance matrix.
   // Weight vector begins with 'V'.  If we don't find it, assume

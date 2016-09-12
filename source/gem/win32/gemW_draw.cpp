@@ -2550,7 +2550,7 @@ void Am_WinDrawonable::WndOnInput(short sType, Am_Button_Down down, Am_Click_Cou
 
 		if(Am_Debug_Print_Input_Events)
 		{
-			Am_TRACE("<><><> " << Am_Current_Input_Event -> input_char <<
+			AM_TRACE("<><><> " << Am_Current_Input_Event -> input_char <<
 				" t = " << Am_Current_Input_Event -> time_stamp  <<
 				" user_id=" << Am_Current_Input_Event -> user_id  <<  // supports multiple users
 			std::endl);

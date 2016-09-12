@@ -162,7 +162,7 @@ Am_Image_Array_Data::Am_Image_Array_Data (const char* file_name) :
     
   const char *ext = strrchr(file_name, '.');
   if (ext == (0L)) {
-    Am_TRACE("** " << file_name << ": cannot load image" <<std::endl)
+    AM_TRACE("** " << file_name << ": cannot load image" <<std::endl)
     return;
   } else ext++;
 
@@ -193,7 +193,7 @@ Am_Image_Array_Data::Am_Image_Array_Data (const char* file_name) :
   if (!res) {
     delete m_image;
     m_image = (0L);
-    Am_TRACE("** " << file_name << ": cannot load image" <<std::endl)
+    AM_TRACE("** " << file_name << ": cannot load image" <<std::endl)
       }
 }
 
