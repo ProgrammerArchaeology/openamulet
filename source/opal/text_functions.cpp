@@ -25,19 +25,6 @@
 #include <amulet/impl/inter_text.h>
 #include GDEFS__H
 
-// Copied from src/objects/dynarray.cc
-#ifdef NEED_MEMMOVE
-void
-memmove(void *dest, void *src, int length)
-{
-  char *data = new char[length];
-
-  memcpy(data, src, length);
-  memcpy(dest, data, length);
-  delete data;
-}
-#endif
-
 //  Code recognizing routines
 enum Am_Code_Flag
 {

@@ -1676,10 +1676,6 @@ operator==(const Am_Text_Viewing_Context_Data & /* inOtherVC */) const
  *  Am_Text_Fragment
  */
 
-#ifdef NEED_MEMMOVE
-extern void memmove(char *dest, const char *src, int length);
-#endif
-
 Am_Text_Fragment::Am_Text_Fragment(Am_Rich_Text_Data *inTextObject,
                                    const char *inString)
 {

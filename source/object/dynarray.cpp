@@ -13,19 +13,6 @@
 #define DYNARRAY__H <amulet/dynarray.h>
 #include DYNARRAY__H
 
-#ifdef NEED_MEMMOVE
-void
-memmove(char *dest, const char *src, int length)
-{
-  char *data = new char[length];
-
-  memcpy(data, src, length);
-  memcpy(dest, data, length);
-
-  delete[] data;
-}
-#endif
-
 DynArray::DynArray(unsigned in_elem_size)
     : elem_size(in_elem_size), data_size(1), length(0)
 {
