@@ -66,10 +66,10 @@ Am_Define_Method_Type_Impl(Am_Inter_Internal_Method)
 // Enum types
 /////////////////////////////////////////////////////////////
 
-Am_Define_Enum_Support (Am_Choice_How_Set, "Am_CHOICE_SET Am_CHOICE_CLEAR "
+AM_DEFINE_ENUM_SUPPORT (Am_Choice_How_Set, "Am_CHOICE_SET Am_CHOICE_CLEAR "
      "Am_CHOICE_TOGGLE Am_CHOICE_LIST_TOGGLE")
 
-Am_Define_Enum_Support (Am_Move_Grow_Where_Attach,
+AM_DEFINE_ENUM_SUPPORT (Am_Move_Grow_Where_Attach,
       "Am_ATTACH_WHERE_HIT Am_ATTACH_NW Am_ATTACH_N Am_ATTACH_NE "
       "Am_ATTACH_E Am_ATTACH_SE Am_ATTACH_S Am_ATTACH_SW Am_ATTACH_W "
       "Am_ATTACH_END_1 Am_ATTACH_END_2 Am_ATTACH_CENTER")

@@ -38,7 +38,7 @@ enum Am_Animation_End_Action_vals
 { Am_ANIMATION_STOP_val, Am_ANIMATION_WRAP_val, Am_ANIMATION_BOUNCE_val };
 
 // Control for what to do at the end of an animation cycle
-Am_Define_Enum_Type(Am_Animation_End_Action, Am_Animation_End_Action_vals)
+AM_DEFINE_ENUM_TYPE(Am_Animation_End_Action, Am_Animation_End_Action_vals)
 const Am_Animation_End_Action Am_ANIMATION_STOP(Am_ANIMATION_STOP_val);
 const Am_Animation_End_Action Am_ANIMATION_WRAP(Am_ANIMATION_WRAP_val);
 const Am_Animation_End_Action Am_ANIMATION_BOUNCE(Am_ANIMATION_BOUNCE_val);

@@ -73,7 +73,7 @@ Am_ID_Tag Am_Widget_Look::Am_Widget_Look_ID = widget_look_id;
 // Can't use the macro because need the ID above to create the
 // Am_Widget_Look_Support object, but the macro wants to allocate a
 // new ID.
-// Am_Define_Enum_Type_Impl(Am_Widget_Look, &Am_Widget_Look_Support);
+// AM_DEFINE_ENUM_TYPE_IMPL(Am_Widget_Look, &Am_Widget_Look_Support);
 
 void Am_Widget_Look::TypeError(Am_Value const &in_value)
 {

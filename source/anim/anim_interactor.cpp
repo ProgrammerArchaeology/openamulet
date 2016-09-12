@@ -33,7 +33,7 @@
 #include INITIALIZER__H
 
 
-Am_Define_Enum_Support (Am_Animation_End_Action,
+AM_DEFINE_ENUM_SUPPORT (Am_Animation_End_Action,
       "Am_ANIMATION_STOP Am_ANIMATION_WRAP Am_ANIMATION_BOUNCE");
 
 //////////////////////////////////////////////////////////////////

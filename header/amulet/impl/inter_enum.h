@@ -4,7 +4,7 @@
 #include "types_enum.h"
 
 // type of the Am_HOW_SET slot for Choice Interactors
-Am_Define_Enum_Long_Type(Am_Choice_How_Set)
+AM_DEFINE_ENUM_LONG_TYPE(Am_Choice_How_Set)
 const Am_Choice_How_Set Am_CHOICE_SET 			(0L);
 const Am_Choice_How_Set Am_CHOICE_CLEAR 		(1L);
 const Am_Choice_How_Set Am_CHOICE_TOGGLE 		(2L);
@@ -21,7 +21,7 @@ enum Am_Move_Grow_Where_Attach_vals
   Am_ATTACH_CENTER_val };
 
 // type of the Am_WHERE_ATTACH slot for Move_Grow Interactors
-Am_Define_Enum_Type(Am_Move_Grow_Where_Attach, Am_Move_Grow_Where_Attach_vals)
+AM_DEFINE_ENUM_TYPE(Am_Move_Grow_Where_Attach, Am_Move_Grow_Where_Attach_vals)
 const Am_Move_Grow_Where_Attach Am_ATTACH_WHERE_HIT(Am_ATTACH_WHERE_HIT_val);
 const Am_Move_Grow_Where_Attach Am_ATTACH_NW(Am_ATTACH_NW_val);
 const Am_Move_Grow_Where_Attach Am_ATTACH_N(Am_ATTACH_N_val);

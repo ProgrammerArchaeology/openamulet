@@ -19,7 +19,7 @@ enum Am_Widget_Look_vals
 };
 
 // options for the Am_WIDGET_LOOK slot of widgets to determine how it is drawn
-Am_Define_Enum_Type(Am_Widget_Look, Am_Widget_Look_vals)
+AM_DEFINE_ENUM_TYPE(Am_Widget_Look, Am_Widget_Look_vals)
 const Am_Widget_Look Am_MOTIF_LOOK (Am_MOTIF_LOOK_val);
 const Am_Widget_Look Am_WINDOWS_LOOK (Am_WINDOWS_LOOK_val);
 const Am_Widget_Look Am_MACINTOSH_LOOK (Am_MACINTOSH_LOOK_val);

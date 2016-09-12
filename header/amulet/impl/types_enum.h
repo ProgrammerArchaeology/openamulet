@@ -10,9 +10,9 @@
 extern const char *Am_Enum_To_String_Helper(Am_ID_Tag type, long value);
 extern void Am_Enum_Print_Helper(std::ostream& out, Am_ID_Tag type, long value);
 
-//lint -emacro(1925,Am_Define_Enum_Type) value is OK to be public
-//lint -emacro(1721,Am_Define_Enum_Type) operator=(am_value&) is OK not to be a assignment operator
-#define Am_Define_Enum_Type(Type_name, Enum_name)                \
+//lint -emacro(1925,AM_DEFINE_ENUM_TYPE) value is OK to be public
+//lint -emacro(1721,AM_DEFINE_ENUM_TYPE) operator=(am_value&) is OK not to be a assignment operator
+#define AM_DEFINE_ENUM_TYPE(Type_name, Enum_name)                \
 class _OA_DL_CLASSIMPORT Type_name {                             \
  public:                                                         \
   void TypeError(const Am_Value& in_value);                      \
@@ -63,7 +63,7 @@ class _OA_DL_CLASSIMPORT Type_name {                             \
 };                                                               \
 _OA_DL_IMPORT extern std::ostream& operator<< (std::ostream& os, const Type_name& value);
 
-#define Am_Define_Enum_Long_Type(Type_name)                      \
+#define AM_DEFINE_ENUM_LONG_TYPE(Type_name)                      \
 class _OA_DL_CLASSIMPORT Type_name {                                                \
  public:                                                         \
   void TypeError(const Am_Value& in_value);                                  \
@@ -112,7 +112,7 @@ class _OA_DL_CLASSIMPORT Type_name {                                            
 };                                                               \
 _OA_DL_IMPORT extern std::ostream& operator<< (std::ostream& os, const Type_name& value);
 
-#define Am_Define_Enum_Type_Impl(Type_name, Type_Support_Ptr)            \
+#define AM_DEFINE_ENUM_TYPE_IMPL(Type_name, Type_Support_Ptr)            \
   Am_ID_Tag Type_name::Type_name##_ID =                                  \
       Am_Get_Unique_ID_Tag (DSTR(#Type_name), Type_Support_Ptr, Am_ENUM_TYPE); \
 _OA_DL_IMPORT std::ostream& operator<< (std::ostream& os, const Type_name& item) {               \
@@ -133,7 +133,7 @@ _OA_DL_IMPORT std::ostream& operator<< (std::ostream& os, const Type_name& item)
 
 
 
-// The special macro Am_Define_Enum_Support permits an enumeration wrapper to
+// The special macro AM_DEFINE_ENUM_SUPPORT permits an enumeration wrapper to
 // be automatically defined with a printer and reader support class.  The
 // second parameter is a string which contains a list of all the constants
 // in the enumeration.  The string must be in order and each constant must be
@@ -160,7 +160,7 @@ class _OA_DL_CLASSIMPORT Am_Enum_Support : public Am_Type_Support {
   Am_Value Fetch (int item);
 };
 
-#define Am_Define_Enum_Support(Type_name, Value_string)                    \
+#define AM_DEFINE_ENUM_SUPPORT(Type_name, Value_string)                    \
   void Type_name::Print(std::ostream& out) const {				 \
     Am_Enum_Print_Helper(out, Type_name##_ID, (long)value);      \
   }                                                              \

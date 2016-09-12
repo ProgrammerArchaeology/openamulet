@@ -758,7 +758,7 @@ void bug_demon (Am_Slot first_invalidated)
 }
 
 enum Test_Enum_enum { ONE, TWO, THREE };
-Am_Define_Enum_Type (Test_Enum, Test_Enum_enum)
+AM_DEFINE_ENUM_TYPE (Test_Enum, Test_Enum_enum)
 
 class Test_Enum_Support : public Am_Type_Support {
   void Print (ostream& os, const Am_Value& value) const
@@ -781,12 +781,12 @@ class Test_Enum_Support : public Am_Type_Support {
   }
 } Test_Enum_Object;
 
-Am_Define_Enum_Type_Impl (Test_Enum, &Test_Enum_Object)
+AM_DEFINE_ENUM_TYPE_IMPL (Test_Enum, &Test_Enum_Object)
 
 
-Am_Define_Enum_Type (Test_Support, Test_Enum_enum)
+AM_DEFINE_ENUM_TYPE (Test_Support, Test_Enum_enum)
 
-Am_Define_Enum_Support (Test_Support, "ONE TWO THREE")
+AM_DEFINE_ENUM_SUPPORT (Test_Support, "ONE TWO THREE")
 
 int main (int argc, char *[])
 {

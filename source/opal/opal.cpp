@@ -76,7 +76,7 @@ Am_Define_Method_Type_Impl (Am_Translate_Coordinates_Method);
 Am_Define_Method_Type_Impl (Am_Item_Method);
 Am_Define_Method_Type_Impl (Am_Save_Object_Method);
 
-Am_Define_Enum_Support (Am_Alignment, "Am_CENTER_ALIGN Am_TOP_ALIGN "
+AM_DEFINE_ENUM_SUPPORT (Am_Alignment, "Am_CENTER_ALIGN Am_TOP_ALIGN "
 			"Am_BOTTOM_ALIGN Am_LEFT_ALIGN Am_RIGHT_ALIGN");
 
 // main global demon queue
