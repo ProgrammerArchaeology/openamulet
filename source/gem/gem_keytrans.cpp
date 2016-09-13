@@ -15,6 +15,7 @@
 */
 
 #include <cstdio>
+#include <cstring>
 
 #include <iostream>
 #include <am_inc.h>

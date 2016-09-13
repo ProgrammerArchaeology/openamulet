@@ -15,6 +15,8 @@
 //
 // bdk added supports multiple users 1/98
 
+#include <stdlib.h>
+
 #include <am_inc.h>
 
 #include <amulet/am_io.h>

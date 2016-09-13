@@ -216,9 +216,9 @@
 #ifndef UNIV_MAP_H
 #define UNIV_MAP_H
 
-#include <string.h>
-
+#include <stdint.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <amulet/univ_map.hpp>
 

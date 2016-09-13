@@ -13,6 +13,8 @@
 //
 // Designed and implemented by Alan Ferrency
 
+#include <string.h>
+
 #include <am_inc.h>
 
 #include <amulet/am_io.h>
