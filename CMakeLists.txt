@@ -1,4 +1,4 @@
-PROJECT(open_amulet CXX)
+PROJECT(open_amulet C CXX)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 # This needs to be in the root CMakeLists.txt.
