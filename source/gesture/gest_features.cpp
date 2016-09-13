@@ -194,7 +194,7 @@ AM_WRAPPER_DATA_IMPL(Am_Feature_Vector, (this))
 
 Am_Feature_Vector_Data::Am_Feature_Vector_Data()
 {
-  register int i;
+  int i;
 
   y = NewVector(NFEATURES);
 
@@ -211,7 +211,7 @@ Am_Feature_Vector_Data::Am_Feature_Vector_Data()
 
 Am_Feature_Vector_Data::Am_Feature_Vector_Data(Am_Feature_Vector_Data *d)
 {
-  register int i;
+  int i;
 
   y = NewVector(NFEATURES);
 

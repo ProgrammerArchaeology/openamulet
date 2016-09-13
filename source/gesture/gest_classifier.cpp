@@ -24,8 +24,7 @@
 
 #include "amulet/gest_impl.h"
 
-static double MahalanobisDistance(register Vector v, register Vector u,
-                                  register Matrix sigma);
+static double MahalanobisDistance(Vector v, Vector u, Matrix sigma);
 
 // // // // // // // // // // // // // // // // // // // //
 // Am_Gesture_Classifier
@@ -262,8 +261,8 @@ Am_Gesture_Classifier_Data::Am_Gesture_Classifier_Data(int nc)
 Am_Gesture_Classifier_Data::Am_Gesture_Classifier_Data(
     Am_Gesture_Classifier_Data *d)
 {
-  register int i;
-  register Gesture_Class *classTo, *classFrom;
+  int i;
+  Gesture_Class *classTo, *classFrom;
 
   nclasses = d->nclasses;
   classes = new Gesture_Class[nclasses];
@@ -298,7 +297,7 @@ Am_String
 Am_Gesture_Classifier_Data::Classify(Am_Feature_Vector feat, double *ap,
                                      double *dp)
 {
-  register int i, maxclass;
+  int i, maxclass;
   double denom;
   double d;
 
@@ -355,9 +354,9 @@ Am_Gesture_Classifier_Data::Classify(Am_Feature_Vector feat, double *ap,
  */
 
 static double
-MahalanobisDistance(register Vector v, register Vector u, register Matrix sigma)
+MahalanobisDistance(Vector v, Vector u, Matrix sigma)
 {
-  register int i;
+  int i;
   static Vector space;
   double result;
 

@@ -38,8 +38,8 @@ NewVector(int r)
   const int size_in_headers =
       (size_in_bytes + sizeof(array_header) - 1) / sizeof(array_header);
 
-  register array_header *a = new array_header[1 + size_in_headers];
-  register Vector v;
+  array_header *a = new array_header[1 + size_in_headers];
+  Vector v;
 
   a->s.ndims = 1;
   a->s.nrows = r;
@@ -66,9 +66,9 @@ NewMatrix(int r, int c)
   const int size_in_headers =
       (size_in_bytes + sizeof(array_header) - 1) / sizeof(array_header);
 
-  register array_header *a = new array_header[1 + size_in_headers];
-  register int i;
-  register Matrix m;
+  array_header *a = new array_header[1 + size_in_headers];
+  int i;
+  Matrix m;
 
   a->s.ndims = 2;
   a->s.nrows = r;
@@ -89,7 +89,7 @@ FreeVector(Vector v)
 void
 FreeMatrix(Matrix m)
 {
-  register int i;
+  int i;
 
   for (i = 0; i < NROWS(m); i++)
     delete[] m[i];
@@ -97,10 +97,10 @@ FreeMatrix(Matrix m)
 }
 
 Vector
-VectorCopy(register Vector v)
+VectorCopy(Vector v)
 {
-  register Vector r = NewVector(NROWS(v));
-  register int i;
+  Vector r = NewVector(NROWS(v));
+  int i;
 
   for (i = 0; i < NROWS(v); i++)
     r[i] = v[i];
@@ -108,10 +108,10 @@ VectorCopy(register Vector v)
 }
 
 Matrix
-MatrixCopy(register Matrix m)
+MatrixCopy(Matrix m)
 {
-  register Matrix r = NewMatrix(NROWS(m), NCOLS(m));
-  register int i, j;
+  Matrix r = NewMatrix(NROWS(m), NCOLS(m));
+  int i, j;
 
   for (i = 0; i < NROWS(m); i++)
     for (j = 0; j < NROWS(m); j++)
@@ -125,28 +125,28 @@ extern "C" {
 #include <varargs.h>
 
 void
-PrintVector(register Vector v, char *s, ...)
+PrintVector(Vector v, char *s, ...)
 {
-	register int i;
+  int i;
   va_list ap;
   va_start(ap);
-	vprintf(s,ap);
-	for(i = 0; i < NROWS(v); i++) printf(" %8.4f", v[i]);
-	printf("\n");
+  vprintf(s,ap);
+  for(i = 0; i < NROWS(v); i++) printf(" %8.4f", v[i]);
+  printf("\n");
 }
 
 void
-PrintMatrix(register Matrix m, char *s, ...)
+PrintMatrix(Matrix m, char *s, ...)
 {
-	register int i, j;
+  int i, j;
   va_list ap;
   va_start(ap);
-	printf(s,ap);
-	for(i = 0; i < NROWS(m);  i++) {
-		for(j = 0; j < NCOLS(m); j++)
-			printf(" %8.4f", m[i][j]);
-		printf("\n");
-	}
+  printf(s,ap);
+  for(i = 0; i < NROWS(m);  i++) {
+    for(j = 0; j < NCOLS(m); j++)
+      printf(" %8.4f", m[i][j]);
+    printf("\n");
+  }
 }
 
 }
@@ -157,7 +157,7 @@ PrintMatrix(register Matrix m, char *s, ...)
 void
 ZeroVector(Vector v)
 {
-  register int i;
+  int i;
   for (i = 0; i < NROWS(v); i++)
     v[i] = 0.0;
 }
@@ -165,7 +165,7 @@ ZeroVector(Vector v)
 void
 ZeroMatrix(Matrix m)
 {
-  register int i, j;
+  int i, j;
   for (i = 0; i < NROWS(m); i++)
     for (j = 0; j < NCOLS(m); j++)
       m[i][j] = 0.0;
@@ -174,17 +174,17 @@ ZeroMatrix(Matrix m)
 void
 FillMatrix(Matrix m, double fill)
 {
-  register int i, j;
+  int i, j;
   for (i = 0; i < NROWS(m); i++)
     for (j = 0; j < NCOLS(m); j++)
       m[i][j] = fill;
 }
 
 double
-InnerProduct(register Vector v1, register Vector v2)
+InnerProduct(Vector v1, Vector v2)
 {
   double result = 0;
-  register int n = NROWS(v1);
+  int n = NROWS(v1);
   if (n != NROWS(v2))
     Am_Error("bad InnerProduct"); //, n, NROWS(v2));
 
@@ -194,9 +194,9 @@ InnerProduct(register Vector v1, register Vector v2)
 }
 
 void
-MatrixMultiply(register Matrix m1, register Matrix m2, register Matrix prod)
+MatrixMultiply(Matrix m1, Matrix m2, Matrix prod)
 {
-  register int i, j, k;
+  int i, j, k;
   double sum;
 
   if (NCOLS(m1) != NROWS(m2))
@@ -227,7 +227,7 @@ Compute result = v'm where
 void
 VectorTimesMatrix(Vector v, Matrix m, Vector prod)
 {
-  register int i, j;
+  int i, j;
 
   if (NROWS(v) != NROWS(m))
     Am_Error("VectorTimesMatrix"); //: Can't multiply %d vector by %dx%d",
@@ -245,9 +245,9 @@ VectorTimesMatrix(Vector v, Matrix m, Vector prod)
 }
 
 void
-ScalarTimesVector(double s, register Vector v, register Vector product)
+ScalarTimesVector(double s, Vector v, Vector product)
 {
-  register int n = NROWS(v);
+  int n = NROWS(v);
 
   if (NROWS(v) != NROWS(product))
     Am_Error("ScalarTimesVector"); //: result wrong size (%d!=%d)",
@@ -258,9 +258,9 @@ ScalarTimesVector(double s, register Vector v, register Vector product)
 }
 
 void
-ScalarTimesMatrix(double s, register Matrix m, register Matrix product)
+ScalarTimesMatrix(double s, Matrix m, Matrix product)
 {
-  register int i, j;
+  int i, j;
 
   if (NROWS(m) != NROWS(product) || NCOLS(m) != NCOLS(product))
     Am_Error("ScalarTimesMatrix"); //: result wrong size (%d!=%d)or(%d!=%d)",
@@ -277,9 +277,9 @@ ScalarTimesMatrix(double s, register Matrix m, register Matrix product)
  */
 
 double
-QuadraticForm(register Vector v, register Matrix m)
+QuadraticForm(Vector v, Matrix m)
 {
-  register int i, j, n;
+  int i, j, n;
   double result = 0;
 
   n = NROWS(v);
@@ -325,10 +325,10 @@ int DebugInvertMatrix = 0;
 double
 InvertMatrix(Matrix ym, Matrix rm)
 {
-  register int i, j, k;
+  int i, j, k;
   double det, biga, recip_biga, hold;
   int l[PERMBUFSIZE], m[PERMBUFSIZE];
-  register int n;
+  int n;
 
   if (NROWS(ym) != NCOLS(ym))
     Am_Error("InvertMatrix: not square");
@@ -449,9 +449,9 @@ InvertMatrix(Matrix ym, Matrix rm)
 }
 
 void
-OutputVector(FILE *f, register Vector v)
+OutputVector(FILE *f, Vector v)
 {
-  register int i;
+  int i;
   fprintf(f, " V %d   ", NROWS(v));
   for (i = 0; i < NROWS(v); i++)
     fprintf(f, " %g", v[i]);
@@ -459,9 +459,9 @@ OutputVector(FILE *f, register Vector v)
 }
 
 void
-OutputVectorCPP(std::ostream &s, register Vector v)
+OutputVectorCPP(std::ostream &s, Vector v)
 {
-  register int i;
+  int i;
   s << "V " << (int)NROWS(v);
   for (i = 0; i < NROWS(v); i++)
     s << ' ' << v[i];
@@ -471,8 +471,8 @@ OutputVectorCPP(std::ostream &s, register Vector v)
 Vector
 InputVector(FILE *f)
 {
-  register Vector v;
-  register int i;
+  Vector v;
+  int i;
   char check;
   int nrows;
 
@@ -490,8 +490,8 @@ InputVector(FILE *f)
 Vector
 InputVectorCPP(std::istream &f)
 {
-  register Vector v;
-  register int i;
+  Vector v;
+  int i;
   char check;
   int nrows;
 
@@ -521,7 +521,7 @@ bitcount(int max, unsigned mask)
 Matrix
 SliceMatrix(Matrix m, unsigned rowmask, unsigned colmask)
 {
-  register int i, ri, j, rj;
+  int i, ri, j, rj;
 
   Matrix r;
 
@@ -541,7 +541,7 @@ Matrix
 DeSliceMatrix(Matrix m, double fill, unsigned rowmask, unsigned colmask,
               Matrix r)
 {
-  register int i, ri, j, rj;
+  int i, ri, j, rj;
 
   FillMatrix(r, fill);
 
@@ -558,9 +558,9 @@ DeSliceMatrix(Matrix m, double fill, unsigned rowmask, unsigned colmask,
 }
 
 void
-OutputMatrix(FILE *f, register Matrix m)
+OutputMatrix(FILE *f, Matrix m)
 {
-  register int i, j;
+  int i, j;
   fprintf(f, " M %d %d\n", NROWS(m), NCOLS(m));
   for (i = 0; i < NROWS(m); i++) {
     for (j = 0; j < NCOLS(m); j++)
@@ -572,8 +572,8 @@ OutputMatrix(FILE *f, register Matrix m)
 Matrix
 InputMatrix(FILE *f)
 {
-  register Matrix m;
-  register int i, j;
+  Matrix m;
+  int i, j;
   char check;
   int nrows, ncols;
 
@@ -590,9 +590,9 @@ InputMatrix(FILE *f)
 }
 
 void
-OutputMatrixCPP(std::ostream &s, register Matrix m)
+OutputMatrixCPP(std::ostream &s, Matrix m)
 {
-  register int i, j;
+  int i, j;
   s << "M " << (int)NROWS(m) << ' ' << (int)NCOLS(m) << std::endl;
   for (i = 0; i < NROWS(m); i++) {
     for (j = 0; j < NCOLS(m); j++)
@@ -604,8 +604,8 @@ OutputMatrixCPP(std::ostream &s, register Matrix m)
 Matrix
 InputMatrixCPP(std::istream &f)
 {
-  register Matrix m;
-  register int i, j;
+  Matrix m;
+  int i, j;
   char check;
   int nrows, ncols;
 

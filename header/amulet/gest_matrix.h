@@ -80,9 +80,9 @@ Matrix MatrixCopy(Matrix m);
 Vector InputVector(FILE *f);
 Matrix InputMatrix(FILE *f);
 void OutputVector(FILE *f, Vector v);
-void OutputVectorCPP(std::ostream &s, register Vector m);
+void OutputVectorCPP(std::ostream &s, Vector m);
 void OutputMatrix(FILE *f, Matrix m);
-void OutputMatrixCPP(std::ostream &s, register Matrix m);
+void OutputMatrixCPP(std::ostream &s, Matrix m);
 
 double InvertSingularMatrix(Matrix input, Matrix result);
 

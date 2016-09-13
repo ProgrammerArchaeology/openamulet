@@ -549,9 +549,9 @@ Am_Object_Data::find_slot(Am_Slot_Key key)
   if (key == Am_OWNER)
     return &owner_slot;
 
-  register unsigned i;
-  register Am_Slot_Data **slot_array;
-  register Am_Slot_Data *slot;
+  unsigned i;
+  Am_Slot_Data **slot_array;
+  Am_Slot_Data *slot;
 
   for (i = data.length, slot_array = (Am_Slot_Data **)data.data; i > 0;
        --i, ++slot_array) {
@@ -574,9 +574,9 @@ Am_Object_Data::find_prototype(Am_Slot_Key key)
   if (key == Am_OWNER)
     return &owner_slot;
 
-  register unsigned i;
-  register Am_Slot_Data **slot_array;
-  register Am_Slot_Data *slot;
+  unsigned i;
+  Am_Slot_Data **slot_array;
+  Am_Slot_Data *slot;
 
   for (i = data.length, slot_array = (Am_Slot_Data **)data.data; i > 0;
        --i, ++slot_array) {
