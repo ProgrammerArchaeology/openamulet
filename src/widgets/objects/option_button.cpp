@@ -412,7 +412,7 @@ Am_Define_Method(Am_Draw_Method, void, option_button_draw,
     int tri_x = left + width - 15, tri_y = top + (height - 6) / 2,
         len =
             10; // len - is really 11, but one extra pixel is drawn to the right
-    for (register long i = 1; i <= 6; i++) {
+    for (long i = 1; i <= 6; i++) {
       draw->Draw_Line(style, tri_x, tri_y, tri_x + len, tri_y);
       tri_x++;
       tri_y++;
