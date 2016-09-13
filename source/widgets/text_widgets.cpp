@@ -12,6 +12,8 @@
    Designed and implemented by Brad Myers
 */
 
+#include <limits.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include <am_inc.h>

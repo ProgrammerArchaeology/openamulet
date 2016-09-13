@@ -12,6 +12,8 @@
 #ifndef UNIV_MAP_OA_HPP
 #define UNIV_MAP_OA_HPP
 
+#include <string.h>
+
 #include <map>
 #include <iostream>
 #include <amulet/impl/types_logging.h> // Debug logging functions
