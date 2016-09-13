@@ -56,10 +56,10 @@ Am_Font Am_Japanese_Font(Am_FONT_JFIXED, false, false, false, Am_FONT_TMEDIUM);
 
 // Data for the built-in Am_Diamond_Stipple
 #if !defined(_WIN32)
-static char diamond_bits[] = {0x80, 0x00, 0xc0, 0x01, 0xe0, 0x03, 0xf0, 0x07,
-                              0xf8, 0x0f, 0xfc, 0x1f, 0xfe, 0x3f, 0xff, 0x7f,
-                              0xfe, 0x3f, 0xfc, 0x1f, 0xf8, 0x0f, 0xf0, 0x07,
-                              0xe0, 0x03, 0xc0, 0x01, 0x80, 0x00, 0x00, 0x00};
+static unsigned char diamond_bits[] = {
+    0x80, 0x00, 0xc0, 0x01, 0xe0, 0x03, 0xf0, 0x07, 0xf8, 0x0f, 0xfc,
+    0x1f, 0xfe, 0x3f, 0xff, 0x7f, 0xfe, 0x3f, 0xfc, 0x1f, 0xf8, 0x0f,
+    0xf0, 0x07, 0xe0, 0x03, 0xc0, 0x01, 0x80, 0x00, 0x00, 0x00};
 #else
 static const short diamond_bits[] = {
     //	0x07, 0x13, 0x31, 0x70,  // an interesting pattern
@@ -134,22 +134,22 @@ init_styles()
   Am_Diamond_Stipple = Am_Style(
       0.0f, 0.0f, 0.0f, 0, Am_CAP_BUTT, Am_JOIN_MITER, Am_LINE_ON_OFF_DASH,
       Am_DEFAULT_DASH_LIST, Am_DEFAULT_DASH_LIST_LENGTH, Am_FILL_STIPPLED,
-      Am_FILL_POLY_EVEN_ODD, (Am_Image_Array(diamond_bits, 16, 16)));
-  Am_Opaque_Diamond_Stipple =
-      Am_Style(0.0f, 0.0f, 0.0f, 0, Am_CAP_BUTT, Am_JOIN_MITER,
-               Am_LINE_ON_OFF_DASH, Am_DEFAULT_DASH_LIST,
-               Am_DEFAULT_DASH_LIST_LENGTH, Am_FILL_OPAQUE_STIPPLED,
-               Am_FILL_POLY_EVEN_ODD, (Am_Image_Array(diamond_bits, 16, 16)));
-#else
-  Am_Diamond_Stipple = Am_Style(
-      0.0f, 0.0f, 0.0f, 0, Am_CAP_BUTT, Am_JOIN_MITER, Am_LINE_ON_OFF_DASH,
-      Am_DEFAULT_DASH_LIST, Am_DEFAULT_DASH_LIST_LENGTH, Am_FILL_STIPPLED,
-      Am_FILL_POLY_EVEN_ODD, (Am_Image_Array((char *)diamond_bits, 8, 8)));
+      Am_FILL_POLY_EVEN_ODD, Am_Image_Array((char *)diamond_bits, 16, 16));
   Am_Opaque_Diamond_Stipple = Am_Style(
       0.0f, 0.0f, 0.0f, 0, Am_CAP_BUTT, Am_JOIN_MITER, Am_LINE_ON_OFF_DASH,
       Am_DEFAULT_DASH_LIST, Am_DEFAULT_DASH_LIST_LENGTH,
       Am_FILL_OPAQUE_STIPPLED, Am_FILL_POLY_EVEN_ODD,
-      (Am_Image_Array((char *)diamond_bits, 8, 8)));
+      Am_Image_Array((char *)diamond_bits, 16, 16));
+#else
+  Am_Diamond_Stipple = Am_Style(
+      0.0f, 0.0f, 0.0f, 0, Am_CAP_BUTT, Am_JOIN_MITER, Am_LINE_ON_OFF_DASH,
+      Am_DEFAULT_DASH_LIST, Am_DEFAULT_DASH_LIST_LENGTH, Am_FILL_STIPPLED,
+      Am_FILL_POLY_EVEN_ODD, Am_Image_Array((char *)diamond_bits, 8, 8));
+  Am_Opaque_Diamond_Stipple = Am_Style(
+      0.0f, 0.0f, 0.0f, 0, Am_CAP_BUTT, Am_JOIN_MITER, Am_LINE_ON_OFF_DASH,
+      Am_DEFAULT_DASH_LIST, Am_DEFAULT_DASH_LIST_LENGTH,
+      Am_FILL_OPAQUE_STIPPLED, Am_FILL_POLY_EVEN_ODD,
+      Am_Image_Array((char *)diamond_bits, 8, 8));
 #endif
 
   // Register style names.

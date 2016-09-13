@@ -41,7 +41,7 @@ _OA_DL_IMPORT extern void Am_Move_Cursor_Left(Am_Object text);
 
 _OA_DL_IMPORT extern void Am_Move_Cursor_To(Am_Object text, int n);
 
-_OA_DL_IMPORT extern void Am_Set_Text(Am_Object text, char *str);
+_OA_DL_IMPORT extern void Am_Set_Text(Am_Object text, const char *str);
 
 _OA_DL_IMPORT extern void Am_Insert_Char_At_Cursor(Am_Object text, char c,
                                                    bool advance_cursor = true);
@@ -82,18 +82,19 @@ _OA_DL_IMPORT extern void Am_Set_Pending_Delete(Am_Object text,
                                                 bool pending_delete);
 
 // Sets the cut buffer with the string
-_OA_DL_IMPORT extern void Am_Set_Cut_Buffer(Am_Object win, char *str);
+_OA_DL_IMPORT extern void Am_Set_Cut_Buffer(Am_Object win, const char *str);
 
 // Returns the contents of the cut buffer
 _OA_DL_IMPORT extern char *Am_Get_Cut_Buffer(Am_Object win);
 
 // Yanks the contents of the cut buffer into the string at index
-_OA_DL_IMPORT extern void Am_Add_Cut_Buffer(Am_Object win, char *str,
+_OA_DL_IMPORT extern void Am_Add_Cut_Buffer(Am_Object win, const char *str,
                                             int index);
 
 // Does kill line from string and adds string to cut buffer.
 // Returns the new string.  Index always stays the same.
-_OA_DL_IMPORT extern void Am_Cut_To_End_Add_Cut_Buffer(char *str, int index,
+_OA_DL_IMPORT extern void Am_Cut_To_End_Add_Cut_Buffer(const char *str,
+                                                       int index,
                                                        bool alreadycutting,
                                                        Am_Object win);
 

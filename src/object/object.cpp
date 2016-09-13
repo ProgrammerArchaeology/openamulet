@@ -1206,7 +1206,7 @@ Am_Object::Set_Name(const char *in_name)
 #ifdef DEBUG
   const char *name = Am_Get_Name_Of_Item(data);
   Am_Unregister_Name(data);
-  delete[](char *) name;
+  delete[] name;
   char *new_name = new char[strlen(in_name) + 1];
   strcpy(new_name, in_name);
   Am_Register_Name(data, new_name);

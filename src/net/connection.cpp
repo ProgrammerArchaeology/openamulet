@@ -241,12 +241,12 @@ Am_Connection::Reset(void)
  */
 
 /*
- * Open(char []): Creates a connection, based on a string which contains
+ * Open(const char []): Creates a connection, based on a string which contains
  * a human readable or dotted decimal internet address. Calls the other
  * Open methods to complete the task.
  */
 Am_Connection *
-Am_Connection::Open(char addr[])
+Am_Connection::Open(const char addr[])
 {
   /*
    * Variable initialization
@@ -261,7 +261,7 @@ Am_Connection::Open(char addr[])
     p_connection = Open();
   } else {
     /* Put host's address and addresss type into socket structure */
-    memmove((char *)&(sa->sin_addr), (char *)hp->h_addr, hp->h_length);
+    memmove(&(sa->sin_addr), hp->h_addr, hp->h_length);
     sa->sin_family = PF_INET;
     /* Put the port into the socket structure */
     sa->sin_port = Am_SOCKET_PORT;

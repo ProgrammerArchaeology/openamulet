@@ -16,9 +16,9 @@ public:
   DynArray(unsigned elem_size);
 
   char *Get(unsigned i);
-  void Set(unsigned i, char *value);
+  void Set(unsigned i, const char *value);
 
-  void Insert(unsigned i, char *value);
+  void Insert(unsigned i, const char *value);
   void Delete(unsigned i);
   void Add(char *value);
 

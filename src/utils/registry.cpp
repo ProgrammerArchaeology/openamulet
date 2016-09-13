@@ -303,7 +303,7 @@ void
 Am_Register_Type_Name(Am_ID_Tag id, const char *type_name)
 {
   verify_type_registry();
-  Am_Type_Registry->SetAt(id, (char *)type_name);
+  Am_Type_Registry->SetAt(id, type_name);
 }
 
 void

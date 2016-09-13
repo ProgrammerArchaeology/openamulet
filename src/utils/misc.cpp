@@ -68,7 +68,7 @@ Am_Merge_Pathname(const char *name)
 #if 0
   char * am_dir = Am_Get_Amulet_Pathname();
   if (!am_dir) am_dir = "..";
-  char *ret_val = (char *) new char [(strlen(am_dir) + strlen(name) + 2)];
+  char *ret_val = new char [(strlen(am_dir) + strlen(name) + 2)];
 
   strcpy(ret_val, am_dir);
   strcat(ret_val, "/");
@@ -80,7 +80,7 @@ Am_Merge_Pathname(const char *name)
   if (!ok) {
     std::cout << "Unable to locate file '" << name << "'" << std::endl;
   }
-  char *ret_val = (char *)new char[found.name().length() + 1];
+  char *ret_val = new char[found.name().length() + 1];
   strcpy(ret_val, found.c_str());
   return ret_val;
 #endif
@@ -132,7 +132,7 @@ Am_Merge_Pathname(const char *name)
   }
 
   // and construct the path
-  char *ret_val = (char *)new char[(strlen(am_dir) + strlen(name) + 2)];
+  char *ret_val = new char[(strlen(am_dir) + strlen(name) + 2)];
 
   strcpy(ret_val, am_dir);
   strcat(ret_val, "/");

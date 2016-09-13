@@ -164,10 +164,9 @@ Am_Define_Method(Am_Marshall_Method, void, Marshall_string,
 {
   (void)my_connection_ptr; //avoid warning,  used by Lists & Obj
   Am_String in_am_str = in_value;
-  char *in_str;
   long size = strlen((const char *)in_am_str) + 1;
   long net_size = htonl(size);
-  in_str = in_am_str;
+  const char *in_str = in_am_str;
   send(the_socket, &net_size, sizeof(net_size), 0);
   send(the_socket, in_str, size, 0);
 }

@@ -29,7 +29,7 @@ DynArray::Get(unsigned i)
 }
 
 void
-DynArray::Set(unsigned i, char *value)
+DynArray::Set(unsigned i, const char *value)
 {
   if (i < length) {
     memcpy(&data[i * elem_size], value, elem_size);
@@ -37,7 +37,7 @@ DynArray::Set(unsigned i, char *value)
 }
 
 void
-DynArray::Insert(unsigned i, char *value)
+DynArray::Insert(unsigned i, const char *value)
 {
   if (i <= length) {
 

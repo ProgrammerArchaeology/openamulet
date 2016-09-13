@@ -178,7 +178,7 @@ Am_Define_String_Formula(check_accel_string)
         // convert string into right type
         Am_String sval;
         sval = accel_value;
-        accel_char = Am_Input_Char((char *)sval);
+        accel_char = Am_Input_Char((const char *)sval);
         // store it back into the slot so more efficient next time
         // (because no parsing will be needed next time)
         cmd_obj.Set(Am_ACCELERATOR, accel_char);

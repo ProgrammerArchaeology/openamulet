@@ -1049,14 +1049,14 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
             .Add("I'll print it to std::cout if you hit okay."),
         "Hello there", 150, 150); //, true);
     if (v.Valid())
-      std::cout << (char *)(Am_String)v << std::endl;
+      std::cout << v << std::endl;
     break;
   }
   case 'Y': {
     Am_Value v = Am_Get_Choice_From_Dialog(
         Am_Value_List().Add("Do you really want to do that?"), 120, 250, true);
     if (v.Valid())
-      std::cout << (char *)(Am_String)v << std::endl;
+      std::cout << v << std::endl;
     break;
   }
   case 'Z': {

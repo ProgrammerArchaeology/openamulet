@@ -176,8 +176,7 @@ Am_Modify_Command_Label_Name(Am_Object cmd, Am_Slot_Key slot)
     default:
       Am_Error("Bad slot in modify_label_name");
     }
-    char *new_string =
-        (char *)new char[(strlen(prefix) + strlen(old_string) + 1)];
+    char *new_string = new char[(strlen(prefix) + strlen(old_string) + 1)];
     strcpy(new_string, prefix);
     strcat(new_string, old_string);
     //use false so doesn't copy the string since just allocated it

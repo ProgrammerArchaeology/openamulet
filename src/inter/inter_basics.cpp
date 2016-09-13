@@ -1010,7 +1010,7 @@ int_check_event(Am_Object &inter, Am_Object &event_window,
     // convert string into right type
     Am_String sval;
     sval = slot_value;
-    target_char = Am_Input_Char((char *)sval);
+    target_char = Am_Input_Char((const char *)sval);
     Am_INTER_TRACE_PRINT_NOENDL(inter, (const char *)sval
                                            << " (str--converted to Input_Char)="
                                            << target_char);

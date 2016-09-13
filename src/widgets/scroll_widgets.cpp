@@ -27,14 +27,14 @@
 // we need this image array to draw the background pattern of mac scroll bars
 
 #if !defined(_WIN32)
-static char mac_scroll_bg_stipple[] = {0x88, 0x22, 0x88, 0x22,
-                                       0x88, 0x22, 0x88, 0x22};
+static unsigned char mac_scroll_bg_stipple[] = {0x88, 0x22, 0x88, 0x22,
+                                                0x88, 0x22, 0x88, 0x22};
 #else
 static const int mac_scroll_bg_stipple[] = {0xff, 0xff, 0xff, 0xff,
                                             0xff, 0xff, 0xff, 0xff};
 #endif
 
-Am_Image_Array Mac_Scroll_BG_Image_Array((char *)&mac_scroll_bg_stipple, 8, 8);
+Am_Image_Array Mac_Scroll_BG_Image_Array((char *)mac_scroll_bg_stipple, 8, 8);
 
 /******************************************************************************
  * Arrows

@@ -65,7 +65,7 @@ Am_String_Data::Am_String_Data(const char *in_value, bool copy)
 Am_String_Data::~Am_String_Data()
 {
   if (value)
-    delete[](char *) value;
+    delete[] value;
 }
 
 void

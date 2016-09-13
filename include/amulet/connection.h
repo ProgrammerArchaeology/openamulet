@@ -106,7 +106,7 @@ public:
 
   static void Reset(void);
 
-  static Am_Connection *Open(char addr[]);
+  static Am_Connection *Open(const char addr[]);
   static Am_Connection *Open(struct sockaddr *sa);
   static Am_Connection *Open(void);
 

@@ -57,7 +57,7 @@ Am_Enum_Support::Am_Enum_Support(const char *string, Am_Value_Type in_type)
 
 Am_Enum_Support::~Am_Enum_Support()
 {
-  delete[](char *) value_string;
+  delete[] value_string;
   delete[] item;
 }
 

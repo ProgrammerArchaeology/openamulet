@@ -100,12 +100,12 @@ GetVRoot(Display *dpy, int scr)
                            (unsigned char **)&newRoot) == Success &&
         newRoot) {
       root = *newRoot;
-      XFree((char *)newRoot);
+      XFree(newRoot);
       break;
     }
   }
 
-  XFree((char *)children);
+  XFree(children);
   return root;
 }
 
@@ -258,7 +258,7 @@ install_attributes(XSetWindowAttributes *attrib,
 
 void
 set_other_window_properties(Window the_xlib_drawable, Display *dpy,
-                            char *window_name, char *icon_name,
+                            const char *window_name, const char *icon_name,
                             bool initially_iconified, int min_w, int min_h,
                             int max_w, int max_h, bool query_user_for_position,
                             bool query_user_for_size)
@@ -272,8 +272,9 @@ set_other_window_properties(Window the_xlib_drawable, Display *dpy,
 
   // Data structures for setting the window title and icon title
   XTextProperty window_name_xtp, icon_name_xtp;
-  XStringListToTextProperty(&window_name, 1, &window_name_xtp);
-  XStringListToTextProperty(&icon_name, 1, &icon_name_xtp);
+  XStringListToTextProperty(const_cast<char **>(&window_name), 1,
+                            &window_name_xtp);
+  XStringListToTextProperty(const_cast<char **>(&icon_name), 1, &icon_name_xtp);
 
   // Data structure for setting the initial state (iconic or normal)
   XWMHints *the_wmhints;
@@ -324,10 +325,10 @@ set_other_window_properties(Window the_xlib_drawable, Display *dpy,
   Atom wm_delete_window = XInternAtom(dpy, "WM_DELETE_WINDOW", False);
   (void)XSetWMProtocols(dpy, the_xlib_drawable, &wm_delete_window, 1);
 
-  XFree((char *)window_name_xtp.value);
-  XFree((char *)icon_name_xtp.value);
-  XFree((char *)the_wmhints);
-  XFree((char *)the_sizehints);
+  XFree(window_name_xtp.value);
+  XFree(icon_name_xtp.value);
+  XFree(the_wmhints);
+  XFree(the_sizehints);
 }
 
 // Create a new xlib_drawable for d
@@ -475,7 +476,7 @@ Am_Drawonable_Impl::Set_Title(const char *new_title)
   XTextProperty the_xtp;
   XStringListToTextProperty(&title, 1, &the_xtp);
   XSetWMName(screen->display, xlib_drawable, &the_xtp);
-  XFree((char *)the_xtp.value);
+  XFree(the_xtp.value);
 }
 
 void
@@ -486,7 +487,7 @@ Am_Drawonable_Impl::Set_Icon_Title(const char *new_title)
   XTextProperty the_xtp;
   XStringListToTextProperty(&icon_name, 1, &the_xtp);
   XSetWMIconName(screen->display, xlib_drawable, &the_xtp);
-  XFree((char *)the_xtp.value);
+  XFree(the_xtp.value);
 }
 
 void
@@ -788,7 +789,7 @@ Am_Drawonable_Impl::add_wm_border_offset(Window query_drawable,
 
   // don't need list of children, so free it right away
   if (children_return)
-    XFree((char *)children_return);
+    XFree(children_return);
 
   if (expected_parent == xlib_parent) {
     //std::cout << expected_parent << " == " << xlib_parent <<std::endl;
@@ -1459,10 +1460,10 @@ Am_Drawonable_Impl::Create_Drawonable_From_XWindow(
     Am_Error("** Can't get window geometry.\n");
 
   Am_Drawonable_Impl *d = new /* Am_External_Drawonable_Impl */
-      Am_Drawonable_Impl(l, t, w, h, (char *)tit, (char *)icon_tit, vis,
-                         initially_iconified, back_color, save_under_flag,
-                         min_w, min_h, max_w, max_h, title_bar_flag,
-                         clip_by_children_flag, parent->screen->depth, evh);
+      Am_Drawonable_Impl(l, t, w, h, tit, icon_tit, vis, initially_iconified,
+                         back_color, save_under_flag, min_w, min_h, max_w,
+                         max_h, title_bar_flag, clip_by_children_flag,
+                         parent->screen->depth, evh);
 
   d->owner = parent;
   d->screen = parent->screen;
@@ -1486,10 +1487,9 @@ Am_Drawonable_Impl::Create_Drawonable_From_XWindow(
                           &attrib);
   Set_Drawable_Backpointer(created_display, created_drawable, d);
 
-  set_other_window_properties(d->xlib_drawable, d->screen->display, (char *)tit,
-                              (char *)icon_tit, initially_iconified, min_w,
-                              min_h, max_w, max_h, query_user_for_position,
-                              query_user_for_size);
+  set_other_window_properties(
+      d->xlib_drawable, d->screen->display, tit, icon_tit, initially_iconified,
+      min_w, min_h, max_w, max_h, query_user_for_position, query_user_for_size);
   return d;
 }
 

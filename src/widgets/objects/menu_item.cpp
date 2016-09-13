@@ -162,7 +162,7 @@ Am_Define_Method(Am_Draw_Method, void, menu_item_draw,
 
   int str_width, ascent, descent, a, b, str_left, str_top;
 
-  if ((char *)string) {
+  if ((const char *)string) {
     draw->Get_String_Extents(font, string, strlen(string), str_width, ascent,
                              descent, a, b);
 
@@ -203,7 +203,7 @@ Am_Define_Method(Am_Draw_Method, void, menu_item_draw,
       obj.Set(Am_LINE_STYLE, Am_Black);
   }
 
-  if ((char *)accel_string) {
+  if ((const char *)accel_string) {
     // always right justify the accel text
     draw->Get_String_Extents(font, accel_string, strlen(accel_string),
                              str_width, ascent, descent, a, b);
@@ -249,7 +249,7 @@ Am_Define_Formula(int, menu_item_height)
     return lineHeight;
   }
 
-  if ((char *)string) {
+  if ((const char *)string) {
     Am_Object window(self.Get(Am_WINDOW));
     Am_Font font(self.Get(Am_FONT));
 

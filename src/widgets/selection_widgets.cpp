@@ -1015,7 +1015,7 @@ get_owner_start_and_convert_string(Am_Object &widget)
   value = widget.Peek(Am_START_WHEN);
   if (value.type == Am_STRING) {
     sval = value;
-    list.Add(Am_Input_Char((char *)sval));
+    list.Add(Am_Input_Char((const char *)sval));
   } else if (Am_Input_Char::Test(value))
     list.Add(value);
   else if (Am_Value_List::Test(value)) {
@@ -1024,7 +1024,7 @@ get_owner_start_and_convert_string(Am_Object &widget)
       value = list.Get();
       if (value.type == Am_STRING) {
         sval = value;
-        parent_char = Am_Input_Char((char *)sval);
+        parent_char = Am_Input_Char((const char *)sval);
       } else if (Am_Input_Char::Test(value))
         parent_char = value;
       else

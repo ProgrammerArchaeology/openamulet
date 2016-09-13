@@ -125,7 +125,7 @@ extern "C" {
 #include <varargs.h>
 
 void
-PrintVector(Vector v, char *s, ...)
+PrintVector(Vector v, const char *s, ...)
 {
   int i;
   va_list ap;
@@ -136,7 +136,7 @@ PrintVector(Vector v, char *s, ...)
 }
 
 void
-PrintMatrix(Matrix m, char *s, ...)
+PrintMatrix(Matrix m, const char *s, ...)
 {
   int i, j;
   va_list ap;

@@ -354,7 +354,7 @@ Am_Style_Data::Am_Style_Data(Am_Style_Data *proto, Am_Style_Data *new_color)
 Am_Style_Data::~Am_Style_Data()
 {
   if (color_name && color_allocated)
-    delete (char *)color_name;
+    delete[] color_name;
   if (dash_list)
     delete[] dash_list;
   if (main_display) {

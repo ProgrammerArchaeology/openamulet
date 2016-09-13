@@ -1248,8 +1248,8 @@ display_slot_props_window(Am_Object &main_inspector_window, Am_Slot_Key key,
   add_string(group_iter, slot_props_window, top, left, max_left,
              "Current value type : ", false, Am_Black);
   const char *s = Am_Get_Type_Name(value.type);
-  add_string(group_iter, slot_props_window, top, left, max_left, (char *)s,
-             true, Am_Black);
+  add_string(group_iter, slot_props_window, top, left, max_left, s, true,
+             Am_Black);
 
   //where inherited from
   add_string(group_iter, slot_props_window, top, left, max_left,
@@ -1294,8 +1294,8 @@ display_slot_props_window(Am_Object &main_inspector_window, Am_Slot_Key key,
   default:
     Am_Error("bad slot inheritance rule");
   }
-  add_string(group_iter, slot_props_window, top, left, max_left, (char *)s,
-             true, Am_Black);
+  add_string(group_iter, slot_props_window, top, left, max_left, s, true,
+             Am_Black);
 
   //constraint inheritance mode
   //bool constraint_mode = slot.Get_Single_Constraint_Mode();
@@ -1314,8 +1314,8 @@ display_slot_props_window(Am_Object &main_inspector_window, Am_Slot_Key key,
     s = "true";
   else
     s = "false";
-  add_string(group_iter, slot_props_window, top, left, max_left, (char *)s,
-             true, Am_Black);
+  add_string(group_iter, slot_props_window, top, left, max_left, s, true,
+             Am_Black);
 
   //demon bits
   unsigned short demon_bits = slot.Get_Demon_Bits();

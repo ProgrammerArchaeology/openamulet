@@ -55,24 +55,18 @@ union array_header
 typedef double **Matrix;
 typedef double *Vector;
 
-Vector NewVector(int r); /* int r; (number of rows) */
-Matrix NewMatrix(int r,
-                 int c);   /* int r, c; (number of rows, number of columns) */
-void FreeVector(Vector v); /* Vector v; */
-void FreeMatrix(Matrix m); /* Matrix m; */
+Vector NewVector(int r);
+Matrix NewMatrix(int r, int c);
+void FreeVector(Vector v);
+void FreeMatrix(Matrix m);
 extern "C" {
-void PrintVector(Vector v, char *fmt,
-                 ...); /* Vector v; char *fmt; any a1,a2,a3,a4,a5,a6,a7,a8 */
-void PrintMatrix(Matrix m, char *fmt,
-                 ...); /* Matrix m; char *fmt; any a1,a2,a3,a4,a5,a6,a7,a8 */
+void PrintVector(Vector v, const char *fmt, ...);
+void PrintMatrix(Matrix m, const char *fmt, ...);
 }
-double InnerProduct(Vector v1, Vector v2); /* Vector v1, v2 */
-void MatrixMultiply(Matrix m1, Matrix m2,
-                    Matrix prod); /* Matrix m1, m2, prod; */
-void VectorTimesMatrix(Vector v, Matrix m,
-                       Vector prod); /* Vector v; Matrix m; Vector prod; */
-void ScalarTimesVector(double s, Vector v,
-                       Vector prod); /* double s; Vector v; Vector prod; */
+double InnerProduct(Vector v1, Vector v2);
+void MatrixMultiply(Matrix m1, Matrix m2, Matrix prod);
+void VectorTimesMatrix(Vector v, Matrix m, Vector prod);
+void ScalarTimesVector(double s, Vector v, Vector prod);
 double QuadraticForm(Vector v, Matrix m);
 double InvertMatrix(Matrix input, Matrix result);
 Vector VectorCopy(Vector v);

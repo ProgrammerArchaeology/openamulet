@@ -589,8 +589,8 @@ check_max_min(Am_Value result, Am_Object &widget, bool want_db)
 bool
 Am_String_To_Long_Or_Float(Am_String string, Am_Value &output_value)
 {
-  char *s = string;
-  char *hasfloatchar = strchr(s, '.');
+  const char *s = string;
+  const char *hasfloatchar = strchr(s, '.');
   if (!hasfloatchar)
     hasfloatchar = strchr(s, 'E');
   if (!hasfloatchar)
@@ -629,7 +629,7 @@ Am_Define_Method(Am_Text_Check_Legal_Method, Am_Text_Abort_Or_Stop_Code,
   } else {
     if (check_max_min(result, widget, want_db)) {
       widget.Set(Am_VALUE, result);
-      char *s = str;
+      const char *s = str;
       int len = strlen(s);
       if (len == 0) {
         //needed since otherwise, constraint doesn't necessarily run and the

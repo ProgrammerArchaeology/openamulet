@@ -1573,7 +1573,7 @@ main(int argc, char *argv[])
   Am_Screen.Add_Part(window);
 
   if (argc > 1) {
-    Am_String s = (char *)argv[1];
+    Am_String s = argv[1];
     Am_Standard_Open_From_Filename(open_command, s);
   }
 

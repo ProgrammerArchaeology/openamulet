@@ -109,7 +109,7 @@ ml_strlen(const char *p)
 
 #define FBSJIS(x) (0x81 <= (x) && (x) <= 0x9F || 0xE0 <= (x) && (x) <= 0xFC)
 bool
-ml_two_byte_SHIFT_JIS(char *p, char *head)
+ml_two_byte_SHIFT_JIS(const char *p, const char *head)
 {
   int x;
 
@@ -183,7 +183,7 @@ Am_Move_Cursor_Right(Am_Object text)
     int pos = text.Get(Am_CURSOR_INDEX);
     Am_String p = text.Get(Am_TEXT);
 
-    if (ml_two_byte_SHIFT_JIS(&(((char *)p)[pos]), (char *)p))
+    if (ml_two_byte_SHIFT_JIS(&(((const char *)p)[pos]), (const char *)p))
       Am_Move_Cursor_Right(text, 2);
     else
       Am_Move_Cursor_Right(text, 1);
@@ -244,7 +244,8 @@ Am_Move_Cursor_Left(Am_Object text)
     int pos = (int)text.Get(Am_CURSOR_INDEX) - 2;
     Am_String p = text.Get(Am_TEXT);
 
-    if (0 <= pos && ml_two_byte_SHIFT_JIS(&(((char *)p)[pos]), (char *)p))
+    if (0 <= pos &&
+        ml_two_byte_SHIFT_JIS(&(((const char *)p)[pos]), (const char *)p))
       Am_Move_Cursor_Left(text, 2);
     else
       Am_Move_Cursor_Left(text, 1);
@@ -282,15 +283,15 @@ void
 Am_Move_Cursor_To(Am_Object text, int n)
 {
   Am_String p = text.Get(Am_TEXT);
-  int str_len = ml_strlen((char *)p);
-  int head_pos = ml_head_pos_str((char *)p);
+  int str_len = ml_strlen((const char *)p);
+  int head_pos = ml_head_pos_str((const char *)p);
 
   if (n >= head_pos && n <= str_len)
     text.Set(Am_CURSOR_INDEX, n);
   Am_Set_Pending_Delete(text, false);
 }
 
-//void Am_Set_Text (Am_Object text, char *str) {
+//void Am_Set_Text (Am_Object text, const char *str) {
 //  text.Set(Am_TEXT, str);
 //}
 
@@ -357,17 +358,17 @@ Am_Insert_JChar_At_Cursor(Am_Object text, char c, bool advance_cursor)
     if ((bool)text.Get(Am_PENDING_DELETE)) //delete all text first
       Am_Delete_Entire_String(text);
     Am_String old_str = text.Get(Am_TEXT);
-    bool eucf = iseuc((char *)old_str);
+    bool eucf = iseuc((const char *)old_str);
     if (cursor_index >= head_pos + 2) {
       cursor_index -= 2;
       if (c == 'n' &&
-          jcomp(&((char *)old_str)[cursor_index], onetotwo['n']) ==
+          jcomp(&((const char *)old_str)[cursor_index], onetotwo['n']) ==
               0) { // case 'nn'
         Am_Delete_Char_Before_Cursor(text);
         Am_Insert_String_At_Cursor(text, to_correct_code(n_Japanese, eucf),
                                    advance_cursor);
       } else if (!isboin(c) && c != 'h' && c != 'y' &&
-                 jcomp(&((char *)old_str)[cursor_index], onetotwo['n']) ==
+                 jcomp(&((const char *)old_str)[cursor_index], onetotwo['n']) ==
                      0) { // case 'nt' etc.
         Am_Delete_Char_Before_Cursor(text);
         Am_Insert_String_At_Cursor(text, to_correct_code(n_Japanese, eucf),
@@ -375,7 +376,7 @@ Am_Insert_JChar_At_Cursor(Am_Object text, char c, bool advance_cursor)
         Am_Insert_String_At_Cursor(text, to_correct_code(onetotwo[c], eucf),
                                    advance_cursor);
       } else if (isshiin(c) &&
-                 jcomp(&((char *)old_str)[cursor_index], onetotwo[c]) ==
+                 jcomp(&((const char *)old_str)[cursor_index], onetotwo[c]) ==
                      0) { // case 'tt' etc.
         Am_Move_Cursor_Left(text);
         Am_Insert_String_At_Cursor(text, to_correct_code(small_tsu, eucf),
@@ -405,9 +406,9 @@ Am_Insert_JChar_At_Cursor(Am_Object text, char c, bool advance_cursor)
                                      advance_cursor);
           return;
         }
-        if (jcomp(&((char *)old_str)[cursor_index], onetotwo['y']) == 0) {
+        if (jcomp(&((const char *)old_str)[cursor_index], onetotwo['y']) == 0) {
           if (cursor_index >= head_pos + 2 &&
-              (shiin = isalpha_2(&((char *)old_str)[cursor_index - 2])) >
+              (shiin = isalpha_2(&((const char *)old_str)[cursor_index - 2])) >
                   0) { //case 'kya' etc.
             Am_Delete_Char_Before_Cursor(text);
             Am_Delete_Char_Before_Cursor(text);
@@ -420,10 +421,11 @@ Am_Insert_JChar_At_Cursor(Am_Object text, char c, bool advance_cursor)
                 text, to_correct_code(rktab['y' - 'a'][boin], eucf),
                 advance_cursor);
           }
-        } else if (jcomp(&((char *)old_str)[cursor_index], onetotwo['h']) ==
-                   0) { // case 'kha' etc.
+        } else if (jcomp(&((const char *)old_str)[cursor_index],
+                         onetotwo['h']) == 0) { // case 'kha' etc.
           if (cursor_index >= head_pos + 2 &&
-              (shiin = isalpha_2(&((char *)old_str)[cursor_index - 2])) > 0) {
+              (shiin = isalpha_2(&((const char *)old_str)[cursor_index - 2])) >
+                  0) {
             Am_Delete_Char_Before_Cursor(text);
             Am_Delete_Char_Before_Cursor(text);
             Am_Insert_String_At_Cursor(
@@ -436,7 +438,7 @@ Am_Insert_JChar_At_Cursor(Am_Object text, char c, bool advance_cursor)
                 advance_cursor);
           }
         } else { // without 'h', 'y'
-          if ((shiin = isalpha_2(&((char *)old_str)[cursor_index])) >
+          if ((shiin = isalpha_2(&((const char *)old_str)[cursor_index])) >
               0) { // case 'ka' etc.
             Am_Delete_Char_Before_Cursor(text);
             Am_Insert_String_At_Cursor(
@@ -549,7 +551,7 @@ Am_Insert_String_At_Cursor(Am_Object text, const char *add_str,
 //// Am_Delete_Char_At_Index was used by Am_Delete_Char_{Before,After}_Cursor
 //// now it isn't.  Definition removed from text_fns.h
 //
-//void Am_Delete_Char_At_Index (char *str, int index) {
+//void Am_Delete_Char_At_Index (const char *str, int index) {
 //  int str_len = strlen (str);
 //  memmove((void *)&str[index], &str[index+1],
 //	  // Move the terminating \0 also
@@ -562,7 +564,7 @@ Am_Insert_String_At_Cursor(Am_Object text, const char *add_str,
 // for out of bounds conditions
 
 char *
-Am_Delete_Substring(char *old_str, int from, int to)
+Am_Delete_Substring(const char *old_str, int from, int to)
 {
   int str_len = strlen(old_str);
   // +1 for the terminating /0
@@ -601,8 +603,8 @@ Am_Delete_Char_Before_Cursor(Am_Object text)
       break;
     case Am_SHIFT_JIS_CODE:
       if (cursor_index >= 2 &&
-          ml_two_byte_SHIFT_JIS(&(((char *)old_str)[cursor_index - 2]),
-                                (char *)old_str)) {
+          ml_two_byte_SHIFT_JIS(&(((const char *)old_str)[cursor_index - 2]),
+                                (const char *)old_str)) {
         new_str = Am_Delete_Substring(old_str, cursor_index - 2, cursor_index);
         Am_Move_Cursor_Left(text);
         text.Set(Am_TEXT, Am_String(new_str, false));
@@ -624,7 +626,7 @@ Am_Delete_Char_After_Cursor(Am_Object text)
   else {
     int cursor_index = text.Get(Am_CURSOR_INDEX);
     Am_String old_str = text.Get(Am_TEXT);
-    int str_len = ml_strlen((char *)old_str);
+    int str_len = ml_strlen((const char *)old_str);
     char *new_str;
 
     switch (ml_which_code(text)) {
@@ -642,8 +644,8 @@ Am_Delete_Char_After_Cursor(Am_Object text)
       break;
     case Am_SHIFT_JIS_CODE:
       if (0 <= cursor_index && cursor_index < str_len - 1 &&
-          ml_two_byte_SHIFT_JIS(&(((char *)old_str)[cursor_index]),
-                                (char *)old_str)) {
+          ml_two_byte_SHIFT_JIS(&(((const char *)old_str)[cursor_index]),
+                                (const char *)old_str)) {
         new_str = Am_Delete_Substring(old_str, cursor_index, cursor_index + 2);
         text.Set(Am_TEXT, Am_String(new_str, false));
       } else if (0 <= cursor_index && cursor_index < str_len) {
@@ -765,7 +767,7 @@ Am_Get_Cursor_Index(Am_Object text, int x, int y)
     Am_Font font(text.Get(Am_FONT));
     int x_offset = text.Get(Am_X_OFFSET);
 
-    int str_len = ml_strlen((char *)str);
+    int str_len = ml_strlen((const char *)str);
     // Must use translate_coordinates in case text is in a group.
     int target;
     Am_Translate_Coordinates(window, x, y, text, target, y);
@@ -779,7 +781,7 @@ Am_Get_Cursor_Index(Am_Object text, int x, int y)
         next = n + 2;
         break;
       case Am_SHIFT_JIS_CODE:
-        if (ml_two_byte_SHIFT_JIS(&(((char *)str)[n]), (char *)str))
+        if (ml_two_byte_SHIFT_JIS(&(((const char *)str)[n]), (const char *)str))
           next = n + 2;
         else
           next = n + 1;
@@ -801,7 +803,7 @@ Am_Get_Cursor_Index(Am_Object text, int x, int y)
 }
 
 void
-Am_Set_Cut_Buffer(Am_Object win, char *str)
+Am_Set_Cut_Buffer(Am_Object win, const char *str)
 {
   if (win) {
     Am_Drawonable *drawonable = Am_Drawonable::Narrow(win.Get(Am_DRAWONABLE));

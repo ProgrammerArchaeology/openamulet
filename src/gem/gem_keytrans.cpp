@@ -48,7 +48,7 @@ void string_copy(char *copy_s, const char *s, int len);
 bool case_compare(char c1, char c2);
 bool find_str_and_remove(char *s, const char *target);
 void upcase_str(char *str);
-int Find_Char(char *s, char target);
+int Find_Char(const char *s, char target);
 bool find_prefix_and_remove(char *prefix, char *s, char target_char);
 bool Fix_Shift_For_Code(short code, bool old_shift);
 
@@ -413,7 +413,7 @@ upcase_str(char *str)
 
 // Find char target in s, return index or 0 if not there
 int
-Find_Char(char *s, char target)
+Find_Char(const char *s, char target)
 {
   for (int i = 0; s[i] != 0; i++) {
     if (s[i] == target)
