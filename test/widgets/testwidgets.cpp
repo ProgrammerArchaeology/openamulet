@@ -7,10 +7,11 @@
  * please contact amulet@cs.cmu.edu to be put on the mailing list.        *
  * ************************************************************************/
 
+#include <limits.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include <am_inc.h>
-#include <stdlib.h> // for strtol()
 
 #include <amulet/standard_slots.h>
 #include <amulet/value_list.h>
