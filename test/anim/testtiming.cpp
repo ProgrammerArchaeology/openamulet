@@ -7,6 +7,7 @@
  * please contact amulet@cs.cmu.edu to be put on the mailing list.        *
  * ************************************************************************/
 
+#include <stdlib.h>
 #include <iostream>
 #include <amulet.h>
 #include <amulet/anim.h>
