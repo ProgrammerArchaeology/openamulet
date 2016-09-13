@@ -23,7 +23,7 @@
 #include <amulet/am_io.h>
 #include <amulet/am_strstream.h>
 
-#include <amulet/opal.h>>
+#include <amulet/opal.h>
 #include <amulet/inter.h>
 #include <amulet/types.h>
 #include <amulet/debugger.h>
@@ -45,7 +45,7 @@
 #include <amulet/gem.h>      // for gem level drawing, drawonables.
 
 #include <amulet/anim.h> // for animators
-#include <amulet/initializer._h>
+#include <amulet/initializer.h>
 
 #define MAX_WIDTH_WINDOW 500
 #define MAX_WIDTH_LIST 350 // max width of a list before new-line
@@ -225,7 +225,8 @@ do_new_line(int &top, int &left, int &max_left, const Am_Object &string_object,
 
 static Am_Object
 add_new_string(Am_Object &string_object, Am_Object &group, int &top, int &left,
-               int &max_left, char *str, bool new_line, const Am_Style &color)
+               int &max_left, const char *str, bool new_line,
+               const Am_Style &color)
 {
   if (!string_object.Valid()) {
     string_object = Am_Text.Create().Set(Am_FONT, pick_font);
@@ -257,7 +258,7 @@ add_new_string(Am_Object &string_object, Am_Object &group, int &top, int &left,
 // and left (top doesn't change unless new_line is true).
 static Am_Object
 add_string(Am_Value_List &group_iter, Am_Object &group, int &top, int &left,
-           int &max_left, char *str, bool new_line, const Am_Style &color)
+           int &max_left, const char *str, bool new_line, const Am_Style &color)
 {
   Am_Object string_object;
   if (!group_iter.Last()) {
@@ -293,7 +294,7 @@ add_object(Am_Value_List &group_iter, Am_Object &group, int &top, int &left,
 // address of the function.  May leave some "comment" text in oss
 static void
 check_slot_for_constraints(Am_Value_List &group_iter, Am_Object &group,
-                           int &top, int &left, int &max_left, char *line,
+                           int &top, int &left, int &max_left, const char *line,
                            int line_max, const Am_Style &color, OSTRSTREAM &oss,
                            const Am_Object &object, Am_Slot_Key key)
 {
@@ -345,8 +346,8 @@ check_slot_for_constraints(Am_Value_List &group_iter, Am_Object &group,
 }
 
 //mutually recursive, so need a declaration
-static Am_Object add_value_list(Am_Value &value, Am_Slot_Key key, char *line,
-                                int line_max, OSTRSTREAM &oss,
+static Am_Object add_value_list(Am_Value &value, Am_Slot_Key key,
+                                const char *line, int line_max, OSTRSTREAM &oss,
                                 Am_Value_List &group_iter, Am_Object &group,
                                 int &top, int &left, int &max_left,
                                 const Am_Style &color);
@@ -364,7 +365,7 @@ safe_get(Am_Object object, Am_Slot_Key key, Am_Value &value)
 }
 
 static Am_Object
-add_value(Am_Value &value, Am_Slot_Key key, char *line, int line_max,
+add_value(Am_Value &value, Am_Slot_Key key, const char *line, int line_max,
           OSTRSTREAM &oss, Am_Value_List &group_iter, Am_Object &group,
           int &top, int &left, int &max_left, bool new_line = true,
           const Am_Style &color = Am_Black, bool value_list_value = false)
@@ -397,7 +398,7 @@ add_value(Am_Value &value, Am_Slot_Key key, char *line, int line_max,
 #define INTRA_LIST_SPACE 15
 
 static Am_Object
-add_value_list(Am_Value &value, Am_Slot_Key key, char *line, int line_max,
+add_value_list(Am_Value &value, Am_Slot_Key key, const char *line, int line_max,
                OSTRSTREAM &oss, Am_Value_List &group_iter, Am_Object &group,
                int &top, int &left, int &max_left, const Am_Style &color)
 {
@@ -510,7 +511,7 @@ Am_Add_Old_Values(Am_Value_List old_values, Am_Object value_string,
 }
 
 static Am_Object
-add_slot_name(Am_Slot_Key key, char *line, OSTRSTREAM &oss, int max_line,
+add_slot_name(Am_Slot_Key key, const char *line, OSTRSTREAM &oss, int max_line,
               Am_Value_List &group_iter, Am_Object &group, int &top, int &left,
               int &max_left, const Am_Style &color)
 {
@@ -834,8 +835,9 @@ set_object_into_window(Am_Object &window, const Am_Object &object,
 ////////////////////////////////////////////////////////////////
 
 static void
-display_pop_up_window(Am_Object &pop_win, char *line, int width, int height,
-                      Am_Object &main_inspector_window, Am_Object &string_obj)
+display_pop_up_window(Am_Object &pop_win, const char *line, int width,
+                      int height, Am_Object &main_inspector_window,
+                      Am_Object &string_obj)
 {
   //done, now set up window
   pop_win.Set(Am_TITLE, line);
@@ -888,8 +890,9 @@ get_pop_up_window(Am_Object &main_inspector_window, Am_Slot_Key pop_up_slot,
 static void
 add_slot_and_obj(Am_Slot_Key key, Am_Object &for_obj, Am_Value_List &group_iter,
                  Am_Object &group, int &top, int &left, int &max_left,
-                 char *line, OSTRSTREAM &oss, int max_line, bool want_in_slot,
-                 bool new_line = false, const Am_Style &color = Am_Black)
+                 const char *line, OSTRSTREAM &oss, int max_line,
+                 bool want_in_slot, bool new_line = false,
+                 const Am_Style &color = Am_Black)
 {
   if (want_in_slot)
     add_string(group_iter, group, top, left, max_left, " in slot  ", false,
@@ -907,14 +910,14 @@ add_slot_and_obj(Am_Slot_Key key, Am_Object &for_obj, Am_Value_List &group_iter,
 //forward declaration because recursive
 static void add_constraint_dependencies(Am_Value_List &group_iter,
                                         Am_Object &group, int &top, int &left,
-                                        int &max_left, char *line, int line_max,
-                                        OSTRSTREAM &oss,
+                                        int &max_left, const char *line,
+                                        int line_max, OSTRSTREAM &oss,
                                         Am_Formula_Advanced *form, int depth);
 
 static const char *
 add_constraint_name_and_deps(Am_Constraint *constr, Am_Value_List &group_iter,
                              Am_Object &group, int &top, int &left,
-                             int &max_left, char *line, int line_max,
+                             int &max_left, const char *line, int line_max,
                              OSTRSTREAM &oss, int depth, Am_Slot_Key key,
                              Am_Object &for_obj, bool show_slot)
 {
@@ -956,8 +959,9 @@ add_constraint_name_and_deps(Am_Constraint *constr, Am_Value_List &group_iter,
 static void
 check_and_add_constraints_for(const Am_Slot &dep_slot,
                               Am_Value_List &group_iter, Am_Object &group,
-                              int &top, int &left, int &max_left, char *line,
-                              int line_max, OSTRSTREAM &oss, int depth)
+                              int &top, int &left, int &max_left,
+                              const char *line, int line_max, OSTRSTREAM &oss,
+                              int depth)
 {
   int i;
   if (depth > MAX_PRINT_DEPTH) {
@@ -983,8 +987,8 @@ check_and_add_constraints_for(const Am_Slot &dep_slot,
 
 static void
 add_constraint_dependencies(Am_Value_List &group_iter, Am_Object &group,
-                            int &top, int &left, int &max_left, char *line,
-                            int line_max, OSTRSTREAM &oss,
+                            int &top, int &left, int &max_left,
+                            const char *line, int line_max, OSTRSTREAM &oss,
                             Am_Formula_Advanced *form, int depth)
 {
   Am_Depends_Iterator dep_iter = form;
@@ -1754,7 +1758,7 @@ Am_Define_Method(Am_Object_Method, void, hide_inherited_slots,
                  (Am_Object command_obj))
 {
   Am_String cmdstr = command_obj.Get(Am_LABEL);
-  char *label = cmdstr;
+  const char *label = cmdstr;
 
   Am_Object window, object;
   window = get_window_from_cmd(command_obj);
@@ -1776,7 +1780,7 @@ Am_Define_Method(Am_Object_Method, void, hide_internal_slots,
                  (Am_Object command_obj))
 {
   Am_String cmdstr = command_obj.Get(Am_LABEL);
-  char *label = cmdstr;
+  const char *label = cmdstr;
 
   Am_Object window, object;
   window = get_window_from_cmd(command_obj);
@@ -1829,7 +1833,7 @@ Am_Define_Method(Am_Object_Method, void, show_instances,
                  (Am_Object command_obj))
 {
   Am_String cmdstr = command_obj.Get(Am_LABEL);
-  char *label = cmdstr;
+  const char *label = cmdstr;
 
   Am_Object window, object;
   window = get_window_from_cmd(command_obj);
@@ -1848,7 +1852,7 @@ Am_Define_Method(Am_Object_Method, void, show_instances,
 Am_Define_Method(Am_Object_Method, void, show_parts, (Am_Object command_obj))
 {
   Am_String cmdstr = command_obj.Get(Am_LABEL);
-  char *label = cmdstr;
+  const char *label = cmdstr;
 
   Am_Object window, object;
   window = get_window_from_cmd(command_obj);
@@ -1903,7 +1907,7 @@ Am_Define_Method(Am_Object_Method, void, update_when_values_change,
                  (Am_Object command_obj))
 {
   Am_String cmdstr = command_obj.Get(Am_LABEL);
-  char *label = cmdstr;
+  const char *label = cmdstr;
 
   Am_Object window, object;
   window = get_window_from_cmd(command_obj);
@@ -1966,7 +1970,7 @@ Am_Define_Method(Am_Object_Method, void, show_old_slot_values,
 Am_Define_Method(Am_Object_Method, void, sort_by_name, (Am_Object command_obj))
 {
   Am_String cmdstr = command_obj.Get(Am_LABEL);
-  char *label = cmdstr;
+  const char *label = cmdstr;
 
   Am_Object window, object;
   window = get_window_from_cmd(command_obj);

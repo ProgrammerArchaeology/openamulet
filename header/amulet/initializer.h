@@ -104,7 +104,7 @@ public:
   // CREATORS
   typedef std::list<Am_Initializer *> INITIALIZERLIST;
   typedef void Am_Initializer_Procedure();
-  Am_Initializer(char *this_name, Am_Initializer_Procedure *init_proc,
+  Am_Initializer(const char *this_name, Am_Initializer_Procedure *init_proc,
                  float priority, unsigned aCheckPoint = 1,
                  Am_Initializer_Procedure *cleanup_proc = 0);
   //			~Am_Initializer();
@@ -122,7 +122,7 @@ protected:
   // DATA MEMBERS
   static INITIALIZERLIST *am_initializer_list;
 
-  char *name;
+  const char *name;
   float priority;
   unsigned mCheckPoint;
 

@@ -71,7 +71,7 @@ Am_Initializer::INITIALIZERLIST *Am_Initializer::am_initializer_list;
 //-------------------------------------------------------------
 // class definition/implementation
 //-------------------------------------------------------------
-Am_Initializer::Am_Initializer(char *this_name,
+Am_Initializer::Am_Initializer(const char *this_name,
                                Am_Initializer_Procedure *init_proc,
                                float this_priority, unsigned aCheckPoint,
                                Am_Initializer_Procedure *cleanup_proc)
