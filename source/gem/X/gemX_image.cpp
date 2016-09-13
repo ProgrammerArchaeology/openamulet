@@ -15,6 +15,7 @@
 #include <X11/Xlib.h>
 
 #include <cstdio>
+#include <cstdlib>
 #include <iostream>
 #include <am_inc.h>
 

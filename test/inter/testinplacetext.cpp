@@ -7,6 +7,8 @@
  * please contact amulet@cs.cmu.edu to be put on the mailing list.        *
  * ************************************************************************/
 
+#include <string.h>
+
 #include <am_inc.h>
 #include <amulet/inter_advanced.h>
 #include <amulet/text_fns.h>

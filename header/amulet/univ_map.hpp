@@ -9,6 +9,8 @@
 
 // Template macros for Amulet maps, iterators and tables
 
+#include <stdlib.h>
+
 #define AM_DECL_MAP(Name, KeyType, ItemType)                                   \
   struct Am_Assoc_##Name                                                       \
   {                                                                            \
