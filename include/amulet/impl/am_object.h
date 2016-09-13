@@ -41,12 +41,12 @@ class Am_Object_Data;
 // is used to represent Amulet objects like windows, graphical objects, and
 // interators. An Am_Object has very little overhead as it's only a wrapper
 // and nothing more. An actual object is/can be stored inside an Am_Object
-// with the use of the Create Method. This method allocates memroy etc. To get
+// with the use of the Create Method. This method allocates memory etc. To get
 // rid of the allocated object the destroy method has to be called. This is
 // even true for stack-objects. If you have an Am_Object on the stack and
-// reuse it in a loop to hold Amulet objects retured by create() remember to
+// reuse it in a loop to hold Amulet objects returned by create() remember to
 // safe them elsewhere (so you can destroy them later) or you have to
-// explicitely destroy them. Otherwise a memory-leak will occure.
+// explicitly destroy them. Otherwise a memory-leak will occur.
 //
 // Example:
 // 	for(int32 x=0; x<1000; ++x)
@@ -130,7 +130,7 @@ public:
   _OA_DL_MEMBERIMPORT Am_Object Get_Prototype() const;
 
   //:Queries a slot for an object.
-  // This causes an error if the slot containts a non-object value.
+  // This causes an error if the slot contains a non-object value.
   _OA_DL_MEMBERIMPORT Am_Object Get_Object(Am_Slot_Key key,
                                            Am_Slot_Flags flags = 0) const;
 

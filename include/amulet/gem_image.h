@@ -16,7 +16,7 @@
 // takes care of displaying it, and so on.
 
 // Transparent images:
-// To accomodate X11 raster ops, I have forced the transparent color
+// To accommodate X11 raster ops, I have forced the transparent color
 // to be at index 0 in the color map and to be white (all ones)
 // I know that forcing the transparent color to be white is necessary
 // I do not know if it is actually necessary to force the transparent

@@ -36,11 +36,11 @@ private:
 extern Am_Network_Group Am_Network;
 
 /*
-With merge, there will only be one net object. the connection
+With merge, there will only be one net object. The connection
 will register one as sent and one as received, but Merge will use only one
     if merged obj has already been received, destroy data and replace with incoming. Register the new object as that instance?
 
-Add will broadcast all objects in our list to the newcommer
+Add will broadcast all objects in our list to the newcomer
 */
 
 #endif

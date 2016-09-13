@@ -222,7 +222,7 @@ bool Am_Main_Loop_Go = true;
 
 //Global variable controlling multiple-click handling.  If 0, then no
 //double-click processing.  Otherwise, is the inter-click wait time in
-//milleseconds.  Default value = 250.
+//milliseconds.  Default value = 250.
 //(Declared in GEM.H)
 int Am_Double_Click_Time = GetProfileInt("windows", "DoubleClickSpeed", 250);
 
@@ -372,7 +372,7 @@ Am_WinDrawonable::WaitMessageWithTimeout(unsigned long milliseconds)
   idTimer = timeSetEvent(milliseconds, 0, TimeProc, 0, TIME_ONESHOT);
 
   if (!idTimer) {
-    // can't set the timer (probably becuase duration is too short)
+    // can't set the timer (probably because duration is too short)
     // return right away
     std::cerr << "busy waiting" << std::endl;
     return;
@@ -817,10 +817,10 @@ Am_WinDrawonable::Create_Offscreen(int width, int height, Am_Style back_color)
   Am_WinDrawonable *wdrw = (Am_WinDrawonable *)Create(
       0 /*CW_USEDEFAULT*/, 0 /*CW_USEDEFAULT*/,
       // we don't use default, because Windows places an invisible window
-      // out of visible desktop => it wouldn't appear even when we make it visble
+      // out of visible desktop => it wouldn't appear even when we make it visible
       width, height, (0L), (0L), false, false, back_color);
   if (wdrw) {
-    //set bufferring on
+    //set buffering on
     wdrw->SetUsesBufferring(TRUE);
     wdrw->SetBuffered(TRUE);
   }
@@ -2308,7 +2308,7 @@ Am_WinDrawonable::MainWndProc(HWND hWnd, UINT message, WPARAM wParam,
       if (fCtrl) {
         bool fCtrlCh =
             WinKeyPressed(VK_CONTROL) && (isalpha(wParam) || isdigit(wParam));
-        //control-charachter
+        //control-character
         if (fCtrlCh) {
           drw->WndOnInput(
               (WinKeyPressed(VK_SHIFT) || WinKeyToggled(VK_CAPITAL))
@@ -2603,7 +2603,7 @@ bool
 Am_WinDrawonable::WndCreate(bool fQueryPos, bool fQuerySize, bool fSaveBits)
 {
   if (IsWindow(m_hwnd))
-    return true; //allready created
+    return true; //already created
 
   //LPCSTR lpszClassName;	/* address of registered class name	*/
   //LPCSTR lpszWindowName;	/* address of window text	*/

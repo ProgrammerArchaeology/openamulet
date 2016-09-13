@@ -31,7 +31,7 @@ public:
 
   // Prevents the queue from being invoked.  When the queue is being prevented,
   // calling Invoke is a no-op (not an error).  These methods use ref counting
-  // calling Prevent_Invoke multiple times makes it neccessary to call
+  // calling Prevent_Invoke multiple times makes it necessary to call
   // Release_Invoke the same number to release the queue.  (It does not go
   // negative, though.)
   void Prevent_Invoke();

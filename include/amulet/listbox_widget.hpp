@@ -31,7 +31,7 @@
 // Because the selectable objects in the listbox are mostly 'visual representations'
 // of internal objects this mapping is needed.
 //
-// The 'Am_SELECTED' slot of listbox is toggeld by each selection. So this slot can
+// The 'Am_SELECTED' slot of listbox is toggled by each selection. So this slot can
 // be used to trigger an action via a constraint on other objects.
 //
 // The first template parameter specifies the type of the 'owner' of the listbox.
@@ -242,7 +242,7 @@ Am_Listbox<OWNER>::initialize()
           .Add(Am_THIS, reinterpret_cast<Am_Ptr>(this))
 
           // can be used in constraints to trigger an update because
-          // this Slot is toggeled on each selection, see 'listbox_method' above
+          // this Slot is toggled on each selection, see 'listbox_method' above
           .Add(Am_SELECTED, false)
 
           .Set(Am_FILL_STYLE, Am_Motif_Gray)
@@ -373,7 +373,7 @@ public:
     usedListbox->deleteAllItems();
   }
 
-  // this function is called through the for_each STL aglortihm
+  // this function is called through the for_each STL algorithm
   void operator()(T item)
   {
     // get the reference to the string

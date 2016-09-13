@@ -22,7 +22,7 @@ public:
   Am_Inter_Location(const Am_Object &object);
   void Set_Location(bool as_line, Am_Object ref_obj, int a, int b, int c, int d,
                     bool make_unique = true);
-  //two-value form sets growning to false
+  //two-value form sets growing to false
   void Set_Location(bool as_line, Am_Object ref_obj, int a, int b,
                     bool make_unique = true);
   void Get_Location(bool &as_line, Am_Object &ref_obj, int &a, int &b, int &c,

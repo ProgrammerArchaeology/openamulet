@@ -28,7 +28,7 @@ Am_Symbol_Table *Am_Slot_Name_Key_Table = 0;
 inline void
 verify_slot_name_key_table()
 {
-  // do we allready have a symbol table?
+  // do we already have a symbol table?
   if (!Am_Slot_Name_Key_Table) {
     // if not we allocate one
     Am_Slot_Name_Key_Table = Am_Symbol_Table::Create(500);
@@ -63,7 +63,7 @@ Am_Register_Slot_Name(const char *string)
   // current_name stores the next slot key to allocate
   static Am_Slot_Key current_name = SLOT_NAME_START;
 
-  // do we allready have a symbol-table?
+  // do we already have a symbol-table?
   verify_slot_name_key_table();
 
   int prev_key = Am_Slot_Name_Key_Table->Get_Value(string);

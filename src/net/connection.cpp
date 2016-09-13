@@ -189,8 +189,8 @@ private:
   int m_socket;              // connected socket Add depends on public m_socket
   bool connected;            // Set by Open, Close, possibly UnmarshallX or
                              //Marshall (x)
-  bool waiting;              // Am I waiting to accept an incomming conn?
-  Am_Value_List Value_Queue; // Stores Amulet formatted incomming data
+  bool waiting;              // Am I waiting to accept an incoming conn?
+  Am_Value_List Value_Queue; // Stores Amulet formatted incoming data
   Am_Receive_Method my_receiver;  //Acts on new items in Value_Queue immediately
   Incomplete_List_Ptr List_Queue; //Stores info on lists while they are being
                                   //read.
@@ -260,7 +260,7 @@ Am_Connection::Open(const char addr[])
   if ((hp = gethostbyname(addr)) == (0L)) {
     p_connection = Open();
   } else {
-    /* Put host's address and addresss type into socket structure */
+    /* Put host's address and address type into socket structure */
     memmove(&(sa->sin_addr), hp->h_addr, hp->h_length);
     sa->sin_family = PF_INET;
     /* Put the port into the socket structure */
@@ -327,7 +327,7 @@ Am_Connection::Open(void)
 
   p_connection->Set_Waiting_Flag(true);
   if (m_parent_socket == 0) {
-    /* Put host's address and addresss type into socket structure */
+    /* Put host's address and address type into socket structure */
     in_sa.sin_addr.s_addr = INADDR_ANY;
     in_sa.sin_family = PF_INET;
     /* Put the port into the socket structure */
@@ -442,7 +442,7 @@ Am_Connection::Handle_Sockets(fd_set *readfds)
     Connection_List_Ptr local_list;
     local_list = connection_list;
     ////
-    //// Check Connections for incomming data
+    //// Check Connections for incoming data
     ////
     while (local_list != (0L)) {
       if ((local_list->connection_ptr->Connected()) &&
@@ -692,7 +692,7 @@ Am_Connection_Data::Am_Connection_Data(void)
 {
   m_socket = 1;             // Stdout on unix, shouldn't be used anyway
   connected = false;        // Connection flag: Am I Connected?
-  waiting = false;          // Am I waiting to accept an incomming conn?
+  waiting = false;          // Am I waiting to accept an incoming conn?
   Value_Queue.Make_Empty(); // Processed incoming data (None yet)
   List_Queue = (0L);        // Lists being read in
   Object_Queue = (0L);      // Objects being read in
@@ -978,8 +978,8 @@ Am_Connection::Receive_Object(Am_Object &the_obj)
 
   //Risk: If objects come in fast and the demons
   // do not fire soon after an object is received...
-  // Might need to maintain multiple object states to ensure integrety
-  // During simultaneos Send and Receives.
+  // Might need to maintain multiple object states to ensure integrity
+  // During simultaneous Send and Receives.
   new_partial_obj_ptr->obj = the_obj;
   // Declaw demon during receive
   Am_Value_List slot_list = the_obj.Get(Am_SLOTS_TO_SAVE);

@@ -20,7 +20,7 @@
 #include <amulet/gemW_gifimage.h>
 
 // Utility function quantize_bits:
-// Device independant bitmaps (specified with BITMAPINFOHEADER) can only have
+// Device independent bitmaps (specified with BITMAPINFOHEADER) can only have
 // 1, 4, 8, 16, 24, or 32 bits per pixel.  So, when we compress the gif-read
 // information into a DIB, we have to quantize the GIF bits per pixel (which can be
 // any value) into one of these values.  Reading from disk to GIFImage is unquantized,

@@ -215,7 +215,7 @@ public:
                                      int &dest_x_return,
                                      int &dest_y_return); // const;
 
-  // Translates a point from drawonable that hasn't neccessarily been
+  // Translates a point from drawonable that hasn't necessarily been
   // created to screen coordinates.  This function only works on root
   // drawonables.
   virtual void Translate_From_Virtual_Source(int src_x, int src_y,
@@ -406,7 +406,7 @@ public:
   void WndFillInfo(HWND hwnd);
 
   //:Returns the number of colors for the actual display
-  // Is missnamed as Depth associates a plane-depth...
+  // Is misnamed as Depth associates a plane-depth...
   static int WndGetColorDepth(HDC hdc = 0);
 
   void WndIconify();

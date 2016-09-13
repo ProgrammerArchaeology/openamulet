@@ -798,8 +798,8 @@ protected:
   // holds the hot spot locally for bitmaps, in case we make a cursor.
   int x_hot, y_hot;
 
-  // Am_Generic_Image stores machine-independant data.
-  // we need only one copy of the machine-independant data.
+  // Am_Generic_Image stores machine-independent data.
+  // we need only one copy of the machine-independent data.
   // XImage stores the machine specific Image data.
   // we shouldn't need to store this at all, assuming we can get it into an
   // XPixmap successfully.

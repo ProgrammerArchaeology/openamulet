@@ -7,7 +7,7 @@
  * please contact amulet@cs.cmu.edu to be put on the mailing list.        *
  * ************************************************************************/
 
-// Implementation of machine independant GIF loader.
+// Implementation of machine independent GIF loader.
 #include <fstream>
 #include <iostream>
 #include <string.h>

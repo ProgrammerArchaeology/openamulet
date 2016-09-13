@@ -222,7 +222,7 @@
 
 #include <amulet/univ_map.hpp>
 
-// Hash value fuctions
+// Hash value functions
 inline int
 HashValue(int key, int size)
 {

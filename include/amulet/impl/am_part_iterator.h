@@ -4,7 +4,7 @@
 #include "am_object.h"
 
 // This is a helper class used for iterating through an object's parts.
-// The iterator is inialized by assigning the owner object to the iterator.
+// The iterator is initialized by assigning the owner object to the iterator.
 // The elements of the list will include both named and unnamed parts.
 
 class _OA_DL_CLASSIMPORT Am_Part_Iterator

@@ -1391,7 +1391,7 @@ check_one_obj_modified(Am_Value &obj_modified, Am_Slot_Key slot,
     if (Am_Value_List::Test(obj_modified)) {
       if (!Am_Value_List::Test(ret))
         ret = Am_Value_List().Add(ret);
-    } else { // original is not a list, see if unneccesarily have a list
+    } else { // original is not a list, see if unnecessarily have a list
       if (Am_Value_List::Test(ret)) {
         Am_Value_List ret_list = ret;
         if (ret_list.Length() == 1)

@@ -75,7 +75,7 @@ Am_Image_Array::Am_Image_Array(const char *file_name)
 Am_Image_Array::Am_Image_Array(unsigned int width, unsigned int height,
                                int /*depth*/,
                                // default color 0
-                               Am_Style /*intial_color*/)
+                               Am_Style /*initial_color*/)
 {
   int nBytes = ((width + 7) / 8) * height;
   char *bit_data = new char[nBytes];
@@ -195,7 +195,7 @@ Am_Image_Array::Set_Bit(int /* x */, int /* y */, int /* val */)
 
 // Returns in storage the RGB values for each pixel in the image
 // using 1 byte each for R, for G and for B.  So ...
-// storage must be large enough to accomodate 3*width*height bytes.
+// storage must be large enough to accommodate 3*width*height bytes.
 // If top_first return RGB values for top row first
 // else return RGB for bottom row first.
 // Returns true if successful (i.e. implemented).

@@ -35,8 +35,8 @@ extern Am_Slot_Key Am_NET_BLESSING;
 class Am_Connection_Data;
 class Am_Connection;
 
-// Method used to Unmarshall a value from a socket.  Use the Am_Connection
-// parameter to Unmarshall nested items from the same socket.
+// Method used to unmarshall a value from a socket.  Use the Am_Connection
+// parameter to unmarshall nested items from the same socket.
 AM_DEFINE_METHOD_TYPE(Am_Unmarshall_Method, Am_Value,
                       (int the_socket, Am_Connection *my_connection))
 
@@ -78,8 +78,8 @@ AM_DECL_MAP(Net_IDs, Am_Value_Type, Am_Value)
 
 ////////////////////////////////////////////////////
 // There may be one Receiver method per connection. It should Pop() items from
-// the Value Queue and act upon them. It will be cxalled immediately after the
-// Unmarshall methods are done.
+// the Value Queue and act upon them. It will be called immediately after the
+// unmarshall methods are done.
 
 AM_DEFINE_METHOD_TYPE(Am_Receive_Method, void, (Am_Connection * my_connection))
 
@@ -115,8 +115,8 @@ public:
   // method to restore those bytes to the proper object.
   // An unmarshalling method must return an Am_Value for insertion into the
   // Connection's Value_Queue.
-  //   Currently these methods are also responsible for sending & recieving.
-  // This is because recieving some types requires knowledge of the data in
+  //   Currently these methods are also responsible for sending & receiving.
+  // This is because receiving some types requires knowledge of the data in
   // order to know the length.
 
   static bool Register_Type(Am_Value_Type type,
@@ -126,7 +126,7 @@ public:
   // Is the network being used?
   static bool Active(void) { return num_sockets != 0; }
 
-  // Block Pending incomming connection. Use with Caution:
+  // Block Pending incoming connection. Use with Caution:
   // No other events can take place until this returns.
   static void Wait_For_Connect(void);
 
@@ -138,12 +138,12 @@ public:
 
   static int Merge_Mask(fd_set *fds);
 
-  //Handle_Sockets calls the Unmarshall method for the apropriate types on each
+  //Handle_Sockets calls the Unmarshall method for the appropriate types on each
   //socket with a 1 in the readfds bitmask.
 
   static void Handle_Sockets(fd_set *readfds);
 
-  // These are for marshalling objects. Comming soon!
+  // These are for marshalling objects. Coming soon!
   //
   // This method is used to record items that are referred to by the objects
   // being Received or Sent, but the items themselves are permanent parts of
@@ -172,8 +172,8 @@ public:
   // Instance Methods
   ///////////////////////
 
-  void Send(Am_Value value); // Will call the apropriate method
-  Am_Value Receive(void);    // Retireves Value from Queue Syncronously
+  void Send(Am_Value value); // Will call the appropriate method
+  Am_Value Receive(void);    // Retrieves Value from Queue Synchronously
 
   // List marshalling methods
   //
@@ -196,7 +196,7 @@ public:
   void Add_To_Current_Object(Am_Value val);
   void Check_Object();
 
-  // Input loop mehtods
+  // Input loop methods
 
   void Handle_Input(void); // Automatically invokes marshall methods, which
                            // must queue an  Am_Value on the Value_Queue,
@@ -219,7 +219,7 @@ public:
   ////////////////////////////////////////////////////////////////////////////
   // private:
   ////////////////////////////////////////////////////////////////////////////
-  // Keep track of connections for dispaching and cleanup:
+  // Keep track of connections for dispatching and cleanup:
 
   static void Add_Connection(Am_Connection *new_connection);
   static void Delete_Connection(int sock);
@@ -247,7 +247,7 @@ public:
   static long num_sockets;       // How many sockets are there?
   static int max_socket;         // We tell select this is the highest
                                  //   socket number to listen to?
-  static int m_parent_socket;    // The socket used to receive incomming
+  static int m_parent_socket;    // The socket used to receive incoming
                                  //   connections.
   static fd_set *socket_flags;   // Used for rapid check for input.
 };

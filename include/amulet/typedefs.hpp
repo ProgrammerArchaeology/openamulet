@@ -2,7 +2,7 @@
 #define TYPEDEFS_HPP
 
 // Forward class declarations, these are needed here to get the typedefs
-// declared without any other includings
+// declared without any other includes
 class Am_Object;
 class Am_Slot;
 class Am_Value;

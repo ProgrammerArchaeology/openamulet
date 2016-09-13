@@ -120,7 +120,7 @@ public:
   Item GetAt(const Key &aKey) const
   {
 #ifdef DEBUG
-    // This is for debuggin propose only. If you want to look at the
+    // This is for debugging propose only. If you want to look at the
     // map change the dumpMap value to true within your debugger
     bool dumpMap(false);
     if (dumpMap == true) {
@@ -170,7 +170,7 @@ template <class T> class Map_Iterator
 {
 public:
   // CREATORS
-  // Default Ctor, use this if it'S not possible to set the
+  // Default Ctor, use this if it's not possible to set the
   // associated map object directly, because of template code
   // use function Init(...) instead
   Map_Iterator() { ; }
@@ -371,7 +371,7 @@ public:
   // ATTENTION: Keep this order between Am_Map_* and Am_MapIterator_* because
   // the iterators are initialized in the initializer-list of the ctors and
   // need an already constructed map object, the code will fail if the map
-  // isn't properbly constructed at the time the iterator ctors are invoked
+  // isn't properly constructed at the time the iterator ctors are invoked
 private:
   // This maps key-strings to key-values
   Map_Key2Item Am_Map_Key2Item;

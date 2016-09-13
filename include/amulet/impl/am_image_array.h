@@ -17,7 +17,7 @@ public:
   Am_Image_Array(int percent);
   Am_Image_Array(char *bit_data, int height, int width);
   Am_Image_Array(unsigned int width, unsigned int height, int depth,
-                 Am_Style intial_color);
+                 Am_Style initial_color);
 
   Am_Image_Array make_diamond();
 
@@ -27,7 +27,7 @@ public:
 
   // Returns in storage the RGB values for each pixel in the image
   // using 1 byte each for R, for G and for B.  So ...
-  // storage must be large enough to accomodate 3*width*height bytes.
+  // storage must be large enough to accommodate 3*width*height bytes.
   // If top_first return RGB values for top row first
   // else return RGB for bottom row first.
   // Returns true if successful (i.e. implemented).

@@ -65,7 +65,7 @@ public:
     {
       // only delete the WIN32_FIND_DATA object, the other
       // pointer is only a reference to an other mEntry object
-      // wich will be deleted later (or has been deleted already)
+      // which will be deleted later (or has been deleted already)
       delete (mOsDirEntry);
     }
 
@@ -75,7 +75,7 @@ public:
     // pointer to parent directory this directory might be contained in
     mEntry *mOsParentDirEntry;
 
-    // list of files contained in this directry
+    // list of files contained in this directory
     FILE_ENTRIES mFiles;
 
     // level this directory is in the read tree (depends on the starting
@@ -171,7 +171,7 @@ private:
   // ACCESSORS
   // DATA MEMBERS
   // map of level number to directory entry
-  // each entry is a pair of the the directory level and the mEntry object pointer
+  // each entry is a pair of the directory level and the mEntry object pointer
   LEVEL_ENTRIES mLevel2Directories;
 
   // If this is true . and .. will be included when traversing the

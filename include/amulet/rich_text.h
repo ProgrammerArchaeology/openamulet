@@ -276,19 +276,19 @@ private:
   //--------- Getting and searching ---------
 
   //returns character at the left of the mark.  Returns zero if mark is at
-  //begining of text (so no character at left).  Returns 255 if there is an
+  //beginning of text (so no character at left).  Returns 255 if there is an
   //object to the left of the mark.
   char Get_Char(Am_Text_Mark_Data& which_mark = Am_No_Rich_Text_Mark);
 
   //returns character or object at left of mark.  Returns Am_No_Value if mark
-  //is at begining of text (so no character at left)
+  //is at beginning of text (so no character at left)
   Am_Value Get(Am_Text_Mark_Data& which_mark = Am_No_Rich_Text_Mark);
 
   //converts contents of region to a regular C string.  Objects are not
   //included and formatting information is lost.
   Am_String Get_String(Am_Rich_Text_Region &region = Am_No_Rich_Text_Region);
 
-  //searches for the first occurance of value v, which
+  //searches for the first occurrence of value v, which
   //will usually be a string, character or embedded object, ignoring fonts
   // (and if ignore_case then also ignores capital and lower case),
   //either forwards or backwards, starting from start_mark if from_mark is
@@ -472,7 +472,7 @@ private:
   Am_Text_Index mIndex;        // the marks index in its Am_Text_Fragment
   unsigned long mFlags;        // a bunch of flags (sticky, deleteable, visible)
   Am_Style mStyle;             // the style of the mark when drawn
-  Am_Value mData;              // an arbitary Am_Value which the mark holds
+  Am_Value mData;              // an arbitrary Am_Value which the mark holds
   Am_Text_Fragment *mFragment; // the Am_Text_Fragment which contains this
                                // mark can get the Am_Rich_Text object by
                                // calling Get_Text_Object on the fragment
@@ -610,7 +610,7 @@ public:
   //following routine is used, then will use the specified colors for the
   //region.  Note: this doesn't change the color of the actual text in the
   //region, just how the region is made visible as the region moves around
-  // If text is in multiple regions, resulting color is controled by the
+  // If text is in multiple regions, resulting color is controlled by the
   // region closest to the character.
   void Set_Region_Style(Am_Style foreground_color = Am_White,
                         Am_Style background_color = Am_Black);

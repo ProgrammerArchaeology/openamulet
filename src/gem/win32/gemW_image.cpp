@@ -87,7 +87,7 @@ Am_Image_Array::Set_Bit(int x, int y, int val)
 
 // Returns in storage the RGB values for each pixel in the image
 // using 1 byte each for R, for G and for B.  So ...
-// storage must be large enough to accomodate 3*width*height bytes.
+// storage must be large enough to accommodate 3*width*height bytes.
 // If top_first return RGB values for top row first
 // else return RGB for bottom row first.
 // Returns true if successful (i.e. implemented).

@@ -95,7 +95,7 @@ protected:
   /* these are set after a few points and left */
   double initial_sin, initial_cos; /* initial angle to x axis */
 
-  /* these are updated incrementatally upon every point */
+  /* these are updated incrementally upon every point */
 
   int npoints; /* number of points in path */
 

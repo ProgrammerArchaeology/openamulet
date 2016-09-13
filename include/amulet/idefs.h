@@ -138,7 +138,7 @@ enum Am_Keyboard_Event_Codes
   Am_DOWN_ARROW,
   Am_RIGHT_ARROW,
 
-  //various SUN keyboads
+  //various SUN keyboards
   Am_PRIOR,
   Am_NEXT,
   Am_SELECT,

@@ -859,7 +859,7 @@ init()
           .Add(Am_VALUE_2, 100)
           .Add(Am_ANIMATE_FORWARD, true)
           .Add(Am_ANIMATE_END_ACTION, Am_ANIMATION_STOP)
-          .Add(Am_TIME_FOR_ANIMATION, Am_Time(3000)) //milleseconds
+          .Add(Am_TIME_FOR_ANIMATION, Am_Time(3000)) //milliseconds
       ;
 
   Am_Constant_Velocity_Command =
@@ -889,7 +889,7 @@ init()
           .Add(Am_SLOT_TO_ANIMATE, Am_VISIBLE)
           .Add(Am_VALUE_1, true)
           .Add(Am_VALUE_2, false)
-          .Add(Am_TIME_FOR_ANIMATION, Am_Time(3000)) //milleseconds
+          .Add(Am_TIME_FOR_ANIMATION, Am_Time(3000)) //milliseconds
       ;
 
   Am_Animation_Interactor =
@@ -907,7 +907,7 @@ init()
 
           .Add(Am_ANIMATION_METHOD, animation_timer_method)
 
-          .Add(Am_REPEAT_DELAY, Am_Time(100)) //milleseconds = 0.1 sec
+          .Add(Am_REPEAT_DELAY, Am_Time(100)) //milliseconds = 0.1 sec
           .Set(Am_CONTINUOUS, true)
           .Set(Am_STOP_WHEN, false) //never stops
           .Set_Part(Am_COMMAND, Am_Animation_Command);
@@ -919,7 +919,7 @@ static Am_Initializer *initializer =
 /*  ***
 ** Make interactors start by themselves when Set_part using this formula
 
-// use this one to also start the interactor autoamtically if its
+// use this one to also start the interactor automatically if its
 // start_when is true.
 
 Am_Define_Formula (int, maintain_inter_to_window_list_rank)

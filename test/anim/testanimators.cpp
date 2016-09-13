@@ -678,7 +678,7 @@ init_eye()
                                                 .Set(Am_Y_OFFSET, 0)
                                                 .Set(Am_ANIMATE_END_ACTION,
                                                      Am_ANIMATION_BOUNCE)))
-          .Set(Am_IMAGE, 0) //iniialize with some value
+          .Set(Am_IMAGE, 0) //initialize with some value
           .Set(Am_IMAGE,
                Am_Animate_With(
                    change_pic_anim =

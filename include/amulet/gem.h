@@ -36,7 +36,7 @@ class Am_Drawonable;
 
 //Global variable controlling multiple-click handling.  If 0, then no
 //double-click processing.  Otherwise, is the inter-click wait time in
-//milleseconds.  Default value = 250.
+//milliseconds.  Default value = 250.
 _OA_DL_IMPORT extern int Am_Double_Click_Time;
 
 #include "amulet/impl/gem_event_handlers.h"

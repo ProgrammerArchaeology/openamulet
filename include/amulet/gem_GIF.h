@@ -43,7 +43,7 @@ struct GIFHeader
 
 // constants for interpreting the Graphics Control Extension block:
 // the first byte identifies the block as an extension GIF_EXTSTART
-// the second byte identifes the block as a GCE GIF_CGE
+// the second byte identifies the block as a GCE GIF_CGE
 // the third byte is the blocksize, always 4
 // The next 4 bytes are the data of the extension
 //   the first of these (at offset GIF_GCE_PACKED)
@@ -57,7 +57,7 @@ struct GIFHeader
 // Structure for GIF file information
 // Eventually we should completely get rid of this structure, currently
 // used to pass information between Am_GIF_Image routines.  The data
-// is only needed temporarily, so it shouldnt be put in Am_GIF_Image.
+// is only needed temporarily, so it shouldn't be put in Am_GIF_Image.
 class GIF_Load_Info
 {
 public:

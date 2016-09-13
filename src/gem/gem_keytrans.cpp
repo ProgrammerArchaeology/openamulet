@@ -60,7 +60,7 @@ bool Fix_Shift_For_Code(short code, bool old_shift);
 // in gem.h.
 Am_Input_Event *Am_Current_Input_Event;
 // this Am_Stop_Character should replace the one in gemM_input.cc
-// and gemX_input.cc: it's machine independant.
+// and gemX_input.cc: it's machine independent.
 const Am_Input_Char Am_Stop_Character(Am_STOP_CHARACTER);
 
 Am_Symbol_Table *char_map = 0;

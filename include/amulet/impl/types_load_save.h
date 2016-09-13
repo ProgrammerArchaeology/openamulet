@@ -58,7 +58,7 @@ public:
   void Register_Loader(const char *type_name, const Am_Load_Method &method);
 
   // Save methods are registered based on a value type.  If a single type can
-  // be saved in multiple ways, it is up to the save method to delagate the
+  // be saved in multiple ways, it is up to the save method to delegate the
   // save to the proper method.  If two or more methods are registered on the
   // same type, the last one defined will be used.
   void Register_Saver(Am_ID_Tag type, const Am_Save_Method &method);
@@ -77,7 +77,7 @@ public:
   void Save(std::ostream &os, const Am_Value &value);
 
   // Structures that are recursive must call this function before Load is
-  // called recusively.  The value is the pointer to the structure being
+  // called recursively.  The value is the pointer to the structure being
   // loaded.  This value will be used by internal values that refer to the
   // parent structure.
   void Recursive_Load_Ahead(Am_Wrapper *value);

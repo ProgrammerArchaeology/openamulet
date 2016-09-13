@@ -481,12 +481,12 @@ Am_Load_Save_Context::Save(std::ostream &os, const Am_Value &value)
       return;
     }
 
-    // does there allready exist a reference to the object in the
-    // file? (the object was allready saved, if the reference is not -1)
+    // does there already exist a reference to the object in the
+    // file? (the object was already saved, if the reference is not -1)
     Wrapper_Holder holder(value);
     int reference = data->references->GetAt(holder);
     if (reference != -1) {
-      // yes, the object allready exists, just write out a reference
+      // yes, the object already exists, just write out a reference
       os << "R" << reference << std::endl;
       return;
     }
@@ -502,7 +502,7 @@ Am_Load_Save_Context::Save(std::ostream &os, const Am_Value &value)
         // no, that's it
         os << std::endl;
       } else {
-        // yes, than write out a number so that we can distignuish them
+        // yes, than write out a number so that we can distinguish them
         os << " " << name.number << std::endl;
       }
 
@@ -1029,12 +1029,12 @@ Am_Load_Save_Context::Save(std::ostream &os, const Am_Value &value)
       return;
     }
 
-    // does there allready exist a reference to the object in the
-    // file? (the object was allready saved, if the reference is not -1)
+    // does there already exist a reference to the object in the
+    // file? (the object was already saved, if the reference is not -1)
     Wrapper_Holder holder(value);
     int reference = data->references->GetAt(holder);
     if (reference != -1) {
-      // yes, the object allready exists, just write out a reference
+      // yes, the object already exists, just write out a reference
       os << "R" << reference << std::endl;
       return;
     }
@@ -1050,7 +1050,7 @@ Am_Load_Save_Context::Save(std::ostream &os, const Am_Value &value)
         // no, that's it
         os << std::endl;
       } else {
-        // yes, than write out a number so that we can distignuish them
+        // yes, than write out a number so that we can distinguish them
         os << " " << name.number << std::endl;
       }
 

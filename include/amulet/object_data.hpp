@@ -70,7 +70,7 @@ public:
 
   //:pointer to first instance which used this object as a prototype
   // the pointed to object's next_instance data member leads to the next
-  // instance which used this object as prototpye
+  // instance which used this object as prototype
   Am_Object_Data *first_instance;
 
   //:pointer to next instance which was created from the same prototype

@@ -41,7 +41,7 @@ Am_Define_Method(Am_Receive_Method, void, test_receive,
                  (Am_Connection * my_connection_ptr))
 {
   Am_Value val = my_connection_ptr->Receive();
-  cout << "testnobj:Recieved " << val << endl << flush;
+  cout << "testnobj:Received " << val << endl << flush;
 
   Am_Object sent_obj = (Am_Object)val;
   rectangle.Set(Am_TOP, sent_obj.Get(Am_TOP));

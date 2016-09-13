@@ -22,7 +22,7 @@
 //   Win32s environment, it is the responsibility of the Win32-based application
 //   to ensure that all allocated GDI objects are deleted before the program
 //   terminates. This is different from the behavior of the application with
-//   Windows NT. With Windows NT, the GDI subsystem cleans up all orhphaned GDI
+//   Windows NT. With Windows NT, the GDI subsystem cleans up all orphaned GDI
 //   objects. Because there is no GDI subsystem with Windows 3.1, this behavior
 //   is not supported.
 

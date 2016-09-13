@@ -18,11 +18,11 @@
 #endif
 #endif
 
-// OpenAmulet support non-rectengular regions on X-Window systems. This
+// OpenAmulet support non-rectangular regions on X-Window systems. This
 // feature isn't smoothly integrated into the library, it's more a start
 // implementation for an upcoming extension. Therefore the feature is
 // DISABLED by default, if you want to use this feature, uncomment the
-// define. NOTE: Your code won't be portable anylonger.
+// define. NOTE: Your code won't be portable any longer.
 
 // #define POLYGONAL_REGIONS
 

@@ -257,7 +257,7 @@ public:
   // OPERATORS
   Am_Referee &operator=(referent_type *in_data)
   {
-    // Avoid self-assignement
+    // Avoid self-assignment
     if (data != in_data) {
       if (in_data != null)
         in_data->Note_Reference();
@@ -289,7 +289,7 @@ public:
 #else // Old way
     referent_type *in_data =
         static_cast<referent_type *>(in_value.value.wrapper_value);
-    // Avoid self-assignement
+    // Avoid self-assignment
     if (data != in_data) {
       referent_type *old_data = data;
       data = in_data;

@@ -90,7 +90,7 @@ init_pixmaps()
   eye_icon = Am_Bitmap.Create("Eye_Icon")
                  .Set(Am_LEFT, 5)
                  .Set(Am_TOP, 280)    // Am_Bottom_Is_Bottom_Of_Owner)
-                 .Set(Am_IMAGE, icon) //iniialize with some value
+                 .Set(Am_IMAGE, icon) //iniiialize with some value
       ;
   std::cout << eye_icon << " being added to " << window << std::endl
             << std::flush;
@@ -298,7 +298,7 @@ main()
               .Set(Am_SLOT_TO_ANIMATE, Am_Value_List().Add(Am_LEFT).Add(Am_TOP))
               .Set(Am_VALUE_1, Am_Value_List().Add(160).Add(10))
               .Set(Am_VALUE_2, Am_Value_List().Add(420).Add(260))
-              .Set(Am_TIME_FOR_ANIMATION, Am_Time(10000)) //milleseconds
+              .Set(Am_TIME_FOR_ANIMATION, Am_Time(10000)) //milliseconds
           ));
   rect1.Add_Part(
       anim5 =

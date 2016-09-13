@@ -182,7 +182,7 @@ Am_Define_Method(Am_Inter_Internal_Method, void, Am_Text_Outside_Method,
   inter_method = Am_Interactor.Get(Am_INTER_OUTSIDE_METHOD);
   inter_method.Call(inter, object, event_window, ev);
 
-  // hide cursor on outside method. Only do it once to avoid unneccessary sets
+  // hide cursor on outside method. Only do it once to avoid unnecessary sets
   Am_Object command_obj = inter.Get(Am_COMMAND);
   int ci = 0;
   if (object.Valid() && (ci = object.Get(Am_CURSOR_INDEX)) > 0) {

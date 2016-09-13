@@ -101,7 +101,7 @@ is_mapnotify(Display * /* dpy */, XEvent *event_return, XPointer xlib_window)
 // Convert an X input event into a Am_Input_Char
 // // // // // // // // // // // // // // // // // // // //
 
-int Am_Double_Click_Time = 250; // in milleseconds
+int Am_Double_Click_Time = 250; // in milliseconds
 
 Am_Click_Count
 Check_Multi_Click(int code, unsigned int state, Am_Button_Down down, Time time,
@@ -940,10 +940,10 @@ Am_Handle_Event_Received(XEvent &event_return)
     // Configure events may come in for windows that haven't really
     // changed size or position, and in this case the events are ignored
     // (i.e., Gem does not pass them on to the user's event-handler).
-    // For example, a 'valid' configure event may be percieved and
+    // For example, a 'valid' configure event may be perceived and
     // dispatched that causes the user's ConfigureNotify Event Handler
     // to set the size of the window, which in turn generates a 'bogus'
-    // configure event.  When the bogus event is percieved here, we
+    // configure event.  When the bogus event is perceived here, we
     // detect it by noticing that its values are equal to those already
     // installed in the drawonable, and throw it away.
     //
