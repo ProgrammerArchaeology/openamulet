@@ -15,7 +15,7 @@
 
 #include <amulet/gem.h>
 #include <amulet/univ_map.h>
-#include <gemM.h>
+#include <amulet/gemM.h>
 
 // // // // // // // // // // // // // // // // // // // // // // // // // //
 // Color name ---> RGBColor mapping

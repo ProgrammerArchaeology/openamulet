@@ -19,7 +19,7 @@
 
 #include <amulet/gdefs.h>
 #include <amulet/gem.h>
-#include <gemM.h>
+#include <amulet/gemM.h>
 #include "gem_GIF.h"
 
 static int i = 0;

@@ -15,7 +15,7 @@
 #include <am_inc.h>
 
 #include <amulet/gem.h>
-#include <gemM.h>
+#include <amulet/gemM.h>
 
 // // // // // // // // // // // // // // // // // // // // // // // // // //
 //

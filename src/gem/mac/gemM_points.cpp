@@ -14,7 +14,7 @@
 
 #include <amulet/gdefs.h>
 #include <amulet/gem.h>
-#include <gemM.h>
+#include <amulet/gemM.h>
 
 // // // // // // // // // // // // // // // // // // // //
 // Am_Point_Array  (defined in gdefs.h)

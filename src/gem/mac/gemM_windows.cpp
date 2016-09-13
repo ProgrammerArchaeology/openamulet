@@ -19,7 +19,7 @@
 
 #include <amulet/idefs.h> // For Am_Main_Loop_Go
 #include <amulet/gem.h>
-#include <gemM.h>
+#include <amulet/gemM.h>
 
 // Static variables
 GrafPtr Am_Drawonable_Impl::util_port = (0L);

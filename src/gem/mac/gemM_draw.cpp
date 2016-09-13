@@ -20,7 +20,7 @@
 #include <amulet/gdefs.h>
 #include <amulet/gem.h>
 #include <amulet/misc.h>
-#include <gemM.h>
+#include <amulet/gemM.h>
 
 static Handle gReservedMemory = (0L);
 

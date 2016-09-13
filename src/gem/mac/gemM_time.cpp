@@ -10,7 +10,7 @@
 #include <am_inc.h>
 #include <amulet/types.h>
 #include <amulet/gem.h>
-#include <gemM.h>
+#include <amulet/gemM.h>
 
 #include <time.h>
 
