@@ -12,6 +12,8 @@
    Designed and implemented by Brad Myers
 */
 
+#include <string.h>
+
 #include <am_inc.h>
 
 #include <amulet/impl/opal_obj2.h>

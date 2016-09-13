@@ -1,3 +1,4 @@
+#include <string.h>
 #include <am_inc.h>
 #include <amulet/am_io.h>
 #include <amulet/impl/types_logging.h>

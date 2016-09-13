@@ -9,6 +9,8 @@
 // http://www.openip.org
 //
 
+#include <string.h>
+
 #include <am_inc.h>
 
 #include <amulet/initializer.h>

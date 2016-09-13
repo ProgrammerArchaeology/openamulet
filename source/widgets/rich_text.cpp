@@ -19,8 +19,10 @@
      the next characters will be drawn.
 */
 
-#include <am_inc.h>
 #include <ctype.h>
+#include <string.h>
+
+#include <am_inc.h>
 
 #include <amulet/rich_text.h>
 #include <amulet/opal_advanced.h>

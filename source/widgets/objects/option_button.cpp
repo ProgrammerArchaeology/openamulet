@@ -8,6 +8,9 @@
 // on the mailing list or have a look at:
 // http://www.openip.org
 //
+
+#include <string.h>
+
 #include <am_inc.h>
 
 #include <amulet/impl/opal_obj2.h>

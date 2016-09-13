@@ -13,6 +13,8 @@
    Designed and implemented by Brad Myers
 */
 
+#include <string.h>
+
 #include <am_inc.h>
 #include <amulet/anim.h> // for Am_NO_ANIMATION
 

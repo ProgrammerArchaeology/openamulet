@@ -9,6 +9,8 @@
 // http://www.openip.org
 //
 
+#include <string.h>
+
 #include <am_inc.h>
 #ifdef OA_VERSION
 #include <amulet/univ_map_oa.hpp>

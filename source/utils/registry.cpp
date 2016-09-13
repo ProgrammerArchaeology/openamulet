@@ -3,6 +3,8 @@
 // August 1995
 // registry of names for debugging Amulet wrappers and method wrappers.
 
+#include <string.h>
+
 #include <am_inc.h>
 
 #include <amulet/registry.h> // for registry stuff.

@@ -1,3 +1,4 @@
+#include <string.h>
 #include <am_inc.h>
 
 #ifdef OA_VERSION
