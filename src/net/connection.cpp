@@ -470,11 +470,7 @@ Am_Connection::Handle_Sockets(fd_set *readfds)
                   << "connection waiting\n"
                   << std::flush;
       else {
-#ifdef _MIPS_SIM_ABI64
-        int i;
-#else
         socklen_t i;
-#endif
         int temp_socket;
         struct sockaddr_in sa;
         i = sizeof(sa);

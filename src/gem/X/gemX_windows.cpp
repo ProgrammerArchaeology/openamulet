@@ -19,9 +19,6 @@
 #include <X11/Xatom.h>
 #include <sys/time.h>
 #include <stdlib.h>
-#ifdef NEED_UNISTD
-#include <unistd.h>
-#endif
 
 #include <iostream>
 

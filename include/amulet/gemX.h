@@ -22,30 +22,11 @@
 #ifndef GEMX_H
 #define GEMX_H
 
-#ifdef NEED_STDLIB
-#include <stdlib.h>
-#endif
-
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/time.h>
-
-#ifdef NEED_BSTRING
-#include <bstring.h>
-#endif
-
-#ifdef NEED_SELECT
-#include <sys/select.h>
-#endif
-
-// OpenVMS, fd_set definition either comes from socket.h or time.h
-// The use of fd_set below suggests that the former is intended,
-// to go along with select()
-#ifdef NEED_SOCKET
-#include <socket.h>
-#endif
 
 #include <am_inc.h>
 

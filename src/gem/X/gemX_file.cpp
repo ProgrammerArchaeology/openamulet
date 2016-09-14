@@ -73,55 +73,6 @@ files_reinit(void **Aptr, long ptr_size, long *Ainitial_count, long increment)
   return;
 }
 
-#ifdef NEED_READDIR
-/* code to simulate Berkeley directory interface
-   adapted from O'Reilly "Using C on the UNIX System" */
-
-typedef struct
-{
-  int fd;
-} DIR;
-
-static DIR current_dir;
-
-static DIR *
-opendir(char *dir)
-{
-  current_dir.fd = open(dir, 0);
-
-  if (current_dir.fd >= 0) {
-    struct stat stbuff;
-
-    if (fstat(current_dir.fd, &stbuff) >= 0) {
-      if ((stbuff.st_mode & S_IFDIR) != 0) {
-        return &current_dir;
-      }
-    }
-    close(current_dir.fd);
-  }
-  return 0;
-}
-
-void
-closedir(DIR *dp)
-{
-  close(dp->fd);
-}
-
-struct direct *
-readdir(DIR *dp)
-{
-  static struct direct dir;
-
-  do {
-    if (read(dp->fd, &dir, sizeof(dir)) != sizeof(dir))
-      return 0;
-  } while (dir.d_ino == 0);
-
-  return (&dir);
-}
-#endif
-
 static char *
 cleanup_dname(char *name)
 {
