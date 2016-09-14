@@ -41,8 +41,8 @@ typedef void Am_Any_Procedure(
     ...); // Is used for Am_Null_Method_Error_Function as this function takes any number of parameters
 typedef void
 Am_Object_Demon(Am_Object object); // Object Demon - connected to objects
-typedef void
-Am_Slot_Demon(Am_Slot first_invalidated); // Slot Demon 	- connected to slots
+typedef void Am_Slot_Demon(
+    Am_Slot first_invalidated); // Slot Demon 	- connected to slots
 typedef const char *Am_Type_Check(
     const Am_Value
         &value); // Type Check 	- connected to slots, used for testing types

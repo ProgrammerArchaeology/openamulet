@@ -53,7 +53,7 @@ private:
 class Am_Data_Locator
 {
 private:
-  typedef std::list<std::pair<Am_Filename, unsigned int> > dir_list_t;
+  typedef std::list<std::pair<Am_Filename, unsigned int>> dir_list_t;
 
 public:
   // CREATORS

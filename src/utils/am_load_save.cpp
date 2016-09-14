@@ -163,7 +163,7 @@ template <class T> struct lex_less : public std::binary_function<T, T, bool>
     }
 };
 #endif
-typedef OpenAmulet::Map<const char *, Am_Load_Method, lex_less<const char *> >
+typedef OpenAmulet::Map<const char *, Am_Load_Method, lex_less<const char *>>
     Am_Map_Loader;
 typedef OpenAmulet::Map_Iterator<Am_Map_Loader> Am_MapIterator_Loader;
 
@@ -712,7 +712,7 @@ KeyComp(const Name_Num &key1, const Name_Num &key2)
 }
 
 #ifdef OA_VERSION
-typedef OpenAmulet::Map<const char *, Am_Load_Method, lex_less<const char *> >
+typedef OpenAmulet::Map<const char *, Am_Load_Method, lex_less<const char *>>
     Am_Map_Loader;
 typedef OpenAmulet::Map_Iterator<Am_Map_Loader> Am_MapIterator_Loader;
 

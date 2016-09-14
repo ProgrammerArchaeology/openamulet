@@ -35,7 +35,7 @@ namespace OpenAmulet {
 // This is mainly a wrapper class to std::map<...> which provides the
 // same interface as the 'old' Am_Map_##Name class. This class avoids that
 // we have to use macros to implement the needed maps
-template <class Key, class Item, class Compare = std::less<Key> > class Map
+template <class Key, class Item, class Compare = std::less<Key>> class Map
 {
 public:
   // TYPEDEFS
@@ -248,7 +248,7 @@ typedef Map<int, const char *> Map_Int2Str;
 typedef Map<int, void *> Map_Int2Ptr;
 typedef Map<void *, int> Map_Ptr2Int;
 typedef Map<int, int> Map_Int2Int;
-typedef Map<const char *, int, lex_less<const char *> > Map_Str2Int;
+typedef Map<const char *, int, lex_less<const char *>> Map_Str2Int;
 
 typedef Map_Iterator<Map_Int2Str> Map_Iterator_Int2Str;
 typedef Map_Iterator<Map_Int2Ptr> Map_Iterator_Int2Ptr;
@@ -259,7 +259,7 @@ typedef Map_Iterator<Map_Int2Int> Map_Iterator_Int2Int;
 // General Table class. Tables support look-up in both directions, from key to item and from
 // item to key. For this a table contains two maps.
 template <class Key, class Item, class KeyCompare = std::less<Key>,
-          class ItemCompare = std::less<Item> >
+          class ItemCompare = std::less<Item>>
 class Table
 {
   typedef OpenAmulet::Map<Key, Item, KeyCompare> Map_Key2Item;

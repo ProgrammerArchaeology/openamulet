@@ -186,7 +186,7 @@ struct Am_Registry_Key_less : public std::binary_function<T, T, bool>
 // ATTENTION: If you change this typedef, make the same change to the
 // the definition in opal.cpp before function Am_Cleanup()
 typedef OpenAmulet::Table<Am_Registry_Key, const Am_Registered_Type *,
-                          Am_Registry_Key_less<Am_Registry_Key> >
+                          Am_Registry_Key_less<Am_Registry_Key>>
     Am_Table_Registry;
 #else
 // the forward mapping (key to entry)
