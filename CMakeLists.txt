@@ -30,11 +30,14 @@ SET(OPEN_AMULET_VERSION_MINOR 4)
 SET(OPEN_AMULET_VERSION_PATCH 0)
 SET(OPEN_AMULET_VERSION "${OPEN_AMULET_VERSION_MAJOR}.${OPEN_AMULET_VERSION_MINOR}.${OPEN_AMULET_VERSION_PATCH}")
 
-# clang doesn't print colored diagnostics when invoked from Ninja
-IF (UNIX AND
-    CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND
-    CMAKE_GENERATOR STREQUAL "Ninja")
-  SET(CMAKE_CXX_FLAGS "-fcolor-diagnostics ${CMAKE_CXX_FLAGS}")
+# gcc and clang don't print colored diagnostics when invoked from Ninja
+IF (UNIX AND CMAKE_GENERATOR STREQUAL "Ninja")
+  IF (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    SET(CMAKE_CXX_FLAGS "-fcolor-diagnostics ${CMAKE_CXX_FLAGS}")
+  ENDIF()
+  IF (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    SET(CMAKE_CXX_FLAGS "-fdiagnostics-color=always ${CMAKE_CXX_FLAGS}")
+  ENDIF()
 ENDIF()
 
 ADD_SUBDIRECTORY(src)
