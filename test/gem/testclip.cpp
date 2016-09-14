@@ -218,8 +218,8 @@ test_region_rgn(Am_Region *rgn1, Am_Region *rgn2, bool val1, bool val2)
   bool total;
   if ((!(rgn1->In(rgn2, total) == val1)) || (!(total == val2))) {
     char error[200];
-    sprintf(error, "** test_region_rgn failed with rgn1 = %x, rgn2 = %x.\n",
-            (unsigned long)rgn1, (unsigned long)rgn2);
+    sprintf(error, "** test_region_rgn failed with rgn1 = %p, rgn2 = %p.\n",
+            rgn1, rgn2);
     Am_Error(error);
   }
 }
