@@ -49,6 +49,10 @@ public:
     }
     return (*this);
   }
+  bool operator<(const Wrapper_Holder &other) const
+  {
+    return data < other.data;
+  }
   operator Am_Wrapper *()
   {
     if (data) {
@@ -60,18 +64,6 @@ public:
 
   Am_Wrapper *data;
 };
-
-#ifdef OA_VERSION
-// we specialize the less function used by the map data-type
-template <>
-bool
-std::less<Wrapper_Holder>::operator()(const class Wrapper_Holder &a,
-                                      const class Wrapper_Holder &b) const
-{
-  return (a.data < b.data);
-}
-
-#endif
 
 Wrapper_Holder No_Wrapper;
 
@@ -92,22 +84,16 @@ public:
     number = proto.number;
     return *this;
   }
+  bool operator<(const Name_Num &other) const
+  {
+    return std::lexicographical_compare(name, name + strlen(name), other.name,
+                                        other.name + strlen(other.name)) ||
+           (number < other.number);
+  }
 
   const char *name;
   int number;
 };
-
-#ifdef OA_VERSION
-// we specialize the less function used by the map data-type
-template <>
-bool
-std::less<Name_Num>::operator()(const class Name_Num &a,
-                                const class Name_Num &b) const
-{
-  return (std::lexicographical_compare(a.name, a.name + strlen(a.name), b.name,
-                                       b.name + strlen(b.name)) ||
-          (a.number < b.number));
-}
 
 #ifdef DEBUG
 std::ostream &
@@ -123,8 +109,6 @@ operator<<(std::ostream &os, Wrapper_Holder const &aWrapperHolder)
   std::cout << aWrapperHolder.data << std::endl;
   return (os);
 }
-#endif
-
 #endif
 
 static int
