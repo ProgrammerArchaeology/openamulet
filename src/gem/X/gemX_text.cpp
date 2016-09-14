@@ -387,7 +387,7 @@ Am_Font_Data::Am_Font_Data(const char *the_name)
 
   // Just in case.  Only underlining should matter here.
   // Above comment is not correct now(Jan.30 1997),
-  // bacause whether Japanese, Chinese, Korean, or not is judged by family.
+  // because whether Japanese, Chinese, Korean, or not is judged by family.
   if (strstr(the_name, "jisx0208") != (0L))
     family = Am_FONT_JFIXED; // Japanese font
   else if (strstr(the_name, "ksc5601") != (0L))

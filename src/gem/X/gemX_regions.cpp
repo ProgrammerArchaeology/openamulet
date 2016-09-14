@@ -169,7 +169,7 @@ Am_Region_Impl::Pop()
 }
 
 // Unions are performed on the most recently modified region.  That is, if
-// a sequence of pushes have generated a particualr region, the union
+// a sequence of pushes have generated a particular region, the union
 // operation will be performed on the region resulting from the last push.
 //
 // You can call this function with an uninitialized Am_Region (i.e., you
