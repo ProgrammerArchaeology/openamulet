@@ -45,3 +45,14 @@
 // #if (defined(__MINGW32__) || defined(_MSC_VER)) && !defined(STATIC)
 // # define DLL
 // #endif
+
+#ifdef __GNUC__
+#define AM_NORETURN __attribute__((noreturn))
+#define AM_FORMATLIKE(a, b) __attribute__((format(printf, a, b)))
+#elif defined(_MSC_VER)
+#define AM_NORETURN __declspec(noreturn)
+#define AM_FORMATLIKE(a, b)
+#else
+#define AM_NORETURN
+#define AM_FORMATLIKE(a, b)
+#endif

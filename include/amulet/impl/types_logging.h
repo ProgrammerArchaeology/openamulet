@@ -10,9 +10,9 @@ _OA_DL_IMPORT extern void (*Am_Debugger)(void);
 
 // Call Am_Error to generate a software generated error.  Hopefully, someday
 // this will be replaced by exceptions.
-[[noreturn]] _OA_DL_IMPORT extern void Am_Error(const char *error_string);
+AM_NORETURN _OA_DL_IMPORT extern void Am_Error(const char *error_string);
 // Am_Error prints out "** Program Aborted"
-[[noreturn]] _OA_DL_IMPORT extern void Am_Error();
+AM_NORETURN _OA_DL_IMPORT extern void Am_Error();
 
 //This version can be used with a print-out string like:
 //  Am_ERROR(object << " is not valid")
