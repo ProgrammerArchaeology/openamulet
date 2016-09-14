@@ -42,9 +42,9 @@
 
 using namespace std;
 Am_Object bitmap, fill_style, line_style, mode, image_name;
-char spiral[] = {0x78, 0x00, 0xc4, 0x01, 0x32, 0x06, 0x1a, 0x0c,
-                 0xca, 0x08, 0x4a, 0x09, 0x0a, 0x09, 0x9a, 0x09,
-                 0xe2, 0x08, 0x0e, 0x06, 0x0c, 0x03};
+unsigned char spiral[] = {0x78, 0x00, 0xc4, 0x01, 0x32, 0x06, 0x1a, 0x0c,
+                          0xca, 0x08, 0x4a, 0x09, 0x0a, 0x09, 0x9a, 0x09,
+                          0xe2, 0x08, 0x0e, 0x06, 0x0c, 0x03};
 
 // 0x1e, 0x00, 0x23, 0x80, 0x4c, 0x60, 0x58, 0x30,
 // 0x53, 0x10, 0x52, 0x90, 0x50, 0x20, 0x59, 0x90,
@@ -246,7 +246,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
     break;
   }
   case 'z': {
-    Am_Image_Array image = Am_Image_Array(spiral, 11, 13);
+    Am_Image_Array image = Am_Image_Array((char *)spiral, 11, 13);
     bitmap.Set(Am_IMAGE, image);
     image_name.Set(Am_TEXT, "spiral");
 
@@ -264,7 +264,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
     break;
   }
   case 'Z': {
-    Am_Image_Array image = Am_Image_Array(spiral, 11, 13);
+    Am_Image_Array image = Am_Image_Array((char *)spiral, 11, 13);
 
     int width, height;
     image.Get_Size(width, height);

@@ -114,7 +114,8 @@ Am_Point_Array_Data::Am_Point_Array_Data(int *coords, int num_coords)
   const int size = num_coords / 2;
   points.reserve(size);
   for (int i = 0; i < (2 * size); i += 2) {
-    const XPoint xp = {coords[i], coords[i + 1]};
+    const XPoint xp = {static_cast<short>(coords[i]),
+                       static_cast<short>(coords[i + 1])};
     points.push_back(xp);
   }
 }
@@ -128,7 +129,8 @@ Am_Point_Array_Data::Am_Point_Array_Data(Am_Point_List pl, int offset_x,
   for (int i = 0; i < size; ++i) {
     int x, y;
     pl.Get(x, y);
-    const XPoint xp = {(x + offset_x), (y + offset_y)};
+    const XPoint xp = {static_cast<short>((x + offset_x)),
+                       static_cast<short>((y + offset_y))};
     points.push_back(xp);
     pl.Next();
   }
