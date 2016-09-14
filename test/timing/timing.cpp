@@ -731,7 +731,7 @@ main()
   Am_Update_All();
   end_timing("Initialize", 0);
 
-  //	time_object_creation();
+  time_object_creation();
 
   time_data_structures();
 
