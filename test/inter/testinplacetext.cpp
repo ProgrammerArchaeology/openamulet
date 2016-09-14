@@ -607,9 +607,11 @@ inside_button_text(const Am_Object &self, const Am_Object &ref_object,
 class Am_Button_Text_Info : public Am_Text_Info
 {
 public:
-  void Release() { delete this; }
+  virtual ~Am_Button_Text_Info() {}
+  void Release() override { delete this; }
   void Get_Info(int &offset_x, int &offset_y, Am_String &string,
-                Am_Style &style, Am_Font &font, Am_Value_List &changing_slots)
+                Am_Style &style, Am_Font &font,
+                Am_Value_List &changing_slots) override
   {
     // now find the contents to draw in the button
     Am_Value value;
@@ -644,12 +646,12 @@ public:
 
     changing_slots = slot_list;
   }
-  void Set_Text(const Am_String &string)
+  void Set_Text(const Am_String &string) override
   {
     Am_Object command = self.Get(Am_COMMAND);
     command.Set(Am_LABEL, string);
   }
-  Am_Text_Navigate *Get_Navigator() { return (0L); }
+  Am_Text_Navigate *Get_Navigator() override { return (0L); }
 
   Am_Button_Text_Info(const Am_Object &in_button)
   {
@@ -686,6 +688,8 @@ Am_Define_Method(Am_Inplace_Info_Method, Am_Text_Info *, button_inplace_text,
 class Am_Button_Panel_Text_Info : public Am_Text_Info
 {
 public:
+  virtual ~Am_Button_Panel_Text_Info() {}
+
   class Am_Button_Panel_Text_Navigate : public Am_Text_Navigate
   {
   public:
@@ -794,9 +798,10 @@ public:
     Am_Button_Panel_Text_Info *info;
   } navigator;
 
-  void Release() { delete this; }
+  void Release() override { delete this; }
   void Get_Info(int &offset_x, int &offset_y, Am_String &string,
-                Am_Style &style, Am_Font &font, Am_Value_List &changing_slots)
+                Am_Style &style, Am_Font &font,
+                Am_Value_List &changing_slots) override
   {
     // now find the contents to draw in the button
     Am_Value value;
@@ -834,12 +839,12 @@ public:
 
     changing_slots = slot_list;
   }
-  void Set_Text(const Am_String &string)
+  void Set_Text(const Am_String &string) override
   {
     Am_Object command = current_button.Get(Am_COMMAND);
     command.Set(Am_LABEL, string);
   }
-  Am_Text_Navigate *Get_Navigator() { return &navigator; }
+  Am_Text_Navigate *Get_Navigator() override { return &navigator; }
 
   Am_Button_Panel_Text_Info(const Am_Object &panel, const Am_Object &button)
       : navigator(this)

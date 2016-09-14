@@ -661,6 +661,7 @@ time_data_structures()
        value = mapIteratorInt2Str()) {
     ++counter;
     int key = mapIteratorInt2Str.Key();
+    (void)key;
   }
   end_timing("iterating through all objects in Int2Str map",
              NUM_OBJ_DATA_STRUCT);
@@ -699,6 +700,7 @@ time_data_structures()
        value = oaMapIteratorInt2Str()) {
     ++counter;
     int key = oaMapIteratorInt2Str.Key();
+    (void)key;
   }
   end_timing("iterating through all objects in OA Int2Str map",
              NUM_OBJ_DATA_STRUCT);
