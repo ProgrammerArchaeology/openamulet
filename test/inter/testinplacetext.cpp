@@ -62,8 +62,7 @@ enum Am_Inplace_Text_Direction
   Am_INPLACE_LEFT,
   Am_INPLACE_RIGHT,
   Am_INPLACE_PREV,
-  Am_INPLACE_NEXT,
-  Am_INPLACE_DONE
+  Am_INPLACE_NEXT
 };
 
 class Am_Text_Navigate
