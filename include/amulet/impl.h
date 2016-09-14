@@ -22,9 +22,6 @@
 
 #include <amulet/dynarray.h>
 
-// disable a VC++ 6 warning about operator new/delete for QItem
-#pragma warning(disable : 4291)
-
 class CItem;
 
 class QItem
