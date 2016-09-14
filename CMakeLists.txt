@@ -37,6 +37,7 @@ IF (UNIX AND
 ENDIF()
 
 ADD_SUBDIRECTORY(src)
+ADD_SUBDIRECTORY(samples)
 ADD_SUBDIRECTORY(test)
 
 # INCLUDE(${CMAKE_SOURCE_DIR}/cmake/PackagingConfig.cmake)
