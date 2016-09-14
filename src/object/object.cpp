@@ -1401,13 +1401,9 @@ Am_Object::Note_Unchanged(Am_Slot_Key key)
     cc->Note_Unchanged((const Am_Object_Advanced &)*this, key);
 }
 
-//-------------------------------------------------------------
-// Initial-Author	: Robert M. Münch at: 21.05.98 10:16:47
-// Description		: adds a part at the beginning of the part-list
-// Pre-Condition	: none
-// Post-Condition	: none
-// Result			: reference to the actual object, now having one more part
-//-------------------------------------------------------------
+// Adds a part at the beginning of the part-list.
+//
+// Returns a reference to the actual object, now having one more part.
 Am_Object &
 Am_Object::Add_Part(Am_Object new_part, bool inherit, long aPosition)
 {

@@ -156,13 +156,8 @@ Am_Define_Method(Am_Point_In_Or_Self_Method, Am_Object, generic_point_in_leaf,
   return method.Call(in_obj, x, y, ref_obj);
 }
 
-//-------------------------------------------------------------
-// Initial-Author	: Robert M. Münch at: 28.05.98 09:43:08
-// Description		: Converts a given point in the coordinate system of 'obj' to be in the coordinate system if its owner
-// Pre-Condition	: Formular is stored in slot Am_TRANSLATE_COORDINATES_METHOD
-// Post-Condition	: none
-// Result			: none
-//-------------------------------------------------------------
+// Converts a given point in the coordinate system of 'obj' to be in
+// the coordinate system if its owner.
 Am_Define_Method(Am_Translate_Coordinates_Method, void,
                  generic_translate_coordinates,
                  (const Am_Object &obj, const Am_Object & /*for_part*/,

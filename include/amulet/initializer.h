@@ -12,25 +12,6 @@
 #ifndef INITIALIZERS_H
 #define INITIALIZERS_H
 
-#ifndef INITIALIZER_H
-#define INITIALIZER_H
-#endif
-
-#if _MSC_VER >= 1000 // only for VC++ 5 or later
-#pragma once         // include header only once
-#endif
-
-//-----------------------------------------------------------------------------------------
-// Copyright:
-//
-// Initial-Author:
-//		Brad Meyrs
-//		Robert M. Münch at: 09.05.98 13:42:13
-//
-// Synopsis:
-//		Start text here
-//
-// Description:
 // 		Support for initializing the system in a reliable way
 //   	Each file should have a global variable like the following:
 //
@@ -42,84 +23,22 @@
 //		beginning of the list. To support this sorting, version numbers are reversed
 //		1.10 -> 10.1, 1.20 -> 20.1
 //   	and the cleanup is optional but should be give
-//
-// Files:
-//		This file: initializer.h
-//		Start text here
-//
-// Version-Control-Information:
-//		$Id: initializer.h,v 1.1.1.2 2005/11/09 18:43:55 mitosys Exp $
-//
-// See Also:
-//		Start text here
-//
-// Bugs:
-//		None
-//
-// History:
-//		Start text here
-//
-//-----------------------------------------------------------------------------------------
 
-//-------------------------------------------------------------
-// system include files
-//-------------------------------------------------------------
-#ifndef __SGI_STL_LIST_H
 #include <list>
-#endif
-
-//-------------------------------------------------------------
-// application include files
-//-------------------------------------------------------------
-
-//-------------------------------------------------------------
-// Re-enables warnings
-//-------------------------------------------------------------
-#ifdef _MSC_VER
-#pragma warning(default : 4018) // < signed/unsigned
-#pragma warning(default : 4201) // nameless union
-#pragma warning(default : 4214) // non 'int' bitfields
-#pragma warning(default : 4663) // c++ language change
-#endif
-
-//-------------------------------------------------------------
-// external functions
-//-------------------------------------------------------------
-
-//-------------------------------------------------------------
-// constants / statics / typedefs
-//-------------------------------------------------------------
-
-//-------------------------------------------------------------
-// forward declarations / definitions
-//-------------------------------------------------------------
-
-//-------------------------------------------------------------
-// class definition/implementation
-//-------------------------------------------------------------
 
 class _OA_DL_CLASSIMPORT Am_Initializer
 {
 public:
-  // CREATORS
   typedef std::list<Am_Initializer *> INITIALIZERLIST;
   typedef void Am_Initializer_Procedure();
   Am_Initializer(const char *this_name, Am_Initializer_Procedure *init_proc,
                  float priority, unsigned aCheckPoint = 1,
                  Am_Initializer_Procedure *cleanup_proc = 0);
-  //			~Am_Initializer();
 
-  // MANIPULATORS
-  // ACCESSORS
   static void Do_Initialize();
   static void Do_Cleanup();
-  // DATA MEMBERS
 
 protected:
-  // CREATORS
-  // MANIPULATORS
-  // ACCESSORS
-  // DATA MEMBERS
   static INITIALIZERLIST *am_initializer_list;
 
   const char *name;
@@ -129,8 +48,4 @@ protected:
   Am_Initializer_Procedure *init;
   Am_Initializer_Procedure *cleanup;
 };
-
-//-------------------------------------------------------------
-// non-member functions
-//-------------------------------------------------------------
 #endif
