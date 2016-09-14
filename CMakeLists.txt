@@ -20,8 +20,8 @@ ADD_CXX_COMPILER_FLAG(-Wno-reorder)
 ADD_CXX_COMPILER_FLAG(-Wno-logical-op-parentheses)
 ADD_CXX_COMPILER_FLAG(-Wno-shift-op-parentheses)
 ADD_CXX_COMPILER_FLAG(-Wno-invalid-source-encoding)
-ADD_CXX_COMPILER_FLAG(-Wno-c++11-extensions)
 ADD_CXX_COMPILER_FLAG(-Wno-deprecated-declarations)
+ADD_CXX_COMPILER_FLAG(-Wno-deprecated)
 
 ADD_DEFINITIONS(-DMEMORY)
 
