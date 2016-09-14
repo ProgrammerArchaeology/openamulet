@@ -206,6 +206,8 @@ public:
   Am_Value &operator=(Am_Method_Wrapper *in_value);
   Am_Value &operator=(const Am_Value &in_value);
 
+  bool operator<(const Am_Value &other) const;
+
   void Print(std::ostream &out) const;
   void Println() const;
 

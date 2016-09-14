@@ -724,6 +724,12 @@ Am_Value::operator!=(const Am_Value &test_value) const
 }
 
 bool
+Am_Value::operator<(const Am_Value &other) const
+{
+  return (static_cast<Am_Ptr>(*this) < static_cast<Am_Ptr>(other));
+}
+
+bool
 Am_Value::Valid() const
 {
   switch (Am_Type_Class(type)) {
