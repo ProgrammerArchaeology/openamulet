@@ -607,7 +607,7 @@ mac_initialize()
   DrawMenuBar();
 */
 
-  // Initalize Amulet Pathname
+  // Initialize Amulet Pathname
   Am_Init_Pathname();
 
   // Init grow-zone

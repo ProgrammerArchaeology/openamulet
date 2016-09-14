@@ -69,7 +69,7 @@ Am_Point_Array::Set(int index, int x, int y)
   data->points[index].y = y;
 }
 
-// Transformation function object for translatio
+// Transformation function object for translation
 class do_translation
 {
 private:

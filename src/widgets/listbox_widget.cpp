@@ -70,7 +70,7 @@ Am_Define_Method(Am_Object_Method, void, listbox_method, (Am_Object self))
       static_cast<Am_Ptr>(listitem.Get_Owner().Get(Am_THIS)))
       ->selectMethod();
 
-  /// change the flag of the listbox object so that all constrains/formulars are re-evaluated
+  /// change the flag of the listbox object so that all constraints/formulas are re-evaluated
   if (static_cast<bool>(listitem.Get_Owner().Get(Am_SELECTED)) == true) {
     listitem.Get_Owner().Set(Am_SELECTED, false);
   } else {

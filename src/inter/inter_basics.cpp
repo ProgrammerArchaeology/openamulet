@@ -445,7 +445,7 @@ add_priority_list_for_window(Am_Object inter, Am_Object new_win,
   inter_list->Add(inter, main_priority, second_priority, third_priority);
 
   // Now do multi-window.  This MUST be set up (for X) BEFORE the
-  // window gets the the down-press input event that will start an
+  // window gets the down-press input event that will start an
   // interactor.  Currently, only turn on multi; never turn it off.
   // To turn off, need to make sure NONE of the interactors on the
   // window care about multi-windows.
@@ -1385,7 +1385,7 @@ check_modal_windows(const Am_Object &event_window, Am_Input_Event *ev)
 // begin supports multiple users
 /*
 
-Am_USER_ID and Am_INTERNAL_USER_ID are initalized as follows in
+Am_USER_ID and Am_INTERNAL_USER_ID are initialized as follows in
 Am_Initialize_Interactors in below inter_basics.cc:
 
 Am_USER_ID  = Am_ONE_AT_A_TIME

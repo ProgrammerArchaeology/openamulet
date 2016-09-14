@@ -551,7 +551,7 @@ Am_Remove_Accelerator_Command_From_Window(Am_Object command, Am_Object window)
       accel_list = value;
       accel_list.Start();
       if (accel_list.Member(command)) {
-        //false so destructive modifcation, because list may be shared
+        //false so destructive modification, because list may be shared
         accel_list.Delete(false);
         window.Note_Changed(Am_ACCELERATOR_LIST);
         Am_INTER_TRACE_PRINT(

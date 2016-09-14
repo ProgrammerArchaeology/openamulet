@@ -632,7 +632,7 @@ Am_Define_Formula(int, h_scroll_area_max)
 
 /******************************************************************************
  * scroll_indicator_size
- *   For motif and windows looks, the indicator size is proportional to the
+ *   For motif and windows looks, the indicator size is proportional to
  *   the visible area. The size is constant on the mac.
  */
 

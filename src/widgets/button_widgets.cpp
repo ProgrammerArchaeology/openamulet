@@ -60,7 +60,7 @@ Am_Object Am_Menu_In_Scrolling_Menu;
  *   o struct am_rect - makes passes coordinates easier. Also allows for
  *       Inset_Rect
  *   o Inset_Rect, since much of the drawing involves concentric rectangles
- *       which grow smaller, Inset_Rect simplifies maitaining rectangle coords.
+ *       which grow smaller, Inset_Rect simplifies maintaining rectangle coords.
  *   o Am_Draw_Rect_Border - used mainly for the Windows drawing routines.
  *       For drawing 3D like rectangles. Upper_left is the line style used to
  *       draw the top and left sides. Lower_right for the bottom and right.
