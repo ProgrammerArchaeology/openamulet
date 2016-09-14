@@ -34,10 +34,10 @@ Am_Object window, rect1, rect2, rect3, rect4, anim1, anim2, anim3, anim4, anim5,
     anim6;
 
 const char *pixmapfilename[] = {
-    "lib/images/eye1.gif",  "lib/images/eye2.gif",  "lib/images/eye3.gif",
-    "lib/images/eye4.gif",  "lib/images/eye5.gif",  "lib/images/eye6.gif",
-    "lib/images/eye13.gif", "lib/images/eye14.gif", "lib/images/eye15.gif",
-    "lib/images/eye16.gif", "lib/images/eye17.gif", "lib/images/eye18.gif"};
+    "images/eye1.gif",  "images/eye2.gif",  "images/eye3.gif",
+    "images/eye4.gif",  "images/eye5.gif",  "images/eye6.gif",
+    "images/eye13.gif", "images/eye14.gif", "images/eye15.gif",
+    "images/eye16.gif", "images/eye17.gif", "images/eye18.gif"};
 
 Am_Value_List pixmap_images, indices_right, indices_left;
 Am_Object eye_icon, icon, anim7, anim8;

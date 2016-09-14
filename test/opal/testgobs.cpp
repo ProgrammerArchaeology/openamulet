@@ -57,14 +57,14 @@ Am_Slot_Key BITMAP_PART = Am_Register_Slot_Name("BITMAP_PART");
 
 //ship image filenames
 #if defined(_WINDOWS)
-//#define IMFN_FEDERATION "lib/images/ent.bmp"
-//#define IMFN_KLINGON "lib/images/kling.bmp"
-#define IMFN_FEDERATION "lib/images/arrow.gif"
-#define IMFN_KLINGON "lib/images/amside.bmp"
+//#define IMFN_FEDERATION "images/ent.bmp"
+//#define IMFN_KLINGON "images/kling.bmp"
+#define IMFN_FEDERATION "images/arrow.gif"
+#define IMFN_KLINGON "images/amside.bmp"
 
 #else
-#define IMFN_FEDERATION "lib/images/ent.xbm"
-#define IMFN_KLINGON "lib/images/kling.xbm"
+#define IMFN_FEDERATION "images/ent.xbm"
+#define IMFN_KLINGON "images/kling.xbm"
 #endif
 
 void

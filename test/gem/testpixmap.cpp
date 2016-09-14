@@ -89,7 +89,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
 
   switch (c.As_Char()) {
   case '1': {
-    const char *pathname = Am_Merge_Pathname("lib/images/ent.xbm");
+    const char *pathname = Am_Merge_Pathname("images/ent.xbm");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete[] pathname;
     bitmap.Set(Am_IMAGE, image);
@@ -97,7 +97,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
     break;
   }
   case '2': {
-    const char *pathname = Am_Merge_Pathname("lib/images/ent.gif");
+    const char *pathname = Am_Merge_Pathname("images/ent.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete[] pathname;
     bitmap.Set(Am_IMAGE, image);
@@ -105,7 +105,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
     break;
   }
   case '3': {
-    const char *pathname = Am_Merge_Pathname("lib/images/opaque_ent.gif");
+    const char *pathname = Am_Merge_Pathname("images/opaque_ent.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete[] pathname;
     bitmap.Set(Am_IMAGE, image);
@@ -113,7 +113,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
     break;
   }
   case '4': {
-    const char *pathname = Am_Merge_Pathname("lib/images/eye10.gif");
+    const char *pathname = Am_Merge_Pathname("images/eye10.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete[] pathname;
     bitmap.Set(Am_IMAGE, image);
@@ -121,7 +121,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
     break;
   }
   case '5': {
-    const char *pathname = Am_Merge_Pathname("lib/images/opaque_eye10.gif");
+    const char *pathname = Am_Merge_Pathname("images/opaque_eye10.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete[] pathname;
     bitmap.Set(Am_IMAGE, image);
@@ -129,7 +129,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
     break;
   }
   case '6': {
-    const char *pathname = Am_Merge_Pathname("lib/images/spaceship.gif");
+    const char *pathname = Am_Merge_Pathname("images/spaceship.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete[] pathname;
     bitmap.Set(Am_IMAGE, image);
@@ -137,7 +137,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
     break;
   }
   case '7': {
-    const char *pathname = Am_Merge_Pathname("lib/images/opaque_spaceship.gif");
+    const char *pathname = Am_Merge_Pathname("images/opaque_spaceship.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete[] pathname;
     bitmap.Set(Am_IMAGE, image);
@@ -205,7 +205,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
     break;
   }
   case 'f': {
-    const char *pathname = Am_Merge_Pathname("lib/images/does_not_exist.gif");
+    const char *pathname = Am_Merge_Pathname("images/does_not_exist.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete[] pathname;
     bitmap.Set(Am_IMAGE, image);
@@ -229,7 +229,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
     break;
   }
   case 'T': {
-    const char *pathname = Am_Merge_Pathname("lib/images/bugsmall.gif");
+    const char *pathname = Am_Merge_Pathname("images/bugsmall.gif");
     Am_Image_Array image = Am_Image_Array(pathname);
     delete[] pathname;
     int width, height;
@@ -298,7 +298,7 @@ main(void)
                Am_Amulet_Purple) // tests putting on top of color backgrounds
       ;
 
-  const char *pathname = Am_Merge_Pathname("lib/images/bugsmall.gif");
+  const char *pathname = Am_Merge_Pathname("images/bugsmall.gif");
   Am_Image_Array image = Am_Image_Array(pathname);
   delete[] pathname;
   bitmap = Am_Bitmap.Create("bitmap")
@@ -307,7 +307,7 @@ main(void)
                .Set(Am_IMAGE, image);
   window.Add_Part(bitmap);
 
-  pathname = Am_Merge_Pathname("lib/images/eye10.gif");
+  pathname = Am_Merge_Pathname("images/eye10.gif");
   image = Am_Image_Array(pathname);
   delete[] pathname;
   Am_Object bitmap2 = Am_Bitmap.Create("bitmap2").Set(Am_IMAGE, image);

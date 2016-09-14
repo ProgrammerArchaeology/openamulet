@@ -1309,9 +1309,9 @@ Am_Define_Method(Am_Create_New_Object_Method, Am_Object, create_new_object,
 #if defined(_WINDOWS)
 #define AMULET_BITMAP "images/amside.gif"
 #elif defined(_MACINTOSH)
-#define AMULET_BITMAP "lib/images/amside.gif"
+#define AMULET_BITMAP "images/amside.gif"
 #else
-#define AMULET_BITMAP "lib/images/amuletside.xbm"
+#define AMULET_BITMAP "images/amuletside.xbm"
 #endif
 
 void

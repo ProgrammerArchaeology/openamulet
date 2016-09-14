@@ -56,20 +56,20 @@ void
 locgen_load_bitmaps()
 {
 #if ((defined _WIN32) || (defined _MACINTOSH))
-  load_loc_bitmap(bottomin, "lib/images/scripting/bottomin.gif");
-  load_loc_bitmap(bottomout, "lib/images/scripting/bottomout.gif");
-  load_loc_bitmap(centerX, "lib/images/scripting/centerX.gif");
-  load_loc_bitmap(centerY, "lib/images/scripting/centerY.gif");
-  load_loc_bitmap(leftin, "lib/images/scripting/leftin.gif");
-  load_loc_bitmap(leftout, "lib/images/scripting/leftout.gif");
-  load_loc_bitmap(rightin, "lib/images/scripting/rightin.gif");
-  load_loc_bitmap(rightout, "lib/images/scripting/rightout.gif");
-  load_loc_bitmap(topin, "lib/images/scripting/topin.gif");
-  load_loc_bitmap(topout, "lib/images/scripting/topout.gif");
-  load_loc_bitmap(heightdiff, "lib/images/scripting/heightdiff.gif");
-  load_loc_bitmap(heightpercent, "lib/images/scripting/heightpercent.gif");
-  load_loc_bitmap(widthdiff, "lib/images/scripting/widthdiff.gif");
-  load_loc_bitmap(widthpercent, "lib/images/scripting/widthpercent.gif");
+  load_loc_bitmap(bottomin, "images/scripting/bottomin.gif");
+  load_loc_bitmap(bottomout, "images/scripting/bottomout.gif");
+  load_loc_bitmap(centerX, "images/scripting/centerX.gif");
+  load_loc_bitmap(centerY, "images/scripting/centerY.gif");
+  load_loc_bitmap(leftin, "images/scripting/leftin.gif");
+  load_loc_bitmap(leftout, "images/scripting/leftout.gif");
+  load_loc_bitmap(rightin, "images/scripting/rightin.gif");
+  load_loc_bitmap(rightout, "images/scripting/rightout.gif");
+  load_loc_bitmap(topin, "images/scripting/topin.gif");
+  load_loc_bitmap(topout, "images/scripting/topout.gif");
+  load_loc_bitmap(heightdiff, "images/scripting/heightdiff.gif");
+  load_loc_bitmap(heightpercent, "images/scripting/heightpercent.gif");
+  load_loc_bitmap(widthdiff, "images/scripting/widthdiff.gif");
+  load_loc_bitmap(widthpercent, "images/scripting/widthpercent.gif");
 #else
   load_loc_bitmap(bottomin, "images/scripting/bottomin.xbm");
   load_loc_bitmap(bottomout, "images/scripting/bottomout.xbm");

@@ -11,7 +11,7 @@
 
 Am_Slot_Key SCROLL_PART = Am_Register_Slot_Name("SCROLL");
 
-#define IMFN_FEDERATION "lib/images/ent.gif"
+#define IMFN_FEDERATION "images/ent.gif"
 
 int
 main(void)

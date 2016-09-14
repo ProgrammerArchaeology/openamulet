@@ -976,8 +976,8 @@ Am_Define_Formula(int, scroll_width)
 #define AMULET_BITMAP "images/amside.gif"
 #define ARROW_BITMAP "images/arrow.gif"
 #else
-#define AMULET_BITMAP "lib/images/amuletside.xbm"
-#define ARROW_BITMAP "lib/images/arrow.xbm"
+#define AMULET_BITMAP "images/amuletside.xbm"
+#define ARROW_BITMAP "images/arrow.xbm"
 #endif
 
 Am_Image_Array icon, arrow;

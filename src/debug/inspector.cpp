@@ -2363,9 +2363,9 @@ Am_Object Am_Inspector_Menu_Bar;
 /* ******************* DON'T BOTHER UNTIL MENU HAS SOMETHING IN IT
 
 #if defined(_WIN32) || defined(_MACINTOSH)
-#define AMULET_BITMAP "lib/images/amside.gif"
+#define AMULET_BITMAP "images/amside.gif"
 #else
-#define AMULET_BITMAP "lib/images/amuletside.xbm"
+#define AMULET_BITMAP "images/amuletside.xbm"
 #endif
 
 Am_Object Am_Amulet_Icon;

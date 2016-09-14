@@ -580,7 +580,7 @@ Am_Show_File_Dialog_For_Save(Am_String initial_value)
 #ifdef _WIN32
 #define ABOUT_AMULET_GIF "images/aboutamulet.gif"
 #else
-#define ABOUT_AMULET_GIF "lib/images/aboutamulet.gif"
+#define ABOUT_AMULET_GIF "images/aboutamulet.gif"
 #endif
 
 //this returns the About Amulet window, which then might be popped up.

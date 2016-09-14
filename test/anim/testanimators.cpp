@@ -185,10 +185,10 @@ Am_Define_No_Self_Formula(int, top_on_dog) { return (int)dog.Get(Am_TOP) - 5; }
 static void
 init_pixmaps()
 {
-  horse = get_icon("lib/images/horse.gif", "horse");
-  girl = get_icon("lib/images/girl.gif", "girl");
-  dog = get_icon("lib/images/dog.gif", "dog");
-  bug = get_icon("lib/images/bugsmall.gif", "bug");
+  horse = get_icon("images/horse.gif", "horse");
+  girl = get_icon("images/girl.gif", "girl");
+  dog = get_icon("images/dog.gif", "dog");
+  bug = get_icon("images/bugsmall.gif", "bug");
 
   horse.Set(Am_LEFT, 500)
       .Set(Am_TOP, 50)
@@ -582,10 +582,10 @@ create_hacked_option_button()
 }
 
 const char *pixmapfilename[] = {
-    "lib/images/eye1.gif",  "lib/images/eye2.gif",  "lib/images/eye3.gif",
-    "lib/images/eye4.gif",  "lib/images/eye5.gif",  "lib/images/eye6.gif",
-    "lib/images/eye13.gif", "lib/images/eye14.gif", "lib/images/eye15.gif",
-    "lib/images/eye16.gif", "lib/images/eye17.gif", "lib/images/eye18.gif"};
+    "images/eye1.gif",  "images/eye2.gif",  "images/eye3.gif",
+    "images/eye4.gif",  "images/eye5.gif",  "images/eye6.gif",
+    "images/eye13.gif", "images/eye14.gif", "images/eye15.gif",
+    "images/eye16.gif", "images/eye17.gif", "images/eye18.gif"};
 
 Am_Value_List eye_walking_right, eye_walking_left;
 Am_Object eye_icon, icon, anim8;
