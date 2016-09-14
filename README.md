@@ -35,3 +35,19 @@ the Amulet applications find these assets, set the
 `data` directory:
 
 * `export AMULET_DIR=/path/to/openamulet/data`
+
+## Platform Support
+
+This build of Amulet has been used on macOS with
+an X server installed. It doesn't have support for
+native Mac GUIs.
+
+It is also known to build on Linux and will probably
+be easy to get working on other Unix platforms.
+
+It has, in the past, run on Microsoft Windows. It
+hopefully won't be hard to get that working again.
+
+## Contributions
+
+Contributions are welcome and encouraged.
