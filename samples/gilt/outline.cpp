@@ -25,8 +25,8 @@ Am_Slot_Key Lw_VITEM = Am_Register_Slot_Name("Lw_VITEM");
 Am_Slot_Key Lw_BITMAP = Am_Register_Slot_Name("Lw_BITMAP");
 Am_Slot_Key Lw_LAYOUT = Am_Register_Slot_Name("Lw_LAYOUT");
 
-Am_Image_Array plus_image(Am_Merge_Pathname("lib/images/plus.gif"));
-Am_Image_Array minus_image(Am_Merge_Pathname("lib/images/minus.gif"));
+Am_Image_Array plus_image(Am_Merge_Pathname("images/plus.gif"));
+Am_Image_Array minus_image(Am_Merge_Pathname("images/minus.gif"));
 
 /* uncomment EXPAND_ONE_LEVEL_ONLY to expand after collapsing only one level.
    The default behaviour is to remember what was expanded 

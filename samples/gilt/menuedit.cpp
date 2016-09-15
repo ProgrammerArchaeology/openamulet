@@ -57,10 +57,10 @@ Am_Object am_command_proto, am_selection_widget_all_proto, clear_proto,
 
 Am_Style Motif_Blue_Stipple, Am_Blue_2;
 
-Am_Image_Array arrow_left(Am_Merge_Pathname("lib/images/arrow_left.xbm"));
-Am_Image_Array arrow_right(Am_Merge_Pathname("lib/images/arrow_right.xbm"));
-Am_Image_Array arrow_up(Am_Merge_Pathname("lib/images/arrow_up.xbm"));
-Am_Image_Array arrow_down(Am_Merge_Pathname("lib/images/arrow_down.xbm"));
+Am_Image_Array arrow_left(Am_Merge_Pathname("images/arrow_left.xbm"));
+Am_Image_Array arrow_right(Am_Merge_Pathname("images/arrow_right.xbm"));
+Am_Image_Array arrow_up(Am_Merge_Pathname("images/arrow_up.xbm"));
+Am_Image_Array arrow_down(Am_Merge_Pathname("images/arrow_down.xbm"));
 
 void
 Copy_and_Create_List(Am_Value_List source_list, Am_Value_List &target_list)

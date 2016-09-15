@@ -2134,9 +2134,9 @@ Create_Tool_Panel()
 }
 
 #if defined(_WINDOWS) || defined(_MACINTOSH)
-#define ARROW_BITMAP "lib/images/arrow.gif"
+#define ARROW_BITMAP "images/arrow.gif"
 #else
-#define ARROW_BITMAP "lib/images/arrow.xbm"
+#define ARROW_BITMAP "images/arrow.xbm"
 #endif
 
 Am_Define_Formula(bool, look_is_me)
@@ -2532,7 +2532,7 @@ Am_Define_Formula(int, rotate_p1){
     double theta = acos(
 */
 
-#define TINY_ABOUT_AMULET "lib/images/tinyaboutamulet.gif"
+#define TINY_ABOUT_AMULET "images/tinyaboutamulet.gif"
 
 void
 Create_Prototypes()
