@@ -239,7 +239,7 @@ add_constraint_list(Am_Object text_group, Am_Object obj,
     constr = const_iter.Get();
     const_list.Add((Am_Ptr)constr);
 
-    sprintf(buffer, "%s%#x", constr->Get_Name(), constr);
+    sprintf(buffer, "%s%p", constr->Get_Name(), constr);
     tmp.Set(Am_TEXT, Am_String(buffer));
     tmp.Get_Object(Am_INACTIVE_COMMANDS).Set(Am_SELECT_INACTIVE, false);
     tmp.Set(Am_ID, CONSTRAINT_TEXT);
@@ -258,7 +258,7 @@ add_constraint(Am_Object text_group, Am_Constraint *constr, int &left, int &top,
   Am_Value_List const_list = text_group.Get(CONSTRAINT_LIST);
 
   tmp = find_next_text_obj(text_group, list, left, top);
-  sprintf(buffer, "%s%#x", constr->Get_Name(), constr);
+  sprintf(buffer, "%s%p", constr->Get_Name(), constr);
   tmp.Set(Am_TEXT, Am_String(buffer));
   tmp.Set(Am_ID, CONSTRAINT_TEXT);
   tmp.Get_Object(Am_INACTIVE_COMMANDS).Set(Am_SELECT_INACTIVE, false);
