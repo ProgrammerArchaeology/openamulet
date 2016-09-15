@@ -73,21 +73,22 @@ Am_Object Constraint_Widget;
 Am_Object One_Constraint_Handle;
 Am_Object handle_proto;
 
-Am_Define_Enum_Support(Constraint_How_Set,
+AM_DEFINE_ENUM_SUPPORT(Constraint_How_Set,
                        "CONSTRAINT_SETUP ABORT_SETUP MULTIPLE_SETUP");
-Am_Define_Enum_Support(Which_Constraint_Handle,
+AM_DEFINE_ENUM_SUPPORT(Which_Constraint_Handle,
                        "NO_HANDLE CH_TOP CH_LEFT CH_BOTTOM CH_RIGHT "
                        "CH_HEIGHT CH_WIDTH CH_CENTER_X CH_CENTER_Y "
                        "CH_X1 CH_X2 CH_Y1 CH_Y2 CH_SPECIAL ");
 
-Am_Define_Method_Type_Impl(Add_Handle_Method);
+AM_DEFINE_METHOD_TYPE_IMPL(Add_Handle_Method);
 
 //////////////////// Variable stuff //////////////
 
 class Gilt_Constraint_Variable_Data : public Am_Wrapper
 {
-  Am_WRAPPER_DATA_DECL(Gilt_Constraint_Variable) public
-      : Gilt_Constraint_Variable_Data();
+  AM_WRAPPER_DATA_DECL(Gilt_Constraint_Variable)
+public:
+  Gilt_Constraint_Variable_Data();
   Gilt_Constraint_Variable_Data(Gilt_Constraint_Variable_Data *proto);
   //never test
   bool operator==(Gilt_Constraint_Variable_Data &test) { return true; }
@@ -109,9 +110,9 @@ protected:
   constraint_variable variables[CONSTRAINT_VARIABLES_CNT];
 };
 
-Am_WRAPPER_DATA_IMPL(Gilt_Constraint_Variable, (this))
+AM_WRAPPER_DATA_IMPL(Gilt_Constraint_Variable, (this))
 
-    Gilt_Constraint_Variable_Data::Gilt_Constraint_Variable_Data()
+Gilt_Constraint_Variable_Data::Gilt_Constraint_Variable_Data()
 {
   int i = 0;
   char var = 'A';
@@ -171,14 +172,12 @@ Gilt_Constraint_Variable_Data::Get_Next_Var(Am_Object obj)
 
 class Gilt_Inferred_Object_Offset_Store_Data : public Am_Wrapper
 {
-  Am_WRAPPER_DATA_DECL(Gilt_Inferred_Object_Offset_Store) public
-      : Gilt_Inferred_Object_Offset_Store_Data(Am_Object in_object,
-                                               Am_Slot_Key in_obj_key,
-                                               Am_Slot_Key in_obj_ref_key,
-                                               int in_obj_offset,
-                                               float in_obj_multiplier,
-                                               Am_Slot_Key in_self_key,
-                                               float in_self_multiplier)
+  AM_WRAPPER_DATA_DECL(Gilt_Inferred_Object_Offset_Store)
+public:
+  Gilt_Inferred_Object_Offset_Store_Data(
+      Am_Object in_object, Am_Slot_Key in_obj_key, Am_Slot_Key in_obj_ref_key,
+      int in_obj_offset, float in_obj_multiplier, Am_Slot_Key in_self_key,
+      float in_self_multiplier)
   {
     object = in_object;
     obj_key = in_obj_key;
@@ -217,9 +216,10 @@ class Gilt_Inferred_Object_Offset_Store_Data : public Am_Wrapper
   float self_multiplier;
 };
 
-Am_WRAPPER_DATA_IMPL(Gilt_Inferred_Object_Offset_Store, (this))
+AM_WRAPPER_DATA_IMPL(Gilt_Inferred_Object_Offset_Store, (this))
 
-    static Am_Value get_data_and_adjust_procedure(Am_Object &self)
+static Am_Value
+get_data_and_adjust_procedure(Am_Object &self)
 {
   Am_Value obj_value;
   Am_Value obj_ref_value;

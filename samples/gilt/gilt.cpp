@@ -30,9 +30,9 @@ extern "C" {
 
 #include <amulet/inter_advanced.h> //for Am_Copy_Values_To_Command for polygon
 
-Am_Define_Method_Type(Am_Customize_Object_Method, void,
+AM_DEFINE_METHOD_TYPE(Am_Customize_Object_Method, void,
                       (Am_Object & command_obj, Am_Object &object))
-    Am_Define_Method_Type_Impl(Am_Customize_Object_Method)
+AM_DEFINE_METHOD_TYPE_IMPL(Am_Customize_Object_Method)
 
 #include "panel.h"
 #include "externs.h"
@@ -1371,7 +1371,7 @@ do_customize(Am_Object &cmd, Am_Object &obj)
   }
   //this shouldn't happen:
   else
-    Am_POP_UP_ERROR_WINDOW("Object " << obj << " cannot be customized");
+    AM_POP_UP_ERROR_WINDOW("Object " << obj << " cannot be customized");
 }
 
 Am_Define_Method(Am_Object_Method, void, customize, (Am_Object cmd))
