@@ -11,7 +11,7 @@
 */
 
 #include <amulet.h>
-// #include <strstream.h>
+// #include <strstream>
 
 #ifdef GCC
 #include <string.h>

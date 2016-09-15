@@ -9,7 +9,7 @@
 */
 
 #include <stdio.h>
-#include <iostream.h>
+#include <iostream>
 #include <amulet.h>
 #include "outline.h"
 #include <stdlib.h>

@@ -12,8 +12,8 @@
 
 #include <amulet.h>
 #include "externs.h"
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 
 #ifndef _MACINTOSH
 #define IOS_FLAGS ios::out

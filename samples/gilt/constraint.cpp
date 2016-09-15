@@ -6,18 +6,18 @@
 #include "constraint.h"
 #include "externs.h"
 
-#include WIDGETS_ADVANCED__H
-#include INTER_ADVANCED__H //needed for Am_Inter_Tracing
-#include GEM__H
-#include REGISTRY__H
-#include OPAL_ADVANCED__H
-#include OBJECT__H
-#include OBJECT_ADVANCED__H
-#include FORMULA__H
-#include FORMULA_ADVANCED__H
-#include VALUE_LIST__H
-#include DEBUGGER__H
-#include STANDARD_SLOTS__H
+#include <amulet/widgets_advanced.h>
+#include <amulet/inter_advanced.h> //needed for Am_Inter_Tracing
+#include <amulet/gem.h>
+#include <amulet/registry.h>
+#include <amulet/opal_advanced.h>
+#include <amulet/object.h>
+#include <amulet/object_advanced.h>
+#include <amulet/formula.h>
+#include <amulet/formula_advanced.h>
+#include <amulet/value_list.h>
+#include <amulet/debugger.h>
+#include <amulet/standard_slots.h>
 
 extern Am_Formula compute_drag_start_when;
 extern Am_Object line_proto;

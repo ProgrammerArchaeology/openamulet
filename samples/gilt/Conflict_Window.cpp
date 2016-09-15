@@ -13,8 +13,8 @@
 #include <amulet.h>
 #include "externs.h"
 #include "constraint.h"
-#include STR_STREAM__H
-#include DEBUGGER__H
+#include <amulet/am_strstream.h>
+#include <amulet/debugger.h>
 
 #define TEXT_HEIGHT 13
 #define SLOT_TEXT 3

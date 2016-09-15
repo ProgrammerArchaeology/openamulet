@@ -12,11 +12,11 @@
 
 #include <amulet.h>
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <stdlib.h>
 
-#include STR_STREAM__H // strstream is needed for Am_POP_UP_ERROR_WINDOW
+#include <amulet/am_strstream.h> // strstream is needed for AM_POP_UP_ERROR_WINDOW
 
 #ifdef GCC
 #include <string.h>
@@ -28,7 +28,7 @@ extern "C" {
 }
 #endif
 
-#include INTER_ADVANCED__H //for Am_Copy_Values_To_Command for polygon
+#include <amulet/inter_advanced.h> //for Am_Copy_Values_To_Command for polygon
 
 Am_Define_Method_Type(Am_Customize_Object_Method, void,
                       (Am_Object & command_obj, Am_Object &object))

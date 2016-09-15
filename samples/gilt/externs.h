@@ -2,7 +2,7 @@
 #define __EXTERNS_H
 
 #include <amulet.h>
-#include FORMULA_ADVANCED__H
+#include <amulet/formula_advanced.h>
 
 extern Am_Slot_Key CUSTOMIZE_METHOD;
 extern Am_Slot_Key SUB_LABEL;

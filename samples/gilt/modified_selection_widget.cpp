@@ -1,14 +1,14 @@
 #include <amulet.h>
 #include "externs.h"
 
-#include WIDGETS_ADVANCED__H
-#include INTER_ADVANCED__H //needed for Am_Inter_Tracing
-#include GEM__H
-#include REGISTRY__H
-#include OPAL_ADVANCED__H
-#include OBJECT__H
-#include VALUE_LIST__H
-#include STANDARD_SLOTS__H
+#include <amulet/widgets_advanced.h>
+#include <amulet/inter_advanced.h> //needed for am_inter_tracing
+#include <amulet/gem.h>
+#include <amulet/registry.h>
+#include <amulet/opal_advanced.h>
+#include <amulet/object.h>
+#include <amulet/value_list.h>
+#include <amulet/standard_slots.h>
 
 Am_Object Modified_Selection_Widget;
 extern Am_Formula compute_drag_start_when;
