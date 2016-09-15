@@ -8,31 +8,20 @@
 
 class paneldialog
 {
- public:
+public:
+  paneldialog(){};
+  void Init();
+  void SetValues(Am_String &name, Am_Value_List &il, Am_Value &layout_key,
+                 Am_Value &box_on_left, Am_Value &fw, Am_Value &hspace,
+                 Am_Value &vspace, Am_Value &maxrnk);
 
-paneldialog() {};
-void Init();
-void SetValues(Am_String &name , Am_Value_List &il,
-			    Am_Value &layout_key, Am_Value &box_on_left,
-			    Am_Value &fw, Am_Value &hspace, Am_Value &vspace,
-			    Am_Value &maxrnk);
+  void GetValues(Am_String &name, Am_Value_List &il, Am_Value &layout_key,
+                 Am_Value &box_on_left, Am_Value &fixed_width, Am_Value &hspace,
+                 Am_Value &vspace, Am_Value &maxrnk);
 
-void GetValues(Am_String &name, Am_Value_List &il,
-	       Am_Value &layout_key, Am_Value &box_on_left,
-	       Am_Value &fixed_width, Am_Value &hspace, Am_Value &vspace,
-	       Am_Value &maxrnk);
-
-Am_bool Execute (Am_String &name , Am_Value_List &il,
-		 Am_Value &layout_key, Am_Value &box_on_left,
-		 Am_Value &fw, Am_Value &hspace, Am_Value &vspace,
-		 Am_Value &maxrnk, bool can_change_items);
-void Cancel();
-
+  Am_bool Execute(Am_String &name, Am_Value_List &il, Am_Value &layout_key,
+                  Am_Value &box_on_left, Am_Value &fw, Am_Value &hspace,
+                  Am_Value &vspace, Am_Value &maxrnk, bool can_change_items);
+  void Cancel();
 };
 #endif
-
-
-
-
-
-

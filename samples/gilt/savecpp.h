@@ -15,7 +15,7 @@
 #include <amulet.h>
 
 extern Am_Object savecpp_window;
-extern Am_Object savecpp_window_Initialize ();
+extern Am_Object savecpp_window_Initialize();
 
 extern Am_Slot_Key EXPLICIT_SIZE_OBJ;
 extern Am_Slot_Key H_FILENAME;
@@ -31,6 +31,5 @@ extern Am_Slot_Key C_FILENAME;
 extern ofstream cc_out_file;
 extern bool want_h_file;
 extern ofstream h_out_file;
-
 
 #endif

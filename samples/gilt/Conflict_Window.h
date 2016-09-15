@@ -15,16 +15,10 @@
 #include <amulet.h>
 
 extern Am_Object Conflict_Window;
-extern Am_Object Conflict_Window_Initialize ();
+extern Am_Object Conflict_Window_Initialize();
 
 //Line styles exclusivly created by Gilt
 
 extern Am_Style Am_White_2
-
-
-
-
-
-
 
 #endif

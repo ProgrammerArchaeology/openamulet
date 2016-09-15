@@ -22,41 +22,48 @@
 #endif
 
 Am_Object savecpp_window;
-ofstream  h_out_file;
-ofstream  cc_out_file;
+ofstream h_out_file;
+ofstream cc_out_file;
 
-Am_Slot_Key EXPLICIT_SIZE_OBJ = Am_Register_Slot_Name ("Explicit_Size_Obj");
-Am_Slot_Key H_FILENAME = Am_Register_Slot_Name ("H_FILENAME");
-Am_Slot_Key CREATE_HEADER = Am_Register_Slot_Name ("CREATE_HEADER");
-Am_Slot_Key MAIN_NAME = Am_Register_Slot_Name ("MAIN_NAME");
-Am_Slot_Key WINDOW_OR_GROUP = Am_Register_Slot_Name ("Window_Or_Group");
-Am_Slot_Key WIN_TITLE = Am_Register_Slot_Name ("WIN_TITLE");
-Am_Slot_Key WIDTH_OBJ = Am_Register_Slot_Name ("WIDTH_OBJ");
-Am_Slot_Key HEIGHT_OBJ = Am_Register_Slot_Name ("HEIGHT_OBJ");
-Am_Slot_Key FIXED_SIZE_OBJ = Am_Register_Slot_Name ("Fixed_Size_Obj");
-Am_Slot_Key C_FILENAME = Am_Register_Slot_Name ("C_FILENAME");
+Am_Slot_Key EXPLICIT_SIZE_OBJ = Am_Register_Slot_Name("Explicit_Size_Obj");
+Am_Slot_Key H_FILENAME = Am_Register_Slot_Name("H_FILENAME");
+Am_Slot_Key CREATE_HEADER = Am_Register_Slot_Name("CREATE_HEADER");
+Am_Slot_Key MAIN_NAME = Am_Register_Slot_Name("MAIN_NAME");
+Am_Slot_Key WINDOW_OR_GROUP = Am_Register_Slot_Name("Window_Or_Group");
+Am_Slot_Key WIN_TITLE = Am_Register_Slot_Name("WIN_TITLE");
+Am_Slot_Key WIDTH_OBJ = Am_Register_Slot_Name("WIDTH_OBJ");
+Am_Slot_Key HEIGHT_OBJ = Am_Register_Slot_Name("HEIGHT_OBJ");
+Am_Slot_Key FIXED_SIZE_OBJ = Am_Register_Slot_Name("Fixed_Size_Obj");
+Am_Slot_Key C_FILENAME = Am_Register_Slot_Name("C_FILENAME");
 
 bool want_h_file;
 
-Am_Define_Formula(bool, active_if_header) {
+Am_Define_Formula(bool, active_if_header)
+{
   Am_Value_List v = self.Get_Sibling(CREATE_HEADER).Get(Am_VALUE);
   v.Start();
-  if (v.Member(1)) return true;
-  else return false;
+  if (v.Member(1))
+    return true;
+  else
+    return false;
 }
-Am_Define_Formula(bool, active_if_create_window) {
+Am_Define_Formula(bool, active_if_create_window)
+{
   int v = self.Get_Sibling(WINDOW_OR_GROUP).Get(Am_VALUE);
-  if (v == 1) return true;
+  if (v == 1)
+    return true;
   return false;
 }
-Am_Define_Formula(bool, active_if_explicit_size) {
+Am_Define_Formula(bool, active_if_explicit_size)
+{
   int v = self.Get_Sibling(EXPLICIT_SIZE_OBJ).Get(Am_VALUE);
-  if (v == 1) return true;
+  if (v == 1)
+    return true;
   return false;
 }
 
-Am_Define_Method(Am_Object_Method, void, clear_all_entries,
-		 (Am_Object cmd)) {
+Am_Define_Method(Am_Object_Method, void, clear_all_entries, (Am_Object cmd))
+{
   Am_Object win = cmd.Get_Object(Am_SAVED_OLD_OWNER).Get(Am_WINDOW);
   win.Get_Object(MAIN_NAME).Set(Am_VALUE, "");
   win.Get_Object(C_FILENAME).Set(Am_VALUE, "");
@@ -64,11 +71,13 @@ Am_Define_Method(Am_Object_Method, void, clear_all_entries,
   win.Get_Object(WIN_TITLE).Set(Am_VALUE, "");
 }
 Am_Define_Method(Am_Object_Method, void, set_strings_from_main_name,
-		 (Am_Object cmd)) {
+                 (Am_Object cmd))
+{
   Am_Object win = cmd.Get_Object(Am_SAVED_OLD_OWNER).Get(Am_WINDOW);
   Am_String main_name = win.Get_Object(MAIN_NAME).Get(Am_VALUE);
-  if (!main_name.Valid() || main_name == "") return;
-  
+  if (!main_name.Valid() || main_name == "")
+    return;
+
   Am_String c_filename = win.Get_Object(C_FILENAME).Get(Am_VALUE);
   if (!c_filename.Valid() || c_filename == "") {
     c_filename = Add_Extension(main_name, ".cc");
@@ -88,11 +97,13 @@ Am_Define_Method(Am_Object_Method, void, set_strings_from_main_name,
 }
 
 Am_Define_Method(Am_Object_Method, void, set_h_file_from_c_file,
-		 (Am_Object cmd)) {
+                 (Am_Object cmd))
+{
   Am_Object win = cmd.Get_Object(Am_SAVED_OLD_OWNER).Get(Am_WINDOW);
   Am_String c_filename = win.Get_Object(C_FILENAME).Get(Am_VALUE);
-  if (!c_filename.Valid() || c_filename == "")  return;
-  
+  if (!c_filename.Valid() || c_filename == "")
+    return;
+
   Am_String h_filename = win.Get_Object(H_FILENAME).Get(Am_VALUE);
   if (!h_filename.Valid() || h_filename == "") {
     h_filename = Add_Extension(c_filename, ".h");
@@ -100,28 +111,26 @@ Am_Define_Method(Am_Object_Method, void, set_h_file_from_c_file,
   }
 }
 
-
-Am_Define_Method(Am_Object_Method, void, check_if_ok,
-		 (Am_Object cmd)) {
+Am_Define_Method(Am_Object_Method, void, check_if_ok, (Am_Object cmd))
+{
   Am_Object win = cmd.Get_Object(Am_SAVED_OLD_OWNER).Get(Am_WINDOW);
   Am_String c_filename = win.Get_Object(C_FILENAME).Get(Am_VALUE);
   Am_String main_name = win.Get_Object(MAIN_NAME).Get(Am_VALUE);
   if (!c_filename.Valid() || c_filename == "") {
-    Am_Show_Alert_Dialog (Am_Value_List ()
-			  .Add ("Must supply a C++ filename"));
+    Am_Show_Alert_Dialog(Am_Value_List().Add("Must supply a C++ filename"));
     return;
   }
   if (!main_name.Valid() || main_name == "") {
-    Am_Show_Alert_Dialog (Am_Value_List ()
-			  .Add ("Must supply the Name of Main Object"));
+    Am_Show_Alert_Dialog(
+        Am_Value_List().Add("Must supply the Name of Main Object"));
     return;
   }
 
-  cc_out_file.open((char*)c_filename, IOS_FLAGS);
+  cc_out_file.open((char *)c_filename, IOS_FLAGS);
   if (!cc_out_file.good()) {
-    Am_Show_Alert_Dialog (Am_Value_List ()
-			  .Add ("Cannot open C++ file for writing:")
-			  .Add (c_filename));
+    Am_Show_Alert_Dialog(Am_Value_List()
+                             .Add("Cannot open C++ file for writing:")
+                             .Add(c_filename));
     return;
   }
 
@@ -129,17 +138,16 @@ Am_Define_Method(Am_Object_Method, void, check_if_ok,
   if (want_h_file) {
     Am_String h_filename = win.Get_Object(H_FILENAME).Get(Am_VALUE);
     if (!h_filename.Valid() || h_filename == "") {
-      Am_Show_Alert_Dialog (Am_Value_List ()
-			    .Add ("Must supply a .h filename"));
+      Am_Show_Alert_Dialog(Am_Value_List().Add("Must supply a .h filename"));
       cc_out_file.close();
       return;
     }
-  
-    h_out_file.open((char*)h_filename, IOS_FLAGS);
+
+    h_out_file.open((char *)h_filename, IOS_FLAGS);
     if (!h_out_file.good()) {
-      Am_Show_Alert_Dialog (Am_Value_List ()
-			    .Add ("Cannot open .h file for writing:")
-			    .Add (h_filename));
+      Am_Show_Alert_Dialog(Am_Value_List()
+                               .Add("Cannot open .h file for writing:")
+                               .Add(h_filename));
       cc_out_file.close();
       return;
     }
@@ -150,284 +158,279 @@ Am_Define_Method(Am_Object_Method, void, check_if_ok,
   Am_Finish_Pop_Up_Waiting(win, true);
 }
 
-Am_Object savecpp_window_Initialize () {
-  savecpp_window = Am_Window.Create("savecpp_window")
-    .Set(Am_DESTROY_WINDOW_METHOD, Am_Default_Pop_Up_Window_Destroy_Method)
-    .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-    .Set(Am_TITLE, "Generate C++ File")
-    .Set(Am_ICON_TITLE, "Generate C++ File")
-    .Set(Am_WIDTH, 419)
-    .Set(Am_HEIGHT, 590)
-    .Add_Part(Am_Border_Rectangle.Create()
-      .Set(Am_LEFT, 11)
-      .Set(Am_TOP, 400)
-      .Set(Am_WIDTH, 397)
-      .Set(Am_HEIGHT, 123)
-      .Set(Am_SELECTED, 0)
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-    )
-    .Add_Part(EXPLICIT_SIZE_OBJ, Am_Radio_Button_Panel.Create("Explicit_Size_Obj")
-      .Set(Am_LEFT, 23)
-      .Set(Am_TOP, 428)
-      .Set(Am_FONT, Am_Font(Am_FONT_FIXED, true, false, false, Am_FONT_MEDIUM))
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-	      .Set(Am_VALUE, 1)
-      .Set(Am_ITEMS, Am_Value_List()
-        .Add(Am_Command.Create()
-             .Set(Am_LABEL, "Explicit Size")
-             .Set(Am_ID, 1))
-        .Add(Am_Command.Create()
-             .Set(Am_LABEL, "Get Size from Size of Parts")
-             .Set(Am_ID, 2))
-        )
-      .Set(Am_LAYOUT, Am_Vertical_Layout)
-      .Set(Am_H_SPACING, 0)
-      .Set(Am_V_SPACING, 40)
-      .Set(Am_MAX_RANK, 0)
-    )
-    .Add_Part(Am_Border_Rectangle.Create()
-      .Set(Am_LEFT, 10)
-      .Set(Am_TOP, 228)
-      .Set(Am_WIDTH, 399)
-      .Set(Am_HEIGHT, 163)
-      .Set(Am_SELECTED, 0)
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-    )
-    .Add_Part(Am_Border_Rectangle.Create()
-      .Set(Am_LEFT, 16)
-      .Set(Am_TOP, 350)
-      .Set(Am_WIDTH, 379)
-      .Set(Am_HEIGHT, 30)
-      .Set(Am_SELECTED, 0)
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-    )
-    .Add_Part(Am_Border_Rectangle.Create()
-      .Set(Am_LEFT, 10)
-      .Set(Am_TOP, 10)
-      .Set(Am_WIDTH, 399)
-      .Set(Am_HEIGHT, 213)
-      .Set(Am_SELECTED, 0)
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-    )
-    .Add_Part(Am_Border_Rectangle.Create()
-      .Set(Am_LEFT, 16)
-      .Set(Am_TOP, 262)
-      .Set(Am_WIDTH, 380)
-      .Set(Am_HEIGHT, 81)
-      .Set(Am_SELECTED, 0)
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-    )
-    .Add_Part(Am_Border_Rectangle.Create()
-      .Set(Am_LEFT, 17)
-      .Set(Am_TOP, 161)
-      .Set(Am_WIDTH, 380)
-      .Set(Am_HEIGHT, 57)
-      .Set(Am_SELECTED, 0)
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-    )
-    .Add_Part(H_FILENAME, Am_Text_Input_Widget.Create("H_FILENAME")
-      .Set(Am_LEFT, 47)
-      .Set(Am_TOP, 187)
-      .Set(Am_WIDTH, 337)
-      .Set(Am_HEIGHT, 25)
-	      .Set(Am_ACTIVE, active_if_header)
-      .Get_Object(Am_COMMAND)
-        .Set(Am_LABEL, "Header Filename")
-        .Get_Owner()
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-    )
-    .Add_Part(CREATE_HEADER, Am_Checkbox_Panel.Create("CREATE_HEADER")
-      .Set(Am_LEFT, 25)
-      .Set(Am_TOP, 167)
-      .Set(Am_FONT, Am_Font(Am_FONT_FIXED, true, false, false, Am_FONT_MEDIUM))
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-      .Set(Am_ITEMS, Am_Value_List()
-        .Add(Am_Command.Create()
-             .Set(Am_LABEL, "Create header (.h) file?")
-             .Set(Am_ID, 1))
-        )
-      .Set(Am_LAYOUT, Am_Vertical_Layout)
-      .Set(Am_H_SPACING, 0)
-      .Set(Am_V_SPACING, 35)
-      .Set(Am_MAX_RANK, 0)
-    )
-    .Add_Part(Am_Border_Rectangle.Create()
-      .Set(Am_LEFT, 17)
-      .Set(Am_TOP, 40)
-      .Set(Am_WIDTH, 380)
-      .Set(Am_HEIGHT, 57)
-      .Set(Am_SELECTED, 0)
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-    )
-    .Add_Part(MAIN_NAME, Am_Text_Input_Widget.Create("MAIN_NAME")
-      .Set(Am_LEFT, 19)
-      .Set(Am_TOP, 55)
-      .Set(Am_WIDTH, 365)
-      .Set(Am_HEIGHT, 25)
-      .Get_Object(Am_COMMAND)
-        .Set(Am_LABEL, "Name of Main Object")
-	      .Set(Am_DO_METHOD, set_strings_from_main_name)
-        .Get_Owner()
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-    )
-    .Add_Part(WINDOW_OR_GROUP, Am_Radio_Button_Panel.Create("Window_Or_Group")
-      .Set(Am_LEFT, 24)
-      .Set(Am_TOP, 265)
-      .Set(Am_FONT, Am_Font(Am_FONT_FIXED, true, false, false, Am_FONT_MEDIUM))
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-	      .Set(Am_VALUE, 1)
-      .Set(Am_ITEMS, Am_Value_List()
-        .Add(Am_Command.Create()
-             .Set(Am_LABEL, "Create a Window")
-             .Set(Am_ID, 1))
-        .Add(Am_Command.Create()
-             .Set(Am_LABEL, "Create a Group")
-             .Set(Am_ID, 2))
-        )
-      .Set(Am_LAYOUT, Am_Vertical_Layout)
-      .Set(Am_H_SPACING, 0)
-      .Set(Am_V_SPACING, 62)
-      .Set(Am_MAX_RANK, 0)
-    )
-    .Add_Part(WIN_TITLE, Am_Text_Input_Widget.Create("WIN_TITLE")
-	      .Set(Am_ACTIVE, active_if_create_window)
-      .Set(Am_LEFT, 48)
-      .Set(Am_TOP, 289)
-      .Set(Am_WIDTH, 335)
-      .Set(Am_HEIGHT, 26)
-      .Get_Object(Am_COMMAND)
-        .Set(Am_LABEL, "Window Title")
-        .Get_Owner()
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-    )
-    .Add_Part(WIDTH_OBJ, Am_Number_Input_Widget.Create("WIDTH_OBJ")
-	      .Set(Am_ACTIVE, active_if_explicit_size)
-      .Set(Am_LEFT, 64)
-      .Set(Am_TOP, 462)
-      .Set(Am_WIDTH, 92)
-      .Set(Am_HEIGHT, 25)
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-      .Get_Object(Am_COMMAND)
-        .Set(Am_LABEL, " Width")
-        .Get_Owner()
-      .Set(Am_VALUE_1, Am_No_Value)
-      .Set(Am_VALUE_2, Am_No_Value)
-    )
-    .Add_Part(HEIGHT_OBJ, Am_Number_Input_Widget.Create("HEIGHT_OBJ")
-	      .Set(Am_ACTIVE, active_if_explicit_size)
-      .Set(Am_LEFT, 170)
-      .Set(Am_TOP, 462)
-      .Set(Am_WIDTH, 92)
-      .Set(Am_HEIGHT, 25)
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-      .Get_Object(Am_COMMAND)
-        .Set(Am_LABEL, "Height")
-        .Get_Owner()
-      .Set(Am_VALUE_1, Am_No_Value)
-      .Set(Am_VALUE_2, Am_No_Value)
-    )
-    .Add_Part(Am_Text.Create()
-      .Set(Am_LEFT, 56)
-      .Set(Am_TOP, 450)
-      .Set(Am_WIDTH, 315)
-      .Set(Am_HEIGHT, 13)
-      .Set(Am_TEXT, "(Default values come from main window's size)")
-      .Set(Am_FONT, Am_Font(Am_FONT_FIXED, false, true, false, Am_FONT_MEDIUM))
-      .Set(Am_LINE_STYLE, Am_Black)
-      .Set(Am_FILL_STYLE, Am_No_Style)
-    )
-    .Add_Part(Am_Text.Create()
-      .Set(Am_LEFT, 14)
-      .Set(Am_TOP, 17)
-      .Set(Am_WIDTH, 55)
-      .Set(Am_HEIGHT, 19)
-      .Set(Am_TEXT, "Names")
-      .Set(Am_FONT, Am_Font(Am_FONT_FIXED, true, false, false, Am_FONT_LARGE))
-      .Set(Am_LINE_STYLE, Am_Black)
-      .Set(Am_FILL_STYLE, Am_No_Style)
-    )
-    .Add_Part(Am_Text.Create()
-      .Set(Am_LEFT, 14)
-      .Set(Am_TOP, 235)
-      .Set(Am_WIDTH, 165)
-      .Set(Am_HEIGHT, 19)
-      .Set(Am_TEXT, "Window or Group")
-      .Set(Am_FONT, Am_Font(Am_FONT_FIXED, true, false, false, Am_FONT_LARGE))
-      .Set(Am_LINE_STYLE, Am_Black)
-      .Set(Am_FILL_STYLE, Am_No_Style)
-    )
-    .Add_Part(Am_Text.Create()
-      .Set(Am_LEFT, 21)
-      .Set(Am_TOP, 406)
-      .Set(Am_WIDTH, 55)
-      .Set(Am_HEIGHT, 19)
-      .Set(Am_TEXT, "Sizes")
-      .Set(Am_FONT, Am_Font(Am_FONT_FIXED, true, false, false, Am_FONT_LARGE))
-      .Set(Am_LINE_STYLE, Am_Black)
-      .Set(Am_FILL_STYLE, Am_No_Style)
-    )
-    .Add_Part(FIXED_SIZE_OBJ, Am_Checkbox_Panel.Create("Fixed_Size_Obj")
-      .Set(Am_LEFT, 48)
-      .Set(Am_TOP, 316)
-      .Set(Am_FONT, Am_Font(Am_FONT_FIXED, true, false, false, Am_FONT_MEDIUM))
-	      .Set(Am_ACTIVE, active_if_create_window)
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-      .Set(Am_ITEMS, Am_Value_List()
-        .Add(Am_Command.Create()
-             .Set(Am_LABEL, "Fixed Size Window")
-             .Set(Am_ID, 1))
-        )
-      .Set(Am_LAYOUT, Am_Vertical_Layout)
-      .Set(Am_H_SPACING, 0)
-      .Set(Am_V_SPACING, 0)
-      .Set(Am_MAX_RANK, 0)
-    )
-    .Add_Part(Am_Border_Rectangle.Create()
-      .Set(Am_LEFT, 17)
-      .Set(Am_TOP, 100)
-      .Set(Am_WIDTH, 380)
-      .Set(Am_HEIGHT, 57)
-      .Set(Am_SELECTED, 0)
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-    )
-    .Add_Part(C_FILENAME, Am_Text_Input_Widget.Create("C_FILENAME")
-      .Set(Am_LEFT, 19)
-      .Set(Am_TOP, 115)
-      .Set(Am_WIDTH, 365)
-      .Set(Am_HEIGHT, 25)
-      .Get_Object(Am_COMMAND)
-        .Set(Am_LABEL, "C++ Filename")
-	      .Set(Am_DO_METHOD, set_h_file_from_c_file)
-        .Get_Owner()
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-    )
+Am_Object
+savecpp_window_Initialize()
+{
+  savecpp_window =
+      Am_Window.Create("savecpp_window")
+          .Set(Am_DESTROY_WINDOW_METHOD,
+               Am_Default_Pop_Up_Window_Destroy_Method)
+          .Set(Am_FILL_STYLE, Am_Amulet_Purple)
+          .Set(Am_TITLE, "Generate C++ File")
+          .Set(Am_ICON_TITLE, "Generate C++ File")
+          .Set(Am_WIDTH, 419)
+          .Set(Am_HEIGHT, 590)
+          .Add_Part(Am_Border_Rectangle.Create()
+                        .Set(Am_LEFT, 11)
+                        .Set(Am_TOP, 400)
+                        .Set(Am_WIDTH, 397)
+                        .Set(Am_HEIGHT, 123)
+                        .Set(Am_SELECTED, 0)
+                        .Set(Am_FILL_STYLE, Am_Amulet_Purple))
+          .Add_Part(EXPLICIT_SIZE_OBJ,
+                    Am_Radio_Button_Panel.Create("Explicit_Size_Obj")
+                        .Set(Am_LEFT, 23)
+                        .Set(Am_TOP, 428)
+                        .Set(Am_FONT, Am_Font(Am_FONT_FIXED, true, false, false,
+                                              Am_FONT_MEDIUM))
+                        .Set(Am_FILL_STYLE, Am_Amulet_Purple)
+                        .Set(Am_VALUE, 1)
+                        .Set(Am_ITEMS,
+                             Am_Value_List()
+                                 .Add(Am_Command.Create()
+                                          .Set(Am_LABEL, "Explicit Size")
+                                          .Set(Am_ID, 1))
+                                 .Add(Am_Command.Create()
+                                          .Set(Am_LABEL,
+                                               "Get Size from Size of Parts")
+                                          .Set(Am_ID, 2)))
+                        .Set(Am_LAYOUT, Am_Vertical_Layout)
+                        .Set(Am_H_SPACING, 0)
+                        .Set(Am_V_SPACING, 40)
+                        .Set(Am_MAX_RANK, 0))
+          .Add_Part(Am_Border_Rectangle.Create()
+                        .Set(Am_LEFT, 10)
+                        .Set(Am_TOP, 228)
+                        .Set(Am_WIDTH, 399)
+                        .Set(Am_HEIGHT, 163)
+                        .Set(Am_SELECTED, 0)
+                        .Set(Am_FILL_STYLE, Am_Amulet_Purple))
+          .Add_Part(Am_Border_Rectangle.Create()
+                        .Set(Am_LEFT, 16)
+                        .Set(Am_TOP, 350)
+                        .Set(Am_WIDTH, 379)
+                        .Set(Am_HEIGHT, 30)
+                        .Set(Am_SELECTED, 0)
+                        .Set(Am_FILL_STYLE, Am_Amulet_Purple))
+          .Add_Part(Am_Border_Rectangle.Create()
+                        .Set(Am_LEFT, 10)
+                        .Set(Am_TOP, 10)
+                        .Set(Am_WIDTH, 399)
+                        .Set(Am_HEIGHT, 213)
+                        .Set(Am_SELECTED, 0)
+                        .Set(Am_FILL_STYLE, Am_Amulet_Purple))
+          .Add_Part(Am_Border_Rectangle.Create()
+                        .Set(Am_LEFT, 16)
+                        .Set(Am_TOP, 262)
+                        .Set(Am_WIDTH, 380)
+                        .Set(Am_HEIGHT, 81)
+                        .Set(Am_SELECTED, 0)
+                        .Set(Am_FILL_STYLE, Am_Amulet_Purple))
+          .Add_Part(Am_Border_Rectangle.Create()
+                        .Set(Am_LEFT, 17)
+                        .Set(Am_TOP, 161)
+                        .Set(Am_WIDTH, 380)
+                        .Set(Am_HEIGHT, 57)
+                        .Set(Am_SELECTED, 0)
+                        .Set(Am_FILL_STYLE, Am_Amulet_Purple))
+          .Add_Part(H_FILENAME, Am_Text_Input_Widget.Create("H_FILENAME")
+                                    .Set(Am_LEFT, 47)
+                                    .Set(Am_TOP, 187)
+                                    .Set(Am_WIDTH, 337)
+                                    .Set(Am_HEIGHT, 25)
+                                    .Set(Am_ACTIVE, active_if_header)
+                                    .Get_Object(Am_COMMAND)
+                                    .Set(Am_LABEL, "Header Filename")
+                                    .Get_Owner()
+                                    .Set(Am_FILL_STYLE, Am_Amulet_Purple))
+          .Add_Part(CREATE_HEADER,
+                    Am_Checkbox_Panel.Create("CREATE_HEADER")
+                        .Set(Am_LEFT, 25)
+                        .Set(Am_TOP, 167)
+                        .Set(Am_FONT, Am_Font(Am_FONT_FIXED, true, false, false,
+                                              Am_FONT_MEDIUM))
+                        .Set(Am_FILL_STYLE, Am_Amulet_Purple)
+                        .Set(Am_ITEMS,
+                             Am_Value_List().Add(
+                                 Am_Command.Create()
+                                     .Set(Am_LABEL, "Create header (.h) file?")
+                                     .Set(Am_ID, 1)))
+                        .Set(Am_LAYOUT, Am_Vertical_Layout)
+                        .Set(Am_H_SPACING, 0)
+                        .Set(Am_V_SPACING, 35)
+                        .Set(Am_MAX_RANK, 0))
+          .Add_Part(Am_Border_Rectangle.Create()
+                        .Set(Am_LEFT, 17)
+                        .Set(Am_TOP, 40)
+                        .Set(Am_WIDTH, 380)
+                        .Set(Am_HEIGHT, 57)
+                        .Set(Am_SELECTED, 0)
+                        .Set(Am_FILL_STYLE, Am_Amulet_Purple))
+          .Add_Part(MAIN_NAME,
+                    Am_Text_Input_Widget.Create("MAIN_NAME")
+                        .Set(Am_LEFT, 19)
+                        .Set(Am_TOP, 55)
+                        .Set(Am_WIDTH, 365)
+                        .Set(Am_HEIGHT, 25)
+                        .Get_Object(Am_COMMAND)
+                        .Set(Am_LABEL, "Name of Main Object")
+                        .Set(Am_DO_METHOD, set_strings_from_main_name)
+                        .Get_Owner()
+                        .Set(Am_FILL_STYLE, Am_Amulet_Purple))
+          .Add_Part(
+              WINDOW_OR_GROUP,
+              Am_Radio_Button_Panel.Create("Window_Or_Group")
+                  .Set(Am_LEFT, 24)
+                  .Set(Am_TOP, 265)
+                  .Set(Am_FONT, Am_Font(Am_FONT_FIXED, true, false, false,
+                                        Am_FONT_MEDIUM))
+                  .Set(Am_FILL_STYLE, Am_Amulet_Purple)
+                  .Set(Am_VALUE, 1)
+                  .Set(Am_ITEMS, Am_Value_List()
+                                     .Add(Am_Command.Create()
+                                              .Set(Am_LABEL, "Create a Window")
+                                              .Set(Am_ID, 1))
+                                     .Add(Am_Command.Create()
+                                              .Set(Am_LABEL, "Create a Group")
+                                              .Set(Am_ID, 2)))
+                  .Set(Am_LAYOUT, Am_Vertical_Layout)
+                  .Set(Am_H_SPACING, 0)
+                  .Set(Am_V_SPACING, 62)
+                  .Set(Am_MAX_RANK, 0))
+          .Add_Part(WIN_TITLE, Am_Text_Input_Widget.Create("WIN_TITLE")
+                                   .Set(Am_ACTIVE, active_if_create_window)
+                                   .Set(Am_LEFT, 48)
+                                   .Set(Am_TOP, 289)
+                                   .Set(Am_WIDTH, 335)
+                                   .Set(Am_HEIGHT, 26)
+                                   .Get_Object(Am_COMMAND)
+                                   .Set(Am_LABEL, "Window Title")
+                                   .Get_Owner()
+                                   .Set(Am_FILL_STYLE, Am_Amulet_Purple))
+          .Add_Part(WIDTH_OBJ, Am_Number_Input_Widget.Create("WIDTH_OBJ")
+                                   .Set(Am_ACTIVE, active_if_explicit_size)
+                                   .Set(Am_LEFT, 64)
+                                   .Set(Am_TOP, 462)
+                                   .Set(Am_WIDTH, 92)
+                                   .Set(Am_HEIGHT, 25)
+                                   .Set(Am_FILL_STYLE, Am_Amulet_Purple)
+                                   .Get_Object(Am_COMMAND)
+                                   .Set(Am_LABEL, " Width")
+                                   .Get_Owner()
+                                   .Set(Am_VALUE_1, Am_No_Value)
+                                   .Set(Am_VALUE_2, Am_No_Value))
+          .Add_Part(HEIGHT_OBJ, Am_Number_Input_Widget.Create("HEIGHT_OBJ")
+                                    .Set(Am_ACTIVE, active_if_explicit_size)
+                                    .Set(Am_LEFT, 170)
+                                    .Set(Am_TOP, 462)
+                                    .Set(Am_WIDTH, 92)
+                                    .Set(Am_HEIGHT, 25)
+                                    .Set(Am_FILL_STYLE, Am_Amulet_Purple)
+                                    .Get_Object(Am_COMMAND)
+                                    .Set(Am_LABEL, "Height")
+                                    .Get_Owner()
+                                    .Set(Am_VALUE_1, Am_No_Value)
+                                    .Set(Am_VALUE_2, Am_No_Value))
+          .Add_Part(
+              Am_Text.Create()
+                  .Set(Am_LEFT, 56)
+                  .Set(Am_TOP, 450)
+                  .Set(Am_WIDTH, 315)
+                  .Set(Am_HEIGHT, 13)
+                  .Set(Am_TEXT, "(Default values come from main window's size)")
+                  .Set(Am_FONT, Am_Font(Am_FONT_FIXED, false, true, false,
+                                        Am_FONT_MEDIUM))
+                  .Set(Am_LINE_STYLE, Am_Black)
+                  .Set(Am_FILL_STYLE, Am_No_Style))
+          .Add_Part(Am_Text.Create()
+                        .Set(Am_LEFT, 14)
+                        .Set(Am_TOP, 17)
+                        .Set(Am_WIDTH, 55)
+                        .Set(Am_HEIGHT, 19)
+                        .Set(Am_TEXT, "Names")
+                        .Set(Am_FONT, Am_Font(Am_FONT_FIXED, true, false, false,
+                                              Am_FONT_LARGE))
+                        .Set(Am_LINE_STYLE, Am_Black)
+                        .Set(Am_FILL_STYLE, Am_No_Style))
+          .Add_Part(Am_Text.Create()
+                        .Set(Am_LEFT, 14)
+                        .Set(Am_TOP, 235)
+                        .Set(Am_WIDTH, 165)
+                        .Set(Am_HEIGHT, 19)
+                        .Set(Am_TEXT, "Window or Group")
+                        .Set(Am_FONT, Am_Font(Am_FONT_FIXED, true, false, false,
+                                              Am_FONT_LARGE))
+                        .Set(Am_LINE_STYLE, Am_Black)
+                        .Set(Am_FILL_STYLE, Am_No_Style))
+          .Add_Part(Am_Text.Create()
+                        .Set(Am_LEFT, 21)
+                        .Set(Am_TOP, 406)
+                        .Set(Am_WIDTH, 55)
+                        .Set(Am_HEIGHT, 19)
+                        .Set(Am_TEXT, "Sizes")
+                        .Set(Am_FONT, Am_Font(Am_FONT_FIXED, true, false, false,
+                                              Am_FONT_LARGE))
+                        .Set(Am_LINE_STYLE, Am_Black)
+                        .Set(Am_FILL_STYLE, Am_No_Style))
+          .Add_Part(
+              FIXED_SIZE_OBJ,
+              Am_Checkbox_Panel.Create("Fixed_Size_Obj")
+                  .Set(Am_LEFT, 48)
+                  .Set(Am_TOP, 316)
+                  .Set(Am_FONT, Am_Font(Am_FONT_FIXED, true, false, false,
+                                        Am_FONT_MEDIUM))
+                  .Set(Am_ACTIVE, active_if_create_window)
+                  .Set(Am_FILL_STYLE, Am_Amulet_Purple)
+                  .Set(Am_ITEMS, Am_Value_List().Add(
+                                     Am_Command.Create()
+                                         .Set(Am_LABEL, "Fixed Size Window")
+                                         .Set(Am_ID, 1)))
+                  .Set(Am_LAYOUT, Am_Vertical_Layout)
+                  .Set(Am_H_SPACING, 0)
+                  .Set(Am_V_SPACING, 0)
+                  .Set(Am_MAX_RANK, 0))
+          .Add_Part(Am_Border_Rectangle.Create()
+                        .Set(Am_LEFT, 17)
+                        .Set(Am_TOP, 100)
+                        .Set(Am_WIDTH, 380)
+                        .Set(Am_HEIGHT, 57)
+                        .Set(Am_SELECTED, 0)
+                        .Set(Am_FILL_STYLE, Am_Amulet_Purple))
+          .Add_Part(C_FILENAME, Am_Text_Input_Widget.Create("C_FILENAME")
+                                    .Set(Am_LEFT, 19)
+                                    .Set(Am_TOP, 115)
+                                    .Set(Am_WIDTH, 365)
+                                    .Set(Am_HEIGHT, 25)
+                                    .Get_Object(Am_COMMAND)
+                                    .Set(Am_LABEL, "C++ Filename")
+                                    .Set(Am_DO_METHOD, set_h_file_from_c_file)
+                                    .Get_Owner()
+                                    .Set(Am_FILL_STYLE, Am_Amulet_Purple))
 
-    .Add_Part(Am_Button_Panel.Create()
-      .Set(Am_LEFT, 179)
-      .Set(Am_TOP, 534)
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-      .Set(Am_LAYOUT, Am_Horizontal_Layout)
-      .Set(Am_H_SPACING, 60)
-      .Set(Am_V_SPACING, 0)
-      .Set(Am_MAX_RANK, 0)
-      .Set(Am_ITEMS, Am_Value_List()
-        .Add(Am_Standard_OK_Command.Create()
-	     .Set(Am_DO_METHOD, check_if_ok))
-        .Add(Am_Standard_Cancel_Command.Create())
-        )
-    )
-    .Add_Part(Am_Button.Create()
-      .Set(Am_LEFT, 37)
-      .Set(Am_TOP, 531)
-      .Set(Am_WIDTH, 87)
-      .Set(Am_HEIGHT, 41)
-      .Set(Am_FILL_STYLE, Am_Amulet_Purple)
-      .Get_Object(Am_COMMAND)
-        .Set(Am_LABEL, "Clear All")
-	      .Set(Am_DO_METHOD, clear_all_entries)
-        .Get_Owner()
-    )
-    .Add_Part(Am_Tab_To_Next_Widget_Interactor.Create());
+          .Add_Part(
+              Am_Button_Panel.Create()
+                  .Set(Am_LEFT, 179)
+                  .Set(Am_TOP, 534)
+                  .Set(Am_FILL_STYLE, Am_Amulet_Purple)
+                  .Set(Am_LAYOUT, Am_Horizontal_Layout)
+                  .Set(Am_H_SPACING, 60)
+                  .Set(Am_V_SPACING, 0)
+                  .Set(Am_MAX_RANK, 0)
+                  .Set(Am_ITEMS, Am_Value_List()
+                                     .Add(Am_Standard_OK_Command.Create().Set(
+                                         Am_DO_METHOD, check_if_ok))
+                                     .Add(Am_Standard_Cancel_Command.Create())))
+          .Add_Part(Am_Button.Create()
+                        .Set(Am_LEFT, 37)
+                        .Set(Am_TOP, 531)
+                        .Set(Am_WIDTH, 87)
+                        .Set(Am_HEIGHT, 41)
+                        .Set(Am_FILL_STYLE, Am_Amulet_Purple)
+                        .Get_Object(Am_COMMAND)
+                        .Set(Am_LABEL, "Clear All")
+                        .Set(Am_DO_METHOD, clear_all_entries)
+                        .Get_Owner())
+          .Add_Part(Am_Tab_To_Next_Widget_Interactor.Create());
   ;
   return savecpp_window;
 }

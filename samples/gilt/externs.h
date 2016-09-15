@@ -55,46 +55,41 @@ extern void init_styles();
 #define FONT_SIZE_CNT 4
 #define FONT_STYLE_CNT 8
 
-
-
 extern Am_Style n2s[];
 extern Am_Style n2l[LINE_COLOR_CNT][LINE_THICKNESS_CNT];
 extern Am_Font fontarray[FONT_CNT][FONT_SIZE_CNT][FONT_STYLE_CNT];
 
-extern char * n2lstr[LINE_COLOR_CNT][LINE_THICKNESS_CNT];
-extern char * n2sstr[];
-extern char * layout[];
+extern char *n2lstr[LINE_COLOR_CNT][LINE_THICKNESS_CNT];
+extern char *n2sstr[];
+extern char *layout[];
 
-extern void output_cc_with_header(ostream &os_h, ostream &os_cc,
-				  bool is_window,
-				  Am_Value_List &top_level_objs_list,
-				  Am_String wingroup_name,
-				  int fill_key, Am_String title,
-				  bool explicit_wh, int width, int height,
-				  bool win_fixed_size);
+extern void output_cc_with_header(ostream &os_h, ostream &os_cc, bool is_window,
+                                  Am_Value_List &top_level_objs_list,
+                                  Am_String wingroup_name, int fill_key,
+                                  Am_String title, bool explicit_wh, int width,
+                                  int height, bool win_fixed_size);
 extern void output_cc_no_header(ostream &os_cc, bool is_window,
-				Am_Value_List &top_level_objs_list,
-				Am_String wingroup_name,
-				int fill_key, Am_String title,
-				bool explicit_wh, int width, int height,
-				bool win_fixed_size);
+                                Am_Value_List &top_level_objs_list,
+                                Am_String wingroup_name, int fill_key,
+                                Am_String title, bool explicit_wh, int width,
+                                int height, bool win_fixed_size);
 extern Am_Object bitmap_proto;
 extern Am_Object one_way_arrow_line_proto;
 extern Am_Object two_way_arrow_line_proto;
 
-extern Am_String Add_Extension(Am_String in_filename, const char * ext);
+extern Am_String Add_Extension(Am_String in_filename, const char *ext);
 
 extern Am_Object Name_Only_Window;
-extern Am_Object Name_Only_Window_Initialize ();
+extern Am_Object Name_Only_Window_Initialize();
 
 extern Am_Object Number_Input_Window;
-extern Am_Object Number_Input_Window_Initialize ();
+extern Am_Object Number_Input_Window_Initialize();
 
 extern Am_Object Border_Rect_Window;
-extern Am_Object Border_Rect_Window_Initialize ();
+extern Am_Object Border_Rect_Window_Initialize();
 
 extern Am_Object About_Gilt_Window;
-extern Am_Object About_Gilt_Window_Initialize ();
+extern Am_Object About_Gilt_Window_Initialize();
 extern Am_Formula run_tool;
 extern Am_Object button_proto;
 extern Am_Slot_Key MAIN_GROUP;
@@ -104,10 +99,10 @@ extern Am_Object main_group_rect_proto;
 
 extern Am_Object Name_And_Label_Window;
 extern Am_Object Name_And_Image_Window;
-extern Am_Object Name_And_Label_Window_Initialize (bool is_image);
+extern Am_Object Name_And_Label_Window_Initialize(bool is_image);
 
 extern Am_Object Scroll_Group_Window;
-extern Am_Object Scroll_Group_Window_Initialize ();
+extern Am_Object Scroll_Group_Window_Initialize();
 
 extern Am_Object Image_File_Input;
 extern Am_Object Image_Label_Dialog;
@@ -127,52 +122,47 @@ extern Am_Slot_Key ACCELERATOR_INPUT;
 extern Am_Slot_Key SAVE_MENU_BAR;
 extern Am_Slot_Key FAKE_DELETE;
 
-
 extern Am_Object Menu_Edit_Window;
 extern Am_Object Menuedit_Window_Initialize();
 
 extern Am_Formula compute_line_style;
 
-extern char * n2cr[];
-extern char * n2cl[];
+extern char *n2cr[];
+extern char *n2cl[];
 extern Am_Object n2c[];
 
-extern Am_Object menu_proto, node_proto, first_command; 
+extern Am_Object menu_proto, node_proto, first_command;
 extern Am_Object am_command_proto, am_selection_widget_all_proto, clear_proto,
-  clear_all_proto, copy_proto, cut_proto, paste_proto, bottom_proto, top_proto,
-  duplicate_proto, group_proto, ungroup_proto, undo_proto, redo_proto,
-  quit_proto, open_proto, save_proto, save_as_proto, menu_line_proto;
+    clear_all_proto, copy_proto, cut_proto, paste_proto, bottom_proto,
+    top_proto, duplicate_proto, group_proto, ungroup_proto, undo_proto,
+    redo_proto, quit_proto, open_proto, save_proto, save_as_proto,
+    menu_line_proto;
 
-extern void Copy_and_Create_List(Am_Value_List source_list, Am_Value_List& target_list);
-
+extern void Copy_and_Create_List(Am_Value_List source_list,
+                                 Am_Value_List &target_list);
 
 extern void Constraint_Widget_Initialize();
 extern Am_Object Constraint_Widget;
 
 extern Am_Object Conflict_Window_Initialize();
 extern Am_Object Conflict_Window;
-extern Am_Formula Get_Data_And_Adjust (Am_Object object, Am_Slot_Key obj_key, 
-    Am_Slot_Key obj_ref_key, int obj_offset, float obj_multiplier, 
-    Am_Slot_Key key, float multiplier);
-extern Am_Value_List get_depends_list(Am_Formula_Advanced * formula);    
-
+extern Am_Formula Get_Data_And_Adjust(Am_Object object, Am_Slot_Key obj_key,
+                                      Am_Slot_Key obj_ref_key, int obj_offset,
+                                      float obj_multiplier, Am_Slot_Key key,
+                                      float multiplier);
+extern Am_Value_List get_depends_list(Am_Formula_Advanced *formula);
 
 extern Am_Object Modified_Selection_Widget;
 extern Am_Object Modified_Selection_Widget_Initialize();
-extern void modified_set_commands_for_sel(Am_Object & cmd, Am_Object &inter, Am_Object& widget,
-				   Am_Value clicked_obj,
-				   Am_Value new_value, Am_Value old_value);     
-extern void modified_clear_multi_selections(const Am_Object &widget); 
+extern void modified_set_commands_for_sel(Am_Object &cmd, Am_Object &inter,
+                                          Am_Object &widget,
+                                          Am_Value clicked_obj,
+                                          Am_Value new_value,
+                                          Am_Value old_value);
+extern void modified_clear_multi_selections(const Am_Object &widget);
 
 #define OBJECT_TEXT 0
 #define CONSTRAINT_TEXT 1
 #define SIMPLE_TEXT 2
 
 #endif
-
-
-
-
-
-
-
