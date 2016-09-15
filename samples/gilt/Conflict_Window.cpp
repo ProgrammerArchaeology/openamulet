@@ -174,7 +174,7 @@ find_next_text_obj(Am_Object text_group, Am_Value_List &list, int &left,
 }
 
 void
-add_plain_text(Am_Object text_obj, char *text, int &left, int &top,
+add_plain_text(Am_Object text_obj, const char *text, int &left, int &top,
                Am_Value_List &list)
 {
   Am_Object tmp = find_next_text_obj(text_obj, list, left, top);
@@ -198,8 +198,8 @@ get_handle_slot_name(Which_Constraint_Handle wh)
   char buffer[40];
   Am_Slot_Key key = get_slot_key_always(wh);
 
-  sprintf(buffer, "%s(%s)", (char *)(Am_String)Am_Get_Slot_Name(key),
-          (char *)(Am_String)enum_to_handle_string(wh));
+  sprintf(buffer, "%s(%s)", (const char *)(Am_String)Am_Get_Slot_Name(key),
+          (const char *)(Am_String)enum_to_handle_string(wh));
   return Am_String(buffer);
 }
 
@@ -277,7 +277,7 @@ add_slot(Am_Object text_group, Am_Slot_Key key, int &left, int &top,
   Am_Object tmp = find_next_text_obj(text_group, list, left, top);
   Am_Value_List slot_list = text_group.Get(SLOT_LIST);
 
-  sprintf(buffer, "%s", (char *)(Am_String)Am_Get_Slot_Name(key));
+  sprintf(buffer, "%s", (const char *)(Am_String)Am_Get_Slot_Name(key));
   tmp.Set(Am_TEXT, Am_String(buffer));
   tmp.Set(Am_ID, SLOT_TEXT);
   tmp.Get_Object(Am_INACTIVE_COMMANDS).Set(Am_SELECT_INACTIVE, false);
@@ -307,7 +307,7 @@ add_value(Am_Object text_group, Am_Object obj, Am_Slot_Key key, int &left,
 {
   Am_Value v = obj.Get(key);
   add_plain_text(text_group, " = ", left, top, list);
-  add_plain_text(text_group, (char *)print_value(v), left, top, list);
+  add_plain_text(text_group, (const char *)print_value(v), left, top, list);
 }
 
 void
@@ -317,9 +317,9 @@ add_constraint_and_value(Am_Object text_group,
                          Am_Value_List &list, int &const_index)
 {
   Am_Constraint *constr;
-  char *buffer = "Contains constraint(s)";
-  char *prolog = "(";
-  char *epilog = ")";
+  const char *buffer = "Contains constraint(s)";
+  const char *prolog = "(";
+  const char *epilog = ")";
 
   add_plain_text(text_group, buffer, left, top, list);
   for (const_iter.Start(); !const_iter.Last(); const_iter.Next()) {
@@ -405,7 +405,7 @@ Am_Define_Method(Am_Object_Method, void, display_conflict_info,
   add_plain_text(text_obj, buffer, left, top, g_list);
   new_line(left, top);
 
-  sprintf(buffer, "%s of Object ", (char *)get_handle_slot_name(wh));
+  sprintf(buffer, "%s of Object ", (const char *)get_handle_slot_name(wh));
   add_plain_text(text_obj, buffer, left, top, g_list);
 
   add_object(text_obj, working_obj, left, top, g_list, obj_index);
@@ -424,7 +424,7 @@ Am_Define_Method(Am_Object_Method, void, display_conflict_info,
     other_h = wh;
 
   sprintf(buffer, "In Slot %s of Object ",
-          (char *)get_handle_slot_name(other_h));
+          (const char *)get_handle_slot_name(other_h));
   add_plain_text(text_obj, buffer, left, top, g_list);
 
   add_object(text_obj, working_obj, left, top, g_list, obj_index);

@@ -7,30 +7,31 @@ using namespace std;
 
 #define COMMAND_CNT 19
 
-char *n2cr[] = {"Am_Command",
-                "Am_Selection_Widget_Select_All_Command",
-                "Am_Graphics_Clear_Command",
-                "Am_Graphics_Clear_All_Command",
-                "Am_Graphics_Copy_Command",
-                "Am_Graphics_Cut_Command",
-                "Am_Graphics_Paste_Command",
-                "Am_Graphics_To_Botom_Command",
-                "Am_Graphics_To_Top_Command",
-                "Am_Graphics_Duplicate_Command",
-                "Am_Graphics_Group_Command",
-                "Am_Graphics_Ungroup_Command",
-                "Am_Undo_Command",
-                "Am_Redo_Command",
-                "Am_Quit_No_Ask_Command",
-                "Am_Open_Command",
-                "Am_Save_Command",
-                "Am_Save_As_Command",
-                "Am_Menu_Line_Command"};
+const char *n2cr[] = {"Am_Command",
+                      "Am_Selection_Widget_Select_All_Command",
+                      "Am_Graphics_Clear_Command",
+                      "Am_Graphics_Clear_All_Command",
+                      "Am_Graphics_Copy_Command",
+                      "Am_Graphics_Cut_Command",
+                      "Am_Graphics_Paste_Command",
+                      "Am_Graphics_To_Botom_Command",
+                      "Am_Graphics_To_Top_Command",
+                      "Am_Graphics_Duplicate_Command",
+                      "Am_Graphics_Group_Command",
+                      "Am_Graphics_Ungroup_Command",
+                      "Am_Undo_Command",
+                      "Am_Redo_Command",
+                      "Am_Quit_No_Ask_Command",
+                      "Am_Open_Command",
+                      "Am_Save_Command",
+                      "Am_Save_As_Command",
+                      "Am_Menu_Line_Command"};
 
-char *n2cl[] = {"NO LABEL", "Select All", "Clear",     "Clear All", "Copy",
-                "Cut",      "Paste",      "To Bottom", "To Top",    "Duplicate",
-                "Group",    "Ungroup",    "Undo",      "Redo",      "Quit",
-                "Open",     "Save",       "Save As",   "Menu Line"};
+const char *n2cl[] = {"NO LABEL", "Select All", "Clear",    "Clear All",
+                      "Copy",     "Cut",        "Paste",    "To Bottom",
+                      "To Top",   "Duplicate",  "Group",    "Ungroup",
+                      "Undo",     "Redo",       "Quit",     "Open",
+                      "Save",     "Save As",    "Menu Line"};
 
 Am_Object n2c[COMMAND_CNT];
 

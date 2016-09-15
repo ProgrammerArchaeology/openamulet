@@ -247,12 +247,13 @@ stringout(ostream &os, const char *s)
 }
 
 //forward declaration
-static void output_group(ostream &os, char *indent, Am_Object &obj, int mode);
-void output_object(ostream &os, char *indent, Am_Object &obj, int do_add);
+static void output_group(ostream &os, const char *indent, Am_Object &obj,
+                         int mode);
+void output_object(ostream &os, const char *indent, Am_Object &obj, int do_add);
 
 void
-slotout(ostream &os, char *indent, const Am_Object &obj, const char *slot_name,
-        Am_Slot_Key key)
+slotout(ostream &os, const char *indent, const Am_Object &obj,
+        const char *slot_name, Am_Slot_Key key)
 {
   os << indent << "  .Set(" << slot_name;
   Am_Value value = obj.Get(key);
@@ -269,13 +270,13 @@ slotout(ostream &os, char *indent, const Am_Object &obj, const char *slot_name,
 }
 
 void
-layoutout(ostream &os, char *indent, const Am_Object &obj)
+layoutout(ostream &os, const char *indent, const Am_Object &obj)
 {
   os << indent << "  .Set(Am_LAYOUT, " << layout[(int)obj.Get(LAYOUT_KEY)]
      << ")\n";
 }
 void
-linestyleout(ostream &os, char *indent, const Am_Object &obj)
+linestyleout(ostream &os, const char *indent, const Am_Object &obj)
 {
   int i, j;
   Am_Value_List key = obj.Get(LINE_STYLE_KEY);
@@ -286,14 +287,14 @@ linestyleout(ostream &os, char *indent, const Am_Object &obj)
   os << indent << "  .Set(Am_LINE_STYLE, " << n2lstr[i][j] << ")\n";
 }
 void
-fillstyleout(ostream &os, char *indent, const Am_Object &obj)
+fillstyleout(ostream &os, const char *indent, const Am_Object &obj)
 {
   os << indent << "  .Set(Am_FILL_STYLE, "
      << n2sstr[(int)obj.Get(FILL_STYLE_KEY)] << ")\n";
 }
 
 void
-itemsout(ostream &os, char *indent, Am_Object &obj)
+itemsout(ostream &os, const char *indent, Am_Object &obj)
 {
   os << indent << "  .Set(Am_ITEMS, Am_Value_List()\n";
   Am_Value_List l = obj.Get(Am_ITEMS);
@@ -323,7 +324,7 @@ itemsout(ostream &os, char *indent, Am_Object &obj)
 }
 
 void
-pointlistout(ostream &os, char *indent, Am_Object &obj)
+pointlistout(ostream &os, const char *indent, Am_Object &obj)
 {
   os << indent << "  .Set(Am_POINT_LIST, Am_Point_List()\n";
   Am_Point_List l = obj.Get(Am_POINT_LIST);
@@ -335,7 +336,7 @@ pointlistout(ostream &os, char *indent, Am_Object &obj)
   os << indent << "    )\n";
 }
 void
-sublabelout(ostream &os, char *indent, Am_Object &obj)
+sublabelout(ostream &os, const char *indent, Am_Object &obj)
 {
   Am_Value v = obj.Get_Object(Am_COMMAND).Get(Am_LABEL);
   char s[100];
@@ -359,7 +360,7 @@ sublabelout(ostream &os, char *indent, Am_Object &obj)
 }
 
 void
-itemcmdsout(ostream &os, char *indent, Am_Object &obj)
+itemcmdsout(ostream &os, const char *indent, Am_Object &obj)
 {
   os << indent << "  .Set(Am_ITEMS, Am_Value_List()\n";
   Am_Value_List l = obj.Get(Am_ITEMS);
@@ -387,7 +388,7 @@ convert_to_ia(char *fname)
 }
 
 void
-fileimageout(ostream &os, char *indent, Am_Object &obj)
+fileimageout(ostream &os, const char *indent, Am_Object &obj)
 {
   Am_String filename = obj.Get(FILE_NAME);
 
@@ -396,7 +397,7 @@ fileimageout(ostream &os, char *indent, Am_Object &obj)
 }
 
 void
-fontout(ostream &os, char *indent, Am_Object &obj)
+fontout(ostream &os, const char *indent, Am_Object &obj)
 {
   Am_Value_List fk = obj.Get(FONT_KEY);
   int type, size, style;
@@ -489,7 +490,7 @@ fontout(ostream &os, char *indent, Am_Object &obj)
 }
 
 void
-output_add_part(ostream &os, char *indent, Am_Object &obj, int is_list)
+output_add_part(ostream &os, const char *indent, Am_Object &obj, int is_list)
 {
   Am_String name = obj.Get(Lw_NAME, Am_RETURN_ZERO_ON_ERROR);
   if (is_list == 1)
@@ -508,7 +509,7 @@ output_add_part(ostream &os, char *indent, Am_Object &obj, int is_list)
 }
 
 void
-output_object(ostream &os, char *indent, Am_Object &obj, int is_add)
+output_object(ostream &os, const char *indent, Am_Object &obj, int is_add)
 {
   output_add_part(os, indent, obj, is_add);
   Am_Value_List slots = obj.Get(Am_SLOTS_TO_SAVE);
@@ -635,7 +636,7 @@ output_object(ostream &os, char *indent, Am_Object &obj, int is_add)
 }
 
 void
-output_all_parts(ostream &os, char *indent, Am_Value_List &parts)
+output_all_parts(ostream &os, const char *indent, Am_Value_List &parts)
 {
   Am_Object part;
   for (parts.Start(); !parts.Last(); parts.Next()) {
@@ -650,7 +651,7 @@ output_all_parts(ostream &os, char *indent, Am_Value_List &parts)
 }
 
 static void
-output_group(ostream &os, char *indent, Am_Object &obj, int mode)
+output_group(ostream &os, const char *indent, Am_Object &obj, int mode)
 {
   output_add_part(os, indent, obj, mode);
   slotout(os, indent, obj, "Am_LEFT", Am_LEFT);

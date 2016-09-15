@@ -59,11 +59,12 @@ extern Am_Style n2s[];
 extern Am_Style n2l[LINE_COLOR_CNT][LINE_THICKNESS_CNT];
 extern Am_Font fontarray[FONT_CNT][FONT_SIZE_CNT][FONT_STYLE_CNT];
 
-extern char *n2lstr[LINE_COLOR_CNT][LINE_THICKNESS_CNT];
-extern char *n2sstr[];
-extern char *layout[];
+extern const char *n2lstr[LINE_COLOR_CNT][LINE_THICKNESS_CNT];
+extern const char *n2sstr[];
+extern const char *layout[];
 
-extern void output_cc_with_header(std::ostream &os_h, std::ostream &os_cc, bool is_window,
+extern void output_cc_with_header(std::ostream &os_h, std::ostream &os_cc,
+                                  bool is_window,
                                   Am_Value_List &top_level_objs_list,
                                   Am_String wingroup_name, int fill_key,
                                   Am_String title, bool explicit_wh, int width,
@@ -127,8 +128,8 @@ extern Am_Object Menuedit_Window_Initialize();
 
 extern Am_Formula compute_line_style;
 
-extern char *n2cr[];
-extern char *n2cl[];
+extern const char *n2cr[];
+extern const char *n2cl[];
 extern Am_Object n2c[];
 
 extern Am_Object menu_proto, node_proto, first_command;

@@ -299,32 +299,32 @@ init_styles()
       Am_Font(Am_FONT_SANS_SERIF, true, true, true, Am_FONT_VERY_LARGE);
 }
 
-char *n2sstr[] = {"Am_No_Style",
-                  "Am_Red",
-                  "Am_Green",
-                  "Am_Blue",
-                  "Am_Yellow",
-                  "Am_Purple",
-                  "Am_Cyan",
-                  "Am_Orange",
-                  "Am_Black",
-                  "Am_White",
-                  "Am_Amulet_Purple",
-                  "Am_Motif_Gray",
-                  "Am_Motif_Light_Gray",
-                  "Am_Motif_Blue",
-                  "Am_Motif_Light_Blue",
-                  "Am_Motif_Green",
-                  "Am_Motif_Light_Green",
-                  "Am_Motif_Orange",
-                  "Am_Motif_Light_Orange",
-                  "Am_Gray_Stipple",
-                  "Am_Opaque_Gray_Stipple",
-                  "Am_Light_Gray_Stipple",
-                  "Am_Dark_Gray_Stipple",
-                  "Am_Diamond_Stipple"};
+const char *n2sstr[] = {"Am_No_Style",
+                        "Am_Red",
+                        "Am_Green",
+                        "Am_Blue",
+                        "Am_Yellow",
+                        "Am_Purple",
+                        "Am_Cyan",
+                        "Am_Orange",
+                        "Am_Black",
+                        "Am_White",
+                        "Am_Amulet_Purple",
+                        "Am_Motif_Gray",
+                        "Am_Motif_Light_Gray",
+                        "Am_Motif_Blue",
+                        "Am_Motif_Light_Blue",
+                        "Am_Motif_Green",
+                        "Am_Motif_Light_Green",
+                        "Am_Motif_Orange",
+                        "Am_Motif_Light_Orange",
+                        "Am_Gray_Stipple",
+                        "Am_Opaque_Gray_Stipple",
+                        "Am_Light_Gray_Stipple",
+                        "Am_Dark_Gray_Stipple",
+                        "Am_Diamond_Stipple"};
 
-char *n2lstr[LINE_COLOR_CNT][LINE_THICKNESS_CNT] = {
+const char *n2lstr[LINE_COLOR_CNT][LINE_THICKNESS_CNT] = {
     {"Am_No_Style_Dash", "Am_No_Style_Dotted", "Am_No_Style_1", "Am_No_Style_2",
      "Am_No_Style_4", "Am_No_Style_8"},
     {"Am_Red_Dashed", "Am_Red_Dotted", "Am_Red_1", "Am_Red_2", "Am_Red_4",
@@ -368,4 +368,4 @@ char *n2lstr[LINE_COLOR_CNT][LINE_THICKNESS_CNT] = {
      "Am_Motif_Light_Orange_1", "Am_Motif_Light_Orange_2",
      "Am_Motif_Light_Orange_4", "Am_Motif_Light_Orange_8"}};
 
-char *layout[] = {"Am_Vertical_Layout", "Am_Horizontal_Layout"};
+const char *layout[] = {"Am_Vertical_Layout", "Am_Horizontal_Layout"};

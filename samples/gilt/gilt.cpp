@@ -307,7 +307,7 @@ Am_Define_No_Self_Formula(Am_Wrapper *, undo_handler_if_not_running)
     return global_undo_handler;
 }
 
-char *fontnames[] = {
+const char *fontnames[] = {
     "Sm", "B", "I", "U", "Me", "B", "I", "U", "La", "B", "I", "U",
 };
 
@@ -2537,7 +2537,7 @@ Am_Define_Formula(int, rotate_p1){
 void
 Create_Prototypes()
 {
-  char *pathname = Am_Merge_Pathname(ARROW_BITMAP);
+  const char *pathname = Am_Merge_Pathname(ARROW_BITMAP);
   Am_Image_Array picture = Am_Image_Array(pathname);
   delete[] pathname;
   if (!picture.Valid())
@@ -2569,7 +2569,7 @@ Create_Prototypes()
               .Set(Am_X2, Am_From_Owner(Am_X2))
               .Set(Am_Y2, Am_From_Owner(Am_Y2)));              
 */
-  char *path = Am_Merge_Pathname(TINY_ABOUT_AMULET);
+  const char *path = Am_Merge_Pathname(TINY_ABOUT_AMULET);
 
   bitmap_proto = Am_Bitmap.Create("bitmap proto")
                      .Add(CUSTOMIZE_METHOD, customize_name_and_image)
