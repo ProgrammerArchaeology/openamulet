@@ -68,7 +68,7 @@ Am_Slot_Key PERCENT_INPUT = Am_Register_Slot_Name("PERCENT_INPUT");
 Am_Slot_Key CONSTRAINT_VAR = Am_Register_Slot_Name("CONSTRAINT_VAR");
 Am_Slot_Key HANDLE_DEPENDS = Am_Register_Slot_Name("HANDLE_DEPENDS");
 
-Am_Object Offset_Percentage_Dialog;
+extern Am_Object Offset_Percentage_Dialog;
 Am_Object Constraint_Widget;
 Am_Object One_Constraint_Handle;
 Am_Object handle_proto;
