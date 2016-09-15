@@ -680,7 +680,7 @@ Conflict_Window_Initialize()
       .Add_Part(
           BUTTON_GROUP,
           Am_Button_Panel.Create()
-              .Set(Am_LEFT, Get_Data_And_Adjust(Conflict_Window, NULL, Am_WIDTH,
+              .Set(Am_LEFT, Get_Data_And_Adjust(Conflict_Window, Am_NO_SLOT, Am_WIDTH,
                                                 0, 0.5, Am_WIDTH, -0.5))
               .Set(Am_TOP, 124)
               .Set(Am_FILL_STYLE, very_light_gray)

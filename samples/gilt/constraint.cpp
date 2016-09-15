@@ -255,7 +255,7 @@ get_data_and_adjust_procedure(Am_Object &self)
 Am_Formula
 Get_Data_And_Adjust(Am_Object object, Am_Slot_Key obj_key,
                     Am_Slot_Key obj_ref_key, int obj_offset,
-                    float obj_multiplier, Am_Slot_Key key = NULL,
+                    float obj_multiplier, Am_Slot_Key key = Am_NO_SLOT,
                     float multiplier = -0.5)
 {
   Am_Formula formula(get_data_and_adjust_procedure, "Get_Data_And_Adjust");
@@ -1412,7 +1412,7 @@ setup_regular_constraint(Am_Object &command, Am_Object po,
     s_obj_slot = Am_TOP, s_obj_ref_slot = Am_HEIGHT;
     break;
   default:
-    s_obj_slot = NULL, s_obj_ref_slot = get_slot_key(sh);
+    s_obj_slot = Am_NO_SLOT, s_obj_ref_slot = get_slot_key(sh);
     break;
   }
 
@@ -1439,7 +1439,7 @@ setup_regular_constraint(Am_Object &command, Am_Object po,
     break;
   default:
     p_obj_slot = get_slot_key(ph);
-    self_slot = NULL;
+    self_slot = Am_NO_SLOT;
     ;
     break;
   }
