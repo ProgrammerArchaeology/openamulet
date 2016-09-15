@@ -3,6 +3,8 @@
 #include "externs.h"
 #include <string.h>
 
+using namespace std;
+
 #define COMMAND_CNT 19
 
 char *n2cr[] = {"Am_Command",

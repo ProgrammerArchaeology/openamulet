@@ -39,8 +39,9 @@ Am_Define_Method_Type(Am_Customize_Object_Method, void,
 #include "savecpp.h"
 #include "outline.h"
 
-        Am_Slot_Key CUSTOMIZE_METHOD =
-            Am_Register_Slot_Name("CUSTOMIZE_METHOD");
+using namespace std;
+
+Am_Slot_Key CUSTOMIZE_METHOD = Am_Register_Slot_Name("CUSTOMIZE_METHOD");
 Am_Slot_Key SUB_LABEL = Am_Register_Slot_Name("SUB_LABEL");
 Am_Slot_Key Lw_NAME = Am_Register_Slot_Name("Lw_NAME");
 Am_Slot_Key FONT_KEY = Am_Register_Slot_Name("FONT_KEY");

@@ -25,6 +25,8 @@ extern "C" {
 
 #include "externs.h"
 
+using namespace std;
+
 #define DO_NOT_ADD_PREFIX 2
 #define ADD_PREFIX 1
 #define ADDPART_PREFIX 0

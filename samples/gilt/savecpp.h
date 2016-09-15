@@ -28,8 +28,8 @@ extern Am_Slot_Key HEIGHT_OBJ;
 extern Am_Slot_Key FIXED_SIZE_OBJ;
 extern Am_Slot_Key C_FILENAME;
 
-extern ofstream cc_out_file;
+extern std::ofstream cc_out_file;
 extern bool want_h_file;
-extern ofstream h_out_file;
+extern std::ofstream h_out_file;
 
 #endif

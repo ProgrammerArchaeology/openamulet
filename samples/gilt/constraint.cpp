@@ -19,6 +19,8 @@
 #include <amulet/debugger.h>
 #include <amulet/standard_slots.h>
 
+using namespace std;
+
 extern Am_Formula compute_drag_start_when;
 extern Am_Object line_proto;
 extern Am_Object Display_Text_Proto;

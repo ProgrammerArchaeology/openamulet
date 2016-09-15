@@ -16,6 +16,8 @@
 #include <amulet/am_strstream.h>
 #include <amulet/debugger.h>
 
+using namespace std;
+
 #define TEXT_HEIGHT 13
 #define SLOT_TEXT 3
 

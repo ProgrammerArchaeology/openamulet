@@ -15,6 +15,8 @@
 #include <iostream>
 #include <fstream>
 
+using namespace std;
+
 #ifndef _MACINTOSH
 #define IOS_FLAGS ios::out
 #else

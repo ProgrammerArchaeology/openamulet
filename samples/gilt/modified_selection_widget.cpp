@@ -10,6 +10,8 @@
 #include <amulet/value_list.h>
 #include <amulet/standard_slots.h>
 
+using namespace std;
+
 Am_Object Modified_Selection_Widget;
 extern Am_Formula compute_drag_start_when;
 
