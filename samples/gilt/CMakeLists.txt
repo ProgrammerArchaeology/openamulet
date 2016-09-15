@@ -1,0 +1,20 @@
+ADD_EXECUTABLE(gilt
+    Conflict_Window.cpp
+    aboutgilt.cpp
+    borderrect.cpp
+    constraint.cpp
+    cpp_out.cpp
+    externs.cpp
+    gilt.cpp
+    imagelabel.cpp
+    menuedit.cpp
+    modified_selection_widget.cpp
+    namelabel.cpp
+    nameonly.cpp
+    numberinput.cpp
+    offset_percentage.cpp
+    outline.cpp
+    panel.cpp
+    savecpp.cpp
+    scrollgroup.cpp)
+TARGET_LINK_LIBRARIES(gilt openamulet)
