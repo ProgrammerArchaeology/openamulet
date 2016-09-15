@@ -183,7 +183,7 @@ main()
           .Set(Am_START_WHERE_TEST, true)
           .Set(Am_RUN_ALSO, true)
           .Set(Am_PRIORITY, -100)            //let other interactors run
-          .Set(Am_REPEAT_DELAY, Am_Time(20)) //milleseconds between increments
+          .Set(Am_REPEAT_DELAY, Am_Time(20)) //milliseconds between increments
           .Set_Part(Am_COMMAND,
                     anim_cmd =
                         Am_Animation_Command.Create("anim_cmd")
