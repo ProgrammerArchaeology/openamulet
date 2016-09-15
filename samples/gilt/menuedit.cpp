@@ -271,7 +271,7 @@ Am_Define_Method(Am_Object_Method, void, add_new_submenu, (Am_Object cmd))
     node.Set(Am_ACCELERATOR, (Am_String)s);
   }
 
-  if (curr_obj != NULL) {
+  if (curr_obj.Valid()) {
     prev_n = curr_obj.Get(Lw_NODEID);
 
     if ((curr_obj == win) || (curr_obj.Get_Object(Lw_PARENT) == win)) {
