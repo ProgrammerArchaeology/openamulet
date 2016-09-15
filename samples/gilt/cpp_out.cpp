@@ -241,7 +241,7 @@ stringout(ostream &os, const char *s)
     }
     news[j] = 0;
     os << "\"" << news << "\"";
-    delete news;
+    delete[] news;
   } else
     os << "\"" << s << "\"";
 }
