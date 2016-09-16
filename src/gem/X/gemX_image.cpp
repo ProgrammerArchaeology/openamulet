@@ -675,15 +675,15 @@ Am_Image_Array_Data::Make_Pixmap_From_Generic_Image(
   } else if (depth <= 16) {
     // X uses free() so we must use malloc.  (so says sentinel)
     x_image = (unsigned char *)malloc(width * height * 2);
-    unsigned short *short_x_image = (unsigned short *)x_image;
+    unsigned short *x_image_16 = (unsigned short *)x_image;
     for (i = 0; i < (width * height); i++)
-      short_x_image[i] = (unsigned short)(cols[gif_image[i]].pixel);
+      x_image_16[i] = (unsigned short)(cols[gif_image[i]].pixel);
   } else {
     // X uses free() so we must use malloc.  (so says sentinel)
     x_image = (unsigned char *)malloc(width * height * 4);
-    unsigned long *long_x_image = (unsigned long *)x_image;
+    uint32_t *x_image_32 = (uint32_t*)x_image;
     for (i = 0; i < (width * height); i++)
-      long_x_image[i] = (unsigned long)(cols[gif_image[i]].pixel);
+      x_image_32[i] = (uint32_t)(cols[gif_image[i]].pixel);
   }
 
   XImage *image = XCreateImage(draw->screen->display, visual, depth, ZPixmap,
