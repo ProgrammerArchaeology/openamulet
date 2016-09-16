@@ -194,12 +194,9 @@ Am_GIF_Image::process_gif(std::ifstream &ifs, GIF_Load_Info &gli)
   unsigned char buf[256];
   unsigned short data_mask = iminfo.num_colors - 1;
 
-  // Originally the following three 4KB buffers were stack-allocated.
-  // but gcc -fPIC (version 2.7.0, HP/UX 9.x) produced code for it that
-  // barfed the HP assembler.  So we'll heap-allocate the buffers instead.
-  unsigned short *prefix = new unsigned short[GIF_TBLSIZE];
-  unsigned short *suffix = new unsigned short[GIF_TBLSIZE];
-  unsigned short *stack = new unsigned short[GIF_TBLSIZE];
+  unsigned short prefix[GIF_TBLSIZE];
+  unsigned short suffix[GIF_TBLSIZE];
+  unsigned short stack[GIF_TBLSIZE];
 
   unsigned short istk = 0;
 
@@ -210,9 +207,6 @@ Am_GIF_Image::process_gif(std::ifstream &ifs, GIF_Load_Info &gli)
   unsigned short init_code_size = ifs.get();
 
   if (init_code_size < 2 || init_code_size > 8) {
-    delete[] prefix;
-    delete[] suffix;
-    delete[] stack;
     return 0;
   }
 
@@ -239,9 +233,6 @@ Am_GIF_Image::process_gif(std::ifstream &ifs, GIF_Load_Info &gli)
     // ifs.read(buf, count); MSL
     ifs.read((char *)buf, count);
     if (ifs.fail()) {
-      delete[] prefix;
-      delete[] suffix;
-      delete[] stack;
       return 0;
     }
 
@@ -256,9 +247,6 @@ Am_GIF_Image::process_gif(std::ifstream &ifs, GIF_Load_Info &gli)
         val >>= code_size;
         bitpos -= code_size;
         if (curcode == eoi_code) {
-          delete[] prefix;
-          delete[] suffix;
-          delete[] stack;
           return 1;
         }
         unsigned short oldcode;
@@ -288,9 +276,6 @@ Am_GIF_Image::process_gif(std::ifstream &ifs, GIF_Load_Info &gli)
               // to introduce more precise range tests than the following
               // on curcode and istk
               if (curcode >= GIF_TBLSIZE || istk >= GIF_TBLSIZE - 2) {
-                delete[] prefix;
-                delete[] suffix;
-                delete[] stack;
                 return 0; // corrupt GIF
               }
               // Save bytes corresponding to compression code in stack for
@@ -327,9 +312,6 @@ Am_GIF_Image::process_gif(std::ifstream &ifs, GIF_Load_Info &gli)
       }
     }
   }
-  delete[] prefix;
-  delete[] suffix;
-  delete[] stack;
   return 1;
 }
 
