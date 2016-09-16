@@ -1,3 +1,4 @@
+ADD_SUBDIRECTORY(circuit)
 ADD_SUBDIRECTORY(tutorial)
 
 ADD_EXECUTABLE(av av.cpp)

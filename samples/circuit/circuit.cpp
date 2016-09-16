@@ -8,11 +8,13 @@
  * ************************************************************************/
 
 #include <amulet.h>
-#include UNDO_DIALOG__H
-#include SCRIPTING__H
-#include INTER_ADVANCED__H // Am_Valid_and_Visible_List_Or_Object
+#include <amulet/undo_dialog.h>
+#include <amulet/scripting.h>
+#include <amulet/inter_advanced.h> // Am_Valid_and_Visible_List_Or_Object
 
-#define ARROW_BITMAP "lib/images/arrow.gif"
+using namespace std;
+
+#define ARROW_BITMAP "data/images/arrow.gif"
 #define ARROW01_BITMAP "samples/circuit/arrow01.gif"
 #define NOT_BITMAP "samples/circuit/not.gif"
 #define AND_BITMAP "samples/circuit/and.gif"
@@ -714,7 +716,7 @@ int main (int argc, char *argv[]) {
 	 .Add("Turn Animations On")
 	 .Add("Turn Animations Off"));
 
-  char* pathname = Am_Merge_Pathname(ARROW_BITMAP);
+  const char* pathname = Am_Merge_Pathname(ARROW_BITMAP);
   Am_Image_Array image = Am_Image_Array(pathname);
   delete [] pathname;
   arrow_proto = Am_Bitmap.Create("Arrow bitmap")
@@ -1096,7 +1098,7 @@ int main (int argc, char *argv[]) {
 
 
   if (argc > 1) {
-    Am_String s = (char *)argv[1];
+    Am_String s = argv[1];
     Am_Standard_Open_From_Filename(open_command, s);
   }
   Am_Main_Event_Loop ();
