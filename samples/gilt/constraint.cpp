@@ -1,6 +1,6 @@
 /************************************************************************************
  *   This file contains an implementation of Constraint_Widget which is
- *   implemeted using Am_Selecion_Widget
+ *   implemented using Am_Selection_Widget
  ***********************************************************************************/
 #include <amulet.h>
 #include "constraint.h"
@@ -353,7 +353,7 @@ slot_has_dependency(Am_Object handle, Am_Object for_obj)
   return false;
 }
 
-//forward decleration
+//forward declaration
 int get_count_index(Which_Constraint_Handle wh);
 
 int

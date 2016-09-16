@@ -17,6 +17,6 @@
 extern Am_Object Offset_Percentage_Dialog;
 extern Am_Object Offset_Percentage_Dialog_Initialize();
 
-//Line styles exclusivly created by Gilt
+// Line styles exclusivtely created by Gilt
 
 #endif

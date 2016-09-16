@@ -26,11 +26,11 @@ IMAX(int a, int b)
   return (a > b) ? b : a;
 }
 
-////////  THese functions are defined in selection_widgets.cc  ////////////
-// Constraint_Widget.cc is modified version of Am_Selection_Widget
+////////  These functions are defined in selection_widgets.cpp  ////////////
+// Constraint_Widget.cpp is modified version of Am_Selection_Widget
 // These functions are needed to prevent Am_Error to happen when
 // background of window is selected
-// These functions are copied so that when these functions change in selection_widgets.cc
+// These functions are copied so that when these functions change in selection_widgets.cpp
 // one does not have to re edit them.
 void
 modified_set_commands_for_sel_values(Am_Object &cmd, Am_Value clicked_obj,
@@ -452,7 +452,7 @@ modified_calculate_fake_group_size_and_set(Am_Object &fake_group,
   // << max_bottom - min_top << endl << flush;
 }
 
-//This function is defined in selection_widgets.cc in a method form.
+//This function is defined in selection_widgets.cpp in a method form.
 Am_Object
 owner_start_where_operates_on_function(Am_Object inter, Am_Object object,
                                        Am_Object event_window, int x, int y)

@@ -32,7 +32,7 @@ extern Am_Slot_Key WORK_HANDLE;
 extern Am_Object_Method ok_button_pressed_cmd;
 extern Am_Object_Method cancel_button_pressed_cmd;
 
-/*****************************  From outline.cc *************/
+/*****************************  From outline.cpp *************/
 extern Am_Slot_Key Lw_CHILDREN;
 extern Am_Slot_Key Lw_HIDDEN;
 extern Am_Slot_Key Lw_HSPACING;

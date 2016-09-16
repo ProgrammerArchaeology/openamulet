@@ -141,7 +141,7 @@ paneldialog::SetValues(Am_String &name, Am_Value_List &il, Am_Value &layout_key,
   Am_Value_List l;
   if (layout_key.Exists()) {
     if ((int)layout_key == 0)
-      l.Add(1); //verticla
+      l.Add(1); //vertical
     vert_cmd.Set(Am_ACTIVE, true);
   } else
     vert_cmd.Set(Am_ACTIVE, false);

@@ -39,7 +39,7 @@ Am_Object Conflict_Window;
 Am_Object Scrolling_Text;
 Am_Object general_text_proto;
 Am_Object Pop_Up_Detail_Window;
-//Line styles exclusivly created by Gilt
+// Line styles exclusively created by Gilt
 
 Am_Object detail_interactor_proto;
 Am_Style Am_White_2 = Am_Style::Am_Style(1, 1, 1, 2, Am_CAP_BUTT, Am_JOIN_MITER,

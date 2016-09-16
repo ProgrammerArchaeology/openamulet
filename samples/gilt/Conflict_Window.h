@@ -17,7 +17,7 @@
 extern Am_Object Conflict_Window;
 extern Am_Object Conflict_Window_Initialize();
 
-//Line styles exclusivly created by Gilt
+// Line styles exclusively created by Gilt
 
 extern Am_Style Am_White_2
 

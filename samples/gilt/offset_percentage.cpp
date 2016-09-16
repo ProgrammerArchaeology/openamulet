@@ -14,8 +14,8 @@
 
 Am_Object Offset_Percentage_Dialog;
 
-//Line styles exclusivly created by Gilt
-//test commant
+// Line styles exclusively created by Gilt
+// test comment
 
 Am_Object
 Offset_Percentage_Dialog_Initialize()

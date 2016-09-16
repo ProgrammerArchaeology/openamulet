@@ -62,7 +62,7 @@ output_line_styles(bool in_header, ostream &os, Am_Value_List &line_styles)
   Am_Image_Array stipple;
   Am_String name;
 
-  os << "//Line styles exclusivly created by Gilt\n\n";
+  os << "// Line styles exclusively created by Gilt\n\n";
   for (line_styles.Start(); !line_styles.Last(); line_styles.Next()) {
     l = (Am_Value_List)line_styles.Get();
     l.Start();
@@ -236,7 +236,7 @@ stringout(ostream &os, const char *s)
     int j = 0;
     for (int i = 0; s[i] != 0; i++) {
       if (s[i] == '\"' || s[i] == '\\')
-        news[j++] = '\\'; //preceed with a backslash
+        news[j++] = '\\'; // precede with a backslash
       news[j++] = s[i];
     }
     news[j] = 0;

@@ -3165,7 +3165,7 @@ Create_Prototypes()
 
   /********************************************************************
     Following is setup for main_window_proto, main_window_proto is a 
-    prototype for a window which cnotains menubar and working space.
+    prototype for a window which contains menubar and working space.
     *******************************************************************/
 
   Am_Object grid_command = Am_Cycle_Value_Command.Create("grid").Set(
@@ -4025,7 +4025,7 @@ main(int argc, char *argv[])
 
 Some questions for GILT: Is it possible to read in the description and
 build the dialog on the fly in the client program? This would enable
-something like a device-independet way to save a layout and create it
+something like a device-independent way to save a layout and create it
 on the fly.
 
 How to synchronize interactive GUI building and custom code which was
