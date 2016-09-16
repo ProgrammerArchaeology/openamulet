@@ -1,3 +1,5 @@
+ADD_SUBDIRECTORY(tutorial)
+
 ADD_EXECUTABLE(av av.cpp)
 TARGET_LINK_LIBRARIES(av openamulet)
 
