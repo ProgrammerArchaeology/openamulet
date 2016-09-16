@@ -1844,9 +1844,9 @@ Constraint_Widget_Initialize()
   //vertical border lines
   One_Constraint_Handle
       .Add_Part(one_line.Add(Am_ID, 0))         //vertical left
-      .Add_Part(one_line.Copy().Add(Am_ID, 1))  //vertical right
-      .Add_Part(one_line.Copy().Add(Am_ID, 2))  //horizontal top
-      .Add_Part(one_line.Copy().Add(Am_ID, 3)); //horizontal bottom
+      .Add_Part(one_line.Copy().Set(Am_ID, 1))  //vertical right
+      .Add_Part(one_line.Copy().Set(Am_ID, 2))  //horizontal top
+      .Add_Part(one_line.Copy().Set(Am_ID, 3)); //horizontal bottom
 
   Am_To_Top(one_handle);
   Am_To_Top(One_Constraint_Handle.Get_Object(WIDTH_HANDLE));
