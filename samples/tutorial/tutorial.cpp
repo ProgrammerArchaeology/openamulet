@@ -9,21 +9,21 @@
 
 #include <amulet.h>
 
-int main (void)
+int
+main(void)
 {
-  Am_Initialize ();
-  
-  Am_Object my_win = Am_Window.Create ("my_win")
-    .Set (Am_LEFT, 20)
-    .Set (Am_TOP, 50);
-  
-  Am_Screen.Add_Part (my_win);
+  Am_Initialize();
+
+  Am_Object my_win =
+      Am_Window.Create("my_win").Set(Am_LEFT, 20).Set(Am_TOP, 50);
+
+  Am_Screen.Add_Part(my_win);
   /* ************************************************************ */
   /* During the Tutorial, do not add or edit text below this line */
   /* ************************************************************ */
-  
-  Am_Main_Event_Loop ();
-  Am_Cleanup ();
+
+  Am_Main_Event_Loop();
+  Am_Cleanup();
 
   return 0;
 }
