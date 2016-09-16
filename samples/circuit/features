@@ -1,0 +1,23 @@
+Tool Palette control create modes
+selection handles for selecting and moving
+growing disabled for bitmaps
+moving and growing disabled for lines
+constraints keep lines attached to bitmaps
+all operations are undoable
+multiple undo
+menubar for commands
+supported operations are: quit, undo, redo, cut, copy, paste, clear, clear-all,
+	select-all, to-top, to-bottom
+command hierarchies used for appl-specific extra work to cut lines when 
+	cut object
+gridding for object placement and moving
+can only attach lines where appropriate--depends on object type and where 
+	cursor released on object
+computes the value of the circuit 
+animations on when change values
+gestures for defining all objects
+	o=or, A(onestroke)=and, >=not, dot=undo, line=line, L=onezero,
+	? (no dot) = output
+
+NOT selective undo == too hard to implement
+
