@@ -8,15 +8,17 @@
  * ************************************************************************/
 
 #include <amulet.h>
-#include DEBUGGER__H
+#include <amulet/debugger.h>
 
-#include <fstream.h> // for ifstream, ofstream
+#include <fstream>  // for ifstream, ofstream
 #include <math.h>   // for sqrt()
 
+using namespace std;
+
 #if defined(_WINDOWS) || defined(_MACINTOSH)
-#define AMULET_BITMAP "lib/images/amside.gif"
+#define AMULET_BITMAP "data/images/amside.gif"
 #else									   
-#define AMULET_BITMAP "lib/images/amuletside.xbm"
+#define AMULET_BITMAP "data/images/amuletside.xbm"
 #endif				 
 
 #define NEW_CLASS_NAME  ""

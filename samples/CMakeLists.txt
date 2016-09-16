@@ -1,3 +1,4 @@
+ADD_SUBDIRECTORY(agate)
 ADD_SUBDIRECTORY(circuit)
 ADD_SUBDIRECTORY(tutorial)
 
