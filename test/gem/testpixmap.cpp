@@ -62,8 +62,9 @@ print_RGB_image(unsigned const char *storage, const char *name, int width,
       for (col = 0; col < width; col++) {
         if ((col / 5) * 5 == col)
           cout << endl;
-        cout << " (" << (int)storage[index++] << "," << (int)storage[index++]
-             << "," << (int)storage[index++] << ")";
+        cout << " (" << (int)storage[index] << "," << (int)storage[index + 1]
+             << "," << (int)storage[index + 2] << ")";
+        index += 3;
       }
       cout << endl;
     }
@@ -74,8 +75,9 @@ print_RGB_image(unsigned const char *storage, const char *name, int width,
       for (col = 0; col < width; col++) {
         if ((col / 5) * 5 == col)
           cout << endl;
-        cout << " (" << (int)storage[index++] << "," << (int)storage[index++]
-             << "," << (int)storage[index++] << ")";
+        cout << " (" << (int)storage[index] << "," << (int)storage[index + 1]
+             << "," << (int)storage[index + 2] << ")";
+        index += 3;
       }
       cout << endl;
     }
