@@ -653,7 +653,7 @@ Am_Define_Method(Am_Create_New_Object_Method, Am_Object, create_new_proto,
 }
 
 Am_Define_Method(Am_Object_Method, void, clear_selection, (Am_Object /*cmd*/)){
-  my_selection.Set(Am_VALUE, NULL);
+  my_selection.Set(Am_VALUE, 0L);
 }
 
 Am_Define_Method(Am_Create_New_Object_Method, Am_Object, gesture_creator,
@@ -740,11 +740,11 @@ int main (int argc, char *argv[]) {
   in_port_proto = Am_Rectangle.Create("in_port")
     .Set (Am_HEIGHT, 2)
     .Set (Am_WIDTH, 3)
-    .Set (Am_LINE_STYLE, NULL);
+    .Set (Am_LINE_STYLE, 0L);
   out_port_proto = Am_Rectangle.Create("out_port")
     .Set (Am_HEIGHT, 2)
     .Set (Am_WIDTH, 3)
-    .Set (Am_LINE_STYLE, NULL);
+    .Set (Am_LINE_STYLE, 0L);
 
   Am_Font small_font(Am_FONT_SERIF, false, false, false, Am_FONT_SMALL);
   circuit_object_proto = Am_Group.Create("circuit_object_proto")
@@ -805,7 +805,7 @@ int main (int argc, char *argv[]) {
     .Add_Part(INPUT_2_PORT, in_port_proto.Create()
 	      .Set(Am_TOP, picture_bottom_minus_offset))
     .Add_Part(PICTURE, Am_Bitmap.Create("and_or_bitmap")
-	      .Set (Am_IMAGE, NULL)
+	      .Set (Am_IMAGE, 0L)
 	      .Set (Am_LEFT, 3));
   and_or_proto.Get_Object(INPUT_1_PORT).Set(Am_TOP, ICON_TOP_OFFSET);
   
@@ -1004,7 +1004,7 @@ int main (int argc, char *argv[]) {
   Am_Object create_wire_command =
         Am_Object_Create_Command.Create("create_wire_command")
     .Set(Am_LABEL, "Create_Wire")
-    .Set(Am_DO_METHOD, NULL)
+    .Set(Am_DO_METHOD, 0L)
     .Set(Am_UNDO_METHOD, create_line_undo)
     .Set(Am_REDO_METHOD, create_line_undo)
     //standard selective_undo_allowed method is OK

@@ -198,7 +198,7 @@ main()
           .Set(Am_LINE_STYLE, Am_No_Style)
           .Add_Part(Am_Move_Grow_Interactor.Create("paddle1move")
                         .Set(Am_INTERIM_DO_METHOD, paddle_interim_do)
-                        .Set(Am_DO_METHOD, NULL))
+                        .Set(Am_DO_METHOD, 0L))
           .Add(Am_SLOTS_TO_SAVE, Am_Value_List().Add(Am_TOP));
 
   Am_Object ball_proto =

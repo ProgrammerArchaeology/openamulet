@@ -606,7 +606,7 @@ install_phaser_inter()
 
                         .Set(Am_AS_LINE, true)
                         .Set(Am_CREATE_NEW_OBJECT_METHOD,
-                             NULL) //not really creating something
+                             0L) //not really creating something
                         .Get_Object(Am_COMMAND)
                         .Set(Am_DO_METHOD, destroy_ship)
                         .Set(Am_UNDO_METHOD, hide_ship_command)

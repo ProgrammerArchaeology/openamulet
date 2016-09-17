@@ -247,7 +247,7 @@ main()
                                                       .Create("paddle1move")
                                                       .Set(Am_INTERIM_DO_METHOD,
                                                            paddle_interim_do)
-                                                      .Set(Am_DO_METHOD, NULL)))
+                                                      .Set(Am_DO_METHOD, 0L)))
                       .Set(Am_RIGHT_OFFSET, 10)
                       .Add_Part(
                           paddle2 =
@@ -262,7 +262,7 @@ main()
                                                 .Create("paddle1move")
                                                 .Set(Am_INTERIM_DO_METHOD,
                                                      paddle_interim_do)
-                                                .Set(Am_DO_METHOD, NULL)))
+                                                .Set(Am_DO_METHOD, 0L)))
                       .Add_Part(ball = Am_Arc.Create()
                                            .Set(Am_VISIBLE, false)
                                            .Set(Am_TOP, 200)

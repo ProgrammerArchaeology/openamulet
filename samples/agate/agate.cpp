@@ -1201,7 +1201,7 @@ main(int argc, char *argv[])
                       .Set(Am_HEIGHT, compute_gesture_frame_height);
   // feedback for gesture interactor
   Am_Object gesture_feedback =
-      Am_Polygon.Create("gesture_feedback").Set(Am_FILL_STYLE, NULL);
+      Am_Polygon.Create("gesture_feedback").Set(Am_FILL_STYLE, 0L);
 
   gesture_inter = Am_Gesture_Interactor.Create("gesture_inter")
                       .Set(Am_FEEDBACK_OBJECT, gesture_feedback);

@@ -217,7 +217,7 @@ Am_Define_Formula(int, destroy_alien)
          (bullet_right >= alien_left && bullet_right <= alien_right)) &&
         ((bullet_top <= alien_bottom && bullet_top >= alien_top) ||
          (bullet_bottom <= alien_bottom && bullet_bottom >= alien_top))) {
-      alien.Set(Am_IMAGE, NULL);
+      alien.Set(Am_IMAGE, 0L);
       Aliens.Set(NUM_ALIENS, (int)Aliens.Get(NUM_ALIENS) - 1);
 
       blot_bullet(self);
