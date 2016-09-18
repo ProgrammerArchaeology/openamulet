@@ -221,7 +221,7 @@ int main (int argc, char *argv[])
 
   // Now create the items to put into the tool panel.
   // First, load a bitmap of the arrow for selection mode
-  char *pathname = Am_Merge_Pathname(ARROW_BITMAP);
+  const char *pathname = Am_Merge_Pathname(ARROW_BITMAP);
   Am_Image_Array arrow = Am_Image_Array(pathname);
   delete [] pathname; //Merge allocates a string, delete it
   if (!arrow.Valid()) Am_Error ("Arrow bitmap image not found");

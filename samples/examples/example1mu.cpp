@@ -31,21 +31,18 @@ Important points:
 #include <amulet.h>
 
 #include <am_inc.h>                    /* supports multiple users */
-#include INTER_ADVANCED__H             /* supports multiple users */
-#include WIDGETS_ADVANCED__H           /* supports multiple users for HANDLE_SIZE */
-#include OPAL__H                       /* supports multiple users for Am_Polygon */
-
-//for the V3 version
-#ifdef AMULET2_CONVERSION__H
-#include AMULET2_CONVERSION__H
-#endif
+#include <amulet/inter_advanced.h>     /* supports multiple users */
+#include <amulet/widgets_advanced.h>   /* supports multiple users for HANDLE_SIZE */
+#include <amulet/opal.h>               /* supports multiple users for Am_Polygon */
 
 Am_Object window;
 
-#include PEBBLES_AMULET__H
+#include <amulet/pebbles_amulet.h>
 
 //file that holds the bitmap arrow picture
 #define ARROW_BITMAP "lib/images/arrow.gif"
+
+using namespace std;
 
 //supports multiple users
 // this function builds a list of handle shapes that can be drawn for each
@@ -376,7 +373,7 @@ int main (int argc, char *argv[])
 
   // Now create the items to put into the tool panel.
   // First, load a bitmap of the arrow for selection mode
-  char *pathname = Am_Merge_Pathname(ARROW_BITMAP);
+  const char *pathname = Am_Merge_Pathname(ARROW_BITMAP);
   Am_Image_Array arrow = Am_Image_Array(pathname);
   delete [] pathname; //Merge allocates a string, delete it
   if (!arrow.Valid()) Am_Error ("Arrow bitmap image not found");

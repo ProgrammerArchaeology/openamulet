@@ -20,16 +20,14 @@
 */   
 
 #include <amulet.h>
-#if defined(GCC) || defined(_MSC_VER)
 #include <string.h>
-#else
-#include <strings.h>
-#endif
 
 #include "example2db.h" //this .h file was created automatically by Gilt
 
 // strstream.h used to do cout to a string
-#include STR_STREAM__H
+#include <amulet/am_strstream.h>
+
+using namespace std;
 
 // make this be a global variable so it can be accessed by the constraints 
 Am_Object age_field;
@@ -200,7 +198,7 @@ Am_Define_Method(Am_Text_Check_Legal_Method, Am_Text_Abort_Or_Stop_Code,
   int len = strlen(str);
   if (len == 9) return Am_TEXT_OK;
   else {
-    Am_POP_UP_ERROR_WINDOW("Social Security Number must be 9 digits.")
+    AM_POP_UP_ERROR_WINDOW("Social Security Number must be 9 digits.")
     return Am_TEXT_KEEP_RUNNING;
   }
 }

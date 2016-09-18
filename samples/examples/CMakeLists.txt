@@ -1,5 +1,9 @@
-ADD_EXECUTABLE(example1 example1.cpp example1mu.cpp)
+ADD_EXECUTABLE(example1 example1.cpp)
 TARGET_LINK_LIBRARIES(example1 openamulet)
+
+# We don't have pebbles in this version yet.
+# ADD_EXECUTABLE(example1mu example1mu.cpp)
+# TARGET_LINK_LIBRARIES(example1mu openamulet)
 
 ADD_EXECUTABLE(example2 example2.cpp example2db.cpp)
 TARGET_LINK_LIBRARIES(example2 openamulet)
