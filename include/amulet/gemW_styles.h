@@ -33,9 +33,7 @@ public:
 
   virtual ~Am_Style_Data();
 
-  bool operator==(Am_Style_Data &) { return false; }
-
-  bool operator==(Am_Style_Data &) const { return false; }
+  bool operator==(const Am_Style_Data &) const { return false; }
 
   virtual const char *Get_Color_Name();
 

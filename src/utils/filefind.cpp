@@ -56,13 +56,7 @@ Am_Filename::name() const
 
 // Operators
 bool
-Am_Filename::operator==(Am_Filename f)
-{
-  return (filename == f.filename);
-}
-
-bool
-Am_Filename::operator==(const Am_Filename f) const
+Am_Filename::operator==(const Am_Filename &f) const
 {
   return (filename == f.filename);
 }

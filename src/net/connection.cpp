@@ -183,7 +183,7 @@ class Am_Connection_Data : public Am_Wrapper
 public:
   Am_Connection_Data(void);
   Am_Connection_Data(Am_Connection_Data *prototype);
-  int operator==(Am_Connection_Data &Test_Data);
+  bool operator==(const Am_Connection_Data &Test_Data) const;
 
 private:
   int m_socket;              // connected socket Add depends on public m_socket
@@ -704,10 +704,10 @@ Am_Connection_Data::Am_Connection_Data(Am_Connection_Data *prototype)
   Object_Queue = (0L); // Objects being read in
 }
 
-int
-Am_Connection_Data::operator==(Am_Connection_Data &Test_Data)
+bool
+Am_Connection_Data::operator==(const Am_Connection_Data &Test_Data) const
 {
-  return (Test_Data.m_socket == m_socket);
+  return Test_Data.m_socket == m_socket;
 }
 
 // DANGER!! We comment this, as the d'tor is declared implicit

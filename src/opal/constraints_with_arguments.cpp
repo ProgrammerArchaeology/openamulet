@@ -33,8 +33,7 @@ class Key_Store_Data : public Am_Wrapper
 public:
   Key_Store_Data(Am_Slot_Key in_key) : key(in_key) {}
   Key_Store_Data(Key_Store_Data *proto) : key(proto->key) {}
-  bool operator==(Key_Store_Data &test) { return key == test.key; }
-  bool operator==(Key_Store_Data &test) const { return key == test.key; }
+  bool operator==(const Key_Store_Data &test) const { return key == test.key; }
 
   Am_Slot_Key key;
 };
@@ -95,11 +94,7 @@ public:
       : part(proto->part), key(proto->key)
   {
   }
-  bool operator==(Part_Key_Store_Data &test)
-  {
-    return key == test.key && part == test.part;
-  }
-  bool operator==(Part_Key_Store_Data &test) const
+  bool operator==(const Part_Key_Store_Data &test) const
   {
     return key == test.key && part == test.part;
   }
@@ -160,11 +155,7 @@ public:
       : object(proto->object), key(proto->key)
   {
   }
-  bool operator==(Object_Key_Store_Data &test)
-  {
-    return key == test.key && object == test.object;
-  }
-  bool operator==(Object_Key_Store_Data &test) const
+  bool operator==(const Object_Key_Store_Data &test) const
   {
     return key == test.key && object == test.object;
   }
@@ -206,13 +197,7 @@ public:
       : key(proto->key), offset(proto->offset), multiplier(proto->multiplier)
   {
   }
-  bool operator==(Key_Offset_Store_Data &test)
-  {
-    return key == test.key && offset == test.offset &&
-           multiplier == test.multiplier;
-  }
-
-  bool operator==(Key_Offset_Store_Data &test) const
+  bool operator==(const Key_Offset_Store_Data &test) const
   {
     return key == test.key && offset == test.offset &&
            multiplier == test.multiplier;
@@ -306,12 +291,7 @@ public:
         multiplier(proto->multiplier)
   {
   }
-  bool operator==(Part_Key_Offset_Store_Data &test)
-  {
-    return key == test.key && part == test.part && offset == test.offset &&
-           multiplier == test.multiplier;
-  }
-  bool operator==(Part_Key_Offset_Store_Data &test) const
+  bool operator==(const Part_Key_Offset_Store_Data &test) const
   {
     return key == test.key && part == test.part && offset == test.offset &&
            multiplier == test.multiplier;
@@ -454,12 +434,7 @@ public:
         multiplier(proto->multiplier)
   {
   }
-  bool operator==(Object_Key_Offset_Store_Data &test)
-  {
-    return key == test.key && object == test.object && offset == test.offset &&
-           multiplier == test.multiplier;
-  }
-  bool operator==(Object_Key_Offset_Store_Data &test) const
+  bool operator==(const Object_Key_Offset_Store_Data &test) const
   {
     return key == test.key && object == test.object && offset == test.offset &&
            multiplier == test.multiplier;
@@ -509,9 +484,8 @@ class Key_Store_Data : public Am_Wrapper
 public:
   Key_Store_Data(Am_Slot_Key in_key) { key = in_key; }
   Key_Store_Data(Key_Store_Data *proto) { key = proto->key; }
-  bool operator==(Key_Store_Data &test) { return key == test.key; }
 
-  bool operator==(Key_Store_Data &test) const { return key == test.key; }
+  bool operator==(const Key_Store_Data &test) const { return key == test.key; }
 
   Am_Slot_Key key;
 };
@@ -574,12 +548,8 @@ public:
     part = proto->part;
     key = proto->key;
   }
-  bool operator==(Part_Key_Store_Data &test)
-  {
-    return key == test.key && part == test.part;
-  }
 
-  bool operator==(Part_Key_Store_Data &test) const
+  bool operator==(const Part_Key_Store_Data &test) const
   {
     return key == test.key && part == test.part;
   }
@@ -642,12 +612,8 @@ public:
     object = proto->object;
     key = proto->key;
   }
-  bool operator==(Object_Key_Store_Data &test)
-  {
-    return key == test.key && object == test.object;
-  }
 
-  bool operator==(Object_Key_Store_Data &test) const
+  bool operator==(const Object_Key_Store_Data &test) const
   {
     return key == test.key && object == test.object;
   }
@@ -693,13 +659,8 @@ public:
     offset = proto->offset;
     multiplier = proto->multiplier;
   }
-  bool operator==(Key_Offset_Store_Data &test)
-  {
-    return key == test.key && offset == test.offset &&
-           multiplier == test.multiplier;
-  }
 
-  bool operator==(Key_Offset_Store_Data &test) const
+  bool operator==(const Key_Offset_Store_Data &test) const
   {
     return key == test.key && offset == test.offset &&
            multiplier == test.multiplier;
@@ -798,13 +759,8 @@ public:
     offset = proto->offset;
     multiplier = proto->multiplier;
   }
-  bool operator==(Part_Key_Offset_Store_Data &test)
-  {
-    return key == test.key && part == test.part && offset == test.offset &&
-           multiplier == test.multiplier;
-  }
 
-  bool operator==(Part_Key_Offset_Store_Data &test) const
+  bool operator==(const Part_Key_Offset_Store_Data &test) const
   {
     return key == test.key && part == test.part && offset == test.offset &&
            multiplier == test.multiplier;
@@ -951,13 +907,8 @@ public:
     offset = proto->offset;
     multiplier = proto->multiplier;
   }
-  bool operator==(Object_Key_Offset_Store_Data &test)
-  {
-    return key == test.key && object == test.object && offset == test.offset &&
-           multiplier == test.multiplier;
-  }
 
-  bool operator==(Object_Key_Offset_Store_Data &test) const
+  bool operator==(const Object_Key_Offset_Store_Data &test) const
   {
     return key == test.key && object == test.object && offset == test.offset &&
            multiplier == test.multiplier;

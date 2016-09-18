@@ -19,9 +19,7 @@ public:
   ~Am_Font_Data();
 
 public:
-  bool operator==(Am_Font_Data &) { return false; }
-
-  bool operator==(Am_Font_Data &) const { return false; }
+  bool operator==(const Am_Font_Data &) const { return false; }
 
   HFONT WinFont(HDC hdc);
 

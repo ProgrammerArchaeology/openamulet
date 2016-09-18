@@ -50,17 +50,7 @@ public:
   Am_Inter_Location_Data(Am_Inter_Location_Data *proto);
 
   // required by wrapper
-  bool operator==(Am_Inter_Location_Data &test_data)
-  {
-    return ((ref_obj == test_data.ref_obj) && (as_line == test_data.as_line) &&
-            (growing == test_data.growing) &&
-            (data.line.x1 == test_data.data.line.x1) &&
-            (data.line.y1 == test_data.data.line.y1) &&
-            (data.line.x2 == test_data.data.line.x2) &&
-            (data.line.y2 == test_data.data.line.y2));
-  }
-
-  bool operator==(Am_Inter_Location_Data &test_data) const
+  bool operator==(const Am_Inter_Location_Data &test_data) const
   {
     return ((ref_obj == test_data.ref_obj) && (as_line == test_data.as_line) &&
             (growing == test_data.growing) &&
@@ -456,13 +446,13 @@ Am_Inter_Location::Translate_To(Am_Object dest_obj)
 }
 
 bool
-Am_Inter_Location::operator==(const Am_Inter_Location &test)
+Am_Inter_Location::operator==(const Am_Inter_Location &test) const
 {
   return data == test.data || (data && test.data && *data == *test.data);
 }
 
 bool
-Am_Inter_Location::operator!=(const Am_Inter_Location &test)
+Am_Inter_Location::operator!=(const Am_Inter_Location &test) const
 {
   return data != test.data && (!data || !test.data || !(*data == *test.data));
 }
@@ -481,7 +471,7 @@ isort(int a, int b, int &out_a, int &out_b)
 
 // A >= B is A contains B.  A must be non-line, B can be line or not line
 bool
-Am_Inter_Location::operator>=(const Am_Inter_Location &test)
+Am_Inter_Location::operator>=(const Am_Inter_Location &test) const
 {
   int test_left, test_top, test_right, test_bottom;
   int my_left, my_top, my_right, my_bottom;
@@ -529,7 +519,7 @@ Am_Inter_Location::operator>=(const Am_Inter_Location &test)
 }
 
 bool
-Am_Inter_Location::operator&&(const Am_Inter_Location &test)
+Am_Inter_Location::operator&&(const Am_Inter_Location &test) const
 {
   int test_left, test_top, test_right, test_bottom;
   test.Get_Points(test_left, test_top, test_right, test_bottom);

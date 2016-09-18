@@ -64,7 +64,6 @@ public:
   virtual ~Am_Wrap_Base() {}
   // OPERATORS
   // An Am_Wrap_Base object can be tested with any other one
-  virtual bool operator==(const Am_Wrap_Base &test_value) { return false; }
   virtual bool operator==(const Am_Wrap_Base &test_value) const
   {
     return false;
@@ -162,21 +161,10 @@ public:
     }
   }
   // OPERATORS
-  bool operator==(const Am_Wrap_Base &test_value)
+  bool operator==(const Am_Wrap_Base &test_value) const
   {
     // TODO: We compare pointers as 'Am_Wrap_Base*' - is it really needed to do a cast ?
     // TODO: Maybe this == &test_value would be enough ? -- ortalo
-    // Check the type, then pointer or objects equality
-    return (
-        typeid(*this) == typeid(test_value) &&
-        (static_cast<Am_Wrap_Base *>(this) ==
-             static_cast<const Am_Wrap_Base *>(&test_value)
-         // this == &test_value // TODO: Seems okay but well...
-         ||
-         (*(dynamic_cast<T *>(this))) == dynamic_cast<const T &>(test_value)));
-  }
-  bool operator==(const Am_Wrap_Base &test_value) const
-  {
     // Check the type, then pointer or objects equality
     return (typeid(*this) == typeid(test_value) &&
             (static_cast<const Am_Wrap_Base *>(this) ==

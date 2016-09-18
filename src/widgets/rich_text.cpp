@@ -806,12 +806,6 @@ Am_Rich_Text_Data::Get_Style_Run_At(const Am_Text_Index inIndex) const
  */
 
 bool
-Am_Rich_Text_Data::operator==(const Am_Rich_Text_Data & /* inText */)
-{
-  return false;
-}
-
-bool
 Am_Rich_Text_Data::operator==(const Am_Rich_Text_Data & /* inText */) const
 {
   return false;
@@ -1210,12 +1204,6 @@ Am_Text_Mark_Data::Get_Absolute_Index() const
  */
 
 bool
-Am_Text_Mark_Data::operator==(const Am_Text_Mark_Data & /* inOtherMark */)
-{
-  return false;
-}
-
-bool
 Am_Text_Mark_Data::operator==(const Am_Text_Mark_Data & /* inOtherMark */) const
 {
   return false;
@@ -1347,12 +1335,6 @@ void Am_Text_Cursor_Data::Change_BG_Style(Am_Style /* inBGStyle */) {}
 /******************************************************************************
  *  operator== && operator!= && operator<=
  */
-
-bool
-Am_Text_Cursor_Data::operator==(const Am_Text_Cursor_Data &inOtherCursor)
-{
-  return (*this == inOtherCursor);
-}
 
 bool
 Am_Text_Cursor_Data::operator==(const Am_Text_Cursor_Data &inOtherCursor) const
@@ -1655,13 +1637,6 @@ void Am_Text_Viewing_Context_Data::Invalidate_Text_Range(
 /******************************************************************************
  *  operator==
  */
-
-bool
-Am_Text_Viewing_Context_Data::
-operator==(const Am_Text_Viewing_Context_Data & /* inOtherVC */)
-{
-  return false;
-}
 
 bool
 Am_Text_Viewing_Context_Data::

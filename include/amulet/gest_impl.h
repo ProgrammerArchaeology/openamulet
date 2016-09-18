@@ -77,9 +77,7 @@ public:
 
   ~Am_Feature_Vector_Data();
 
-  bool operator==(Am_Feature_Vector_Data &) { return false; }
-
-  bool operator==(Am_Feature_Vector_Data &) const { return false; }
+  bool operator==(const Am_Feature_Vector_Data &) const { return false; }
 
   void Add_Point(int x, int y);
   void Calc();
@@ -139,8 +137,7 @@ public:
 
   ~Am_Gesture_Classifier_Data();
 
-  bool operator==(Am_Gesture_Classifier_Data &) { return false; }
-  bool operator==(Am_Gesture_Classifier_Data &) const { return false; }
+  bool operator==(const Am_Gesture_Classifier_Data &) const { return false; }
 
   Am_String Classify(Am_Feature_Vector fv, double *nap = 0, double *dist = 0);
 
@@ -197,8 +194,7 @@ public:
 
   ~Am_Gesture_Trainer_Data();
 
-  bool operator==(Am_Gesture_Trainer_Data &) { return false; }
-  bool operator==(Am_Gesture_Trainer_Data &) const { return false; }
+  bool operator==(const Am_Gesture_Trainer_Data &) const { return false; }
 
   struct Gesture_Class
   {

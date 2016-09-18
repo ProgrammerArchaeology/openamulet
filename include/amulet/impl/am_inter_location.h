@@ -62,11 +62,10 @@ public:
   void Swap_With(Am_Inter_Location &other_obj, bool make_unique = true);
   Am_Inter_Location Copy() const;
   bool Translate_To(Am_Object dest_obj); //trans_coord from ref_obj to dest_obj
-  bool operator==(const Am_Inter_Location &test);
   bool operator==(const Am_Inter_Location &test) const;
-  bool operator!=(const Am_Inter_Location &test);
-  bool operator>=(const Am_Inter_Location &test); // A >= B is A contains B
-  bool operator&&(const Am_Inter_Location &test); // test overlapping
+  bool operator!=(const Am_Inter_Location &test) const;
+  bool operator>=(const Am_Inter_Location &test) const; // A >= B is A contains B
+  bool operator&&(const Am_Inter_Location &test) const; // test overlapping
 
   //checks growing against the internal growing
   void Install(Am_Object &object, bool growing) const;

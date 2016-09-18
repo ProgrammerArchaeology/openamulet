@@ -69,8 +69,8 @@ Am_Registry_Key &operator=(const Am_Registry_Key &aAssignee)
 
 const char *Name() const { return (name); }
 
-bool operator==(const Am_Registry_Key &test_key);
-bool operator!=(const Am_Registry_Key &test_key);
+bool operator==(const Am_Registry_Key &test_key) const;
+bool operator!=(const Am_Registry_Key &test_key) const;
 operator const char *() const;
 bool Valid();
 

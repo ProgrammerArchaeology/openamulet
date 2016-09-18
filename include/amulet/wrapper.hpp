@@ -106,7 +106,7 @@ public:
     else
       return (0L);
   }
-  bool operator==(Am_Wrapper &test_value)
+  bool operator==(const Am_Wrapper &test_value) const
   {
     if (id == test_value.ID())
       return (&test_value == this) ||

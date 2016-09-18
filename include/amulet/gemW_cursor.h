@@ -15,9 +15,7 @@ public:
   Am_Cursor_Data(Am_Image_Array image, Am_Image_Array mask);
   virtual ~Am_Cursor_Data();
 
-  bool operator==(Am_Cursor_Data &) { return false; }
-
-  bool operator==(Am_Cursor_Data &) const { return false; }
+  bool operator==(const Am_Cursor_Data &) const { return false; }
 
 public:
   void Set_Hot_Spot(int x, int y);

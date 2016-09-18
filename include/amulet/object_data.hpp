@@ -58,8 +58,7 @@ public:
   void print_slot_name_and_value(Am_Slot_Key key, Am_Slot_Data *value) const;
 
   // OPERATORS
-  bool operator==(Am_Object_Data &) { return (false); }
-  bool operator==(Am_Object_Data &) const { return (false); }
+  bool operator==(const Am_Object_Data &) const { return (false); }
 
   // ACCESSORS
   void Print(std::ostream &out) const;

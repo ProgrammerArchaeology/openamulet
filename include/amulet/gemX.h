@@ -577,8 +577,7 @@ public:
 
   ~Am_Font_Data();
 
-  bool operator==(Am_Font_Data &) { return false; }
-  bool operator==(Am_Font_Data &) const { return false; }
+  bool operator==(const Am_Font_Data &) const { return false; }
 
   void Add_Font(Display *, XFontStruct *);
   bool Get_Font(Display *, XFontStruct *&);
@@ -655,8 +654,7 @@ public:
   bool Get_Cursor(Display *, Cursor &);
 
   // I think I need this for a wrapper class
-  bool operator==(Am_Cursor_Data &) { return false; }
-  bool operator==(Am_Cursor_Data &) const { return false; }
+  bool operator==(const Am_Cursor_Data &) const { return false; }
 
   Display *main_display;
   Cursor main_cursor;
@@ -730,8 +728,7 @@ public:
 
   ~Am_Image_Array_Data();
 
-  bool operator==(Am_Image_Array_Data &) { return false; }
-  bool operator==(Am_Image_Array_Data &) const { return false; }
+  bool operator==(const Am_Image_Array_Data &) const { return false; }
 
   Pixmap Get_X_Pixmap(const Am_Drawonable_Impl *draw);
   Pixmap Safe_Get_X_Pixmap(const Am_Drawonable_Impl *draw);
@@ -833,8 +830,7 @@ public:
   Am_Style_Data();
   ~Am_Style_Data();
 
-  bool operator==(Am_Style_Data &) { return false; }
-  bool operator==(Am_Style_Data &) const { return false; }
+  bool operator==(const Am_Style_Data &) const { return false; }
 
   void Add_Color_Index(Display *, XColor);
   bool Get_Color_Index(Display *, XColor &);
@@ -899,8 +895,7 @@ public:
   Am_Point_Array_Data(int size);
   ~Am_Point_Array_Data();
 
-  bool operator==(Am_Point_Array_Data &) { return false; }
-  bool operator==(Am_Point_Array_Data &) const { return false; }
+  bool operator==(const Am_Point_Array_Data &) const { return false; }
 
 protected:
   typedef std::vector<XPoint> vector_of_XPoints;

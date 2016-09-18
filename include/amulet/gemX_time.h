@@ -26,12 +26,8 @@ public:
     time.tv_sec = other->time.tv_sec;
   }
   timeval time;
-  bool operator==(Am_Time_Data &other)
-  {
-    return time.tv_usec == other.time.tv_usec &&
-           time.tv_sec == other.time.tv_sec;
-  }
-  bool operator==(Am_Time_Data &other) const
+
+  bool operator==(const Am_Time_Data &other) const
   {
     return time.tv_usec == other.time.tv_usec &&
            time.tv_sec == other.time.tv_sec;

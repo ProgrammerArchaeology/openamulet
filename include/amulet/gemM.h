@@ -340,7 +340,7 @@ public:
 
   ~Am_Font_Data();
 
-  bool operator==(Am_Font_Data &) { return false; }
+  bool operator==(const Am_Font_Data &) const { return false; }
 
   // get values
   void Get_Values(Am_Font_Family_Flag &f, bool &is_bold, bool &is_italic,
@@ -382,7 +382,7 @@ public:
 
   Cursor *Get_Mac_Cursor(Am_Drawonable_Impl *draw);
 
-  bool operator==(Am_Cursor_Data &) { return false; }
+  bool operator==(const Am_Cursor_Data &) const { return false; }
 
 protected:
   /* holds data till we need it */
@@ -409,7 +409,7 @@ public:
   ~Am_Image_Array_Data();
 
   PixMapHandle Get_Mac_PixMap(Am_Drawonable_Impl *draw);
-  bool operator==(Am_Image_Array_Data &) { return false; }
+  bool operator==(const Am_Image_Array_Data &) const { return false; }
 
   Pattern Get_Mac_Pattern(Am_Drawonable_Impl * /* draw */) { return pattern; }
   bool Is_Transparent() { return transp; }
@@ -457,7 +457,7 @@ public:
   Am_Style_Data();
   ~Am_Style_Data();
 
-  bool operator==(Am_Style_Data &) { return false; }
+  bool operator==(const Am_Style_Data &) const { return false; }
 
   const char *Get_Color_Name();
   //returns a pointer to the string, don't dealloc
@@ -499,7 +499,7 @@ public:
   Am_Point_Array_Data(int size);
   ~Am_Point_Array_Data();
 
-  operator==(Am_Point_Array_Data &) { return false; }
+  operator==(const Am_Point_Array_Data &) const { return false; }
 
 protected:
   Point *ar;

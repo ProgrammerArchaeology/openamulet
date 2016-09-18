@@ -179,7 +179,6 @@ public:
 
   Am_Rich_Text_Data(Am_Rich_Text_Data *inProto); // needed for the wrapper
 
-  bool operator==(const Am_Rich_Text_Data &inText);
   bool operator==(const Am_Rich_Text_Data &inText) const;
 
   void Draw_Line(Am_Drawonable *inDrawonable, long inLeft, long inTop,
@@ -463,7 +462,6 @@ public:
   //Error if region and mark are not w.r.t. same Rich_Text object
   //  bool Mark_In_Region(Am_Rich_Text_Region &which_region = Am_No_Rich_Text_Region);
 
-  bool operator==(const Am_Text_Mark_Data &inOtherMark);
   bool operator==(const Am_Text_Mark_Data &inOtherMark) const;
   //  bool operator!= ( const Am_Text_Mark_Data& inOtherMark ) const;
   //  bool operator<= ( const Am_Text_Mark_Data& inOtherMark ) const;
@@ -517,7 +515,6 @@ public:
   void Change_Text_Style(Am_Style inTextStyle);
   void Change_BG_Style(Am_Style inBGStyle);
 
-  bool operator==(const Am_Text_Cursor_Data &inOtherCursor);
   bool operator==(const Am_Text_Cursor_Data &inOtherCursor) const;
   //  bool operator!=( const Am_Text_Cursor_Data& inOtherCursor ) const;
 
@@ -687,7 +684,6 @@ public:
   inline void Set_Width(unsigned long inHeight);
   void Invalidate_Text_Range(Am_Text_Index inStart, Am_Text_Length inLength);
 
-  bool operator==(const Am_Text_Viewing_Context_Data &inOtherVC);
   bool operator==(const Am_Text_Viewing_Context_Data &inOtherVC) const;
 
 private:

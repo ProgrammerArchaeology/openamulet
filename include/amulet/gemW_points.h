@@ -26,9 +26,7 @@ public:
   Am_Point_Array_Data(int size);
   ~Am_Point_Array_Data();
 
-  bool operator==(Am_Point_Array_Data &) { return false; }
-
-  bool operator==(Am_Point_Array_Data &) const { return false; }
+  bool operator==(const Am_Point_Array_Data &) const { return false; }
 
 protected:
   POINT *ar;

@@ -14,9 +14,7 @@ public:
 
   virtual ~Computed_Colors_Record_Data();
 
-  bool operator==(Computed_Colors_Record_Data &) { return (false); }
-
-  bool operator==(Computed_Colors_Record_Data &) const { return (false); }
+  bool operator==(const Computed_Colors_Record_Data &) const { return (false); }
 
   void Print(std::ostream &out) const;
 

@@ -16,6 +16,5 @@ public:
   Am_Time_Data() { time = 0; }
   Am_Time_Data(Am_Time_Data *other) { time = other->time; }
   unsigned long time;
-  bool operator==(Am_Time_Data &other) { return time == other.time; }
-  bool operator==(Am_Time_Data &other) const { return time == other.time; }
+  bool operator==(const Am_Time_Data &other) const { return time == other.time; }
 };

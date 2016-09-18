@@ -82,7 +82,7 @@ operator<<(std::ostream &os, Am_Registry_Key &aRegistryKey)
 // its type ID.  We need both pieces of information to determine that two keys
 // are equal.
 bool
-Am_Registry_Key::operator==(const Am_Registry_Key &test_key)
+Am_Registry_Key::operator==(const Am_Registry_Key &test_key) const
 {
   if (test_key.name && name)
     return !strcmp(name, test_key.name);
@@ -90,7 +90,7 @@ Am_Registry_Key::operator==(const Am_Registry_Key &test_key)
     return false; // no null names are equal to anything
 }
 bool
-Am_Registry_Key::operator!=(const Am_Registry_Key &test_key)
+Am_Registry_Key::operator!=(const Am_Registry_Key &test_key) const
 {
   return !(*this == test_key);
 }

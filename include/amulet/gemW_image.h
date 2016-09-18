@@ -28,9 +28,7 @@ public:
   Am_Image_Array_Data(Am_Image_Array_Data *proto, int width, int height);
   virtual ~Am_Image_Array_Data();
 
-  bool operator==(Am_Image_Array_Data &) { return false; }
-
-  bool operator==(Am_Image_Array_Data &) const { return false; }
+  bool operator==(const Am_Image_Array_Data &) const { return false; }
 
 public:
   virtual int Get_Bit(int x, int y);

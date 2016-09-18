@@ -30,7 +30,7 @@ public:
   virtual ~Am_Wrapper() { ; }
 
   // OPERATORS
-  virtual bool operator==(const Am_Wrapper &test_value) = 0;
+  virtual bool operator==(const Am_Wrapper &test_value) const = 0;
 
   // MANIPULATORS
   // Return a unique copy of the data.

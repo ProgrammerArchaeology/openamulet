@@ -91,7 +91,7 @@ public:
   Gilt_Constraint_Variable_Data();
   Gilt_Constraint_Variable_Data(Gilt_Constraint_Variable_Data *proto);
   //never test
-  bool operator==(Gilt_Constraint_Variable_Data &test) { return true; }
+  bool operator==(const Gilt_Constraint_Variable_Data &test) const { return true; }
   char Get_Next_Var(Am_Object obj);
   void Release_Var(char var)
   {
@@ -198,7 +198,7 @@ public:
     self_key = proto->self_key;
     self_multiplier = proto->self_multiplier;
   }
-  bool operator==(Gilt_Inferred_Object_Offset_Store_Data &test)
+  bool operator==(const Gilt_Inferred_Object_Offset_Store_Data &test) const
   {
     return (object == test.object && obj_key == test.obj_key &&
             obj_ref_key == test.obj_ref_key && obj_offset == test.obj_offset &&

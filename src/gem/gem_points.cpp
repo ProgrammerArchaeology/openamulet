@@ -47,7 +47,6 @@ public:
   Am_Point_List_Data(int *ar, int size);
   Am_Point_List_Data(float *ar, int size);
   ~Am_Point_List_Data();
-  bool operator==(const Am_Point_List_Data &) { return false; }
   bool operator==(const Am_Point_List_Data &) const { return false; }
   void Add(float x, float y, Am_Add_Position position);
   void Insert(float x, float y, Am_Point_Item *current,

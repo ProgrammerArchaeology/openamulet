@@ -63,7 +63,7 @@ public:
 
   // operator== is used only to remove slot tracers from the list.
   // exact match only, including store_old part.
-  bool operator==(Am_Slot_Tracer &test_value);
+  bool operator==(const Am_Slot_Tracer &test_value) const;
 
   // these are called when an event happens
   void Trace(Am_Value v, Am_Set_Reason reason);
@@ -87,7 +87,7 @@ public:
 Am_Value_List am_all_tracers;
 
 bool
-Am_Slot_Tracer::operator==(Am_Slot_Tracer &test_value)
+Am_Slot_Tracer::operator==(const Am_Slot_Tracer &test_value) const
 {
   return (object == test_value.object) && (key == test_value.key) &&
          (value == test_value.value) &&

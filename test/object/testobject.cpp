@@ -429,7 +429,7 @@ class Store_Data : public Am_Wrapper
 public:
   Store_Data(int in_datum) { datum = in_datum; }
   Store_Data(Store_Data *proto) { datum = proto->datum; }
-  bool operator==(Store_Data &test) { return datum == test.datum; }
+  bool operator==(const Store_Data &test) const { return datum == test.datum; }
 
   void Print(ostream &out) const { out << "STORE Print=" << datum; }
 
@@ -557,7 +557,7 @@ public:
   Am_Foo_Data(int in_store) { store = in_store; }
   void Set(int in_store) { store = in_store; }
   int Get() { return store; }
-  bool operator==(Am_Foo_Data &test_value) { return test_value.store == store; }
+  bool operator==(const Am_Foo_Data &test_value) const { return test_value.store == store; }
 private:
   int store;
 };

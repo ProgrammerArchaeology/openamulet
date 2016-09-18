@@ -26,13 +26,6 @@ public:
   {
     return !operator==(test_string);
   }
-#if defined(_WIN32)
-  bool operator==(char *test_string) const
-  {
-    return operator==((const char *)test_string);
-  }
-  bool operator!=(char *test_string) const { return !operator==(test_string); }
-#endif
 };
 
 // The (0L) string.

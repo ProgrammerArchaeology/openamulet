@@ -38,8 +38,7 @@ public:
   // OPERATORS
   const char *c_str() const;
   std::string name() const;
-  bool operator==(Am_Filename f);
-  bool operator==(const Am_Filename f) const;
+  bool operator==(const Am_Filename &f) const;
   // ACCESSORS
   bool Is_Directory() const;
   bool Is_Relative() const;

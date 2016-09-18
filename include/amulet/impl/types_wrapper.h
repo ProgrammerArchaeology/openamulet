@@ -34,7 +34,7 @@ public:
   bool Is_Zero() { return refs == 0; }
 
   virtual Am_Wrapper *Make_Unique() = 0; // Return a unique copy of the data.
-  virtual bool operator==(const Am_Wrapper &test_value) = 0; // Equality test.
+  virtual bool operator==(const Am_Wrapper &test_value) const = 0; // Equality test.
   virtual Am_ID_Tag ID() const = 0; // Returns unique tag
   // for each derived type.
   virtual Am_Value From_String(const char *string) const;
@@ -50,7 +50,6 @@ private:
 #define AM_WRAPPER_DATA_DECL(Type_name)                                        \
 public:                                                                        \
   Am_Wrapper *Make_Unique();                                                   \
-  bool operator==(const Am_Wrapper &test_value);                               \
   bool operator==(const Am_Wrapper &test_value) const;                         \
   Am_ID_Tag ID() const { return id; }                                          \
   static Type_name##_Data *Narrow(Am_Wrapper *value);                          \
@@ -65,15 +64,6 @@ private:                                                                       \
       return (Type_name##_Data *)value;                                        \
     else                                                                       \
       return (0L);                                                             \
-  }                                                                            \
-  bool Type_name##_Data::operator==(const Am_Wrapper &test_value)              \
-  {                                                                            \
-    if (id == test_value.ID()) {                                               \
-      return (static_cast<const Am_Wrapper *>(&test_value) ==                  \
-                  static_cast<Am_Wrapper *>(this) ||                           \
-              (static_cast<const Type_name##_Data &>(test_value) == (*this))); \
-    } else                                                                     \
-      return false;                                                            \
   }                                                                            \
   bool Type_name##_Data::operator==(const Am_Wrapper &test_value) const        \
   {                                                                            \
