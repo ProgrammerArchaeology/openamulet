@@ -197,7 +197,7 @@ Am_Cursor_Data::WinFreeRes()
   if (m_img)
     bRes = bRes || m_img->delete_ddb();
 
-  // cannot temprarily delete Windows cursor, for it may be in use!
+  // cannot temporarily delete Windows cursor, for it may be in use!
   return bRes;
 }
 #endif
