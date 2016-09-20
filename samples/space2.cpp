@@ -9,9 +9,9 @@
 
 #include <amulet.h>
 
-using namespace std;
+#include <cstdlib>
 
-extern "C" int rand();
+using namespace std;
 
 Am_Object Ship, Bullet, Bomb, my_window, Aliens;
 Am_Object star_animator, alien_animator;
