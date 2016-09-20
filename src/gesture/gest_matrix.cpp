@@ -119,39 +119,6 @@ MatrixCopy(Matrix m)
   return r;
 }
 
-#if 0 // omit (variable args don't compile on HP CC)
-
-extern "C" {
-#include <varargs.h>
-
-void
-PrintVector(Vector v, const char *s, ...)
-{
-  int i;
-  va_list ap;
-  va_start(ap);
-  vprintf(s,ap);
-  for(i = 0; i < NROWS(v); i++) printf(" %8.4f", v[i]);
-  printf("\n");
-}
-
-void
-PrintMatrix(Matrix m, const char *s, ...)
-{
-  int i, j;
-  va_list ap;
-  va_start(ap);
-  printf(s,ap);
-  for(i = 0; i < NROWS(m);  i++) {
-    for(j = 0; j < NCOLS(m); j++)
-      printf(" %8.4f", m[i][j]);
-    printf("\n");
-  }
-}
-
-}
-#endif // omitted code
-
 /* Null vector and matrixes */
 
 void
@@ -449,17 +416,7 @@ InvertMatrix(Matrix ym, Matrix rm)
 }
 
 void
-OutputVector(FILE *f, Vector v)
-{
-  int i;
-  fprintf(f, " V %d   ", NROWS(v));
-  for (i = 0; i < NROWS(v); i++)
-    fprintf(f, " %g", v[i]);
-  fprintf(f, "\n");
-}
-
-void
-OutputVectorCPP(std::ostream &s, Vector v)
+OutputVector(std::ostream &s, Vector v)
 {
   int i;
   s << "V " << (int)NROWS(v);
@@ -469,26 +426,7 @@ OutputVectorCPP(std::ostream &s, Vector v)
 }
 
 Vector
-InputVector(FILE *f)
-{
-  Vector v;
-  int i;
-  char check;
-  int nrows;
-
-  if (fscanf(f, "%1s %d", &check, &nrows) != 2)
-    Am_Error("InputVector fscanf 1");
-  if (check != 'V')
-    Am_Error("InputVector check");
-  v = NewVector(nrows);
-  for (i = 0; i < nrows; i++)
-    if (fscanf(f, "%lf", &v[i]) != 1)
-      Am_Error("InputVector fscanf 2");
-  return v;
-}
-
-Vector
-InputVectorCPP(std::istream &f)
+InputVector(std::istream &f)
 {
   Vector v;
   int i;
@@ -558,39 +496,7 @@ DeSliceMatrix(Matrix m, double fill, unsigned rowmask, unsigned colmask,
 }
 
 void
-OutputMatrix(FILE *f, Matrix m)
-{
-  int i, j;
-  fprintf(f, " M %d %d\n", NROWS(m), NCOLS(m));
-  for (i = 0; i < NROWS(m); i++) {
-    for (j = 0; j < NCOLS(m); j++)
-      fprintf(f, " %g", m[i][j]);
-    fprintf(f, "\n");
-  }
-}
-
-Matrix
-InputMatrix(FILE *f)
-{
-  Matrix m;
-  int i, j;
-  char check;
-  int nrows, ncols;
-
-  if (fscanf(f, "%1s %d %d", &check, &nrows, &ncols) != 3)
-    Am_Error("InputMatrix fscanf 1");
-  if (check != 'M')
-    Am_Error("InputMatrix check");
-  m = NewMatrix(nrows, ncols);
-  for (i = 0; i < nrows; i++)
-    for (j = 0; j < ncols; j++)
-      if (fscanf(f, "%lf", &m[i][j]) != 1)
-        Am_Error("InputMatrix fscanf 2");
-  return m;
-}
-
-void
-OutputMatrixCPP(std::ostream &s, Matrix m)
+OutputMatrix(std::ostream &s, Matrix m)
 {
   int i, j;
   s << "M " << (int)NROWS(m) << ' ' << (int)NCOLS(m) << std::endl;
@@ -602,7 +508,7 @@ OutputMatrixCPP(std::ostream &s, Matrix m)
 }
 
 Matrix
-InputMatrixCPP(std::istream &f)
+InputMatrix(std::istream &f)
 {
   Matrix m;
   int i, j;

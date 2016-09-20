@@ -59,10 +59,6 @@ Vector NewVector(int r);
 Matrix NewMatrix(int r, int c);
 void FreeVector(Vector v);
 void FreeMatrix(Matrix m);
-extern "C" {
-void PrintVector(Vector v, const char *fmt, ...);
-void PrintMatrix(Matrix m, const char *fmt, ...);
-}
 double InnerProduct(Vector v1, Vector v2);
 void MatrixMultiply(Matrix m1, Matrix m2, Matrix prod);
 void VectorTimesMatrix(Vector v, Matrix m, Vector prod);
@@ -71,12 +67,6 @@ double QuadraticForm(Vector v, Matrix m);
 double InvertMatrix(Matrix input, Matrix result);
 Vector VectorCopy(Vector v);
 Matrix MatrixCopy(Matrix m);
-Vector InputVector(FILE *f);
-Matrix InputMatrix(FILE *f);
-void OutputVector(FILE *f, Vector v);
-void OutputVectorCPP(std::ostream &s, Vector m);
-void OutputMatrix(FILE *f, Matrix m);
-void OutputMatrixCPP(std::ostream &s, Matrix m);
 
 double InvertSingularMatrix(Matrix input, Matrix result);
 
@@ -88,7 +78,10 @@ void ZeroVector(Vector v);
 void ZeroMatrix(Matrix m);
 void FillMatrix(Matrix m, double fill);
 
-Vector InputVectorCPP(std::istream &f);
-Matrix InputMatrixCPP(std::istream &f);
+void OutputVector(std::ostream &s, Vector m);
+void OutputMatrix(std::ostream &s, Matrix m);
+
+Vector InputVector(std::istream &f);
+Matrix InputMatrix(std::istream &f);
 
 #endif // GEST_MATRIX_H

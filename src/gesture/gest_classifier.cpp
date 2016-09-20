@@ -97,8 +97,8 @@ operator<<(std::ostream &s, Am_Gesture_Classifier &cl)
 
   if (cl.Trained()) {
     for (i = 0; i < n; i++) {
-      OutputVectorCPP(s, classes[i].average);
-      OutputVectorCPP(s, classes[i].w);
+      OutputVector(s, classes[i].average);
+      OutputVector(s, classes[i].w);
     }
 
     Vector v = NewVector(n);
@@ -106,16 +106,16 @@ operator<<(std::ostream &s, Am_Gesture_Classifier &cl)
     // output constants for each class
     for (i = 0; i < n; i++)
       v[i] = classes[i].cnst;
-    OutputVectorCPP(s, v);
+    OutputVector(s, v);
 
     // output is_dot fields for each class
     for (i = 0; i < n; ++i)
       v[i] = (double)classes[i].is_dot;
-    OutputVectorCPP(s, v);
+    OutputVector(s, v);
 
     FreeVector(v);
 
-    OutputMatrixCPP(s, cldata->invavgcov);
+    OutputMatrix(s, cldata->invavgcov);
   }
 
   return s;
@@ -180,17 +180,17 @@ operator>>(std::istream &s, Am_Gesture_Classifier &cl)
     s.putback(check);
 
     for (i = 0; i < n; i++) {
-      classes[i].average = InputVectorCPP(s);
-      classes[i].w = InputVectorCPP(s);
+      classes[i].average = InputVector(s);
+      classes[i].w = InputVector(s);
     }
 
-    Vector v = InputVectorCPP(s);
+    Vector v = InputVector(s);
     for (i = 0; i < n; i++)
       classes[i].cnst = v[i];
     FreeVector(v);
 
     if (ver > NO_DOT_VERSION) {
-      Vector v = InputVectorCPP(s);
+      Vector v = InputVector(s);
       // read in is_dot fields for each class
       for (i = 0; i < n; ++i)
         classes[i].is_dot = (v[i] != 0.0);
@@ -201,7 +201,7 @@ operator>>(std::istream &s, Am_Gesture_Classifier &cl)
         classes[i].is_dot = false;
     }
 
-    cldata->invavgcov = InputMatrixCPP(s);
+    cldata->invavgcov = InputMatrix(s);
 
     cldata->trained = true;
   } else if (s)
