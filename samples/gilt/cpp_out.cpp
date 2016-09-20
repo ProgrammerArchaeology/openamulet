@@ -13,15 +13,7 @@
 #include <amulet.h>
 // #include <strstream>
 
-#ifdef GCC
 #include <string.h>
-#else
-extern "C" {
-#if defined(_MSC_VER) || defined(NEED_STRING)
-#include <string.h>
-#endif
-}
-#endif
 
 #include "externs.h"
 

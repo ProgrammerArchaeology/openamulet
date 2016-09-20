@@ -18,15 +18,7 @@
 
 #include <amulet/am_strstream.h> // strstream is needed for AM_POP_UP_ERROR_WINDOW
 
-#ifdef GCC
 #include <string.h>
-#else
-extern "C" {
-#if defined(_MSC_VER) || defined(NEED_STRING)
-#include <string.h>
-#endif
-}
-#endif
 
 #include <amulet/inter_advanced.h> //for Am_Copy_Values_To_Command for polygon
 
