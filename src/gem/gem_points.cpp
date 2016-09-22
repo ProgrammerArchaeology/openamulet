@@ -64,7 +64,7 @@ public:
 // used to round a floating-point coordinate to nearest integer
 // (with .5 rounding up to 1)
 inline int
-round(float f)
+iround(float f)
 {
   return (int)floor(f + 0.5);
 }
@@ -519,8 +519,8 @@ Am_Point_List::Get(int &x, int &y) const
 {
   if (!item)
     Am_Error("** Am_Point_List::Get: no item is current\n");
-  x = round(item->x);
-  y = round(item->y);
+  x = iround(item->x);
+  y = iround(item->y);
 }
 
 void
@@ -625,12 +625,12 @@ Am_Point_List::Get_Extents(int &min_x, int &min_y, int &max_x, int &max_y) const
 
   Am_Point_Item *current = data->head;
   int right, left, bottom, top;
-  right = left = round(current->x);
-  bottom = top = round(current->y);
+  right = left = iround(current->x);
+  bottom = top = iround(current->y);
 
   for (; current; current = current->next) {
-    int x = round(current->x);
-    int y = round(current->y);
+    int x = iround(current->x);
+    int y = iround(current->y);
     left = left < x ? left : x;
     right = right > x ? right : x;
     top = top < y ? top : y;
