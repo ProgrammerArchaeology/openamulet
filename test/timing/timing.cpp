@@ -325,6 +325,7 @@ time_object_creation()
     int2 = one_rect.Get(MY_LEFT);
   }
   Am_Update_All();
+  (void)int2;
   end_timing("set + get as int", NUM_OBJ_SET);
 
   start_timing();

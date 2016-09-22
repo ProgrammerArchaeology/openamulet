@@ -122,9 +122,6 @@ Am_Define_No_Self_Formula(Am_Wrapper *, value_from_cycle_command)
 {
   Am_Value valv;
   valv = cy_cmd.Peek(Am_VALUE);
-  int val = 0;
-  if (valv.type == Am_INT)
-    val = valv;
   Am_String s;
   Am_Value v;
   v = cy_cmd.Peek(Am_LABEL);

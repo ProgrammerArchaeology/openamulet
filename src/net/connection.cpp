@@ -531,14 +531,13 @@ void
 Am_Connection::Handle_Input(void)
 {
   unsigned long net_type, type;
-  int i;
   if (!this->Valid())
     Am_Error("Invalid Connection called to handle input!");
   if (!data->connected)
     Am_Error("C:HandIn:Error! Not connected!");
   else {
     Am_Value in_value;
-    i = recv(data->m_socket, &net_type, sizeof(net_type), 0);
+    (void)recv(data->m_socket, &net_type, sizeof(net_type), 0);
     type = ntohl(net_type);
     Am_Unmarshall_Method handler =
         Am_Connection::Unmarshall_Methods.GetAt(type);
@@ -604,14 +603,14 @@ Am_Connection::Wait_For_Connect(void)
   select_timeout.tv_usec = 0;
 
   fd_set *read_fd, read_fd_data;
-  int nfds, status;
+  int nfds;
   read_fd = &read_fd_data;
   FD_ZERO(read_fd);
   FD_SET(m_parent_socket, read_fd);
 
   nfds = m_parent_socket + 1;
 
-  status = select(nfds, read_fd, (0L), NULL, &select_timeout);
+  (void)select(nfds, read_fd, (0L), NULL, &select_timeout);
 
   if (FD_ISSET(m_parent_socket, read_fd))
     Am_Connection::Handle_Sockets(read_fd);

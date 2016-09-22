@@ -49,10 +49,6 @@ Am_Define_Method(Am_Draw_Method, void, menu_item_draw,
   Am_Value value;
   bool line = false;
 
-  bool menuBarItem = false;
-  if (self.Get_Owner().Is_Instance_Of(Am_Menu_Bar))
-    menuBarItem = true;
-
   // string slot contains a formula which gets the real object based on the
   // value of the COMMAND slot
   value = self.Peek(Am_REAL_STRING_OR_OBJ);

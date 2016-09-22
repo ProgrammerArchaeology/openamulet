@@ -192,13 +192,11 @@ Am_Define_Formula(int, selections_handles_lt)
   int left, top;
   for_obj = self.Get(Am_ITEM);
   sel_group = self.Get_Owner();
-  bool valid;
   if (Am_Object_And_Owners_Valid_And_Visible(for_obj)) {
     left = -HANDLE_SIZE_D2;
     top = -HANDLE_SIZE_D2;
     if (sel_group.Valid())
-      valid =
-          Am_Translate_Coordinates(for_obj, left, top, sel_group, left, top);
+      Am_Translate_Coordinates(for_obj, left, top, sel_group, left, top);
     /* ****
     if (for_obj.Is_Instance_Of (Am_Line)) {
       int x1, x2, obj_left, y1, y2, obj_top;
@@ -220,7 +218,7 @@ Am_Define_Formula(int, selections_handles_lt)
     //std::cout << "<>For " << self << " calculating l,t (" << left << ","
     //	  << top << ") for_obj "
     //	  << for_obj << " owner " << owner
-    //	  << " valid " << valid <<std::endl <<std::flush;
+    //	  << std::endl <<std::flush;
     *****  */
   } else {
     left = 0;
