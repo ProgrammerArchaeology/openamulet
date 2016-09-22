@@ -1587,9 +1587,9 @@ Interactor_Input_Event_Notify(Am_Object event_window, Am_Input_Event *ev)
     if ((!doing_RUN_ALSO_only ||
          (check_RUN_ALSO_list_or_object &&
               // if the run_also object is set then inter must be that object
-              (check_RUN_ALSO_object && inter == run_also_object) ||
+              ((check_RUN_ALSO_object && inter == run_also_object) ||
           // if the run_also list is set then inter must be member of list
-          (check_RUN_ALSO_list && run_also_list.Member(inter))) ||
+          (check_RUN_ALSO_list && run_also_list.Member(inter)))) ||
          //inter itself is a run_also
          (!check_RUN_ALSO_list_or_object && inter.Get(Am_RUN_ALSO).Valid())) &&
         // supports multiple users

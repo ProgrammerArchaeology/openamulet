@@ -21,7 +21,6 @@ INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include)
 
 # ADD_CXX_COMPILER_FLAG(-Wall)
 ADD_CXX_COMPILER_FLAG(-Wno-reorder)
-ADD_CXX_COMPILER_FLAG(-Wno-logical-op-parentheses)
 ADD_CXX_COMPILER_FLAG(-Wno-invalid-source-encoding)
 ADD_CXX_COMPILER_FLAG(-Wno-deprecated)
 

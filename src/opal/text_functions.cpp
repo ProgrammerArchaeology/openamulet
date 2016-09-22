@@ -107,7 +107,7 @@ ml_strlen(const char *p)
     return (strlen(p));
 }
 
-#define FBSJIS(x) (0x81 <= (x) && (x) <= 0x9F || 0xE0 <= (x) && (x) <= 0xFC)
+#define FBSJIS(x) ((0x81 <= (x) && (x) <= 0x9F) || (0xE0 <= (x) && (x) <= 0xFC))
 bool
 ml_two_byte_SHIFT_JIS(const char *p, const char *head)
 {
