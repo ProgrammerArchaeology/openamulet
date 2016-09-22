@@ -291,7 +291,7 @@ int main (int argc, char *argv[])
  
   //Create a feedback rectangle	for when creating new objects
   Am_Object rect_feedback = Am_Rectangle.Create ("rect_feedback")
-    .Set (Am_FILL_STYLE, NULL) //not filled
+    .Set (Am_FILL_STYLE, 0L) //not filled
     .Set (Am_LINE_STYLE, Am_Dotted_Line)
     .Set (Am_VISIBLE, false) 
     ;
