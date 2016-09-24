@@ -175,7 +175,7 @@ Am_Object_Data::~Am_Object_Data()
 #endif
 
   Am_Unregister_Name(this);
-  delete[] const_cast<char *>(name);
+  delete[] name;
 #endif
 
   Note_Reference();
