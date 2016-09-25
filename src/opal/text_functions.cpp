@@ -857,12 +857,13 @@ HashValue(Am_Input_Char key, int size)
 {
   // Look only at the code, button_down, shift, control, meta,
   // click_count fields.  any_modifier is ignored.
-  return ((((((unsigned long)key.code << (1 + (unsigned long)key.shift))
+  int hash = (((((unsigned long)key.code
+             << (1 + (unsigned long)key.shift))
              << (1 + (unsigned long)key.control))
-            << (1 + (unsigned long)key.meta))
-           << (3 + (unsigned long)key.button_down))
-          << (4 + (unsigned long)key.click_count) %
-         size);
+             << (1 + (unsigned long)key.meta))
+             << (3 + (unsigned long)key.button_down))
+             << (4 + (unsigned long)key.click_count);
+  return hash % size;
 }
 
 int
