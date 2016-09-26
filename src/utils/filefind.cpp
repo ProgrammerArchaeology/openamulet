@@ -33,9 +33,9 @@
 // Constructors
 Am_Filename::Am_Filename(const char *in_fname) : filename(in_fname) {}
 
-Am_Filename::Am_Filename(const std::string in_fname) : filename(in_fname) {}
+Am_Filename::Am_Filename(const std::string &in_fname) : filename(in_fname) {}
 
-Am_Filename::Am_Filename(const Am_Filename dir, const Am_Filename name)
+Am_Filename::Am_Filename(const Am_Filename &dir, const Am_Filename &name)
     : filename(name.Is_Relative() ? dir.filename + "/" + name.filename
                                   : name.filename) // UNIX-specific
 {
@@ -48,7 +48,7 @@ Am_Filename::c_str() const
   return filename.c_str();
 }
 
-std::string
+const std::string &
 Am_Filename::name() const
 {
   return filename;
@@ -144,7 +144,7 @@ static const char envvar_separator = ';';
 #else
 static const char envvar_separator = ':';
 #endif
-Am_Data_Locator::Am_Data_Locator(const Am_Filename first_dir,
+Am_Data_Locator::Am_Data_Locator(const Am_Filename &first_dir,
                                  const char *envvarname)
 {
   // Initially: a directory and the content of an environment variable
@@ -170,7 +170,7 @@ Am_Data_Locator::Am_Data_Locator(const Am_Filename first_dir,
 }
 
 bool
-Am_Data_Locator::Find_File(const Am_Filename f, Am_Filename &found) const
+Am_Data_Locator::Find_File(const Am_Filename &f, Am_Filename &found) const
 {
   if (!(f.Is_Relative()) && f.Exists()) // Checks the filename itself
   {
@@ -193,7 +193,7 @@ Am_Data_Locator::Find_File(const Am_Filename f, Am_Filename &found) const
 class search_pred
 {
 public:
-  search_pred(const Am_Filename dir) : dirname(dir) { ; }
+  search_pred(const Am_Filename &dir) : dirname(dir) { ; }
   ~search_pred() { ; }
   bool operator()(const std::pair<Am_Filename, unsigned int> &v) const
   {
@@ -205,7 +205,7 @@ private:
 };
 
 void
-Am_Data_Locator::Add_Search_Directory(const Am_Filename dir)
+Am_Data_Locator::Add_Search_Directory(const Am_Filename &dir)
 {
   if (dir.Is_Directory()) {
     dir_list_t::iterator it =
@@ -223,7 +223,7 @@ Am_Data_Locator::Add_Search_Directory(const Am_Filename dir)
 }
 
 void
-Am_Data_Locator::Remove_Search_Directory(const Am_Filename dir)
+Am_Data_Locator::Remove_Search_Directory(const Am_Filename &dir)
 {
   dir_list_t::iterator it =
       std::find_if(search_list.begin(), search_list.end(), search_pred(dir));

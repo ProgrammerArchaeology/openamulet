@@ -33,11 +33,11 @@ public:
   // CREATORS
   Am_Filename() : filename() {}
   Am_Filename(const char *in_fname);
-  Am_Filename(const std::string in_fname);
-  Am_Filename(const Am_Filename head, const Am_Filename tail);
+  Am_Filename(const std::string &in_fname);
+  Am_Filename(const Am_Filename &head, const Am_Filename &tail);
   // OPERATORS
   const char *c_str() const;
-  std::string name() const;
+  const std::string &name() const;
   bool operator==(const Am_Filename &f) const;
   // ACCESSORS
   bool Is_Directory() const;
@@ -56,13 +56,13 @@ private:
 
 public:
   // CREATORS
-  Am_Data_Locator(const Am_Filename first_dir, const char *envvarname);
+  Am_Data_Locator(const Am_Filename &first_dir, const char *envvarname);
   // OPERATORS
   // ACCESSORS
-  bool Find_File(const Am_Filename f, Am_Filename &found) const;
+  bool Find_File(const Am_Filename &f, Am_Filename &found) const;
   // MANIPULATORS
-  void Add_Search_Directory(const Am_Filename dir);
-  void Remove_Search_Directory(const Am_Filename dir);
+  void Add_Search_Directory(const Am_Filename &dir);
+  void Remove_Search_Directory(const Am_Filename &dir);
   void Print(std::ostream &out) const;
 
 private:
