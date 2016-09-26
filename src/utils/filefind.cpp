@@ -147,7 +147,7 @@ static const char envvar_separator = ':';
 Am_Data_Locator::Am_Data_Locator(const Am_Filename first_dir,
                                  const char *envvarname)
 {
-  // Initially: a directory and the content of an environement variable
+  // Initially: a directory and the content of an environment variable
   Add_Search_Directory(first_dir);
   if (envvarname != (0L)) {
     char *envvarp = getenv(envvarname); // UNIX-specific ?? TODO: Check on Win32
