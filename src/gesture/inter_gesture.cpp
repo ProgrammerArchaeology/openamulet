@@ -141,7 +141,7 @@ static Am_Object gesture_set_impl_command(Am_Object,
                                           Am_Inter_Location /* data */)
 {
   // gesture interactor lacks an implementation command, so nothing to do!
-  return (0L);
+  return nullptr;
 }
 
 static Am_Object

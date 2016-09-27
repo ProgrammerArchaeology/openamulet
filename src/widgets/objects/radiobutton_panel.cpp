@@ -14,7 +14,7 @@
 #include <amulet/impl/opal_constraints.h>
 
 Am_Object Am_Radio_Button_Panel;
-Am_Object Am_Radio_Button_In_Panel = 0;
+Am_Object Am_Radio_Button_In_Panel = nullptr;
 
 static void
 init()

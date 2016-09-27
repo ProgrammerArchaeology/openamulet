@@ -20,7 +20,7 @@
 
 Dyn_Memory_Manager::Dyn_Memory_Manager(unsigned short size,
                                        const char *aPoolName)
-    : data_size(size), free_list(static_cast<Dyn_Link *>(0)),
+    : data_size(size), free_list(static_cast<Dyn_Link *>(nullptr)),
 #ifdef DEBUG
       blk_count(1),
 #endif
@@ -38,7 +38,7 @@ Dyn_Memory_Manager::Dyn_Memory_Manager(unsigned short size,
 
   // allocate the first block
   block = (Dyn_Link *)new char[block_size];
-  block->next = (0L);
+  block->next = nullptr;
 }
 
 Dyn_Memory_Manager::~Dyn_Memory_Manager()
@@ -50,7 +50,7 @@ Dyn_Memory_Manager::~Dyn_Memory_Manager()
 
   // free the allocated blocks
   Dyn_Link *curr = block;
-  while (curr != static_cast<Dyn_Link *>(0)) {
+  while (curr != static_cast<Dyn_Link *>(nullptr)) {
 #ifdef DEBUG
     ++count;
 #endif
@@ -72,8 +72,8 @@ Dyn_Memory_Manager::~Dyn_Memory_Manager()
 #endif
 
   // for safety
-  block = static_cast<Dyn_Link *>(0);
-  free_list = static_cast<Dyn_Link *>(0);
+  block = static_cast<Dyn_Link *>(nullptr);
+  free_list = static_cast<Dyn_Link *>(nullptr);
 }
 
 void *
@@ -82,7 +82,7 @@ Dyn_Memory_Manager::New()
   void *new_ptr;
 
   // Do we have some blocks available in the free-list
-  if (free_list != static_cast<Dyn_Link *>(0)) {
+  if (free_list != static_cast<Dyn_Link *>(nullptr)) {
     // assign it and return
     new_ptr = free_list;
     free_list = free_list->next;

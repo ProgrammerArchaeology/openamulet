@@ -371,7 +371,7 @@ Am_Define_Method(Am_Object_Method, void, menu_bar_inter_do, (Am_Object inter))
     if (value.type == Am_OBJECT) {
       main_item_command = value;
       if (!main_item_command.Is_Instance_Of(Am_Command))
-        main_item_command = 0; //wrong type object
+        main_item_command = nullptr; //wrong type object
     }
   }
 
@@ -382,7 +382,7 @@ Am_Define_Method(Am_Object_Method, void, menu_bar_inter_do, (Am_Object inter))
       if (item_command.Is_Instance_Of(Am_Command))
         parent_command = item_command;
       else
-        item_command = 0; // wrong type object
+        item_command = nullptr; // wrong type object
     }
   }
 

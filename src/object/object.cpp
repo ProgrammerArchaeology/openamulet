@@ -40,7 +40,7 @@ static Am_Value_Type useless = Am_Set_ID_Class(DSTR("constraint"), 0x3000);
 Am_Object_Data Root_Data;
 Am_Object Am_Root_Object(&Root_Data);
 
-Am_Slot_Data Missing_Slot_Data((0L), Am_NO_SLOT, Am_MISSING_SLOT);
+Am_Slot_Data Missing_Slot_Data((nullptr), Am_NO_SLOT, Am_MISSING_SLOT);
 Am_Slot Am_MISSING_SLOT_SLOT(&Missing_Slot_Data);
 Am_Value Missing_Slot_Value = Am_MISSING_SLOT_SLOT.Get();
 
@@ -52,11 +52,11 @@ Am_Object Am_No_Object;
 
 #ifdef DEBUG
 
-Am_Slot_Set_Trace_Proc *Am_Global_Slot_Trace_Proc = (0L);
+Am_Slot_Set_Trace_Proc *Am_Global_Slot_Trace_Proc = nullptr;
 Am_Set_Reason Global_Reason_Why_Set = Am_TRACE_NOT_SPECIFIED;
 
-Am_Object_Create_Trace_Proc *Am_Global_Object_Trace_Proc = (0L);
-Am_Method_Get_Trace_Proc *Am_Global_Method_Get_Proc = (0L);
+Am_Object_Create_Trace_Proc *Am_Global_Object_Trace_Proc = nullptr;
+Am_Method_Get_Trace_Proc *Am_Global_Method_Get_Proc = nullptr;
 
 void
 Global_Call_Slot_Trace(const Am_Slot &slot)
@@ -128,7 +128,7 @@ Am_Demon_Queue::Delete(const Am_Object &object)
 {
   if (!data->active)
     return;
-  QItem *prev = (0L);
+  QItem *prev = nullptr;
   QItem *curr = data->head;
   QItem *next;
   Am_Wrapper *obj_data = object;
@@ -153,7 +153,7 @@ Am_Demon_Queue::Delete(const Am_Slot &slot)
 {
   if (!data->active)
     return;
-  QItem *prev = (0L);
+  QItem *prev = nullptr;
   QItem *curr = data->head;
   QItem *next;
   Am_Slot_Data *slot_data = slot;
@@ -192,9 +192,9 @@ Am_Demon_Queue::Invoke()
       data->head = data->head->next;
       delete curr;
     } else
-      curr->param = (0L);
+      curr->param = nullptr;
     if (!data->head)
-      data->tail = (0L);
+      data->tail = nullptr;
   }
   Am_POP_EMPTY_CC() Release_Invoke();
 }
@@ -231,7 +231,7 @@ Am_Demon_Queue::Reset()
     delete curr;
     curr = next;
   }
-  data->head = data->tail = (0L);
+  data->head = data->tail = nullptr;
   data->invoke_stack = 0;
 }
 
@@ -264,9 +264,9 @@ Am_Validate_Demon(Am_Slot slot)
 }
 
 Am_Demon_Set_Data::Am_Demon_Set_Data()
-    : refs(1), create_demon(0L), copy_demon(0L), destroy_demon(0L),
-      change_owner_demon(0L), add_part_demon(0L), change_length(0),
-      invalid_length(1), max_type_check(0), type_check_list(0L)
+    : refs(1), create_demon(nullptr), copy_demon(nullptr), destroy_demon(nullptr),
+      change_owner_demon(nullptr), add_part_demon(nullptr), change_length(0),
+      invalid_length(1), max_type_check(0), type_check_list(nullptr)
 {
   invalid_demons[0].demon = Am_Validate_Demon;
   invalid_demons[0].protocol = Am_DEMON_PER_SLOT;
@@ -284,7 +284,7 @@ Am_Demon_Set::Get_Object_Demon(Am_Object_Demon_Type type) const
   case Am_DESTROY_OBJ:
     return data->destroy_demon;
   }
-  return (0L);
+  return nullptr;
 }
 
 void
@@ -314,7 +314,7 @@ Am_Demon_Set::Get_Slot_Demon(unsigned short which_bit) const
   for (i = 0; i < data->change_length; ++i)
     if (data->change_demons[i].which_bit == which_bit)
       return data->change_demons[i].demon;
-  return (0L);
+  return nullptr;
 }
 
 void
@@ -357,7 +357,7 @@ Am_Demon_Set::Get_Part_Demon(Am_Part_Demon_Type type) const
   case Am_CHANGE_OWNER:
     return data->change_owner_demon;
   }
-  return (0L);
+  return nullptr;
 }
 
 void
@@ -379,7 +379,7 @@ Am_Demon_Set::Get_Type_Check(unsigned short type) const
   if (type < data->max_type_check)
     return data->type_check_list[type].func;
   else
-    return (0L);
+    return nullptr;
 }
 
 void
@@ -391,7 +391,7 @@ Am_Demon_Set::Set_Type_Check(unsigned short type, Am_Type_Check *demon)
     for (i = 0; i < data->max_type_check; ++i)
       new_list[i] = data->type_check_list[i];
     for (i = data->max_type_check + 1; i < type; ++i)
-      new_list[i].func = (0L);
+      new_list[i].func = nullptr;
     if (data->type_check_list)
       delete data->type_check_list;
     data->type_check_list = new_list;
@@ -453,7 +453,7 @@ Am_Instance_Iterator::Length()
     Am_Object_Data *i;
     unsigned short count = 0;
     Am_Object_Data *proto_data = Am_Object_Data::Narrow(prototype);
-    for (i = proto_data->first_instance; i != (0L); i = i->next_instance)
+    for (i = proto_data->first_instance; i != nullptr; i = i->next_instance)
       ++count;
     proto_data->Release();
     return count;
@@ -509,7 +509,7 @@ public:
   Am_Slot_Iterator_Data()
   {
     curr_pos = 0;
-    curr_obj = (0L);
+    curr_obj = nullptr;
   }
   ~Am_Slot_Iterator_Data()
   {
@@ -562,7 +562,7 @@ Am_Slot_Iterator &
 Am_Slot_Iterator::operator=(Am_Object object)
 {
   data->curr_pos = 0;
-  data->curr_obj = (0L);
+  data->curr_obj = nullptr;
   context = object;
   return *this;
 }
@@ -645,7 +645,7 @@ Am_Part_Iterator::Length()
     Am_Object_Data *i;
     unsigned short count = 0;
     Am_Object_Data *owner_data = Am_Object_Data::Narrow(owner);
-    for (i = owner_data->first_part; i != (0L); i = i->next_part)
+    for (i = owner_data->first_part; i != nullptr; i = i->next_part)
       ++count;
     owner_data->Release();
     return count;
@@ -766,10 +766,10 @@ public:
 Dyn_Memory_Manager CItem::memory(sizeof(CItem), "ConstraintItem");
 #endif
 
-Am_Constraint_Iterator::Am_Constraint_Iterator() : current(0L) { ; }
+Am_Constraint_Iterator::Am_Constraint_Iterator() : current(nullptr) { ; }
 
 Am_Constraint_Iterator::Am_Constraint_Iterator(const Am_Slot &slot)
-    : context(slot), current(0L)
+    : context(slot), current(nullptr)
 {
   ;
 }
@@ -778,7 +778,7 @@ Am_Constraint_Iterator &
 Am_Constraint_Iterator::operator=(const Am_Slot &slot)
 {
   context = slot;
-  current = (0L);
+  current = nullptr;
   return *this;
 }
 
@@ -826,7 +826,7 @@ Am_Constraint_Iterator::Get() const
   if (current)
     return ((CItem *)current)->value;
   else
-    return (0L);
+    return nullptr;
 }
 
 Am_Constraint_Tag
@@ -835,10 +835,10 @@ Am_Constraint_Iterator::Get_Tag() const
   return (Am_Constraint_Tag)current;
 }
 
-Am_Dependency_Iterator::Am_Dependency_Iterator() : current(0L) { ; }
+Am_Dependency_Iterator::Am_Dependency_Iterator() : current(nullptr) { ; }
 
 Am_Dependency_Iterator::Am_Dependency_Iterator(const Am_Slot &slot)
-    : context(slot), current(0L)
+    : context(slot), current(nullptr)
 {
   ;
 }
@@ -847,7 +847,7 @@ Am_Dependency_Iterator &
 Am_Dependency_Iterator::operator=(const Am_Slot &slot)
 {
   context = slot;
-  current = (0L);
+  current = nullptr;
   return *this;
 }
 
@@ -895,7 +895,7 @@ Am_Dependency_Iterator::Get() const
   if (current)
     return ((CItem *)current)->value;
   else
-    return (0L);
+    return nullptr;
 }
 
 Am_Constraint_Tag
@@ -933,7 +933,7 @@ Am_Object::~Am_Object()
       Am_ERROR("** Tried to delete object twice." << *this);
     data->Release();
   }
-  data = (0L);
+  data = nullptr;
 }
 
 Am_Object &
@@ -986,7 +986,7 @@ Am_Object::operator Am_Wrapper *() const
 bool
 Am_Object::Valid() const
 {
-  return (data != (0L)) && (data->data.data != NULL);
+  return (data != nullptr) && (data->data.data != nullptr);
 }
 
 bool
@@ -1160,7 +1160,7 @@ Am_Object::Get(Am_Slot_Key key, Am_Slot_Flags flags) const
 
   if (Am_Type_Class(value.type) == Am_ERROR_VALUE_TYPE)
     return cc->Raise_Get_Exception(value, (const Am_Object_Advanced &)*this,
-                                   key, flags, (0L));
+                                   key, flags, nullptr);
 #ifdef DEBUG
   Am_Value v = value; // type-check error in VC++
   Global_Check_Get_Method_Trace(*this, key, v);
@@ -1178,7 +1178,7 @@ Am_Object::To_String() const
   if (data)
     return data->To_String();
   else
-    return (0L);
+    return nullptr;
 }
 
 Am_Value
@@ -1246,7 +1246,7 @@ Am_Object::Get_Object(Am_Slot_Key key, Am_Slot_Flags flags) const
 
   if (v.type == Am_OBJECT)
     return v;
-  else if (v.value.wrapper_value == 0)
+  else if (v.value.wrapper_value == nullptr)
     return Am_No_Object;
   else
     slot_error("Slot does not contain a value of type Object", *this, key);
@@ -1408,7 +1408,7 @@ Am_Object &
 Am_Object::Add_Part(Am_Object new_part, bool inherit, long aPosition)
 {
   // is this a valid object?
-  if (data == static_cast<Am_Object_Data *>(0)) {
+  if (data == static_cast<Am_Object_Data *>(nullptr)) {
     Am_ERROR("Add_Part called on a (0L) object" << *this);
   }
 
@@ -1419,7 +1419,7 @@ Am_Object::Add_Part(Am_Object new_part, bool inherit, long aPosition)
 
     // does this object has an other owner?
     if (added_part->owner_slot.value.wrapper_value !=
-        static_cast<Am_Wrapper *>(0)) {
+        static_cast<Am_Wrapper *>(nullptr)) {
       std::cerr << "** Attempted to add object, " << new_part
                 << ", to another owner " << *this << "." << std::endl;
       std::cerr << "** Object's owner is " << new_part.Get_Owner() << "."
@@ -1439,7 +1439,7 @@ Am_Object::Add_Part(Am_Object new_part, bool inherit, long aPosition)
       Am_Object_Data *anchor = data->first_part;
 
       // move to the insert-position, check if the list is long enough
-      for (aPosition--; (aPosition != 0) && (anchor->next_part != (0L));
+      for (aPosition--; (aPosition != 0) && (anchor->next_part != nullptr);
            --aPosition) {
         // ok, get next part
         anchor = anchor->next_part;
@@ -1476,10 +1476,10 @@ Am_Object::Add_Part(Am_Object new_part, bool inherit, long aPosition)
 
     Am_Value oldval(Am_No_Object), newval(data);
 
-    added_part->owner_slot.dependencies.Change(&added_part->part_slot, (0L),
+    added_part->owner_slot.dependencies.Change(&added_part->part_slot, nullptr,
                                                oldval, newval);
     newval = new_part;
-    added_part->part_slot.dependencies.Change(&added_part->part_slot, (0L),
+    added_part->part_slot.dependencies.Change(&added_part->part_slot, nullptr,
                                               oldval, newval);
   }
 
@@ -1552,11 +1552,11 @@ Am_Object::Add_Part(Am_Slot_Key key, Am_Object new_part,
       prev_owner->Note_Reference();
     data->Note_Reference();
     Am_Value oldval(prev_owner), newval(data);
-    added_part->owner_slot.dependencies.Change(&added_part->part_slot, (0L),
+    added_part->owner_slot.dependencies.Change(&added_part->part_slot, nullptr,
                                                oldval, newval);
     oldval = Am_No_Object;
     newval = new_part;
-    added_part->part_slot.dependencies.Change(&added_part->part_slot, (0L),
+    added_part->part_slot.dependencies.Change(&added_part->part_slot, nullptr,
                                               oldval, newval);
     if (prev_part.Valid())
       prev_part.Destroy();
@@ -1599,10 +1599,10 @@ Am_Object::Remove_Slot(Am_Slot_Key key)
   unsigned i;
   data->find_slot_and_position(key, slot, i);
   if (slot) {
-    slot->dependencies.Invalidate(slot, (0L), *slot);
+    slot->dependencies.Invalidate(slot, nullptr, *slot);
     data->data.Delete(i);
     if (!(slot->flags & BIT_IS_PART)) {
-      Am_Slot_Data *slot_proto = (0L);
+      Am_Slot_Data *slot_proto = nullptr;
       if (data->prototype)
         slot_proto = data->prototype->find_slot(key);
       if (slot_proto) {
@@ -1614,7 +1614,7 @@ Am_Object::Remove_Slot(Am_Slot_Key key)
           data->enqueue_change(new_slot);
         }
       } else
-        data->delete_slot(slot, (0L));
+        data->delete_slot(slot, nullptr);
     }
   }
   return *this;
@@ -1651,11 +1651,11 @@ Am_Object::Remove_From_Owner()
     if (owner)
       owner->Note_Reference();
     Am_Value oldval(owner), newval(Am_No_Object);
-    data->owner_slot.dependencies.Change(&data->part_slot, (0L), oldval,
+    data->owner_slot.dependencies.Change(&data->part_slot, nullptr, oldval,
                                          newval);
     data->Note_Reference();
     oldval = data;
-    data->part_slot.dependencies.Change(&data->part_slot, (0L), oldval, newval);
+    data->part_slot.dependencies.Change(&data->part_slot, nullptr, oldval, newval);
     data->demon_queue.Prevent_Invoke();
     Am_PUSH_EMPTY_CC() if ((data->demons_active & DEMONS_ACTIVE) &&
                            data->demon_set->change_owner_demon)
@@ -1688,7 +1688,7 @@ Am_Object::Remove_Constraint(Am_Slot_Key key)
       constraint = iter.Get();
       tag = iter.Get_Tag();
       iter.Next();
-      if (constraint->Get_Prototype() == (0L)) {
+      if (constraint->Get_Prototype() == nullptr) {
         if (slot->rule == Am_INHERIT)
           data->prop_remove_constraint(key, constraint);
         Am_Slot(slot).Remove_Constraint(tag);
@@ -1714,13 +1714,13 @@ Am_Object::Destroy()
     Am_Object_Data *current;
     Am_Object_Data *next;
 
-    for (current = data->first_instance; current != (0L);
+    for (current = data->first_instance; current != nullptr;
          current = current->next_instance)
       current->Note_Reference(); // 1
 
     current = data->first_instance;
-    data->first_instance = (0L);
-    for (; current != (0L); current = next) {
+    data->first_instance = nullptr;
+    for (; current != nullptr; current = next) {
       next = current->next_instance;
       current->Note_Reference();    // 2
       Am_Object(current).Destroy(); // 2
@@ -1732,7 +1732,7 @@ Am_Object::Destroy()
   }
 
   data->Release();
-  data = (0L);
+  data = nullptr;
 }
 
 //////////////////////////////////////////////////////////////////
@@ -1853,7 +1853,7 @@ Am_Object::Narrow(Am_Wrapper *in_data)
     else
       Am_DERR("** Tried to set an Am_Object with a non Am_Object wrapper.");
   }
-  return (Am_Object_Data *)(0L);
+  return (Am_Object_Data *)nullptr;
 }
 
 void
@@ -1869,7 +1869,7 @@ Am_Object::Println() const
 
 Am_Object_Advanced::Am_Object_Advanced()
 {
-  data = 0L; // NB: No field named data
+  data = nullptr; // NB: No field named data
 }
 
 Am_Object_Advanced::Am_Object_Advanced(Am_Object_Data *in_data)
@@ -1924,7 +1924,7 @@ Am_Object_Advanced::Get_Slot(Am_Slot_Key key) const
   Am_Slot_Data *new_slot = new Am_Slot_Data(data, key);
   new_slot->flags = BIT_INHERITS | BIT_IS_INHERITED;
   new_slot->type = Am_MISSING_SLOT;
-  new_slot->value.wrapper_value = (0L);
+  new_slot->value.wrapper_value = nullptr;
   data->data.Add((char *)&new_slot);
   return new_slot;
 }
@@ -1955,7 +1955,7 @@ Am_Object_Advanced::Get_Slot_Locale(Am_Slot_Key key) const
     slot->context->Note_Reference();
     return slot->context;
   } else
-    return Am_Object_Advanced((0L));
+    return Am_Object_Advanced((nullptr));
 }
 
 Am_Demon_Set
@@ -2053,9 +2053,9 @@ Am_Object_Advanced::Disinherit_Slot(Am_Slot_Key key)
         slot->flags &= ~BIT_INHERITS;
         if (slot->type != Am_MISSING_SLOT) {
           if (slot->flags & BIT_IS_INHERITED)
-            if (data->propagate_change(key, (0L), *slot, Missing_Slot_Value))
+            if (data->propagate_change(key, nullptr, *slot, Missing_Slot_Value))
               slot->flags &= ~BIT_IS_INHERITED;
-          slot->dependencies.Change(slot, (0L), *slot, Missing_Slot_Value);
+          slot->dependencies.Change(slot, nullptr, *slot, Missing_Slot_Value);
           data->enqueue_change(slot);
           *(Am_Value *)slot = Missing_Slot_Value;
         }
@@ -2068,7 +2068,7 @@ Am_Object_Advanced::Disinherit_Slot(Am_Slot_Key key)
         constraint = iter.Get();
         tag = iter.Get_Tag();
         iter.Next();
-        if (constraint->Get_Prototype() != (0L)) {
+        if (constraint->Get_Prototype() != nullptr) {
           if (slot->rule == Am_INHERIT)
             data->prop_remove_constraint(key, constraint);
           Am_Slot(slot).Remove_Constraint(tag);
@@ -2079,7 +2079,7 @@ Am_Object_Advanced::Disinherit_Slot(Am_Slot_Key key)
       *(Am_Value *)new_slot = Missing_Slot_Value;
       data->data.Add((char *)&new_slot);
       if (slot->flags & BIT_IS_INHERITED &&
-          !data->propagate_change(key, (0L), *new_slot, Missing_Slot_Value))
+          !data->propagate_change(key, nullptr, *new_slot, Missing_Slot_Value))
         new_slot->flags |= BIT_IS_INHERITED;
     }
   }
@@ -2112,13 +2112,13 @@ Am_Object_Advanced::Print_Name_And_Data(std::ostream &os) const
   os << " (" << (void *)data << ")";
 }
 
-am_CList::am_CList() : head(0L) { ; }
+am_CList::am_CList() : head(nullptr) { ; }
 
 CItem *
 am_CList::Add_Dep(Am_Constraint *item)
 {
   CItem *new_item = new CItem;
-  new_item->prev = (0L);
+  new_item->prev = nullptr;
   new_item->next = head;
   new_item->value = item;
   if (head)
@@ -2131,7 +2131,7 @@ CItem *
 am_CList::Add_Con(Am_Constraint *item)
 {
   CItem *new_item = new CItem;
-  new_item->next_invalid = (0L);
+  new_item->next_invalid = nullptr;
   new_item->next = head;
   new_item->value = item;
   head = new_item;
@@ -2150,9 +2150,9 @@ am_CList::Remove_Dep(CItem *item)
   if (next)
     next->prev = prev;
   Am_Constraint *value = item->value;
-  item->prev = (0L);
-  item->next = (0L);
-  item->value = (0L);
+  item->prev = nullptr;
+  item->next = nullptr;
+  item->value = nullptr;
   delete item;
   return value;
 }
@@ -2160,7 +2160,7 @@ am_CList::Remove_Dep(CItem *item)
 Am_Constraint *
 am_CList::Remove_Con(CItem *item)
 {
-  CItem *prev = (0L);
+  CItem *prev = nullptr;
   CItem *curr = head;
   while (curr) {
     if (item == curr) {
@@ -2173,9 +2173,9 @@ am_CList::Remove_Con(CItem *item)
     curr = curr->next;
   }
   Am_Constraint *value = item->value;
-  item->prev = (0L);
-  item->next = (0L);
-  item->value = (0L);
+  item->prev = nullptr;
+  item->next = nullptr;
+  item->value = nullptr;
   delete item;
   return value;
 }
@@ -2208,7 +2208,7 @@ am_CList::Add_Update(CItem *item)
 void
 am_CList::Remove_Inv(CItem *item)
 {
-  CItem *prev = (0L);
+  CItem *prev = nullptr;
   CItem *curr = head;
   while (curr) {
     if (item == curr) {
@@ -2232,7 +2232,7 @@ am_CList::Find(Am_Constraint *item)
     }
     curr = curr->next;
   }
-  return (0L);
+  return nullptr;
 }
 
 CItem *
@@ -2253,7 +2253,7 @@ am_CList::Validate(const Am_Slot &validating_slot)
   while (head) {
     curr = head;
     head = head->next_invalid;
-    curr->next_invalid = (0L);
+    curr->next_invalid = nullptr;
     bool changed = false;
     if (curr->value->Get(validating_slot, value, changed) && changed)
       value.type = Am_MISSING_SLOT;
@@ -2265,7 +2265,7 @@ am_CList::Invalidate(const Am_Slot &slot_invalidated,
                      Am_Constraint *invalidating_constraint,
                      const Am_Value &value)
 {
-  for (CItem *current = head; current != (0L); current = current->next)
+  for (CItem *current = head; current != nullptr; current = current->next)
     current->value->Invalidated(slot_invalidated, invalidating_constraint,
                                 value);
 }
@@ -2275,7 +2275,7 @@ am_CList::Change(const Am_Slot &slot_invalidated,
                  Am_Constraint *changing_constraint,
                  const Am_Value &prewrapper_value, const Am_Value &new_value)
 {
-  for (CItem *current = head; current != (0L); current = current->next)
+  for (CItem *current = head; current != nullptr; current = current->next)
     current->value->Changed(slot_invalidated, changing_constraint,
                             prewrapper_value, new_value);
 }
@@ -2284,14 +2284,14 @@ void
 am_CList::Change(const Am_Slot &slot_invalidated,
                  Am_Constraint *changing_constraint)
 {
-  for (CItem *current = head; current != (0L); current = current->next)
+  for (CItem *current = head; current != nullptr; current = current->next)
     current->value->Changed(slot_invalidated, changing_constraint);
 }
 
 void
 am_CList::Slot_Event(Am_Object_Context *oc, const Am_Slot &slot)
 {
-  for (CItem *current = head; current != (0L); current = current->next)
+  for (CItem *current = head; current != nullptr; current = current->next)
     current->value->Slot_Event(oc, slot);
 }
 
@@ -2300,7 +2300,7 @@ am_CList::Remove_Any_Overridden_By(const Am_Slot &slot,
                                    Am_Constraint *competing_constraint)
 {
   CItem *next;
-  for (CItem *current = head; current != (0L); current = next) {
+  for (CItem *current = head; current != nullptr; current = next) {
     next = current->next;
     if (current->value->Is_Overridden_By(slot, competing_constraint))
       // remove it
@@ -2313,19 +2313,19 @@ am_CList::destroy(const Am_Slot &slot, bool constraint)
 {
   CItem *current = head;
   CItem *deleted;
-  while (current != (0L)) {
+  while (current != nullptr) {
     deleted = current;
     current = current->next;
-    deleted->next = (0L);
+    deleted->next = nullptr;
     if (constraint)
       deleted->value->Constraint_Removed(slot);
     else
       deleted->value->Dependency_Removed(slot);
-    deleted->prev = (0L);
-    deleted->value = (0L);
+    deleted->prev = nullptr;
+    deleted->value = nullptr;
     delete deleted;
   }
-  head = (0L);
+  head = nullptr;
 }
 
 #ifdef MEMORY
@@ -2339,7 +2339,7 @@ Am_Slot_Data::Am_Slot_Data(Am_Object_Data *object, Am_Slot_Key in_key)
       type_check(0)
 {
   type = Am_MISSING_SLOT; // NB: No field named type
-  value.voidptr_value = (0L);
+  value.voidptr_value = nullptr;
 }
 
 Am_Slot_Data::Am_Slot_Data(Am_Object_Data *object, Am_Slot_Key in_key,
@@ -2349,7 +2349,7 @@ Am_Slot_Data::Am_Slot_Data(Am_Object_Data *object, Am_Slot_Key in_key,
       rule(object ? object->default_rule : Am_LOCAL), queued_demons(0),
       type_check(0)
 {
-  value.voidptr_value = (0L);
+  value.voidptr_value = nullptr;
   type = in_type;
 }
 
@@ -2418,7 +2418,7 @@ Am_Slot_Data::Destroy()
 #endif
   if (queued_demons && context)
     context->demon_queue.Delete(this);
-  context = (0L);
+  context = nullptr;
   if (!(flags & BIT_VALIDATING_NOW)) {
     dependencies.destroy(this, false);
     constraints.destroy(this, true);
@@ -2635,7 +2635,7 @@ Am_Slot::Add_Constraint(Am_Constraint *new_constraint) const
   new_constraint = new_constraint->Constraint_Added(*this);
   if (!new_constraint)
     // constraint didn't want to be added
-    return (Am_Constraint_Tag)0;
+    return (Am_Constraint_Tag)nullptr;
 
   CItem *tag = data->constraints.Add_Con(new_constraint);
   data->invalid_constraints.Add_Inv(tag);
@@ -2660,7 +2660,7 @@ Am_Slot::Add_Dependency(Am_Constraint *new_dependency) const
   new_dependency = new_dependency->Dependency_Added(*this);
   if (!new_dependency)
     // didn't want to be added
-    return (Am_Constraint_Tag)0;
+    return (Am_Constraint_Tag)nullptr;
 
   CItem *tag = data->dependencies.Add_Dep(new_dependency);
   if (!(data->flags & BIT_INHERITS)) {
@@ -2729,13 +2729,13 @@ Am_Slot::Set_Inherit_Rule(Am_Inherit_Rule in_rule)
       if (in_rule == Am_COPY)
         data->context->convert_temporaries(data->key);
       Am_Value none;
-      data->context->propagate_change(data->key, (0L), none, *data);
+      data->context->propagate_change(data->key, nullptr, none, *data);
     } else if (in_rule == Am_STATIC)
       data->context->remove_temporaries(data->key);
     break;
   case Am_STATIC:
     if (in_rule != Am_STATIC) {
-      data->dependencies.Invalidate(*this, (0L), *data);
+      data->dependencies.Invalidate(*this, nullptr, *data);
       data->dependencies.destroy(*this, false);
     }
     break;
@@ -2837,7 +2837,7 @@ public:
   void Note_Changed(const Am_Object_Advanced &object, Am_Slot_Key key)
   {
     Am_Slot slot = object.Get_Data()->find_slot(key);
-    slot.Change((0L));
+    slot.Change((nullptr));
   }
 
   void Note_Unchanged(const Am_Object_Advanced &, Am_Slot_Key) {}
@@ -2876,7 +2876,7 @@ public:
     }
   }
 
-  Am_Wrapper *Get_Data() { return (0L); }
+  Am_Wrapper *Get_Data() { return nullptr; }
 
   void Set_Data(Am_Wrapper *) {}
 };
@@ -2994,7 +2994,7 @@ Am_Explicit_Set::Slot_Event(Am_Object_Context * /*oc*/,
 Am_Constraint *
 Am_Explicit_Set::Get_Prototype()
 {
-  return (0L);
+  return nullptr;
 }
 
 bool
@@ -3006,13 +3006,13 @@ Am_Explicit_Set::Is_Instance_Of(Am_Constraint * /* proto */)
 Am_Constraint *
 Am_Explicit_Set::Constraint_Added(const Am_Slot & /* adding_slot */)
 {
-  return (0L);
+  return nullptr;
 }
 
 Am_Constraint *
 Am_Explicit_Set::Dependency_Added(const Am_Slot & /* adding_slot */)
 {
-  return (0L);
+  return nullptr;
 }
 
 void
@@ -3036,14 +3036,14 @@ Am_Constraint *
 Am_Explicit_Set::Create(const Am_Slot & /* current_slot */,
                         const Am_Slot & /* new_slot */)
 {
-  return 0;
+  return nullptr;
 }
 
 Am_Constraint *
 Am_Explicit_Set::Copy(const Am_Slot & /* current_slot */,
                       const Am_Slot & /* new_slot */)
 {
-  return 0;
+  return nullptr;
 }
 
 Am_ID_Tag
@@ -3072,11 +3072,11 @@ Am_Explicit_Set::Narrow(Am_Constraint *formula)
   else {
     Am_Error(
         "Constraint narrowed to Explicit_Set type is not an Explicit_Set.");
-    return (0L);
+    return nullptr;
   }
 }
 
-void (*Am_Object_Debugger)(const Am_Object &obj, Am_Slot_Key slot) = (0L);
+void (*Am_Object_Debugger)(const Am_Object &obj, Am_Slot_Key slot) = nullptr;
 
 void
 Am_Error(const Am_Object &obj, Am_Slot_Key slot)

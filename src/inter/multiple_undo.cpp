@@ -123,7 +123,7 @@ Am_Define_Object_Formula(multiple_undo_allowed_form)
   Am_Value_List command_list;
   command_list = self.Get(Am_COMMAND);
   if (command_list.Empty())
-    return 0;
+    return nullptr;
   else {
     command_list.Start();
     return command_list.Get();

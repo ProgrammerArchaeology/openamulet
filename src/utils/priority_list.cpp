@@ -22,13 +22,13 @@ Am_Priority_List::insert_item_at_right_place(Am_Priority_List_Item *item)
   if (!p) { // list is empty
     head = item;
     tail = item;
-    item->next = 0;
-    item->prev = 0;
+    item->next = nullptr;
+    item->prev = nullptr;
   } else { // search for place
     float my_main_priority = item->main_priority;
     int my_second_priority = item->second_priority;
     int my_third_priority = item->third_priority;
-    for (; p != 0; p = p->next) {
+    for (; p != nullptr; p = p->next) {
       if (p->main_priority < my_main_priority ||
           (p->main_priority == my_main_priority &&
            (p->second_priority < my_second_priority ||
@@ -40,7 +40,7 @@ Am_Priority_List::insert_item_at_right_place(Am_Priority_List_Item *item)
           item->prev = p->prev;
         } else { // p is the first in list
           head = item;
-          item->prev = 0;
+          item->prev = nullptr;
         }
         item->next = p;
         p->prev = item;
@@ -48,7 +48,7 @@ Am_Priority_List::insert_item_at_right_place(Am_Priority_List_Item *item)
       }
     } // end for
     //if get here, then item should go last in the list
-    item->next = 0;
+    item->next = nullptr;
     item->prev = tail;
     tail->next = item;
     tail = item;
@@ -60,9 +60,9 @@ Am_Priority_List::Create()
 {
   Am_Priority_List *l = new Am_Priority_List;
   l->number = 0;
-  l->head = 0;
-  l->tail = 0;
-  l->current = 0;
+  l->head = nullptr;
+  l->tail = nullptr;
+  l->current = nullptr;
   l->refs = 1;
   return l;
 }
@@ -94,7 +94,7 @@ bool
 Am_Priority_List::Member(Am_Object obj)
 {
   Am_Priority_List_Item *old_current = current;
-  for (; current != 0; current = current->next) {
+  for (; current != nullptr; current = current->next) {
     if (current->obj == obj)
       return true;
   }
@@ -126,11 +126,11 @@ Am_Priority_List_Item *
 Am_Priority_List::take_out_obj(Am_Object obj)
 {
   Am_Priority_List_Item *p = head;
-  for (; p != 0; p = p->next) {
+  for (; p != nullptr; p = p->next) {
     if (p->obj == obj)
       return this->take_out_item(p);
   }
-  return 0;
+  return nullptr;
 }
 
 void
@@ -169,7 +169,7 @@ Am_Priority_List::Get()
     return current->obj;
   else {
     Am_Error("Call to Get on priority list but no current item");
-    return (0L);
+    return nullptr;
   }
 }
 
@@ -184,7 +184,7 @@ Am_Priority_List::Get(float &main_priority, int &second_priority,
     return current->obj;
   } else {
     Am_Error("Call to Get on priority list but no current item");
-    return (0L);
+    return nullptr;
   }
 }
 
@@ -217,9 +217,9 @@ Am_Priority_List::Make_Empty()
     p = p->next;
     delete item;
   }
-  head = 0;
-  tail = 0;
-  current = 0;
+  head = nullptr;
+  tail = nullptr;
+  current = nullptr;
 }
 
 void
@@ -256,14 +256,14 @@ Am_Priority_List::Next()
 bool
 Am_Priority_List::First()
 {
-  return (current == 0);
+  return (current == nullptr);
 }
 
 // Returns true when current element passes the last element.
 bool
 Am_Priority_List::Last()
 {
-  return (current == 0);
+  return (current == nullptr);
 }
 
 //other_list may be null

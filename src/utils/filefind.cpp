@@ -149,9 +149,9 @@ Am_Data_Locator::Am_Data_Locator(const Am_Filename &first_dir,
 {
   // Initially: a directory and the content of an environment variable
   Add_Search_Directory(first_dir);
-  if (envvarname != (0L)) {
+  if (envvarname != nullptr) {
     char *envvarp = getenv(envvarname); // UNIX-specific ?? TODO: Check on Win32
-    if (envvarp != (0L)) {
+    if (envvarp != nullptr) {
       const std::string envvar(envvarp);
       std::string::size_type pos = 0;
       bool loop = true;

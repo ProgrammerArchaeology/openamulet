@@ -14,7 +14,7 @@
 #include <amulet/impl/opal_constraints.h>
 
 Am_Object Am_Menu;
-Am_Object Am_Item_In_Menu = 0;
+Am_Object Am_Item_In_Menu = nullptr;
 
 /******************************************************************************
  * MENUS

@@ -94,7 +94,7 @@ Am_Value_List Am_Modal_Windows;
 //exported values
 
 // The actual interactor objects
-Am_Object Am_Interactor = 0; //base of the Interactor hierarchy
+Am_Object Am_Interactor = nullptr; //base of the Interactor hierarchy
 
 /*
 Am_Object Am_Rotate_Interactor = 0;  // rotating
@@ -795,7 +795,7 @@ public:
   Deferred_Event_Holder *next;
 };
 
-Deferred_Event_Holder *Am_List_Of_Deferred_Events = (0L);
+Deferred_Event_Holder *Am_List_Of_Deferred_Events = nullptr;
 
 static void
 set_inter_deferred(Am_Object &inter, Am_Input_Event *ev,
@@ -935,7 +935,7 @@ check_deferred_events(Am_Input_Event *ev, Am_Object &event_window)
 {
   if (!Am_List_Of_Deferred_Events)
     return false; //quick exit for normal case
-  Deferred_Event_Holder *prev = (0L);
+  Deferred_Event_Holder *prev = nullptr;
   Deferred_Event_Holder *next = Am_List_Of_Deferred_Events;
   Deferred_Event_Holder *holder;
   bool start, abort;
@@ -1530,7 +1530,7 @@ Interactor_Input_Event_Notify(Am_Object event_window, Am_Input_Event *ev)
     Am_INTER_TRACE_PRINT(Am_INTER_TRACE_PRIORITIES,
                          "----NO Interactors for window " << event_window);
     // no interactor list, still have to check global ones so don't exit
-    inter_list = (0L);
+    inter_list = nullptr;
   }
 
   // process all the interactors in inter_list in priority order
@@ -1708,7 +1708,7 @@ Am_Abort_Interactor(Am_Object inter, bool update_now)
   ev.input_char = inter.Get(Am_ABORT_WHEN);
   ev.x = 0;
   ev.y = 0;
-  ev.draw = (0L);
+  ev.draw = nullptr;
   ev.time_stamp = 0;
   Am_Inter_Internal_Method method;
   method = inter.Get(Am_INTER_ABORT_METHOD);
@@ -1760,7 +1760,7 @@ Am_Stop_Interactor(Am_Object inter, Am_Object stop_obj, Am_Input_Char stop_char,
   ev.input_char = stop_char;
   ev.x = stop_x;
   ev.y = stop_y;
-  ev.draw = (0L);
+  ev.draw = nullptr;
   ev.time_stamp = 0;
   Am_Inter_Internal_Method method;
   method = inter.Get(Am_INTER_STOP_METHOD);
@@ -1810,7 +1810,7 @@ Am_Start_Interactor(Am_Object inter, Am_Object start_obj,
   ev.input_char = start_char;
   ev.x = start_x;
   ev.y = start_y;
-  ev.draw = (0L);
+  ev.draw = nullptr;
   ev.time_stamp = 0;
   Am_Inter_Internal_Method method;
   method = inter.Get(Am_INTER_START_METHOD);

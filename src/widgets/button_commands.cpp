@@ -225,7 +225,7 @@ Am_Define_String_Formula(check_accel_string)
   }
 
   // no accel string
-  return (0L);
+  return nullptr;
 }
 
 Am_Define_Formula(Am_Value, Am_Align_From_Box_On_Left)

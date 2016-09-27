@@ -102,7 +102,7 @@ AM_WRAPPER_IMPL(Am_Inter_Location);
 
 Am_Inter_Location Am_No_Location;
 
-Am_Inter_Location::Am_Inter_Location() { data = (0L); }
+Am_Inter_Location::Am_Inter_Location() { data = nullptr; }
 
 Am_Inter_Location::Am_Inter_Location(bool as_line, Am_Object ref_obj, int a,
                                      int b, int c, int d, bool grow,

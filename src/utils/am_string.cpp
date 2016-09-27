@@ -19,7 +19,7 @@ Am_String::Am_String(const char *string, bool copy)
   if (string)
     data = new Am_String_Data(string, copy);
   else
-    data = (0L);
+    data = nullptr;
 }
 
 Am_String &
@@ -30,7 +30,7 @@ Am_String::operator=(const char *string)
   if (string)
     data = new Am_String_Data(string);
   else
-    data = (0L);
+    data = nullptr;
   return *this;
 }
 
@@ -39,7 +39,7 @@ Am_String::operator const char *() const
   if (data)
     return *data;
   else
-    return (0L);
+    return nullptr;
 }
 
 Am_String::operator char *()
@@ -48,7 +48,7 @@ Am_String::operator char *()
     data = (Am_String_Data *)data->Make_Unique();
     return *data;
   } else
-    return (0L);
+    return nullptr;
 }
 
 bool
@@ -70,9 +70,9 @@ Am_String::operator==(const char *test_string) const
       const char *string = *data;
       return (string == test_string) || !strcmp(string, test_string);
     } else
-      return test_string == (0L);
+      return test_string == nullptr;
   } else
-    return data == (0L);
+    return data == nullptr;
 }
 
 std::ostream &

@@ -23,10 +23,10 @@ Am_GIF_Image::load_gif_colormap(std::ifstream &ifs, int flags)
   //  iminfo.num_colors = 1 << iminfo.depth;
   iminfo.num_colors = 1 << (CTSIZE(flags) + 1);
   // if we have a color map, delete it before reallocating
-  if (color_map != (0L))
+  if (color_map != nullptr)
     delete[] color_map;
   color_map = new Am_RGB_Value[iminfo.num_colors];
-  if (color_map == (0L))
+  if (color_map == nullptr)
     return 0; // failure
   int i;
   unsigned char buf[3];
@@ -46,7 +46,7 @@ Am_GIF_Image::load_gif_colormap(std::ifstream &ifs, int flags)
 void
 Am_GIF_Image::adjust_colormap()
 {
-  if (color_map != (0L)) {
+  if (color_map != nullptr) {
     if (iminfo.raw_transparent_color_index != 0)
       color_map[iminfo.raw_transparent_color_index] = color_map[0];
 
@@ -59,8 +59,8 @@ Am_Generic_Image *
 Am_GIF_Image::Create(const char *filename)
 {
   Am_GIF_Image *im = new Am_GIF_Image;
-  if (im == (0L))
-    return NULL; // couldn't allocate the temp_image.
+  if (im == nullptr)
+    return nullptr; // couldn't allocate the temp_image.
   GIF_Load_Info gli;
 
   // Buffer to hold a block of image data from the GIF file.
@@ -71,7 +71,7 @@ Am_GIF_Image::Create(const char *filename)
 
   if (!ifs) {
     delete im;
-    return (0L);
+    return nullptr;
   }
 
   // all Am_GIF_Image images have depth 8
@@ -84,7 +84,7 @@ Am_GIF_Image::Create(const char *filename)
   // Check if image file format is acceptable
   if (strncmp(gli.hdr.signature, "GIF", 3) != 0 && gli.hdr.version[0] != '8') {
     delete im;
-    return (0L);
+    return nullptr;
   }
 
   // Read the logical screen descriptor.  We only use the flags field.
@@ -96,7 +96,7 @@ Am_GIF_Image::Create(const char *filename)
   if (flag & HAS_CT) {
     if (!(im->load_gif_colormap(ifs, flag))) {
       delete im;
-      return (0L);
+      return nullptr;
     }
   }
 

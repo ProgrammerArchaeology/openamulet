@@ -494,7 +494,7 @@ Am_Define_Method(Am_Mouse_Event_Method, void, sel_object,
         } else { // select nothing
           Am_INTER_TRACE_PRINT(widget, "Selection handle setting empty for "
                                            << widget);
-          new_object = (0L); //so object_modified will be null
+          new_object = nullptr; //so object_modified will be null
           new_value = Am_Value_List();
         }
       } else { // over a specific object
@@ -1644,7 +1644,7 @@ Am_Define_Method(Am_Where_Method, Am_Object, Am_In_Target,
 // interactor to get the Am_MOVE_GROW_COMMAND of the widget
 Am_Define_Object_Formula(get_owners_move_grow_command)
 {
-  Am_Object command = 0;
+  Am_Object command = nullptr;
   Am_Object inter = self.Get_Owner(); // owner will be interactor
   if (inter.Valid()) {
     Am_Object widget = inter.Get_Owner(); // widget the interactor is in
@@ -1652,7 +1652,7 @@ Am_Define_Object_Formula(get_owners_move_grow_command)
       command = widget.Get_Object(Am_MOVE_GROW_COMMAND);
       if (command.Valid()) {
         if (!command.Is_Instance_Of(Am_Command))
-          command = 0; // then command slot just contains a regular object
+          command = nullptr; // then command slot just contains a regular object
       }
     }
   }
@@ -2200,7 +2200,7 @@ Am_Define_Value_List_Formula(return_move_inter)
   if (mover.Valid())
     return mover;
   else
-    return (0L);
+    return nullptr;
 }
 
 //returns a list of the parts of group inside of region

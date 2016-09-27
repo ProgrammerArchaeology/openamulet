@@ -266,7 +266,7 @@ Am_Type_Support::Print(std::ostream &out, const Am_Value &v) const
 const char *
 Am_Type_Support::To_String(const Am_Value & /*v*/) const
 {
-  return (0L);
+  return nullptr;
 }
 
 Am_Value

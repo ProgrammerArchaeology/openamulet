@@ -89,7 +89,7 @@ GetVRoot(Display *dpy, int scr)
     Atom actual_type;
     int actual_format;
     unsigned long nitems, bytesafter;
-    Window *newRoot = (0L);
+    Window *newRoot = nullptr;
 
     if (XGetWindowProperty(dpy, children[i], __SWM_VROOT, 0, 1, False,
                            XA_WINDOW, &actual_type, &actual_format, &nitems,
@@ -116,13 +116,13 @@ amulet_x_error(Display *display, XErrorEvent *myerr)
 }
 
 bool More_Than_One_Display = false;
-Display *Main_Display = (Display *)(0L);
+Display *Main_Display = (Display *)nullptr;
 Screen_Manager Scrn_Mgr;
 
 static Am_Drawonable *
 make_root_drawonable(const char *screen, Display *new_display)
 {
-  if (Main_Display != (0L)) {
+  if (Main_Display != nullptr) {
     if (XConnectionNumber(new_display) != XConnectionNumber(Main_Display))
       More_Than_One_Display = true;
   } else
@@ -149,7 +149,7 @@ make_root_drawonable(const char *screen, Display *new_display)
 
   Am_Drawonable_Impl *d =
       new Am_Drawonable_Impl(l, t, w, h, "", "", true, false, Am_No_Style,
-                             false, 1, 1, 0, 0, true, false, bit_depth, (0L));
+                             false, 1, 1, 0, 0, true, false, bit_depth, nullptr);
 
   d->screen = new Screen_Desc(new_display, screen_num, d,
                               XDefaultColormap(new_display, screen_num),
@@ -163,27 +163,27 @@ make_root_drawonable(const char *screen, Display *new_display)
 
   d->screen->clip_region = Am_Region::Create();
   d->xlib_drawable = the_xlib_drawable;
-  d->owner = (0L);
+  d->owner = nullptr;
   Am_Initialize_Char_Map();
 
   // Make sure all 8 cut buffers exist on this display, so we can do
   // XStoreBytes and XFetchBytes successfully.
   XChangeProperty(new_display, the_xlib_drawable, XA_CUT_BUFFER0, XA_STRING, 8,
-                  PropModeAppend, 0, 0);
+                  PropModeAppend, nullptr, 0);
   XChangeProperty(new_display, the_xlib_drawable, XA_CUT_BUFFER1, XA_STRING, 8,
-                  PropModeAppend, 0, 0);
+                  PropModeAppend, nullptr, 0);
   XChangeProperty(new_display, the_xlib_drawable, XA_CUT_BUFFER2, XA_STRING, 8,
-                  PropModeAppend, 0, 0);
+                  PropModeAppend, nullptr, 0);
   XChangeProperty(new_display, the_xlib_drawable, XA_CUT_BUFFER3, XA_STRING, 8,
-                  PropModeAppend, 0, 0);
+                  PropModeAppend, nullptr, 0);
   XChangeProperty(new_display, the_xlib_drawable, XA_CUT_BUFFER4, XA_STRING, 8,
-                  PropModeAppend, 0, 0);
+                  PropModeAppend, nullptr, 0);
   XChangeProperty(new_display, the_xlib_drawable, XA_CUT_BUFFER5, XA_STRING, 8,
-                  PropModeAppend, 0, 0);
+                  PropModeAppend, nullptr, 0);
   XChangeProperty(new_display, the_xlib_drawable, XA_CUT_BUFFER6, XA_STRING, 8,
-                  PropModeAppend, 0, 0);
+                  PropModeAppend, nullptr, 0);
   XChangeProperty(new_display, the_xlib_drawable, XA_CUT_BUFFER7, XA_STRING, 8,
-                  PropModeAppend, 0, 0);
+                  PropModeAppend, nullptr, 0);
 
   // Cache the display and root drawonable
   Scrn_Mgr.Add(screen, new_display, d);
@@ -314,7 +314,7 @@ set_other_window_properties(Window the_xlib_drawable, Display *dpy,
     the_sizehints->flags |= USPosition;
 
   XSetWMProperties(dpy, the_xlib_drawable, &window_name_xtp, &icon_name_xtp,
-                   (0L), 0, the_sizehints, the_wmhints, (0L));
+                   nullptr, 0, the_sizehints, the_wmhints, nullptr);
 
   // Set it to grab window delete notification so we don't crash as much
   // we should probably store the atom in the root drawonable for speed,
@@ -370,7 +370,7 @@ Am_Drawonable_Impl::Create_Offscreen_X_Drawable()
 //   icon_name = "",
 //   vis = true,
 //   initially_iconified = false,
-//   back_color = (0L),
+//   back_color = nullptr,
 //   save_under_flag = false,
 //   // can't have 0 size windows
 //   min_w = 1, min_h = 1,
@@ -380,7 +380,7 @@ Am_Drawonable_Impl::Create_Offscreen_X_Drawable()
 //   query_user_for_position = false,
 //   query_user_for_size = false,
 //   clip_by_children_flag = true,
-//   evh = (0L);
+//   evh = nullptr;
 Am_Drawonable *
 Am_Drawonable_Impl::Create(int l, int t, unsigned int w, unsigned int h,
                            const char *window_name, const char *icon_name,
@@ -439,7 +439,7 @@ Am_Drawonable_Impl::Destroy()
   if (offscreen)
     XFreePixmap(screen->display, xlib_drawable);
   else {
-    Set_Drawable_Backpointer(screen->display, xlib_drawable, (0L));
+    Set_Drawable_Backpointer(screen->display, xlib_drawable, nullptr);
     XDestroyWindow(screen->display, xlib_drawable);
     Scrn_Mgr.Remove(this); // ought to check if a root drawonable
   }
@@ -846,10 +846,10 @@ Am_Drawonable_Impl::add_wm_border_offset(Window query_drawable,
       return (add_wm_border_offset(xlib_parent, expected_parent, lb, tb, rb, bb,
                                    outer_left, outer_top));
     } else {
-      // (0L) xlib_parent means query_window has no parent now, which
+      // nullptr xlib_parent means query_window has no parent now, which
       // is probably due to some race condition.  Can't return valid
       // data, so return false.
-      //std::cout << "   (0L) parent, returning false" <<std::endl;
+      //std::cout << "   nullptr parent, returning false" <<std::endl;
       return false;
     }
   }
@@ -913,7 +913,7 @@ Get_Drawable_Backpointer(Display *dpy, Window xlib_window)
 {
   XPointer data_return;
   if (XFindContext(dpy, xlib_window, Backpointer, &data_return))
-    return (0L); //XFindContext returns non-zero error codes
+    return nullptr; //XFindContext returns non-zero error codes
   else
     return (Am_Drawonable_Impl *)data_return;
 }
@@ -944,7 +944,7 @@ Am_Drawonable_Impl::Create_Offscreen(int width, int height,
 {
   Am_Drawonable_Impl *d = new Am_Drawonable_Impl(
       0, 0, width, height, "", "", false, false, background_color, false, 0, 0,
-      0, 0, false, true, screen->depth, (0L));
+      0, 0, false, true, screen->depth, nullptr);
   d->owner = this;
   d->offscreen = true;
 
@@ -1056,7 +1056,7 @@ Am_Drawonable_Impl::Set_Cut_Buffer(const char *s)
   // the display.
   // Second, when setting the buffer, rotate the buffers by 1 first.
   if (!s || offscreen)
-    return; // do nothing with a (0L) string for now.
+    return; // do nothing with a nullptr string for now.
 
   XRotateBuffers(screen->display, 1);
   // +1 byte for the /0.
@@ -1071,7 +1071,7 @@ Am_Drawonable_Impl::Set_Cut_Buffer(const char *s)
   //		  screen->cut_buffer, XA_STRING, 8 /* data quantization */,
   //		  PropModeReplace, (const unsigned char*)s, strlen(s));
 
-  if (screen->cut_data != (0L))
+  if (screen->cut_data != nullptr)
     delete[] screen->cut_data;
   screen->cut_data = new char[(strlen(s) + 1) * sizeof(char)];
   strcpy(screen->cut_data, s);
@@ -1088,14 +1088,14 @@ Am_Drawonable_Impl::Set_Cut_Buffer(const char *s)
 
 Screen_Manager::Screen_Manager()
 {
-  head = (0L);
+  head = nullptr;
   FD_ZERO(&read_flag);
   nfds = 0;
 }
 
 Screen_Manager::~Screen_Manager()
 {
-  if (head != (0L)) {
+  if (head != nullptr) {
     Screen_Info *screen = head;
     do {
       Screen_Info *next_screen = screen->next;
@@ -1139,7 +1139,7 @@ void
 Screen_Manager::Remove(Screen_Manager::Screen_Info *screen)
 {
   if (head == screen)
-    head = (screen->next == screen) ? (0L) : screen->next;
+    head = (screen->next == screen) ? nullptr : screen->next;
 
   int fd = XConnectionNumber(screen->dpy);
   FD_CLR(fd, &read_flag);
@@ -1217,7 +1217,7 @@ Am_Drawonable *
 Screen_Manager::Member(Display *dpy)
 {
   if (!head)
-    return (0L);
+    return nullptr;
   Screen_Info *screen = head;
   do {
     if (screen->dpy == dpy)
@@ -1225,7 +1225,7 @@ Screen_Manager::Member(Display *dpy)
     screen = screen->next;
   } while (screen != head);
 
-  return (0L);
+  return nullptr;
 }
 
 void
@@ -1246,7 +1246,7 @@ Screen_Manager::Block(timeval *timeout)
   //
   timeval multiDisplayTimeout;
 
-  if (More_Than_One_Display && (timeout == NULL)) {
+  if (More_Than_One_Display && (timeout == nullptr)) {
     multiDisplayTimeout.tv_sec = 0;
     multiDisplayTimeout.tv_usec = 100;
     timeout = &multiDisplayTimeout;
@@ -1274,7 +1274,7 @@ Screen_Manager::Block(timeval *timeout)
 
   // Return from Networking Hooks
   //////////////////////////////////////////////////////////////
-  status = select(new_nfds, &read_Fd_Select, (0L), NULL, timeout);
+  status = select(new_nfds, &read_Fd_Select, nullptr, nullptr, timeout);
   if (status < 0)
     perror("Am_Error in Block");
 
@@ -1439,7 +1439,7 @@ Am_Drawonable_Impl::Create_Drawonable_From_XWindow(
     parent = (Am_Drawonable_Impl *)Scrn_Mgr.Member(created_display);
     if (!parent) {
       parent =
-          (Am_Drawonable_Impl *)make_root_drawonable((0L), created_display);
+          (Am_Drawonable_Impl *)make_root_drawonable(nullptr, created_display);
       std::cerr << "** Warning, Can't find parent for display "
                 << created_display << " so created new one " << parent
                 << std::endl
@@ -1507,7 +1507,7 @@ Am_Drawonable_Impl::Create_Offscreen_Drawonable_From_XWindow(
   //copy all the global xlib properties
   Am_Drawonable *parent_draw = Scrn_Mgr.Member(created_display);
   if (!parent_draw) {
-    parent_draw = make_root_drawonable((0L), created_display);
+    parent_draw = make_root_drawonable(nullptr, created_display);
     std::cerr << "** Warning, Can't find parent for display " << created_display
               << " so created new one " << parent_draw << std::endl
               << std::flush;
@@ -1517,7 +1517,7 @@ Am_Drawonable_Impl::Create_Offscreen_Drawonable_From_XWindow(
 
   Am_Drawonable_Impl *d = new /* Am_External_Drawonable_Impl */
       Am_Drawonable_Impl(0, 0, w, h, "", "", false, false, back_color, false, 0,
-                         0, 0, 0, false, true, parent->screen->depth, (0L));
+                         0, 0, 0, false, true, parent->screen->depth, nullptr);
   d->offscreen = true;
   d->owner = parent;
   d->screen = parent->screen;

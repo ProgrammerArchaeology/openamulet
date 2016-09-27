@@ -163,7 +163,7 @@ KeyComp(const Am_Registered_Type *key1, const Am_Registered_Type *key2)
 }
 
 Am_Registry_Key Am_No_Registry_Key;
-const Am_Registered_Type *Am_No_Registry_Entry = (0L);
+const Am_Registered_Type *Am_No_Registry_Entry = nullptr;
 
 // declare and implement custom hash table type
 #ifdef OA_VERSION
@@ -220,7 +220,7 @@ Am_Cleanup_Registry()
 }
 
 static Am_Initializer *registry_init =
-    new Am_Initializer("Registry", 0, 1.0f, 120, Am_Cleanup_Registry);
+    new Am_Initializer("Registry", nullptr, 1.0f, 120, Am_Cleanup_Registry);
 
 // utility function to make sure registry is initialized
 inline void
@@ -273,7 +273,7 @@ Am_Get_Name_Of_Item(const Am_Registered_Type *item)
   if (item && Am_Name_Registry != (0L))
     return (Am_Name_Registry->GetAt(item));
   else
-    return (0L);
+    return nullptr;
 }
 
 const Am_Registered_Type *
@@ -290,12 +290,12 @@ Am_Get_Named_Item(const char *name)
 
 // ----------------------------------------------------
 
-Am_Map_Int2Str *Am_Type_Registry = (0L);
+Am_Map_Int2Str *Am_Type_Registry = nullptr;
 
 inline void
 verify_type_registry()
 {
-  if (Am_Type_Registry == (0L))
+  if (Am_Type_Registry == nullptr)
     Am_Type_Registry = new Am_Map_Int2Str;
 }
 

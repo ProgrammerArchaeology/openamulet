@@ -72,7 +72,7 @@ Am_Font::Get(Am_String &font_name, Am_Font_Family_Flag &f, bool &is_bold,
     is_underline = data->underline;
     s = data->size;
   } else
-    Am_Error("Get called on (0L) font");
+    Am_Error("Get called on nullptr font");
 }
 
 // // // // // // // // // // // // // // // // // // // // // // // // // //
@@ -89,7 +89,7 @@ make_font_name(Display *dpy, Am_Font_Family_Flag family, bool is_bold,
                bool is_italic, bool /*is_underline*/, Am_Font_Size_Flag size)
 {
   char wild_font_name[50]; // Given hard-coded defaults, max length is 50
-  const char *family_part = 0, *face_part = 0;
+  const char *family_part = nullptr, *face_part = nullptr;
   int size_part = 0;
 
   switch (family) {
@@ -272,7 +272,7 @@ initialize_font_from_file(Display *dpy, int /*screen_number*/,
   // If the font is valid, you just have to call XLoadQueryFont on it.
   // If it is bogus, you have to do a lot of work to revert to a default font.
 
-  if ((*font_info = XLoadQueryFont(dpy, font_name)) == (0L)) {
+  if ((*font_info = XLoadQueryFont(dpy, font_name)) == nullptr) {
     fprintf(stderr, "initialize_font_from_file: Could not open font\n");
     fprintf(stderr, "  \"%s\".  Resorting to default font.\n", font_name);
 
@@ -283,7 +283,7 @@ initialize_font_from_file(Display *dpy, int /*screen_number*/,
     int actual_count;
     result = XListFonts(dpy, Am_DEFAULT_FONT_NAME, 1, &actual_count);
     font_name = result[0];
-    if ((*font_info = XLoadQueryFont(dpy, font_name)) == (0L)) {
+    if ((*font_info = XLoadQueryFont(dpy, font_name)) == nullptr) {
       fprintf(stderr, "initialize_font_from_file: Could not open default\n");
       fprintf(stderr, "  font \"%s\" either.  Exiting...\n", font_name);
     }
@@ -305,7 +305,7 @@ initialize_font_from_file(Display *dpy, int /*screen_number*/,
     if (XGetGCValues (dpy, default_gc, GCFont, &values) == 0)
       Am_Error ("** initialize_font_from_file: could not get GC values.\n");
     // Note: Calling XQueryFont on this font (and attempting to do all of this
-    // in one step instead of two) does not work -- XQueryFont will return (0L)
+    // in one step instead of two) does not work -- XQueryFont will return nullptr
     // for the properties of the default font unless you ask for them in the
     // recommended way above.  Thanks, X!
     (*font_info)->fid = values.font;
@@ -334,7 +334,7 @@ initialize_standard_font(Display *dpy, int screen_number, Am_Font_Data *Am_font,
 
 AM_WRAPPER_DATA_IMPL(Am_Font, (this))
 
-Am_Font_Data *Am_Font_Data::list = (0L);
+Am_Font_Data *Am_Font_Data::list = nullptr;
 
 void
 Am_Font_Data::Get_Values(Am_Font_Family_Flag &f, bool &is_bold, bool &is_italic,
@@ -364,10 +364,10 @@ Am_Font_Data::Am_Font_Data(Am_Font_Data *proto)
     name = new char[strlen(proto->name) + 1];
     strcpy(name, proto->name);
   } else
-    name = (0L);
-  main_xfont = (0L);
-  main_display = (0L);
-  font_head = (0L);
+    name = nullptr;
+  main_xfont = nullptr;
+  main_display = nullptr;
+  font_head = nullptr;
   char_width = 0;
   next = list;
   list = this;
@@ -377,10 +377,10 @@ Am_Font_Data::Am_Font_Data(const char *the_name)
 {
   name = new char[strlen(the_name) + 1];
   strcpy(name, the_name);
-  // Initialize to (0L), and store value when font is first used
-  main_xfont = (0L);
-  main_display = (0L);
-  font_head = (0L);
+  // Initialize to nullptr, and store value when font is first used
+  main_xfont = nullptr;
+  main_display = nullptr;
+  font_head = nullptr;
   char_width = 0;
   next = list;
   list = this;
@@ -388,12 +388,12 @@ Am_Font_Data::Am_Font_Data(const char *the_name)
   // Just in case.  Only underlining should matter here.
   // Above comment is not correct now(Jan.30 1997),
   // because whether Japanese, Chinese, Korean, or not is judged by family.
-  if (strstr(the_name, "jisx0208") != (0L))
+  if (strstr(the_name, "jisx0208") != nullptr)
     family = Am_FONT_JFIXED; // Japanese font
-  else if (strstr(the_name, "ksc5601") != (0L))
+  else if (strstr(the_name, "ksc5601") != nullptr)
     family = Am_FONT_KFIXED; // Korean font
-  else if (strstr(the_name, "gb2312") != (0L) ||
-           strstr(the_name, "big5.hku") != NULL)
+  else if (strstr(the_name, "gb2312") != nullptr ||
+           strstr(the_name, "big5.hku") != nullptr)
     family = Am_FONT_CFIXED; // Chinese font
   else
     family = Am_FONT_FIXED;
@@ -412,11 +412,11 @@ Am_Font_Data::Am_Font_Data(Am_Font_Family_Flag f, bool is_bold, bool is_italic,
   underline = is_underline;
   size = s;
   // Indicate this is a standard font by zeroing-out the name field
-  name = (0L);
-  // Initialize to (0L), and store value when font is first used
-  main_xfont = (0L);
-  main_display = (0L);
-  font_head = (0L);
+  name = nullptr;
+  // Initialize to nullptr, and store value when font is first used
+  main_xfont = nullptr;
+  main_display = nullptr;
+  font_head = nullptr;
   char_width = 0;
   next = list;
   list = this;
@@ -431,23 +431,23 @@ Am_Font_Data::~Am_Font_Data()
     XFreeFont(main_display, main_xfont);
   }
   Font_Index *current = font_head;
-  Font_Index *next = (0L);
+  Font_Index *next = nullptr;
   while (current) {
     next = current->next;
-    current->next = (0L);
+    current->next = nullptr;
     //// BUG: must note that font is unused
     XFreeFont(current->dpy, current->xfont);
     delete current;
     current = next;
   }
-  font_head = (0L);
+  font_head = nullptr;
   remove(this);
 }
 
 void
 Am_Font_Data::remove(Am_Font_Data *font)
 {
-  Am_Font_Data *prev = (0L);
+  Am_Font_Data *prev = nullptr;
   Am_Font_Data *curr = list;
   while (curr) {
     if (curr == font) {
@@ -469,9 +469,9 @@ Am_Font_Data::remove(Display *display)
   for (curr = list; curr; curr = curr->next) {
     if (curr->main_display == display) {
       XFreeFont(curr->main_display, curr->main_xfont);
-      curr->main_display = (0L);
+      curr->main_display = nullptr;
     }
-    Font_Index *prev = (0L);
+    Font_Index *prev = nullptr;
     Font_Index *curr_index = curr->font_head;
     while (curr_index) {
       if (curr_index->dpy == display) {
@@ -505,7 +505,7 @@ bool
 Am_Font_Data::Get_Font(Display *dpy, XFontStruct *&xfont)
 {
   Font_Index *current;
-  for (current = font_head; current != (0L); current = current->next)
+  for (current = font_head; current != nullptr; current = current->next)
     if (current->dpy == dpy) {
       xfont = current->xfont;
       return true;
@@ -525,7 +525,7 @@ Am_Font_Data::Get_X_Font(const Am_Drawonable_Impl *d)
   else {
     XFontStruct *font_info;
     const char *font_name = Get_Font_Name();
-    if (font_name == (0L))
+    if (font_name == nullptr)
       initialize_standard_font(disp, d->screen->screen_number, this,
                                &font_info);
     else
@@ -898,7 +898,7 @@ Am_Drawonable_Impl::Get_Font_Properties(const Am_Font &Am_font,
 void
 Am_Font_Data::Print(std::ostream &os) const
 {
-  const char *lookup_name = (0L);
+  const char *lookup_name = nullptr;
 #ifdef DEBUG
   lookup_name = Am_Get_Name_Of_Item(this);
 #endif

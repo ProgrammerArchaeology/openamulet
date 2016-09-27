@@ -554,7 +554,7 @@ Am_Define_Method(Am_Placeholder_Create_Method, Am_Object,
                   Am_Value_List & /*part_chain*/, int &cnt, Am_Slot_Key slot))
 {
   Am_Object placeholder = general_placeholder(
-      create_cmd, for_value, "Ask_User_To_Select_Objects_", (0L), false,
+      create_cmd, for_value, "Ask_User_To_Select_Objects_", nullptr, false,
       Am_User_Select_At_Run_Time_Placeholder, Am_No_Value_List, cnt, slot);
   return placeholder;
 }
@@ -591,7 +591,7 @@ Am_Define_Method(Am_Placeholder_Create_Method, Am_Object,
                   Am_Value_List & /* part_chain */, int &cnt, Am_Slot_Key slot))
 {
   Am_Object placeholder = general_placeholder(
-      create_cmd, for_value, "The_Current_Selected_Objects_", (0L), false,
+      create_cmd, for_value, "The_Current_Selected_Objects_", nullptr, false,
       Am_The_Selected_Objects_Placeholder, Am_No_Value_List, cnt, slot);
   return placeholder;
 }
@@ -654,7 +654,7 @@ Am_Define_Method(Am_Placeholder_Create_Method, Am_Object,
                   Am_Value_List &part_chain, int &cnt, Am_Slot_Key slot))
 {
   Am_Object placeholder = general_placeholder(
-      create_cmd, for_value, "Computed_Location_", (0L), false,
+      create_cmd, for_value, "Computed_Location_", nullptr, false,
       Am_Inter_Location_Placeholder, part_chain, cnt, slot);
   return placeholder;
 }
@@ -1003,7 +1003,7 @@ Am_Define_Method(Am_Placeholder_Create_Method, Am_Object,
                   Am_Value_List & /*part_chain*/, int &cnt, Am_Slot_Key slot))
 {
   Am_Object placeholder = general_placeholder(
-      create_cmd, for_value, "Ask_User_For_Value_", (0L), false,
+      create_cmd, for_value, "Ask_User_For_Value_", nullptr, false,
       Am_Ask_User_Property_Placeholder, Am_No_Value_List, cnt, slot);
   return placeholder;
 }
@@ -1085,7 +1085,7 @@ Am_Define_Method(Am_Placeholder_Create_Method, Am_Object,
                   Am_Value_List & /* part_chain */, int &cnt, Am_Slot_Key slot))
 {
   Am_Object placeholder = general_placeholder(
-      create_cmd, for_value, "Get_Value_From_List_", (0L), false,
+      create_cmd, for_value, "Get_Value_From_List_", nullptr, false,
       Am_Cycle_Values_Placeholder, Am_No_Value_List, cnt, slot);
   return placeholder;
 }
@@ -1155,7 +1155,7 @@ Am_Define_Method(Am_Placeholder_Create_Method, Am_Object,
                   Am_Value_List &part_chain, int &cnt, Am_Slot_Key slot))
 {
   Am_String str = part_chain.Get_First(); //hack
-  Am_Object placeholder = general_placeholder(create_cmd, for_value, str, (0L),
+  Am_Object placeholder = general_placeholder(create_cmd, for_value, str, nullptr,
                                               false, Am_Any_Value_Placeholder,
                                               Am_No_Value_List, cnt, slot);
   return placeholder;

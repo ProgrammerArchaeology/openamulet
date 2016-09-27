@@ -46,7 +46,7 @@ Am_Define_Method(Am_Draw_Method, void, checkbox_draw,
 
   // now find the contents to draw in the button
   Am_String string;
-  Am_Object obj = 0;
+  Am_Object obj = nullptr;
   Am_Value value;
   // string slot contains a formula which gets the real object based on the
   // value of the COMMAND slot
@@ -93,7 +93,7 @@ Am_Define_Method(Am_Draw_Method, void, checkbox_mask,
 
   // now find the contents to draw in the button
   Am_String string;
-  Am_Object obj = 0;
+  Am_Object obj = nullptr;
   Am_Value value;
   // string slot contains a formula which gets the real object based on the
   // value of the COMMAND slot
@@ -167,7 +167,7 @@ Am_Define_Formula(int, checkbox_width)
 Am_Define_Formula(int, checkbox_height)
 {
   Am_String string;
-  Am_Object obj = 0;
+  Am_Object obj = nullptr;
   Am_Value value;
   int box_height = self.Get(Am_BOX_HEIGHT);
   // string slot contains a formula which gets the real object based on the

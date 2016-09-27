@@ -819,7 +819,7 @@ Am_Get_Cut_Buffer(Am_Object win)
     Am_Drawonable *drawonable = Am_Drawonable::Narrow(win.Get(Am_DRAWONABLE));
     return drawonable->Get_Cut_Buffer();
   } else
-    return 0;
+    return nullptr;
 }
 
 void

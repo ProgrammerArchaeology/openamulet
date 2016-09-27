@@ -63,8 +63,8 @@ Am_Input_Event *Am_Current_Input_Event;
 // and gemX_input.cc: it's machine independent.
 const Am_Input_Char Am_Stop_Character(Am_STOP_CHARACTER);
 
-Am_Symbol_Table *char_map = 0;
-Am_Symbol_Table *click_count_map = 0;
+Am_Symbol_Table *char_map = nullptr;
+Am_Symbol_Table *click_count_map = nullptr;
 
 char *
 alloc_string_for(char c)
@@ -90,7 +90,7 @@ int Am_Debug_Print_Input_Events = 0;
 void
 Am_Initialize_Char_Map()
 {
-  if (char_map != 0 && click_count_map != 0)
+  if (char_map != nullptr && click_count_map != nullptr)
     return;
 
   // allocate hash tables
@@ -473,7 +473,7 @@ Am_Input_Char::Am_Input_Char(short c, bool shf, bool ctrl, bool mt,
                              Am_Button_Down down, Am_Click_Count click,
                              bool any_mod)
 {
-  if (char_map == 0 || click_count_map == 0)
+  if (char_map == nullptr || click_count_map == nullptr)
     Am_Initialize_Char_Map();
 
   code = c;
@@ -496,7 +496,7 @@ Am_Input_Char::Am_Input_Char(short c, bool shf, bool ctrl, bool mt,
 // Constructor from a string
 Am_Input_Char::Am_Input_Char(const char *s, bool want_error)
 {
-  if (char_map == 0 || click_count_map == 0)
+  if (char_map == nullptr || click_count_map == nullptr)
     Am_Initialize_Char_Map();
 
   bool found_any = false;
@@ -632,7 +632,7 @@ Am_Input_Char::As_String(char *s) const
     code_string = "NO_CHAR(code=0)";
   else
     code_string = char_map->Get_Key(code);
-  if (code_string == 0) {
+  if (code_string == nullptr) {
     // Printing THIS causes compile errors in CC
     char error[100];
     sprintf(error, "** No string for code %d.\n", (unsigned short)code);
@@ -683,7 +683,7 @@ Am_Input_Char::As_Short_String(char *s) const
   }
 
   const char *code_string = char_map->Get_Key(code);
-  if (code_string == 0) {
+  if (code_string == nullptr) {
     // Printing THIS causes compile errors in CC
     char error[100];
     sprintf(error, "** Illegal code %d.\n", (unsigned short)code);

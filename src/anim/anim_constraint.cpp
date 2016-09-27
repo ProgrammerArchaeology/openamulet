@@ -442,7 +442,7 @@ Animation_Constraint::Create(const Am_Slot &current_slot,
   if (current_slot == primary_slot)
     return new Animation_Constraint(this, interpolator.Create());
   else
-    return (0L);
+    return nullptr;
 }
 
 // Slot is being copied.  Make a copy by making an instance of the prototype.
@@ -456,7 +456,7 @@ Animation_Constraint::Copy(const Am_Slot &current_slot,
     copy->multi_slot = multi_slot;
     return copy;
   } else
-    return (0L);
+    return nullptr;
 }
 
 // Just return the id.
@@ -475,9 +475,9 @@ Animation_Constraint::Get_Name()
 // This constructs a root node.
 Animation_Constraint::Animation_Constraint(Am_Object in_interpolator)
 {
-  prototype = (0L);
-  first_instance = (0L);
-  next_instance = (0L);
+  prototype = nullptr;
+  first_instance = nullptr;
+  next_instance = nullptr;
   interpolator = (Am_Object_Advanced &)in_interpolator;
   interpolator.Set(Am_ANIM_CONSTRAINT, (Am_Ptr)this);
   interpolator.Set(Am_RUNNING, false);
@@ -492,10 +492,10 @@ Animation_Constraint::Animation_Constraint(Animation_Constraint *proto,
                                            Am_Object in_interpolator)
 {
   prototype = proto;
-  first_instance = (0L);
+  first_instance = nullptr;
   if (proto) {
     next_instance = proto->first_instance;
-    proto->first_instance = (0L);
+    proto->first_instance = nullptr;
   }
   interpolator = (Am_Object_Advanced &)in_interpolator;
   interpolator.Set(Am_ANIM_CONSTRAINT, (Am_Ptr)this);
@@ -564,12 +564,12 @@ Animation_Constraint::~Animation_Constraint()
   Animation_Constraint *curr;
   // Disconnect instances.
   for (curr = first_instance; curr; curr = curr->next_instance)
-    curr->prototype = (0L);
-  first_instance = (0L);
+    curr->prototype = nullptr;
+  first_instance = nullptr;
 
   // Disconnect from prototype.
   if (prototype) {
-    prev = (0L);
+    prev = nullptr;
     curr = prototype->first_instance;
     while (curr) {
       if (curr == this) {
@@ -582,8 +582,8 @@ Animation_Constraint::~Animation_Constraint()
       curr = curr->next_instance;
     }
   }
-  next_instance = (0L);
-  prototype = (0L);
+  next_instance = nullptr;
+  prototype = nullptr;
 }
 
 void

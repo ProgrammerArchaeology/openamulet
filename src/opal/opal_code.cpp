@@ -35,7 +35,7 @@ const char *
 Am_Check_Int_Type(const Am_Value &value)
 {
   if (value.type == Am_INT || !value.Safe())
-    return (0L);
+    return nullptr;
   else {
     std::cerr << "** Amulet error, Expected int type in Object but got "
               << value << std::endl
@@ -64,7 +64,7 @@ Am_Define_Object_Formula(pass_window)
                         owner.Is_Instance_Of(Am_Window)))
     return owner.Get(Am_WINDOW);
   else
-    return (0L);
+    return nullptr;
 }
 
 Am_Define_Method(Am_Draw_Method, void, generic_mask,
