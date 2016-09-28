@@ -119,7 +119,7 @@ Am_Network_Group::Broadcast(Am_Object obj)
        Member_Connections.Next()) {
     mistyped_ptr = Member_Connections.Get();
     conn_ptr = (Am_Connection *)mistyped_ptr;
-    Am_Value b_val = obj.Peek(Am_NET_BLESSING);
+    const Am_Value& b_val = obj.Peek(Am_NET_BLESSING);
     if (b_val != Am_No_Value) {
       Am_Assoc b_assoc = b_val;
       Am_Ptr b_ptr = b_assoc.Value_1();

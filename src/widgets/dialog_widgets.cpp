@@ -172,7 +172,7 @@ Am_Define_Method(Am_Object_Method, void, standard_ok_method, (Am_Object cmd))
   Am_Object window = widget.Get(Am_WINDOW);
   if (!window.Valid())
     Am_Error("Lost window");
-  Am_Value v = cmd.Get(Am_VALUE);
+  const Am_Value& v = cmd.Get(Am_VALUE);
   Am_Finish_Pop_Up_Waiting(window, v);
 }
 Am_Define_Method(Am_Object_Method, void, standard_cancel_method,

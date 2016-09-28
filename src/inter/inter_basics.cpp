@@ -1454,11 +1454,11 @@ inter_is_go_for_user_and_event(Am_Object &inter, Am_Input_Event *ev)
 {
   Am_Screen.Set(Am_LAST_USER_ID, ev->user_id); //bookkeeping
 
-  Am_Value inter_user_id = inter.Get(Am_USER_ID, Am_OK_IF_NOT_THERE);
+  const Am_Value& inter_user_id = inter.Get(Am_USER_ID, Am_OK_IF_NOT_THERE);
 
   //rule #3
   if (inter_user_id == Am_ONE_AT_A_TIME) {
-    Am_Value internal_user_id =
+    const Am_Value& internal_user_id =
         inter.Get(Am_INTERNAL_USER_ID, Am_OK_IF_NOT_THERE);
     if (!internal_user_id.Valid() || internal_user_id == ev->user_id ||
         internal_user_id == Am_ONE_AT_A_TIME)

@@ -326,7 +326,7 @@ Am_Define_Method(Am_Object_Method, void, text_input_command_inter_do,
   Am_Object text = inter_command.Get(Am_OBJECT_MODIFIED);
   Am_Object widget = text.Get_Owner();
   //widget's value is set by a constraint or by a Am_Text_Check_Legal_Method
-  Am_Value final_value = widget.Get(Am_VALUE);
+  const Am_Value& final_value = widget.Get(Am_VALUE);
   Am_Object widget_command = widget.Get_Object(Am_COMMAND);
   if (widget_command.Valid()) {
     if (!widget_command.Is_Instance_Of(Am_Command))

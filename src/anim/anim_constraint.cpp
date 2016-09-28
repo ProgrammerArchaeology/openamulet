@@ -272,7 +272,7 @@ Animation_Constraint::Changed(const Am_Slot &slot,
                               Am_Constraint *invalidating_constraint)
 {
   if (invalidating_constraint != this) {
-    Am_Value new_value = slot.Get();
+    const Am_Value& new_value = slot.Get();
     Changed(slot, invalidating_constraint, new_value, new_value);
   }
 }
@@ -707,7 +707,7 @@ Am_Set_Animated_Slots(Am_Object interp)
     return;
 
   // pass the computed value back to the animation constraint
-  Am_Value slot_to_animate = interp.Get(Am_SLOT_TO_ANIMATE);
+  const Am_Value& slot_to_animate = interp.Get(Am_SLOT_TO_ANIMATE);
   Am_Constraint *constraint;
 
   constraint = (Am_Constraint *)(Am_Ptr)interp.Get(Am_ANIM_CONSTRAINT);

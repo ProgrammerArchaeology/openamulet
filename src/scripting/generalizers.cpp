@@ -347,7 +347,7 @@ am_gen_command_label(Am_Object &for_cmd)
   Am_Value v = for_cmd.Peek(Am_SHORT_LABEL);
   if (!v.Valid())
     v = for_cmd.Peek(Am_LABEL);
-  Am_Value index = for_cmd.Peek(Am_COMMAND_INDEX_IN_SCRIPT);
+  const Am_Value& index = for_cmd.Peek(Am_COMMAND_INDEX_IN_SCRIPT);
   if (index.Valid()) {
     oss << index << ". ";
   }
@@ -639,7 +639,7 @@ Am_Define_Method(Am_Placeholder_Replace_Method, bool,
                  (Am_Object & ph, Am_Value &new_value,
                   Am_Object & /* sel_widget */))
 {
-  Am_Value old_value = ph.Get(Am_VALUE);
+  const Am_Value& old_value = ph.Get(Am_VALUE);
   if (new_value == old_value)
     return true;
   else
@@ -1940,7 +1940,7 @@ popup_generalize_script_objects(Am_Object &main_script_line_part,
   } else {
     objgen_window.Get_Object(Am_UNDO_OPTIONS)
         .Set(Am_VALUE, am_constant_generalize);
-    Am_Value orig_value = main_script_line_part.Get(Am_VALUE);
+    const Am_Value& orig_value = main_script_line_part.Get(Am_VALUE);
     if (am_sdebug)
       std::cout << "setting value " << orig_value << " type " << orig_value.type
                 << std::endl
@@ -2355,7 +2355,7 @@ Am_Object
 find_palette_for_command(Am_Object &main_cmd, Am_Value &current_value,
                          Am_Object &script_window)
 {
-  Am_Value slot_key_value = main_cmd.Peek(Am_SLOT_FOR_VALUE);
+  const Am_Value& slot_key_value = main_cmd.Peek(Am_SLOT_FOR_VALUE);
   Am_Am_Slot_Key slot;
   if (!slot_key_value.Valid())
     slot = 0;

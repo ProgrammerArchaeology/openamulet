@@ -333,7 +333,7 @@ Am_Standard_Slot_Trace_Proc(const Am_Slot &slot, Am_Set_Reason reason)
     Am_Value v;
     v = slot.Get();
     Am_Object_Advanced oa = slot.Get_Owner();
-    Am_Object owner = oa;
+    const Am_Object& owner = oa;
     Am_Slot_Tracer slot_looking_for(owner, slot.Get_Key(), v, false);
     Am_Value_List trace_list = am_all_tracers;
 

@@ -392,7 +392,7 @@ set_event_mask(Am_Object window, Am_Drawonable *drawonable)
 Am_String
 get_icon_title(Am_Object &window)
 {
-  Am_Value v = window.Get(Am_ICON_TITLE);
+  const Am_Value& v = window.Get(Am_ICON_TITLE);
   if (v.Valid())
     return v;
   else

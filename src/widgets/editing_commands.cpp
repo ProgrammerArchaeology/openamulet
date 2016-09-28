@@ -115,7 +115,7 @@ get_selection_widget(const Am_Value v)
   if (!(Am_Value_List::Test(v)))
     return v;
   else {
-    Am_Value last_user = Am_Screen.Get(Am_LAST_USER_ID);
+    const Am_Value& last_user = Am_Screen.Get(Am_LAST_USER_ID);
     Am_Value_List v_list = v;
     for (v_list.Start(); !v_list.Last(); v_list.Next()) {
       Am_Object item = v_list.Get();

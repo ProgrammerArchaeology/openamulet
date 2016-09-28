@@ -15,7 +15,7 @@ set_popup_win_visible(Am_Object &pop_window, bool vis, Am_Object &main_win)
   pop_window.Set(Am_VISIBLE, vis);
   if (vis) {
     Am_To_Top(pop_window);
-    Am_Value v =
+    const Am_Value& v =
         main_win.Get(Am_WAITING_FOR_COMPLETION, Am_RETURN_ZERO_ON_ERROR);
     pop_window.Set(Am_WAITING_FOR_COMPLETION, v, Am_OK_IF_NOT_THERE);
     if (v.Valid() && (int)v == (int)Am_INTER_WAITING_MODAL) {

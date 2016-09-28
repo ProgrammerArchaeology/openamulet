@@ -456,7 +456,7 @@ check_for_conflicts(Am_Object window, Am_Value_List accel_list,
                     Am_Object command)
 {
   Am_Input_Char target_ic;
-  Am_Value accel = command.Get(Am_ACCELERATOR, Am_NO_DEPENDENCY);
+  const Am_Value& accel = command.Get(Am_ACCELERATOR, Am_NO_DEPENDENCY);
   if (Am_Input_Char::Test(accel)) {
     target_ic = accel;
     Am_Object old_cmd = accel_match(accel_list, target_ic, Am_No_Object);

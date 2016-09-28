@@ -157,7 +157,7 @@ Am_Define_Method(Am_Anim_Update_Method, void, Am_Animator_Interrupt,
                  (Am_Object interp, const Am_Value &new_value))
 {
   if ((bool)interp.Get(Am_INTERRUPTIBLE)) {
-    Am_Value curr_value = interp.Get(Am_VALUE);
+    const Am_Value& curr_value = interp.Get(Am_VALUE);
     Am_INTER_TRACE_PRINT(interp, "Animator Interrupt of "
                                      << interp << "; restarting from value "
                                      << curr_value << " towards new value "
