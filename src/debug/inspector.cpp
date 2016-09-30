@@ -100,19 +100,19 @@ Am_Slot_Key Am_HIDE_INTERNAL = Am_Register_Slot_Name("HIDE_INTERNAL");
 Am_Slot_Key Am_SHOW_PARTS = Am_Register_Slot_Name("SHOW_PARTS");
 Am_Slot_Key Am_SHOW_INSTANCES = Am_Register_Slot_Name("SHOW_INSTANCES");
 
-#define Am_HIDE_INHERITED_DEFAULT 0
+#define Am_HIDE_INHERITED_DEFAULT false
 #define Am_HIDE_INHERITED_TEXT "Hide Inherited Slots"
 #define Am_SHOW_INHERITED_TEXT "Show Inherited Slots"
 #define Am_HIDE_INHERITED_DEFAULT_TEXT                                         \
   Am_HIDE_INHERITED_DEFAULT ? Am_SHOW_INHERITED_TEXT : Am_HIDE_INHERITED_TEXT
 
-#define Am_HIDE_INTERNAL_DEFAULT 0
+#define Am_HIDE_INTERNAL_DEFAULT false
 #define Am_HIDE_INTERNAL_TEXT "Hide Internal Slots"
 #define Am_SHOW_INTERNAL_TEXT "Show Internal Slots"
 #define Am_HIDE_INTERNAL_DEFAULT_TEXT                                          \
   Am_HIDE_INTERNAL_DEFAULT ? Am_SHOW_INTERNAL_TEXT : Am_HIDE_INTERNAL_TEXT
 
-#define Am_SORT_BY_NAME_DEFAULT 1
+#define Am_SORT_BY_NAME_DEFAULT true
 #define Am_SORT_BY_NAME_TEXT "Sort by Name"
 #define Am_STOP_SORTING_TEXT "Stop sorting by Name"
 #define Am_SORT_BY_NAME_DEFAULT_TEXT                                           \

@@ -1440,7 +1440,7 @@ wait_for_mapnotify(Display *dpy, Window *xlib_window)
 {
   XEvent event_return;
 
-  while (1) {
+  while (true) {
     XPeekIfEvent(dpy, &event_return, is_mapnotify, (XPointer)xlib_window);
     // XPeekIfEvent may have returned without setting event_return (in other
     // words, is_mapnotify returned False).
