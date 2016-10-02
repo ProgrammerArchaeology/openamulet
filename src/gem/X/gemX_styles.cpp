@@ -33,7 +33,7 @@ Am_Style::Get_Color_Name() const
   if (data)
     return data->color_name;
   else
-    return (0L);
+    return nullptr;
 }
 
 static Am_Style default_style(0.0, 0.0, 0.0); // used by Get_Values
@@ -164,7 +164,7 @@ Am_Style::Am_Style(const char *color_name, short thickness,
 //   data = new Am_Style_Data (bit_data, height, width);
 // }
 
-Am_Style::Am_Style() { data = (0L); }
+Am_Style::Am_Style() { data = nullptr; }
 
 Am_Style
 Am_Style::Halftone_Stipple(int percent, Am_Fill_Solid_Flag fill_flag)
@@ -226,10 +226,10 @@ Am_Style Am_Off_Bits(static_cast<Am_Wrapper *>(&Am_Off_Bits_Data));
 
 AM_WRAPPER_DATA_IMPL(Am_Style, (this));
 
-Am_Style_Data *Am_Style_Data::list = (0L);
+Am_Style_Data *Am_Style_Data::list = nullptr;
 
 Am_Style_Data::Am_Style_Data(Am_Style_Data *proto)
-    : color_name(0L), main_display(0), color_head(0L),
+    : color_name(nullptr), main_display(nullptr), color_head(nullptr),
       color_allocated(proto->color_allocated), red(proto->red),
       green(proto->green), blue(proto->blue),
       line_thickness(proto->line_thickness), cap_style(proto->cap_style),
@@ -238,7 +238,7 @@ Am_Style_Data::Am_Style_Data(Am_Style_Data *proto)
       fill_poly(proto->fill_poly), stipple_bitmap(proto->stipple_bitmap)
 {
   memcpy(dash_list, proto->dash_list, dash_list_length * sizeof(char));
-  if (proto->color_name != 0L) {
+  if (proto->color_name != nullptr) {
     char *color_hold = new char[strlen(proto->color_name) + 1];
     strcpy(color_hold, proto->color_name);
     color_name = color_hold;
@@ -254,7 +254,7 @@ Am_Style_Data::Am_Style_Data(float r, float g, float b, short thickness,
                              Am_Line_Solid_Flag line_flag, const char *dash_l,
                              int dash_l_length, Am_Fill_Solid_Flag fill_flag,
                              Am_Fill_Poly_Flag poly, Am_Image_Array stipple)
-    : color_name(0L), main_display(0), color_head(0L), color_allocated(true),
+    : color_name(nullptr), main_display(nullptr), color_head(nullptr), color_allocated(true),
       red(r), green(g), blue(b), line_thickness(thickness), cap_style(cap),
       join_style(join), line_solid(line_flag), dash_list_length(dash_l_length),
       fill_solid(fill_flag), fill_poly(poly), stipple_bitmap(stipple)
@@ -272,7 +272,7 @@ Am_Style_Data::Am_Style_Data(const char *cname, short thickness,
                              Am_Line_Solid_Flag line_flag, const char *dash_l,
                              int dash_l_length, Am_Fill_Solid_Flag fill_flag,
                              Am_Fill_Poly_Flag poly, Am_Image_Array stipple)
-    : main_display(0), color_head(0L), color_allocated(true),
+    : main_display(nullptr), color_head(nullptr), color_allocated(true),
       line_thickness(thickness), cap_style(cap), join_style(join),
       line_solid(line_flag), dash_list_length(dash_l_length),
       fill_solid(fill_flag), fill_poly(poly), stipple_bitmap(stipple)
@@ -292,7 +292,7 @@ Am_Style_Data::Am_Style_Data(const char *cname, short thickness,
 }
 
 Am_Style_Data::Am_Style_Data(int percent, Am_Fill_Solid_Flag fill_flag)
-    : color_name(0L), main_display(0), color_head(0L), color_allocated(true),
+    : color_name(nullptr), main_display(nullptr), color_head(nullptr), color_allocated(true),
       red(0.0), green(0.0), blue(0.0), line_thickness(0),
       cap_style(Am_CAP_BUTT), join_style(Am_JOIN_MITER),
       line_solid(Am_LINE_SOLID), dash_list_length(Am_DEFAULT_DASH_LIST_LENGTH),
@@ -310,7 +310,7 @@ Am_Style_Data::Am_Style_Data(int percent, Am_Fill_Solid_Flag fill_flag)
 }
 
 Am_Style_Data::Am_Style_Data(const char *name, bool bit_is_on)
-    : color_name(name), main_display(0), color_head(0L), color_allocated(false),
+    : color_name(name), main_display(nullptr), color_head(nullptr), color_allocated(false),
       line_thickness(0), cap_style(Am_CAP_BUTT), join_style(Am_JOIN_MITER),
       line_solid(Am_LINE_SOLID), dash_list_length(Am_DEFAULT_DASH_LIST_LENGTH),
       fill_solid(Am_FILL_SOLID), fill_poly(Am_FILL_POLY_EVEN_ODD),
@@ -328,7 +328,7 @@ Am_Style_Data::Am_Style_Data(const char *name, bool bit_is_on)
 }
 
 Am_Style_Data::Am_Style_Data(Am_Style_Data *proto, Am_Style_Data *new_color)
-    : main_display(0), color_head(0L),
+    : main_display(nullptr), color_head(nullptr),
       color_allocated(new_color->color_allocated), // from other color
       red(new_color->red), green(new_color->green), blue(new_color->blue),
       line_thickness(proto->line_thickness), // then from proto
@@ -369,10 +369,10 @@ Am_Style_Data::~Am_Style_Data()
     }
   }
   Color_Index *current = color_head;
-  Color_Index *next = (0L);
+  Color_Index *next = nullptr;
   while (current) {
     next = current->next;
-    current->next = (0L);
+    current->next = nullptr;
     if (current->dpy) {
       if (color_allocated) {
         int screen_num = DefaultScreen(current->dpy);
@@ -384,14 +384,14 @@ Am_Style_Data::~Am_Style_Data()
     delete current;
     current = next;
   }
-  color_head = (0L);
+  color_head = nullptr;
   remove(this);
 }
 
 void
 Am_Style_Data::remove(Am_Style_Data *style)
 {
-  Am_Style_Data *prev = (0L);
+  Am_Style_Data *prev = nullptr;
   Am_Style_Data *curr = list;
   while (curr) {
     if (curr == style) {
@@ -415,9 +415,9 @@ Am_Style_Data::remove(Display *display)
       int screen_num = DefaultScreen(curr->main_display);
       Colormap c = XDefaultColormap(curr->main_display, screen_num);
       XFreeColors(curr->main_display, c, &curr->main_color.pixel, 1, 0);
-      curr->main_display = (0L);
+      curr->main_display = nullptr;
     }
-    Color_Index *prev = (0L);
+    Color_Index *prev = nullptr;
     Color_Index *curr_index = curr->color_head;
     while (curr_index) {
       if (curr_index->dpy == display) {
@@ -506,7 +506,7 @@ bool
 Am_Style_Data::Get_Color_Index(Display *dpy, XColor &index)
 {
   Color_Index *current;
-  for (current = color_head; current != (0L); current = current->next)
+  for (current = color_head; current != nullptr; current = current->next)
     if (current->dpy == dpy) {
       index = current->index;
       return true;
@@ -517,7 +517,7 @@ Am_Style_Data::Get_Color_Index(Display *dpy, XColor &index)
 void
 Am_Style_Data::Print(std::ostream &os) const
 {
-  const char *lookup_name = (0L);
+  const char *lookup_name = nullptr;
 #ifdef DEBUG
   lookup_name = Am_Get_Name_Of_Item(this);
 #endif

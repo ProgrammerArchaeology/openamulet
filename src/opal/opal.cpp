@@ -66,7 +66,7 @@ static Am_Initializer *inspector_init = new Am_Initializer(
 //
 // This pointer is initialized by Am_Map's Initializer in map.cpp
 //
-Am_Object *Am_Map_ptr = 0;
+Am_Object *Am_Map_ptr = nullptr;
 
 // exported types
 AM_DEFINE_METHOD_TYPE_IMPL(Am_Draw_Method);
@@ -233,7 +233,7 @@ Am_Cleanup()
   Am_State_Store::Shutdown();
 
 #ifdef DEBUG
-  Am_Global_Slot_Trace_Proc = (0L);
+  Am_Global_Slot_Trace_Proc = nullptr;
 #endif
 
   Am_Group.Destroy();

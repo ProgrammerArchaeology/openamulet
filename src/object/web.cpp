@@ -67,17 +67,17 @@ public:
     create_proc = create;
     initialize_proc = initialize;
     validate_proc = validate;
-    prototype = (0L);
-    child = (0L);
-    sibling = (0L);
-    out_list = (0L);
-    in_list = (0L);
-    invalid_list = (0L);
+    prototype = nullptr;
+    child = nullptr;
+    sibling = nullptr;
+    out_list = nullptr;
+    in_list = nullptr;
+    invalid_list = nullptr;
     validating = false;
     initialized = false;
     valid = false;
-    changed_first = (0L);
-    changed_last = (0L);
+    changed_first = nullptr;
+    changed_last = nullptr;
   }
 
   Am_Web_Data(Am_Web_Data *in_prototype) : interface(this)
@@ -86,17 +86,17 @@ public:
     initialize_proc = in_prototype->initialize_proc;
     validate_proc = in_prototype->validate_proc;
     prototype = in_prototype;
-    child = (0L);
+    child = nullptr;
     sibling = in_prototype->child;
     in_prototype->child = this;
-    out_list = (0L);
-    in_list = (0L);
-    invalid_list = (0L);
+    out_list = nullptr;
+    in_list = nullptr;
+    invalid_list = nullptr;
     validating = false;
     initialized = false;
     valid = false;
-    changed_first = (0L);
-    changed_last = (0L);
+    changed_first = nullptr;
+    changed_last = nullptr;
   }
 
   ~Am_Web_Data()
@@ -104,14 +104,14 @@ public:
     // Remove from prototype's list
     if (prototype) {
       Am_Web_Data *curr = prototype->child;
-      Am_Web_Data *prev = (0L);
+      Am_Web_Data *prev = nullptr;
       while (curr) {
         if (curr == this) {
           if (prev)
             prev->sibling = sibling;
           else
             prototype->child = sibling;
-          sibling = (0L);
+          sibling = nullptr;
           break;
         }
         prev = curr;
@@ -128,11 +128,11 @@ public:
         curr->sibling = prototype->child;
         prototype->child = curr;
       } else
-        curr->sibling = (0L);
+        curr->sibling = nullptr;
       curr = next;
     }
-    child = (0L);
-    prototype = (0L);
+    child = nullptr;
+    prototype = nullptr;
   }
 
   operator Am_Constraint *() { return &interface; }
@@ -201,7 +201,7 @@ public:
   Am_Web_Events_Data(Am_Web_Data *in_web)
   {
     web = in_web;
-    current = (0L);
+    current = nullptr;
   }
 
   Am_Web_Data *web;
@@ -217,7 +217,7 @@ public:
   static Dyn_Memory_Manager memory;
 #endif
 public:
-  Output_Port(const Am_Slot &in_context) : context(in_context) { next = (0L); }
+  Output_Port(const Am_Slot &in_context) : context(in_context) { next = nullptr; }
 
   Output_Port *Search(const Am_Slot &target)
   {
@@ -225,7 +225,7 @@ public:
     for (curr = this; curr; curr = curr->next)
       if (curr->context == target)
         return curr;
-    return (0L);
+    return nullptr;
   }
 
   Output_Port *Search(const Am_Object_Advanced &object, Am_Slot_Key key)
@@ -235,16 +235,16 @@ public:
       if ((curr->context.Get_Owner() == object) &&
           (curr->context.Get_Key() == key))
         return curr;
-    return (0L);
+    return nullptr;
   }
 
   void Destroy(Am_Constraint *self)
   {
     Am_Slot slot = context;
-    context = (Am_Slot_Data *)0;
+    context = (Am_Slot_Data *)nullptr;
     if (next) {
       next->Destroy(self);
-      next = (0L);
+      next = nullptr;
     }
     Am_Constraint_Iterator iter(slot);
     Am_Constraint *curr;
@@ -278,11 +278,11 @@ public:
 public:
   Input_Port(const Am_Slot &in_context) : context(in_context)
   {
-    next = (0L);
-    next_invalid = (0L);
-    next_changed = (0L);
-    prev_changed = (0L);
-    output_port = (0L);
+    next = nullptr;
+    next_invalid = nullptr;
+    next_changed = nullptr;
+    prev_changed = nullptr;
+    output_port = nullptr;
     invalid = false;
     changed = false;
   }
@@ -293,7 +293,7 @@ public:
     for (curr = this; curr; curr = curr->next)
       if (curr->context == target)
         return curr;
-    return (0L);
+    return nullptr;
   }
 
   Input_Port *Search(const Am_Object_Advanced &object, Am_Slot_Key key)
@@ -303,16 +303,16 @@ public:
       if ((curr->context.Get_Owner() == object) &&
           (curr->context.Get_Key() == key))
         return curr;
-    return (0L);
+    return nullptr;
   }
 
   void Destroy(Am_Constraint *self)
   {
     Am_Slot slot = context;
-    context = (Am_Slot_Data *)0;
+    context = (Am_Slot_Data *)nullptr;
     if (next) {
       next->Destroy(self);
-      next = (0L);
+      next = nullptr;
     }
     Am_Dependency_Iterator iter(slot);
     Am_Constraint *curr;
@@ -451,7 +451,7 @@ Web_Constraint::Constraint_Added(const Am_Slot &adding_slot)
 {
   if (owner->out_list->Search(adding_slot))
     // slot already constrained by this constraint
-    return (Am_Constraint *)0;
+    return (Am_Constraint *)nullptr;
 
   Output_Port *port = new Output_Port(adding_slot);
   port->next = owner->out_list;
@@ -468,7 +468,7 @@ Web_Constraint::Constraint_Added(const Am_Slot &adding_slot)
 void
 Web_Constraint::Constraint_Removed(const Am_Slot &removing_slot)
 {
-  Output_Port *prev = (0L);
+  Output_Port *prev = nullptr;
   Output_Port *curr = owner->out_list;
   while (curr) {
     if (curr->context == removing_slot) {
@@ -476,16 +476,16 @@ Web_Constraint::Constraint_Removed(const Am_Slot &removing_slot)
         prev->next = curr->next;
       else
         owner->out_list = curr->next;
-      curr->next = (0L);
+      curr->next = nullptr;
       delete curr;
       if (owner->create_proc && owner->create_proc(removing_slot)) {
         if (owner->in_list) {
           owner->in_list->Destroy(this);
-          owner->in_list = (0L);
+          owner->in_list = nullptr;
         }
         if (owner->out_list) {
           owner->out_list->Destroy(this);
-          owner->out_list = (0L);
+          owner->out_list = nullptr;
         }
       }
       if (!owner->in_list && !owner->out_list)
@@ -502,7 +502,7 @@ Web_Constraint::Dependency_Added(const Am_Slot &adding_slot)
 {
   if (owner->in_list->Search(adding_slot))
     // slot already a dependency
-    return (Am_Constraint *)0;
+    return (Am_Constraint *)nullptr;
 
   Input_Port *port = new Input_Port(adding_slot);
   port->next = owner->in_list;
@@ -519,7 +519,7 @@ Web_Constraint::Dependency_Added(const Am_Slot &adding_slot)
 void
 Web_Constraint::Dependency_Removed(const Am_Slot &removing_slot)
 {
-  Input_Port *prev = (0L);
+  Input_Port *prev = nullptr;
   Input_Port *port = owner->in_list;
   while (port) {
     if (port->context == removing_slot) {
@@ -527,7 +527,7 @@ Web_Constraint::Dependency_Removed(const Am_Slot &removing_slot)
         prev->next = port->next;
       else
         owner->in_list = port->next;
-      port->next = (0L);
+      port->next = nullptr;
       if (port->prev_changed)
         port->prev_changed->next_changed = port->next_changed;
       if (owner->changed_first == port)
@@ -536,9 +536,9 @@ Web_Constraint::Dependency_Removed(const Am_Slot &removing_slot)
         port->next_changed->prev_changed = port->prev_changed;
       if (owner->changed_last == port)
         owner->changed_last = port->prev_changed;
-      port->next_changed = (0L);
-      port->prev_changed = (0L);
-      prev = (0L);
+      port->next_changed = nullptr;
+      port->prev_changed = nullptr;
+      prev = nullptr;
       Input_Port *curr = owner->invalid_list;
       while (curr) {
         if (curr == port) {
@@ -551,7 +551,7 @@ Web_Constraint::Dependency_Removed(const Am_Slot &removing_slot)
         prev = curr;
         curr = curr->next_invalid;
       }
-      port->next_invalid = (0L);
+      port->next_invalid = nullptr;
       delete port;
       if (!owner->in_list && !owner->out_list)
         delete owner;
@@ -575,7 +575,7 @@ Web_Constraint::Create(const Am_Slot &, const Am_Slot &new_slot)
 {
   if (owner->create_proc && owner->create_proc(new_slot))
     return *(new Am_Web_Data(owner));
-  return (0L);
+  return nullptr;
 }
 
 Am_Constraint *
@@ -588,7 +588,7 @@ Web_Constraint::Copy(const Am_Slot &, const Am_Slot &new_slot)
       return *(new Am_Web_Data(owner->create_proc, owner->initialize_proc,
                                owner->validate_proc));
   }
-  return (0L);
+  return nullptr;
 }
 
 Am_ID_Tag
@@ -624,12 +624,12 @@ Am_Web_Data::Clear_Invalid()
   while (curr) {
     curr->invalid = false;
     next = curr->next_invalid;
-    curr->next_invalid = (0L);
+    curr->next_invalid = nullptr;
     if (!curr->changed)
       curr->context.Validate();
     curr = next;
   }
-  invalid_list = (0L);
+  invalid_list = nullptr;
 }
 
 void
@@ -641,12 +641,12 @@ Am_Web_Data::Clear_Changed()
     next = curr->next_changed;
     curr->prev_value = Am_No_Value;
     curr->changed = false;
-    curr->next_changed = (0L);
-    curr->prev_changed = (0L);
+    curr->next_changed = nullptr;
+    curr->prev_changed = nullptr;
     curr = next;
   }
-  changed_first = (0L);
-  changed_last = (0L);
+  changed_first = nullptr;
+  changed_last = nullptr;
 }
 
 bool
@@ -797,7 +797,7 @@ Am_Wrapper *
 Web_Context::Get_Data()
 {
   //// NIY
-  return 0;
+  return nullptr;
 }
 
 void
@@ -853,13 +853,13 @@ Am_Web_Events::Prev()
 bool
 Am_Web_Events::Last()
 {
-  return current == (0L);
+  return current == nullptr;
 }
 
 bool
 Am_Web_Events::First()
 {
-  return current == (0L);
+  return current == nullptr;
 }
 
 Am_Value &
@@ -878,7 +878,7 @@ Am_Web_Events::Get()
   if (current)
     return ((Input_Port *)current)->context;
   else
-    return 0;
+    return nullptr;
 }
 
 bool Am_Web_Events::Find_Next(Am_Slot_Key /*key*/)
@@ -896,7 +896,7 @@ bool Am_Web_Events::Find_Prev(Am_Slot_Key /*key*/)
 Am_Web_Events::Am_Web_Events(Am_Web_Data *in_data)
 {
   data = in_data;
-  current = (0L);
+  current = nullptr;
 }
 
 /*****************************************************************************

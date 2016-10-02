@@ -23,7 +23,7 @@
 // == 30000.
 
 // exported by symbol_table.h
-Am_Symbol_Table *Am_Slot_Name_Key_Table = 0;
+Am_Symbol_Table *Am_Slot_Name_Key_Table = nullptr;
 
 inline void
 verify_slot_name_key_table()

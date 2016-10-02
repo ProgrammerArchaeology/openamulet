@@ -27,7 +27,7 @@ Am_Save_Method Am_No_Save_Method;
 class Wrapper_Holder
 {
 public:
-  Wrapper_Holder() : data(0L) {}
+  Wrapper_Holder() : data(nullptr) {}
   Wrapper_Holder(Am_Wrapper *in_data) : data(in_data) {}
   Wrapper_Holder(const Wrapper_Holder &item) : data(item.data)
   {
@@ -60,7 +60,7 @@ public:
     }
     return (data);
   }
-  bool Valid() { return (data != (0L)); }
+  bool Valid() { return (data != nullptr); }
 
   Am_Wrapper *data;
 };
@@ -71,7 +71,7 @@ Wrapper_Holder No_Wrapper;
 class Name_Num
 {
 public:
-  Name_Num() : name(0L), number(-1) {}
+  Name_Num() : name(nullptr), number(-1) {}
   Name_Num(const char *in_name) : name(in_name), number(-1) {}
   Name_Num(const char *in_name, int in_number)
       : name(in_name), number(in_number)
@@ -445,7 +445,7 @@ Am_Load_Save_Context::Is_Registered_Prototype(Am_Wrapper *value)
 {
   Wrapper_Holder holder(value);
   if (!data)
-    return (0L);
+    return nullptr;
   Name_Num name = data->names->GetAt(holder);
   return name.name;
 }

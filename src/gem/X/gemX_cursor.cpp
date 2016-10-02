@@ -63,7 +63,7 @@ Am_Cursor Am_Default_Cursor;
 /* functions for Am_Cursor_Data */
 AM_WRAPPER_DATA_IMPL(Am_Cursor, (this))
 
-Am_Cursor_Data *Am_Cursor_Data::list = (0L);
+Am_Cursor_Data *Am_Cursor_Data::list = nullptr;
 
 Am_Cursor_Data::Am_Cursor_Data(Am_Cursor_Data *proto)
 {
@@ -82,9 +82,9 @@ Am_Cursor_Data::Am_Cursor_Data(Am_Cursor_Data *proto)
 
 Am_Cursor_Data::Am_Cursor_Data()
 {
-  main_display = (0L);
+  main_display = nullptr;
   main_cursor = 0;
-  head = (0L);
+  head = nullptr;
   next = list;
   list = this;
 }
@@ -96,13 +96,13 @@ Am_Cursor_Data::Am_Cursor_Data()
 Am_Cursor_Data::Am_Cursor_Data(Am_Image_Array im, Am_Image_Array m,
                                Am_Style fg_col, Am_Style bg_col)
 {
-  main_display = (0L);
+  main_display = nullptr;
   main_cursor = 0;
   image = im;
   mask = m;
   fg_color = fg_col;
   bg_color = bg_col;
-  head = (0L);
+  head = nullptr;
   next = list;
   list = this;
   x_hot = y_hot = -1;
@@ -126,7 +126,7 @@ Am_Cursor_Data::~Am_Cursor_Data()
 void
 Am_Cursor_Data::remove(Am_Cursor_Data *cursor)
 {
-  Am_Cursor_Data *prev = (0L);
+  Am_Cursor_Data *prev = nullptr;
   Am_Cursor_Data *curr = list;
   while (curr) {
     if (curr == cursor) {
@@ -147,8 +147,8 @@ Am_Cursor_Data::remove(Display *display)
   Am_Cursor_Data *curr;
   for (curr = list; curr; curr = curr->next) {
     if (curr->main_display == display)
-      curr->main_display = (0L);
-    Cursor_Item *prev = (0L);
+      curr->main_display = nullptr;
+    Cursor_Item *prev = nullptr;
     Cursor_Item *curr_index = curr->head;
     while (curr_index) {
       if (curr_index->display == display) {
@@ -253,7 +253,7 @@ Am_Cursor_Data::Get_Cursor(Display *display, Cursor &cursor)
 {
   Cursor_Item *current;
 
-  for (current = head; current != (0L); current = current->next)
+  for (current = head; current != nullptr; current = current->next)
     if (current->display == display) {
       cursor = current->cursor;
       return true;

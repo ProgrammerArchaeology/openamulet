@@ -52,8 +52,8 @@ Am_Get_Effects_Buffers(Am_Object screen, unsigned short buffer,
       mask_list.Next();
     }
     if (primary_list.Last()) {
-      primary = (0L);
-      mask = (0L);
+      primary = (nullptr);
+      mask = (nullptr);
     } else {
       primary = Am_Drawonable::Narrow(primary_list.Get());
       mask = Am_Drawonable::Narrow(mask_list.Get());
@@ -62,8 +62,8 @@ Am_Get_Effects_Buffers(Am_Object screen, unsigned short buffer,
     primary = Am_Drawonable::Narrow(primary_value);
     mask = Am_Drawonable::Narrow(mask_value);
   } else {
-    primary = (0L);
-    mask = (0L);
+    primary = (nullptr);
+    mask = (nullptr);
   }
   if (!primary) {
     Am_Drawonable *screen_drawonable =
@@ -77,8 +77,8 @@ Am_Get_Effects_Buffers(Am_Object screen, unsigned short buffer,
       mask_list.Start();
       for (i = 0; i < buffer; ++i) {
         if (primary_list.Last()) {
-          primary_list.Add((Am_Ptr)(0L));
-          mask_list.Add((Am_Ptr)(0L));
+          primary_list.Add((Am_Ptr)nullptr);
+          mask_list.Add((Am_Ptr)nullptr);
         } else {
           primary_list.Next();
           mask_list.Next();
@@ -96,8 +96,8 @@ Am_Get_Effects_Buffers(Am_Object screen, unsigned short buffer,
       primary_list.Add(primary_value);
       mask_list.Add(mask_value);
       for (i = 1; i < buffer; ++i) {
-        primary_list.Add((Am_Ptr)(0L));
-        mask_list.Add((Am_Ptr)(0L));
+        primary_list.Add((Am_Ptr)nullptr);
+        mask_list.Add((Am_Ptr)nullptr);
       }
       primary_list.Add((Am_Ptr)primary);
       mask_list.Add((Am_Ptr)mask);

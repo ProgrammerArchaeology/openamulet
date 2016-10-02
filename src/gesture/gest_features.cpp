@@ -243,7 +243,7 @@ Am_Feature_Vector_Data::Am_Feature_Vector_Data(Am_Feature_Vector_Data *d)
 Am_Feature_Vector_Data::~Am_Feature_Vector_Data()
 {
   FreeVector(y);
-  y = (0L);
+  y = nullptr;
 }
 
 void

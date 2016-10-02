@@ -134,7 +134,7 @@ Am_Define_Method(Am_Inter_Internal_Method, void, Am_Animation_Stop_Method,
   // now call stop
   Am_Call_Final_Do_And_Register(inter, command_obj, ev->x, ev->y, event_window,
                                 ev->input_char, text, Am_No_Location,
-                                (0L)); //no impl_setter since no undo
+                                nullptr); //no impl_setter since no undo
 
   // LAST, call the prototype's method
   Am_Inter_Internal_Method inter_method;

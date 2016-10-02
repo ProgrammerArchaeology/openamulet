@@ -94,14 +94,14 @@ static void
 window_create(Am_Object window)
 {
   Am_Object_Advanced ad_window = (Am_Object_Advanced &)window;
-  ad_window.Set(Am_DRAWONABLE, (Am_Ptr)(0L)); //##
+  ad_window.Set(Am_DRAWONABLE, (Am_Ptr)nullptr); //##
   Am_Window_ToDo *win_todo = new Am_Window_ToDo;
   win_todo->window = window;
   win_todo->width = 0;
   win_todo->height = 0;
   win_todo->flags = 0;
-  win_todo->prev = (0L);
-  win_todo->next = (0L);
+  win_todo->prev = (nullptr);
+  win_todo->next = (nullptr);
   ad_window.Add(Am_TODO, (Am_Ptr)win_todo);
   ad_window.Get_Slot(Am_TODO).Set_Inherit_Rule(Am_LOCAL);
 
@@ -121,8 +121,8 @@ window_copy(Am_Object window)
   win_todo->width = 0;
   win_todo->height = 0;
   win_todo->flags = 0;
-  win_todo->prev = (0L);
-  win_todo->next = (0L);
+  win_todo->prev = (nullptr);
+  win_todo->next = (nullptr);
   window.Add(Am_TODO, (Am_Ptr)win_todo);
   am_generic_renew_copied_comp(window);
 
@@ -146,7 +146,7 @@ window_destroy_demon(Am_Object window)
   }
   Am_Drawonable *drawonable = Am_Drawonable::Narrow(window.Get(Am_DRAWONABLE));
   if (drawonable) {
-    drawonable->Set_Data_Store((0L));
+    drawonable->Set_Data_Store((nullptr));
     drawonable->Destroy();
     window.Set(Am_DRAWONABLE, (0L));
   }
@@ -717,7 +717,7 @@ destroy_drawonable(Am_Object window)
         }
       }
     }
-    drawonable->Set_Data_Store((0L));
+    drawonable->Set_Data_Store((nullptr));
     drawonable->Destroy();
     window.Set(Am_DRAWONABLE, (0L));
   }
@@ -951,7 +951,7 @@ Am_Initialize_Aux()
                   .Add(Am_USE_MAX_HEIGHT, false);
 
   Am_Window //need to split because of MSC compiler limit
-      .Add(Am_DRAWONABLE, (Am_Ptr)(0L)) //##
+      .Add(Am_DRAWONABLE, (Am_Ptr)nullptr) //##
       .Add(Am_IS_COLOR, window_is_color)
       .Add(Am_RANK, 0)
       .Add(Am_QUERY_POSITION, false)
@@ -972,7 +972,7 @@ Am_Initialize_Aux()
       .Add(Am_POINT_IN_PART_METHOD, am_group_point_in_part)
       .Add(Am_POINT_IN_LEAF_METHOD, am_group_point_in_leaf)
       .Add(Am_TRANSLATE_COORDINATES_METHOD, window_translate_coordinates)
-      .Add(Am_INTER_LIST, (Am_Ptr)(0L))
+      .Add(Am_INTER_LIST, (Am_Ptr)nullptr)
       .Add(Am_WINDOW_WANT_MOVE_CNT, 0)
       .Add(Am_DOUBLE_BUFFER, true)
       //.Set (Am_DOUBLE_BUFFER, false)

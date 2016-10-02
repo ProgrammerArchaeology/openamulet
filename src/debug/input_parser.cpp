@@ -96,7 +96,7 @@ Am_Parse_Input_As_Type(Am_String input, Am_Value_Type wanted_type,
       if (!strcmp(s, "(0L)") || !strcmp(s, "(NULL)") || !strcmp(s, "0") ||
           !strncmp(s, "Am_No_", 6)) {
         output_value.type = wanted_type;
-        output_value.value.wrapper_value = 0;
+        output_value.value.wrapper_value = nullptr;
         return true;
       }
       if (wanted_type == Am_OBJECT) {
@@ -109,7 +109,7 @@ Am_Parse_Input_As_Type(Am_String input, Am_Value_Type wanted_type,
       }
       const Am_Registered_Type *the_item =
           Am_Get_Named_Item((const char *)input);
-      if (the_item != (0L) && the_item->ID() == wanted_type) {
+      if (the_item != nullptr && the_item->ID() == wanted_type) {
         if (type_class == Am_METHOD)
           output_value = (Am_Method_Wrapper *)the_item;
         else {
@@ -165,7 +165,7 @@ Am_Parse_Input_As_List_Of_Type(Am_String input, Am_Value_Type wanted_type,
     if (!ok)
       return false;
     return_values.Add(sub_value);
-    token = strtok((0L), ",]");
+    token = strtok(nullptr, ",]");
     std::cout << "next token is `" << token << "'\n" << std::flush;
   }
   output_value = return_values;

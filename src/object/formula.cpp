@@ -135,7 +135,7 @@ public:
 #ifdef DEBUG
         name(in_name),
 #endif
-        stored_data(0L)
+        stored_data(nullptr)
   {
     ;
   }
@@ -176,7 +176,7 @@ public:
   {
     if (data)
       data->Release();
-    data = (0L);
+    data = nullptr;
   }
 
   bool Get(const Am_Slot &fetching_slot, Am_Value &value, bool &changed);
@@ -230,10 +230,10 @@ Dyn_Memory_Manager Formula_Constraint::memory(sizeof(Formula_Constraint),
                                               "Formula Constraint");
 #endif
 
-Am_Depends_Iterator::Am_Depends_Iterator() : context(0L), current(0L) { ; }
+Am_Depends_Iterator::Am_Depends_Iterator() : context(nullptr), current(nullptr) { ; }
 
 Am_Depends_Iterator::Am_Depends_Iterator(const Am_Formula_Advanced *formula)
-    : context(formula), current(0L)
+    : context(formula), current(nullptr)
 {
   ;
 }
@@ -242,7 +242,7 @@ Am_Depends_Iterator &
 Am_Depends_Iterator::operator=(const Am_Formula_Advanced *formula)
 {
   context = formula;
-  current = (0L);
+  current = nullptr;
   return *this;
 }
 
@@ -253,7 +253,7 @@ Am_Depends_Iterator::Length() const
     //      Dependency* curr;
     unsigned short count = 0;
     for (Dependency *curr = ((Formula_Constraint *)context)->depends_on;
-         curr != (0L); curr = curr->next)
+         curr != nullptr; curr = curr->next)
       ++count;
     return count;
   } else
@@ -290,14 +290,14 @@ Am_Depends_Iterator::Get() const
   if (current)
     return ((Dependency *)current)->depended;
   else
-    return (0L);
+    return nullptr;
 }
 
 Formula_Context::Formula_Context(Formula_Constraint *in_context,
                                  const Am_Slot &in_depender,
                                  Dependency *depends_on)
     : depender(in_depender), inited(true), context(in_context),
-      last_position(0L), current_position(depends_on), changed(false),
+      last_position(nullptr), current_position(depends_on), changed(false),
       return_value_from_get(true)
 {
   ;
@@ -306,11 +306,11 @@ Formula_Context::Formula_Context(Formula_Constraint *in_context,
 void
 Formula_Context::Clean_Up(Dependency **depends_on)
 {
-  if (current_position != (0L)) {
+  if (current_position != nullptr) {
     if (last_position)
-      last_position->next = (0L);
+      last_position->next = nullptr;
     else
-      *depends_on = (0L);
+      *depends_on = nullptr;
     Dependency *current = current_position;
     Dependency *free_node;
     context->internal_remove = true;
@@ -318,8 +318,8 @@ Formula_Context::Clean_Up(Dependency **depends_on)
       free_node = current;
       current = current->next;
       free_node->Remove();
-      free_node->depended = Am_Slot((0L));
-      free_node->next = (0L);
+      free_node->depended = Am_Slot(nullptr);
+      free_node->next = nullptr;
       delete free_node;
     }
     context->internal_remove = false;
@@ -343,24 +343,24 @@ Formula_Constraint::Get_Name()
 // Primary constructor for Formula_Constraint, makes one from a
 // procedure and a type, and an optional name
 Formula_Constraint::Formula_Constraint(Am_Formula_Data *in_data)
-    : context(0L), formula(in_data->form_data), type(in_data->type),
+    : context(nullptr), formula(in_data->form_data), type(in_data->type),
 #ifdef DEBUG
       formula_name(in_data->name),
 #endif
-      flags(0), data(in_data->stored_data), depends_on(0L), prototype(0L),
-      first_instance(0L), next_instance(0L), internal_remove(false)
+      flags(0), data(in_data->stored_data), depends_on(nullptr), prototype(nullptr),
+      first_instance(nullptr), next_instance(nullptr), internal_remove(false)
 {
   if (in_data->stored_data)
     in_data->stored_data->Note_Reference();
 }
 
 Formula_Constraint::Formula_Constraint(Formula_Constraint *proto_formula)
-    : context(0L), formula(proto_formula->formula), type(proto_formula->type),
+    : context(nullptr), formula(proto_formula->formula), type(proto_formula->type),
 #ifdef DEBUG
       formula_name(proto_formula->formula_name),
 #endif
-      flags(proto_formula->flags), data(proto_formula->data), depends_on(0L),
-      prototype(0L), first_instance(0L), next_instance(0L),
+      flags(proto_formula->flags), data(proto_formula->data), depends_on(nullptr),
+      prototype(nullptr), first_instance(nullptr), next_instance(nullptr),
       internal_remove(false)
 {
   if (proto_formula->data)
@@ -515,20 +515,20 @@ Formula_Constraint::Constraint_Removed(const Am_Slot &)
   Dependency *current;
   Dependency *free_node;
 
-  context = Am_Slot((0L));
+  context = Am_Slot(nullptr);
   current = depends_on;
   internal_remove = true;
-  while (current != (0L)) {
+  while (current != nullptr) {
     free_node = current;
     current = current->next;
-    free_node->next = (0L);
+    free_node->next = nullptr;
     free_node->Remove();
     delete free_node;
   }
-  depends_on = (0L);
+  depends_on = nullptr;
   internal_remove = false;
   if (prototype) {
-    Formula_Constraint *prev_con = (0L);
+    Formula_Constraint *prev_con = nullptr;
     Formula_Constraint *curr_con = prototype->first_instance;
     while (curr_con) {
       if (curr_con == this) {
@@ -536,23 +536,23 @@ Formula_Constraint::Constraint_Removed(const Am_Slot &)
           prev_con->next_instance = curr_con->next_instance;
         else
           prototype->first_instance = curr_con->next_instance;
-        curr_con->next_instance = (0L);
+        curr_con->next_instance = nullptr;
         break;
       }
       prev_con = curr_con;
       curr_con = curr_con->next_instance;
     }
   }
-  prototype = (0L);
+  prototype = nullptr;
   Formula_Constraint *curr_con = first_instance;
   Formula_Constraint *next_con;
   while (curr_con) {
     next_con = curr_con->next_instance;
-    curr_con->prototype = (0L);
-    curr_con->next_instance = (0L);
+    curr_con->prototype = nullptr;
+    curr_con->next_instance = nullptr;
     curr_con = next_con;
   }
-  first_instance = (0L);
+  first_instance = nullptr;
   delete this;
 }
 
@@ -561,9 +561,9 @@ Formula_Constraint::Dependency_Removed(const Am_Slot &removing_slot)
 {
   if (!internal_remove) {
     Dependency *current;
-    for (current = depends_on; current != (0L); current = current->next) {
+    for (current = depends_on; current != nullptr; current = current->next) {
       if (current->depended == removing_slot) {
-        current->depended = Am_Slot((0L));
+        current->depended = Am_Slot(nullptr);
         break;
       }
     }
@@ -574,7 +574,7 @@ bool
 Formula_Constraint::Is_Overridden_By(const Am_Slot & /* slot */,
                                      Am_Constraint *competitor)
 {
-  if (competitor == (0L) ||
+  if (competitor == nullptr ||
       (Am_Explicit_Set::Test(competitor) &&
        !(Am_Explicit_Set::Narrow(competitor)->flags & Am_KEEP_FORMULAS))) {
     // Set with explicit value overrides me if I lack MULTI_CONSTRAINT
@@ -606,7 +606,7 @@ Formula_Constraint::Is_Overridden_By(const Am_Slot & /* slot */,
         curr_con = next_con;
       }
       if (prototype) {
-        Formula_Constraint *prev_con = (0L);
+        Formula_Constraint *prev_con = nullptr;
         curr_con = prototype->first_instance;
         while (curr_con) {
           if (curr_con == this) {
@@ -620,9 +620,9 @@ Formula_Constraint::Is_Overridden_By(const Am_Slot & /* slot */,
           curr_con = curr_con->next_instance;
         }
       }
-      prototype = (0L);
-      first_instance = (0L);
-      next_instance = (0L);
+      prototype = nullptr;
+      first_instance = nullptr;
+      next_instance = nullptr;
       return true;
     }
   }
@@ -683,7 +683,7 @@ Am_Formula_Advanced::Narrow(Am_Constraint *value)
     return (Am_Formula_Advanced *)value;
   else {
     Am_Error("Constraint narrowed to Formula type is not a Formula.");
-    return (0L);
+    return nullptr;
   }
 }
 
@@ -905,7 +905,7 @@ Formula_Context::Get(const Am_Object_Advanced &object, Am_Slot_Key key,
 
     new_dep->depended = slot;
     new_dep->dependency_tag = slot.Add_Dependency(context);
-    new_dep->next = (0L);
+    new_dep->next = nullptr;
     if (last_position)
       last_position->next = new_dep;
     else

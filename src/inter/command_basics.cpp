@@ -164,7 +164,7 @@ Am_Modify_Command_Label_Name(Am_Object cmd, Am_Slot_Key slot)
   if (v.type == Am_STRING) {
     str = v;
     const char *old_string = str;
-    const char *prefix = 0;
+    const char *prefix = nullptr;
     switch (slot) {
     case Am_SELECTIVE_UNDO_METHOD:
       prefix = "Undo ";

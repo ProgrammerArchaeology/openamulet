@@ -256,7 +256,7 @@ Am_Define_Formula(int, get_text_input_height)
 
   //first, check the label's height
   Am_String string;
-  Am_Object obj = 0;
+  Am_Object obj = nullptr;
   Am_Value value;
 
   label_font = self.Get(Am_FONT);
@@ -405,7 +405,7 @@ Am_Define_Formula(int, text_widget_box_left)
     string = value;
   else if (value.type == Am_OBJECT)
     obj = value;
-  Am_Drawonable *draw = (0L);
+  Am_Drawonable *draw = nullptr;
 
   if (window.Valid())
     draw = GV_a_drawonable(window);

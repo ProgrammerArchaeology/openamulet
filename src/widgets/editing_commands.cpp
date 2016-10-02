@@ -61,10 +61,10 @@ Am_Object Am_Save_As_Command;
 // **** TO DO ****
 Am_Object Am_Quit_Command;
 Am_Object Am_Undo_Dialog_Box_Command;
-Am_Object Am_Graphics_Refresh_Command = 0;
-Am_Object Am_Graphics_Group_Command = 0;
-Am_Object Am_Graphics_Ungroup_Command = 0;
-Am_Object Am_Pop_Up_Dialog_Box_Command = 0;
+Am_Object Am_Graphics_Refresh_Command = nullptr;
+Am_Object Am_Graphics_Group_Command = nullptr;
+Am_Object Am_Graphics_Ungroup_Command = nullptr;
+Am_Object Am_Pop_Up_Dialog_Box_Command = nullptr;
 Am_Object Am_Font_Dialog_Box_Command;
 Am_Object Am_Color_Dialog_Box_Command;
 Am_Object Am_Print_Command;

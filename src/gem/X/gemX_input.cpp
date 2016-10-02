@@ -174,14 +174,14 @@ create_input_char_from_code(short code, unsigned int state, Am_Button_Down down,
 #ifndef OA_VERSION
 AM_IMPL_MAP(int2int, int, 0, int, 0)
 #endif
-static Am_Map_int2int *am_key_map = 0;
+static Am_Map_int2int *am_key_map = nullptr;
 
 // returns character code or 0 if modifier or -1 if illegal
 short
 Map_Sym_To_Code(KeySym sym)
 {
   short c;
-  if (am_key_map == 0)
+  if (am_key_map == nullptr)
     Am_Init_Key_Map();
   c = (short)(am_key_map->GetAt((int)sym));
   if (c)
@@ -228,7 +228,7 @@ Am_Init_Key_Map()
   // The commented out lines have no Amulet equivalent.  Check there first!
   // Look for these XK_* constants in include/X11/keysymdefs.h
 
-  if (am_key_map == 0)
+  if (am_key_map == nullptr)
     am_key_map = new Am_Map_int2int();
   set_am_key_map(XK_BackSpace, Am_BACKSPACE);
   set_am_key_map(XK_Tab, Am_TAB);
@@ -590,7 +590,7 @@ create_input_char_from_key(XKeyEvent &keyevent, Display *disp)
   //KeySym sym = XKeycodeToKeysym (disp, keycode, index);
   KeySym sym;
   char buffer[4];
-  XLookupString(&keyevent, buffer, sizeof buffer, &sym, 0);
+  XLookupString(&keyevent, buffer, sizeof buffer, &sym, nullptr);
 
   if (sym == NoSymbol && index == 1) {
     // try again with unshifted index
@@ -676,7 +676,7 @@ handle_selection_request(XEvent &ev, Am_Drawonable_Impl *draw)
   // someone wants our selection.
   XEvent notify;
   Atom p;
-  if (draw->screen->cut_data == (0L))
+  if (draw->screen->cut_data == nullptr)
     p = None;
   else {
     p = ev.xselectionrequest.property;
@@ -716,7 +716,7 @@ char *
 Am_Drawonable_Impl::Get_Cut_Buffer()
 {
   if (offscreen)
-    return (0L); // not meaningful for offscreen bitmaps
+    return nullptr; // not meaningful for offscreen bitmaps
 
   // To get a selection properly, we need to send off a SelectionRequest event
   // (this is done with the call to XConvertSelection), and then wait for a
@@ -731,7 +731,7 @@ Am_Drawonable_Impl::Get_Cut_Buffer()
   if (this == screen->root) { // then we're in a root window
     std::cerr
         << "** Gem warning: Get_Cut_Buffer() won't work in a root window.\n";
-    return (0L);
+    return nullptr;
   }
   // Make an atom to get the selection in.
 
@@ -746,14 +746,14 @@ Am_Drawonable_Impl::Get_Cut_Buffer()
     while (!XPending(screen->display))
       ;
     //    XNextEvent(screen->display, &ev);
-    if (XCheckIfEvent(screen->display, &ev, selection_event, (0L)) == False
-        //	&& XCheckIfEvent(screen->display, &ev, selection_event, (0L)) == False)
+    if (XCheckIfEvent(screen->display, &ev, selection_event, nullptr) == False
+        //	&& XCheckIfEvent(screen->display, &ev, selection_event, nullptr) == False)
         ) {
       // if we get here, we didn't get any selection notify event back.
       // should we use cut buffer0 here instead?
       std::cerr << "** missing selection notify event." << std::endl;
       //	XPutBackEvent(screen->display, &ev); // checkifevent doesn't dequeue nonmatching events
-      return (0L);
+      return nullptr;
     }
     if (ev.xany.type == SelectionNotify)
       break;
@@ -1210,7 +1210,7 @@ Am_Drawonable::Process_Event(const Am_Time &deadline)
   // If there is no deadline then we will wait forever, if necessary, for
   // the next event. Otherwise we will only wait up till the deadline.
   if (deadline.Zero())
-    Scrn_Mgr.Next_Event(&event_return, static_cast<timeval *>(0L));
+    Scrn_Mgr.Next_Event(&event_return, static_cast<timeval *>(nullptr));
   else {
     // Figure out when we stop processing
     Am_Time now = Am_Time::Now();
@@ -1270,7 +1270,7 @@ Am_Drawonable::Process_Event(const Am_Time &deadline)
 void
 Am_Drawonable::Wait_For_Event()
 {
-  Scrn_Mgr.Wait_For_Event(static_cast<timeval *>(0L));
+  Scrn_Mgr.Wait_For_Event(static_cast<timeval *>(nullptr));
 }
 
 void
@@ -1405,15 +1405,15 @@ Am_Drawonable_Impl::Get_Drawonable_At_Cursor()
   int root_x_return, root_y_return, win_x_return, win_y_return;
   unsigned int mask_return;
   parent = screen->root->xlib_drawable;
-  Am_Drawonable_Impl *return_draw = (0L);
-  Am_Drawonable_Impl *draw = (0L);
+  Am_Drawonable_Impl *return_draw = nullptr;
+  Am_Drawonable_Impl *draw = nullptr;
   // need to find leaf-most window that contains the cursor, keep
   // going down until fail
   while (true) {
     if (!XQueryPointer(display, parent, &root_return, &child_return,
                        &root_x_return, &root_y_return, &win_x_return,
                        &win_y_return, &mask_return))
-      return (0L); //if XQueryPointer returns false, then not on right screen
+      return nullptr; //if XQueryPointer returns false, then not on right screen
     if (child_return) {
       if (child_return == parent) {
         // looping, return last good drawonable

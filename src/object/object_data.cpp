@@ -75,10 +75,10 @@ append_number_to_name(const char *orig_name)
 AM_WRAPPER_DATA_IMPL_ID(Am_Object, (), Am_OBJECT)
 
 Am_Object_Data::Am_Object_Data()
-    : prototype((0L)), first_instance((0L)), next_instance((0L)),
-      first_part((0L)), next_part((0L)), default_bits(0x0001),
-      bits_mask(0x0000), owner_slot((0L), Am_OWNER),
-      part_slot(NULL, Am_NO_SLOT), data(sizeof(Am_Slot_Data *))
+    : prototype((nullptr)), first_instance((nullptr)), next_instance((nullptr)),
+      first_part((nullptr)), next_part((nullptr)), default_bits(0x0001),
+      bits_mask(0x0000), owner_slot((nullptr), Am_OWNER),
+      part_slot(nullptr, Am_NO_SLOT), data(sizeof(Am_Slot_Data *))
 {
 #ifdef LEAK_TRACE
   std::cout << "ROOT\t\tcreated: " << this << "\tReferences: " << Ref_Count()
@@ -88,7 +88,7 @@ Am_Object_Data::Am_Object_Data()
   Am_Register_Name(this, append_number_to_name("ROOT"));
 #endif
   owner_slot.context = this;
-  owner_slot.value.wrapper_value = (0L);
+  owner_slot.value.wrapper_value = nullptr;
   owner_slot.type = Am_OBJECT;
   default_rule = Am_INHERIT;
   part_slot.value.wrapper_value = this;
@@ -102,7 +102,7 @@ Am_Object_Data::Am_Object_Data()
 
 Am_Object_Data::Am_Object_Data(const char *schema_name,
                                Am_Object_Data *in_prototype)
-    : owner_slot((0L), Am_OWNER), part_slot(NULL, Am_NO_SLOT),
+    : owner_slot((nullptr), Am_OWNER), part_slot(nullptr, Am_NO_SLOT),
       demon_set(in_prototype->demon_set),
       demon_queue(in_prototype->demon_queue), data(sizeof(Am_Slot_Data *))
 {
@@ -118,7 +118,7 @@ Am_Object_Data::Am_Object_Data(const char *schema_name,
     Am_Register_Name(this, name);
   } else {
     const char *proto_name = Am_Get_Name_Of_Item(in_prototype);
-    if (proto_name == (0L)) {
+    if (proto_name == nullptr) {
       std::cout << "Warning: instantiating object without a registered name!\n"
                 << std::flush;
 #ifdef LEAK_TRACE
@@ -146,12 +146,12 @@ Am_Object_Data::Am_Object_Data(const char *schema_name,
   default_rule = in_prototype->default_rule;
   demon_set->Note_Reference();
   demons_active = in_prototype->demons_active & DEMONS_ACTIVE;
-  first_instance = (0L);
+  first_instance = nullptr;
   owner_slot.context = this;
-  owner_slot.value.wrapper_value = (0L);
+  owner_slot.value.wrapper_value = nullptr;
   owner_slot.type = Am_OBJECT;
-  first_part = (0L);
-  next_part = (0L);
+  first_part = nullptr;
+  next_part = nullptr;
   part_slot.value.wrapper_value = this;
   part_slot.type = Am_OBJECT;
   part_slot.flags = BIT_IS_PART;
@@ -184,7 +184,7 @@ Am_Object_Data::~Am_Object_Data()
     destroy_object();
   }
 
-  part_slot.value.wrapper_value = (0L);
+  part_slot.value.wrapper_value = nullptr;
 }
 
 Am_Object_Data *
@@ -238,10 +238,10 @@ Am_Object_Data::create_object(const char *new_name)
   Am_POP_EMPTY_CC() demon_queue.Release_Invoke();
   Am_Object_Data *curr_part;
   Am_Object_Data *new_part;
-  for (curr_part = first_part; curr_part != (0L);
+  for (curr_part = first_part; curr_part != nullptr;
        curr_part = curr_part->next_part) {
     if (curr_part->part_slot.key != Am_NO_INHERIT) {
-      new_part = curr_part->create_object((0L));
+      new_part = curr_part->create_object((nullptr));
       new_part->part_slot.key = curr_part->part_slot.key;
       new_part->next_part = new_object->first_part;
       new_object->first_part = new_part;
@@ -294,10 +294,10 @@ Am_Object_Data::copy_object(const char *new_name)
   Am_POP_EMPTY_CC() demon_queue.Release_Invoke();
   Am_Object_Data *curr_part;
   Am_Object_Data *new_part;
-  for (curr_part = first_part; curr_part != (0L);
+  for (curr_part = first_part; curr_part != nullptr;
        curr_part = curr_part->next_part) {
     if (curr_part->part_slot.key != Am_NO_INHERIT) {
-      new_part = curr_part->copy_object((0L));
+      new_part = curr_part->copy_object((nullptr));
       new_part->part_slot.key = curr_part->part_slot.key;
       new_part->next_part = new_object->first_part;
       new_object->first_part = new_part;
@@ -309,7 +309,7 @@ Am_Object_Data::copy_object(const char *new_name)
       }
       new_object->Note_Reference();
       Am_Value oldval(Am_No_Object), newval(new_object);
-      new_part->owner_slot.dependencies.Change(&new_part->owner_slot, (0L),
+      new_part->owner_slot.dependencies.Change(&new_part->owner_slot, nullptr,
                                                oldval, newval);
     }
   }
@@ -354,10 +354,10 @@ Am_Object_Data::copy_object_value_only(const char *new_name)
   Am_POP_EMPTY_CC() demon_queue.Release_Invoke();
   Am_Object_Data *curr_part;
   Am_Object_Data *new_part;
-  for (curr_part = first_part; curr_part != (0L);
+  for (curr_part = first_part; curr_part != nullptr;
        curr_part = curr_part->next_part) {
     if (curr_part->part_slot.key != Am_NO_INHERIT) {
-      new_part = curr_part->copy_object_value_only((0L));
+      new_part = curr_part->copy_object_value_only((nullptr));
       new_part->part_slot.key = curr_part->part_slot.key;
       new_part->next_part = new_object->first_part;
       new_object->first_part = new_part;
@@ -369,7 +369,7 @@ Am_Object_Data::copy_object_value_only(const char *new_name)
       }
       new_object->Note_Reference();
       Am_Value oldval(Am_No_Object), newval(new_object);
-      new_part->owner_slot.dependencies.Change(&new_part->owner_slot, (0L),
+      new_part->owner_slot.dependencies.Change(&new_part->owner_slot, nullptr,
                                                oldval, newval);
     }
   }
@@ -384,7 +384,7 @@ void
 Am_Object_Data::invoke_create_demons()
 {
   Am_Object_Data *curr_part;
-  for (curr_part = first_part; curr_part != (0L);
+  for (curr_part = first_part; curr_part != nullptr;
        curr_part = curr_part->next_part)
     curr_part->invoke_create_demons();
   if ((demons_active & DEMONS_ACTIVE) && demon_set->create_demon) {
@@ -397,7 +397,7 @@ void
 Am_Object_Data::invoke_copy_demons()
 {
   Am_Object_Data *curr_part;
-  for (curr_part = first_part; curr_part != (0L);
+  for (curr_part = first_part; curr_part != nullptr;
        curr_part = curr_part->next_part)
     curr_part->invoke_copy_demons();
   if ((demons_active & DEMONS_ACTIVE) && demon_set->copy_demon) {
@@ -428,10 +428,10 @@ Am_Object_Data::destroy_object()
   }
   Am_Object_Data *current;
   Am_Object_Data *next;
-  for (current = first_part; current != (0L); current = current->next_part)
+  for (current = first_part; current != nullptr; current = current->next_part)
     current->demon_removal();
   current = first_part;
-  first_part = (0L);
+  first_part = nullptr;
   while (current) {
     next = current->next_part;
     current->Note_Reference();
@@ -439,10 +439,10 @@ Am_Object_Data::destroy_object()
     current = next;
   }
   Am_Slot_Data **data_array = (Am_Slot_Data **)data.data;
-  data.data = (0L);
+  data.data = nullptr;
   if (prototype) {
     current = prototype->first_instance;
-    Am_Object_Data *prev = (0L);
+    Am_Object_Data *prev = nullptr;
     while (current) {
       if (current == this) {
         if (prev)
@@ -455,7 +455,7 @@ Am_Object_Data::destroy_object()
       current = current->next_instance;
     }
     prototype->Release();
-    prototype = (0L);
+    prototype = nullptr;
   }
   if (data_array) {
     Am_Slot_Data *slot;
@@ -465,10 +465,10 @@ Am_Object_Data::destroy_object()
       slot = data_array[i];
       if (!(slot->flags & BIT_IS_PART)) {
         proto_slot =
-            prototype ? prototype->find_slot(slot->key) : (Am_Slot_Data *)(0L);
+            prototype ? prototype->find_slot(slot->key) : (Am_Slot_Data *)nullptr;
         delete_slot(slot, proto_slot);
       }
-      data_array[i] = (0L);
+      data_array[i] = nullptr;
     }
     data.data = (char *)data_array;
     data.Destroy();
@@ -479,7 +479,7 @@ Am_Object_Data::destroy_object()
     Am_Error("** Object deleted twice");
   if (demon_set) {
     demon_set->Release();
-    demon_set = (0L);
+    demon_set = nullptr;
   }
 }
 
@@ -496,7 +496,7 @@ Am_Object_Data::validate_object()
   }
   Am_Value oldval(Am_No_Object), newval;
   Am_Object_Data *curr_part;
-  for (curr_part = first_part; curr_part != (0L);
+  for (curr_part = first_part; curr_part != nullptr;
        curr_part = curr_part->next_part) {
     curr_part->validate_object();
     Am_Object_Data *part =
@@ -504,13 +504,13 @@ Am_Object_Data::validate_object()
     if (part)
       part->Note_Reference();
     newval = part;
-    curr_part->part_slot.dependencies.Change(&curr_part->part_slot, (0L),
+    curr_part->part_slot.dependencies.Change(&curr_part->part_slot, nullptr,
                                              oldval, newval);
   }
   if (owner_slot.value.wrapper_value)
     owner_slot.value.wrapper_value->Note_Reference();
   newval = owner_slot.value.wrapper_value;
-  owner_slot.dependencies.Change(&owner_slot, (0L), oldval, newval);
+  owner_slot.dependencies.Change(&owner_slot, nullptr, oldval, newval);
   Am_POP_EMPTY_CC() demon_queue.Release_Invoke();
 }
 
@@ -520,7 +520,7 @@ Am_Object_Data::note_parts()
   Am_Object_Context oc(false);
   owner_slot.dependencies.Slot_Event(&oc, &owner_slot);
   Am_Object_Data *curr_part;
-  for (curr_part = first_part; curr_part != (0L);
+  for (curr_part = first_part; curr_part != nullptr;
        curr_part = curr_part->next_part) {
     curr_part->note_parts();
     curr_part->part_slot.dependencies.Slot_Event(&oc, &curr_part->part_slot);
@@ -539,7 +539,7 @@ Am_Object_Data::demon_removal()
     demon_set->destroy_demon(this);
   }
   Am_Object_Data *current;
-  for (current = first_part; current != (0L); current = current->next_part)
+  for (current = first_part; current != nullptr; current = current->next_part)
     current->demon_removal();
 }
 
@@ -565,7 +565,7 @@ Am_Object_Data::find_slot(Am_Slot_Key key)
     if (slot && static_cast<Am_Inherit_Rule>(slot->rule) != Am_LOCAL)
       return slot;
   }
-  return (0L);
+  return nullptr;
 }
 
 Am_Slot_Data *
@@ -608,7 +608,7 @@ Am_Object_Data::find_slot_and_position(Am_Slot_Key key, Am_Slot_Data *&out_slot,
       return;
     }
   }
-  out_slot = (0L);
+  out_slot = nullptr;
 }
 
 void
@@ -710,7 +710,7 @@ Am_Object_Data::set_slot(Am_Slot_Key key, Am_Constraint *constraint,
     slot->value.wrapper_value->Note_Reference();
     ((Am_Object)((Am_Object_Data *)slot->value.wrapper_value)).Destroy();
     slot->value.wrapper_value->Release();
-    slot = (0L);
+    slot = nullptr;
   }
 
   if (!slot || slot->context != this) {
@@ -945,7 +945,7 @@ Am_Object_Data::remove_temporary_slot(Am_Slot_Key key)
     if (key == slot->key) {
       if (slot->flags & BIT_INHERITS) {
         data.Delete(i);
-        slot->dependencies.Invalidate(slot, (0L), *slot);
+        slot->dependencies.Invalidate(slot, nullptr, *slot);
         slot->Destroy();
       } else
         return;
@@ -1087,22 +1087,22 @@ Am_Object_Data::delete_slot(Am_Slot_Data *slot, Am_Slot_Data *proto_slot)
 #if 1 // propagate all changes
       if (*slot != *proto_slot)
 #endif
-        if (propagate_change(slot->key, (0L), *slot, *proto_slot))
+        if (propagate_change(slot->key, nullptr, *slot, *proto_slot))
           proto_slot->flags &= ~BIT_IS_INHERITED;
     }
   } else if (type != Am_MISSING_SLOT)
-    (void)propagate_change(slot->key, (0L), *slot, Missing_Slot_Value);
+    (void)propagate_change(slot->key, nullptr, *slot, Missing_Slot_Value);
   slot->Destroy();
 }
 
 void
 Am_Object_Data::remove_part()
 {
-  Am_Object_Data *prev = (0L);
+  Am_Object_Data *prev = nullptr;
   Am_Object_Data *curr;
   Am_Object_Data *owner = (Am_Object_Data *)owner_slot.value.wrapper_value;
-  owner_slot.value.wrapper_value = (0L);
-  for (curr = owner->first_part; curr != (0L); curr = curr->next_part) {
+  owner_slot.value.wrapper_value = nullptr;
+  for (curr = owner->first_part; curr != nullptr; curr = curr->next_part) {
     if (curr == this) {
       if (prev)
         prev->next_part = curr->next_part;
@@ -1112,7 +1112,7 @@ Am_Object_Data::remove_part()
     }
     prev = curr;
   }
-  part_slot.context = (0L);
+  part_slot.context = nullptr;
   if (part_slot.key) {
     part_slot.key = Am_NO_SLOT;
     Am_Slot_Data *slot;

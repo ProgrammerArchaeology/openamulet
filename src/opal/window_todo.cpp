@@ -14,8 +14,8 @@
 #include <am_inc.h>
 #include <amulet/impl/am_window_todo.h>
 
-Am_Window_ToDo *Window_ToDo_Head = (0L);
-Am_Window_ToDo *Window_ToDo_Tail = (0L);
+Am_Window_ToDo *Window_ToDo_Head = nullptr;
+Am_Window_ToDo *Window_ToDo_Tail = nullptr;
 
 void
 Am_Window_ToDo::Merge_Rectangle(int in_left, int in_top, int in_width,
@@ -67,7 +67,7 @@ Am_Window_ToDo::Remove()
       prev->next = next;
     else
       Window_ToDo_Head = next;
-    prev = (0L);
-    next = (0L);
+    prev = nullptr;
+    next = nullptr;
   }
 }

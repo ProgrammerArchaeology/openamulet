@@ -24,7 +24,7 @@ DynArray::Get(unsigned i)
   if (i < length) {
     return (&data[i * elem_size]);
   } else {
-    return (static_cast<char *>(0));
+    return static_cast<char *>(nullptr);
   }
 }
 
@@ -128,6 +128,6 @@ DynArray::Destroy()
 {
   if (data) {
     free(data);
-    data = (0L);
+    data = nullptr;
   }
 }

@@ -44,7 +44,7 @@ Am_Gesture_Trainer::Am_Gesture_Trainer()
 
 Am_Gesture_Trainer::Am_Gesture_Trainer(const char *filename)
 {
-  data = (0L);
+  data = nullptr;
 
   std::ifstream in(filename, std::ios::in);
   if (!in) {
@@ -68,7 +68,7 @@ Am_Gesture_Trainer::Add_Class(Am_String classname, bool unique)
 
   data->Add_Class(classname);
 
-  data->cached_classifier = 0;
+  data->cached_classifier = nullptr;
   return true;
 }
 
@@ -82,11 +82,11 @@ Am_Gesture_Trainer::Delete_Class(Am_String classname, bool unique)
 
   Am_Gesture_Trainer_Data::Gesture_Class *c;
 
-  if ((c = data->Find_Class(classname)) == (0L))
+  if ((c = data->Find_Class(classname)) == nullptr)
     return false;
 
   data->Delete_Class(c);
-  data->cached_classifier = 0;
+  data->cached_classifier = nullptr;
   return true;
 }
 
@@ -99,15 +99,15 @@ Am_Gesture_Trainer::Rename_Class(Am_String old_name, Am_String new_name,
   else if (unique)
     data = (Am_Gesture_Trainer_Data *)data->Make_Unique();
 
-  if (data->Find_Class(new_name) != (0L))
+  if (data->Find_Class(new_name) != nullptr)
     return false;
 
   Am_Gesture_Trainer_Data::Gesture_Class *c;
-  if ((c = data->Find_Class(old_name)) == (0L))
+  if ((c = data->Find_Class(old_name)) == nullptr)
     return false;
 
   c->name = new_name;
-  data->cached_classifier = 0;
+  data->cached_classifier = nullptr;
   return true;
 }
 
@@ -120,7 +120,7 @@ Am_Gesture_Trainer::Get_Class_Names()
   if (!data)
     return l;
 
-  for (c = data->head; c != (0L); c = c->next)
+  for (c = data->head; c != nullptr; c = c->next)
     l.Add(c->name);
 
   return l;
@@ -141,7 +141,7 @@ Am_Gesture_Trainer::Add_Example(Am_String classname, Am_Feature_Vector fv,
 
   c->examples.Add(fv);
 
-  data->cached_classifier = 0;
+  data->cached_classifier = nullptr;
   return true;
 }
 
@@ -168,7 +168,7 @@ Am_Gesture_Trainer::Delete_Example(Am_String classname, Am_Feature_Vector fv,
     l.Delete();
   while (l.Member(fv));
 
-  data->cached_classifier = 0;
+  data->cached_classifier = nullptr;
   return true;
 }
 
@@ -207,7 +207,7 @@ operator<<(std::ostream &s, Am_Gesture_Trainer &tr)
   // Write out examples
 
   Am_Gesture_Trainer_Data::Gesture_Class *cls;
-  for (cls = trdata->head; cls != (0L); cls = cls->next) {
+  for (cls = trdata->head; cls != nullptr; cls = cls->next) {
     Am_Value_List l = cls->examples;
     for (l.Start(); !l.Last(); l.Next()) {
       Am_Feature_Vector fv = l.Get();
@@ -237,7 +237,7 @@ operator>>(std::istream &s, Am_Gesture_Trainer &tr)
     return s;
 
   Am_Gesture_Trainer_Data *trdata;
-  Am_Gesture_Trainer_Data::Gesture_Class *cls = 0;
+  Am_Gesture_Trainer_Data::Gesture_Class *cls = nullptr;
   char check;
   char buf[100];
   int x, y;
@@ -249,7 +249,7 @@ operator>>(std::istream &s, Am_Gesture_Trainer &tr)
   if (cl.Trained())
     trdata->cached_classifier = cl;
   else
-    trdata->cached_classifier = 0;
+    trdata->cached_classifier = nullptr;
 
   // Now look for examples.  Examples have the check character 'x'.
 
@@ -300,27 +300,27 @@ AM_WRAPPER_DATA_IMPL(Am_Gesture_Trainer, (this))
 
 Am_Gesture_Trainer_Data::Am_Gesture_Trainer_Data()
 {
-  head = tail = (0L);
+  head = tail = nullptr;
   nclasses = 0;
-  cached_classifier = 0;
+  cached_classifier = nullptr;
 }
 
 Am_Gesture_Trainer_Data::Am_Gesture_Trainer_Data(Am_Gesture_Trainer_Data *d)
 {
-  if (d->head == (0L))
-    head = tail = (0L);
+  if (d->head == nullptr)
+    head = tail = nullptr;
   else {
     Gesture_Class *from, *to, *last;
 
     head = new Gesture_Class(d->head);
-    head->prev = (0L);
-    for (last = head, from = d->head->next; from != (0L);
+    head->prev = nullptr;
+    for (last = head, from = d->head->next; from != nullptr;
          last = to, from = from->next) {
       to = new Gesture_Class(from);
       last->next = to;
       to->prev = last;
     }
-    last->next = (0L);
+    last->next = nullptr;
     tail = last;
   }
 
@@ -333,8 +333,8 @@ Am_Gesture_Trainer_Data::Am_Gesture_Trainer_Data(
 {
   int i;
 
-  if (cldata == (0L) || cldata->nclasses == 0) {
-    head = tail = (0L);
+  if (cldata == nullptr || cldata->nclasses == 0) {
+    head = tail = nullptr;
     nclasses = 0;
   } else {
     Am_Gesture_Classifier_Data::Gesture_Class *classes = cldata->classes;
@@ -344,14 +344,14 @@ Am_Gesture_Trainer_Data::Am_Gesture_Trainer_Data(
 
     head = new Gesture_Class();
     head->name = classes[0].name;
-    head->prev = (0L);
+    head->prev = nullptr;
     for (last = head, i = 1; i < nclasses; last = curr, ++i) {
       curr = new Gesture_Class();
       curr->name = classes[i].name;
       curr->prev = last;
       last->next = curr;
     }
-    last->next = (0L);
+    last->next = nullptr;
     tail = last;
   }
 
@@ -362,11 +362,11 @@ Am_Gesture_Trainer_Data::~Am_Gesture_Trainer_Data()
 {
   Gesture_Class *c, *next;
 
-  for (c = head; c != (0L); c = next) {
+  for (c = head; c != nullptr; c = next) {
     next = c->next;
     delete c;
   }
-  head = tail = (0L);
+  head = tail = nullptr;
 }
 
 void
@@ -376,7 +376,7 @@ Am_Gesture_Trainer_Data::Add_Class(Am_String classname)
   c->name = classname;
 
   c->prev = tail;
-  c->next = (0L);
+  c->next = nullptr;
   if (!tail)
     head = tail = c;
   else
@@ -407,11 +407,11 @@ Am_Gesture_Trainer_Data::Find_Class(Am_String classname)
 {
   Gesture_Class *c;
 
-  for (c = head; c != (0L); c = c->next)
+  for (c = head; c != nullptr; c = c->next)
     if (c->name == classname)
       return c;
 
-  return (0L);
+  return nullptr;
 }
 
 Am_Gesture_Classifier
@@ -438,7 +438,7 @@ Am_Gesture_Trainer_Data::Train()
   Am_Gesture_Classifier_Data *cldata = new Am_Gesture_Classifier_Data(nclasses);
   Am_Gesture_Classifier cl = cldata;
 
-  for (c = head, d = cldata->classes; c != (0L); c = c->next, ++d)
+  for (c = head, d = cldata->classes; c != nullptr; c = c->next, ++d)
     d->name = c->name;
 
   /* Given covariance matrices for each class (* number of examples - 1)
@@ -448,9 +448,9 @@ Am_Gesture_Trainer_Data::Train()
   ZeroMatrix(avgcov);
   ne = 0;
 
-  dotclass = (0L);
+  dotclass = nullptr;
 
-  for (c = head, d = cldata->classes; c != (0L); c = c->next, ++d) {
+  for (c = head, d = cldata->classes; c != nullptr; c = c->next, ++d) {
     Am_Value_List &l = c->examples;
 
     nexamples = l.Length();
@@ -495,7 +495,7 @@ Am_Gesture_Trainer_Data::Train()
       }
 
       if (d->is_dot) {
-        if (dotclass == (0L)) {
+        if (dotclass == nullptr) {
           dotclass = d;
           // std::cout << d->name << " is dot-like" <<std::endl;
         } else {
@@ -529,7 +529,7 @@ Am_Gesture_Trainer_Data::Train()
 
   /* now compute discrimination function (w and cnst) for each class */
 
-  for (c = head, d = cldata->classes; c != (0L); c = c->next, ++d) {
+  for (c = head, d = cldata->classes; c != nullptr; c = c->next, ++d) {
     d->w = NewVector(NFEATURES);
     VectorTimesMatrix(d->average, cldata->invavgcov, d->w);
     d->cnst = -0.5 * InnerProduct(d->w, d->average);

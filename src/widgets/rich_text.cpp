@@ -200,7 +200,7 @@ AM_WRAPPER_IMPL(Am_Rich_Text)
  *  Am_Rich_Text
  */
 
-Am_Rich_Text::Am_Rich_Text() { data = (0L); }
+Am_Rich_Text::Am_Rich_Text() { data = nullptr; }
 
 Am_Rich_Text::Am_Rich_Text(const char *inString)
 {
@@ -284,8 +284,8 @@ AM_WRAPPER_DATA_IMPL(Am_Rich_Text, (this))
 
 Am_Rich_Text_Data::Am_Rich_Text_Data()
 {
-  mHeadFragment = (0L);
-  mHeadStyle = (0L);
+  mHeadFragment = nullptr;
+  mHeadStyle = nullptr;
 }
 
 Am_Rich_Text_Data::Am_Rich_Text_Data(const char *inString,
@@ -368,7 +368,7 @@ struct SBreakInfo Find_Next_Break(
     if (charsRemInFrag <= 0) {
       ret.frag = ret.frag->Next();
 
-      if (ret.frag == (0L)) {
+      if (ret.frag == nullptr) {
         ret.why = EndOfText;
         return ret;
       } else {
@@ -391,7 +391,7 @@ struct SBreakInfo Find_Next_Break(
     if (charsRemInFrag <= 0) {
       ret.frag = ret.frag->Next();
 
-      if (ret.frag == (0L)) {
+      if (ret.frag == nullptr) {
         ret.why = EndOfText;
         return ret;
       } else {
@@ -487,7 +487,7 @@ Am_Rich_Text_Data::Calc_Line_Dim(Am_Drawonable *inDrawonable,
       // skip to next style run, since there should be more test remaining
       if (chars_rem_in_sr == 0) {
         curSR = curSR->Next();
-        if (curSR == (0L)) {
+        if (curSR == nullptr) {
           Am_Error("Ran out of Style_Run info.");
           // this should never happen... eventually throw an exception
         }
@@ -560,7 +560,7 @@ Am_Rich_Text_Data::Calc_SR_Dim(Am_Drawonable *inDrawonable,
       ret.end_frag = ret.end_frag->Next();
       ret.end_frag_offset = 0;
 
-      if (ret.end_frag == (0L))
+      if (ret.end_frag == nullptr)
         Am_Error("Rich Text Engine: Unexpected null fragment in Calc_SR_Dim");
 
       string = ret.end_frag->String(0);
@@ -732,7 +732,7 @@ Am_Rich_Text_Data::Get_Fragment_At(const Am_Text_Index inIndex,
   Am_Text_Index endOfFrag = 0;
   Am_Text_Fragment *frag = mHeadFragment;
 
-  while (frag != (0L)) {
+  while (frag != nullptr) {
     endOfFrag += frag->Length();
     if (inIndex <= endOfFrag) {
       // find the relative index
@@ -750,7 +750,7 @@ Am_Rich_Text_Data::Get_Fragment_At(const Am_Text_Index inIndex) const
   Am_Text_Index endOfFrag = 0;
   Am_Text_Fragment *frag = mHeadFragment;
 
-  while (frag != (0L)) {
+  while (frag != nullptr) {
     endOfFrag += frag->Length();
     if (inIndex <= endOfFrag)
       break;
@@ -774,7 +774,7 @@ Am_Rich_Text_Data::Get_Style_Run_At(const Am_Text_Index inIndex,
   Am_Text_Style_Run *sr = mHeadStyle;
   outRemChars = 0; // just in case
 
-  while (sr != (0L)) {
+  while (sr != nullptr) {
     lastCharInRun += sr->Length();
     if (inIndex <= lastCharInRun) {
       // find the relative index
@@ -792,7 +792,7 @@ Am_Rich_Text_Data::Get_Style_Run_At(const Am_Text_Index inIndex) const
   Am_Text_Index endOfRun = 0;
   Am_Text_Style_Run *sr = mHeadStyle;
 
-  while (sr != (0L)) {
+  while (sr != nullptr) {
     endOfRun += sr->Length();
     if (inIndex <= endOfRun)
       break;
@@ -832,7 +832,7 @@ AM_WRAPPER_IMPL(Am_Text_Mark)
  *  Am_Text_Mark
  */
 
-Am_Text_Mark::Am_Text_Mark() { data = (0L); }
+Am_Text_Mark::Am_Text_Mark() { data = nullptr; }
 
 Am_Text_Mark::Am_Text_Mark(
     const Am_Rich_Text *inText,
@@ -1234,7 +1234,7 @@ AM_WRAPPER_IMPL(Am_Text_Cursor)
  *  Am_Text_Cursor
  */
 
-Am_Text_Cursor::Am_Text_Cursor() { data = (0L); }
+Am_Text_Cursor::Am_Text_Cursor() { data = nullptr; }
 
 Am_Text_Cursor::Am_Text_Cursor(
     const Am_Rich_Text *inText, Am_Value inMarkData,
@@ -1424,7 +1424,7 @@ Am_Text_Viewing_Context_Data::SLIBlock::SLIBlock()
     li[line].fLength = 0;
     li[line].fHeight = 0;
   }
-  fNext = (0L);
+  fNext = nullptr;
 }
 
 Am_Text_Viewing_Context_Data::Am_Text_Viewing_Context_Data()
@@ -1520,7 +1520,7 @@ void Am_Text_Viewing_Context_Data::Layout(
       break;
 
     if (line % kLinesInBlock == 0) {
-      if (liBlock->fNext == (0L))
+      if (liBlock->fNext == nullptr)
         liBlock->fNext = new SLIBlock;
       liBlock = liBlock->fNext;
     }
@@ -1659,8 +1659,8 @@ Am_Text_Fragment::Am_Text_Fragment(Am_Rich_Text_Data *inTextObject,
   mType = Am_STRING;
   mTextObject = inTextObject;
   mStartIndex = 0;
-  mFirstMark = (0L);
-  mPrev = mNext = (0L);
+  mFirstMark = nullptr;
+  mPrev = mNext = nullptr;
 
   Am_Text_Length stringLen = strlen(inString);
 
@@ -1682,8 +1682,8 @@ Am_Text_Fragment::Am_Text_Fragment(Am_Rich_Text_Data *inTextObject,
   mTextObject = inTextObject;
   mStrLen = inStrLen;
   mStartIndex = 0;
-  mFirstMark = (0L);
-  mPrev = mNext = (0L);
+  mFirstMark = nullptr;
+  mPrev = mNext = nullptr;
 
   if (inStrLen > kFragStrSize) {
     mStrLen = kFragStrSize;
@@ -1748,7 +1748,7 @@ Am_Text_Fragment::String(Am_Text_Offset inOffset) const
                                     // make sure that inOffset > 0
     return (char *)mString + inOffset;
   else
-    return (0L); // probably should raise some error, throw an exception...
+    return nullptr; // probably should raise some error, throw an exception...
 }
 
 /******************************************************************************
@@ -1808,7 +1808,7 @@ Am_Text_Fragment::Break_At(Am_Text_Index inRelIndex) // first char in next frag
   mStrLen = inRelIndex - 1;
 
   new_frag->mNext = this->mNext;
-  if (this->mNext != (0L))
+  if (this->mNext != nullptr)
     this->mNext->mPrev = new_frag;
 
   this->mNext = new_frag;
@@ -1846,7 +1846,7 @@ Am_Text_Style_Run::Am_Text_Style_Run(unsigned long inCharsInRun, Am_Font inFont,
   mFont = inFont;
   mTextStyle = inTextStyle;
   mBGStyle = inBGStyle;
-  mNext = (0L);
+  mNext = nullptr;
 }
 
 /******************************************************************************

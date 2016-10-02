@@ -488,7 +488,7 @@ Am_Add_Old_Values(Am_Value_List old_values, Am_Object value_string,
         old_value_strings.Delete();
         old_value_strings.Next();
       } else
-        string_object = (0L);
+        string_object = nullptr;
       string_object = add_new_string(string_object, group, top, left, max_left,
                                      line, false, OLD_VALUES_COLOR);
     }
@@ -677,7 +677,7 @@ get_slots_for_object(Am_Object &group, const Am_Object &object, int &max_left,
           for (slot_list.Start(); !slot_list.Last(); slot_list.Next()) {
             other_slot_name = Am_Get_Slot_Name((int)slot_list.Get());
             // strcmp(a,b) returns a-b (<0 if a<b; >0 if a>b)
-            if (other_slot_name != (0L) && // skip it if it's null
+            if (other_slot_name != nullptr && // skip it if it's null
                 strcmp(this_slot_name, other_slot_name) < 0)
               break;
           }
@@ -1626,7 +1626,7 @@ Am_Define_Formula(bool, dialog_entry_is_valid)
   Am_String the_entry;
   the_entry = self.Get(Am_VALUE);
   const Am_Registered_Type *item = Am_Get_Named_Item(the_entry);
-  return item != (0L);
+  return item != nullptr;
 }
 
 Am_Define_Formula(bool, dialog_entry_is_valid_inter)
@@ -1944,12 +1944,12 @@ Am_Define_Method(Am_Object_Method, void, show_old_slot_values,
           if (tracing == (Am_TRACING | Am_STORING_OLD)) {
             Am_Stop_Slot_Value_Tracing(object, slot_key);
             // clear out old value string objects
-            Am_Add_Old_Values(Am_Value_List(), value_string_obj, (0L));
+            Am_Add_Old_Values(Am_Value_List(), value_string_obj, nullptr);
           } else {
             Am_Start_Slot_Value_Tracing(object, slot_key, value_string_obj);
             Am_Value_List old_values =
                 Am_Get_Tracer_Old_Values(object, slot_key, value_string_obj);
-            Am_Add_Old_Values(old_values, value_string_obj, (0L));
+            Am_Add_Old_Values(old_values, value_string_obj, nullptr);
           }
           value_string_obj.Set(Am_TRACING_SLOT,
                                Am_Get_Tracer_Status(object, slot_key));
@@ -2706,7 +2706,7 @@ Am_Define_Method(Am_Where_Method, Am_Object, inter_over_object,
   if (result.Valid() && Am_Object(result.Get(Am_INSPECTING_OBJECT)).Valid())
     return result;
   else
-    return (0L);
+    return nullptr;
 }
 
 Am_Define_Method(Am_Where_Method, Am_Object, inter_over_any,
@@ -2733,7 +2733,7 @@ Am_Define_Method(Am_Where_Method, Am_Object, inter_over_value,
   if (result.Valid() && ((bool)result.Get(Am_INSPECTING_VALUE)))
     return result;
   else
-    return (0L);
+    return nullptr;
 }
 
 //if click over a value, then will start, so turn off selection

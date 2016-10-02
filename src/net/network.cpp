@@ -50,7 +50,7 @@ Am_Slot_Key Am_CREATE_DEMON = Am_Register_Slot_Name("CREATE_DEMON");
 //
 Am_Network_Group::Am_Network_Group()
 {
-  lowest = time((0L));
+  lowest = time(nullptr);
   leader = true;
 }
 
@@ -102,7 +102,7 @@ Am_Network_Group::Link(Am_Object net_obj, Am_String name)
   int n = Net_Objects.Nth();
   Am_Connection::Set_Net_Instance(net_obj, real_proto_name, n);
   Curse(net_obj); // Set demons upon it.
-  net_obj.Add(Am_NET_BLESSING, (Am_Ptr)(0L), Am_OK_IF_THERE);
+  net_obj.Add(Am_NET_BLESSING, (Am_Ptr)nullptr, Am_OK_IF_THERE);
 }
 
 //
@@ -198,7 +198,7 @@ net_create_demon(Am_Object self)
 {
   Am_Object_Demon *proto_create =
       (Am_Object_Demon *)(Am_Ptr)self.Peek(Am_CREATE_DEMON);
-  if (proto_create != (0L)) {
+  if (proto_create != nullptr) {
     char c;
     std::cin >> c;
     proto_create(self); // Call prototype create demon.

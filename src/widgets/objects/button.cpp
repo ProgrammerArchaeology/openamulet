@@ -15,7 +15,7 @@
 
 #include <amulet/impl/opal_obj2.h>
 
-Am_Object Am_Button = 0;
+Am_Object Am_Button = nullptr;
 
 /******************************************************************************
  * button_draw
@@ -287,7 +287,7 @@ Am_Define_Formula(int, button_width)
 Am_Define_Formula(int, button_height)
 {
   Am_String string;
-  Am_Object obj = 0;
+  Am_Object obj = nullptr;
   Am_Value value;
   // string slot contains a formula which gets the real object based on the
   // value of the COMMAND slot

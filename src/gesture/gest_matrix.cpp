@@ -436,7 +436,7 @@ InputVector(std::istream &f)
   f >> check >> nrows;
   if (check != 'V') {
     f.clear(std::ios::badbit);
-    return (0L);
+    return nullptr;
   }
   v = NewVector(nrows);
   for (i = 0; i < nrows; i++)
@@ -518,7 +518,7 @@ InputMatrix(std::istream &f)
   f >> check >> nrows >> ncols;
   if (check != 'M') {
     f.clear(std::ios::badbit);
-    return (0L);
+    return nullptr;
   }
   m = NewMatrix(nrows, ncols);
   for (i = 0; i < nrows; i++)

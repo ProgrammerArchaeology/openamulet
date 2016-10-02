@@ -1330,7 +1330,7 @@ Am_Define_Method(Am_Object_Method, void, scrollbar_timer_start,
                              inter_command, false);
   //pretend this is a final function, so call all parent methods
   Am_Register_For_Undo(inter, inter_command, Am_No_Object, Am_No_Location,
-                       (0L));
+                       (nullptr));
 }
 
 Am_Define_Method(Am_Timer_Method, void, scrollbar_timer,
@@ -1358,7 +1358,7 @@ Am_Define_Method(Am_Timer_Method, void, scrollbar_timer,
                              inter_command, false);
   //pretend this is a final function, so call all parent methods
   Am_Register_For_Undo(inter, inter_command, Am_No_Object, Am_No_Location,
-                       (0L));
+                       (nullptr));
 }
 
 int
@@ -1381,8 +1381,8 @@ get_scroll_border_thickness(Am_Object &self)
 ////////////////////////////////////////////////////////////////////////
 
 //exported objects
-Am_Object Am_Vertical_Scroll_Bar = 0;
-Am_Object Am_Horizontal_Scroll_Bar = 0;
+Am_Object Am_Vertical_Scroll_Bar = nullptr;
+Am_Object Am_Horizontal_Scroll_Bar = nullptr;
 Am_Object Am_Vertical_Up_Down_Counter;
 
 // internal objects

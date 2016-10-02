@@ -142,7 +142,7 @@ Am_To_Top(Am_Object object)
   } else if (object.Is_Instance_Of(Am_Window)) {
     Am_Drawonable *draw = Am_Drawonable::Narrow(object.Get(Am_DRAWONABLE));
     if (draw)
-      draw->Raise_Window((0L));
+      draw->Raise_Window((nullptr));
   } else {
     std::cerr << "** Am_To_Top: Attempt to raise " << object
               << " which is not "
@@ -186,7 +186,7 @@ Am_To_Bottom(Am_Object object)
   } else if (object.Is_Instance_Of(Am_Window)) {
     Am_Drawonable *draw = Am_Drawonable::Narrow(object.Get(Am_DRAWONABLE));
     if (draw)
-      draw->Lower_Window((0L));
+      draw->Lower_Window((nullptr));
   } else {
     std::cerr << "** Am_To_Bottom: Attempt to lower " << object
               << " which is not "
@@ -208,7 +208,7 @@ Am_Update(Am_Object window)
       Am_Draw_Method draw_method;
       draw_method = window.Get(Am_DRAW_METHOD);
       //ignores drawonable and offset parameters
-      draw_method.Call(window, (0L), 0, 0);
+      draw_method.Call(window, nullptr, 0, 0);
     }
   }
 }
@@ -235,9 +235,9 @@ Am_Update_All()
     current = Window_ToDo_Head;
     Window_ToDo_Head = Window_ToDo_Head->next;
     if (!Window_ToDo_Head)
-      Window_ToDo_Tail = (0L);
-    current->next = (0L);
-    current->prev = (0L);
+      Window_ToDo_Tail = nullptr;
+    current->next = nullptr;
+    current->prev = nullptr;
     win = current->window;
     if (win.Valid()) {
 #ifdef DEBUG
@@ -251,7 +251,7 @@ Am_Update_All()
         win.Set(Am_OBJECT_IN_PROGRESS, 1, Am_OK_IF_NOT_THERE);
 #endif
       draw_method = win.Get(Am_DRAW_METHOD);
-      draw_method.Call(win, (0L), 0, 0);
+      draw_method.Call(win, nullptr, 0, 0);
 #ifdef DEBUG
       win.Set(Am_OBJECT_IN_PROGRESS, 0);
 #endif

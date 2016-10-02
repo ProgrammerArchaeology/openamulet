@@ -639,7 +639,7 @@ Am_Define_Method(Am_Object_Method, void, scroll_menu_click_background,
 
 // exported objects
 
-Am_Object Am_Menu_Line_Command = 0;
+Am_Object Am_Menu_Line_Command = nullptr;
 
 // internal objects
 

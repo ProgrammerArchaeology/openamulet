@@ -150,7 +150,7 @@ Am_Define_Value_List_Formula(generate_undo_menu_items)
   //don't do anything if my window is invisible
   Am_Object window = self.Get(Am_WINDOW);
   if (!window.Valid() || !(bool)window.Get(Am_VISIBLE))
-    return (0L);
+    return nullptr;
   Am_Object db, undo_handler;
   //self is  Am_UNDO_SCROLL_GROUP, owner is db
   db = self.Get_Owner();
@@ -158,7 +158,7 @@ Am_Define_Value_List_Formula(generate_undo_menu_items)
     undo_handler = db.Get(Am_UNDO_HANDLER_TO_DISPLAY);
 
   if (!undo_handler.Valid())
-    return (0L);
+    return nullptr;
   Am_Value_List cur_commands, menu_commands;
   cur_commands = undo_handler.Get(Am_COMMAND);
   Am_Object cmd;

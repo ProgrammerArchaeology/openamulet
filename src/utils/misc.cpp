@@ -50,14 +50,14 @@ Am_Wait(int milliseconds)
   // There's no machine independent way to pause for a fraction of a second.
   // select usually does something, but NULLs say, "do nothing."
   // tim tells it how long to do nothing.
-  select(0, (0L), NULL, NULL, &tim);
+  select(0, nullptr, nullptr, nullptr, &tim);
 }
 
 const char *
 Am_Get_Amulet_Pathname()
 {
   const char *amulet_dir = getenv("AMULET_DIR");
-  if (amulet_dir != 0)
+  if (amulet_dir != nullptr)
     return amulet_dir;
   return DEFAULT_AMULET_DIR;
 }

@@ -86,7 +86,7 @@ public:
 // Static Variable File-Scope Declaration
 //
 
-Connection_List_Ptr Am_Connection::connection_list = (0L);
+Connection_List_Ptr Am_Connection::connection_list = nullptr;
 long Am_Connection::num_sockets = 0;
 int Am_Connection::max_socket = 0;
 int Am_Connection::m_parent_socket = 0;
@@ -200,7 +200,7 @@ private:
 
 AM_WRAPPER_IMPL(Am_Connection)
 
-Am_Connection::Am_Connection(void) { data = (0L); }
+Am_Connection::Am_Connection(void) { data = nullptr; }
 
 static void
 init()
@@ -222,7 +222,7 @@ AM_DEFINE_METHOD_TYPE_IMPL(Am_Receive_Method);
 void
 Am_Connection::Reset(void)
 {
-  connection_list = (0L);
+  connection_list = nullptr;
   num_sockets = 0;
   max_socket = 0;
   m_parent_socket = 0;
@@ -257,7 +257,7 @@ Am_Connection::Open(const char addr[])
   sa = new (struct sockaddr_in);
 
   /* Look up the specified hostname */
-  if ((hp = gethostbyname(addr)) == (0L)) {
+  if ((hp = gethostbyname(addr)) == nullptr) {
     p_connection = Open();
   } else {
     /* Put host's address and address type into socket structure */
@@ -421,10 +421,10 @@ Am_Connection::Register_Default_Methods(void)
 void
 Am_Connection::Delete_All_Connections(void)
 {
-  if (connection_list != (0L)) {
+  if (connection_list != nullptr) {
   }
   Connection_List_Ptr place_holder;
-  while (connection_list != (0L)) {
+  while (connection_list != nullptr) {
     connection_list->connection_ptr->Close();
     place_holder = connection_list;
     connection_list = connection_list->next;
@@ -444,7 +444,7 @@ Am_Connection::Handle_Sockets(fd_set *readfds)
     ////
     //// Check Connections for incoming data
     ////
-    while (local_list != (0L)) {
+    while (local_list != nullptr) {
       if ((local_list->connection_ptr->Connected()) &&
           (FD_ISSET((local_list->connection_ptr->Get_Socket()), readfds))) {
         local_list->connection_ptr->Handle_Input();
@@ -461,11 +461,11 @@ Am_Connection::Handle_Sockets(fd_set *readfds)
  */
     if ((FD_ISSET(m_parent_socket, readfds)) && (m_parent_socket != 0)) {
       local_list = connection_list;
-      while ((local_list != (0L)) &&
+      while ((local_list != nullptr) &&
              (!(local_list->connection_ptr->Waiting()))) {
         local_list = local_list->next;
       }
-      if (local_list == (0L))
+      if (local_list == nullptr)
         std::cerr << "C:hs: remote connection received without receiving"
                   << "connection waiting\n"
                   << std::flush;
@@ -495,7 +495,7 @@ Am_Connection::Merge_Mask(fd_set *fds)
   FD_SET(m_parent_socket, fds);
   if (num_sockets != 0) {
     place_holder = connection_list;
-    while (place_holder != (0L)) {
+    while (place_holder != nullptr) {
       ;
       //                     fds) <<std::flush;
       if (place_holder->connection_ptr->Connected()) {
@@ -541,7 +541,7 @@ Am_Connection::Handle_Input(void)
     type = ntohl(net_type);
     Am_Unmarshall_Method handler =
         Am_Connection::Unmarshall_Methods.GetAt(type);
-    if (handler == (0L)) {
+    if (handler == nullptr) {
       std::cerr << "C:hi:Unknown type received!\n" << std::flush;
       in_value = Am_No_Value;
       Set_Connect_Flag(false);
@@ -549,7 +549,7 @@ Am_Connection::Handle_Input(void)
     {
       in_value = handler.Call(data->m_socket, this);
       data->Value_Queue.Add(in_value);
-      if ((data->my_receiver != (0L)))
+      if ((data->my_receiver != nullptr))
         data->my_receiver.Call(this);
     }
   } //Connected
@@ -575,7 +575,7 @@ Am_Connection::Receive(void)
 void
 Am_Connection::Send(Am_Value value)
 {
-  while ((data != (0L)) && (!(data->connected))) {
+  while ((data != nullptr) && (!(data->connected))) {
     Am_Connection::Wait_For_Connect();
   }
   Am_Marshall_Method Marshaller;
@@ -610,7 +610,7 @@ Am_Connection::Wait_For_Connect(void)
 
   nfds = m_parent_socket + 1;
 
-  (void)select(nfds, read_fd, (0L), NULL, &select_timeout);
+  (void)select(nfds, read_fd, nullptr, nullptr, &select_timeout);
 
   if (FD_ISSET(m_parent_socket, read_fd))
     Am_Connection::Handle_Sockets(read_fd);
@@ -660,7 +660,7 @@ void
 Am_Connection::Set_Valid_Flag(bool state)
 {
   if (!state)
-    data = (0L);
+    data = nullptr;
 }
 
 bool
@@ -689,8 +689,8 @@ Am_Connection_Data::Am_Connection_Data(void)
   connected = false;        // Connection flag: Am I Connected?
   waiting = false;          // Am I waiting to accept an incoming conn?
   Value_Queue.Make_Empty(); // Processed incoming data (None yet)
-  List_Queue = (0L);        // Lists being read in
-  Object_Queue = (0L);      // Objects being read in
+  List_Queue = nullptr;        // Lists being read in
+  Object_Queue = nullptr;      // Objects being read in
 }
 
 Am_Connection_Data::Am_Connection_Data(Am_Connection_Data *prototype)
@@ -699,8 +699,8 @@ Am_Connection_Data::Am_Connection_Data(Am_Connection_Data *prototype)
   connected = prototype->connected;
   waiting = false;
   Value_Queue = prototype->Value_Queue;
-  List_Queue = (0L);   // Lists being read in
-  Object_Queue = (0L); // Objects being read in
+  List_Queue = nullptr;   // Lists being read in
+  Object_Queue = nullptr; // Objects being read in
 }
 
 bool
@@ -736,18 +736,18 @@ Am_Connection::Delete_Connection(int sock)
 {
   Connection_List_Ptr place_holder, old_place_holder;
   old_place_holder = place_holder = connection_list;
-  if (place_holder == (0L)) {
+  if (place_holder == nullptr) {
   } else {
     if ((place_holder->connection_ptr->Get_Socket() == sock)) {
       connection_list = place_holder->next;
       delete (place_holder);
     } else {
-      while ((place_holder != (0L)) &&
+      while ((place_holder != nullptr) &&
              (place_holder->connection_ptr->Get_Socket() != sock)) {
         old_place_holder = place_holder;
         place_holder = place_holder->next;
       }
-      if (place_holder != (0L)) {
+      if (place_holder != nullptr) {
         old_place_holder->next = place_holder->next;
         delete (place_holder);
       } else {
@@ -761,18 +761,18 @@ Am_Connection::Delete_Connection(Am_Connection *doomed_connection_ptr)
 {
   Connection_List_Ptr place_holder, old_place_holder;
   old_place_holder = place_holder = connection_list;
-  if (place_holder == (0L)) {
+  if (place_holder == nullptr) {
   } else {
     if (place_holder->connection_ptr == doomed_connection_ptr) {
       connection_list = place_holder->next;
       delete (place_holder);
     } else {
-      while ((place_holder != (0L)) &&
+      while ((place_holder != nullptr) &&
              (place_holder->connection_ptr != doomed_connection_ptr)) {
         old_place_holder = place_holder;
         place_holder = place_holder->next;
       }
-      if (place_holder != (0L)) {
+      if (place_holder != nullptr) {
         old_place_holder->next = place_holder->next;
         delete (place_holder->connection_ptr);
         delete (place_holder);
@@ -959,12 +959,12 @@ Am_Connection::Receive_Object(Am_Object &the_obj)
   //
   Incomplete_Object_Ptr new_partial_obj_ptr, prev_ptr;
   new_partial_obj_ptr = data->Object_Queue;
-  while ((new_partial_obj_ptr != (0L)) &&
+  while ((new_partial_obj_ptr != nullptr) &&
          (new_partial_obj_ptr->obj != the_obj)) {
     prev_ptr = new_partial_obj_ptr;
     new_partial_obj_ptr = new_partial_obj_ptr->next;
   }
-  if (new_partial_obj_ptr == (0L))
+  if (new_partial_obj_ptr == nullptr)
     new_partial_obj_ptr = new Incomplete_Object_Type;
   else
     //Move this object to the head of the list and restart

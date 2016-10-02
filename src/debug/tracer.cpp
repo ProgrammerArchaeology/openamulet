@@ -141,7 +141,7 @@ Am_Tracing(Am_Object obj, Am_Slot_Key key, bool storing)
     if (*this_slot == slot_looking_for)
       return this_slot;
   }
-  return (0L);
+  return nullptr;
 }
 
 /////
@@ -447,7 +447,7 @@ Am_Slot_Tracer::Trace(Am_Value v, Am_Set_Reason reason)
       old_values.Add(current_value, Am_HEAD);
     // This is in inspector.cc
     // it is a _very_ heavy operation.
-    Am_Add_Old_Values(old_values, string_object, (0L));
+    Am_Add_Old_Values(old_values, string_object, nullptr);
   } else {
     std::cerr << "%% Slot " << Am_Get_Slot_Name(key) << " in object " << object
               << " has been set to " << v

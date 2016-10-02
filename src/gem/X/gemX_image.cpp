@@ -48,7 +48,7 @@ AM_WRAPPER_IMPL(Am_Image_Array)
 // Am_Image_Array constructors.
 /////
 
-Am_Image_Array::Am_Image_Array() { data = (0L); }
+Am_Image_Array::Am_Image_Array() { data = nullptr; }
 
 Am_Image_Array::Am_Image_Array(const char *file_name)
 {
@@ -96,7 +96,7 @@ Am_Image_Array Am_No_Image;
 
 AM_WRAPPER_DATA_IMPL(Am_Image_Array, (this))
 
-Am_Image_Array_Data *Am_Image_Array_Data::list = (0L);
+Am_Image_Array_Data *Am_Image_Array_Data::list = nullptr;
 
 Am_Image_Array_Data::Am_Image_Array_Data(const char *file_name)
 {
@@ -105,13 +105,13 @@ Am_Image_Array_Data::Am_Image_Array_Data(const char *file_name)
   main_bitmap = 0;
   main_mask = 0;
   main_inverted_mask = 0;
-  colors = (0L);
+  colors = nullptr;
   num_colors = 0;
-  image_ = (0L);
+  image_ = nullptr;
   name = new char[strlen(file_name) + 1];
   strcpy(name, file_name);
-  main_display = (0L);
-  head = (0L);
+  main_display = nullptr;
+  head = nullptr;
   next = list;
   list = this;
 }
@@ -124,15 +124,15 @@ Am_Image_Array_Data::Am_Image_Array_Data(const char *bit_data, int h, int w)
   main_bitmap = 0;
   main_mask = 0;
   main_inverted_mask = 0;
-  colors = (0L);
+  colors = nullptr;
   num_colors = 0;
   int nbytes = (((w + 7) / 8) * h);
   unsigned char *temp = new unsigned char[nbytes];
   memcpy(temp, bit_data, nbytes);
   image_ = new Am_Generic_Image((unsigned char *)temp, w, h, 1);
-  name = (0L);
-  main_display = (0L);
-  head = (0L);
+  name = nullptr;
+  main_display = nullptr;
+  head = nullptr;
   next = list;
   list = this;
 }
@@ -141,15 +141,15 @@ Am_Image_Array_Data::Am_Image_Array_Data()
 {
   x_hot = -1;
   y_hot = -1;
-  colors = (0L);
+  colors = nullptr;
   num_colors = 0;
   main_bitmap = 0;
   main_mask = 0;
   main_inverted_mask = 0;
-  image_ = (0L);
-  name = (0L);
-  main_display = (0L);
-  head = (0L);
+  image_ = nullptr;
+  name = nullptr;
+  main_display = nullptr;
+  head = nullptr;
   next = list;
   list = this;
 }
@@ -187,17 +187,17 @@ Am_Image_Array_Data::~Am_Image_Array_Data()
   //     {
   //       /*
   //       if (image->data) delete[] image->data;
-  //       image->data = (0L);
+  //       image->data = nullptr;
   //       delete image;
   //       */
   //       XDestroyImage(image);
-  //       image = (0L);
+  //       image = nullptr;
   //     }*/
   if (name)
     delete[] name;
   if (image_) {
     delete image_;
-    image_ = (0L);
+    image_ = nullptr;
   }
   if (colors) {
     int screen_num = DefaultScreen(main_display);
@@ -205,7 +205,7 @@ Am_Image_Array_Data::~Am_Image_Array_Data()
     for (int i = 0; i < num_colors; i++)
       XFreeColors(main_display, c, &(colors[i].pixel), 1, 0);
     delete[] colors;
-    colors = (0L);
+    colors = nullptr;
   }
   if (main_display && main_bitmap) {
     XFreePixmap(main_display, main_bitmap);
@@ -215,21 +215,21 @@ Am_Image_Array_Data::~Am_Image_Array_Data()
       XFreePixmap(main_display, main_inverted_mask);
   }
   Bitmap_Item *current = head;
-  Bitmap_Item *next = (0L);
+  Bitmap_Item *next = nullptr;
   while (current) {
     next = current->next;
-    current->next = (0L);
+    current->next = nullptr;
     delete current; // destructor takes care of freeing colors, pixmap, etc.
     current = next;
   }
-  head = (0L);
+  head = nullptr;
   remove(this);
 }
 
 void
 Am_Image_Array_Data::remove(Am_Image_Array_Data *image)
 {
-  Am_Image_Array_Data *prev = (0L);
+  Am_Image_Array_Data *prev = nullptr;
   Am_Image_Array_Data *curr = list;
   while (curr) {
     if (curr == image) {
@@ -256,13 +256,13 @@ Am_Image_Array_Data::remove(Display *display)
         for (int i = 0; i < curr->num_colors; i++)
           XFreeColors(curr->main_display, c, &(curr->colors[i].pixel), 1, 0);
         delete[] curr->colors;
-        curr->colors = (0L);
+        curr->colors = nullptr;
       }
       if (curr->main_display && curr->main_bitmap)
         XFreePixmap(curr->main_display, curr->main_bitmap);
-      curr->main_display = (0L);
+      curr->main_display = nullptr;
     }
-    Bitmap_Item *prev = (0L);
+    Bitmap_Item *prev = nullptr;
     Bitmap_Item *curr_index = curr->head;
     while (curr_index) {
       if (curr_index->display == display) {
@@ -486,7 +486,7 @@ Am_Image_Array::Get_Size(int &ret_width, int &ret_height) const
 {
   ret_width = ret_height = 0;
   if (data) {
-    if (data->image_ == (0L)) {
+    if (data->image_ == nullptr) {
       if (!data->make_generic_image_from_name())
         return;
     }
@@ -525,13 +525,13 @@ void Am_Image_Array::Set_Hot_Spot (int x, int y)
 bool
 Am_Image_Array_Data::Get_RGB_Image(unsigned char *storage, bool top_first)
 {
-  if (image_ == (0L)) {
+  if (image_ == nullptr) {
     if (!make_generic_image_from_name())
       return false;
   }
 
   unsigned char *idata = image_->Get_Data();
-  if (idata == (0L))
+  if (idata == nullptr)
     return false;
 
   unsigned short width, height;
@@ -771,9 +771,9 @@ Am_Image_Array_Data::make_generic_image_from_name()
 {
   // currently generic images are only stored for gifs
   if (is_gif()) {
-    if (image_ == (0L))
+    if (image_ == nullptr)
       image_ = Am_GIF_Image::Create(name);
-    if (image_ != (0L))
+    if (image_ != nullptr)
       return true;
   }
   return false;
@@ -791,7 +791,7 @@ Am_Image_Array_Data::Get_X_Pixmap(const Am_Drawonable_Impl *draw)
   if (Get_Bitmap(disp, bitmap))
     return bitmap;
 
-  XColor *cols = (0L);
+  XColor *cols = nullptr;
   int n_cols = 0;
 
   /* then we need to read it in or make it */
@@ -807,7 +807,7 @@ Am_Image_Array_Data::Get_X_Pixmap(const Am_Drawonable_Impl *draw)
       int tmp = XReadBitmapFile(disp, draw->xlib_drawable, name, &w, &h,
                                 &bitmap, &x_hot, &y_hot);
       // fill an empty structure to store width, height in.
-      image_ = new Am_Generic_Image((0L), w, h, 1);
+      image_ = new Am_Generic_Image(nullptr, w, h, 1);
       if (tmp == BitmapOpenFailed) {
         std::cerr << "** Bitmap Error: " << name << " is not a valid file name"
                   << std::endl;
@@ -876,7 +876,7 @@ Am_Image_Array_Data::Safe_Get_X_Pixmap(const Am_Drawonable_Impl *draw)
   if (Get_Bitmap(disp, bitmap))
     return bitmap;
 
-  XColor *cols = (0L);
+  XColor *cols = nullptr;
   int n_cols = 0;
 
   /* then we need to read it in or make it */
@@ -893,7 +893,7 @@ Am_Image_Array_Data::Safe_Get_X_Pixmap(const Am_Drawonable_Impl *draw)
       int tmp = XReadBitmapFile(disp, draw->xlib_drawable, name, &w, &h,
                                 &bitmap, &x_hot, &y_hot);
       // fill an empty structure to store width, height in.
-      image_ = new Am_Generic_Image((0L), w, h, 1);
+      image_ = new Am_Generic_Image(nullptr, w, h, 1);
       if (tmp != BitmapSuccess)
         return 0;
     } // else bmp format
@@ -941,9 +941,9 @@ Am_Image_Array_Data::Get_X_Mask(const Am_Drawonable_Impl *draw, bool invert)
       return bitmap;
   }
 
-  Bitmap_Item *bitmap_item = (0L);
+  Bitmap_Item *bitmap_item = nullptr;
   Bitmap_Item *current;
-  for (current = head; current != (0L); current = current->next) {
+  for (current = head; current != nullptr; current = current->next) {
     if (current->display == disp) {
       if (invert)
         bitmap = current->inverted_mask;
@@ -990,7 +990,7 @@ bool
 Am_Image_Array_Data::Get_Bitmap(Display *display, Pixmap &bitmap)
 {
   Bitmap_Item *current;
-  for (current = head; current != (0L); current = current->next)
+  for (current = head; current != nullptr; current = current->next)
     if (current->display == display) {
       bitmap = current->bitmap;
       return true;

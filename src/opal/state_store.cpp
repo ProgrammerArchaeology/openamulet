@@ -20,7 +20,7 @@
 #include <amulet/impl/am_state_store.h>
 #include <amulet/impl/method_invalidate.h>
 
-Am_State_Store *Am_State_Store::invalidation_list = (0L);
+Am_State_Store *Am_State_Store::invalidation_list = nullptr;
 bool Am_State_Store::shutdown = false;
 
 Am_State_Store::Am_State_Store(Am_Object in_self, Am_Object in_owner,
@@ -57,7 +57,7 @@ Am_State_Store::Remove()
 {
   if (in_list) {
     Invalidate();
-    Am_State_Store *prev = (0L);
+    Am_State_Store *prev = nullptr;
     Am_State_Store *current = invalidation_list;
     while (current) {
       if (current == this) {
@@ -130,7 +130,7 @@ Am_State_Store::Invoke()
     }
     current = current->next;
   }
-  invalidation_list = (0L);
+  invalidation_list = nullptr;
 }
 #else //not debugging
   Am_State_Store *current = invalidation_list;

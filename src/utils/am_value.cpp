@@ -15,7 +15,7 @@ Am_Value Am_Zero_Value(0, Am_ZERO);
 // The Am_Value type procedures
 Am_Value::Am_Value(Am_Wrapper *initial)
 {
-  if (initial != static_cast<Am_Wrapper *>(0)) {
+  if (initial != static_cast<Am_Wrapper *>(nullptr)) {
     type = static_cast<Am_Value_Type>(initial->ID());
   } else {
     type = Am_WRAPPER_TYPE;
@@ -35,7 +35,7 @@ Am_Value::Am_Value(const char *initial)
   if (initial)
     value.wrapper_value = new Am_String_Data(initial);
   else
-    value.wrapper_value = (0L);
+    value.wrapper_value = nullptr;
 }
 
 Am_Value::Am_Value(const Am_String &initial)
@@ -93,18 +93,18 @@ Am_Value::operator Am_Wrapper *() const
         value.wrapper_value->Note_Reference();
       return value.wrapper_value;
     case Am_ZERO:
-      return (0L);
+      return nullptr;
     case Am_INT:
     case Am_LONG:
     case Am_BOOL:
     case Am_VOIDPTR:
     case Am_PROC:
       if (!value.voidptr_value)
-        return (0L);
+        return nullptr;
     }
   default:
     type_error("Am_Wrapper*", *this);
-    return (0L);
+    return nullptr;
   }
 }
 
@@ -236,21 +236,21 @@ Am_Value::operator Am_Generic_Procedure *() const
   if (Am_Type_Class(type) == Am_METHOD) {
     if (value.method_value)
       type_error("Am_Generic_Procedure*", *this);
-    return (0L);
+    return nullptr;
   }
   switch (type) {
   case Am_PROC:
     return value.proc_value;
   case Am_ZERO:
-    return (0L);
+    return nullptr;
   case Am_INT:
   case Am_LONG:
   case Am_VOIDPTR:
     if (!value.voidptr_value)
-      return (0L);
+      return nullptr;
   default:
     type_error("Am_Generic_Procedure*", *this);
-    return (0L);
+    return nullptr;
   }
 }
 
@@ -260,16 +260,16 @@ Am_Value::operator Am_Method_Wrapper *() const
     return value.method_value;
   switch (type) {
   case Am_ZERO:
-    return (0L);
+    return nullptr;
   case Am_PROC:
   case Am_INT:
   case Am_LONG:
   case Am_VOIDPTR:
     if (!value.voidptr_value)
-      return (0L);
+      return nullptr;
   default:
     type_error("Am_Method_Wrapper*", *this);
-    return (0L);
+    return nullptr;
   }
 }
 
@@ -290,7 +290,7 @@ Am_Value::operator==(Am_Wrapper *test_value) const
   case Am_LONG:
   case Am_VOIDPTR:
     if (!value.voidptr_value)
-      return test_value == (0L);
+      return test_value == nullptr;
   default:
     return false;
   }
@@ -531,7 +531,7 @@ Am_Value::operator!=(Am_Wrapper *test_value) const
   case Am_LONG:
   case Am_VOIDPTR:
     if (!value.voidptr_value)
-      return test_value != (0L);
+      return test_value != nullptr;
   default:
     return true;
   }
@@ -656,7 +656,7 @@ Am_Value::operator!=(const char *test_value) const
   case Am_LONG:
   case Am_VOIDPTR:
     if (!value.voidptr_value)
-      return test_value != (0L);
+      return test_value != nullptr;
   default:
     return true;
   }
@@ -738,12 +738,12 @@ Am_Value::Valid() const
   case Am_WRAPPER:
   case Am_METHOD:
   case Am_ENUM:
-    return value.voidptr_value != (0L);
+    return value.voidptr_value != nullptr;
   case Am_SIMPLE_TYPE:
     switch (type) {
     case Am_STRING:
     case Am_VOIDPTR:
-      return value.voidptr_value != (0L);
+      return value.voidptr_value != nullptr;
     case Am_INT:
     case Am_LONG:
       return value.long_value != 0;
@@ -756,7 +756,7 @@ Am_Value::Valid() const
     case Am_CHAR:
       return value.char_value != 0;
     case Am_PROC:
-      return value.proc_value != (0L);
+      return value.proc_value != nullptr;
     default:
       return false;
     }
@@ -801,7 +801,7 @@ Am_Value::Set_Empty()
 {
   if (Am_Type_Is_Ref_Counted(type) && value.wrapper_value)
     value.wrapper_value->Release();
-  value.voidptr_value = (0L);
+  value.voidptr_value = nullptr;
   type = Am_NONE;
 }
 
@@ -810,7 +810,7 @@ Am_Value::Set_Value_Type(Am_Value_Type new_type)
 {
   if (Am_Type_Is_Ref_Counted(type) && value.wrapper_value)
     value.wrapper_value->Release();
-  value.voidptr_value = (0L);
+  value.voidptr_value = nullptr;
   type = new_type;
 }
 
@@ -1041,7 +1041,7 @@ Am_Value::Println() const
 const char *
 Am_Value::To_String() const
 {
-  const char *ret_str = (0L);
+  const char *ret_str = nullptr;
   switch (Am_Type_Class(type)) {
   case Am_WRAPPER:
     if (value.wrapper_value) // complains about const with call to valid

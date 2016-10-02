@@ -31,7 +31,7 @@ Am_Time
 Am_Time::Now()
 {
   Am_Time t;
-  gettimeofday(&(t.data->time), (0L));
+  gettimeofday(&(t.data->time), nullptr);
   return t;
 }
 

@@ -43,7 +43,7 @@ Am_Gesture_Classifier::Am_Gesture_Classifier()
 
 Am_Gesture_Classifier::Am_Gesture_Classifier(const char *filename)
 {
-  data = (0L);
+  data = nullptr;
 
   std::ifstream in(filename, std::ios::in);
   if (!in) {
@@ -80,7 +80,7 @@ static const char *version_messages[] = {
 #define CURRENT_VERSION 1
     "Amulet Gesture Classifier 1.1",
 
-    (0L)};
+    nullptr};
 
 std::ostream &
 operator<<(std::ostream &s, Am_Gesture_Classifier &cl)
@@ -126,7 +126,7 @@ operator>>(std::istream &s, Am_Gesture_Classifier &cl)
 {
   int n;
   char buf[100];
-  Am_Gesture_Classifier_Data *cldata = 0;
+  Am_Gesture_Classifier_Data *cldata = nullptr;
   Am_Gesture_Classifier_Data::Gesture_Class *classes;
   int ver;
   int i;
@@ -232,9 +232,9 @@ AM_WRAPPER_DATA_IMPL(Am_Gesture_Classifier, (this))
 Am_Gesture_Classifier_Data::Am_Gesture_Classifier_Data()
 {
   nclasses = 0;
-  classes = (0L);
+  classes = nullptr;
   trained = false;
-  invavgcov = (0L);
+  invavgcov = nullptr;
 }
 
 void
@@ -255,7 +255,7 @@ Am_Gesture_Classifier_Data::Am_Gesture_Classifier_Data(int nc)
   nclasses = nc;
   classes = new Gesture_Class[nc];
   trained = false;
-  invavgcov = (0L);
+  invavgcov = nullptr;
 }
 
 Am_Gesture_Classifier_Data::Am_Gesture_Classifier_Data(
@@ -273,14 +273,14 @@ Am_Gesture_Classifier_Data::Am_Gesture_Classifier_Data(
 
     classTo->name = classFrom->name;
     classTo->average =
-        classFrom->average ? VectorCopy(classFrom->average) : (Vector)(0L);
-    classTo->w = classFrom->w ? VectorCopy(classFrom->w) : (Vector)(0L);
+        classFrom->average ? VectorCopy(classFrom->average) : (Vector)nullptr;
+    classTo->w = classFrom->w ? VectorCopy(classFrom->w) : (Vector)nullptr;
     classTo->cnst = classFrom->cnst;
     classTo->disc = classFrom->disc;
   }
 
   trained = d->trained;
-  invavgcov = d->invavgcov ? MatrixCopy(d->invavgcov) : (Matrix)(0L);
+  invavgcov = d->invavgcov ? MatrixCopy(d->invavgcov) : (Matrix)nullptr;
 }
 
 Am_Gesture_Classifier_Data::~Am_Gesture_Classifier_Data()
@@ -289,7 +289,7 @@ Am_Gesture_Classifier_Data::~Am_Gesture_Classifier_Data()
 
   if (invavgcov) {
     FreeMatrix(invavgcov);
-    invavgcov = (0L);
+    invavgcov = nullptr;
   }
 }
 
@@ -360,7 +360,7 @@ MahalanobisDistance(Vector v, Vector u, Matrix sigma)
   static Vector space;
   double result;
 
-  if (space == (0L) || NROWS(space) != NROWS(v)) {
+  if (space == nullptr || NROWS(space) != NROWS(v)) {
     if (space)
       FreeVector(space);
     space = NewVector(NROWS(v));

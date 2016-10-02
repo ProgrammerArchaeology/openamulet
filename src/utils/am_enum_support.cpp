@@ -14,7 +14,7 @@ Am_Enum_To_String_Helper(Am_ID_Tag type, long value)
     Am_Value v(value, type);
     return support->To_String(v);
   } else
-    return (0L);
+    return nullptr;
 }
 
 void
@@ -78,7 +78,7 @@ Am_Enum_Support::To_String(const Am_Value &value) const
 {
   long index = value.value.long_value;
   if (index < 0 || index >= number)
-    return (0L);
+    return nullptr;
   else
     return item[index];
 }

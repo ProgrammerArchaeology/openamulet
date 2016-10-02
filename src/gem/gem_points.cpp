@@ -22,15 +22,15 @@ class Am_Point_Item
 public:
   Am_Point_Item()
   {
-    prev = (0L);
-    next = NULL;
+    prev = nullptr;
+    next = nullptr;
   }
   Am_Point_Item(float x0, float y0)
   {
     x = x0;
     y = y0;
-    prev = (0L);
-    next = NULL;
+    prev = nullptr;
+    next = nullptr;
   }
 
   float x, y;
@@ -73,8 +73,8 @@ AM_WRAPPER_DATA_IMPL(Am_Point_List, (this))
 
 Am_Point_List_Data::Am_Point_List_Data()
 {
-  head = (0L);
-  tail = (0L);
+  head = nullptr;
+  tail = nullptr;
   number = 0;
 }
 
@@ -85,8 +85,8 @@ Am_Point_List_Data::Am_Point_List_Data(Am_Point_List_Data *proto)
   Am_Point_Item *new_item;
   Am_Point_Item **list_position;
   list_position = &head;
-  new_item = (0L);
-  prev = (0L);
+  new_item = nullptr;
+  prev = nullptr;
   for (current = proto->head; current; current = current->next) {
     new_item = new Am_Point_Item(current->x, current->y);
     new_item->prev = prev;
@@ -94,7 +94,7 @@ Am_Point_List_Data::Am_Point_List_Data(Am_Point_List_Data *proto)
     prev = new_item;
     list_position = &(new_item->next);
   }
-  *list_position = (0L);
+  *list_position = nullptr;
   tail = new_item;
   number = proto->number;
 }
@@ -107,8 +107,8 @@ Am_Point_List_Data::Am_Point_List_Data(int *ar, int size)
   int i;
 
   list_position = &head;
-  new_item = (0L);
-  prev = (0L);
+  new_item = nullptr;
+  prev = nullptr;
 
   // truncate size to even number
   size &= ~1;
@@ -119,7 +119,7 @@ Am_Point_List_Data::Am_Point_List_Data(int *ar, int size)
     prev = new_item;
     list_position = &(new_item->next);
   }
-  *list_position = (0L);
+  *list_position = nullptr;
   tail = new_item;
   number = size / 2;
 }
@@ -132,8 +132,8 @@ Am_Point_List_Data::Am_Point_List_Data(float *ar, int size)
   int i;
 
   list_position = &head;
-  new_item = (0L);
-  prev = (0L);
+  new_item = nullptr;
+  prev = nullptr;
 
   // truncate size to even number
   size &= ~1;
@@ -144,7 +144,7 @@ Am_Point_List_Data::Am_Point_List_Data(float *ar, int size)
     prev = new_item;
     list_position = &(new_item->next);
   }
-  *list_position = (0L);
+  *list_position = nullptr;
   tail = new_item;
   number = size / 2;
 }
@@ -161,7 +161,7 @@ Am_Point_List_Data::Add(float x, float y, Am_Add_Position position)
       head->prev = item;
     else
       tail = item;
-    item->prev = (0L);
+    item->prev = nullptr;
     item->next = head;
     head = item;
   } else {
@@ -169,7 +169,7 @@ Am_Point_List_Data::Add(float x, float y, Am_Add_Position position)
       tail->next = item;
     else
       head = item;
-    item->next = (0L);
+    item->next = nullptr;
     item->prev = tail;
     tail = item;
   }
@@ -201,7 +201,7 @@ Am_Point_List_Data::Insert(float x, float y, Am_Point_Item *current,
     }
   } else {
     if (position == Am_BEFORE) {
-      item->next = (0L);
+      item->next = nullptr;
       item->prev = tail;
       if (tail)
         tail->next = item;
@@ -209,7 +209,7 @@ Am_Point_List_Data::Insert(float x, float y, Am_Point_Item *current,
         head = item;
       tail = item;
     } else {
-      item->prev = (0L);
+      item->prev = nullptr;
       item->next = head;
       if (head)
         head->prev = item;
@@ -235,12 +235,12 @@ Am_Point_List_Data::Make_Empty()
   Am_Point_Item *next;
   for (Am_Point_Item *curr = head; curr; curr = next) {
     next = curr->next;
-    curr->next = (0L);
-    curr->prev = (0L);
+    curr->next = nullptr;
+    curr->prev = nullptr;
     delete curr;
   }
-  head = (0L);
-  tail = (0L);
+  head = nullptr;
+  tail = nullptr;
   number = 0;
 }
 
@@ -295,8 +295,8 @@ Am_Point_List::Print(std::ostream &os) const
 
 Am_Point_List::Am_Point_List()
 {
-  data = (0L);
-  item = (0L);
+  data = nullptr;
+  item = nullptr;
 }
 
 /*
@@ -311,13 +311,13 @@ Am_Point_List::Am_Point_List (Am_Point_List& list)
 Am_Point_List::Am_Point_List(int *ar, int size)
 {
   data = new Am_Point_List_Data(ar, size);
-  item = (0L);
+  item = nullptr;
 }
 
 Am_Point_List::Am_Point_List(float *ar, int size)
 {
   data = new Am_Point_List_Data(ar, size);
-  item = (0L);
+  item = nullptr;
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -336,7 +336,7 @@ Am_Point_List::Am_Point_List(const Am_Point_List &prev)
 Am_Point_List::Am_Point_List(const Am_Value &in_value)
 {
   data = (Am_Point_List_Data *)in_value.value.wrapper_value;
-  item = (0L);
+  item = nullptr;
   if (data) {
     if (Am_Point_List_Data::Am_Point_List_Data_ID() != in_value.type)
       Am_Error("** Tried to set a Am_Point_List with a non "
@@ -351,8 +351,8 @@ Am_Point_List::~Am_Point_List()
       Am_Error();
     data->Release();
   }
-  data = (0L);
-  item = (0L);
+  data = nullptr;
+  item = nullptr;
 }
 Am_Point_List &
 Am_Point_List::operator=(const Am_Point_List &prev)
@@ -371,7 +371,7 @@ Am_Point_List::operator=(const Am_Value &in_value)
   if (data)
     data->Release();
   data = (Am_Point_List_Data *)in_value.value.wrapper_value;
-  item = (0L);
+  item = nullptr;
   if (data) {
     if (in_value.type != Am_Point_List_Data::Am_Point_List_Data_ID() &&
         in_value.type != Am_ZERO)
@@ -387,7 +387,7 @@ Am_Point_List::operator=(Am_Point_List_Data *in_data)
   if (data)
     data->Release();
   data = in_data;
-  item = (0L);
+  item = nullptr;
   return *this;
 }
 Am_Point_List::operator Am_Wrapper *() const
@@ -399,7 +399,7 @@ Am_Point_List::operator Am_Wrapper *() const
 bool
 Am_Point_List::Valid() const
 {
-  return data != (0L);
+  return data != nullptr;
 }
 Am_Point_List
 Am_Point_List::Narrow(Am_Wrapper *in_data)
@@ -411,7 +411,7 @@ Am_Point_List::Narrow(Am_Wrapper *in_data)
       Am_Error("** Tried to set a Am_Point_List with a non "
                "Am_Point_List wrapper.");
   }
-  return (Am_Point_List_Data *)(0L);
+  return (Am_Point_List_Data *)nullptr;
 }
 bool
 Am_Point_List::Test(const Am_Wrapper *in_data)
@@ -505,13 +505,13 @@ Am_Point_List::Next()
 bool
 Am_Point_List::First() const
 {
-  return (item == (0L));
+  return (item == nullptr);
 }
 
 bool
 Am_Point_List::Last() const
 {
-  return (item == (0L));
+  return (item == nullptr);
 }
 
 void
@@ -594,7 +594,7 @@ Am_Point_List::Make_Empty()
 {
   if (data) {
     data->Release();
-    data = (0L);
+    data = nullptr;
   }
 }
 
