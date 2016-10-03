@@ -48,7 +48,7 @@ Am_Wait(int milliseconds)
   tim.tv_usec = (milliseconds % 1000) * 1000;
   // Use select to hack a subsecond pause on UNIX.
   // There's no machine independent way to pause for a fraction of a second.
-  // select usually does something, but NULLs say, "do nothing."
+  // select usually does something, but nullptrs say, "do nothing."
   // tim tells it how long to do nothing.
   select(0, nullptr, nullptr, nullptr, &tim);
 }

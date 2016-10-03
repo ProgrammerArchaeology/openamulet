@@ -25,6 +25,6 @@
 #include "univ_lst.hpp" //templates
 
 // List of void*
-AM_DECL_LIST(Ptr, void *, (0L))
+AM_DECL_LIST(Ptr, void *, nullptr)
 
 #endif

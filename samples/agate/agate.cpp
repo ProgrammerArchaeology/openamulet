@@ -86,7 +86,7 @@ compute_arrowhead(Am_Point_List pl)
   // get the first two distinct points out of pl into (x1,y1) and (x2,y2)
   pl.Start();
   if (pl.Last())
-    return 0;
+    return nullptr;
   pl.Get(x1, y1);
 
   do {
@@ -945,7 +945,7 @@ Am_Define_Formula(int, show_current_example)
                         .Set(Am_HEIGHT, gesture_frame.Get(Am_HEIGHT));
     self.Add_Part(gesture_shown);
   } else
-    gesture_shown = 0;
+    gesture_shown = nullptr;
 
   return 1;
 }

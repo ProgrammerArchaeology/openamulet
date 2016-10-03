@@ -45,7 +45,7 @@
 class Am_Registry_Key
 {
 public:
-  Am_Registry_Key() : name((0L)) { ; }
+  Am_Registry_Key() : name(nullptr) { ; }
   Am_Registry_Key(const char *the_name) : name(the_name) { ; }
   Am_Registry_Key(const Am_Registry_Key &in_key) : name(in_key.name) { ; }
 

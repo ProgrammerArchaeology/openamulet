@@ -328,7 +328,7 @@ Am_Define_Image_Formula(ship_image)
     return SP_Klingon_Image;
   else {
     //Am_Error("ship_image: Invalid ship type.\n");
-    return (0L);
+    return nullptr;
   }
 }
 

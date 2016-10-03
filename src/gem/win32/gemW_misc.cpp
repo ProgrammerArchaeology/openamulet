@@ -12,5 +12,5 @@ strnew(const char *src)
 AM_IMPL_LIST(Long, long, 0L)
 
 #ifndef OA_VERSION
-AM_IMPL_MAP(Ptr2Ptr, void *, (0L), void *, NULL)
+AM_IMPL_MAP(Ptr2Ptr, void *, (0L), void *, nullptr)
 #endif

@@ -2857,7 +2857,7 @@ Create_Prototypes()
                           .Add(Am_Standard_OK_Command.Create()
                                    .Set(Am_DO_METHOD, fake_do_cancel)
                                    .Set(Am_ACCELERATOR,
-                                        NULL)) //get rid of the accelerator here
+                                        nullptr)) //get rid of the accelerator here
                           .Add(Am_Standard_Cancel_Command.Create().Set(
                               Am_DO_METHOD, fake_do_cancel)))
                  .Add(SAVE_COMMAND_ITEMS, true)

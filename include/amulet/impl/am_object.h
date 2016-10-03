@@ -65,7 +65,7 @@ class _OA_DL_CLASSIMPORT Am_Object
 
 public:
   // CREATORS
-  Am_Object() : data((0L)) { ; }
+  Am_Object() : data(nullptr) { ; }
 
   //:Creates an instance of an Am_Object object with a name of 'new_name'
   // if given.
@@ -82,7 +82,7 @@ public:
   // actively determined are changed into simple values.  The constraints of which are
   // present in the source completely stripped out.
   _OA_DL_MEMBERIMPORT Am_Object
-  Copy_Value_Only(const char *new_name = (0L)) const;
+  Copy_Value_Only(const char *new_name = nullptr) const;
 
   // ACCESSORS
   //:Test whether 'test_object' is same as self.
@@ -142,7 +142,7 @@ public:
   }
 
   //:Returns the object's owner.
-  // Returns (0L) if the object does not have an owner.
+  // Returns (nullptr) if the object does not have an owner.
   _OA_DL_MEMBERIMPORT Am_Object Get_Owner(Am_Slot_Flags flags = 0) const
   {
     return (Get_Object(Am_OWNER, flags));
@@ -293,7 +293,7 @@ protected:
 _OA_DL_IMPORT extern std::ostream &operator<<(std::ostream &os,
                                               const Am_Object &object);
 
-// The (0L) object.
+// The (nullptr) object.
 _OA_DL_IMPORT extern Am_Object Am_No_Object;
 
 // Create a Type ID for Am_Object.

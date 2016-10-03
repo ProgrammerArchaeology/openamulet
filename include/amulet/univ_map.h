@@ -102,11 +102,11 @@
 //
 // <KeyType2> operator [] (<KeyType1> key) const -
 //   returns a value for this key.
-//   Returns (0L) if there is no such key.
+//   Returns (nullptr) if there is no such key.
 //
 // <KeyType1> operator [] (<KeyType2> key) const -
 //   returns a char* value for this int key.
-//   Returns (0L) if there is no such key.
+//   Returns (nullptr) if there is no such key.
 //
 // void DeleteKey (<KeyType1> key) - deletes a pair with this key.
 // void DeleteKey (<KeyType2> key) - deletes a pair with this key.

@@ -12,7 +12,7 @@ Am_Initializer::Am_Initializer(const char *this_name,
       priority(this_priority), mCheckPoint(aCheckPoint)
 {
   // if this list is empty, we just add the element
-  if (am_initializer_list == static_cast<INITIALIZERLIST *>(0)) {
+  if (am_initializer_list == static_cast<INITIALIZERLIST *>(nullptr)) {
     am_initializer_list = new INITIALIZERLIST();
     am_initializer_list->push_front(this);
   } else {
@@ -59,7 +59,7 @@ Am_Initializer::Do_Initialize()
   for (INITIALIZERLIST::iterator it = am_initializer_list->begin();
        it != am_initializer_list->end(); ++it) {
     // check if we have a function to call
-    if ((*it)->init != static_cast<Am_Initializer_Procedure *>(0)) {
+    if ((*it)->init != static_cast<Am_Initializer_Procedure *>(nullptr)) {
 #ifdef LEAK_TRACE
       DERR("Initializing: " << (*it)->name << "\t\tPriority: "
                             << (*it)->priority << std::endl);
@@ -81,7 +81,7 @@ Am_Initializer::Do_Cleanup()
            am_initializer_list->rbegin();
        reverseIt != am_initializer_list->rend(); ++reverseIt) {
     // check if we have a function to call
-    if ((*reverseIt)->cleanup != static_cast<Am_Initializer_Procedure *>(0)) {
+    if ((*reverseIt)->cleanup != static_cast<Am_Initializer_Procedure *>(nullptr)) {
 // call the cleanup() function stored in the Am_Initializer object
 #ifdef LEAK_TRACE
       DERR("Cleaningup: " << (*reverseIt)->name << "\t\tPriority: "

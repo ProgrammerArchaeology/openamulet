@@ -987,7 +987,7 @@ Am_Report_Set_Vis(Am_Object inter, Am_Object obj, bool value)
 *  obj.Set(slot, val);
 *}
 *
-* //slots_to_set can be (0L), or a list of 4 values.  Each value can be NULL,
+* //slots_to_set can be (0L), or a list of 4 values.  Each value can be nullptr,
 * //which means don't set that value, true (or 1) which means use the default
 * //value, or a slot name, to set for that position.
 *Am_Set_Slots_From_Location(Am_Object obj, Am_Object main_obj,
@@ -1013,7 +1013,7 @@ Am_Report_Set_Vis(Am_Object inter, Am_Object obj, bool value)
 *    }
 *  }
 *  else { // complex control over which slots to use
-*    // slots_to_set should be a list of slots to use or NULLs
+*    // slots_to_set should be a list of slots to use or nullptrs
 *    Am_Value_List list;
 *    list = slots_to_set;
 *    list.Start();

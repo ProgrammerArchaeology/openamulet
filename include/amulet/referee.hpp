@@ -325,7 +325,7 @@ public:
         exit(1);
       }
     } else {
-      std::cout << "NULL Cplusplus object" << std::endl;
+      std::cout << "(nullptr) Cplusplus object" << std::endl;
       // Return empty object (?)
       return (null);
     }
@@ -366,7 +366,7 @@ public:
       data->Print(out);
     else
       // TODO: Obtain a type name...
-      out << "(Am_Referee<T>)(0L)";
+      out << "(Am_Referee<T>)(nullptr)";
   }
   void Println() const
   {
@@ -380,8 +380,8 @@ public:
  */
 template <class T>
 const Am_Referee<T>::referent_type *
-    Am_Referee<T>::null = (Am_Referee<T>::referent_type *)0L;
-// TODO: 0L is used everywhere, so...
+    Am_Referee<T>::null = (Am_Referee<T>::referent_type *)(nullptr);
+// TODO: (nullptr) is used everywhere, so...
 // TODO:Am_Referee<T>::null = (Am_Referee<T>::referent_type*)0x87654321;
 
 #endif /* defined __REFEREE_H */

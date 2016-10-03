@@ -19,7 +19,7 @@
       }                                                                        \
       value = (Type_name *)in_value.value.voidptr_value;                       \
     }                                                                          \
-    Am_##Type_name(Type_name *in_value = (0L)) { value = in_value; }           \
+    Am_##Type_name(Type_name *in_value = nullptr) { value = in_value; }           \
     Am_##Type_name &operator=(Type_name *in_value)                             \
     {                                                                          \
       value = in_value;                                                        \

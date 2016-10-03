@@ -51,7 +51,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object self))
       map1.Set(Am_ITEMS, 8);
     }
   } else if (c == "T") {
-    static Am_Object instance = (0L);
+    static Am_Object instance = nullptr;
     if (instance.Valid()) {
       instance.Destroy();
     } else {

@@ -74,7 +74,7 @@ public:
         Am_Error("Tried to delete the same type twice");
       data->Release();
     }
-    data = (0L);
+    data = nullptr;
   }
 }
 
@@ -104,7 +104,7 @@ public:
     if (value && (value->ID() == id))
       return (wrapped<T> *)value;
     else
-      return (0L);
+      return nullptr;
   }
   bool operator==(const Am_Wrapper &test_value) const
   {

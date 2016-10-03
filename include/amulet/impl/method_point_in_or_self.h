@@ -7,7 +7,7 @@
 //  - Parameters are self and a point x,y.
 //  - The point is in the coordinate system of the ref_obj
 //  - if inside in_obj but NOT in part or leaf, then if want_self
-//  		returns in_obj otherwise returns (0L)
+//  		returns in_obj otherwise returns (nullptr)
 //  - If want_groups is true, the finds the leaf-most element even if
 //        it is a group.  If want_groups is false, then will not return a
 //        group (if x,y is not over a "primitive" object, returns Am_No_Object)

@@ -142,7 +142,7 @@ Am_To_Top(Am_Object object)
   } else if (object.Is_Instance_Of(Am_Window)) {
     Am_Drawonable *draw = Am_Drawonable::Narrow(object.Get(Am_DRAWONABLE));
     if (draw)
-      draw->Raise_Window((nullptr));
+      draw->Raise_Window(nullptr);
   } else {
     std::cerr << "** Am_To_Top: Attempt to raise " << object
               << " which is not "
@@ -186,7 +186,7 @@ Am_To_Bottom(Am_Object object)
   } else if (object.Is_Instance_Of(Am_Window)) {
     Am_Drawonable *draw = Am_Drawonable::Narrow(object.Get(Am_DRAWONABLE));
     if (draw)
-      draw->Lower_Window((nullptr));
+      draw->Lower_Window(nullptr);
   } else {
     std::cerr << "** Am_To_Bottom: Attempt to lower " << object
               << " which is not "

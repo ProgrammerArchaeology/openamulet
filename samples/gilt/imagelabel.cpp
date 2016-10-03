@@ -261,7 +261,7 @@ Am_Define_Method(Am_Object_Method, void, return_file_name, (Am_Object cmd))
 
   window.Set(Am_VISIBLE, false);
 
-  if ((fptr = fopen((char *)name, "r")) == NULL) {
+  if ((fptr = fopen((char *)name, "r")) == nullptr) {
     sprintf(s, "File %s does not exists", (char *)name);
     Am_Show_Alert_Dialog((Am_String)s);
     window.Set(Am_VISIBLE, true);

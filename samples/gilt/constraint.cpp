@@ -102,7 +102,7 @@ public:
       diff = (short)var - (short)'A';
     cout << "Releasing " << var << " at index " << diff << endl;
     variables[diff].busy = false;
-    variables[diff].object = NULL;
+    variables[diff].object = nullptr;
   }
 
 protected:
@@ -119,7 +119,7 @@ Gilt_Constraint_Variable_Data::Gilt_Constraint_Variable_Data()
   index = 0;
 
   for (; i < CONSTRAINT_VARIABLES_CNT; i++) {
-    variables[i].object = NULL;
+    variables[i].object = nullptr;
     variables[i].var = var;
     variables[i].busy = false;
     var++;
@@ -408,7 +408,7 @@ Am_Define_Value_List_Formula(get_handle_depends_list)
 Am_Define_Formula(Am_Value, get_handle_variable)
 {
   Am_Object for_obj = self.Get_Owner().Get_Object(Am_ITEM);
-  //When items are deselected, cv sometimes becomes NULL because owner
+  //When items are deselected, cv sometimes becomes nullptr because owner
   //is lost
   if (for_obj.Valid() && (bool)self.Get(Am_VISIBLE)) {
     Am_Value_List const_info = self.Get(CONSTRAINT_INFO);
@@ -421,7 +421,7 @@ Am_Define_Formula(Am_Value, get_handle_variable)
             .Get_Owner()
             .Get_Owner()
             .Get(CONSTRAINT_VAR);
-    if (cv != NULL) {
+    if (cv != nullptr) {
       // my_char is true when this handle should have a variable
       // use_other_char is true when this handle should use variable of
       //another handle
@@ -660,7 +660,7 @@ Am_Define_String_Formula(compute_handle_text)
     }
   }
   if (buffer[0] == '\0')
-    return NULL;
+    return nullptr;
   else
     return (Am_String)buffer;
 }
@@ -1242,7 +1242,7 @@ Am_Define_Method(Am_Mouse_Event_Method, void, constraint_sel_object,
           } else {
             release_all_variables(g_list, list, cv);
             list.Make_Empty();
-            new_object = NULL;
+            new_object = nullptr;
           }
           new_value = list;
         }
@@ -1331,8 +1331,8 @@ Am_Define_Method(Am_Mouse_Event_Method, void, set_primary_object,
   //need to clear secondary slots to preserve color of handles
   //previously selected
 
-  widget.Set(SECONDARY_HANDLE, NULL);
-  widget.Set(SECONDARY_OBJ, NULL);
+  widget.Set(SECONDARY_HANDLE, nullptr);
+  widget.Set(SECONDARY_OBJ, nullptr);
 
   Am_Object handle = widget.Get(PRIMARY_HANDLE);
   if (handle.Valid())
@@ -1700,10 +1700,10 @@ Am_Define_Method(Am_Mouse_Event_Method, void, setup_constraint_and_clear_slots,
   widget.Get_Object(PRIMARY_HANDLE).Set(STATE, get_state);
 
   if (!constraint_set) {
-    widget.Set(PRIMARY_HANDLE, NULL)
-        .Set(PRIMARY_OBJ, NULL)
-        .Set(SECONDARY_OBJ, NULL)
-        .Set(SECONDARY_HANDLE, NULL);
+    widget.Set(PRIMARY_HANDLE, nullptr)
+        .Set(PRIMARY_OBJ, nullptr)
+        .Set(SECONDARY_OBJ, nullptr)
+        .Set(SECONDARY_HANDLE, nullptr);
     Am_Abort_Interactor(inter);
   }
 }
@@ -1763,7 +1763,7 @@ Constraint_Widget_Initialize()
           .Add(HANDLE_DEPENDS, get_handle_depends_list)
           .Add(CONSTRAINT_VAR, get_handle_variable)
           .Add(STATE, get_state)
-          .Add(Am_ID, NULL)
+          .Add(Am_ID, nullptr)
           .Add(Am_FILL_STYLE, get_state_color)
           .Add_Part(Am_Rectangle.Create()
                         .Set(Am_LEFT, 0)
@@ -1783,8 +1783,8 @@ Constraint_Widget_Initialize()
                         .Set(Am_LINE_STYLE, Am_White));
 
   One_Constraint_Handle = Am_Group.Create()
-                              .Add(Am_ITEM, NULL)
-                              .Add(LEFT_MOST_HANDLE, NULL)
+                              .Add(Am_ITEM, nullptr)
+                              .Add(LEFT_MOST_HANDLE, nullptr)
                               .Set(Am_LEFT, compute_handle_lt)
                               .Set(Am_WIDTH, Am_Width_Of_Parts)
                               .Set(Am_HEIGHT, Am_Height_Of_Parts);
@@ -1871,10 +1871,10 @@ Constraint_Widget_Initialize()
                           .Get_Object(Am_INTERACTOR)
                           .Set(Am_DO_METHOD, constraint_sel_object)
                           .Get_Owner()
-                          .Add(PRIMARY_OBJ, NULL)
-                          .Add(PRIMARY_HANDLE, NULL)
-                          .Add(SECONDARY_HANDLE, NULL)
-                          .Add(SECONDARY_OBJ, NULL);
+                          .Add(PRIMARY_OBJ, nullptr)
+                          .Add(PRIMARY_HANDLE, nullptr)
+                          .Add(SECONDARY_HANDLE, nullptr)
+                          .Add(SECONDARY_OBJ, nullptr);
 
   Am_Object lfeedback = Constraint_Widget.Get_Object(Am_LINE_FEEDBACK_OBJECT);
   lfeedback

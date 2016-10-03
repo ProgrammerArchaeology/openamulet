@@ -151,7 +151,7 @@ public:
   // well.
 
   //returns the name if the value is registered as a prototype.  If
-  //not registered, returns (0L)
+  //not registered, returns (nullptr)
 
   //  Am_String Is_Registered_Prototype (Am_Object obj);
 

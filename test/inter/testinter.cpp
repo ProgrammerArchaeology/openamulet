@@ -41,9 +41,9 @@ Am_Object select_inter;
 Am_Object move_inter;
 Am_Object create_inter;
 Am_Object window;
-Am_Object window2 = 0;
+Am_Object window2 = nullptr;
 Am_Object text_window;
-Am_Object proto_rect = 0;
+Am_Object proto_rect = nullptr;
 Am_Object rfeedback;
 Am_Object lfeedback;
 Am_Object single_undo_handler;
@@ -235,7 +235,7 @@ Am_Define_Method(Am_Create_New_Object_Method, Am_Object, create_new_object,
   static int new_object_cnt = 1;
 
   Am_Style color;
-  const char *colorstr = 0;
+  const char *colorstr = nullptr;
   switch (new_object_cnt) {
   case 1:
     color = Am_Black;

@@ -562,7 +562,7 @@ mac_initialize()
 
     aDevice = GetGDevice();
     SetGDevice(GetMainDevice());
-    MakeITable((0L), NULL, 5);
+    MakeITable((0L), nullptr, 5);
     SetGDevice(aDevice);
   }
 

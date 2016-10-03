@@ -321,7 +321,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
   case 'c': {
     static int new_object_cnt = 1;
     Am_Style color;
-    const char *colorstr = 0;
+    const char *colorstr = nullptr;
     switch (new_object_cnt) {
     case 1:
       color = Am_Motif_Light_Orange;

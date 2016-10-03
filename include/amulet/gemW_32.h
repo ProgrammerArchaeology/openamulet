@@ -12,7 +12,7 @@
 #define _export
 #define export
 
-#define MoveTo(HDC, X, Y) (MoveToEx(HDC, X, Y, NULL))
+#define MoveTo(HDC, X, Y) (MoveToEx(HDC, X, Y, nullptr))
 
 //#if defined(__MINGW32__)
 //#include "gemW_mingw32.h"

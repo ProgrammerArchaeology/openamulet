@@ -634,9 +634,9 @@ Conflict_Window_Initialize()
           .Set(Am_START_WHERE_TEST, Am_Inter_In_Text_Leaf);
 
   Conflict_Window = Am_Window.Create("Conflict_Window")
-                        .Add(WORK_OBJECT, NULL)
-                        .Add(WORK_HANDLE, NULL)
-                        .Add(CONSTRAINT_INFO, NULL)
+                        .Add(WORK_OBJECT, nullptr)
+                        .Add(WORK_HANDLE, nullptr)
+                        .Add(CONSTRAINT_INFO, nullptr)
                         .Set(Am_DESTROY_WINDOW_METHOD,
                              Am_Default_Pop_Up_Window_Destroy_Method)
                         .Set(Am_FILL_STYLE, very_light_gray)

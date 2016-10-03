@@ -37,7 +37,7 @@ class _OA_DL_CLASSIMPORT Computed_Colors_Record
 {
 public:
   // CREATORS
-  Computed_Colors_Record() { data = (0L); }
+  Computed_Colors_Record() { data = nullptr; }
 
   ~Computed_Colors_Record()
   {
@@ -45,7 +45,7 @@ public:
       data->Release();
     }
 
-    data = (0L);
+    data = nullptr;
   }
 
   Computed_Colors_Record(const Am_Style &foreground);

@@ -565,7 +565,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
   case 'c': {
     static int handles_color_cnt = 1;
     Am_Style color;
-    const char *colorstr = 0;
+    const char *colorstr = nullptr;
     switch (handles_color_cnt) {
     case 1:
       color = Am_Red;
@@ -741,7 +741,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
       std::cout << "List empty\n" << std::flush;
     else {
       Am_Slot_Key slot = 0;
-      const char *name = 0;
+      const char *name = nullptr;
       vl.Start();
       Am_Object obj = vl.Get();
       Am_Value v;

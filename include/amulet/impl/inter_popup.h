@@ -4,7 +4,7 @@
 //Typical usage: programmer calls Am_Pop_Up_Window_And_Wait, and
 //the window has a call to Am_Finish_Pop_Up_Waiting as part of the
 //do_method of the OK and CANCEL buttons, with OK setting the value to
-//something, and cancel setting the value to (0L).
+//something, and cancel setting the value to (nullptr).
 
 // Sets the visible of the window to true, and then waits for someone
 // to call Am_Finish_Pop_Up_Waiting on that window.  Returns the value

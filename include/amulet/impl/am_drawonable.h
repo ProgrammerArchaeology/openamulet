@@ -36,7 +36,7 @@ public:
   // we don't necessarily have an object to start with.  String parameter
   // used under X to specify a screen.  This also causes any required
   // initialization to happen.  It is OK to call this more than once.
-  static Am_Drawonable *Get_Root_Drawonable(const char *screen = (0L));
+  static Am_Drawonable *Get_Root_Drawonable(const char *screen = nullptr);
 
   // the parent is the Am_Drawonable this is sent to
   virtual Am_Drawonable *
@@ -50,7 +50,7 @@ public:
          int max_h = 0, bool title_bar_flag = true,
          bool query_user_for_position = false, bool query_user_for_size = false,
          bool clip_by_children_flag = true,
-         Am_Input_Event_Handlers *evh = (0L)) = 0;
+         Am_Input_Event_Handlers *evh = nullptr) = 0;
 
   // the Am_Drawonable this method is invoked on is the one being destroyed
   virtual void Destroy() = 0;

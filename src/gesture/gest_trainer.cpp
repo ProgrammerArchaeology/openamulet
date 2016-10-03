@@ -261,7 +261,7 @@ operator>>(std::istream &s, Am_Gesture_Trainer &tr)
 
       // get the class name of this example
       s.get(buf, sizeof(buf));
-      if (!s || (cls = trdata->Find_Class(buf)) == (0L))
+      if (!s || (cls = trdata->Find_Class(buf)) == nullptr)
         goto LFail;
 
       // accumulate the points from this example

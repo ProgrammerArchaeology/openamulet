@@ -143,16 +143,16 @@ Am_GIF_Image::Create(const char *filename)
       // into this array
       im->imdata = new unsigned char[(long)(im->iminfo.width) *
                                      (long)(im->iminfo.height + 10)];
-      if (im->imdata == (0L)) { // failed to allocate image data
+      if (im->imdata == nullptr) { // failed to allocate image data
         delete im;
-        return (0L);
+        return nullptr;
       }
 
       // Read local color table, if any
       if (flag & HAS_CT) {
         if (!(im->load_gif_colormap(ifs, flag))) {
           delete im;
-          return (0L);
+          return nullptr;
         }
       }
 
@@ -166,7 +166,7 @@ Am_GIF_Image::Create(const char *filename)
       if (!(im->process_gif(ifs, gli))) {
         std::cerr << "** error reading gif file.\n";
         delete im;
-        return (0L);
+        return nullptr;
       };
       read_an_image = 1;
       break;
@@ -174,7 +174,7 @@ Am_GIF_Image::Create(const char *filename)
     default: {
       std::cerr << "** error reading gif file.\n";
       delete im;
-      return (0L);
+      return nullptr;
     }
     }
   }

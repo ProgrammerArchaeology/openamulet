@@ -392,7 +392,7 @@ Am_Drawonable_Impl::create_mac_offscreen()
 
   SetRect(&boundsRect, 0, 0, width, height);
   QDErr errCode =
-      NewGWorld(&theGWorld, 0, &boundsRect, (0L), NULL, (GWorldFlags)0);
+      NewGWorld(&theGWorld, 0, &boundsRect, (0L), nullptr, (GWorldFlags)0);
 
   mac_port = (CGrafPtr)theGWorld;
   mac_window = (0L);
@@ -634,11 +634,11 @@ Am_Drawonable_Impl::Set_Size(unsigned int req_width, unsigned int req_height)
       SetRect(&newBounds, 0, 0, new_width, new_height);
 
       DisposeGWorld(theGWorld);
-      NewGWorld(&theGWorld, 0, &newBounds, (0L), NULL, (GWorldFlags)0);
+      NewGWorld(&theGWorld, 0, &newBounds, (0L), nullptr, (GWorldFlags)0);
       mac_port = (CGrafPtr)theGWorld;
       /*
       LockPixels( GetGWorldPixMap( theGWorld ) );
-      UpdateGWorld( &theGWorld, 0, &newBounds, (0L), NULL, clipPix );
+      UpdateGWorld( &theGWorld, 0, &newBounds, (0L), nullptr, clipPix );
       UnlockPixels( GetGWorldPixMap( theGWorld ) );
       mac_port = (CGrafPtr) theGWorld;
 */

@@ -100,8 +100,8 @@ window_create(Am_Object window)
   win_todo->width = 0;
   win_todo->height = 0;
   win_todo->flags = 0;
-  win_todo->prev = (nullptr);
-  win_todo->next = (nullptr);
+  win_todo->prev = nullptr;
+  win_todo->next = nullptr;
   ad_window.Add(Am_TODO, (Am_Ptr)win_todo);
   ad_window.Get_Slot(Am_TODO).Set_Inherit_Rule(Am_LOCAL);
 
@@ -121,8 +121,8 @@ window_copy(Am_Object window)
   win_todo->width = 0;
   win_todo->height = 0;
   win_todo->flags = 0;
-  win_todo->prev = (nullptr);
-  win_todo->next = (nullptr);
+  win_todo->prev = nullptr;
+  win_todo->next = nullptr;
   window.Add(Am_TODO, (Am_Ptr)win_todo);
   am_generic_renew_copied_comp(window);
 
@@ -146,7 +146,7 @@ window_destroy_demon(Am_Object window)
   }
   Am_Drawonable *drawonable = Am_Drawonable::Narrow(window.Get(Am_DRAWONABLE));
   if (drawonable) {
-    drawonable->Set_Data_Store((nullptr));
+    drawonable->Set_Data_Store(nullptr);
     drawonable->Destroy();
     window.Set(Am_DRAWONABLE, (0L));
   }
@@ -717,7 +717,7 @@ destroy_drawonable(Am_Object window)
         }
       }
     }
-    drawonable->Set_Data_Store((nullptr));
+    drawonable->Set_Data_Store(nullptr);
     drawonable->Destroy();
     window.Set(Am_DRAWONABLE, (0L));
   }

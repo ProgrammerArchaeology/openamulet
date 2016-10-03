@@ -225,7 +225,7 @@ Am_Define_Method(Am_Object_Method, void, move_piece, (Am_Object inter))
       }
     } else if (Last_Jumped_Piece.Valid()) {
       Last_Jumped_Piece.Set(LAST_JUMPED, false);
-      Last_Jumped_Piece = NULL;
+      Last_Jumped_Piece = nullptr;
     }
     Player_State.Set(BLACK_PLAYER, !black_player);
   }
@@ -297,7 +297,7 @@ Am_Define_Object_Formula(find_feedback)
   if (window.Valid())
     return window.Get_Object(FEEDBACK);
   else
-    return NULL;
+    return nullptr;
 }
 
 Am_Define_Formula(bool, player_turn)

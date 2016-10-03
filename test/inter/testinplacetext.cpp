@@ -649,7 +649,7 @@ public:
     Am_Object command = self.Get(Am_COMMAND);
     command.Set(Am_LABEL, string);
   }
-  Am_Text_Navigate *Get_Navigator() { return (0L); }
+  Am_Text_Navigate *Get_Navigator() { return nullptr; }
 
   Am_Button_Text_Info(const Am_Object &in_button)
   {
@@ -678,7 +678,7 @@ Am_Define_Method(Am_Inplace_Info_Method, Am_Text_Info *, button_inplace_text,
   if (inside_button_text(self, ref_object, ref_x, ref_y))
     return new Am_Button_Text_Info(self);
   else
-    return (0L);
+    return nullptr;
 }
 
 ///////// Button Panel Widget ///////////////
@@ -883,7 +883,7 @@ Am_Define_Method(Am_Inplace_Info_Method, Am_Text_Info *,
     if (inside_button_text(button, ref_object, ref_x, ref_y))
       return new Am_Button_Panel_Text_Info(self, button);
   }
-  return (0L);
+  return nullptr;
 }
 
 ///////// Menu Bar Widget ///////////////
@@ -892,7 +892,7 @@ Am_Define_Method(Am_Inplace_Info_Method, Am_Text_Info *, menu_bar_inplace_text,
                  (const Am_Object & /*self*/, const Am_Object & /*ref_object*/,
                   int /*ref_x*/, int /*ref_y*/))
 {
-  return (0L);
+  return nullptr;
 }
 
 static void

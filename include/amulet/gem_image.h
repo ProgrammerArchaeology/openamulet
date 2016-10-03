@@ -78,12 +78,12 @@ class _OA_DL_CLASSIMPORT Am_Generic_Image
 {
 public:
   // The creator for subclasses loads an image from a file if possible,
-  // returning a valid image for success or (0L) for failure.
+  // returning a valid image for success or nullptr for failure.
   //  static Am_Generic_Image* Create(char* filename);
 
-  Am_Generic_Image() : color_map((0L)), imdata(NULL) {}
+  Am_Generic_Image() : color_map(nullptr), imdata(nullptr) {}
   Am_Generic_Image(unsigned char *data, int width, int height, int depth)
-      : iminfo(width, height, depth, 0, false, 0), color_map((0L)), imdata(data)
+      : iminfo(width, height, depth, 0, false, 0), color_map(nullptr), imdata(data)
   {
   }
   Am_Generic_Image(Am_Generic_Image *proto)
@@ -95,9 +95,9 @@ public:
   }
   ~Am_Generic_Image()
   {
-    if (imdata != (0L))
+    if (imdata != nullptr)
       delete[] imdata;
-    if (color_map != (0L))
+    if (color_map != nullptr)
       delete[] color_map;
   }
 

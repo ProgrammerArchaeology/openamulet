@@ -40,6 +40,6 @@ strdel(char *s)
 #ifndef OA_VERSION
 AM_DECL_MAP(Ptr2Ptr, void *, void *)
 #endif
-AM_DECL_LIST(Long, long, 0L)
+AM_DECL_LIST(Long, long, nullptr)
 
 #endif

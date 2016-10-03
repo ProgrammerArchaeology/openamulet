@@ -8,7 +8,7 @@ class _OA_DL_CLASSIMPORT Am_String
 {
   AM_WRAPPER_DECL(Am_String)
 public:
-  Am_String() { data = (0L); }
+  Am_String() { data = nullptr; }
   Am_String(const char *string, bool copy = true);
 
   Am_String &operator=(const char *string);
@@ -28,7 +28,7 @@ public:
   }
 };
 
-// The (0L) string.
+// The (nullptr) string.
 _OA_DL_IMPORT extern Am_String Am_No_String;
 
 _OA_DL_IMPORT extern std::ostream &operator<<(std::ostream &os,

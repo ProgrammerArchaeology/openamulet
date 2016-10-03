@@ -405,7 +405,7 @@ Handle_GoAway(const EventRecord &mac_event, WindowRef mac_window)
 {
   if (TrackGoAway(mac_window, mac_event.where)) {
     Am_Drawonable_Impl *d = Get_Drawable_Backpointer(mac_window);
-    if (d != (0L) && d->event_handlers != NULL) {
+    if (d != (0L) && d->event_handlers != nullptr) {
       d->event_handlers->Destroy_Notify(d);
     }
   }

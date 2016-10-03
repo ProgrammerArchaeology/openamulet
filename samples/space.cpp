@@ -217,7 +217,7 @@ Am_Define_Style_Formula(ship_color)
     return (Am_Green);
   else {
     //Am_Error("ship_color: Invalid ship type.\n");
-    return NULL;
+    return nullptr;
   }
 }
 
@@ -230,7 +230,7 @@ Am_Define_Image_Formula(ship_image)
     return (SP_Klingon_Image);
   else {
     //Am_Error("ship_image: Invalid ship type.\n");
-    return NULL;
+    return nullptr;
   }
 }
 
@@ -699,7 +699,7 @@ Am_Define_Method(Am_Create_New_Object_Method, Am_Object, create_tractor_beam,
   }
   //if get here, then not going to create a beam
   Am_Abort_Interactor(inter); //make this not be queued for undo
-  return (NULL);
+  return nullptr;
 }
 
 // undo for create_tractor_beam
@@ -1023,7 +1023,7 @@ install_stars()
   Am_Object star_proto =
       Am_Polygon.Create("SP_Star_Proto").Set(Am_POINT_LIST, star_pl);
 
-  srand((unsigned)time(NULL)); //init random generator
+  srand((unsigned)time(nullptr)); //init random generator
   Am_Style color;
 
   for (int i = 0; i < NUM_STARS; i++) {

@@ -19,7 +19,7 @@ public:
   void Println(const Am_Value &value) const;
 
   //Returns the string if easy and doesn't require any allocation.
-  //Otherwise, returns (0L).
+  //Otherwise, returns (nullptr).
   virtual const char *To_String(const Am_Value &v) const;
 
   // Reads a string, potentially provided by a user and converts to its own

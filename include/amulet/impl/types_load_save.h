@@ -37,7 +37,7 @@ class _OA_DL_CLASSIMPORT Am_Load_Save_Context
   AM_WRAPPER_DECL(Am_Load_Save_Context)
 
 public:
-  Am_Load_Save_Context() { data = (0L); }
+  Am_Load_Save_Context() { data = nullptr; }
 
   // This method is used to record items that are referred to by the objects
   // being loaded or saved, but the items themselves are permanent parts of
@@ -47,7 +47,7 @@ public:
   void Register_Prototype(const char *name, unsigned base, Am_Wrapper *value);
 
   //returns the name if the value is registered as a prototype.  If
-  //not registered, returns (0L)
+  //not registered, returns (nullptr)
   const char *Is_Registered_Prototype(Am_Wrapper *value);
 
   // Load methods are registered based on a string type name.  The type name

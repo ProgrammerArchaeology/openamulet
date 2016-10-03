@@ -645,7 +645,7 @@ time_data_structures()
 
   // lookup random objects
   srand((unsigned)time(
-      NULL)); // Seed the random-number generator with current time so that the numbers will be different every time we run.
+      nullptr)); // Seed the random-number generator with current time so that the numbers will be different every time we run.
   start_timing();
   for (int i = 0; i < NUM_OBJ_DATA_STRUCT; ++i) {
     mapInt2Str.GetAt(rand());
@@ -685,7 +685,7 @@ time_data_structures()
 
   // lookup random objects
   srand((unsigned)time(
-      NULL)); // Seed the random-number generator with current time so that the numbers will be different every time we run.
+      nullptr)); // Seed the random-number generator with current time so that the numbers will be different every time we run.
   start_timing();
   for (int i = 0; i < NUM_OBJ_DATA_STRUCT; ++i) {
     oaMapInt2Str.GetAt(rand());

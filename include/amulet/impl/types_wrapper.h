@@ -63,7 +63,7 @@ private:                                                                       \
     if (value && (value->ID() == id))                                          \
       return (Type_name##_Data *)value;                                        \
     else                                                                       \
-      return (0L);                                                             \
+      return nullptr;                                                             \
   }                                                                            \
   bool Type_name##_Data::operator==(const Am_Wrapper &test_value) const        \
   {                                                                            \
@@ -142,7 +142,7 @@ public:                                                                        \
         Am_DERR("** Tried to delete a " #Type_name " twice.");                 \
       data->Release();                                                         \
     }                                                                          \
-    data = (0L);                                                               \
+    data = nullptr;                                                               \
   }                                                                            \
   Type_name &Type_name::operator=(const Type_name &prev)                       \
   {                                                                            \
@@ -185,7 +185,7 @@ public:                                                                        \
       data->Note_Reference();                                                  \
     return data;                                                               \
   }                                                                            \
-  bool Type_name::Valid() const { return data != (0L); }                       \
+  bool Type_name::Valid() const { return data != nullptr; }                       \
   Type_name Type_name::Narrow(Am_Wrapper *in_data)                             \
   {                                                                            \
     if (in_data) {                                                             \
@@ -195,7 +195,7 @@ public:                                                                        \
         Am_DERR("** Tried to set a " #Type_name " with a non " #Type_name      \
                 " wrapper.");                                                  \
     }                                                                          \
-    return (Type_name##_Data *)(0L);                                           \
+    return (Type_name##_Data *)(nullptr);                                           \
   }                                                                            \
   bool Type_name::Test(const Am_Wrapper *in_data)                              \
   {                                                                            \
@@ -216,7 +216,7 @@ public:                                                                        \
     if (data)                                                                  \
       return data->To_String();                                                \
     else                                                                       \
-      return (0L);                                                             \
+      return nullptr;                                                             \
   }                                                                            \
   Am_Value Type_name::From_String(const char *string)                          \
   {                                                                            \
@@ -230,7 +230,7 @@ public:                                                                        \
     if (data)                                                                  \
       data->Print(out);                                                        \
     else                                                                       \
-      out << "(" #Type_name ")(0L)";                                           \
+      out << "(" #Type_name ")(nullptr)";                                           \
   }                                                                            \
   void Type_name::Println() const                                              \
   {                                                                            \

@@ -55,7 +55,7 @@ class _OA_DL_CLASSIMPORT Am_Assoc
 {
   AM_WRAPPER_DECL(Am_Assoc)
 public:
-  Am_Assoc() { data = (0L); }
+  Am_Assoc() { data = nullptr; }
   Am_Assoc(const Am_Value &val1, const Am_Value &val2)
   {
     data = new Am_Assoc_Data(val1, val2);
@@ -78,7 +78,7 @@ public:
     if (data)
       return data->value_1;
     else
-      Am_Error("Accessing (0L) Assoc");
+      Am_Error("Accessing (nullptr) Assoc");
     return Am_No_Value;
   }
   Am_Value Value_2()
@@ -86,7 +86,7 @@ public:
     if (data)
       return data->value_2;
     else
-      Am_Error("Accessing (0L) Assoc");
+      Am_Error("Accessing (nullptr) Assoc");
     return Am_No_Value;
   }
 };
@@ -291,7 +291,7 @@ public:
   // Delete the entire list.  All elements are deleted. The current position
   void Make_Empty(); // becomes undefined.
 
-  // Creates an empty list that is not (0L).
+  // Creates an empty list that is not (nullptr).
   static Am_Value_List Empty_List();
 
   // returns true of v1 == v2.  Or, if either v1 or v2 is a list

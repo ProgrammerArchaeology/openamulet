@@ -75,9 +75,9 @@ append_number_to_name(const char *orig_name)
 AM_WRAPPER_DATA_IMPL_ID(Am_Object, (), Am_OBJECT)
 
 Am_Object_Data::Am_Object_Data()
-    : prototype((nullptr)), first_instance((nullptr)), next_instance((nullptr)),
-      first_part((nullptr)), next_part((nullptr)), default_bits(0x0001),
-      bits_mask(0x0000), owner_slot((nullptr), Am_OWNER),
+    : prototype(nullptr), first_instance(nullptr), next_instance(nullptr),
+      first_part(nullptr), next_part(nullptr), default_bits(0x0001),
+      bits_mask(0x0000), owner_slot(nullptr, Am_OWNER),
       part_slot(nullptr, Am_NO_SLOT), data(sizeof(Am_Slot_Data *))
 {
 #ifdef LEAK_TRACE
@@ -102,7 +102,7 @@ Am_Object_Data::Am_Object_Data()
 
 Am_Object_Data::Am_Object_Data(const char *schema_name,
                                Am_Object_Data *in_prototype)
-    : owner_slot((nullptr), Am_OWNER), part_slot(nullptr, Am_NO_SLOT),
+    : owner_slot(nullptr, Am_OWNER), part_slot(nullptr, Am_NO_SLOT),
       demon_set(in_prototype->demon_set),
       demon_queue(in_prototype->demon_queue), data(sizeof(Am_Slot_Data *))
 {
@@ -125,7 +125,7 @@ Am_Object_Data::Am_Object_Data(const char *schema_name,
       std::cout << proto_name << "\t\tcreated: " << this
                 << "\tReferences: " << Ref_Count() << std::endl;
 #endif
-      Am_Register_Name(this, append_number_to_name("Warning_NULL"));
+      Am_Register_Name(this, append_number_to_name("Warning_nullptr"));
     } else {
 #ifdef LEAK_TRACE
       std::cout << proto_name << "\t\tcreated: " << this
@@ -241,7 +241,7 @@ Am_Object_Data::create_object(const char *new_name)
   for (curr_part = first_part; curr_part != nullptr;
        curr_part = curr_part->next_part) {
     if (curr_part->part_slot.key != Am_NO_INHERIT) {
-      new_part = curr_part->create_object((nullptr));
+      new_part = curr_part->create_object(nullptr);
       new_part->part_slot.key = curr_part->part_slot.key;
       new_part->next_part = new_object->first_part;
       new_object->first_part = new_part;
@@ -297,7 +297,7 @@ Am_Object_Data::copy_object(const char *new_name)
   for (curr_part = first_part; curr_part != nullptr;
        curr_part = curr_part->next_part) {
     if (curr_part->part_slot.key != Am_NO_INHERIT) {
-      new_part = curr_part->copy_object((nullptr));
+      new_part = curr_part->copy_object(nullptr);
       new_part->part_slot.key = curr_part->part_slot.key;
       new_part->next_part = new_object->first_part;
       new_object->first_part = new_part;
@@ -357,7 +357,7 @@ Am_Object_Data::copy_object_value_only(const char *new_name)
   for (curr_part = first_part; curr_part != nullptr;
        curr_part = curr_part->next_part) {
     if (curr_part->part_slot.key != Am_NO_INHERIT) {
-      new_part = curr_part->copy_object_value_only((nullptr));
+      new_part = curr_part->copy_object_value_only(nullptr);
       new_part->part_slot.key = curr_part->part_slot.key;
       new_part->next_part = new_object->first_part;
       new_object->first_part = new_part;

@@ -40,7 +40,7 @@ static Am_Value_Type useless = Am_Set_ID_Class(DSTR("constraint"), 0x3000);
 Am_Object_Data Root_Data;
 Am_Object Am_Root_Object(&Root_Data);
 
-Am_Slot_Data Missing_Slot_Data((nullptr), Am_NO_SLOT, Am_MISSING_SLOT);
+Am_Slot_Data Missing_Slot_Data(nullptr, Am_NO_SLOT, Am_MISSING_SLOT);
 Am_Slot Am_MISSING_SLOT_SLOT(&Missing_Slot_Data);
 Am_Value Missing_Slot_Value = Am_MISSING_SLOT_SLOT.Get();
 
@@ -1955,7 +1955,7 @@ Am_Object_Advanced::Get_Slot_Locale(Am_Slot_Key key) const
     slot->context->Note_Reference();
     return slot->context;
   } else
-    return Am_Object_Advanced((nullptr));
+    return Am_Object_Advanced(nullptr);
 }
 
 Am_Demon_Set
@@ -2837,7 +2837,7 @@ public:
   void Note_Changed(const Am_Object_Advanced &object, Am_Slot_Key key)
   {
     Am_Slot slot = object.Get_Data()->find_slot(key);
-    slot.Change((nullptr));
+    slot.Change(nullptr);
   }
 
   void Note_Unchanged(const Am_Object_Advanced &, Am_Slot_Key) {}

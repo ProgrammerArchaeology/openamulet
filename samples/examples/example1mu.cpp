@@ -290,7 +290,7 @@ Am_Define_Method( Am_Object_Method, void, change_setting, (Am_Object cmd) )
 	cout << "Port Number to open: " << flush;
 	cin >> port_number;
 	// *** should get a name too
-	bool success = Am_Pebbles_Open_Port(port_number, NULL);
+	bool success = Am_Pebbles_Open_Port(port_number, nullptr);
 	cout << "Open port " << port_number << " success = " << success
 		<< endl << flush;
 	break;

@@ -398,7 +398,7 @@ Am_WinDrawonable::Am_WinDC::Am_WinDC(const Am_WinDrawonable *drw)
     if (!drw->HasBuffer())
       ((Am_WinDrawonable *)drw)
           ->CreateBuffer(); //override const to call CreateBuffer
-    HDC hidc = ::CreateIC("DISPLAY", (0L), NULL, NULL);
+    HDC hidc = ::CreateIC("DISPLAY", (0L), nullptr, nullptr);
     m_hdc = ::CreateCompatibleDC(hidc);
     // use bitmap to draw
     SelectObject((HDC)(*this), drw->BufferBitmap());
@@ -2800,7 +2800,7 @@ Am_WinDrawonable::WndGetColorDepth(HDC hdc)
     // The CreateIC function creates an information context for the specified
     // device (in this case Display). The information context provides a fast way to get information
     // about the device without creating a device context.
-    hdc = CreateIC("DISPLAY", (0L), NULL, NULL);
+    hdc = CreateIC("DISPLAY", (0L), nullptr, nullptr);
 
     // The GetDeviceCaps function retrieves device-specific information about a specified device.
     res = GetDeviceCaps(hdc, BITSPIXEL) * GetDeviceCaps(hdc, PLANES);
@@ -2843,7 +2843,7 @@ Am_WinDrawonable::CreateBuffer()
   if (IsBuffered()) {
 
     if (!m_hbmp) {
-      HDC hidc = ::CreateIC("DISPLAY", (0L), NULL, NULL);
+      HDC hidc = ::CreateIC("DISPLAY", (0L), nullptr, nullptr);
       m_hbmp = CreateCompatibleBitmap(hidc, width, height);
       //	m_hbmp = CreateBitmap(width, height, 1, Get_Depth(), (0L));
       ::DeleteDC(hidc);
@@ -2860,7 +2860,7 @@ Am_WinDrawonable::ResizeBuffer(unsigned int new_width, unsigned int new_height)
     //resize bitmap, but preserve old contents if any
     HBITMAP hbmpold = m_hbmp; // save old bitmap
     // create new bitmap compatible with the screen
-    HDC hidc = ::CreateIC("DISPLAY", (0L), NULL, NULL);
+    HDC hidc = ::CreateIC("DISPLAY", (0L), nullptr, nullptr);
     m_hbmp = CreateCompatibleBitmap(hidc, new_width, new_height);
     ::DeleteDC(hidc);
     //m_hbmp = CreateBitmap(new_width, new_height, 1, Get_Depth(), (0L));

@@ -87,7 +87,7 @@ public:
          int max_w = 0, // 0 is illegal so means no max
          int max_h = 0, bool title_bar_flag = true,
          bool query_user_for_position = false, bool query_user_for_size = false,
-         bool clip_by_children_flag = true, Am_Input_Event_Handlers *ev = (0L));
+         bool clip_by_children_flag = true, Am_Input_Event_Handlers *ev = nullptr);
   void Destroy();
 
   Am_Drawonable *Create_Offscreen(int width = 0, int height = 0,

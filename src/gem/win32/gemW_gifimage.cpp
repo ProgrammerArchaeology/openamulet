@@ -43,15 +43,15 @@ quantize_bits(int b)
 
 Am_WinGIFImage::Am_WinGIFImage()
     : palettesize(0), x(0), y(0), pass(1), oldcode(0), interlaced(0), pixel(0),
-      gif_image((0L)), istk(0), prefix(NULL), suffix(NULL), stack((0L)),
+      gif_image((0L)), istk(0), prefix(nullptr), suffix(nullptr), stack((0L)),
       transparent_pixval(0)
 {
 }
 
 Am_WinGIFImage::Am_WinGIFImage(HBITMAP hbm, unsigned short w, unsigned short h)
     : Am_WinImage(hbm, w, h), palettesize(0), x(0), y(0), pass(1), oldcode(0),
-      interlaced(0), pixel(0), gif_image((0L)), istk(0), prefix(NULL),
-      suffix(NULL), stack((0L)), transparent_pixval(0)
+      interlaced(0), pixel(0), gif_image((0L)), istk(0), prefix(nullptr),
+      suffix(nullptr), stack((0L)), transparent_pixval(0)
 {
 }
 
@@ -59,7 +59,7 @@ Am_WinGIFImage::Am_WinGIFImage(HDC hdc, Am_WinImage *img, short x, short y,
                                unsigned short w, unsigned short h)
     : Am_WinImage(hdc, img, x, y, w, h), palettesize(0), x(0), y(0), pass(1),
       oldcode(0), interlaced(0), pixel(0), gif_image((0L)), istk(0),
-      prefix(NULL), suffix(NULL), stack((0L)), transparent_pixval(0)
+      prefix(nullptr), suffix(nullptr), stack((0L)), transparent_pixval(0)
 {
 }
 
@@ -68,14 +68,14 @@ Am_WinGIFImage::Am_WinGIFImage(HDC hdc, Am_WinImage *img, short x, short y,
                                short newh)
     : Am_WinImage(hdc, img, x, y, w, h, neww, newh), palettesize(0), x(0), y(0),
       pass(1), oldcode(0), interlaced(0), pixel(0), gif_image((0L)), istk(0),
-      prefix(NULL), suffix(NULL), stack((0L)), transparent_pixval(0)
+      prefix(nullptr), suffix(nullptr), stack((0L)), transparent_pixval(0)
 {
 }
 
 Am_WinGIFImage::Am_WinGIFImage(const Am_WinImage &img)
     : Am_WinImage(img), palettesize(0), x(0), y(0), pass(1), oldcode(0),
-      interlaced(0), pixel(0), gif_image((0L)), istk(0), prefix(NULL),
-      suffix(NULL), stack((0L)), transparent_pixval(0)
+      interlaced(0), pixel(0), gif_image((0L)), istk(0), prefix(nullptr),
+      suffix(nullptr), stack((0L)), transparent_pixval(0)
 {
 }
 
@@ -109,7 +109,7 @@ Am_WinGIFImage::read(const char *filename)
 
   // If the prefix, suffix, and stack arrays are not allocated
   // successfully, do nothing.
-  if (prefix == (0L) || suffix == NULL || stack == NULL)
+  if (prefix == (0L) || suffix == nullptr || stack == nullptr)
     return 0;
 
   unsigned char buf[256]; // buffer for a block of image data

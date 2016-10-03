@@ -15,14 +15,14 @@
     ItemType m_item;                                                           \
     Am_Elem_##Name *m_next;                                                    \
     /**/                                                                       \
-    Am_Elem_##Name(ItemType item) : m_item(item), m_next((0L)){};              \
+    Am_Elem_##Name(ItemType item) : m_item(item), m_next(nullptr){};              \
   };                                                                           \
   /**/                                                                         \
   /**/                                                                         \
   class Am_List_##Name                                                         \
   {                                                                            \
   public:                                                                      \
-    Am_List_##Name() : m_count(0), m_head((0L)){};                             \
+    Am_List_##Name() : m_count(0), m_head(nullptr){};                             \
     virtual ~Am_List_##Name();                                                 \
     void InsertAt(Am_Position pos, ItemType item);                             \
     void Add(ItemType item);                                                   \
@@ -34,7 +34,7 @@
     ItemType GetAt(Am_Position pos) const;                                     \
     void DeleteAt(Am_Position pos);                                            \
     ItemType &operator[](Am_Position pos);                                     \
-    /*always adds new (0L) item if pos == NULL*/                               \
+    /*always adds new (nullptr) item if pos == nullptr*/                               \
     /*doesn't call FreeItem if the item is being changed*/                     \
     bool IsEmpty() const { return m_count == 0; };                             \
     int Count() const { return m_count; };                                     \
@@ -55,7 +55,7 @@
   /**/                                                                         \
   inline Am_Position Am_List_##Name::NextPos(Am_Position pos) const            \
   {                                                                            \
-    return pos ? (Am_Position)((Am_Elem_##Name *)pos)->m_next : (0L);          \
+    return pos ? (Am_Position)((Am_Elem_##Name *)pos)->m_next : (nullptr);          \
   }                                                                            \
   /**/                                                                         \
   inline ItemType Am_List_##Name::GetAt(Am_Position pos) const                 \
@@ -69,7 +69,7 @@
   Am_Position Am_List_##Name::PrevPos(Am_Position pos) const                   \
   {                                                                            \
     if (!pos)                                                                  \
-      return (0L);                                                             \
+      return nullptr;                                                             \
     Am_Position prev;                                                          \
     for (prev = HeadPos(); prev; prev = NextPos(prev))                         \
       if (((Am_Elem_##Name *)prev)->m_next == (Am_Elem_##Name *)pos)           \
@@ -161,5 +161,5 @@
       delete (Am_Elem_##Name *)pos;                                            \
     }                                                                          \
     m_count = 0;                                                               \
-    m_head = (0L);                                                             \
+    m_head = nullptr;                                                             \
   }

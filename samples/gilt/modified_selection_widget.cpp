@@ -328,7 +328,7 @@ Am_Define_Method(Am_Mouse_Event_Method, void, modified_sel_object,
             new_object = main_rect;
           } else {
             list = Am_Value_List();
-            new_object = NULL;
+            new_object = nullptr;
           }
           new_value = list;
         }

@@ -50,8 +50,8 @@ public:
   Am_Demon_Queue_Data()
   {
     refs = 1;
-    head = (0L);
-    tail = (0L);
+    head = nullptr;
+    tail = nullptr;
     invoke_stack = 0;
     active = true;
   }
@@ -72,7 +72,7 @@ public:
   }
   void Enqueue(QItem *item)
   {
-    item->next = (0L);
+    item->next = nullptr;
     if (tail)
       tail->next = item;
     else
@@ -126,7 +126,7 @@ public:
       for (i = 0; i < max_type_check; ++i)
         type_check_list[i] = proto->type_check_list[i];
     } else
-      type_check_list = (0L);
+      type_check_list = nullptr;
   }
   ~Am_Demon_Set_Data() { delete[] type_check_list; }
   void Note_Reference() { ++refs; }
@@ -169,7 +169,7 @@ public:
   void Add_Inv(CItem *item);
   void Add_Update(CItem *item);
   void Remove_Inv(CItem *item);
-  void Clear() { head = (0L); }
+  void Clear() { head = nullptr; }
   CItem *Find(Am_Constraint *item);
   CItem *Pop();
   void Validate(const Am_Slot &validating_slot);

@@ -101,7 +101,7 @@ Am_Object r2;
 Am_Object r4;
 Am_Object g1;
 Am_Object eek;
-Am_Object screen2 = (0L);
+Am_Object screen2 = nullptr;
 
 Am_Define_No_Self_Formula(int, at_sw_x) { return sw.Get(Am_LEFT); }
 Am_Define_No_Self_Formula(int, at_sw_y) { return sw.Get(Am_TOP); }

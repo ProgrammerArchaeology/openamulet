@@ -153,18 +153,18 @@ protected:
                     // (temporary storage for Classify())
     Gesture_Class()
     {
-      average = (0L);
-      w = NULL;
+      average = nullptr;
+      w = nullptr;
     }
     ~Gesture_Class()
     {
       if (average) {
         FreeVector(average);
-        average = (0L);
+        average = nullptr;
       }
       if (w) {
         FreeVector(w);
-        w = (0L);
+        w = nullptr;
       }
     }
   };

@@ -19,7 +19,7 @@
     Am_Assoc_##Name *m_next;                                                   \
     /**/                                                                       \
     Am_Assoc_##Name(KeyType key, ItemType item)                                \
-        : m_key(key), m_item(item), m_next((0L)){};                            \
+        : m_key(key), m_item(item), m_next(nullptr){};                            \
   };                                                                           \
   /**/                                                                         \
   /**/                                                                         \
@@ -34,7 +34,7 @@
     ItemType GetAt(KeyType key) const;                                         \
     void DeleteKey(KeyType key);                                               \
     ItemType &operator[](KeyType key);                                         \
-    /*always creates new (0L) item if the key isn't yet in map;*/              \
+    /*always creates new (nullptr) item if the key isn't yet in map;*/              \
     /*doesn't call FreeItem if the item is being changed*/                     \
     bool IsEmpty() const { return m_count == 0; };                             \
     int Count() const { return m_count; };                                     \
@@ -59,7 +59,7 @@
   class Am_MapIterator_##Name                                                  \
   {                                                                            \
   public:                                                                      \
-    Am_MapIterator_##Name(const Am_Map_##Name *map = (0L)) { Init(map); };     \
+    Am_MapIterator_##Name(const Am_Map_##Name *map = nullptr) { Init(map); };     \
     ItemType operator()();                                                     \
     KeyType Key() const { return m_key; };                                     \
     void Init(const Am_Map_##Name *map);                                       \
@@ -146,7 +146,7 @@
     for (int i = 0; i < old_size; i++)                                         \
       for (assoc = old_table[i]; assoc; assoc = next) {                        \
         next = assoc->m_next;                                                  \
-        assoc->m_next = (0L);                                                  \
+        assoc->m_next = nullptr;                                                  \
         AddAssoc(assoc->m_key, assoc);                                         \
       }                                                                        \
     /**/                                                                       \
@@ -174,7 +174,7 @@
         FreeItem(assoc->m_item);                                               \
         delete assoc;                                                          \
       }                                                                        \
-      m_table[i] = (0L);                                                       \
+      m_table[i] = nullptr;                                                       \
     }                                                                          \
   }                                                                            \
   /**/                                                                         \
@@ -201,7 +201,7 @@
     Am_Assoc_##Name *assoc = m_table[hv];                                      \
     Am_Assoc_##Name *prev = 0;                                                 \
     /**/                                                                       \
-    for (prev = (0L); assoc && KeyComp(assoc->m_key, key);                     \
+    for (prev = nullptr; assoc && KeyComp(assoc->m_key, key);                     \
          assoc = assoc->m_next)                                                \
       prev = assoc;                                                            \
     /**/                                                                       \
@@ -226,7 +226,7 @@
   void Am_MapIterator_##Name::Reset()                                          \
   {                                                                            \
     m_key = NullKey;                                                           \
-    m_ass_pos = (0L);                                                          \
+    m_ass_pos = nullptr;                                                          \
     m_tbl_pos = -1;                                                            \
     if (m_map)                                                                 \
       NextTblEntry();                                                          \
@@ -253,7 +253,7 @@
         m_ass_pos = m_map->m_table[i];                                         \
         return;                                                                \
       }                                                                        \
-    m_ass_pos = (0L);                                                          \
+    m_ass_pos = nullptr;                                                          \
     m_key = NullKey;                                                           \
   }
 

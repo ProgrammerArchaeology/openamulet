@@ -221,7 +221,7 @@ testwin9(wins *wins_ar, int ar_len)
   getchar();
   int i;
   for (i = 0; i < ar_len; i++) {
-    (wins_ar[i].d1)->Raise_Window((0L));
+    (wins_ar[i].d1)->Raise_Window(nullptr);
   }
 
   printf("  Hit RETURN to raise D2:");
@@ -239,7 +239,7 @@ testwin9(wins *wins_ar, int ar_len)
   printf("  Hit RETURN to lower D1:");
   getchar();
   for (i = 0; i < ar_len; i++) {
-    (wins_ar[i].d1)->Lower_Window((0L));
+    (wins_ar[i].d1)->Lower_Window(nullptr);
   }
 
   printf("  Hit RETURN to lower D2:");

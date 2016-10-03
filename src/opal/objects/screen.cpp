@@ -37,7 +37,7 @@ Am_Create_Screen(const char *display_name)
 {
   Am_Drawonable *new_root = Am_Drawonable::Get_Root_Drawonable(display_name);
   if (!new_root)
-    return (nullptr);
+    return nullptr;
   int width, height;
   new_root->Get_Size(width, height);
   Am_Object new_screen =
@@ -57,13 +57,13 @@ screen_destroy_demon(Am_Object screen)
 {
   Am_Drawonable *drawonable = Am_Drawonable::Narrow(screen.Get(Am_DRAWONABLE));
   if (drawonable) {
-    drawonable->Set_Data_Store((nullptr));
+    drawonable->Set_Data_Store(nullptr);
     drawonable->Destroy();
     screen.Set(Am_DRAWONABLE, (0L));
   }
   drawonable = Am_Drawonable::Narrow(screen.Get(Am_OFFSCREEN_DRAWONABLE));
   if (drawonable) {
-    drawonable->Set_Data_Store((nullptr));
+    drawonable->Set_Data_Store(nullptr);
     drawonable->Destroy();
     screen.Set(Am_OFFSCREEN_DRAWONABLE, (0L));
   }
@@ -76,14 +76,14 @@ screen_destroy_demon(Am_Object screen)
       for (draw_list.Start(); !draw_list.Last(); draw_list.Next()) {
         drawonable = Am_Drawonable::Narrow(draw_list.Get());
         if (drawonable) {
-          drawonable->Set_Data_Store((nullptr));
+          drawonable->Set_Data_Store(nullptr);
           drawonable->Destroy();
         }
       }
     } else {
       drawonable = Am_Drawonable::Narrow(fade_value);
       if (drawonable) {
-        drawonable->Set_Data_Store((nullptr));
+        drawonable->Set_Data_Store(nullptr);
         drawonable->Destroy();
       }
     }
@@ -96,14 +96,14 @@ screen_destroy_demon(Am_Object screen)
       for (draw_list.Start(); !draw_list.Last(); draw_list.Next()) {
         drawonable = Am_Drawonable::Narrow(draw_list.Get());
         if (drawonable) {
-          drawonable->Set_Data_Store((nullptr));
+          drawonable->Set_Data_Store(nullptr);
           drawonable->Destroy();
         }
       }
     } else {
       drawonable = Am_Drawonable::Narrow(fade_value);
       if (drawonable) {
-        drawonable->Set_Data_Store((nullptr));
+        drawonable->Set_Data_Store(nullptr);
         drawonable->Destroy();
       }
     }

@@ -40,7 +40,7 @@ public:
   virtual int Write_To_File(const char *file_name, Am_Image_File_Format form);
   //returns 0 or error code
 
-  BOOL Valid() const { return m_image != (0L); };
+  BOOL Valid() const { return m_image != nullptr; };
 
   void WinShow(HDC hdc, short xfrom = 0, short yfrom = 0, short xto = 0,
                short yto = 0, short width = 0, short height = 0,
@@ -57,7 +57,7 @@ public:
   {
     return m_image ? (m_image->is_transparent() != 0) : false;
   };
-  LPSTR WinBits() const { return m_image ? m_image->image_bits() : (0L); };
+  LPSTR WinBits() const { return m_image ? m_image->image_bits() : nullptr; };
 
   Am_WinImage *WinImage() const { return m_image; };
 protected:

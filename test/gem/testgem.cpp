@@ -55,7 +55,7 @@ init_wins()
   //#if defined(_WINDOWS)
   db = root->Create_Offscreen(200, 200);
   //#endif
-  d2->Raise_Window((0L));
+  d2->Raise_Window(nullptr);
 }
 
 void

@@ -116,7 +116,7 @@ private:
         name = new char[strlen(_name) + 1];
         strcpy(name, _name);
       } else
-        name = (0L);
+        name = nullptr;
       dpy = _dpy;
       draw = _draw;
     }
@@ -163,7 +163,7 @@ public:
     last_click_code = 0;
     last_click_time = 0;
     click_counter = 0;
-    cut_data = (0L);
+    cut_data = nullptr;
     refs = 1;
   }
   ~Screen_Desc();
@@ -216,7 +216,7 @@ public:
          int max_w = 0, // 0 is illegal so means no max
          int max_h = 0, bool title_bar_flag = true,
          bool query_user_for_position = false, bool query_user_for_size = false,
-         bool clip_by_children_flag = true, Am_Input_Event_Handlers *ev = (0L));
+         bool clip_by_children_flag = true, Am_Input_Event_Handlers *ev = nullptr);
   void Destroy();
 
   // internal functions
@@ -464,7 +464,7 @@ public:
     event_handlers = evh;
     // initialize title bar height member
     offscreen = false;
-    ext_handler = (0L);
+    ext_handler = nullptr;
     expect_map_change = false;
   }
 
@@ -492,7 +492,7 @@ public:
       int max_w = 0, // 0 is illegal so means no max
       int max_h = 0, bool title_bar_flag = true,
       bool query_user_for_position = false, bool query_user_for_size = false,
-      bool clip_by_children_flag = true, Am_Input_Event_Handlers *evh = (0L));
+      bool clip_by_children_flag = true, Am_Input_Event_Handlers *evh = nullptr);
   // to hack another application
   static Am_Drawonable *Create_Offscreen_Drawonable_From_XWindow(
       Window created_drawable, Display *created_display,
@@ -554,7 +554,7 @@ class Font_Index
 {
 public:
   Font_Index(Display *disp, XFontStruct *in_xfont)
-      : dpy(disp), xfont(in_xfont), next(0L)
+      : dpy(disp), xfont(in_xfont), next(nullptr)
   {
   }
   Display *dpy;
@@ -617,7 +617,7 @@ protected:
 class Color_Index
 {
 public:
-  Color_Index(Display *disp, XColor idx) : dpy(disp), index(idx), next(0L) {}
+  Color_Index(Display *disp, XColor idx) : dpy(disp), index(idx), next(nullptr) {}
   Display *dpy;
   // TODO: Remove that: unsigned long index;
   XColor index;
@@ -628,7 +628,7 @@ class Cursor_Item
 {
 public:
   Cursor_Item(Display *disp, Cursor in_cursor)
-      : display(disp), cursor(in_cursor), next(0L)
+      : display(disp), cursor(in_cursor), next(nullptr)
   {
   }
   Display *display;
@@ -683,7 +683,7 @@ class Bitmap_Item
 public:
   Bitmap_Item(Display *disp, Pixmap in_bitmap, XColor *in_col, int n_col)
       : display(disp), bitmap(in_bitmap), mask(0), inverted_mask(0),
-        colors(in_col), num_colors(n_col), next(0L)
+        colors(in_col), num_colors(n_col), next(nullptr)
   {
   }
   ~Bitmap_Item()
@@ -702,7 +702,7 @@ public:
       for (int i = 0; i < num_colors; i++)
         XFreeColors(display, c, &(colors[i].pixel), 1, 0);
       delete[] colors;
-      colors = (0L);
+      colors = nullptr;
     }
   }
   Display *display;
@@ -940,7 +940,7 @@ private:
   // This one is used by class Am_Drawonable_Impl sometimes
   Region region_to_use()
   {
-    return ((stack.empty() == true) ? (0L) : stack.top());
+    return ((stack.empty() == true) ? nullptr : stack.top());
   }
 };
 

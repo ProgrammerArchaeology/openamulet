@@ -19,7 +19,7 @@ using namespace std;
 Am_Object rectangle;
 
 char remote_host_data[MAXHOSTNAME], *remote_host;
-Am_Connection *mc = (0L);
+Am_Connection *mc = nullptr;
 
 //
 // This method keeps a live connection.

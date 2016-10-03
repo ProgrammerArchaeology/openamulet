@@ -11,7 +11,7 @@ _OA_DL_IMPORT extern void Am_Register_Slot_Key(Am_Slot_Key key,
 // key for a given name.
 _OA_DL_IMPORT extern Am_Slot_Key Am_Register_Slot_Name(const char *string);
 
-// Returns the name of a slot key.  Returns (0L) if the key is not defined.
+// Returns the name of a slot key.  Returns (nullptr) if the key is not defined.
 _OA_DL_IMPORT extern const char *Am_Get_Slot_Name(Am_Slot_Key key);
 
 // Returns 0 if slot name not found

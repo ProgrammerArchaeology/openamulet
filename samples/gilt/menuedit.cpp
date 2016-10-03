@@ -177,13 +177,13 @@ destroy_nodes(Am_Value_List l)
     obj = (Am_Object)l.Get();
     cout << "Object being destroyed right now is :: " << obj << endl;
     v = obj.Peek(Lw_VITEM);
-    if (v.Valid() && v != NULL)
+    if (v.Valid() && v != nullptr)
       ((Am_Object)v).Destroy();
     v = obj.Peek(Lw_HITEM);
-    if (v.Valid() && v != NULL)
+    if (v.Valid() && v != nullptr)
       ((Am_Object)v).Destroy();
     v = obj.Peek(Lw_BITMAP);
-    if (v.Valid() && v != NULL)
+    if (v.Valid() && v != nullptr)
       ((Am_Object)v).Destroy();
     children = obj.Get(Lw_CHILDREN);
     if (!children.Empty())
@@ -263,7 +263,7 @@ Am_Define_Method(Am_Object_Method, void, add_new_submenu, (Am_Object cmd))
                        .Set(COMMAND_KEY, key)
                        .Get_Owner();
 
-  if (((Am_Object)n2c[key]).Get(Am_ACCELERATOR) == NULL) {
+  if (((Am_Object)n2c[key]).Get(Am_ACCELERATOR) == nullptr) {
     node.Set(Am_ACCELERATOR, n2c[key].Get(Am_ACCELERATOR));
   } else {
     ic = (Am_Input_Char)n2c[key].Get(Am_ACCELERATOR);
@@ -331,10 +331,10 @@ Am_Define_Method(Am_Object_Method, void, undo_add_submenu, (Am_Object cmd))
     parent.Note_Changed(Lw_CHILDREN);
     lw_group.Remove_Part(node);
     v = node.Peek(Lw_HITEM);
-    if (v.Valid() && v != NULL)
+    if (v.Valid() && v != nullptr)
       lw_group.Remove_Part((Am_Object)v);
     v = node.Peek(Lw_BITMAP);
-    if (v.Valid() && v != NULL)
+    if (v.Valid() && v != nullptr)
       lw_group.Remove_Part((Am_Object)v);
 
     fake_items.Add(node);
@@ -352,13 +352,13 @@ Am_Define_Method(Am_Object_Method, void, undo_add_submenu, (Am_Object cmd))
     ol->AddBmVi(parent);
     lw_group.Add_Part(node);
     v = node.Peek(Lw_HITEM);
-    if (v.Valid() && v != NULL)
+    if (v.Valid() && v != nullptr)
       lw_group.Add_Part((Am_Object)v);
     v = node.Peek(Lw_VITEM);
-    if (v.Valid() && v != NULL)
+    if (v.Valid() && v != nullptr)
       lw_group.Add_Part((Am_Object)v);
     v = node.Peek(Lw_BITMAP);
-    if (v.Valid() && v != NULL)
+    if (v.Valid() && v != nullptr)
       lw_group.Add_Part((Am_Object)v);
     parent.Note_Changed(Lw_CHILDREN);
 
@@ -408,13 +408,13 @@ Am_Define_Method(Am_Object_Method, void, delete_node, (Am_Object cmd))
       l_group.Remove_Part(curr_obj);
 
       v = curr_obj.Peek(Lw_HITEM);
-      if (v.Valid() && v != NULL)
+      if (v.Valid() && v != nullptr)
         l_group.Remove_Part((Am_Object)v);
       v = curr_obj.Peek(Lw_VITEM);
-      if (v.Valid() && v != NULL)
+      if (v.Valid() && v != nullptr)
         l_group.Remove_Part((Am_Object)v);
       v = curr_obj.Peek(Lw_BITMAP);
-      if (v.Valid() && v != NULL)
+      if (v.Valid() && v != nullptr)
         l_group.Remove_Part((Am_Object)v);
 
       children = curr_obj.Get(Lw_CHILDREN);
@@ -470,13 +470,13 @@ Am_Define_Method(Am_Object_Method, void, undo_delete_node, (Am_Object cmd))
     l_group.Add_Part(node);
 
     v = node.Peek(Lw_HITEM);
-    if (v.Valid() && v != NULL)
+    if (v.Valid() && v != nullptr)
       l_group.Add_Part((Am_Object)v);
     v = node.Peek(Lw_VITEM);
-    if (v.Valid() && v != NULL)
+    if (v.Valid() && v != nullptr)
       l_group.Add_Part((Am_Object)v);
     v = node.Peek(Lw_BITMAP);
-    if (v.Valid() && v != NULL)
+    if (v.Valid() && v != nullptr)
       l_group.Add_Part((Am_Object)v);
 
     children = node.Get(Lw_CHILDREN);
@@ -510,13 +510,13 @@ Am_Define_Method(Am_Object_Method, void, undo_delete_node, (Am_Object cmd))
     l_group.Remove_Part(node);
 
     v = node.Peek(Lw_HITEM);
-    if (v.Valid() && v != NULL)
+    if (v.Valid() && v != nullptr)
       l_group.Add_Part((Am_Object)v);
     v = node.Peek(Lw_VITEM);
-    if (v.Valid() && v != NULL)
+    if (v.Valid() && v != nullptr)
       l_group.Add_Part((Am_Object)v);
     v = node.Peek(Lw_BITMAP);
-    if (v.Valid() && v != NULL)
+    if (v.Valid() && v != nullptr)
       l_group.Add_Part((Am_Object)v);
 
     children = node.Get(Lw_CHILDREN);
@@ -1245,7 +1245,7 @@ Menuedit_Window_Initialize()
                                      .Add(Am_ACTIVE_2));
 
   menu_proto = Am_Menu_Bar.Create()
-                   .Set(Am_ITEMS, NULL)
+                   .Set(Am_ITEMS, nullptr)
                    .Set(Am_FILL_STYLE, n2s[5])
                    .Add(TYPE_NAME, "Am_Menu_Bar")
                    .Add(FILL_STYLE_KEY, 5)
@@ -1500,7 +1500,7 @@ Menuedit_Window_Initialize()
                         .Set(Am_WIDTH, 150)
                         .Set(Am_FILL_STYLE, Am_White)
                         .Get_Object(Am_INTERACTOR)
-                        .Set(Am_STOP_WHEN, NULL)
+                        .Set(Am_STOP_WHEN, nullptr)
                         .Set(Am_TEXT_EDIT_METHOD, gilt_single_char_method)
                         .Get_Owner()
                         .Get_Object(Am_COMMAND)

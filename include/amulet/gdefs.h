@@ -52,7 +52,7 @@ extern Am_String Am_Get_Full_Filename(Am_String partial_filename);
 
 // Pulls all the directory part out of the filename and returns it,
 // and then sets file_only_name to the file.  Either one might be
-// empty, but won't be (0L).
+// empty, but won't be (nullptr).
 extern Am_String Am_Get_Directory_Part(Am_String filename,
                                        Am_String &file_only_name);
 
@@ -82,7 +82,7 @@ extern bool Am_File_Exists(Am_String full_filename);
 extern long Am_Get_File_Size(Am_String filename);
 
 //Under Unix and PC, returns the extension of the file.  If none,
-//returns (0L).  Under Mac, returns the file type as a string.
+//returns (nullptr).  Under Mac, returns the file type as a string.
 extern Am_String Am_Get_File_Type(Am_String filename);
 
 //... Will probably need other procedures in the future

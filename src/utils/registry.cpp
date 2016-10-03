@@ -204,7 +204,7 @@ AM_DECL_TABLE(Registry, Registry_Reverse, Am_Registry_Key,
               const Am_Registered_Type *);
 #endif
 
-Am_Table_Registry *Am_Name_Registry = (0L);
+Am_Table_Registry *Am_Name_Registry = nullptr;
 
 void
 Am_Cleanup_Registry()
@@ -216,7 +216,7 @@ Am_Cleanup_Registry()
 #endif
 
   delete (Am_Name_Registry);
-  Am_Name_Registry = (0L);
+  Am_Name_Registry = nullptr;
 }
 
 static Am_Initializer *registry_init =
@@ -261,7 +261,7 @@ Am_Unregister_Name(const Am_Registered_Type *item)
   verify_name_registry();
 
   // only unregister valid items, if the table still exists
-  if (item && Am_Name_Registry != (0L))
+  if (item && Am_Name_Registry != nullptr)
     Am_Name_Registry->DeleteKey(item);
 }
 
@@ -270,7 +270,7 @@ Am_Get_Name_Of_Item(const Am_Registered_Type *item)
 {
   verify_name_registry();
 
-  if (item && Am_Name_Registry != (0L))
+  if (item && Am_Name_Registry != nullptr)
     return (Am_Name_Registry->GetAt(item));
   else
     return nullptr;

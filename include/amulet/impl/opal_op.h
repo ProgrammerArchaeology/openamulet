@@ -16,7 +16,7 @@ _OA_DL_IMPORT extern bool Am_Point_In_All_Owners(const Am_Object &in_obj, int x,
 // Check whether the point is inside the object.  Ignores
 //   covering (i.e., just checks whether point is inside the
 //   object even if the object is covered.  If inside, returns the
-//   object, otherwise returns (0L) (0)
+//   object, otherwise returns (nullptr) (0)
 //  The coordinate system of x and y is defined w.r.t. ref_obj
 _OA_DL_IMPORT extern Am_Object Am_Point_In_Obj(const Am_Object &in_obj, int x,
                                                int y, const Am_Object &ref_obj);

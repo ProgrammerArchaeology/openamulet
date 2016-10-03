@@ -15,7 +15,7 @@ Am_Object_Demon *proto_create;
 void
 my_create_demon(Am_Object self)
 {
-  if (proto_create != (0L)) {
+  if (proto_create != nullptr) {
     char c;
     cout << proto_create << "Id the fn ptr\n" << flush;
     cin >> c;

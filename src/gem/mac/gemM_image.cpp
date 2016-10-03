@@ -310,7 +310,7 @@ Am_Image_Array_Data::load_bit_data(const unsigned char *bit_data,
   // Create offscreen GWorld (assuming 1 bit per pixel)
   Rect bounds;
   SetRect(&bounds, 0, 0, width, height);
-  NewGWorld(&gworld, 1, &bounds, (0L), NULL, (GWorldFlags)0);
+  NewGWorld(&gworld, 1, &bounds, (0L), nullptr, (GWorldFlags)0);
 
   // Copy data into GWorld
   PixMapHandle pixMap = GetGWorldPixMap(gworld);

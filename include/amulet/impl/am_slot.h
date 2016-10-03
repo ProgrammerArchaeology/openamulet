@@ -41,7 +41,7 @@ public:
   // Returns whether or not slot's value is inherited.
   bool Is_Inherited();
   void Make_Unique();
-  bool Valid() { return data != (0L); }
+  bool Valid() { return data != nullptr; }
 
   unsigned short Get_Demon_Bits() const;
   void Set_Demon_Bits(unsigned short bits);
@@ -57,7 +57,7 @@ public:
 
   void Text_Inspect() const;
 
-  Am_Slot() { data = (0L); }
+  Am_Slot() { data = nullptr; }
   Am_Slot(Am_Slot_Data *in_data) { data = in_data; }
 
   bool operator==(const Am_Slot &test) const { return data == test.data; }

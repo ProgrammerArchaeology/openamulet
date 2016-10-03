@@ -59,7 +59,7 @@ Am_Cursor Am_Default_Cursor;
 AM_WRAPPER_DATA_IMPL(Am_Cursor, (this))
 
 // default constructor
-Am_Cursor_Data::Am_Cursor_Data() : m_img((0L)), m_msk(NULL), m_hcurs(0)
+Am_Cursor_Data::Am_Cursor_Data() : m_img((0L)), m_msk(nullptr), m_hcurs(0)
 {
   Am_WINCLEAN_CONSTR(Am_Cursor_Data)
 
@@ -68,7 +68,7 @@ Am_Cursor_Data::Am_Cursor_Data() : m_img((0L)), m_msk(NULL), m_hcurs(0)
 
 // copy constructor
 Am_Cursor_Data::Am_Cursor_Data(Am_Cursor_Data *proto)
-    : m_img((0L)), m_msk(NULL), m_hcurs(0)
+    : m_img((0L)), m_msk(nullptr), m_hcurs(0)
 {
   Am_WINCLEAN_CONSTR(Am_Cursor_Data)
 
@@ -83,7 +83,7 @@ Am_Cursor_Data::Am_Cursor_Data(Am_Cursor_Data *proto)
 }
 
 Am_Cursor_Data::Am_Cursor_Data(Am_Image_Array image, Am_Image_Array mask)
-    : m_img((0L)), m_msk(NULL), m_hcurs(0)
+    : m_img((0L)), m_msk(nullptr), m_hcurs(0)
 {
   Am_WINCLEAN_CONSTR(Am_Cursor_Data)
 

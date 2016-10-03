@@ -477,7 +477,7 @@ const char *
 integer_type_check(const Am_Value &value)
 {
   if ((value.type == Am_INT) && (value.value.long_value >= 0))
-    return (0L);
+    return nullptr;
   else
     return "Big Time Error";
 }
@@ -511,7 +511,7 @@ Am_Define_Formula(int, flags_test_formula)
 class Sub_Object : public Am_Object
 {
 public:
-  Sub_Object() { data = (0L); }
+  Sub_Object() { data = nullptr; }
   Sub_Object(Am_Wrapper *in_data) { data = (Am_Object_Data *)in_data; }
 
   static Sub_Object Make(const char *name) // hides Am_Object::Create
