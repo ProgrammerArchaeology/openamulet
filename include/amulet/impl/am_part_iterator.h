@@ -13,7 +13,7 @@ public:
   Am_Part_Iterator();
   Am_Part_Iterator(Am_Object object);
 
-  Am_Part_Iterator &operator=(Am_Object object);
+  Am_Part_Iterator &operator=(Am_Object &object);
 
   unsigned short Length(); // Number of parts in the list.
   void Start();            // Begin list at the start.

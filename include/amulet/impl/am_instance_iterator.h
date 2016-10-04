@@ -7,7 +7,7 @@ public:
   Am_Instance_Iterator();
   Am_Instance_Iterator(Am_Object object);
 
-  Am_Instance_Iterator &operator=(Am_Object object);
+  Am_Instance_Iterator &operator=(Am_Object &object);
 
   unsigned short Length(); // Number of instances in the list.
   void Start();            // Begin list at the start.

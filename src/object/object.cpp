@@ -439,7 +439,7 @@ Am_Instance_Iterator::Am_Instance_Iterator(Am_Object object)
 }
 
 Am_Instance_Iterator &
-Am_Instance_Iterator::operator=(Am_Object object)
+Am_Instance_Iterator::operator=(Am_Object &object)
 {
   prototype = object;
   current = Am_No_Object;
@@ -559,7 +559,7 @@ Am_Slot_Iterator::Am_Slot_Iterator(Am_Object object)
 Am_Slot_Iterator::~Am_Slot_Iterator() { delete data; }
 
 Am_Slot_Iterator &
-Am_Slot_Iterator::operator=(Am_Object object)
+Am_Slot_Iterator::operator=(Am_Object &object)
 {
   data->curr_pos = 0;
   data->curr_obj = nullptr;
@@ -631,7 +631,7 @@ Am_Part_Iterator::Am_Part_Iterator(Am_Object object)
 }
 
 Am_Part_Iterator &
-Am_Part_Iterator::operator=(Am_Object object)
+Am_Part_Iterator::operator=(Am_Object &object)
 {
   current = Am_No_Object;
   owner = object;

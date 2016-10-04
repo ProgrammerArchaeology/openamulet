@@ -12,7 +12,7 @@ public:
   Am_Slot_Iterator(Am_Object object);
   ~Am_Slot_Iterator();
 
-  Am_Slot_Iterator &operator=(Am_Object object);
+  Am_Slot_Iterator &operator=(Am_Object &object);
 
   unsigned short Length(); // Number of slots in the list.
   void Start();            // Begin list at the start.
