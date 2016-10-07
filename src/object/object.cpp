@@ -2681,7 +2681,7 @@ Am_Slot::Remove_Dependency(Am_Constraint_Tag dependency_tag) const
 }
 
 bool
-Am_Slot::Is_Inherited()
+Am_Slot::Is_Inherited() const
 {
   return !!(data->flags & BIT_INHERITS);
 }

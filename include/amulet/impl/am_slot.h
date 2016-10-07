@@ -39,9 +39,9 @@ public:
   void Remove_Dependency(Am_Constraint_Tag dependency_tag) const;
 
   // Returns whether or not slot's value is inherited.
-  bool Is_Inherited();
+  bool Is_Inherited() const;
   void Make_Unique();
-  bool Valid() { return data != nullptr; }
+  bool Valid() const { return data != nullptr; }
 
   unsigned short Get_Demon_Bits() const;
   void Set_Demon_Bits(unsigned short bits);
