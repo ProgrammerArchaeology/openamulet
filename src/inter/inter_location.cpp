@@ -27,7 +27,6 @@
 #include <amulet/initializer.h>
 
 #include <math.h> // needed for sqrt for min-length of lines
-// math.h is in /usr/local/lib/gcc-lib/hppa1.1-hp-hpux/2.6.0/include/
 
 //-------------------------------------------------------
 // Functions to make Am_Inter_Location work as a Wrapper

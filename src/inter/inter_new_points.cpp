@@ -20,12 +20,11 @@
 #include <amulet/inter_advanced.h>
 #include <amulet/standard_slots.h>
 #include <amulet/object_advanced.h> // for Am_Slot_Advanced for demons
-#include <math.h>                   // needed for sqrt for min-length of lines
-//math.h is in /usr/local/lib/gcc-lib/hppa1.1-hp-hpux/2.6.0/include/
-
 #include <amulet/opal.h> // needed for translate_coordinates
 #include <amulet/registry.h>
 #include <amulet/initializer.h>
+
+#include <math.h>                   // needed for sqrt for min-length of lines
 
 //////////////////////////////////////////////////////////////////
 /// Helper functions
