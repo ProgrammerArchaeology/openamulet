@@ -33,7 +33,7 @@ public:
   typedef void Am_Initializer_Procedure();
   Am_Initializer(const char *this_name, Am_Initializer_Procedure *init_proc,
                  float priority, unsigned aCheckPoint = 1,
-                 Am_Initializer_Procedure *cleanup_proc = 0);
+                 Am_Initializer_Procedure *cleanup_proc = nullptr);
 
   static void Do_Initialize();
   static void Do_Cleanup();

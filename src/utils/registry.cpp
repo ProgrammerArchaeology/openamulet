@@ -333,7 +333,7 @@ Am_Get_Type_Name(Am_ID_Tag id)
 const char *
 Am_Get_Name_Of_Item(const Am_Registered_Type *item)
 {
-  return (0);
+  return nullptr;
 }
 
 #endif // DEBUG

@@ -231,7 +231,7 @@ Am_Define_Method(Am_Marshall_Method, void, Marshall_object,
   const char *in_obj_id = Am_Connection::Get_Net_Object_ID(in_obj);
   //
   long instance_num;
-  if (in_obj_id == (0L)) // No ID assigned yet
+  if (in_obj_id == nullptr) // No ID assigned yet
   {
     //
     instance_num = Am_Connection::Num_Instances() + 1;

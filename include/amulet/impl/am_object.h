@@ -70,13 +70,13 @@ public:
   //:Creates an instance of an Am_Object object with a name of 'new_name'
   // if given.
   _OA_DL_MEMBERIMPORT Am_Object
-  Create(const char *new_name = static_cast<const char *>(0)) const;
+  Create(const char *new_name = nullptr) const;
 
   //:Makes a copy of the object as though an instance was created of the
   // object's prototype.  The slot values, and parts of the source are copied
   // as identically as possible.
   _OA_DL_MEMBERIMPORT Am_Object
-  Copy(const char *new_name = static_cast<const char *>(0)) const;
+  Copy(const char *new_name = nullptr) const;
 
   //:Like Copy except all slots that have constraints or are otherwise
   // actively determined are changed into simple values.  The constraints of which are

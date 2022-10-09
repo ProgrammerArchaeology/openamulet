@@ -165,7 +165,7 @@ Am_Object_Data::~Am_Object_Data()
   const char *name = Am_Get_Name_Of_Item(this);
 
 #ifdef LEAK_TRACE
-  if (name != static_cast<const char *>(0)) {
+  if (name != nullptr) {
     std::cout << name << "\t\tdestroyed: " << this
               << "\tReferences: " << Ref_Count() << std::endl;
   } else {

@@ -314,7 +314,7 @@ public:
   {
     std::cout << "in_data: " << in_data << std::endl;
     // If the wrapper is not a null one...
-    if (in_data != static_cast<Am_Wrap_Base *>(0)) {
+    if (in_data != nullptr) {
       std::cout << "Non null wrapper" << std::endl;
       if (typeid(referent_type) == typeid(*in_data)) {
         // TODO: Is this really correct ????? static_cast ? -- ortalo
@@ -333,7 +333,7 @@ public:
   }
   static bool Test(const Am_Wrap_Base *in_data)
   {
-    return ((in_data != static_cast<Am_Wrap_Base *>(0)) &&
+    return ((in_data != nullptr) &&
             (typeid(*in_data) == typeid(referent_type)));
   }
   static bool Test(const Am_Value &in_value)
@@ -349,7 +349,7 @@ public:
       // Better no ?
       return data->To_String();
     else
-      return (static_cast<const char *>(0));
+      return nullptr;
   }
 #if 1
   Am_Value From_String(const char *string)

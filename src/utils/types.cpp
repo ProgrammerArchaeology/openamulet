@@ -211,7 +211,7 @@ public:
 #else
   const char *To_String(const Am_Value & /*value*/) const
   {
-    return (0L);
+    return nullptr;
 #endif
   }
   Am_Value From_String(const char * /*string*/) const

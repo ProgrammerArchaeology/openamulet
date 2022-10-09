@@ -77,7 +77,7 @@ public:
   Am_Gesture_Classifier(const char *filename); // read from file
 
   bool Trained();
-  Am_String Classify(Am_Feature_Vector fv, double *nap = 0, double *dist = 0);
+  Am_String Classify(Am_Feature_Vector fv, double *nap = nullptr, double *dist = nullptr);
 };
 
 _OA_DL_MEMBERIMPORT std::ostream &operator<<(std::ostream &s,

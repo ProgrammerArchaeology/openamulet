@@ -12,7 +12,7 @@ class _OA_DL_CLASSIMPORT Am_Method_Wrapper : public Am_Registered_Type
 public:
   // constructor registers method's name in name registry.
   Am_Method_Wrapper(Am_ID_Tag *id_ptr, Am_Generic_Procedure *p,
-                    const char *name = 0);
+                    const char *name = nullptr);
   Am_ID_Tag ID() const { return *ID_Ptr; }
   Am_Generic_Procedure *Call;
   void Print(std::ostream &out) const;

@@ -336,7 +336,7 @@ Formula_Constraint::Get_Name()
   Formula_Constraint *me = (Formula_Constraint *)this;
   return me->formula_name;
 #else
-  return (0L); //no name if not debugging
+  return nullptr; //no name if not debugging
 #endif
 }
 

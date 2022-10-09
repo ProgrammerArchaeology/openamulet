@@ -139,7 +139,7 @@ public:
 
   bool operator==(const Am_Gesture_Classifier_Data &) const { return false; }
 
-  Am_String Classify(Am_Feature_Vector fv, double *nap = 0, double *dist = 0);
+  Am_String Classify(Am_Feature_Vector fv, double *nap = nullptr, double *dist = nullptr);
 
 protected:
   struct Gesture_Class

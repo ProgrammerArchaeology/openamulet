@@ -98,8 +98,7 @@ Am_Directory::getLongPath(mEntry *aEntry)
   parts.push_front(aEntry->mOsDirEntry->cFileName);
 
   // now walk up till we have no longer a parent
-  while (aEntry->mOsParentDirEntry->mOsDirEntry !=
-         static_cast<WIN32_FIND_DATA *>(0)) {
+  while (aEntry->mOsParentDirEntry->mOsDirEntry != nullptr) {
     aEntry = aEntry->mOsParentDirEntry;
     parts.push_front("/");
     parts.push_front(aEntry->mOsDirEntry->cFileName);
@@ -119,7 +118,7 @@ void
 Am_Directory::readEntries(long aLevel)
 {
   // do we have a top-entry object?
-  if (mCurrentDirectoryEntry != static_cast<mEntry *>(0)) {
+  if (mCurrentDirectoryEntry != nullptr) {
     // than the user should first clean out this Am_Directory instance
     return;
   }
@@ -216,7 +215,7 @@ Am_Directory::_readEntries(std::string aPattern, long aLevel)
 
       // free the last allocated WIN32_FIND_DATA object
       delete (mEntryInformation);
-      mEntryInformation = static_cast<WIN32_FIND_DATA *>(0);
+      mEntryInformation = nullptr;
 
       // and exit the while loop
       continueLoop = false;
@@ -240,7 +239,7 @@ Am_Directory::printDirectories(long aHowManyLevels, long aStartLevel)
         mLevel2Directories.equal_range(aStartLevel + x);
     for (LEVEL_ENTRIES::const_iterator it = selectedRange.first;
          it != selectedRange.second; ++it) {
-      if ((*it).second->mOsDirEntry != static_cast<WIN32_FIND_DATA *>(0)) {
+      if ((*it).second->mOsDirEntry != nullptr) {
         std::cout << (*it).second->mOsDirEntry->cFileName;
       } else {
         std::cout << "Top-Level-Directory";

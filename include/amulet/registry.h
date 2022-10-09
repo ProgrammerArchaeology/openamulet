@@ -51,7 +51,7 @@ public:
 
   ~Am_Registry_Key()
   {
-/*				if(name == static_cast<const char*>(0))
+/*				if(name == nullptr)
 				{
 					DERR("Destroying key: zero pointer " << std::endl);					
 				}

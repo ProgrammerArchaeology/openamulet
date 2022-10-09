@@ -103,7 +103,7 @@ public:
   void Wait_For_Event(timeval *timeout);
   void Next_Event(XEvent *event_return, timeval *timeout);
   void Remove(Am_Drawonable *draw);
-  bool Pending(XEvent *event_return = 0);
+  bool Pending(XEvent *event_return = nullptr);
   void Put_Event_Back(XEvent &event);
 
 private:

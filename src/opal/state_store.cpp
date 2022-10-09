@@ -138,6 +138,6 @@ Am_State_Store::Invoke()
     current->Invalidate();
     current = current->next;
   }
-  invalidation_list = (0L);
+  invalidation_list = nullptr;
 }
 #endif

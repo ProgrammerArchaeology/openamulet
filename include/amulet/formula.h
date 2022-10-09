@@ -31,21 +31,21 @@ class _OA_DL_CLASSIMPORT Am_Formula : public Am_Registered_Type
 {
 public:
   Am_Formula(const Am_Formula &in_formula);
-  Am_Formula(Am_FProc_Wrapper *formula, const char *name = 0);
-  Am_Formula(Am_FProc_Proc *formula, const char *name = 0);
+  Am_Formula(Am_FProc_Wrapper *formula, const char *name = nullptr);
+  Am_Formula(Am_FProc_Proc *formula, const char *name = nullptr);
 
-  Am_Formula(Am_FProc_Method *formula, const char *name = 0);
-  Am_Formula(Am_FProc_Int *formula, const char *name = 0);
-  Am_Formula(Am_FProc_Long *formula, const char *name = 0);
-  Am_Formula(Am_FProc_Bool *formula, const char *name = 0);
-  Am_Formula(Am_FProc_Float *formula, const char *name = 0);
-  Am_Formula(Am_FProc_Double *formula, const char *name = 0);
-  Am_Formula(Am_FProc_Char *formula, const char *name = 0);
-  Am_Formula(Am_FProc_String *formula, const char *name = 0);
-  Am_Formula(Am_FProc_Const_String *formula, const char *name = 0);
-  Am_Formula(Am_FProc_Void *formula, const char *name = 0);
-  Am_Formula(Am_FProc_Value *formula, const char *name = 0);
-  Am_Formula(Am_FProc_Const_Value *formula, const char *name = 0);
+  Am_Formula(Am_FProc_Method *formula, const char *name = nullptr);
+  Am_Formula(Am_FProc_Int *formula, const char *name = nullptr);
+  Am_Formula(Am_FProc_Long *formula, const char *name = nullptr);
+  Am_Formula(Am_FProc_Bool *formula, const char *name = nullptr);
+  Am_Formula(Am_FProc_Float *formula, const char *name = nullptr);
+  Am_Formula(Am_FProc_Double *formula, const char *name = nullptr);
+  Am_Formula(Am_FProc_Char *formula, const char *name = nullptr);
+  Am_Formula(Am_FProc_String *formula, const char *name = nullptr);
+  Am_Formula(Am_FProc_Const_String *formula, const char *name = nullptr);
+  Am_Formula(Am_FProc_Void *formula, const char *name = nullptr);
+  Am_Formula(Am_FProc_Value *formula, const char *name = nullptr);
+  Am_Formula(Am_FProc_Const_Value *formula, const char *name = nullptr);
 
   ~Am_Formula();
   Am_Formula &operator=(const Am_Formula &in_formula);
