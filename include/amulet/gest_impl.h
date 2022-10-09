@@ -75,7 +75,7 @@ public:
   Am_Feature_Vector_Data(Am_Feature_Vector_Data *);
   Am_Feature_Vector_Data();
 
-  ~Am_Feature_Vector_Data();
+  ~Am_Feature_Vector_Data() override;
 
   bool operator==(const Am_Feature_Vector_Data &) const { return false; }
 
@@ -129,13 +129,13 @@ class _OA_DL_CLASSIMPORT Am_Gesture_Classifier_Data : public Am_Wrapper
 
   AM_WRAPPER_DATA_DECL(Am_Gesture_Classifier)
 public:
-  void Print(std::ostream &os) const; //print my contents on the stream
+  void Print(std::ostream &os) const override; //print my contents on the stream
 
   Am_Gesture_Classifier_Data(Am_Gesture_Classifier_Data *);
   Am_Gesture_Classifier_Data();
   Am_Gesture_Classifier_Data(int nclasses);
 
-  ~Am_Gesture_Classifier_Data();
+  ~Am_Gesture_Classifier_Data() override;
 
   bool operator==(const Am_Gesture_Classifier_Data &) const { return false; }
 
@@ -192,7 +192,7 @@ public:
   Am_Gesture_Trainer_Data();
   Am_Gesture_Trainer_Data(Am_Gesture_Classifier_Data *cl);
 
-  ~Am_Gesture_Trainer_Data();
+  ~Am_Gesture_Trainer_Data() override;
 
   bool operator==(const Am_Gesture_Trainer_Data &) const { return false; }
 

@@ -43,7 +43,7 @@ public:
                          int d, bool grow, bool direct);
 
   // to print out the contents
-  void Print(std::ostream &out) const;
+  void Print(std::ostream &out) const override;
 
   // required by wrapper
   Am_Inter_Location_Data(Am_Inter_Location_Data *proto);

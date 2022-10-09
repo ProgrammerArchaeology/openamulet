@@ -41,30 +41,30 @@ class Am_Object_Advanced;
 class _OA_DL_CLASSIMPORT Am_Explicit_Set : public Am_Constraint
 {
 public:
-  bool Get(const Am_Slot &fetching_slot, Am_Value &value, bool &changed);
+  bool Get(const Am_Slot &fetching_slot, Am_Value &value, bool &changed) override;
 
   void Invalidated(const Am_Slot &slot_invalidated,
                    Am_Constraint *invalidating_constraint,
-                   const Am_Value &value);
+                   const Am_Value &value) override;
   void Changed(const Am_Slot &slot_changed, Am_Constraint *changing_constraint,
-               const Am_Value &prev_value, const Am_Value &new_value);
-  void Changed(const Am_Slot &slot_changed, Am_Constraint *changing_constraint);
-  void Slot_Event(Am_Object_Context *oc, const Am_Slot &slot);
-  Am_Constraint *Get_Prototype();
-  bool Is_Instance_Of(Am_Constraint *proto);
+               const Am_Value &prev_value, const Am_Value &new_value) override;
+  void Changed(const Am_Slot &slot_changed, Am_Constraint *changing_constraint) override;
+  void Slot_Event(Am_Object_Context *oc, const Am_Slot &slot) override;
+  Am_Constraint *Get_Prototype() override;
+  bool Is_Instance_Of(Am_Constraint *proto) override;
 
-  Am_Constraint *Constraint_Added(const Am_Slot &adding_slot);
-  Am_Constraint *Dependency_Added(const Am_Slot &adding_slot);
-  void Constraint_Removed(const Am_Slot &removing_slot);
-  void Dependency_Removed(const Am_Slot &removing_slot);
+  Am_Constraint *Constraint_Added(const Am_Slot &adding_slot) override;
+  Am_Constraint *Dependency_Added(const Am_Slot &adding_slot) override;
+  void Constraint_Removed(const Am_Slot &removing_slot) override;
+  void Dependency_Removed(const Am_Slot &removing_slot) override;
 
   bool Is_Overridden_By(const Am_Slot &slot,
-                        Am_Constraint *competing_constraint);
+                        Am_Constraint *competing_constraint) override;
 
-  Am_Constraint *Create(const Am_Slot &current_slot, const Am_Slot &new_slot);
-  Am_Constraint *Copy(const Am_Slot &current_slot, const Am_Slot &new_slot);
-  Am_ID_Tag ID() const;
-  const char *Get_Name();
+  Am_Constraint *Create(const Am_Slot &current_slot, const Am_Slot &new_slot) override;
+  Am_Constraint *Copy(const Am_Slot &current_slot, const Am_Slot &new_slot) override;
+  Am_ID_Tag ID() const override;
+  const char *Get_Name() override;
 
   Am_Explicit_Set(Am_Slot_Flags in_flags) { flags = in_flags; }
   operator Am_Constraint *() { return this; }

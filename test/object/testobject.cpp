@@ -67,7 +67,7 @@ Am_Define_Pointer_Wrapper(my_int) Am_Define_Pointer_Wrapper(float)
     class my_int_wrapper_support : public Am_Type_Support
 {
 public:
-  void Print(ostream &os, const Am_Value &val) const
+  void Print(ostream &os, const Am_Value &val) const override
   {
     my_int *m = Am_my_int(val).value;
     os << "PINT(" << std::hex << (Am_Ptr)val << std::dec
@@ -431,7 +431,7 @@ public:
   Store_Data(Store_Data *proto) { datum = proto->datum; }
   bool operator==(const Store_Data &test) const { return datum == test.datum; }
 
-  void Print(ostream &out) const { out << "STORE Print=" << datum; }
+  void Print(ostream &out) const override { out << "STORE Print=" << datum; }
 
   int datum;
 };
@@ -710,7 +710,7 @@ AM_DEFINE_ENUM_TYPE(Test_Enum, Test_Enum_enum)
 
 class Test_Enum_Support : public Am_Type_Support
 {
-  void Print(ostream &os, const Am_Value &value) const
+  void Print(ostream &os, const Am_Value &value) const override
   {
     Test_Enum_enum actual = Test_Enum(value).value;
     switch (actual) {

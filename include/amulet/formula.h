@@ -47,7 +47,7 @@ public:
   Am_Formula(Am_FProc_Value *formula, const char *name = nullptr);
   Am_Formula(Am_FProc_Const_Value *formula, const char *name = nullptr);
 
-  ~Am_Formula();
+  ~Am_Formula() override;
   Am_Formula &operator=(const Am_Formula &in_formula);
 
   operator Am_Constraint *();
@@ -58,7 +58,7 @@ public:
   // Calls the stored procedure.
   const Am_Value operator()(Am_Object &context) const;
 
-  Am_ID_Tag ID() const;
+  Am_ID_Tag ID() const override;
 
 private:
   Am_Formula_Data *data;

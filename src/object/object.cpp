@@ -2813,10 +2813,10 @@ Am_Print_Key(std::ostream &os, Am_Slot_Key key)
 class Am_Empty_Context : public Am_Constraint_Context
 {
 public:
-  Am_ID_Tag ID() { return 0; }
+  Am_ID_Tag ID() override { return 0; }
 
   const Am_Value &Get(const Am_Object_Advanced &object, Am_Slot_Key key,
-                      Am_Slot_Flags)
+                      Am_Slot_Flags) override
   {
     // *** IF YOU MODIFY THIS METHOD, be sure to modify Get(Am_Slot_Key key), which inlines it
 
@@ -2829,18 +2829,18 @@ public:
   }
 
   void Set(const Am_Object_Advanced &object, Am_Slot_Key k,
-           const Am_Value &value, Am_Slot_Flags set_flags)
+           const Am_Value &value, Am_Slot_Flags set_flags) override
   {
     object.Get_Data()->set_slot(k, value, set_flags);
   }
 
-  void Note_Changed(const Am_Object_Advanced &object, Am_Slot_Key key)
+  void Note_Changed(const Am_Object_Advanced &object, Am_Slot_Key key) override
   {
     Am_Slot slot = object.Get_Data()->find_slot(key);
     slot.Change(nullptr);
   }
 
-  void Note_Unchanged(const Am_Object_Advanced &, Am_Slot_Key) {}
+  void Note_Unchanged(const Am_Object_Advanced &, Am_Slot_Key) override {}
 
   //NOT in a formula, if error: if Am_RETURN_ZERO_ON_ERROR_BIT returns zero
   //			      if Am_OK_IF_NOT_THERE, returns the error
@@ -2848,7 +2848,7 @@ public:
   const Am_Value &Raise_Get_Exception(const Am_Value &value,
                                       const Am_Object_Advanced &object,
                                       Am_Slot_Key key, Am_Slot_Flags flags,
-                                      const char *msg)
+                                      const char *msg) override
   {
     if (flags & Am_OK_IF_NOT_THERE) {
       if (flags & Am_RETURN_ZERO_ON_ERROR_BIT)
@@ -2876,9 +2876,9 @@ public:
     }
   }
 
-  Am_Wrapper *Get_Data() { return nullptr; }
+  Am_Wrapper *Get_Data() override { return nullptr; }
 
-  void Set_Data(Am_Wrapper *) {}
+  void Set_Data(Am_Wrapper *) override {}
 };
 
 Am_Constraint_Context *Am_Empty_Constraint_Context = new Am_Empty_Context();
@@ -2890,7 +2890,7 @@ Am_Constraint_Context *Am_Object::cc = Am_Empty_Constraint_Context;
 class Am_Slot_Key_Type_Support_Class : public Am_Type_Support
 {
 public:
-  void Print(std::ostream &os, const Am_Value &value) const
+  void Print(std::ostream &os, const Am_Value &value) const override
   {
     Am_Slot_Key key = (Am_Slot_Key)value.value.long_value;
     const char *name = Am_Get_Slot_Name(key);
@@ -2899,11 +2899,11 @@ public:
     else
       os << "[" << (int)key << "]";
   }
-  const char *To_String(const Am_Value &value) const
+  const char *To_String(const Am_Value &value) const override
   {
     return Am_Get_Slot_Name((Am_Slot_Key)value.value.long_value);
   }
-  Am_Value From_String(const char *string) const
+  Am_Value From_String(const char *string) const override
   {
     Am_Slot_Key key = Am_From_Slot_Name(string);
     if (key) {

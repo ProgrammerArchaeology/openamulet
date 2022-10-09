@@ -196,7 +196,7 @@ operator<<(std::ostream &os, const Am_Value &value)
 class Am_Type_Type_Support_Class : public Am_Type_Support
 {
 public:
-  void Print(std::ostream &os, const Am_Value &value) const
+  void Print(std::ostream &os, const Am_Value &value) const override
   {
 #ifdef DEBUG
     os << Am_Get_Type_Name((Am_ID_Tag)value.value.long_value);
@@ -209,18 +209,18 @@ public:
   {
     return Am_Get_Type_Name((Am_ID_Tag)value.value.long_value);
 #else
-  const char *To_String(const Am_Value & /*value*/) const
+  const char *To_String(const Am_Value & /*value*/) const override
   {
     return nullptr;
 #endif
   }
-  Am_Value From_String(const char * /*string*/) const
+  Am_Value From_String(const char * /*string*/) const override
   {
     std::cerr << "**Sorry, no mapping from type names to Am_ID_Tags\n"
               << std::flush;
     return Am_No_Value; // not implemented since types use a 1-way hash table
   }
-  ~Am_Type_Type_Support_Class() {}
+  ~Am_Type_Type_Support_Class() override {}
 };
 
 Am_Type_Support *type_type_support = new Am_Type_Type_Support_Class();

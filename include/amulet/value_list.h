@@ -47,7 +47,7 @@ public:
   {
     return value_1 == test_value.value_1 && value_2 == test_value.value_2;
   }
-  void Print(std::ostream &out) const; // to print out the contents
+  void Print(std::ostream &out) const override; // to print out the contents
 };
 
 //use this for association lists

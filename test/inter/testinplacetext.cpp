@@ -607,9 +607,9 @@ class Am_Button_Text_Info : public Am_Text_Info
 {
 public:
   virtual ~Am_Button_Text_Info() {}
-  void Release() { delete this; }
+  void Release() override { delete this; }
   void Get_Info(int &offset_x, int &offset_y, Am_String &string,
-                Am_Style &style, Am_Font &font, Am_Value_List &changing_slots)
+                Am_Style &style, Am_Font &font, Am_Value_List &changing_slots) override
   {
     // now find the contents to draw in the button
     Am_Value value;
@@ -644,12 +644,12 @@ public:
 
     changing_slots = slot_list;
   }
-  void Set_Text(const Am_String &string)
+  void Set_Text(const Am_String &string) override
   {
     Am_Object command = self.Get(Am_COMMAND);
     command.Set(Am_LABEL, string);
   }
-  Am_Text_Navigate *Get_Navigator() { return nullptr; }
+  Am_Text_Navigate *Get_Navigator() override { return nullptr; }
 
   Am_Button_Text_Info(const Am_Object &in_button)
   {
@@ -691,7 +691,7 @@ public:
   class Am_Button_Panel_Text_Navigate : public Am_Text_Navigate
   {
   public:
-    bool Move(Am_Inplace_Text_Direction direction)
+    bool Move(Am_Inplace_Text_Direction direction) override
     {
       Am_Value_List parts = info->self.Get(Am_GRAPHICAL_PARTS);
       parts.Start();
@@ -727,7 +727,7 @@ public:
 #ifdef AMULET2_INSTRUMENT
 #undef Add
 #endif
-    void Add(const Am_String &text, Am_Insert_Position position)
+    void Add(const Am_String &text, Am_Insert_Position position) override
 #ifdef AMULET2_INSTRUMENT
 #define Add Am_Instrumented(Add)
 #endif
@@ -742,7 +742,7 @@ public:
       items.Insert(new_item, position);
       info->self.Set(Am_ITEMS, items);
     }
-    bool Delete(Am_Inplace_Text_Direction direction)
+    bool Delete(Am_Inplace_Text_Direction direction) override
     {
       Am_Object next_button;
       Am_Value_List parts = info->self.Get(Am_GRAPHICAL_PARTS);
@@ -796,9 +796,9 @@ public:
     Am_Button_Panel_Text_Info *info;
   } navigator;
 
-  void Release() { delete this; }
+  void Release() override { delete this; }
   void Get_Info(int &offset_x, int &offset_y, Am_String &string,
-                Am_Style &style, Am_Font &font, Am_Value_List &changing_slots)
+                Am_Style &style, Am_Font &font, Am_Value_List &changing_slots) override
   {
     // now find the contents to draw in the button
     Am_Value value;
@@ -836,12 +836,12 @@ public:
 
     changing_slots = slot_list;
   }
-  void Set_Text(const Am_String &string)
+  void Set_Text(const Am_String &string) override
   {
     Am_Object command = current_button.Get(Am_COMMAND);
     command.Set(Am_LABEL, string);
   }
-  Am_Text_Navigate *Get_Navigator() { return &navigator; }
+  Am_Text_Navigate *Get_Navigator() override { return &navigator; }
 
   Am_Button_Panel_Text_Info(const Am_Object &panel, const Am_Object &button)
       : navigator(this)

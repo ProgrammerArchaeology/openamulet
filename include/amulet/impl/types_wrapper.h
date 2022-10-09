@@ -14,7 +14,7 @@ public:
 
   Am_Wrapper(const Am_Wrapper &) : refs(1) { ; }
 
-  virtual ~Am_Wrapper() {}
+  ~Am_Wrapper() override {}
 
   // Note that wrapper is being stored
   void Note_Reference() { ++refs; }
@@ -35,7 +35,7 @@ public:
 
   virtual Am_Wrapper *Make_Unique() = 0; // Return a unique copy of the data.
   virtual bool operator==(const Am_Wrapper &test_value) const = 0; // Equality test.
-  virtual Am_ID_Tag ID() const = 0; // Returns unique tag
+  Am_ID_Tag ID() const override = 0; // Returns unique tag
   // for each derived type.
   virtual Am_Value From_String(const char *string) const;
 

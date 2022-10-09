@@ -110,20 +110,20 @@ test_reparent1()
 
 class testloop_handlers : public Am_Input_Event_Handlers
 {
-  void Iconify_Notify(Am_Drawonable *, bool) {}
-  void Frame_Resize_Notify(Am_Drawonable *, int, int, int, int) {}
-  void Destroy_Notify(Am_Drawonable *) {}
+  void Iconify_Notify(Am_Drawonable *, bool) override {}
+  void Frame_Resize_Notify(Am_Drawonable *, int, int, int, int) override {}
+  void Destroy_Notify(Am_Drawonable *) override {}
   void Configure_Notify(Am_Drawonable * /*d*/, int /*l*/, int /*t*/, int /*w*/,
-                        int /*h*/)
+                        int /*h*/) override
   {
     //    d->Set_Position(l, t);
     //    d->Set_Size(w,h);
   }
-  void Exposure_Notify(Am_Drawonable *draw, int, int, int, int)
+  void Exposure_Notify(Am_Drawonable *draw, int, int, int, int) override
   {
     redraw(draw);
   }
-  void Input_Event_Notify(Am_Drawonable *, Am_Input_Event *ev)
+  void Input_Event_Notify(Am_Drawonable *, Am_Input_Event *ev) override
   {
     if (ev->input_char == "LEFT_DOWN")
       test_reparent1();

@@ -181,12 +181,12 @@ protected:
 
 public:
   Am_Enum_Support(const char *value_string, Am_Value_Type type);
-  ~Am_Enum_Support();
+  ~Am_Enum_Support() override;
   void Set_Type(Am_Value_Type in_type) { type = in_type; }
 
-  void Print(std::ostream &os, const Am_Value &value) const;
-  const char *To_String(const Am_Value &v) const;
-  virtual Am_Value From_String(const char *string) const;
+  void Print(std::ostream &os, const Am_Value &value) const override;
+  const char *To_String(const Am_Value &v) const override;
+  Am_Value From_String(const char *string) const override;
 
   int Number() { return number; }
   Am_Value Fetch(int item);

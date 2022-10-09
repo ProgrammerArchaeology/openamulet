@@ -28,28 +28,28 @@ class Animation_Constraint;
 class Animation_Constraint : public Am_Constraint
 {
 public:
-  bool Get(const Am_Slot &, Am_Value &, bool &);
-  void Invalidated(const Am_Slot &, Am_Constraint *, const Am_Value &);
+  bool Get(const Am_Slot &, Am_Value &, bool &) override;
+  void Invalidated(const Am_Slot &, Am_Constraint *, const Am_Value &) override;
   void Changed(const Am_Slot &slot, Am_Constraint *invalidating_constraint,
-               const Am_Value &, const Am_Value &new_value);
-  void Changed(const Am_Slot &slot, Am_Constraint *invalidating_constraint);
-  void Slot_Event(Am_Object_Context *, const Am_Slot &);
-  Am_Constraint *Get_Prototype();
-  bool Is_Instance_Of(Am_Constraint *proto);
-  Am_Constraint *Constraint_Added(const Am_Slot &adding_slot);
-  Am_Constraint *Dependency_Added(const Am_Slot &);
-  void Constraint_Removed(const Am_Slot &removing_slot);
-  void Dependency_Removed(const Am_Slot &);
+               const Am_Value &, const Am_Value &new_value) override;
+  void Changed(const Am_Slot &slot, Am_Constraint *invalidating_constraint) override;
+  void Slot_Event(Am_Object_Context *, const Am_Slot &) override;
+  Am_Constraint *Get_Prototype() override;
+  bool Is_Instance_Of(Am_Constraint *proto) override;
+  Am_Constraint *Constraint_Added(const Am_Slot &adding_slot) override;
+  Am_Constraint *Dependency_Added(const Am_Slot &) override;
+  void Constraint_Removed(const Am_Slot &removing_slot) override;
+  void Dependency_Removed(const Am_Slot &) override;
   bool Is_Overridden_By(const Am_Slot &slot,
-                        Am_Constraint *competing_constraint);
-  Am_Constraint *Create(const Am_Slot &, const Am_Slot &);
-  Am_Constraint *Copy(const Am_Slot &current_slot, const Am_Slot &new_slot);
-  Am_ID_Tag ID() const;
-  const char *Get_Name();
+                        Am_Constraint *competing_constraint) override;
+  Am_Constraint *Create(const Am_Slot &, const Am_Slot &) override;
+  Am_Constraint *Copy(const Am_Slot &current_slot, const Am_Slot &new_slot) override;
+  Am_ID_Tag ID() const override;
+  const char *Get_Name() override;
 
   Animation_Constraint(Am_Object in_interpolator);
   Animation_Constraint(Animation_Constraint *proto, Am_Object in_interpolator);
-  ~Animation_Constraint();
+  ~Animation_Constraint() override;
   void Initialize();
   void Update();
 

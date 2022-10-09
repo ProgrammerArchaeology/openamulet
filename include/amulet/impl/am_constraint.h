@@ -35,7 +35,7 @@ public:
                                 const Am_Slot &new_slot) = 0;
   virtual Am_Constraint *Copy(const Am_Slot &current_slot,
                               const Am_Slot &new_slot) = 0;
-  virtual Am_ID_Tag ID() const = 0;
+  Am_ID_Tag ID() const override = 0;
   virtual const char *Get_Name() = 0;
 };
 

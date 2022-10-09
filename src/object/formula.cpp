@@ -100,19 +100,19 @@ Dependency::Remove()
 class Formula_Context : public Am_Constraint_Context
 {
 public:
-  Am_ID_Tag ID();
+  Am_ID_Tag ID() override;
   const Am_Value &Get(const Am_Object_Advanced &object, Am_Slot_Key key,
-                      Am_Slot_Flags flags);
+                      Am_Slot_Flags flags) override;
   void Set(const Am_Object_Advanced &object, Am_Slot_Key key,
-           const Am_Value &new_value, Am_Slot_Flags flags);
-  void Note_Changed(const Am_Object_Advanced &object, Am_Slot_Key key);
-  void Note_Unchanged(const Am_Object_Advanced &object, Am_Slot_Key key);
+           const Am_Value &new_value, Am_Slot_Flags flags) override;
+  void Note_Changed(const Am_Object_Advanced &object, Am_Slot_Key key) override;
+  void Note_Unchanged(const Am_Object_Advanced &object, Am_Slot_Key key) override;
   const Am_Value &Raise_Get_Exception(const Am_Value &value,
                                       const Am_Object_Advanced &object,
                                       Am_Slot_Key key, Am_Slot_Flags flags,
-                                      const char *msg);
-  Am_Wrapper *Get_Data();
-  void Set_Data(Am_Wrapper *data);
+                                      const char *msg) override;
+  Am_Wrapper *Get_Data() override;
+  void Set_Data(Am_Wrapper *data) override;
 
   Am_Slot depender;
   Dependency *last_position;
@@ -172,41 +172,41 @@ public:
   Formula_Constraint(Am_Formula_Data *in_data);
   Formula_Constraint(Formula_Constraint *proto_formula);
 
-  ~Formula_Constraint()
+  ~Formula_Constraint() override
   {
     if (data)
       data->Release();
     data = nullptr;
   }
 
-  bool Get(const Am_Slot &fetching_slot, Am_Value &value, bool &changed);
+  bool Get(const Am_Slot &fetching_slot, Am_Value &value, bool &changed) override;
 
   void Invalidated(const Am_Slot &slot_invalidated,
                    Am_Constraint *invalidating_constraint,
-                   const Am_Value &value);
+                   const Am_Value &value) override;
   void Changed(const Am_Slot &slot_changed, Am_Constraint *changing_constraint,
-               const Am_Value &prev_value, const Am_Value &new_value);
-  void Changed(const Am_Slot &slot_changed, Am_Constraint *changing_constraint);
-  void Slot_Event(Am_Object_Context *oc, const Am_Slot &slot);
-  Am_Constraint *Get_Prototype();
-  bool Is_Instance_Of(Am_Constraint *proto);
+               const Am_Value &prev_value, const Am_Value &new_value) override;
+  void Changed(const Am_Slot &slot_changed, Am_Constraint *changing_constraint) override;
+  void Slot_Event(Am_Object_Context *oc, const Am_Slot &slot) override;
+  Am_Constraint *Get_Prototype() override;
+  bool Is_Instance_Of(Am_Constraint *proto) override;
 
-  Am_Constraint *Constraint_Added(const Am_Slot &adding_slot);
-  Am_Constraint *Dependency_Added(const Am_Slot &adding_slot);
-  void Constraint_Removed(const Am_Slot &removing_slot);
-  void Dependency_Removed(const Am_Slot &removing_slot);
+  Am_Constraint *Constraint_Added(const Am_Slot &adding_slot) override;
+  Am_Constraint *Dependency_Added(const Am_Slot &adding_slot) override;
+  void Constraint_Removed(const Am_Slot &removing_slot) override;
+  void Dependency_Removed(const Am_Slot &removing_slot) override;
 
   bool Is_Overridden_By(const Am_Slot &slot,
-                        Am_Constraint *competing_constraint);
+                        Am_Constraint *competing_constraint) override;
 
-  Am_Constraint *Create(const Am_Slot &current_slot, const Am_Slot &new_slot);
-  Am_Constraint *Copy(const Am_Slot &current_slot, const Am_Slot &new_slot);
-  Am_ID_Tag ID() const;
-  const char *Get_Name();
+  Am_Constraint *Create(const Am_Slot &current_slot, const Am_Slot &new_slot) override;
+  Am_Constraint *Copy(const Am_Slot &current_slot, const Am_Slot &new_slot) override;
+  Am_ID_Tag ID() const override;
+  const char *Get_Name() override;
 
-  Am_Formula_Mode Get_Mode();
-  void Set_Mode(Am_Formula_Mode mode);
-  Am_Slot Get_Context();
+  Am_Formula_Mode Get_Mode() override;
+  void Set_Mode(Am_Formula_Mode mode) override;
+  Am_Slot Get_Context() override;
 
   static Am_ID_Tag id;
 

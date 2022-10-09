@@ -26,29 +26,29 @@ Am_Drawonable *d, *d2;
 
 class my_input_handlers : public Am_Input_Event_Handlers
 {
-  void Iconify_Notify(Am_Drawonable *draw, bool)
+  void Iconify_Notify(Am_Drawonable *draw, bool) override
   {
     cout << "My Iconify Notify on " << draw << endl;
   }
-  void Frame_Resize_Notify(Am_Drawonable *draw, int, int, int, int)
+  void Frame_Resize_Notify(Am_Drawonable *draw, int, int, int, int) override
   {
     cout << "My Frame Resize Notify on " << draw << endl;
   }
-  void Destroy_Notify(Am_Drawonable *draw)
+  void Destroy_Notify(Am_Drawonable *draw) override
   {
     cout << "My Destroy Notify on " << draw << endl;
   }
   void Configure_Notify(Am_Drawonable *draw, int /* left */, int /* top */,
-                        int /* width */, int /* height */)
+                        int /* width */, int /* height */) override
   {
     cout << "My Configure Notify on " << draw << endl;
   }
   void Exposure_Notify(Am_Drawonable *draw, int /* left */, int /* top */,
-                       int /* width */, int /* height */)
+                       int /* width */, int /* height */) override
   {
     cout << "My Exposure Notify on " << draw << endl;
   }
-  void Input_Event_Notify(Am_Drawonable *draw, Am_Input_Event *ev)
+  void Input_Event_Notify(Am_Drawonable *draw, Am_Input_Event *ev) override
   {
     char s[100];
 

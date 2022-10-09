@@ -36,16 +36,16 @@ class Outline : public Am_Outline
 public:
   Outline(Am_Object group);
   Outline() : Am_Outline(), _group(Am_No_Object){};
-  virtual ~Outline();
-  virtual Am_Object Root(long id, Am_Object item);
+  ~Outline() override;
+  Am_Object Root(long id, Am_Object item) override;
   virtual Am_Object Get_Root();
-  virtual Am_Object AddNode(long id, long addto, Am_Object item);
+  Am_Object AddNode(long id, long addto, Am_Object item) override;
   virtual void SetGroup(Am_Object group) { _group = group; }
   virtual void AddBmVi(Am_Object object);
   virtual void RemoveBm(Am_Object object);
-  virtual void DestroyNode(Am_Object am);
-  virtual bool RemoveNode(long id);
-  virtual bool RemoveNode(Am_Object am) { return (Am_Outline::RemoveNode(am)); }
+  void DestroyNode(Am_Object am) override;
+  bool RemoveNode(long id) override;
+  bool RemoveNode(Am_Object am) override { return (Am_Outline::RemoveNode(am)); }
 protected:
   Am_Object _group;
 };

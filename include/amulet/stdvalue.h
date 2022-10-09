@@ -21,7 +21,7 @@ public:
   bool operator==(const Am_Double_Data &test_value) const;
   operator double() const;
   Am_Double_Data(double value);
-  void Print(std::ostream &out) const;
+  void Print(std::ostream &out) const override;
 
 private:
   double value;
@@ -36,10 +36,10 @@ public:
   operator const char *() const;
   operator char *() const;
   Am_String_Data(const char *value, bool copy = true);
-  ~Am_String_Data();
-  void Print(std::ostream &out) const;
-  const char *To_String() const;
-  virtual Am_Value From_String(const char *string) const;
+  ~Am_String_Data() override;
+  void Print(std::ostream &out) const override;
+  const char *To_String() const override;
+  Am_Value From_String(const char *string) const override;
 
 private:
   const char *value;

@@ -270,7 +270,7 @@ window_change_owner(Am_Object window, Am_Object /*old_owner*/,
 class Am_Standard_Opal_Handlers : public Am_Input_Event_Handlers
 {
 public:
-  void Iconify_Notify(Am_Drawonable *draw, bool iconified)
+  void Iconify_Notify(Am_Drawonable *draw, bool iconified) override
   {
     Am_Wrapper *window_data = (Am_Wrapper *)draw->Get_Data_Store();
     window_data->Note_Reference();
@@ -281,7 +281,7 @@ public:
       window.Set(Am_ICONIFIED, iconified);
   }
   void Frame_Resize_Notify(Am_Drawonable *draw, int left, int top, int right,
-                           int bottom)
+                           int bottom) override
   {
     Am_Wrapper *window_data = (Am_Wrapper *)draw->Get_Data_Store();
     window_data->Note_Reference();
@@ -300,7 +300,7 @@ public:
     if (w_bottom != bottom)
       window.Set(Am_BOTTOM_BORDER_WIDTH, bottom);
   }
-  void Destroy_Notify(Am_Drawonable *draw)
+  void Destroy_Notify(Am_Drawonable *draw) override
   {
     Am_Wrapper *window_data = (Am_Wrapper *)draw->Get_Data_Store();
     window_data->Note_Reference();
@@ -314,7 +314,7 @@ public:
     }
   }
   void Configure_Notify(Am_Drawonable *draw, int left, int top, int width,
-                        int height)
+                        int height) override
   {
     Am_Wrapper *window_data = (Am_Wrapper *)draw->Get_Data_Store();
     window_data->Note_Reference();
@@ -337,7 +337,7 @@ public:
       window.Set(Am_HEIGHT, height);
   }
   void Exposure_Notify(Am_Drawonable *draw, int left, int top, int width,
-                       int height)
+                       int height) override
   {
     Am_Wrapper *window_data = (Am_Wrapper *)draw->Get_Data_Store();
     window_data->Note_Reference();
@@ -351,7 +351,7 @@ public:
     win_todo->Merge_Rectangle(left, top, width, height);
     win_todo->Add();
   }
-  void Input_Event_Notify(Am_Drawonable *draw, Am_Input_Event *ev)
+  void Input_Event_Notify(Am_Drawonable *draw, Am_Input_Event *ev) override
   // used for keys, mouse buttons, mouse moved, and enter-leave.
   {
     // get the window from the drawonable

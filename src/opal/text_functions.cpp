@@ -888,7 +888,7 @@ public:
   {
     table = proto->table->Copy();
   }
-  ~Am_Edit_Translation_Table_Data()
+  ~Am_Edit_Translation_Table_Data() override
   {
     if (table)
       delete table;

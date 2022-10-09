@@ -13,9 +13,9 @@ public:
   // constructor registers method's name in name registry.
   Am_Method_Wrapper(Am_ID_Tag *id_ptr, Am_Generic_Procedure *p,
                     const char *name = nullptr);
-  Am_ID_Tag ID() const { return *ID_Ptr; }
+  Am_ID_Tag ID() const override { return *ID_Ptr; }
   Am_Generic_Procedure *Call;
-  void Print(std::ostream &out) const;
+  void Print(std::ostream &out) const override;
   virtual Am_Value From_String(const char *string) const;
 
 protected:

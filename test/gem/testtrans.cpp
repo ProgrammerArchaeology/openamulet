@@ -20,12 +20,12 @@ Am_Style green(0.0, 1.0, 0.0);
 class testtrans_handlers : public Am_Input_Event_Handlers
 {
 public:
-  void Iconify_Notify(Am_Drawonable *, bool) {}
-  void Frame_Resize_Notify(Am_Drawonable *, int, int, int, int) {}
-  void Destroy_Notify(Am_Drawonable *) {}
-  void Configure_Notify(Am_Drawonable *, int, int, int, int) {}
-  void Exposure_Notify(Am_Drawonable *, int, int, int, int) {}
-  void Input_Event_Notify(Am_Drawonable *d, Am_Input_Event *ev)
+  void Iconify_Notify(Am_Drawonable *, bool) override {}
+  void Frame_Resize_Notify(Am_Drawonable *, int, int, int, int) override {}
+  void Destroy_Notify(Am_Drawonable *) override {}
+  void Configure_Notify(Am_Drawonable *, int, int, int, int) override {}
+  void Exposure_Notify(Am_Drawonable *, int, int, int, int) override {}
+  void Input_Event_Notify(Am_Drawonable *d, Am_Input_Event *ev) override
   {
 
     std::cout << "My Input Event `" << ev->input_char << "' on "

@@ -11,7 +11,7 @@ public:
   // CREATORS
   Am_Object_Data();
   Am_Object_Data(const char *schema_name, Am_Object_Data *in_prototype);
-  ~Am_Object_Data();
+  ~Am_Object_Data() override;
 
   // MANIPULATORS
   Am_Object_Data *create_object(const char *new_name);
@@ -61,7 +61,7 @@ public:
   bool operator==(const Am_Object_Data &) const { return (false); }
 
   // ACCESSORS
-  void Print(std::ostream &out) const;
+  void Print(std::ostream &out) const override;
 
   // DATA MEMBERS
   //:pointer to prototype's Am_Object_Data object

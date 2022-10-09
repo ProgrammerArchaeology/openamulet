@@ -671,7 +671,7 @@ public:
   Am_Text_Viewing_Context_Data();
   Am_Text_Viewing_Context_Data(Am_Text_Viewing_Context_Data *inProto);
   Am_Text_Viewing_Context_Data(Am_Text_Viewing_Context_Data &inProto);
-  ~Am_Text_Viewing_Context_Data();
+  ~Am_Text_Viewing_Context_Data() override;
 
   // destructor to release mText
   void Init(Am_Rich_Text inText, unsigned long inWidth);

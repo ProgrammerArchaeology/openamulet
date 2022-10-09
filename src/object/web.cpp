@@ -24,30 +24,30 @@
 class Web_Constraint : public Am_Constraint
 {
 public:
-  bool Get(const Am_Slot &fetching_slot, Am_Value &value, bool &changed);
+  bool Get(const Am_Slot &fetching_slot, Am_Value &value, bool &changed) override;
   void Invalidated(const Am_Slot &slot_invalidated,
                    Am_Constraint *invalidating_constraint,
-                   const Am_Value &value);
+                   const Am_Value &value) override;
   void Changed(const Am_Slot &slot_changed,
                Am_Constraint *invalidating_constraint,
-               const Am_Value &prev_value, const Am_Value &new_value);
+               const Am_Value &prev_value, const Am_Value &new_value) override;
   void Changed(const Am_Slot &slot_changed,
-               Am_Constraint *invalidating_constraint);
-  void Slot_Event(Am_Object_Context *oc, const Am_Slot &slot);
-  Am_Constraint *Get_Prototype();
-  bool Is_Instance_Of(Am_Constraint *proto);
-  Am_Constraint *Constraint_Added(const Am_Slot &adding_slot);
-  Am_Constraint *Dependency_Added(const Am_Slot &adding_slot);
-  void Constraint_Removed(const Am_Slot &removing_slot);
-  void Dependency_Removed(const Am_Slot &removing_slot);
+               Am_Constraint *invalidating_constraint) override;
+  void Slot_Event(Am_Object_Context *oc, const Am_Slot &slot) override;
+  Am_Constraint *Get_Prototype() override;
+  bool Is_Instance_Of(Am_Constraint *proto) override;
+  Am_Constraint *Constraint_Added(const Am_Slot &adding_slot) override;
+  Am_Constraint *Dependency_Added(const Am_Slot &adding_slot) override;
+  void Constraint_Removed(const Am_Slot &removing_slot) override;
+  void Dependency_Removed(const Am_Slot &removing_slot) override;
 
   bool Is_Overridden_By(const Am_Slot &slot,
-                        Am_Constraint *competing_constraint);
+                        Am_Constraint *competing_constraint) override;
 
-  Am_Constraint *Create(const Am_Slot &current_slot, const Am_Slot &new_slot);
-  Am_Constraint *Copy(const Am_Slot &current_slot, const Am_Slot &new_slot);
-  Am_ID_Tag ID() const;
-  const char *Get_Name() { return "*WEB*"; } ////// Temporary, return real name
+  Am_Constraint *Create(const Am_Slot &current_slot, const Am_Slot &new_slot) override;
+  Am_Constraint *Copy(const Am_Slot &current_slot, const Am_Slot &new_slot) override;
+  Am_ID_Tag ID() const override;
+  const char *Get_Name() override { return "*WEB*"; } ////// Temporary, return real name
 
   Web_Constraint(Am_Web_Data *in_owner) { owner = in_owner; }
 
@@ -166,18 +166,18 @@ public:
 class Web_Context : public Am_Constraint_Context
 {
 public:
-  Am_ID_Tag ID();
+  Am_ID_Tag ID() override;
   const Am_Value &Get(const Am_Object_Advanced &object, Am_Slot_Key key,
-                      Am_Slot_Flags flags);
+                      Am_Slot_Flags flags) override;
   void Set(const Am_Object_Advanced &object, Am_Slot_Key key,
-           const Am_Value &new_value, Am_Slot_Flags flags);
-  void Note_Changed(const Am_Object_Advanced &, Am_Slot_Key);
-  void Note_Unchanged(const Am_Object_Advanced &, Am_Slot_Key);
+           const Am_Value &new_value, Am_Slot_Flags flags) override;
+  void Note_Changed(const Am_Object_Advanced &, Am_Slot_Key) override;
+  void Note_Unchanged(const Am_Object_Advanced &, Am_Slot_Key) override;
   const Am_Value &Raise_Get_Exception(const Am_Value &value,
                                       const Am_Object_Advanced &, Am_Slot_Key,
-                                      Am_Slot_Flags flags, const char *msg);
-  Am_Wrapper *Get_Data();
-  void Set_Data(Am_Wrapper *data);
+                                      Am_Slot_Flags flags, const char *msg) override;
+  Am_Wrapper *Get_Data() override;
+  void Set_Data(Am_Wrapper *data) override;
 
   Web_Context(Am_Web_Data *in_owner, const Am_Slot &in_validating_slot)
       : validating_slot(in_validating_slot)

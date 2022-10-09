@@ -12,11 +12,11 @@ public:
   Computed_Colors_Record_Data(const Am_Style &foreground);
   Computed_Colors_Record_Data(Computed_Colors_Record_Data *);
 
-  virtual ~Computed_Colors_Record_Data();
+  ~Computed_Colors_Record_Data() override;
 
   bool operator==(const Computed_Colors_Record_Data &) const { return (false); }
 
-  void Print(std::ostream &out) const;
+  void Print(std::ostream &out) const override;
 
   // DATA MEMBERS
   Am_Style key;

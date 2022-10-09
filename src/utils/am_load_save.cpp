@@ -195,7 +195,7 @@ public:
   Am_Load_Save_Context_Data();
   Am_Load_Save_Context_Data(Am_Load_Save_Context_Data *proto);
 
-  ~Am_Load_Save_Context_Data();
+  ~Am_Load_Save_Context_Data() override;
 
   bool operator==(const Am_Load_Save_Context_Data & /*test*/) const
   {

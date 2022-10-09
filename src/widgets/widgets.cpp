@@ -53,7 +53,7 @@ public:
   {
     type = typ;
   }
-  Am_Value From_String(const char *string) const
+  Am_Value From_String(const char *string) const override
   {
     if (!strcmp(string, "Am_NATIVE_LOOK"))
       return Am_Value(Am_NATIVE_LOOK_val, type);

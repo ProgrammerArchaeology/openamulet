@@ -337,7 +337,7 @@ operator<<(std::ostream &os, Am_Priority_List &list)
 
 class Am_Priority_List_Type_Support_Class : public Am_Type_Support
 {
-  void Print(std::ostream &os, const Am_Value &val) const
+  void Print(std::ostream &os, const Am_Value &val) const override
   {
     Am_Priority_List *list = Am_Am_Priority_List(val).value;
     list->Print(os);
