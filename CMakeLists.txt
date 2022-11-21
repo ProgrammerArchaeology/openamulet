@@ -36,10 +36,9 @@ IF (UNIX AND CMAKE_GENERATOR STREQUAL "Ninja")
   IF (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     SET(CMAKE_CXX_FLAGS "-fcolor-diagnostics ${CMAKE_CXX_FLAGS}")
   ENDIF()
-  # This doesn't work on gcc 4.6 which is what is on TravisCI.
-  # IF (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-  #   SET(CMAKE_CXX_FLAGS "-fdiagnostics-color ${CMAKE_CXX_FLAGS}")
-  # ENDIF()
+  IF (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    SET(CMAKE_CXX_FLAGS "-fdiagnostics-color ${CMAKE_CXX_FLAGS}")
+  ENDIF()
 ENDIF()
 
 ADD_SUBDIRECTORY(src)
