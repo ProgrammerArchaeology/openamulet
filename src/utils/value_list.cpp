@@ -48,7 +48,7 @@ public:
   void Set(const Am_Value &value, Am_List_Item *current);
   void Make_Empty();
   void Make_Unique(Am_Value_List_Data *&data, Am_List_Item *&current);
-  virtual void Print(std::ostream &os) const;
+  void Print(std::ostream &os) const override;
 
   unsigned short number;
   Am_List_Item *head;

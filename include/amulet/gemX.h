@@ -568,7 +568,7 @@ class Am_Font_Data : public Am_Wrapper
   AM_WRAPPER_DATA_DECL(Am_Font);
 
 public:
-  void Print(std::ostream &os) const;
+  void Print(std::ostream &os) const override;
   Am_Font_Data(Am_Font_Data *proto);
   Am_Font_Data(const char *the_name);
   Am_Font_Data(Am_Font_Family_Flag f = Am_FONT_FIXED, bool is_bold = false,
@@ -807,7 +807,7 @@ class Am_Style_Data : public Am_Wrapper
   AM_WRAPPER_DATA_DECL(Am_Style);
 
 public:
-  void Print(std::ostream &os) const;
+  void Print(std::ostream &os) const override;
 
   Am_Style_Data(Am_Style_Data *proto);
   Am_Style_Data(float r, float g, float b, short thickness,

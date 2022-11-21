@@ -54,7 +54,7 @@ public:
   void Set(float x, float y, Am_Point_Item *current);
   void Make_Empty();
   void Make_Unique(Am_Point_List_Data *&data, Am_Point_Item *&current);
-  virtual void Print(std::ostream &os) const;
+  void Print(std::ostream &os) const override;
 
   unsigned short number;
   Am_Point_Item *head;
