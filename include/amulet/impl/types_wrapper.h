@@ -49,9 +49,9 @@ private:
 
 #define AM_WRAPPER_DATA_DECL(Type_name)                                        \
 public:                                                                        \
-  Am_Wrapper *Make_Unique();                                                   \
-  bool operator==(const Am_Wrapper &test_value) const;                         \
-  Am_ID_Tag ID() const { return id; }                                          \
+  Am_Wrapper *Make_Unique() override;                                          \
+  bool operator==(const Am_Wrapper &test_value) const override;                \
+  Am_ID_Tag ID() const override { return id; }                                 \
   static Type_name##_Data *Narrow(Am_Wrapper *value);                          \
   static Am_ID_Tag Type_name##_Data_ID() { return id; }                        \
 private:                                                                       \
