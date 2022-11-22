@@ -602,19 +602,17 @@ Am_Connection::Wait_For_Connect(void)
   select_timeout.tv_sec = 1;
   select_timeout.tv_usec = 0;
 
-  fd_set *read_fd, read_fd_data;
+  fd_set read_fd;
   int nfds;
-  read_fd = &read_fd_data;
-  FD_ZERO(read_fd);
-  FD_SET(m_parent_socket, read_fd);
+  FD_ZERO(&read_fd);
+  FD_SET(m_parent_socket, &read_fd);
 
   nfds = m_parent_socket + 1;
 
-  (void)select(nfds, read_fd, nullptr, nullptr, &select_timeout);
+  (void)select(nfds, &read_fd, nullptr, nullptr, &select_timeout);
 
-  if (FD_ISSET(m_parent_socket, read_fd))
-    Am_Connection::Handle_Sockets(read_fd);
-  delete read_fd;
+  if (FD_ISSET(m_parent_socket, &read_fd))
+    Am_Connection::Handle_Sockets(&read_fd);
 }
 
 void
