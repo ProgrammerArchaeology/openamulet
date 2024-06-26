@@ -14,6 +14,7 @@
 
 #include <string.h>
 
+#include <functional>
 #include <map>
 #include <iostream>
 #include <amulet/impl/types_logging.h> // Debug logging functions

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <am_inc.h>
 #include <amulet/connection.h>
+#include <sys/socket.h>
 //
 // char
 //
