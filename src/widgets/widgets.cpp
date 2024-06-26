@@ -20,6 +20,8 @@
 #include <amulet/impl/widget_op.h>
 #include <amulet/impl/slots_registry.h>
 
+#include <math.h>
+
 #ifdef OA_VERSION
 // declared as extern in widgets_advanced.h
 //	Map_Style2MotifRec 			Am_Map_Style2MotifRec;
@@ -143,23 +145,6 @@ Am_Define_Style_Formula(Am_Default_Motif_Fill_Style)
       return Am_White;
   } else
     return Am_Default_Color;
-}
-
-inline float
-fmax(float f1, float f2)
-{
-  if (f1 > f2)
-    return f1;
-  else
-    return f2;
-}
-inline float
-fmin(float f1, float f2)
-{
-  if (f1 > f2)
-    return f2;
-  else
-    return f1;
 }
 
 // Compute the shades of the Motif colors in the widgets.

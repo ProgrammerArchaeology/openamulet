@@ -11,6 +11,7 @@
 
 #include <amulet.h>
 #include <fstream>
+#include <math.h>
 
 void
 save0(const char *filename)
@@ -37,12 +38,6 @@ save0(const char *filename)
       out_file, Am_Value("Hello this is a test to see what\n happens"));
 
   return;
-}
-
-inline float
-fabs(float value)
-{
-  return (value < 0) ? -value : value;
 }
 
 // read-back the output of 'save0' and check that it's as expected
