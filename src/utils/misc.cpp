@@ -66,7 +66,7 @@ const char *
 Am_Merge_Pathname(const char *name)
 {
 #if 0
-  char * am_dir = Am_Get_Amulet_Pathname();
+  const char *am_dir = Am_Get_Amulet_Pathname();
   if (!am_dir) am_dir = "..";
   char *ret_val = new char [(strlen(am_dir) + strlen(name) + 2)];
 
@@ -123,7 +123,7 @@ const char *
 Am_Merge_Pathname(const char *name)
 {
   // get the installation path
-  char *am_dir = Am_Get_Amulet_Pathname();
+  const char *am_dir = Am_Get_Amulet_Pathname();
 
   // is it a valid path?
   if (am_dir == 0) {
