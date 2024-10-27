@@ -64,7 +64,7 @@ load0(const char *filename)
   char g = Am_Default_Load_Save_Context.Load(in_file);
   Am_String h = Am_Default_Load_Save_Context.Load(in_file);
 
-  // now do the check, that we read back the correct walues
+  // now do the check, that we read back the correct values
   if (a == 5 && b == 4520982 && c && !d && (fabs(e - 54.234) < 0.0001) &&
       (fabs(f - 123.344) < 0.0001) && g == 'a' &&
       h == "Hello this is a test to see what\n happens") {
@@ -102,7 +102,7 @@ save1(const char *filename)
   // make a copy of the list
   Am_Value_List list2 = list;
 
-  // and add the list-itmes two more times (to test referencing)
+  // and add the list-items two more times (to test referencing)
   list2.Add(list).Add(list2, Am_TAIL, false); // will be checked as l3 & l4
 
   // Save this list (which should now use references)

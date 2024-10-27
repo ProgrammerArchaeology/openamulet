@@ -418,7 +418,7 @@ calc_line_end_move(Am_Object &inter, const Am_Object &ref_obj, int x, int y,
         moving_x = first_x + (int)((long(x_dist) * min_length) / denom);
         moving_y = first_y + (int)((long(y_dist) * min_length) / denom);
       }
-    } else { // not less than mimimum length
+    } else { // not less than minimum length
       moving_x = x;
       moving_y = y;
     }
@@ -442,7 +442,7 @@ calc_line_end_move(Am_Object &inter, const Am_Object &ref_obj, int x, int y,
                 inter, Am_WHERE_ATTACH);
       break;
     }
-  } else { // no mimimum length
+  } else { // no minimum length
     switch (attach.value) {
     case Am_ATTACH_END_1_val:
       out_x1 = x;

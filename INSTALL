@@ -14,8 +14,8 @@ OpenAmulet Specific Notes
   By default, the build system will create two versions of the OpenAmulet
 library (shared libraries) named: libamulet.so, libamulet-develop.so.
 
-The develop-ment version contains some special debugging code that
-allows the developper to inspect a graphical interface while it runs.
+The development version contains some special debugging code that
+allows the developer to inspect a graphical interface while it runs.
 In the release (normal) version, this code is not activated and
 the resulting programs usually run faster (but no dynamic inspection
 is allowed).

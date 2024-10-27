@@ -1124,5 +1124,5 @@ the matches don't work.
  * Check out infinite loop when create does a create, or when change the start for a script
     between before and after
  * Check out bug that if script on text_edit, doesn't start because strings are not == 
- * Add a create_text_and_edit_it command so creating a signle action taht can start on
+ * Add a create_text_and_edit_it command so creating a single action that can start on
 */

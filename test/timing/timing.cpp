@@ -80,11 +80,11 @@ end_timing(const char *message, long cnt)
   end_time = Am_Time::Now();
   Am_Time total_time = end_time - start_time;
 
-  // get the needed time in milli seconds
+  // get the needed time in milliseconds
   unsigned long total_msec = total_time.Milliseconds();
   float time_each;
 
-  // write the output seperated by comma, so that we can read it into excel etc.
+  // write the output separated by comma, so that we can read it into excel etc.
   std::cout << my_index << "," << message << "," << total_msec;
 
   // do we have a cnt value given? This value indicates, that we have
@@ -221,7 +221,7 @@ time_object_creation()
   Am_Update_All();
   end_timing("destroy objects from Root 2nd time", NUM_OBJ_CREATE);
 
-  // Add two slots to the prototypes and create NUM_OBJ_CREATE rectangels
+  // Add two slots to the prototypes and create NUM_OBJ_CREATE rectangles
   Am_Graphical_Object.Add(NEW_SLOT_INH2, 2);
   Am_Rectangle.Add(NEW_SLOT_INH, 1);
   start_timing();
@@ -299,7 +299,7 @@ time_object_creation()
   end_timing("get NEW_SLOT as int from all objects and sum them",
              NUM_OBJ_CREATE);
 
-  // add NEW_SLOT to rectangel
+  // add NEW_SLOT to rectangle
   one_rect.Add(NEW_SLOT, 15);
   sum = 0;
   start_timing();

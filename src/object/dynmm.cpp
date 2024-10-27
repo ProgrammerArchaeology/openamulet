@@ -108,7 +108,7 @@ Dyn_Memory_Manager::New()
       Dyn_Link *new_block = reinterpret_cast<Dyn_Link *>(new char[block_size]);
 
       // put at the beginning of the list, because we calculate the block position
-      // from the beginnig of the list
+      // from the beginning of the list
       new_block->next = block;
 
       // and safe the pointer

@@ -417,7 +417,7 @@ Am_Define_Method(Am_Object_Method, void, key_press, (Am_Object self))
               << "c to toggle RGB and HSV color paths" << std::endl
               << "r to hide red rectangle\n"
               << "i = toggle interactor (animator) tracing\n"
-              << "m = grow visible animate rectange\n"
+              << "m = grow visible animate rectangle\n"
               << "o = toggle animation on 1st option menu\n"
               << "p = test polygon animation\n"
               << "e = toggle eye walking" << std::endl

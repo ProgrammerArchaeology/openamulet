@@ -415,7 +415,7 @@ bool
 Am_Slot_Tracer::operator>(Am_Slot_Tracer &test_value)
 {
   // if object is null (unspecified), any object in the test value
-  // will match.  If not, they must be exacly equal.  similar for other fields.
+  // will match.  If not, they must be exactly equal.  similar for other fields.
   return (object_tracer == test_value.object_tracer) &&
          (method_tracer == test_value.method_tracer) &&
          (((!(Am_Wrapper *)

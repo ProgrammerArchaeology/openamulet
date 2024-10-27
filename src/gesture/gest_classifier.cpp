@@ -157,7 +157,7 @@ operator>>(std::istream &s, Am_Gesture_Classifier &cl)
   if (!s.get(check) || check != '\n' || strcmp(buf, " classes"))
     goto lFail;
 
-  // construct a new classifer with n classes
+  // construct a new classifier with n classes
   cldata = new Am_Gesture_Classifier_Data(n);
   classes = cldata->classes;
 
