@@ -205,7 +205,7 @@ public:
 #endif
   }
 #ifdef DEBUG
-  const char *To_String(const Am_Value &value) const
+  const char *To_String(const Am_Value &value) const override
   {
     return Am_Get_Type_Name((Am_ID_Tag)value.value.long_value);
 #else
