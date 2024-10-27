@@ -142,7 +142,7 @@ bool
 Am_Parse_Input_As_List_Of_Type(Am_String input, Am_Value_Type wanted_type,
                                Am_Value &output_value)
 {
-  const char *s = input;
+  char *s = input;
   if (strncmp(s, "LIST(", 5))
     return false; //not a list
   char *real_part = strchr(s, '[');

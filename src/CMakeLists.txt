@@ -131,11 +131,12 @@ SET(openamulet_SOURCES
     widgets/objects/scrolling_group.cpp
 )
 
-IF(CMAKE_BUILD_TYPE EQUAL "Debug")
+IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
     LIST(APPEND openamulet_SOURCES
         debug/input_parser.cpp
         debug/inspector.cpp
         debug/tracer.cpp)
+    ADD_DEFINITIONS(-DDEBUG)
 ENDIF()
 
 IF (UNIX)
