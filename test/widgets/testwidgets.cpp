@@ -1170,7 +1170,7 @@ Am_Define_String_Formula(name_from_value)
   value = self.Peek(Am_VALUE);
   static char outs[MAXNAMESIZE];
   strcpy(outs, COLORSTR);
-  //concatentate current color on end
+  //concatenate current color on end
   if (value.type == Am_STRING) {
     strcat(outs, Am_String(value));
   } else

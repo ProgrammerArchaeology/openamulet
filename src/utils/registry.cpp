@@ -18,7 +18,7 @@
 // and co. data types (they remain undefined, both in the
 // release and development version of the library).
 // Reverting to old version. -- ortalo
-// Maybe an explicit template instanciation is necessary ?
+// Maybe an explicit template instantiation is necessary ?
 #ifdef OA_VERSION
 // to use OA map version, we just link the old map names to the
 // new implementations

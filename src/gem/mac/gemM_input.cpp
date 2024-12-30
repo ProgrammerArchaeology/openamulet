@@ -1237,7 +1237,7 @@ create_input_char_from_key(const EventRecord &mac_event)
   // bits 0-6 contain the virtual key code (the code is limited to 7 bits)
   // bit  7 is 1 if up stroke, and 0 if down stroke -- this needs to be
   //   set to 1 b/c KeyTranslate does not work properly otherwise
-  // bits 8-15 contain the modifers. We only keep shift and alpha lock,
+  // bits 8-15 contain the modifiers. We only keep shift and alpha lock,
   //   ignoring the control, option and command keys
 
   unsigned short modifiers =

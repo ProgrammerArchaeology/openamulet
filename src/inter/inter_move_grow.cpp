@@ -1832,7 +1832,7 @@ init()
 {
 
   Am_Move_Grow_Internal_Command =
-      Am_Command.Create(DSTR("Am_Move_Grow_Interal_Command"))
+      Am_Command.Create(DSTR("Am_Move_Grow_Internal_Command"))
           .Set(Am_LABEL, "Move_Grow")
           .Set(Am_UNDO_METHOD, Am_Move_Grow_Command_Undo)
           .Set(Am_REDO_METHOD, Am_Move_Grow_Command_Undo) //use for both

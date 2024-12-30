@@ -357,7 +357,7 @@ safe_get(Am_Object object, Am_Slot_Key key, Am_Value &value)
 {
   Am_Object_Advanced obj_adv = (Am_Object_Advanced &)object;
   obj_adv = obj_adv.Get_Slot_Locale(key);
-  // Use Get_Slot_Locale to prevent the Get_Slot call from inadvertantly
+  // Use Get_Slot_Locale to prevent the Get_Slot call from inadvertently
   // localizing the slot.
   Am_Slot slot = obj_adv.Get_Slot(key);
   // Calling Get from the slot directly will not validate the slot.
