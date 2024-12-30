@@ -1,6 +1,6 @@
 # Amulet User Interface Development Environment
 
-[![Build Status](https://travis-ci.org/amulet-ui/openamulet.svg?branch=master)](https://travis-ci.org/amulet-ui/openamulet)
+[![CMake](https://github.com/ProgrammerArchaeology/openamulet/actions/workflows/build.yml/badge.svg)](https://github.com/ProgrammerArchaeology/openamulet/actions/)
 
 Amulet includes many features specifically designed
 to make the creation of highly-interactive, graphical,
