@@ -93,7 +93,7 @@ save1(const char *filename)
   Am_Value_List list;
   list.Add(5).Add("hello").Add(10);
 
-  // save the list twice, the second save-taks should use references!
+  // save the list twice, the second save-task should use references!
   Am_Default_Load_Save_Context.Save(out_file,
                                     Am_Value(list)); // will be checked as l1
   Am_Default_Load_Save_Context.Save(out_file,

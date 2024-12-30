@@ -38,7 +38,7 @@
 #include <amulet/impl/types_logging.h>
 
 // This holds all the information we are keying off in the  registry
-// hash table. This is just a char*, but we want a non-default HashVaule
+// hash table. This is just a char*, but we want a non-default HashValue
 // routine, so I'll make it a class for now.
 // Eventually we should make HashValue a memberfunction of
 // the hash table, in a template or something probably.

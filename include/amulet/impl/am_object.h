@@ -39,7 +39,7 @@ class Am_Object_Data;
 // Amulet Object (this pointer (type is Am_Object_Data) is stored inside the 'data' member, which is
 // introduced by the Am_WRAPPER_CLASS macro). This class
 // is used to represent Amulet objects like windows, graphical objects, and
-// interators. An Am_Object has very little overhead as it's only a wrapper
+// iterators. An Am_Object has very little overhead as it's only a wrapper
 // and nothing more. An actual object is/can be stored inside an Am_Object
 // with the use of the Create Method. This method allocates memory etc. To get
 // rid of the allocated object the destroy method has to be called. This is

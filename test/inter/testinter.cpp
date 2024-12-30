@@ -770,7 +770,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
     break;
   }
   case 'A': {
-    cout << "Explictly aborting all inters\n" << flush;
+    cout << "Explicitly aborting all inters\n" << flush;
     Am_Abort_Interactor(select_inter);
     Am_Abort_Interactor(move_inter);
     Am_Abort_Interactor(create_inter);
@@ -797,7 +797,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
     else if (Am_Get_Inter_State(text_inter1) > Am_INTER_WAITING)
       running_inter = text_inter1;
     if (running_inter.Valid()) {
-      cout << "Explictly stopping inter " << running_inter << endl << flush;
+      cout << "Explicitly stopping inter " << running_inter << endl << flush;
       Am_Stop_Interactor(running_inter);
     } else
       cout << "Couldn't find any inters running to stop\n";
@@ -952,7 +952,7 @@ Am_Define_Method(Am_Object_Method, void, change_setting, (Am_Object cmd))
          << "    K=change abort mode for editing integer\n"
          << " Create\n"
          << "    g=grid, M=min size, C=set other parameters for create\n"
-         << " Expicit\n"
+         << " Explicit\n"
          << "    G = start (go) interactor\n"
          << "    A = abort interactor\n"
          << "    E = stop (end) interactor\n"
