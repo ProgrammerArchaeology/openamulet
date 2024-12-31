@@ -2433,7 +2433,7 @@ Am_Define_Method(Am_Object_Method, void, enable_menu_edit_window,
       }
     }
 
-    Menu_Edit_Window.Get_Object(NEW_DELETE_PANNEL)
+    Menu_Edit_Window.Get_Object(NEW_DELETE_PANEL)
         .Set(NUMBER_OF_NODES, (int)(i - 1));
   }
 

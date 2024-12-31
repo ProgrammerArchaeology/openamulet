@@ -14,7 +14,7 @@ const char *n2cr[] = {"Am_Command",
                       "Am_Graphics_Copy_Command",
                       "Am_Graphics_Cut_Command",
                       "Am_Graphics_Paste_Command",
-                      "Am_Graphics_To_Botom_Command",
+                      "Am_Graphics_To_Bottom_Command",
                       "Am_Graphics_To_Top_Command",
                       "Am_Graphics_Duplicate_Command",
                       "Am_Graphics_Group_Command",
@@ -43,7 +43,7 @@ Am_Slot_Key CHOICE_INTER = Am_Register_Slot_Name("CHOICE_INTER");
 Am_Slot_Key TEXT1 = Am_Register_Slot_Name("TEXT1");
 Am_Slot_Key TEXT2 = Am_Register_Slot_Name("TEXT2");
 Am_Slot_Key COMMAND_LIST = Am_Register_Slot_Name("COMMAND_LIST");
-Am_Slot_Key NEW_DELETE_PANNEL = Am_Register_Slot_Name("NEW_DELETE_PANNEL");
+Am_Slot_Key NEW_DELETE_PANEL = Am_Register_Slot_Name("NEW_DELETE_PANEL");
 Am_Slot_Key ACCELERATOR_INPUT = Am_Register_Slot_Name("ACCELERATOR_INPUT");
 Am_Slot_Key SAVE_MENU_BAR = Am_Register_Slot_Name("SAVE_MENU_BAR");
 Am_Slot_Key FAKE_DELETE = Am_Register_Slot_Name("FAKE_DELETE");
@@ -236,9 +236,9 @@ Am_Define_Method(Am_Object_Method, void, add_new_submenu, (Am_Object cmd))
   int n;
   if (win.Is_Instance_Of(Am_One_Shot_Interactor))
     win =
-        win.Get_Owner().Get_Owner().Get_Owner().Get_Sibling(NEW_DELETE_PANNEL);
+        win.Get_Owner().Get_Owner().Get_Owner().Get_Sibling(NEW_DELETE_PANEL);
   else if (win.Is_Instance_Of(Am_Menu_Bar))
-    win = win.Get_Sibling(NEW_DELETE_PANNEL);
+    win = win.Get_Sibling(NEW_DELETE_PANEL);
   win.Set(NUMBER_OF_NODES, n = ((int)win.Get(NUMBER_OF_NODES)) + 1);
   win = win.Get_Owner();
 
@@ -925,7 +925,7 @@ Am_Define_String_Formula(get_text)
 Am_Define_Formula(int, compute_right_width)
 {
   Am_Object win = self.Get_Owner();
-  Am_Value panel = win.Peek(NEW_DELETE_PANNEL);
+  Am_Value panel = win.Peek(NEW_DELETE_PANEL);
   if (panel.Valid()) {
     int width = (int)win.Get(Am_WIDTH) - (int)((Am_Object)panel).Get(Am_WIDTH);
     return width - 15;
@@ -1424,7 +1424,7 @@ Menuedit_Window_Initialize()
                                         .Set(Am_DO_METHOD, change_command_key)
                                         .Get_Owner())))
           .Add_Part(
-              NEW_DELETE_PANNEL,
+              NEW_DELETE_PANEL,
               Am_Button_Panel.Create()
                   .Add(NUMBER_OF_NODES, 1)
                   .Set(Am_HEIGHT, Am_Height_Of_Parts)

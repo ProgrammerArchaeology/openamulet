@@ -84,7 +84,7 @@ change_min_max(Am_Drawonable *d)
   min_width = 999;
 
   printf("Changing MIN/MAX of blue window.  Enter four values\n");
-  printf("  seperated by spaces (or CTRL-D RETURN to exit): ");
+  printf("  separated by spaces (or CTRL-D RETURN to exit): ");
 
   scanf("%d %d %d %d", &min_width, &min_height, &max_width, &max_height);
   getchar(); // Eat carriage return
@@ -109,7 +109,7 @@ change_pos_dim(Am_Drawonable *d)
   left = 999;
 
   printf("Changing POSITION/SIZE of blue window.  Enter four values\n");
-  printf("  seperated by spaces (or CTRL-D RETURN to exit): ");
+  printf("  separated by spaces (or CTRL-D RETURN to exit): ");
 
   scanf("%d %d %d %d", &left, &top, &width, &height);
   getchar(); // Eat carriage return

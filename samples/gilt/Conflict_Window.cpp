@@ -48,8 +48,8 @@ Am_Style Am_White_2 = Am_Style::Am_Style(1, 1, 1, 2, Am_CAP_BUTT, Am_JOIN_MITER,
 Am_Define_Formula(bool, wider_than)
 {
   int inner_w = self.Get(Am_INNER_WIDTH);
-  int outter_w = self.Get(Am_WIDTH);
-  if (inner_w > outter_w)
+  int outer_w = self.Get(Am_WIDTH);
+  if (inner_w > outer_w)
     return true;
   else
     return false;
@@ -58,8 +58,8 @@ Am_Define_Formula(bool, wider_than)
 Am_Define_Formula(bool, longer_than)
 {
   int inner_h = self.Get(Am_INNER_HEIGHT);
-  int outter_h = self.Get(Am_HEIGHT);
-  if (inner_h > outter_h)
+  int outer_h = self.Get(Am_HEIGHT);
+  if (inner_h > outer_h)
     return true;
   else
     return false;

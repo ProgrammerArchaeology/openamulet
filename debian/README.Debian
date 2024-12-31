@@ -2,7 +2,7 @@ open-amulet for Debian
 ----------------------
 
 The OpenAmulet Toolkit is a portable toolkit designed for the creation
-of 2D direct manipulation grapical user interfaces. It is written in
+of 2D direct manipulation graphical user interfaces. It is written in
 C++ and can be used with Unix systems running the X Window System
 (Motif look), PC's running Microsoft Windows NT or `95 (native look),
 or Macintosh systems running MacOS (native look).

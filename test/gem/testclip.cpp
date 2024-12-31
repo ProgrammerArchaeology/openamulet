@@ -138,7 +138,7 @@ test_single_clips()
 }
 
 // This function tests the Union operation on Am_Regions, and simulates how
-// the Expose event-hander might be implemented in Opal, based on how
+// the Expose event-handler might be implemented in Opal, based on how
 // X Windows sends Exposure events.
 void
 test_multi_clips()

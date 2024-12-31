@@ -115,7 +115,7 @@ extern Am_Slot_Key INTER;
 extern Am_Slot_Key Lw_GROUP;
 extern Am_Slot_Key TEXT1;
 extern Am_Slot_Key TEXT2;
-extern Am_Slot_Key NEW_DELETE_PANNEL;
+extern Am_Slot_Key NEW_DELETE_PANEL;
 extern Am_Slot_Key OUTLINE;
 extern Am_Slot_Key CHOICE_INTER;
 extern Am_Slot_Key COMMAND_LIST;
