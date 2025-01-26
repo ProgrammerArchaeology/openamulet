@@ -10,7 +10,7 @@
 
 //  *
 //  *      This test is just like testsubwins, except that it launches
-//  *   the Main_Loop and uses event handlers.  The Expose event hander
+//  *   the Main_Loop and uses event handlers.  The Expose event handler
 //  *   redraws the text strings in the windows as necessary, and the
 //  *   input event handler reparents windows whenever you click the
 //  *   mouse in a Drawonable.

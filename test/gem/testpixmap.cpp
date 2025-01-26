@@ -10,7 +10,7 @@
 /*
   This program tests the display of transparent and opaque GIF images
   Typing a digit between '1' and '7' causes different images to be
-  overlayed on top of an eye.
+  overlaid on top of an eye.
    - image '1' is an X bitmap file; the remaining images are .gifs
    - even images are transparent; odd images are opaque
    - the background (transparent) color is white for all images

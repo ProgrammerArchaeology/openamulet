@@ -45,7 +45,7 @@ init_wins()
   d1 = root->Create(TESTGEM_D1_LEFT, 40, 300, 300, "Testing Arcs", "Arcs");
   d2 = root->Create(TESTGEM_D2_LEFT, 40, 300, 320, "Testing Roundtangles",
                     "Roundtangles");
-  d3 = root->Create(10, 10, 300, 480, "Testing Line Properites", "Line Props");
+  d3 = root->Create(10, 10, 300, 480, "Testing Line Properties", "Line Props");
   d4 = root->Create(TESTGEM_D4_LEFT, 40, 130, 200, "Testing Draw Functions",
                     "Draw Fns");
   d5 = root->Create(TESTGEM_D5_LEFT, TESTGEM_D5_TOP, 300, 500,
@@ -207,7 +207,7 @@ test_bitblt()
   db->Set_Cut_Buffer("Hit RETURN to hide:"); // test clipping
   char *s = db->Get_Cut_Buffer();
   delete[] s;             // we are responsible for deleting 's'
-  db->Set_Visible(false); // hiding again (preseves contents)
+  db->Set_Visible(false); // hiding again (preserves contents)
   d5->Bitblt(180, 280, 75, 190, db, 0, 0); // bitblt from invisible
   db->Destroy();
   d5->Flush_Output();

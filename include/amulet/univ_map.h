@@ -25,7 +25,7 @@
 //
 // <ValueType>& operator [] (<KeyType> key) - returns a value for this key.
 //   Adds a new pair with this key and null value if there is no such key.
-//   NOTE: To avoid this effect when quering the map use function GetAt.
+//   NOTE: To avoid this effect when querying the map use function GetAt.
 //
 // <ValueType> GetAt (<KeyType> key) const - returns a value for this key.
 //   Returns null value if the key is not found.

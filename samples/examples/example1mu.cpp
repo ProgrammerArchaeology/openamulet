@@ -183,7 +183,7 @@ Am_Define_Method (Am_Items_To_Save_Method, Am_Value_List, contents_for_save,
 // this function supports multiple users
 // this sets up the selection widgets for a single user
 // it adds them to the scroller and into my_selection_list
-// user_id_int is an int to make it easier to make lables
+// user_id_int is an int to make it easier to make labels
 
 static int user_id_int=0;  // this is a counter, one of each user
 
