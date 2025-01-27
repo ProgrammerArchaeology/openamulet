@@ -39,7 +39,7 @@ Am_Define_Method(Am_Object_Method, void, listbox_method, (Am_Object self))
   /// Do we have to handle multiple selects?
   if (static_cast<bool>(listitem.Get_Owner().Get(Am_MULTIPLE_SELECTION)) ==
       true) {
-    /// just toggel the select status
+    /// just toggle the select status
     if (static_cast<bool>(listitem.Get(Am_SELECTED)) == true) {
       listitem.Set(Am_SELECTED, false);
     } else {
@@ -81,7 +81,7 @@ Am_Define_Method(Am_Object_Method, void, listbox_method, (Am_Object self))
 }
 
 //-----------------
-// Amulet Formulars
+// Amulet Formulas
 //-----------------
 Am_Define_Formula(Am_Value, selected_owner_color)
 {

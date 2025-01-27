@@ -211,7 +211,7 @@ Am_Define_Formula(int, Am_Panel_Set_Old_Owner_To_Me)
 
 // Max Item Height simply calculates maximum width of all parts, not maximum
 // extents of the objects.
-// potential circular constraint: dependancy on Am_WIDTH instead of
+// potential circular constraint: dependency on Am_WIDTH instead of
 // Am_REAL_WIDTH in some cases.
 
 Am_Define_Formula(int, max_item_width)

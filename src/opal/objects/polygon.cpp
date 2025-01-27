@@ -462,7 +462,7 @@ polygon_web_validate(Am_Web_Events &events)
 
   if (rescaled && pl.Valid() && draw)
     // check that scaling produced a polygon with the correct bounding box.
-    // how could this fail?  several possibilites: line thickness
+    // how could this fail?  several possibilities: line thickness
     // doesn't scale;  and mitered joins may grow or shrink
     // orthogonally to the scaling.
 

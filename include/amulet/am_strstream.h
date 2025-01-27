@@ -56,5 +56,5 @@
 #define OSTRSTREAM_CONSTR(a, b, c, d) std::ostrstream a(b, c, d)
 #define OSTRSTREAM_COPY(a, b, c) /* do nothing here */
 
-//lint --e(752) ok, isn't referenced here but included for convinience
+//lint --e(752) ok, isn't referenced here but included for convenience
 extern void reset_ostrstream(OSTRSTREAM &oss); // implemented in types.cc

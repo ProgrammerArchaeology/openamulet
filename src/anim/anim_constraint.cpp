@@ -56,7 +56,7 @@ public:
   void Init_Target_Value(const Am_Slot &new_slot);
   void Set_Target_Value(const Am_Slot &changed_slot, const Am_Value &new_value);
 
-  // These are for the instance hiearchy.  The tree is represented as leftmost
+  // These are for the instance hierarchy.  The tree is represented as leftmost
   // child, right sibling.
   Animation_Constraint *prototype;
   Animation_Constraint *first_instance;
@@ -534,7 +534,7 @@ remove_constraint(Am_Slot slot, Animation_Constraint *self)
   }
 }
 
-// This removes the constraint from the instance heirarchy.  Children of
+// This removes the constraint from the instance hierarchy.  Children of
 // this node become root nodes.
 Animation_Constraint::~Animation_Constraint()
 {

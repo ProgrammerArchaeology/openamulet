@@ -737,7 +737,7 @@ Am_Define_Method(Am_Object_Method, void, Am_Slot_Blink_Do,
 
 3) Increment slot S by INC after N sec have passed
 4) Increment slot S by INC every N sec
-* use the Am_Incrementer_Animation_Command and set Am_CONTINOUS
+* use the Am_Incrementer_Animation_Command and set Am_CONTINUOUS
 * appropriately
 
 5) Change slot S from value_1 to value_2 (which are numbers) in N sec as
@@ -749,7 +749,7 @@ L every N msec.  L might be a list of images for a pixmap.
   Variations:
 	6a) May want control over whether go back and forth or wrap:
 		1 2 3 4 3 2 1 2 3 4... vs. 1 2 3 4 1 2 3 4
-	6b) Use a separate list of indicies into L and iterate through the
+	6b) Use a separate list of indices into L and iterate through the
 		indices, in case you want to use the entries of L out of order
 		or reuse entries multiple times.
 *  Am_Slot_List_Setter_Do
