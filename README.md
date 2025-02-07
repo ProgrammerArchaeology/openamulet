@@ -17,24 +17,28 @@ http://www.cs.cmu.edu/~amulet/
 ## Building
 
 Amulet can be built via `cmake`. Once you've cloned
-this repository:
+this repository::
 
-* `git clone https://github.com/amulet-ui/openamulet.git`
-* `cd openamulet`
-* `mkdir build`
-* `cd build`
-* `cmake .. -G Ninja`
-* `ninja`
-* `./samples/checkers`
+    git clone https://github.com/amulet-ui/openamulet.git
+    cd openamulet
+    mkdir build
+    cd build
+    cmake .. -G Ninja
+    ninja
 
-You can use other build tools instead of `ninja`. Other
-samples or tests can be run, but some require assets
+You can use other build tools instead of `ninja`.
+
+Other samples or tests can be run, but some require assets
 which can be found in the `data` directory. To help
 the Amulet applications find these assets, set the
 `AMULET_DIR` environment variable to point to that
-`data` directory:
+`data` directory::
 
-* `export AMULET_DIR=/path/to/openamulet/data`
+    export AMULET_DIR=/path/to/openamulet/data
+
+And then run some samples::
+
+    ./samples/checkers
 
 ## Platform Support
 
